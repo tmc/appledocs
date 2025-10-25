@@ -41,8 +41,6 @@ type IXPCListener interface {
 	
 
 	// properties:
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	Endpoint() IXPCListenerEndpoint
 
 
@@ -216,25 +214,6 @@ func (x_ XPCListener) Suspend() {
 
 
 
-
-
-// The delegate for the listener.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/delegate
-func (x_ XPCListener) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The delegate for the listener.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/delegate
-func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
-}
 
 
 // Returns an endpoint object that may be sent over an existing connection.

@@ -148,10 +148,16 @@ var templateFuncs = template.FuncMap{
 	"disambiguateMethodName": disambiguateMethodName,
 
 	// Class-level helpers
-	"getClassImports":        getClassImports,
-	"getSortedClassImports":  getSortedClassImports,
-	"getStructEmbeddedField": getStructEmbeddedField,
-	"getFromConstructorBody": getFromConstructorBody,
+	"getClassImports":                       getClassImports,
+	"getSortedClassImports":                 getSortedClassImports,
+	"getStructEmbeddedField":                getStructEmbeddedField,
+	"getFromConstructorBody":                getFromConstructorBody,
+	"embeddedTypeNameShadowsParentMethod":   embeddedTypeNameShadowsParentMethod,
+	"getStructEmbeddedTypeName":             getStructEmbeddedTypeName,
+	"getShadowedMethodSignature":            getShadowedMethodSignature,
+	"getShadowedMethodName":                 getShadowedMethodName,
+	"methodConflictsWithParent":             methodConflictsWithParent,
+	"propertyConflictsWithParentMethod":     propertyConflictsWithParentMethod,
 	"getConstructorBody":     getConstructorBody,
 
 	// Platform-specific filtering

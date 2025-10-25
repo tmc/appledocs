@@ -46,8 +46,6 @@ type IPositionalSpecifier interface {
 	SetInsertionKey(value IString)
 	InsertionReplaces() bool
 	SetInsertionReplaces(value bool)
-	ObjectSpecifier() IScriptObjectSpecifier
-	SetObjectSpecifier(value IScriptObjectSpecifier)
 	Position() objectivec.IObject
 	SetPosition(value objectivec.IObject)
 
@@ -186,25 +184,6 @@ func (p_ PositionalSpecifier) InsertionReplaces() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
 func (p_ PositionalSpecifier) SetInsertionReplaces(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionReplaces:"), value)
-}
-
-
-// Returns the object specifier specified at initialization time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/objectspecifier
-func (p_ PositionalSpecifier) ObjectSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](p_.ID, objc.Sel("objectSpecifier"))
-	return rv
-}
-
-
-// Returns the object specifier specified at initialization time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/objectspecifier
-func (p_ PositionalSpecifier) SetObjectSpecifier(value IScriptObjectSpecifier) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectSpecifier:"), value)
 }
 
 

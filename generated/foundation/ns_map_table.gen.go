@@ -41,7 +41,6 @@ type IMapTable interface {
 	
 
 	// properties:
-	Count() uint
 	KeyPointerFunctions() IPointerFunctions
 	ValuePointerFunctions() IPointerFunctions
 
@@ -332,16 +331,6 @@ func (m_ MapTable) SetObjectForKey(anObject objectivec.IObject, aKey objectivec.
 
 
 
-
-
-// The number of key-value pairs in the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/count
-func (m_ MapTable) Count() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("count"))
-	return rv
-}
 
 
 // The pointer functions the map table uses to manage keys.

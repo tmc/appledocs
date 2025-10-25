@@ -21,9 +21,9 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureTimecodeGeneratorDelegate
 type PCaptureTimecodeGeneratorDelegate interface {
 	// Required methods
-	TimecodeGeneratorDidReceiveUpdateFromSource(generator IAVCaptureTimecodeGenerator, timecode objc.IObject /* cross-framework: AVCaptureTimecode */, source IAVCaptureTimecodeSource)
-	TimecodeGeneratorDidUpdateAvailableSources(generator IAVCaptureTimecodeGenerator, availableSources []CaptureTimecodeSource)
-	TimecodeGeneratorTransitionedToSynchronizationStatusForSource(generator IAVCaptureTimecodeGenerator, synchronizationStatus CaptureTimecodeGeneratorSynchronizationStatus, source IAVCaptureTimecodeSource)
+	TimecodeGeneratorDidReceiveUpdateFromSource(generator IAVCaptureTimecodeGenerator, timecode objc.IObject /* cross-framework: AVCaptureTimecode */, source IAVCaptureTimecodeSource)/* debug [protocol_interface/required_method]: TimecodeGeneratorDidReceiveUpdateFromSource */
+	TimecodeGeneratorDidUpdateAvailableSources(generator IAVCaptureTimecodeGenerator, availableSources []CaptureTimecodeSource)/* debug [protocol_interface/required_method]: TimecodeGeneratorDidUpdateAvailableSources */
+	TimecodeGeneratorTransitionedToSynchronizationStatusForSource(generator IAVCaptureTimecodeGenerator, synchronizationStatus CaptureTimecodeGeneratorSynchronizationStatus, source IAVCaptureTimecodeSource)/* debug [protocol_interface/required_method]: TimecodeGeneratorTransitionedToSynchronizationStatusForSource */
 }
 
 // CaptureTimecodeGeneratorDelegate is a delegate implementation builder for the PCaptureTimecodeGeneratorDelegate protocol.

@@ -50,8 +50,6 @@ type IURLSessionTask interface {
 	CountOfBytesReceived() int64
 	CountOfBytesSent() int64
 	CurrentRequest() IURLRequest
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	EarliestBeginDate() IDate
 	SetEarliestBeginDate(value IDate)
 	Error() IError
@@ -273,25 +271,6 @@ func (u_ URLSessionTask) CountOfBytesSent() int64 {
 func (u_ URLSessionTask) CurrentRequest() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
-}
-
-
-// A delegate specific to the task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/delegate
-func (u_ URLSessionTask) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A delegate specific to the task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/delegate
-func (u_ URLSessionTask) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

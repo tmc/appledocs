@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureSynchronizedSampleBufferData */
 
 
-
-
+/* debug [class_header]: Header for AVCaptureSynchronizedSampleBufferData */
 // The class instance for the [CaptureSynchronizedSampleBufferData] class.
 var (
 	CaptureSynchronizedSampleBufferDataClass     _CaptureSynchronizedSampleBufferDataClass
@@ -29,30 +29,30 @@ func getCaptureSynchronizedSampleBufferDataClass() _CaptureSynchronizedSampleBuf
 type _CaptureSynchronizedSampleBufferDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for CaptureSynchronizedSampleBufferData */
 // An interface definition for the [CaptureSynchronizedSampleBufferData] class.
 type ICaptureSynchronizedSampleBufferData interface {
 	ICaptureSynchronizedData
 	
-
+/* debug [class_interface_properties]: Properties for CaptureSynchronizedSampleBufferData */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for CaptureSynchronizedSampleBufferData */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for CaptureSynchronizedSampleBufferData */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureSynchronizedSampleBufferDataClass) Alloc() CaptureSynchronizedSampleBufferData {
 	rv := objc.Send[CaptureSynchronizedSampleBufferData](objc.ID(cc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (c_ CaptureSynchronizedSampleBufferData) Autorelease() CaptureSynchronizedS
 func NewCaptureSynchronizedSampleBufferData() CaptureSynchronizedSampleBufferData {
 	return getCaptureSynchronizedSampleBufferDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for CaptureSynchronizedSampleBufferData */
 // A container for video or audio samples collected using synchronized capture.
 
 
@@ -106,33 +106,33 @@ func CaptureSynchronizedSampleBufferDataFrom(ptr unsafe.Pointer) CaptureSynchron
 		CaptureSynchronizedData: CaptureSynchronizedDataFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for CaptureSynchronizedSampleBufferData *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for CaptureSynchronizedSampleBufferData */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for CaptureSynchronizedSampleBufferData */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for CaptureSynchronizedSampleBufferData */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for CaptureSynchronizedSampleBufferData */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class AVCaptureSynchronizedSampleBufferData */
 
 

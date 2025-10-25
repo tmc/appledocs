@@ -43,14 +43,10 @@ type IMutableURLRequest interface {
 	// properties:
 	AllowsCellularAccess() bool
 	SetAllowsCellularAccess(value bool)
-	Attribution() URLRequestAttribution /* not a class type */
-	SetAttribution(value URLRequestAttribution /* not a class type */)
 	HTTPShouldHandleCookies() bool
 	SetHTTPShouldHandleCookies(value bool)
 	HTTPShouldUsePipelining() bool
 	SetHTTPShouldUsePipelining(value bool)
-	NetworkServiceType() URLRequestNetworkServiceType
-	SetNetworkServiceType(value URLRequestNetworkServiceType)
 	TimeoutInterval() float64
 	SetTimeoutInterval(value float64)
 	AllHTTPHeaderFields() IString
@@ -193,25 +189,6 @@ func (m_ MutableURLRequest) SetAllowsCellularAccess(value bool) {
 }
 
 
-// The entity that initiates the network request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/attribution
-func (m_ MutableURLRequest) Attribution() URLRequestAttribution /* not a class type */ {
-	rv := objc.Send[URLRequestAttribution](m_.ID, objc.Sel("attribution"))
-	return rv
-}
-
-
-// The entity that initiates the network request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/attribution
-func (m_ MutableURLRequest) SetAttribution(value URLRequestAttribution /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribution:"), value)
-}
-
-
 // A Boolean value that indicates whether the request should use the default cookie handling for the request.
 //
 // [Full Topic]
@@ -247,25 +224,6 @@ func (m_ MutableURLRequest) HTTPShouldUsePipelining() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpShouldUsePipelining
 func (m_ MutableURLRequest) SetHTTPShouldUsePipelining(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPShouldUsePipelining:"), value)
-}
-
-
-// The network service type of the connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/networkServiceType
-func (m_ MutableURLRequest) NetworkServiceType() URLRequestNetworkServiceType {
-	rv := objc.Send[URLRequestNetworkServiceType](m_.ID, objc.Sel("networkServiceType"))
-	return rv
-}
-
-
-// The network service type of the connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/networkServiceType
-func (m_ MutableURLRequest) SetNetworkServiceType(value URLRequestNetworkServiceType) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 
 

@@ -20,7 +20,7 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDataOutputSynchronizerDelegate
 type PCaptureDataOutputSynchronizerDelegate interface {
 	// Required methods
-	DataOutputSynchronizerDidOutputSynchronizedDataCollection(synchronizer IAVCaptureDataOutputSynchronizer, synchronizedDataCollection IAVCaptureSynchronizedDataCollection)
+	DataOutputSynchronizerDidOutputSynchronizedDataCollection(synchronizer IAVCaptureDataOutputSynchronizer, synchronizedDataCollection IAVCaptureSynchronizedDataCollection)/* debug [protocol_interface/required_method]: DataOutputSynchronizerDidOutputSynchronizedDataCollection */
 }
 
 // CaptureDataOutputSynchronizerDelegate is a delegate implementation builder for the PCaptureDataOutputSynchronizerDelegate protocol.

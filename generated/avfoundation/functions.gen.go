@@ -2,7 +2,7 @@
 
 package avfoundation
 
-
+/* debug [functions.gen.go]: Generating 10 functions for AVFoundation */
 import (
 	"unsafe"
 
@@ -70,7 +70,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionDimensionMake
 func AVCaptionDimensionMake(value float64, units CaptionUnitsType) CaptionDimension {
 	return _AVCaptionDimensionMake(value, units)
-}
+}/* debug [functions.gen.go/function]: AVCaptionDimensionMake */
 
 // Creates a caption point with the specified x and y positions.
 //
@@ -81,7 +81,7 @@ func AVCaptionDimensionMake(value float64, units CaptionUnitsType) CaptionDimens
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionPointMake
 func AVCaptionPointMake(x CaptionDimension, y CaptionDimension) CaptionPoint {
 	return _AVCaptionPointMake(x, y)
-}
+}/* debug [functions.gen.go/function]: AVCaptionPointMake */
 
 // Creates a caption size with the specified width and height.
 //
@@ -92,7 +92,7 @@ func AVCaptionPointMake(x CaptionDimension, y CaptionDimension) CaptionPoint {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionSizeMake
 func AVCaptionSizeMake(width CaptionDimension, height CaptionDimension) CaptionSize {
 	return _AVCaptionSizeMake(width, height)
-}
+}/* debug [functions.gen.go/function]: AVCaptionSizeMake */
 
 // Creates a collection with the required tags to describe the specified video output requirements.
 //
@@ -103,7 +103,7 @@ func AVCaptionSizeMake(width CaptionDimension, height CaptionDimension) CaptionS
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/CMTagCollectionCreateWithVideoOutputPreset
 func CMTagCollectionCreateWithVideoOutputPreset(allocator AllocatorRef, preset TagCollectionVideoOutputPreset, newCollectionOut unsafe.Pointer) unsafe.Pointer {
 	return _CMTagCollectionCreateWithVideoOutputPreset(allocator, preset, newCollectionOut)
-}
+}/* debug [functions.gen.go/function]: CMTagCollectionCreateWithVideoOutputPreset */
 
 // Returns the name of a system image that displays the recommended iconography for a specified reaction type.
 //
@@ -114,7 +114,7 @@ func CMTagCollectionCreateWithVideoOutputPreset(allocator AllocatorRef, preset T
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureReactionType/systemImageName
 func AVCaptureReactionSystemImageNameForType(reactionType CaptureReactionType) unsafe.Pointer {
 	return _AVCaptureReactionSystemImageNameForType(reactionType)
-}
+}/* debug [functions.gen.go/function]: AVCaptureReactionSystemImageNameForType */
 
 // Generates a new timecode by adding a specified number of frames to the given timecode, handling overflow for seconds, minutes, and hours.
 //
@@ -125,7 +125,7 @@ func AVCaptureReactionSystemImageNameForType(reactionType CaptureReactionType) u
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureTimecode/advanced(_:by:)
 func AVCaptureTimecodeAdvancedByFrames(timecode CaptureTimecode, framesToAdd int64) CaptureTimecode {
 	return _AVCaptureTimecodeAdvancedByFrames(timecode, framesToAdd)
-}
+}/* debug [functions.gen.go/function]: AVCaptureTimecodeAdvancedByFrames */
 
 // Creates a sample buffer containing Timecode Media Description metadata for integration with a video track.
 //
@@ -136,7 +136,7 @@ func AVCaptureTimecodeAdvancedByFrames(timecode CaptureTimecode, framesToAdd int
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureTimecode/createMetadataSampleBuffer(from:associatedWithPresentationTimeStamp:)
 func AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp(timecode CaptureTimecode, presentationTimeStamp corevideo.Time) SampleBufferRef {
 	return _AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp(timecode, presentationTimeStamp)
-}
+}/* debug [functions.gen.go/function]: AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp */
 
 // Creates a sample buffer containing Timecode Media Description metadata for a specified duration.
 //
@@ -147,7 +147,7 @@ func AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeSt
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureTimecode/createMetadataSampleBuffer(from:forDuration:)
 func AVCaptureTimecodeCreateMetadataSampleBufferForDuration(timecode CaptureTimecode, duration corevideo.Time) SampleBufferRef {
 	return _AVCaptureTimecodeCreateMetadataSampleBufferForDuration(timecode, duration)
-}
+}/* debug [functions.gen.go/function]: AVCaptureTimecodeCreateMetadataSampleBufferForDuration */
 
 // Returns a scaled rectangle that maintains the specified aspect ratio within a bounding rectangle.
 //
@@ -158,7 +158,7 @@ func AVCaptureTimecodeCreateMetadataSampleBufferForDuration(timecode CaptureTime
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMakeRect(aspectRatio:insideRect:)
 func AVMakeRectWithAspectRatioInsideRect(aspectRatio corefoundation.CGSize, boundingRect corefoundation.CGRect) corefoundation.CGRect {
 	return _AVMakeRectWithAspectRatioInsideRect(aspectRatio, boundingRect)
-}
+}/* debug [functions.gen.go/function]: AVMakeRectWithAspectRatioInsideRect */
 
 // Attaches a content key to a sample buffer for the purpose of content decryption.
 //
@@ -171,7 +171,7 @@ func AVMakeRectWithAspectRatioInsideRect(aspectRatio corefoundation.CGSize, boun
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAttachContentKey(_:_:_:)
 func AVSampleBufferAttachContentKey(sbuf SampleBufferRef, contentKey unsafe.Pointer, outError unsafe.Pointer) bool {
 	return _AVSampleBufferAttachContentKey(sbuf, contentKey, outError)
-}
+}/* debug [functions.gen.go/function]: AVSampleBufferAttachContentKey */
 
 
 

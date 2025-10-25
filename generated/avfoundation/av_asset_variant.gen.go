@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetVariant */
 
 
-
-
+/* debug [class_header]: Header for AVAssetVariant */
 // The class instance for the [AssetVariant] class.
 var (
 	AssetVariantClass     _AssetVariantClass
@@ -30,35 +30,35 @@ func getAssetVariantClass() _AssetVariantClass {
 type _AssetVariantClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for AssetVariant */
 // An interface definition for the [AssetVariant] class.
 type IAssetVariant interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for AssetVariant */
 	// properties:
 	AudioAttributes() IAVAssetVariantAudioAttributes
 	AverageBitRate() float64
 	PeakBitRate() float64
 	URL() objc.IObject /* cross-framework: NSURL */
 	VideoAttributes() IAVAssetVariantVideoAttributes
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for AssetVariant */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for AssetVariant */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetVariantClass) Alloc() AssetVariant {
 	rv := objc.Send[AssetVariant](objc.ID(ac.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (a_ AssetVariant) Autorelease() AssetVariant {
 func NewAssetVariant() AssetVariant {
 	return getAssetVariantClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for AssetVariant */
 // An object that represents a bit rate variant.
 
 
@@ -110,30 +110,30 @@ type AssetVariant struct {
 func AssetVariantFrom(ptr unsafe.Pointer) AssetVariant {
 	return AssetVariant{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for AssetVariant *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for AssetVariant */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for AssetVariant */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for AssetVariant */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for AssetVariant */
 
 // The audio rendition attributes for the variant.
 //
@@ -142,7 +142,7 @@ func AssetVariantFrom(ptr unsafe.Pointer) AssetVariant {
 func (a_ AssetVariant) AudioAttributes() IAVAssetVariantAudioAttributes {
 	rv := objc.Send[AssetVariantAudioAttributes](a_.ID, objc.Sel("audioAttributes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: audioAttributes */
 
 
 // The average bit rate for the variant.
@@ -152,7 +152,7 @@ func (a_ AssetVariant) AudioAttributes() IAVAssetVariantAudioAttributes {
 func (a_ AssetVariant) AverageBitRate() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("averageBitRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: averageBitRate */
 
 
 // The peak bit rate for the variant.
@@ -162,7 +162,7 @@ func (a_ AssetVariant) AverageBitRate() float64 {
 func (a_ AssetVariant) PeakBitRate() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("peakBitRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: peakBitRate */
 
 
 // Provides URL to media playlist corresponding to variant
@@ -172,7 +172,7 @@ func (a_ AssetVariant) PeakBitRate() float64 {
 func (a_ AssetVariant) URL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](a_.ID, objc.Sel("URL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URL */
 
 
 // The video rendition attributes for the variant.
@@ -182,12 +182,12 @@ func (a_ AssetVariant) URL() objc.IObject /* cross-framework: NSURL */ {
 func (a_ AssetVariant) VideoAttributes() IAVAssetVariantVideoAttributes {
 	rv := objc.Send[AssetVariantVideoAttributes](a_.ID, objc.Sel("videoAttributes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoAttributes */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVAssetVariant */
 
 
 

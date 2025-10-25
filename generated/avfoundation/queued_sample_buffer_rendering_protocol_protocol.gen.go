@@ -24,8 +24,8 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuedSampleBufferRendering
 type PQueuedSampleBufferRendering interface {
 	// Required methods
-	EnqueueSampleBuffer(sampleBuffer SampleBufferRef /* not a class type */)
-	Flush()
-	RequestMediaDataWhenReadyOnQueueUsingBlock(queue objectivec.IObject, block unsafe.Pointer)
-	StopRequestingMediaData()
+	EnqueueSampleBuffer(sampleBuffer SampleBufferRef /* not a class type */)/* debug [protocol_interface/required_method]: EnqueueSampleBuffer */
+	Flush()/* debug [protocol_interface/required_method]: Flush */
+	RequestMediaDataWhenReadyOnQueueUsingBlock(queue objectivec.IObject, block unsafe.Pointer)/* debug [protocol_interface/required_method]: RequestMediaDataWhenReadyOnQueueUsingBlock */
+	StopRequestingMediaData()/* debug [protocol_interface/required_method]: StopRequestingMediaData */
 }

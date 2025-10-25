@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayerItemMediaDataCollector */
 
 
-
-
+/* debug [class_header]: Header for AVPlayerItemMediaDataCollector */
 // The class instance for the [PlayerItemMediaDataCollector] class.
 var (
 	PlayerItemMediaDataCollectorClass     _PlayerItemMediaDataCollectorClass
@@ -30,30 +30,30 @@ func getPlayerItemMediaDataCollectorClass() _PlayerItemMediaDataCollectorClass {
 type _PlayerItemMediaDataCollectorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PlayerItemMediaDataCollector */
 // An interface definition for the [PlayerItemMediaDataCollector] class.
 type IPlayerItemMediaDataCollector interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for PlayerItemMediaDataCollector */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PlayerItemMediaDataCollector */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PlayerItemMediaDataCollector */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemMediaDataCollectorClass) Alloc() PlayerItemMediaDataCollector {
 	rv := objc.Send[PlayerItemMediaDataCollector](objc.ID(pc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (p_ PlayerItemMediaDataCollector) Autorelease() PlayerItemMediaDataCollecto
 func NewPlayerItemMediaDataCollector() PlayerItemMediaDataCollector {
 	return getPlayerItemMediaDataCollectorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PlayerItemMediaDataCollector */
 // The abstract base for media data collectors.
 
 
@@ -105,34 +105,34 @@ type PlayerItemMediaDataCollector struct {
 func PlayerItemMediaDataCollectorFrom(ptr unsafe.Pointer) PlayerItemMediaDataCollector {
 	return PlayerItemMediaDataCollector{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for PlayerItemMediaDataCollector *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PlayerItemMediaDataCollector */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PlayerItemMediaDataCollector */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for PlayerItemMediaDataCollector */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for PlayerItemMediaDataCollector */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class AVPlayerItemMediaDataCollector */
 
 
 

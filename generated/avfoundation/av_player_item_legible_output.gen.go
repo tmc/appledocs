@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayerItemLegibleOutput */
 
 
-
-
+/* debug [class_header]: Header for AVPlayerItemLegibleOutput */
 // The class instance for the [PlayerItemLegibleOutput] class.
 var (
 	PlayerItemLegibleOutputClass     _PlayerItemLegibleOutputClass
@@ -30,16 +30,16 @@ func getPlayerItemLegibleOutputClass() _PlayerItemLegibleOutputClass {
 type _PlayerItemLegibleOutputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PlayerItemLegibleOutput */
 // An interface definition for the [PlayerItemLegibleOutput] class.
 type IPlayerItemLegibleOutput interface {
 	IPlayerItemOutput
 	
-
+/* debug [class_interface_properties]: Properties for PlayerItemLegibleOutput */
 	// properties:
 	AdvanceIntervalForDelegateInvocation() float64
 	SetAdvanceIntervalForDelegateInvocation(value float64)
@@ -47,20 +47,20 @@ type IPlayerItemLegibleOutput interface {
 	DelegateQueue() objectivec.IObject
 	TextStylingResolution() PlayerItemLegibleOutputTextStylingResolution /* typedef */
 	SetTextStylingResolution(value PlayerItemLegibleOutputTextStylingResolution /* typedef */)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PlayerItemLegibleOutput */
 	// methods:
 	SetDelegateQueue(delegate unsafe.Pointer, delegateQueue objectivec.IObject)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PlayerItemLegibleOutput */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemLegibleOutputClass) Alloc() PlayerItemLegibleOutput {
 	rv := objc.Send[PlayerItemLegibleOutput](objc.ID(pc.class), objc.Sel("alloc"))
@@ -90,11 +90,11 @@ func (p_ PlayerItemLegibleOutput) Autorelease() PlayerItemLegibleOutput {
 func NewPlayerItemLegibleOutput() PlayerItemLegibleOutput {
 	return getPlayerItemLegibleOutputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PlayerItemLegibleOutput */
 // An object that vends attributed strings for media with a legible characteristic.
 
 
@@ -114,11 +114,11 @@ func PlayerItemLegibleOutputFrom(ptr unsafe.Pointer) PlayerItemLegibleOutput {
 		PlayerItemOutput: PlayerItemOutputFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for PlayerItemLegibleOutput */
 
 // Creates an initialized legible-output object.
 //
@@ -129,23 +129,23 @@ func NewPlayerItemLegibleOutputWithMediaSubtypesForNativeRepresentation(subtypes
 	rv := objc.Send[PlayerItemLegibleOutput](instance.ID, objc.Sel("initWithMediaSubtypesForNativeRepresentation:"), subtypes)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPlayerItemLegibleOutputWithMediaSubtypesForNativeRepresentation */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PlayerItemLegibleOutput */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PlayerItemLegibleOutput */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for PlayerItemLegibleOutput */
 
 // Sets the receiver’s delegate and a dispatch queue on which the delegate is called.
 //
@@ -153,13 +153,13 @@ func NewPlayerItemLegibleOutputWithMediaSubtypesForNativeRepresentation(subtypes
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemLegibleOutput/setDelegate(_:queue:)
 func (p_ PlayerItemLegibleOutput) SetDelegateQueue(delegate unsafe.Pointer, delegateQueue objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:queue:"), delegate, delegateQueue)
-}
+}/* debug [instance_methods/method]: SetDelegateQueue */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for PlayerItemLegibleOutput */
 
 // The time interval, in seconds, that a player item legible output object messages its delegate earlier than normal.
 //
@@ -168,7 +168,7 @@ func (p_ PlayerItemLegibleOutput) SetDelegateQueue(delegate unsafe.Pointer, dele
 func (p_ PlayerItemLegibleOutput) AdvanceIntervalForDelegateInvocation() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("advanceIntervalForDelegateInvocation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: advanceIntervalForDelegateInvocation */
 
 
 // The time interval, in seconds, that a player item legible output object messages its delegate earlier than normal.
@@ -177,7 +177,7 @@ func (p_ PlayerItemLegibleOutput) AdvanceIntervalForDelegateInvocation() float64
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemLegibleOutput/advanceIntervalForDelegateInvocation
 func (p_ PlayerItemLegibleOutput) SetAdvanceIntervalForDelegateInvocation(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdvanceIntervalForDelegateInvocation:"), value)
-}
+}/* debug [instance_properties/setter]: advanceIntervalForDelegateInvocation */
 
 
 // The delegate of the output class.
@@ -187,7 +187,7 @@ func (p_ PlayerItemLegibleOutput) SetAdvanceIntervalForDelegateInvocation(value 
 func (p_ PlayerItemLegibleOutput) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The dispatch queue on which the delegate is called.
@@ -197,7 +197,7 @@ func (p_ PlayerItemLegibleOutput) Delegate() unsafe.Pointer {
 func (p_ PlayerItemLegibleOutput) DelegateQueue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](p_.ID, objc.Sel("delegateQueue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegateQueue */
 
 
 // A string identifier indicating the degree of text styling to be applied to attributed strings vended by the object.
@@ -207,7 +207,7 @@ func (p_ PlayerItemLegibleOutput) DelegateQueue() objectivec.IObject {
 func (p_ PlayerItemLegibleOutput) TextStylingResolution() PlayerItemLegibleOutputTextStylingResolution /* typedef */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("textStylingResolution"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textStylingResolution */
 
 
 // A string identifier indicating the degree of text styling to be applied to attributed strings vended by the object.
@@ -216,11 +216,11 @@ func (p_ PlayerItemLegibleOutput) TextStylingResolution() PlayerItemLegibleOutpu
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemLegibleOutput/textStylingResolution-swift.property
 func (p_ PlayerItemLegibleOutput) SetTextStylingResolution(value PlayerItemLegibleOutputTextStylingResolution /* typedef */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTextStylingResolution:"), value)
-}
+}/* debug [instance_properties/setter]: textStylingResolution */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVPlayerItemLegibleOutput */
 
 

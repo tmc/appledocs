@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayerItemAccessLogEvent */
 
 
-
-
+/* debug [class_header]: Header for AVPlayerItemAccessLogEvent */
 // The class instance for the [PlayerItemAccessLogEvent] class.
 var (
 	PlayerItemAccessLogEventClass     _PlayerItemAccessLogEventClass
@@ -30,16 +30,16 @@ func getPlayerItemAccessLogEventClass() _PlayerItemAccessLogEventClass {
 type _PlayerItemAccessLogEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PlayerItemAccessLogEvent */
 // An interface definition for the [PlayerItemAccessLogEvent] class.
 type IPlayerItemAccessLogEvent interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for PlayerItemAccessLogEvent */
 	// properties:
 	AverageAudioBitrate() float64
 	AverageVideoBitrate() float64
@@ -67,19 +67,19 @@ type IPlayerItemAccessLogEvent interface {
 	SwitchBitrate() float64
 	TransferDuration() float64
 	URI() objc.IObject /* cross-framework: NSString */
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PlayerItemAccessLogEvent */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PlayerItemAccessLogEvent */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemAccessLogEventClass) Alloc() PlayerItemAccessLogEvent {
 	rv := objc.Send[PlayerItemAccessLogEvent](objc.ID(pc.class), objc.Sel("alloc"))
@@ -109,11 +109,11 @@ func (p_ PlayerItemAccessLogEvent) Autorelease() PlayerItemAccessLogEvent {
 func NewPlayerItemAccessLogEvent() PlayerItemAccessLogEvent {
 	return getPlayerItemAccessLogEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PlayerItemAccessLogEvent */
 // A single entry in a player item’s access log.
 //
 // This object provides named properties for accessing the data fields of each log event. Each event is a single entry in an object’s access log. These properties aren’t observable. For more information about key-value observing, see .
@@ -133,30 +133,30 @@ type PlayerItemAccessLogEvent struct {
 func PlayerItemAccessLogEventFrom(ptr unsafe.Pointer) PlayerItemAccessLogEvent {
 	return PlayerItemAccessLogEvent{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for PlayerItemAccessLogEvent *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PlayerItemAccessLogEvent */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PlayerItemAccessLogEvent */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for PlayerItemAccessLogEvent */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for PlayerItemAccessLogEvent */
 
 // The audio track’s average bit rate, in bits per second.
 //
@@ -165,7 +165,7 @@ func PlayerItemAccessLogEventFrom(ptr unsafe.Pointer) PlayerItemAccessLogEvent {
 func (p_ PlayerItemAccessLogEvent) AverageAudioBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("averageAudioBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: averageAudioBitrate */
 
 
 // The video track’s average bit rate, in bits per second.
@@ -175,7 +175,7 @@ func (p_ PlayerItemAccessLogEvent) AverageAudioBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) AverageVideoBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("averageVideoBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: averageVideoBitrate */
 
 
 // The total number of times that downloading the segments took too long.
@@ -185,7 +185,7 @@ func (p_ PlayerItemAccessLogEvent) AverageVideoBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) DownloadOverdue() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("downloadOverdue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: downloadOverdue */
 
 
 // The accumulated duration, in seconds, of the media played.
@@ -195,7 +195,7 @@ func (p_ PlayerItemAccessLogEvent) DownloadOverdue() int {
 func (p_ PlayerItemAccessLogEvent) DurationWatched() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("durationWatched"))
 	return rv
-}
+}/* debug [instance_properties/getter]: durationWatched */
 
 
 // The average throughput, in bits per second, required to play the stream, as advertised by the server.
@@ -205,7 +205,7 @@ func (p_ PlayerItemAccessLogEvent) DurationWatched() float64 {
 func (p_ PlayerItemAccessLogEvent) IndicatedAverageBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("indicatedAverageBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indicatedAverageBitrate */
 
 
 // The throughput, in bits per second, required to play the stream, as advertised by the server.
@@ -215,7 +215,7 @@ func (p_ PlayerItemAccessLogEvent) IndicatedAverageBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) IndicatedBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("indicatedBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indicatedBitrate */
 
 
 // The number of network read requests over a WWAN.
@@ -225,7 +225,7 @@ func (p_ PlayerItemAccessLogEvent) IndicatedBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) MediaRequestsWWAN() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("mediaRequestsWWAN"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mediaRequestsWWAN */
 
 
 // The accumulated number of bytes transferred by the item.
@@ -235,7 +235,7 @@ func (p_ PlayerItemAccessLogEvent) MediaRequestsWWAN() int {
 func (p_ PlayerItemAccessLogEvent) NumberOfBytesTransferred() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](p_.ID, objc.Sel("numberOfBytesTransferred"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfBytesTransferred */
 
 
 // The total number of dropped video frames
@@ -245,7 +245,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfBytesTransferred() objectivec.IObject
 func (p_ PlayerItemAccessLogEvent) NumberOfDroppedVideoFrames() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfDroppedVideoFrames"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfDroppedVideoFrames */
 
 
 // The number of media read requests from the server to this client.
@@ -255,7 +255,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfDroppedVideoFrames() int {
 func (p_ PlayerItemAccessLogEvent) NumberOfMediaRequests() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfMediaRequests"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfMediaRequests */
 
 
 // A count of changes to the server address over the last uninterrupted period of playback.
@@ -265,7 +265,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfMediaRequests() int {
 func (p_ PlayerItemAccessLogEvent) NumberOfServerAddressChanges() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfServerAddressChanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfServerAddressChanges */
 
 
 // The total number of playback stalls encountered.
@@ -275,7 +275,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfServerAddressChanges() int {
 func (p_ PlayerItemAccessLogEvent) NumberOfStalls() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfStalls"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfStalls */
 
 
 // The empirical throughput, in bits per second, across all media downloaded.
@@ -285,7 +285,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfStalls() int {
 func (p_ PlayerItemAccessLogEvent) ObservedBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: observedBitrate */
 
 
 // The standard deviation of the observed segment download bit rates.
@@ -295,7 +295,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) ObservedBitrateStandardDeviation() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedBitrateStandardDeviation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: observedBitrateStandardDeviation */
 
 
 // The maximum observed segment download bit rate.
@@ -305,7 +305,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedBitrateStandardDeviation() float64 {
 func (p_ PlayerItemAccessLogEvent) ObservedMaxBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedMaxBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: observedMaxBitrate */
 
 
 // The minimum observed segment download bit rate.
@@ -315,7 +315,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedMaxBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) ObservedMinBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedMinBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: observedMinBitrate */
 
 
 // A GUID that identifies the playback session.
@@ -325,7 +325,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedMinBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) PlaybackSessionID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("playbackSessionID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackSessionID */
 
 
 // The date and time at which playback began for this event.
@@ -335,7 +335,7 @@ func (p_ PlayerItemAccessLogEvent) PlaybackSessionID() objc.IObject /* cross-fra
 func (p_ PlayerItemAccessLogEvent) PlaybackStartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("playbackStartDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackStartDate */
 
 
 // The offset, in seconds, in the playlist where the last uninterrupted period of playback began.
@@ -345,7 +345,7 @@ func (p_ PlayerItemAccessLogEvent) PlaybackStartDate() objc.IObject /* cross-fra
 func (p_ PlayerItemAccessLogEvent) PlaybackStartOffset() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("playbackStartOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackStartOffset */
 
 
 // The playback type.
@@ -355,7 +355,7 @@ func (p_ PlayerItemAccessLogEvent) PlaybackStartOffset() float64 {
 func (p_ PlayerItemAccessLogEvent) PlaybackType() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("playbackType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackType */
 
 
 // The accumulated duration, in seconds, of the media segments downloaded.
@@ -365,7 +365,7 @@ func (p_ PlayerItemAccessLogEvent) PlaybackType() objc.IObject /* cross-framewor
 func (p_ PlayerItemAccessLogEvent) SegmentsDownloadedDuration() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("segmentsDownloadedDuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentsDownloadedDuration */
 
 
 // The IP address of the server that was the source of the last delivered media segment.
@@ -375,7 +375,7 @@ func (p_ PlayerItemAccessLogEvent) SegmentsDownloadedDuration() float64 {
 func (p_ PlayerItemAccessLogEvent) ServerAddress() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("serverAddress"))
 	return rv
-}
+}/* debug [instance_properties/getter]: serverAddress */
 
 
 // The accumulated duration, in seconds, until the player item is ready to play.
@@ -385,7 +385,7 @@ func (p_ PlayerItemAccessLogEvent) ServerAddress() objc.IObject /* cross-framewo
 func (p_ PlayerItemAccessLogEvent) StartupTime() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("startupTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startupTime */
 
 
 // The bandwidth value that causes a switch, up or down, in the item’s quality being played.
@@ -395,7 +395,7 @@ func (p_ PlayerItemAccessLogEvent) StartupTime() float64 {
 func (p_ PlayerItemAccessLogEvent) SwitchBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("switchBitrate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: switchBitrate */
 
 
 // The accumulated duration, in seconds, of active network transfer of bytes.
@@ -405,7 +405,7 @@ func (p_ PlayerItemAccessLogEvent) SwitchBitrate() float64 {
 func (p_ PlayerItemAccessLogEvent) TransferDuration() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("transferDuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transferDuration */
 
 
 // The URI of the playback item.
@@ -415,11 +415,11 @@ func (p_ PlayerItemAccessLogEvent) TransferDuration() float64 {
 func (p_ PlayerItemAccessLogEvent) URI() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("URI"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URI */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVPlayerItemAccessLogEvent */
 
 

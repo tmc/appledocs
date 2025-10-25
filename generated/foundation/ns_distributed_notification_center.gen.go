@@ -48,13 +48,9 @@ type IDistributedNotificationCenter interface {
 	
 
 	// methods:
-	AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName NotificationName, anObject IString)
 	AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name NotificationName, object IString, suspensionBehavior NotificationSuspensionBehavior)
-	PostNotificationNameObject(aName NotificationName, anObject IString)
-	PostNotificationNameObjectUserInfo(aName NotificationName, anObject IString, aUserInfo IDictionary)
 	PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName, object IString, userInfo IDictionary, deliverImmediately bool)
 	PostNotificationNameObjectUserInfoOptions(name NotificationName, object IString, userInfo IDictionary, options DistributedNotificationOptions)
-	RemoveObserverNameObject(observer objc.IObject, aName NotificationName, anObject IString)
 
 
 }
@@ -158,39 +154,12 @@ func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notifica
 
 
 
-// Adds an entry to the notification center’s dispatch table with an observer, a selector, and an optional notification name and sender.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName NotificationName, anObject IString) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
-}
-
-
 // Adds an entry to the receiver’s dispatch table with a specific observer and suspended-notifications behavior, and optional notification name and sender.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:suspensionBehavior:)
 func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name NotificationName, object IString, suspensionBehavior NotificationSuspensionBehavior) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:suspensionBehavior:"), observer, selector, name, object, suspensionBehavior)
-}
-
-
-// Creates a notification, and posts it to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName NotificationName, anObject IString) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:"), aName, anObject)
-}
-
-
-// Creates a notification with information, and posts it to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:userInfo:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName NotificationName, anObject IString, aUserInfo IDictionary) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, anObject, aUserInfo)
 }
 
 
@@ -209,15 +178,6 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDelive
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:options:)
 func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOptions(name NotificationName, object IString, userInfo IDictionary, options DistributedNotificationOptions) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:options:"), name, object, userInfo, options)
-}
-
-
-// Removes matching entries from the receiver’s dispatch table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/removeObserver(_:name:object:)
-func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objc.IObject, aName NotificationName, anObject IString) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
 }
 
 

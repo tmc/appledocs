@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetVariantQualifier */
 
 
-
-
+/* debug [class_header]: Header for AVAssetVariantQualifier */
 // The class instance for the [AssetVariantQualifier] class.
 var (
 	AssetVariantQualifierClass     _AssetVariantQualifierClass
@@ -30,34 +30,34 @@ func getAssetVariantQualifierClass() _AssetVariantQualifierClass {
 type _AssetVariantQualifierClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for AssetVariantQualifier */
 // An interface definition for the [AssetVariantQualifier] class.
 type IAssetVariantQualifier interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for AssetVariantQualifier */
 	// properties:
 	MediaSelections() IAVMediaSelection
 	SetMediaSelections(value IAVMediaSelection)
 	VariantQualifiers() IAVAssetVariantQualifier
 	SetVariantQualifiers(value IAVAssetVariantQualifier)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for AssetVariantQualifier */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for AssetVariantQualifier */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetVariantQualifierClass) Alloc() AssetVariantQualifier {
 	rv := objc.Send[AssetVariantQualifier](objc.ID(ac.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (a_ AssetVariantQualifier) Autorelease() AssetVariantQualifier {
 func NewAssetVariantQualifier() AssetVariantQualifier {
 	return getAssetVariantQualifierClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for AssetVariantQualifier */
 // An object that represents an HTTP Live Streaming asset variant.
 
 
@@ -109,11 +109,11 @@ type AssetVariantQualifier struct {
 func AssetVariantQualifierFrom(ptr unsafe.Pointer) AssetVariantQualifier {
 	return AssetVariantQualifier{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for AssetVariantQualifier */
 
 // Creates a variant qualifier with a predicate.
 //
@@ -122,7 +122,7 @@ func AssetVariantQualifierFrom(ptr unsafe.Pointer) AssetVariantQualifier {
 func NewAssetVariantQualifierWithPredicate(predicate foundation.Predicate) AssetVariantQualifier {
 	rv := objc.Send[AssetVariantQualifier](objc.ID(getAssetVariantQualifierClass().class), objc.Sel("assetVariantQualifierWithPredicate:"), predicate)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAssetVariantQualifierWithPredicate */
 
 
 // Creates a variant qualifier with an asset variant.
@@ -132,13 +132,13 @@ func NewAssetVariantQualifierWithPredicate(predicate foundation.Predicate) Asset
 func NewAssetVariantQualifierWithVariant(variant IAVAssetVariant) AssetVariantQualifier {
 	rv := objc.Send[AssetVariantQualifier](objc.ID(getAssetVariantQualifierClass().class), objc.Sel("assetVariantQualifierWithVariant:"), variant)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAssetVariantQualifierWithVariant */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for AssetVariantQualifier */
 
 // Returns a qualifer for finding variant with maximum value in the input key path
 //
@@ -147,7 +147,7 @@ func NewAssetVariantQualifierWithVariant(variant IAVAssetVariant) AssetVariantQu
 func (ac _AssetVariantQualifierClass) AssetVariantQualifierForMaximumValueInKeyPath(keyPath objc.IObject /* cross-framework: NSString */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetVariantQualifierForMaximumValueInKeyPath:"), keyPath)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetVariantQualifierForMaximumValueInKeyPath) */
 
 
 // Returns a qualifer for finding variant with minimum value in the input key path.
@@ -157,7 +157,7 @@ func (ac _AssetVariantQualifierClass) AssetVariantQualifierForMaximumValueInKeyP
 func (ac _AssetVariantQualifierClass) AssetVariantQualifierForMinimumValueInKeyPath(keyPath objc.IObject /* cross-framework: NSString */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetVariantQualifierForMinimumValueInKeyPath:"), keyPath)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetVariantQualifierForMinimumValueInKeyPath) */
 
 
 // Creates a variant qualifier with a predicate.
@@ -167,7 +167,7 @@ func (ac _AssetVariantQualifierClass) AssetVariantQualifierForMinimumValueInKeyP
 func (ac _AssetVariantQualifierClass) AssetVariantQualifierWithPredicate(predicate foundation.Predicate) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetVariantQualifierWithPredicate:"), predicate)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetVariantQualifierWithPredicate) */
 
 
 // Creates a variant qualifier with an asset variant.
@@ -177,7 +177,7 @@ func (ac _AssetVariantQualifierClass) AssetVariantQualifierWithPredicate(predica
 func (ac _AssetVariantQualifierClass) AssetVariantQualifierWithVariant(variant IAVAssetVariant) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetVariantQualifierWithVariant:"), variant)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetVariantQualifierWithVariant) */
 
 
 // Creates a predicate for audio sample rate.
@@ -187,7 +187,7 @@ func (ac _AssetVariantQualifierClass) AssetVariantQualifierWithVariant(variant I
 func (ac _AssetVariantQualifierClass) PredicateForAudioSampleRateMediaSelectionOptionOperatorType(sampleRate float64, mediaSelectionOption IAVMediaSelectionOption, operatorType PredicateOperatorType /* not a class type */) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForAudioSampleRate:mediaSelectionOption:operatorType:"), sampleRate, mediaSelectionOption, operatorType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForAudioSampleRateMediaSelectionOptionOperatorType) */
 
 
 // Creates a NSPredicate for audio sample rate which can be used with other NSPredicates to express variant preferences.
@@ -197,7 +197,7 @@ func (ac _AssetVariantQualifierClass) PredicateForAudioSampleRateMediaSelectionO
 func (ac _AssetVariantQualifierClass) PredicateForAudioSampleRateOperatorType(sampleRate float64, operatorType PredicateOperatorType /* not a class type */) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForAudioSampleRate:operatorType:"), sampleRate, operatorType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForAudioSampleRateOperatorType) */
 
 
 // Creates a NSPredicate for binaural which can be used with other NSPredicates to express variant preferences.
@@ -207,7 +207,7 @@ func (ac _AssetVariantQualifierClass) PredicateForAudioSampleRateOperatorType(sa
 func (ac _AssetVariantQualifierClass) PredicateForBinauralAudio(isBinauralAudio bool) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForBinauralAudio:"), isBinauralAudio)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForBinauralAudio) */
 
 
 // Creates a predicate for binaural audio.
@@ -217,7 +217,7 @@ func (ac _AssetVariantQualifierClass) PredicateForBinauralAudio(isBinauralAudio 
 func (ac _AssetVariantQualifierClass) PredicateForBinauralAudioMediaSelectionOption(isBinauralAudio bool, mediaSelectionOption IAVMediaSelectionOption) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForBinauralAudio:mediaSelectionOption:"), isBinauralAudio, mediaSelectionOption)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForBinauralAudioMediaSelectionOption) */
 
 
 // Creates a predicate with a channel count, media selection option, and operator type.
@@ -227,7 +227,7 @@ func (ac _AssetVariantQualifierClass) PredicateForBinauralAudioMediaSelectionOpt
 func (ac _AssetVariantQualifierClass) PredicateForChannelCountMediaSelectionOptionOperatorType(channelCount int, mediaSelectionOption IAVMediaSelectionOption, operatorType PredicateOperatorType /* not a class type */) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForChannelCount:mediaSelectionOption:operatorType:"), channelCount, mediaSelectionOption, operatorType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForChannelCountMediaSelectionOptionOperatorType) */
 
 
 // Creates a NSPredicate for audio channel count which can be used with other NSPredicates to express variant preferences.
@@ -237,7 +237,7 @@ func (ac _AssetVariantQualifierClass) PredicateForChannelCountMediaSelectionOpti
 func (ac _AssetVariantQualifierClass) PredicateForChannelCountOperatorType(channelCount int, operatorType PredicateOperatorType /* not a class type */) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForChannelCount:operatorType:"), channelCount, operatorType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForChannelCountOperatorType) */
 
 
 // Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
@@ -247,7 +247,7 @@ func (ac _AssetVariantQualifierClass) PredicateForChannelCountOperatorType(chann
 func (ac _AssetVariantQualifierClass) PredicateForDownmixAudio(isDownmixAudio bool) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForDownmixAudio:"), isDownmixAudio)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForDownmixAudio) */
 
 
 // Creates a predicate for downmix audio.
@@ -257,7 +257,7 @@ func (ac _AssetVariantQualifierClass) PredicateForDownmixAudio(isDownmixAudio bo
 func (ac _AssetVariantQualifierClass) PredicateForDownmixAudioMediaSelectionOption(isDownmixAudio bool, mediaSelectionOption IAVMediaSelectionOption) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForDownmixAudio:mediaSelectionOption:"), isDownmixAudio, mediaSelectionOption)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForDownmixAudioMediaSelectionOption) */
 
 
 // Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
@@ -267,7 +267,7 @@ func (ac _AssetVariantQualifierClass) PredicateForDownmixAudioMediaSelectionOpti
 func (ac _AssetVariantQualifierClass) PredicateForImmersiveAudio(isImmersiveAudio bool) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForImmersiveAudio:"), isImmersiveAudio)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForImmersiveAudio) */
 
 
 // Creates a predicate for immersive audio.
@@ -277,7 +277,7 @@ func (ac _AssetVariantQualifierClass) PredicateForImmersiveAudio(isImmersiveAudi
 func (ac _AssetVariantQualifierClass) PredicateForImmersiveAudioMediaSelectionOption(isImmersiveAudio bool, mediaSelectionOption IAVMediaSelectionOption) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForImmersiveAudio:mediaSelectionOption:"), isImmersiveAudio, mediaSelectionOption)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForImmersiveAudioMediaSelectionOption) */
 
 
 // Creates a predicate with a height and operator type.
@@ -287,7 +287,7 @@ func (ac _AssetVariantQualifierClass) PredicateForImmersiveAudioMediaSelectionOp
 func (ac _AssetVariantQualifierClass) PredicateForPresentationHeightOperatorType(height float64, operatorType PredicateOperatorType /* not a class type */) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForPresentationHeight:operatorType:"), height, operatorType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForPresentationHeightOperatorType) */
 
 
 // Creates a predicate with a width and operator type.
@@ -297,23 +297,23 @@ func (ac _AssetVariantQualifierClass) PredicateForPresentationHeightOperatorType
 func (ac _AssetVariantQualifierClass) PredicateForPresentationWidthOperatorType(width float64, operatorType PredicateOperatorType /* not a class type */) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(ac.class), objc.Sel("predicateForPresentationWidth:operatorType:"), width, operatorType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateForPresentationWidthOperatorType) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for AssetVariantQualifier */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for AssetVariantQualifier */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for AssetVariantQualifier */
 
 // The media selections of an asset that a task downloads.
 //
@@ -322,7 +322,7 @@ func (ac _AssetVariantQualifierClass) PredicateForPresentationWidthOperatorType(
 func (a_ AssetVariantQualifier) MediaSelections() IAVMediaSelection {
 	rv := objc.Send[MediaSelection](a_.ID, objc.Sel("mediaSelections"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mediaSelections */
 
 
 // The media selections of an asset that a task downloads.
@@ -331,7 +331,7 @@ func (a_ AssetVariantQualifier) MediaSelections() IAVMediaSelection {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadcontentconfiguration/mediaselections
 func (a_ AssetVariantQualifier) SetMediaSelections(value IAVMediaSelection) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaSelections:"), value)
-}
+}/* debug [instance_properties/setter]: mediaSelections */
 
 
 // The variant qualifiers for this configuration.
@@ -341,7 +341,7 @@ func (a_ AssetVariantQualifier) SetMediaSelections(value IAVMediaSelection) {
 func (a_ AssetVariantQualifier) VariantQualifiers() IAVAssetVariantQualifier {
 	rv := objc.Send[AssetVariantQualifier](a_.ID, objc.Sel("variantQualifiers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: variantQualifiers */
 
 
 // The variant qualifiers for this configuration.
@@ -350,11 +350,11 @@ func (a_ AssetVariantQualifier) VariantQualifiers() IAVAssetVariantQualifier {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadcontentconfiguration/variantqualifiers
 func (a_ AssetVariantQualifier) SetVariantQualifiers(value IAVAssetVariantQualifier) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVariantQualifiers:"), value)
-}
+}/* debug [instance_properties/setter]: variantQualifiers */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVAssetVariantQualifier */
 
 

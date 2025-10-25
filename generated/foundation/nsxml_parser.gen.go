@@ -44,8 +44,6 @@ type IXMLParser interface {
 	AllowedExternalEntityURLs() unsafe.Pointer
 	SetAllowedExternalEntityURLs(value unsafe.Pointer)
 	ColumnNumber() int
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	ExternalEntityResolvingPolicy() XMLParserExternalEntityResolvingPolicy
 	SetExternalEntityResolvingPolicy(value XMLParserExternalEntityResolvingPolicy)
 	LineNumber() int
@@ -229,25 +227,6 @@ func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
 func (x_ XMLParser) ColumnNumber() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
 	return rv
-}
-
-
-// A delegate object that receives messages about the parsing process.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/delegate
-func (x_ XMLParser) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A delegate object that receives messages about the parsing process.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/delegate
-func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

@@ -41,8 +41,6 @@ type ISpellServer interface {
 	
 
 	// properties:
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 
 
 	
@@ -164,25 +162,6 @@ func (s_ SpellServer) Run() {
 
 
 
-
-
-// Returns the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/delegate
-func (s_ SpellServer) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Returns the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/delegate
-func (s_ SpellServer) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
 
 
 

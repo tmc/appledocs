@@ -505,7 +505,8 @@ type I{{.StructName}} interface {
 	{{- $returnType := typeToInterfaceType $goType}}
 	{{- $capitalizedName := capitalize .Name}}
 	{{- $conflictsWithParent := propertyConflictsWithParent $.ClassName $.Class.SuperClass .Name}}
-	{{- if and (ne $goType "") (not $conflictsWithParent)}}
+	{{- $conflictsWithParentMethod := propertyConflictsWithParentMethod . $.Class $.Framework}}
+	{{- if and (ne $goType "") (not $conflictsWithParent) (not $conflictsWithParentMethod)}}
 	{{$capitalizedName}}() {{$returnType}}
 	{{- $isReadOnly := contains .Attributes "readonly"}}
 	{{- if not $isReadOnly}}
@@ -522,7 +523,7 @@ type I{{.StructName}} interface {
 {{debug "class_interface_methods" "Methods for %s" .StructName}}
 	// methods:
 	{{- range filterPropertyMethods .Class}}
-	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .))}}
+	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .)) (not (methodConflictsWithParent . $.Class $.Framework))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
 	{{- $interfaceType := typeToInterfaceType $goType}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
@@ -652,7 +653,7 @@ func ({{$.ClassReceiver}} {{$.ClassTypeName}}) {{$capitalizedName}}() {{$returnT
 {{define "instance_methods"}}
 {{debug "instance_methods" "Instance methods for %s" .StructName}}
 {{- range filterPropertyMethods .Class}}
-{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .))}}
+{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .)) (not (methodConflictsWithParent . $.Class $.Framework))}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $.Framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
 {{- $returnType := $goType}}
@@ -707,7 +708,8 @@ func ({{$.InstReceiver}} {{$.StructName}}) {{.Name}}({{formatMethodParams .}}){{
 {{- $returnType := typeToInterfaceType $goType}}
 {{- $capitalizedName := capitalize .Name}}
 {{- $conflictsWithParent := propertyConflictsWithParent $.ClassName $.Class.SuperClass .Name}}
-{{- if and (ne $goType "") (not $conflictsWithParent)}}
+{{- $conflictsWithParentMethod := propertyConflictsWithParentMethod . $.Class $.Framework}}
+{{- if and (ne $goType "") (not $conflictsWithParent) (not $conflictsWithParentMethod)}}
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}

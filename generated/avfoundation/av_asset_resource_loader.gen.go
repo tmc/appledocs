@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetResourceLoader */
 
 
-
-
+/* debug [class_header]: Header for AVAssetResourceLoader */
 // The class instance for the [AssetResourceLoader] class.
 var (
 	AssetResourceLoaderClass     _AssetResourceLoaderClass
@@ -30,16 +30,16 @@ func getAssetResourceLoaderClass() _AssetResourceLoaderClass {
 type _AssetResourceLoaderClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for AssetResourceLoader */
 // An interface definition for the [AssetResourceLoader] class.
 type IAssetResourceLoader interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for AssetResourceLoader */
 	// properties:
 	Delegate() unsafe.Pointer
 	DelegateQueue() objectivec.IObject
@@ -49,20 +49,20 @@ type IAssetResourceLoader interface {
 	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool)
 	ResourceLoader() IAVAssetResourceLoader
 	SetResourceLoader(value IAVAssetResourceLoader)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for AssetResourceLoader */
 	// methods:
 	SetDelegateQueue(delegate unsafe.Pointer, delegateQueue objectivec.IObject)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for AssetResourceLoader */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetResourceLoaderClass) Alloc() AssetResourceLoader {
 	rv := objc.Send[AssetResourceLoader](objc.ID(ac.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (a_ AssetResourceLoader) Autorelease() AssetResourceLoader {
 func NewAssetResourceLoader() AssetResourceLoader {
 	return getAssetResourceLoaderClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for AssetResourceLoader */
 // An object that mediates resource requests from a URL asset.
 //
 // You do not create resource loader objects yourself. Instead, you retrieve a resource loader from the property of an object and use it to assign your custom delegate object. The delegate you associate with this object must adopt the protocol. For more information, see .
@@ -116,25 +116,25 @@ type AssetResourceLoader struct {
 func AssetResourceLoaderFrom(ptr unsafe.Pointer) AssetResourceLoader {
 	return AssetResourceLoader{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for AssetResourceLoader *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for AssetResourceLoader */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for AssetResourceLoader */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for AssetResourceLoader */
 
 // Sets the delegate and dispatch queue to use with the resource loader.
 //
@@ -142,13 +142,13 @@ func AssetResourceLoaderFrom(ptr unsafe.Pointer) AssetResourceLoader {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/setDelegate(_:queue:)
 func (a_ AssetResourceLoader) SetDelegateQueue(delegate unsafe.Pointer, delegateQueue objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:queue:"), delegate, delegateQueue)
-}
+}/* debug [instance_methods/method]: SetDelegateQueue */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for AssetResourceLoader */
 
 // The delegate object to use when handling resource requests.
 //
@@ -157,7 +157,7 @@ func (a_ AssetResourceLoader) SetDelegateQueue(delegate unsafe.Pointer, delegate
 func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The dispatch queue to use when handling resource requests.
@@ -167,7 +167,7 @@ func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
 func (a_ AssetResourceLoader) DelegateQueue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("delegateQueue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegateQueue */
 
 
 // A Boolean value that indicates whether content keys will be loaded as quickly as possible.
@@ -177,7 +177,7 @@ func (a_ AssetResourceLoader) DelegateQueue() objectivec.IObject {
 func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preloadsEligibleContentKeys"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preloadsEligibleContentKeys */
 
 
 // A Boolean value that indicates whether content keys will be loaded as quickly as possible.
@@ -186,7 +186,7 @@ func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/preloadsEligibleContentKeys
 func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreloadsEligibleContentKeys:"), value)
-}
+}/* debug [instance_properties/setter]: preloadsEligibleContentKeys */
 
 
 // A Boolean value that indicates whether to enable attaching Common Media Client Data as HTTP request headers.
@@ -196,7 +196,7 @@ func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendsCommonMediaClientDataAsHTTPHeaders"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sendsCommonMediaClientDataAsHTTPHeaders */
 
 
 // A Boolean value that indicates whether to enable attaching Common Media Client Data as HTTP request headers.
@@ -205,7 +205,7 @@ func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
 func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSendsCommonMediaClientDataAsHTTPHeaders:"), value)
-}
+}/* debug [instance_properties/setter]: sendsCommonMediaClientDataAsHTTPHeaders */
 
 
 // The resource loader for the asset.
@@ -215,7 +215,7 @@ func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value b
 func (a_ AssetResourceLoader) ResourceLoader() IAVAssetResourceLoader {
 	rv := objc.Send[AssetResourceLoader](a_.ID, objc.Sel("resourceLoader"))
 	return rv
-}
+}/* debug [instance_properties/getter]: resourceLoader */
 
 
 // The resource loader for the asset.
@@ -224,12 +224,12 @@ func (a_ AssetResourceLoader) ResourceLoader() IAVAssetResourceLoader {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
 func (a_ AssetResourceLoader) SetResourceLoader(value IAVAssetResourceLoader) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setResourceLoader:"), value)
-}
+}/* debug [instance_properties/setter]: resourceLoader */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVAssetResourceLoader */
 
 
 

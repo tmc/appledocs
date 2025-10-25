@@ -41,8 +41,6 @@ type ICountedSet interface {
 	
 
 	// properties:
-	Count() int
-	SetCount(value int)
 
 
 	
@@ -213,25 +211,6 @@ func (c_ CountedSet) RemoveObject(object objectivec.IObject) {
 
 
 
-
-
-// The number of members in the set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
-func (c_ CountedSet) Count() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("count"))
-	return rv
-}
-
-
-// The number of members in the set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
-func (c_ CountedSet) SetCount(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCount:"), value)
-}
 
 
 

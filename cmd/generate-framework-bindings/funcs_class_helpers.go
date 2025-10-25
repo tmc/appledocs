@@ -282,3 +282,139 @@ func hasIOSOnlyMethods(class *occ2go.ParsedClass) bool {
 
 	return false
 }
+
+// embeddedTypeNameshadowsParentMethod checks if an embedded type's name would shadow
+// an inherited method from objectivec.IObject. This happens when a class embeds a parent
+// type whose name matches a method name (e.g., ClassDescription type shadows ClassDescription() method).
+func embeddedTypeNameShadowsParentMethod(class *occ2go.ParsedClass, framework string) bool {
+	if class == nil {
+		return false
+	}
+
+	// Get the embedded type name
+	embeddedTypeName := getStructEmbeddedTypeName(class, framework)
+	if embeddedTypeName == "" {
+		return false
+	}
+
+	// Known IObject methods that could be shadowed by type names
+	// (method name without parentheses)
+	shadowableMethodNames := map[string]bool{
+		"ClassDescription": true,
+		"ObjectSpecifier":  true,
+		// Add more as discovered
+	}
+
+	return shadowableMethodNames[embeddedTypeName]
+}
+
+// getStructEmbeddedTypeName returns the name of the embedded type without package qualification.
+// For example, if embedding "foundation.ClassDescription", returns "ClassDescription".
+func getStructEmbeddedTypeName(class *occ2go.ParsedClass, framework string) string {
+	if class == nil {
+		return ""
+	}
+
+	// Get the parent struct name
+	if class.SuperClass == "" || class.SuperClass == "NSObject" {
+		return "Object"
+	}
+
+	return classToStructName(class.SuperClass)
+}
+
+// getShadowedMethodSignature returns the method signature that is shadowed by the embedded type name.
+// Returns empty string if no shadowing occurs.
+func getShadowedMethodSignature(class *occ2go.ParsedClass, framework string) string {
+	if !embeddedTypeNameShadowsParentMethod(class, framework) {
+		return ""
+	}
+
+	embeddedTypeName := getStructEmbeddedTypeName(class, framework)
+
+	// Return the method signature that needs to be forwarded
+	// For ClassDescription, the signature is: ClassDescription() IObject
+	switch embeddedTypeName {
+	case "ClassDescription":
+		return "ClassDescription() IObject"
+	case "ObjectSpecifier":
+		return "ObjectSpecifier() IObject"
+	default:
+		return ""
+	}
+}
+
+// getShadowedMethodName returns just the method name (without return type) that is shadowed.
+// Returns empty string if no shadowing occurs.
+func getShadowedMethodName(class *occ2go.ParsedClass, framework string) string {
+	if !embeddedTypeNameShadowsParentMethod(class, framework) {
+		return ""
+	}
+
+	embeddedTypeName := getStructEmbeddedTypeName(class, framework)
+
+	// Return just the method name for calling
+	return embeddedTypeName
+}
+
+// methodConflictsWithParent checks if a method would conflict with an inherited method
+// from objectivec.IObject. This happens when the parent has a method with the same name
+// but potentially different signature.
+func methodConflictsWithParent(method *occ2go.ParsedMethod, class *occ2go.ParsedClass, framework string) bool {
+	if method == nil || class == nil {
+		return false
+	}
+
+	// Known objectivec.IObject and parent interface methods that are commonly redeclared
+	// Map method name to true if it exists in a parent interface
+	objectMethods := map[string]bool{
+		"ForwardInvocation":                     true, // IObject
+		"AttributeKeys":                         true, // IObject
+		"ToManyRelationshipKeys":                true, // IObject
+		"ToOneRelationshipKeys":                 true, // IObject
+		"Count":                                 true, // IObject (collections)
+		"ObjectSpecifier":                       true, // IObject
+		"AddObserverSelectorNameObject":         true, // INotificationCenter
+		"PostNotificationNameObject":            true, // INotificationCenter
+		"PostNotificationNameObjectUserInfo":    true, // INotificationCenter
+		"RemoveObserverNameObject":              true, // INotificationCenter
+		// Add more as discovered
+	}
+
+	methodName := method.Name
+	if methodName == "" && method.Selector != "" {
+		// Try to derive name from selector
+		methodName = occ2go.SelectorToGoName(method.Selector)
+	}
+
+	return objectMethods[methodName]
+}
+
+// propertyConflictsWithParentMethod checks if a property accessor would conflict
+// with a method inherited from objectivec.IObject.
+func propertyConflictsWithParentMethod(property *occ2go.ParsedProperty, class *occ2go.ParsedClass, framework string) bool {
+	if property == nil || class == nil {
+		return false
+	}
+
+	// Known objectivec.IObject and parent interface methods/properties
+	objectMethods := map[string]bool{
+		"AttributeKeys":          true, // IObject
+		"ToManyRelationshipKeys": true, // IObject
+		"ToOneRelationshipKeys":  true, // IObject
+		"Count":                  true, // IObject (collections)
+		"ObjectSpecifier":        true, // IObject
+		"Attribution":            true, // IURLRequest
+		"NetworkServiceType":     true, // IURLRequest
+		"Delegate":               true, // IURLSession*
+	}
+
+	propertyName := property.Name
+	if propertyName == "" {
+		return false
+	}
+
+	// Check if getter name conflicts
+	getterName := occ2go.PropertyToGoName(propertyName)
+	return objectMethods[getterName]
+}

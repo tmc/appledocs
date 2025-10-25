@@ -42,7 +42,6 @@ type IOrderedSet interface {
 
 	// properties:
 	Array() []objc.ID
-	Count() uint
 	Description() IString
 	FirstObject() objectivec.IObject
 	LastObject() objectivec.IObject
@@ -795,16 +794,6 @@ func (o_ OrderedSet) ValueForKey(key IString) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/array
 func (o_ OrderedSet) Array() []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("array"))
-	return rv
-}
-
-
-// The number of members in the set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/count
-func (o_ OrderedSet) Count() uint {
-	rv := objc.Send[uint](o_.ID, objc.Sel("count"))
 	return rv
 }
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVVideoCompositionRenderHint */
 
 
-
-
+/* debug [class_header]: Header for AVVideoCompositionRenderHint */
 // The class instance for the [VideoCompositionRenderHint] class.
 var (
 	VideoCompositionRenderHintClass     _VideoCompositionRenderHintClass
@@ -30,32 +30,32 @@ func getVideoCompositionRenderHintClass() _VideoCompositionRenderHintClass {
 type _VideoCompositionRenderHintClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for VideoCompositionRenderHint */
 // An interface definition for the [VideoCompositionRenderHint] class.
 type IVideoCompositionRenderHint interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for VideoCompositionRenderHint */
 	// properties:
 	EndCompositionTime() objc.IObject /* cross-framework: Time */
 	StartCompositionTime() objc.IObject /* cross-framework: Time */
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for VideoCompositionRenderHint */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for VideoCompositionRenderHint */
 // Alloc allocates a new instance without initialization.
 func (vc _VideoCompositionRenderHintClass) Alloc() VideoCompositionRenderHint {
 	rv := objc.Send[VideoCompositionRenderHint](objc.ID(vc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (v_ VideoCompositionRenderHint) Autorelease() VideoCompositionRenderHint {
 func NewVideoCompositionRenderHint() VideoCompositionRenderHint {
 	return getVideoCompositionRenderHintClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for VideoCompositionRenderHint */
 // Information about upcoming composition requests, such as composition start time and end time.
 
 
@@ -107,30 +107,30 @@ type VideoCompositionRenderHint struct {
 func VideoCompositionRenderHintFrom(ptr unsafe.Pointer) VideoCompositionRenderHint {
 	return VideoCompositionRenderHint{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for VideoCompositionRenderHint *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for VideoCompositionRenderHint */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for VideoCompositionRenderHint */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for VideoCompositionRenderHint */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for VideoCompositionRenderHint */
 
 // The end time of the upcoming composition requests.
 //
@@ -139,7 +139,7 @@ func VideoCompositionRenderHintFrom(ptr unsafe.Pointer) VideoCompositionRenderHi
 func (v_ VideoCompositionRenderHint) EndCompositionTime() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](v_.ID, objc.Sel("endCompositionTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endCompositionTime */
 
 
 // The start time of the upcoming composition requests.
@@ -149,12 +149,12 @@ func (v_ VideoCompositionRenderHint) EndCompositionTime() objc.IObject /* cross-
 func (v_ VideoCompositionRenderHint) StartCompositionTime() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](v_.ID, objc.Sel("startCompositionTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startCompositionTime */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVVideoCompositionRenderHint */
 
 
 

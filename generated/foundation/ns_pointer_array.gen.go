@@ -42,8 +42,6 @@ type IPointerArray interface {
 
 	// properties:
 	AllObjects() IArray
-	Count() uint
-	SetCount(value uint)
 	PointerFunctions() IPointerFunctions
 
 
@@ -288,25 +286,6 @@ func (p_ PointerArray) ReplacePointerAtIndexWithPointer(index uint, item objecti
 func (p_ PointerArray) AllObjects() IArray {
 	rv := objc.Send[Array](p_.ID, objc.Sel("allObjects"))
 	return rv
-}
-
-
-// The number of elements in the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
-func (p_ PointerArray) Count() uint {
-	rv := objc.Send[uint](p_.ID, objc.Sel("count"))
-	return rv
-}
-
-
-// The number of elements in the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
-func (p_ PointerArray) SetCount(value uint) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCount:"), value)
 }
 
 

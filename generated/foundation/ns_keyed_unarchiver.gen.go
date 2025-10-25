@@ -43,8 +43,6 @@ type IKeyedUnarchiver interface {
 	// properties:
 	DecodingFailurePolicy() DecodingFailurePolicy
 	SetDecodingFailurePolicy(value DecodingFailurePolicy)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	RequiresSecureCoding() bool
 	SetRequiresSecureCoding(value bool)
 
@@ -412,25 +410,6 @@ func (k_ KeyedUnarchiver) DecodingFailurePolicy() DecodingFailurePolicy {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
 func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value DecodingFailurePolicy) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/delegate
-func (k_ KeyedUnarchiver) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/delegate
-func (k_ KeyedUnarchiver) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

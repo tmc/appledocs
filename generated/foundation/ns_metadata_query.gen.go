@@ -44,8 +44,6 @@ type IMetadataQuery interface {
 	Started() bool
 	SearchScopes() IArray
 	SetSearchScopes(value IArray)
-	Delegate() objc.IObject /* cross-framework: MetadataQueryDelegate */
-	SetDelegate(value objc.IObject /* cross-framework: MetadataQueryDelegate */)
 	GroupedResults() MetadataQueryResultGroup /* not a class type */
 	SetGroupedResults(value MetadataQueryResultGroup /* not a class type */)
 	GroupingAttributes() IString
@@ -187,25 +185,6 @@ func (m_ MetadataQuery) SearchScopes() IArray {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/searchScopes
 func (m_ MetadataQuery) SetSearchScopes(value IArray) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchScopes:"), value)
-}
-
-
-// The query’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/delegate
-func (m_ MetadataQuery) Delegate() objc.IObject /* cross-framework: MetadataQueryDelegate */ {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The query’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/delegate
-func (m_ MetadataQuery) SetDelegate(value objc.IObject /* cross-framework: MetadataQueryDelegate */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

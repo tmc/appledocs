@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVZoomRange */
 
 
-
-
+/* debug [class_header]: Header for AVZoomRange */
 // The class instance for the [ZoomRange] class.
 var (
 	ZoomRangeClass     _ZoomRangeClass
@@ -30,16 +30,16 @@ func getZoomRangeClass() _ZoomRangeClass {
 type _ZoomRangeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for ZoomRange */
 // An interface definition for the [ZoomRange] class.
 type IZoomRange interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for ZoomRange */
 	// properties:
 	MaxZoomFactor() float64
 	MinZoomFactor() float64
@@ -49,20 +49,20 @@ type IZoomRange interface {
 	SetVideoZoomFactorUpscaleThreshold(value float64)
 	ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported() bool
 	SetZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(value bool)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for ZoomRange */
 	// methods:
 	ContainsZoomFactor(zoomFactor float64) bool
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for ZoomRange */
 // Alloc allocates a new instance without initialization.
 func (zc _ZoomRangeClass) Alloc() ZoomRange {
 	rv := objc.Send[ZoomRange](objc.ID(zc.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (z_ ZoomRange) Autorelease() ZoomRange {
 func NewZoomRange() ZoomRange {
 	return getZoomRangeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for ZoomRange */
 // An object that defines an inclusive range of zoom values.
 
 
@@ -114,25 +114,25 @@ type ZoomRange struct {
 func ZoomRangeFrom(ptr unsafe.Pointer) ZoomRange {
 	return ZoomRange{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for ZoomRange *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for ZoomRange */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for ZoomRange */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for ZoomRange */
 
 // Returns a Boolean value that indicates whether the specified zoom factor exists in the range.
 //
@@ -141,13 +141,13 @@ func ZoomRangeFrom(ptr unsafe.Pointer) ZoomRange {
 func (z_ ZoomRange) ContainsZoomFactor(zoomFactor float64) bool {
 	rv := objc.Send[bool](z_.ID, objc.Sel("containsZoomFactor:"), zoomFactor)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsZoomFactor */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for ZoomRange */
 
 // The range’s maximum zoom factor.
 //
@@ -156,7 +156,7 @@ func (z_ ZoomRange) ContainsZoomFactor(zoomFactor float64) bool {
 func (z_ ZoomRange) MaxZoomFactor() float64 {
 	rv := objc.Send[float64](z_.ID, objc.Sel("maxZoomFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maxZoomFactor */
 
 
 // The range’s minimum zoom factor.
@@ -166,7 +166,7 @@ func (z_ ZoomRange) MaxZoomFactor() float64 {
 func (z_ ZoomRange) MinZoomFactor() float64 {
 	rv := objc.Send[float64](z_.ID, objc.Sel("minZoomFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minZoomFactor */
 
 
 // A maximum zoom factor the format allows.
@@ -176,7 +176,7 @@ func (z_ ZoomRange) MinZoomFactor() float64 {
 func (z_ ZoomRange) VideoMaxZoomFactor() float64 {
 	rv := objc.Send[float64](z_.ID, objc.Sel("videoMaxZoomFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoMaxZoomFactor */
 
 
 // A maximum zoom factor the format allows.
@@ -185,7 +185,7 @@ func (z_ ZoomRange) VideoMaxZoomFactor() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactor
 func (z_ ZoomRange) SetVideoMaxZoomFactor(value float64) {
 	objc.Send[objc.ID](z_.ID, objc.Sel("setVideoMaxZoomFactor:"), value)
-}
+}/* debug [instance_properties/setter]: videoMaxZoomFactor */
 
 
 // A threshold at which the system upscales pixel data.
@@ -195,7 +195,7 @@ func (z_ ZoomRange) SetVideoMaxZoomFactor(value float64) {
 func (z_ ZoomRange) VideoZoomFactorUpscaleThreshold() float64 {
 	rv := objc.Send[float64](z_.ID, objc.Sel("videoZoomFactorUpscaleThreshold"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoZoomFactorUpscaleThreshold */
 
 
 // A threshold at which the system upscales pixel data.
@@ -204,7 +204,7 @@ func (z_ ZoomRange) VideoZoomFactorUpscaleThreshold() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videozoomfactorupscalethreshold
 func (z_ ZoomRange) SetVideoZoomFactorUpscaleThreshold(value float64) {
 	objc.Send[objc.ID](z_.ID, objc.Sel("setVideoZoomFactorUpscaleThreshold:"), value)
-}
+}/* debug [instance_properties/setter]: videoZoomFactorUpscaleThreshold */
 
 
 // A Boolean value that indicates whether the format supports zoom factors outside the range supported for depth delivery.
@@ -214,7 +214,7 @@ func (z_ ZoomRange) SetVideoZoomFactorUpscaleThreshold(value float64) {
 func (z_ ZoomRange) ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported() bool {
 	rv := objc.Send[bool](z_.ID, objc.Sel("zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported */
 
 
 // A Boolean value that indicates whether the format supports zoom factors outside the range supported for depth delivery.
@@ -223,12 +223,12 @@ func (z_ ZoomRange) ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/zoomfactorsoutsideofvideozoomrangesfordepthdeliverysupported
 func (z_ ZoomRange) SetZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(value bool) {
 	objc.Send[objc.ID](z_.ID, objc.Sel("setZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported:"), value)
-}
+}/* debug [instance_properties/setter]: zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVZoomRange */
 
 
 

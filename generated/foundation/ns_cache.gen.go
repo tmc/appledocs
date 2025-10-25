@@ -43,8 +43,6 @@ type ICache interface {
 	// properties:
 	CountLimit() uint
 	SetCountLimit(value uint)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	EvictsObjectsWithDiscardedContent() bool
 	SetEvictsObjectsWithDiscardedContent(value bool)
 	Name() IString
@@ -209,25 +207,6 @@ func (c_ Cache) CountLimit() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/countLimit
 func (c_ Cache) SetCountLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
-}
-
-
-// The cache’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/delegate
-func (c_ Cache) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The cache’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/delegate
-func (c_ Cache) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

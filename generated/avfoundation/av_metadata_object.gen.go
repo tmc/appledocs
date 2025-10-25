@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVMetadataObject */
 
 
-
-
+/* debug [class_header]: Header for AVMetadataObject */
 // The class instance for the [MetadataObject] class.
 var (
 	MetadataObjectClass     _MetadataObjectClass
@@ -31,16 +31,16 @@ func getMetadataObjectClass() _MetadataObjectClass {
 type _MetadataObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for MetadataObject */
 // An interface definition for the [MetadataObject] class.
 type IMetadataObject interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for MetadataObject */
 	// properties:
 	Bounds() corefoundation.CGRect
 	CinematicVideoFocusMode() CaptureCinematicVideoFocusMode
@@ -52,19 +52,19 @@ type IMetadataObject interface {
 	Type() MetadataObjectType /* typedef */
 	IsFixedFocus() bool
 	SetIsFixedFocus(value bool)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for MetadataObject */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for MetadataObject */
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataObjectClass) Alloc() MetadataObject {
 	rv := objc.Send[MetadataObject](objc.ID(mc.class), objc.Sel("alloc"))
@@ -94,11 +94,11 @@ func (m_ MetadataObject) Autorelease() MetadataObject {
 func NewMetadataObject() MetadataObject {
 	return getMetadataObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for MetadataObject */
 // The abstract superclass for objects provided by a metadata capture output.
 //
 // The class is an abstract class that defines the basic properties associated with a piece of metadata. These attributes reflect information either about the metadata itself or the media from which the metadata originated. Subclasses are responsible for providing appropriate values for each of the relevant properties. You shouldn’t subclass directly. Instead, you use one of the defined subclasses provided by the AVFoundation framework. Similarly, you don’t create instances of this class yourself but use an object to retrieve them from the captured data.
@@ -118,30 +118,30 @@ type MetadataObject struct {
 func MetadataObjectFrom(ptr unsafe.Pointer) MetadataObject {
 	return MetadataObject{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for MetadataObject *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for MetadataObject */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for MetadataObject */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for MetadataObject */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for MetadataObject */
 
 // The bounding rectangle associated with the metadata.
 //
@@ -150,7 +150,7 @@ func MetadataObjectFrom(ptr unsafe.Pointer) MetadataObject {
 func (m_ MetadataObject) Bounds() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](m_.ID, objc.Sel("bounds"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bounds */
 
 
 // The current focus mode when an object is detected during a Cinematic Video recording.
@@ -160,7 +160,7 @@ func (m_ MetadataObject) Bounds() corefoundation.CGRect {
 func (m_ MetadataObject) CinematicVideoFocusMode() CaptureCinematicVideoFocusMode {
 	rv := objc.Send[CaptureCinematicVideoFocusMode](m_.ID, objc.Sel("cinematicVideoFocusMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: cinematicVideoFocusMode */
 
 
 // The duration of the media associated with this metadata object.
@@ -170,7 +170,7 @@ func (m_ MetadataObject) CinematicVideoFocusMode() CaptureCinematicVideoFocusMod
 func (m_ MetadataObject) Duration() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](m_.ID, objc.Sel("duration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: duration */
 
 
 // An identifier associated with a metadata object used to group it with other metadata objects belonging to a common parent.
@@ -180,7 +180,7 @@ func (m_ MetadataObject) Duration() objc.IObject /* cross-framework: Time */ {
 func (m_ MetadataObject) GroupID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("groupID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: groupID */
 
 
 // A BOOL indicating whether this metadata object represents a fixed focus.
@@ -190,7 +190,7 @@ func (m_ MetadataObject) GroupID() int {
 func (m_ MetadataObject) FixedFocus() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("fixedFocus"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fixedFocus */
 
 
 // A unique identifier for each detected object type (face, body, hands, heads and salient objects) in a collection.
@@ -200,7 +200,7 @@ func (m_ MetadataObject) FixedFocus() bool {
 func (m_ MetadataObject) ObjectID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("objectID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: objectID */
 
 
 // The media time value associated with the metadata object.
@@ -210,7 +210,7 @@ func (m_ MetadataObject) ObjectID() int {
 func (m_ MetadataObject) Time() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](m_.ID, objc.Sel("time"))
 	return rv
-}
+}/* debug [instance_properties/getter]: time */
 
 
 // The type of metadata that this object provides.
@@ -220,7 +220,7 @@ func (m_ MetadataObject) Time() objc.IObject /* cross-framework: Time */ {
 func (m_ MetadataObject) Type() MetadataObjectType /* typedef */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("type"))
 	return rv
-}
+}/* debug [instance_properties/getter]: type */
 
 
 // A BOOL indicating whether this metadata object represents a fixed focus.
@@ -230,7 +230,7 @@ func (m_ MetadataObject) Type() MetadataObjectType /* typedef */ {
 func (m_ MetadataObject) IsFixedFocus() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isFixedFocus"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isFixedFocus */
 
 
 // A BOOL indicating whether this metadata object represents a fixed focus.
@@ -239,12 +239,12 @@ func (m_ MetadataObject) IsFixedFocus() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataobject/isfixedfocus
 func (m_ MetadataObject) SetIsFixedFocus(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFixedFocus:"), value)
-}
+}/* debug [instance_properties/setter]: isFixedFocus */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVMetadataObject */
 
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptionConversionValidator */
 
 
-
-
+/* debug [class_header]: Header for AVCaptionConversionValidator */
 // The class instance for the [CaptionConversionValidator] class.
 var (
 	CaptionConversionValidatorClass     _CaptionConversionValidatorClass
@@ -30,36 +30,36 @@ func getCaptionConversionValidatorClass() _CaptionConversionValidatorClass {
 type _CaptionConversionValidatorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for CaptionConversionValidator */
 // An interface definition for the [CaptionConversionValidator] class.
 type ICaptionConversionValidator interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for CaptionConversionValidator */
 	// properties:
 	Captions() []Caption
 	Status() CaptionConversionValidatorStatus
 	TimeRange() TimeRange /* not a class type */
 	Warnings() []CaptionConversionWarning
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for CaptionConversionValidator */
 	// methods:
 	StopValidating()
 	ValidateCaptionConversionWithWarningHandler(handler unsafe.Pointer)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for CaptionConversionValidator */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptionConversionValidatorClass) Alloc() CaptionConversionValidator {
 	rv := objc.Send[CaptionConversionValidator](objc.ID(cc.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (c_ CaptionConversionValidator) Autorelease() CaptionConversionValidator {
 func NewCaptionConversionValidator() CaptionConversionValidator {
 	return getCaptionConversionValidatorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for CaptionConversionValidator */
 // An object that validates captions for a conversion operation.
 
 
@@ -111,11 +111,11 @@ type CaptionConversionValidator struct {
 func CaptionConversionValidatorFrom(ptr unsafe.Pointer) CaptionConversionValidator {
 	return CaptionConversionValidator{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for CaptionConversionValidator */
 
 // Creates an object that validates captions for a conversion operation.
 //
@@ -126,13 +126,13 @@ func NewCaptionConversionValidatorWithCaptionsTimeRangeConversionSettings(captio
 	rv := objc.Send[CaptionConversionValidator](instance.ID, objc.Sel("initWithCaptions:timeRange:conversionSettings:"), captions, timeRange, conversionSettings)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCaptionConversionValidatorWithCaptionsTimeRangeConversionSettings */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for CaptionConversionValidator */
 
 // A convenience initializer to create an object that validates captions for a conversion operation.
 //
@@ -141,18 +141,18 @@ func NewCaptionConversionValidatorWithCaptionsTimeRangeConversionSettings(captio
 func (cc _CaptionConversionValidatorClass) CaptionConversionValidatorWithCaptionsTimeRangeConversionSettings(captions []Caption, timeRange TimeRange /* not a class type */, conversionSettings foundation.IDictionary) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("captionConversionValidatorWithCaptions:timeRange:conversionSettings:"), captions, timeRange, conversionSettings)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CaptionConversionValidatorWithCaptionsTimeRangeConversionSettings) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for CaptionConversionValidator */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for CaptionConversionValidator */
 
 // Stops the active validation operation.
 //
@@ -160,7 +160,7 @@ func (cc _CaptionConversionValidatorClass) CaptionConversionValidatorWithCaption
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionConversionValidator/stopValidating()
 func (c_ CaptionConversionValidator) StopValidating() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopValidating"))
-}
+}/* debug [instance_methods/method]: StopValidating */
 
 
 // Validates the object’s captions.
@@ -169,13 +169,13 @@ func (c_ CaptionConversionValidator) StopValidating() {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionConversionValidator/validateCaptionConversion(warningHandler:)
 func (c_ CaptionConversionValidator) ValidateCaptionConversionWithWarningHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("validateCaptionConversionWithWarningHandler:"), handler)
-}
+}/* debug [instance_methods/method]: ValidateCaptionConversionWithWarningHandler */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for CaptionConversionValidator */
 
 // The array of captions that the system validates.
 //
@@ -184,7 +184,7 @@ func (c_ CaptionConversionValidator) ValidateCaptionConversionWithWarningHandler
 func (c_ CaptionConversionValidator) Captions() []Caption {
 	rv := objc.Send[[]Caption](c_.ID, objc.Sel("captions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: captions */
 
 
 // A value that indicates the status of validation.
@@ -194,7 +194,7 @@ func (c_ CaptionConversionValidator) Captions() []Caption {
 func (c_ CaptionConversionValidator) Status() CaptionConversionValidatorStatus {
 	rv := objc.Send[CaptionConversionValidatorStatus](c_.ID, objc.Sel("status"))
 	return rv
-}
+}/* debug [instance_properties/getter]: status */
 
 
 // The time range of the media timeline in which the captions must exist.
@@ -204,7 +204,7 @@ func (c_ CaptionConversionValidator) Status() CaptionConversionValidatorStatus {
 func (c_ CaptionConversionValidator) TimeRange() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](c_.ID, objc.Sel("timeRange"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeRange */
 
 
 // The collection of warnings the validator encountered.
@@ -214,11 +214,11 @@ func (c_ CaptionConversionValidator) TimeRange() TimeRange /* not a class type *
 func (c_ CaptionConversionValidator) Warnings() []CaptionConversionWarning {
 	rv := objc.Send[[]CaptionConversionWarning](c_.ID, objc.Sel("warnings"))
 	return rv
-}
+}/* debug [instance_properties/getter]: warnings */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVCaptionConversionValidator */
 
 

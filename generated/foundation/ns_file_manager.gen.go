@@ -45,8 +45,6 @@ type IFileManager interface {
 	HomeDirectoryForCurrentUser() IURL
 	TemporaryDirectory() IURL
 	UbiquityIdentityToken() unsafe.Pointer
-	Delegate() objc.IObject /* cross-framework: FileManagerDelegate */
-	SetDelegate(value objc.IObject /* cross-framework: FileManagerDelegate */)
 	NSFileManagerUnmountDissentingProcessIdentifierErrorKey() IString
 	NSFoundationVersionWithFileManagerResourceForkSupport() objectivec.IObject
 	SetNSFoundationVersionWithFileManagerResourceForkSupport(value objectivec.IObject)
@@ -756,25 +754,6 @@ func (f_ FileManager) TemporaryDirectory() IURL {
 func (f_ FileManager) UbiquityIdentityToken() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("ubiquityIdentityToken"))
 	return rv
-}
-
-
-// The delegate of the file manager object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/delegate
-func (f_ FileManager) Delegate() objc.IObject /* cross-framework: FileManagerDelegate */ {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The delegate of the file manager object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/delegate
-func (f_ FileManager) SetDelegate(value objc.IObject /* cross-framework: FileManagerDelegate */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

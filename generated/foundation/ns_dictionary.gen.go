@@ -43,7 +43,6 @@ type IDictionary interface {
 	// properties:
 	AllKeys() []objc.ID
 	AllValues() []objc.ID
-	Count() uint
 	Description() IString
 	DescriptionInStringsFileFormat() IString
 
@@ -764,16 +763,6 @@ func (d_ Dictionary) AllKeys() []objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/allValues
 func (d_ Dictionary) AllValues() []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("allValues"))
-	return rv
-}
-
-
-// The number of entries in the dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/count
-func (d_ Dictionary) Count() uint {
-	rv := objc.Send[uint](d_.ID, objc.Sel("count"))
 	return rv
 }
 

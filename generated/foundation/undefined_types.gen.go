@@ -40,7 +40,6 @@ type (
 	TimeRange = _undefined // referenced in Foundation
 	UIEdgeInsets = _undefined // referenced in Foundation
 	URLCacheStoragePolicy = _undefined // referenced in Foundation
-	URLRequestAttribution = _undefined // referenced in Foundation
 	UserActivityPersistentIdentifier = _undefined // referenced in Foundation
 	UserAppleScriptTaskCompletionHandler = _undefined // referenced in Foundation
 	UserAutomatorTaskCompletionHandler = _undefined // referenced in Foundation

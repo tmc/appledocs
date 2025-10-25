@@ -21,8 +21,8 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSessionDeferredStartDelegate
 type PCaptureSessionDeferredStartDelegate interface {
 	// Required methods
-	SessionDidRunDeferredStart(session IAVCaptureSession)
-	SessionWillRunDeferredStart(session IAVCaptureSession)
+	SessionDidRunDeferredStart(session IAVCaptureSession)/* debug [protocol_interface/required_method]: SessionDidRunDeferredStart */
+	SessionWillRunDeferredStart(session IAVCaptureSession)/* debug [protocol_interface/required_method]: SessionWillRunDeferredStart */
 }
 
 // CaptureSessionDeferredStartDelegate is a delegate implementation builder for the PCaptureSessionDeferredStartDelegate protocol.

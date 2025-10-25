@@ -43,8 +43,6 @@ type IStream interface {
 	// properties:
 	NSStreamSOCKSErrorDomain() IString
 	NSStreamSocketSSLErrorDomain() IString
-	Delegate() objc.IObject /* cross-framework: StreamDelegate */
-	SetDelegate(value objc.IObject /* cross-framework: StreamDelegate */)
 	StreamError() objc.IObject
 	SetStreamError(value objc.IObject)
 	StreamStatus() objectivec.IObject
@@ -167,25 +165,6 @@ func (s_ Stream) NSStreamSOCKSErrorDomain() IString {
 func (s_ Stream) NSStreamSocketSSLErrorDomain() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
-}
-
-
-// Sets the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
-func (s_ Stream) Delegate() objc.IObject /* cross-framework: StreamDelegate */ {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Sets the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
-func (s_ Stream) SetDelegate(value objc.IObject /* cross-framework: StreamDelegate */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

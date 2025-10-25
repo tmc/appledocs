@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayerItemSegment */
 
 
-
-
+/* debug [class_header]: Header for AVPlayerItemSegment */
 // The class instance for the [PlayerItemSegment] class.
 var (
 	PlayerItemSegmentClass     _PlayerItemSegmentClass
@@ -30,16 +30,16 @@ func getPlayerItemSegmentClass() _PlayerItemSegmentClass {
 type _PlayerItemSegmentClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PlayerItemSegment */
 // An interface definition for the [PlayerItemSegment] class.
 type IPlayerItemSegment interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for PlayerItemSegment */
 	// properties:
 	InterstitialEvent() IAVPlayerInterstitialEvent
 	LoadedTimeRanges() []foundation.Value
@@ -56,19 +56,19 @@ type IPlayerItemSegment interface {
 	SetDuration(value objc.IObject /* cross-framework: Time */)
 	Segments() IAVPlayerItemSegment
 	SetSegments(value IAVPlayerItemSegment)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PlayerItemSegment */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PlayerItemSegment */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemSegmentClass) Alloc() PlayerItemSegment {
 	rv := objc.Send[PlayerItemSegment](objc.ID(pc.class), objc.Sel("alloc"))
@@ -98,11 +98,11 @@ func (p_ PlayerItemSegment) Autorelease() PlayerItemSegment {
 func NewPlayerItemSegment() PlayerItemSegment {
 	return getPlayerItemSegmentClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PlayerItemSegment */
 // An immutable object that represents a segment of time on the integrated timeline.
 
 
@@ -120,30 +120,30 @@ type PlayerItemSegment struct {
 func PlayerItemSegmentFrom(ptr unsafe.Pointer) PlayerItemSegment {
 	return PlayerItemSegment{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for PlayerItemSegment *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PlayerItemSegment */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PlayerItemSegment */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for PlayerItemSegment */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for PlayerItemSegment */
 
 // The associated interstitial event for this segment.
 //
@@ -152,7 +152,7 @@ func PlayerItemSegmentFrom(ptr unsafe.Pointer) PlayerItemSegment {
 func (p_ PlayerItemSegment) InterstitialEvent() IAVPlayerInterstitialEvent {
 	rv := objc.Send[PlayerInterstitialEvent](p_.ID, objc.Sel("interstitialEvent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: interstitialEvent */
 
 
 // The time ranges for the segment that have media data is readily available.
@@ -162,7 +162,7 @@ func (p_ PlayerItemSegment) InterstitialEvent() IAVPlayerInterstitialEvent {
 func (p_ PlayerItemSegment) LoadedTimeRanges() []foundation.Value {
 	rv := objc.Send[[]foundation.Value](p_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: loadedTimeRanges */
 
 
 // The type content this segment represents.
@@ -172,7 +172,7 @@ func (p_ PlayerItemSegment) LoadedTimeRanges() []foundation.Value {
 func (p_ PlayerItemSegment) SegmentType() PlayerItemSegmentType {
 	rv := objc.Send[PlayerItemSegmentType](p_.ID, objc.Sel("segmentType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentType */
 
 
 // The date at which a segment starts.
@@ -182,7 +182,7 @@ func (p_ PlayerItemSegment) SegmentType() PlayerItemSegmentType {
 func (p_ PlayerItemSegment) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startDate */
 
 
 // The time mapping for this segment.
@@ -192,7 +192,7 @@ func (p_ PlayerItemSegment) StartDate() objc.IObject /* cross-framework: NSDate 
 func (p_ PlayerItemSegment) TimeMapping() TimeMapping /* not a class type */ {
 	rv := objc.Send[TimeMapping](p_.ID, objc.Sel("timeMapping"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeMapping */
 
 
 // The current date on the integrated timeline when the system created the snapshot.
@@ -202,7 +202,7 @@ func (p_ PlayerItemSegment) TimeMapping() TimeMapping /* not a class type */ {
 func (p_ PlayerItemSegment) CurrentDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentDate */
 
 
 // The current date on the integrated timeline when the system created the snapshot.
@@ -211,7 +211,7 @@ func (p_ PlayerItemSegment) CurrentDate() foundation.Date {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
 func (p_ PlayerItemSegment) SetCurrentDate(value foundation.Date) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
-}
+}/* debug [instance_properties/setter]: currentDate */
 
 
 // The currently playing segment.
@@ -221,7 +221,7 @@ func (p_ PlayerItemSegment) SetCurrentDate(value foundation.Date) {
 func (p_ PlayerItemSegment) CurrentSegment() IAVPlayerItemSegment {
 	rv := objc.Send[PlayerItemSegment](p_.ID, objc.Sel("currentSegment"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentSegment */
 
 
 // The currently playing segment.
@@ -230,7 +230,7 @@ func (p_ PlayerItemSegment) CurrentSegment() IAVPlayerItemSegment {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentsegment
 func (p_ PlayerItemSegment) SetCurrentSegment(value IAVPlayerItemSegment) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSegment:"), value)
-}
+}/* debug [instance_properties/setter]: currentSegment */
 
 
 // The current time on the integrated timeline when the system created the snapshot.
@@ -240,7 +240,7 @@ func (p_ PlayerItemSegment) SetCurrentSegment(value IAVPlayerItemSegment) {
 func (p_ PlayerItemSegment) CurrentTime() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](p_.ID, objc.Sel("currentTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentTime */
 
 
 // The current time on the integrated timeline when the system created the snapshot.
@@ -249,7 +249,7 @@ func (p_ PlayerItemSegment) CurrentTime() objc.IObject /* cross-framework: Time 
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currenttime
 func (p_ PlayerItemSegment) SetCurrentTime(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentTime:"), value)
-}
+}/* debug [instance_properties/setter]: currentTime */
 
 
 // The total duration of the primary item and scheduled interstitial events.
@@ -259,7 +259,7 @@ func (p_ PlayerItemSegment) SetCurrentTime(value objc.IObject /* cross-framework
 func (p_ PlayerItemSegment) Duration() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](p_.ID, objc.Sel("duration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: duration */
 
 
 // The total duration of the primary item and scheduled interstitial events.
@@ -268,7 +268,7 @@ func (p_ PlayerItemSegment) Duration() objc.IObject /* cross-framework: Time */ 
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
 func (p_ PlayerItemSegment) SetDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
-}
+}/* debug [instance_properties/setter]: duration */
 
 
 // The segments for this snapshot.
@@ -278,7 +278,7 @@ func (p_ PlayerItemSegment) SetDuration(value objc.IObject /* cross-framework: T
 func (p_ PlayerItemSegment) Segments() IAVPlayerItemSegment {
 	rv := objc.Send[PlayerItemSegment](p_.ID, objc.Sel("segments"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segments */
 
 
 // The segments for this snapshot.
@@ -287,12 +287,12 @@ func (p_ PlayerItemSegment) Segments() IAVPlayerItemSegment {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/segments
 func (p_ PlayerItemSegment) SetSegments(value IAVPlayerItemSegment) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSegments:"), value)
-}
+}/* debug [instance_properties/setter]: segments */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVPlayerItemSegment */
 
 
 

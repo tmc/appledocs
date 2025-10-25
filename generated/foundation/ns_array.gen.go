@@ -41,7 +41,6 @@ type IArray interface {
 	
 
 	// properties:
-	Count() uint
 	Description() IString
 	FirstObject() objectivec.IObject
 	LastObject() objectivec.IObject
@@ -890,16 +889,6 @@ func (a_ Array) WriteToURLError(url IURL, error_ IError) bool {
 
 
 
-
-
-// The number of objects in the array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/count
-func (a_ Array) Count() uint {
-	rv := objc.Send[uint](a_.ID, objc.Sel("count"))
-	return rv
-}
 
 
 // A string that represents the contents of the array, formatted as a property list.

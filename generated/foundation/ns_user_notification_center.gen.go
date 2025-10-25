@@ -48,8 +48,6 @@ type IUserNotificationCenter interface {
 	SetDeliveryDate(value IDate)
 	IsPresented() bool
 	SetIsPresented(value bool)
-	Delegate() objc.IObject /* cross-framework: UserNotificationCenterDelegate */
-	SetDelegate(value objc.IObject /* cross-framework: UserNotificationCenterDelegate */)
 	ScheduledNotifications() IUserNotification
 	SetScheduledNotifications(value IUserNotification)
 
@@ -207,25 +205,6 @@ func (u_ UserNotificationCenter) IsPresented() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
 func (u_ UserNotificationCenter) SetIsPresented(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
-}
-
-
-// Specifies the notification center delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/delegate
-func (u_ UserNotificationCenter) Delegate() objc.IObject /* cross-framework: UserNotificationCenterDelegate */ {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Specifies the notification center delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/delegate
-func (u_ UserNotificationCenter) SetDelegate(value objc.IObject /* cross-framework: UserNotificationCenterDelegate */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

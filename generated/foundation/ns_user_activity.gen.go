@@ -53,8 +53,6 @@ type IUserActivity interface {
 	SetAppEntityIdentifier(value objectivec.IObject)
 	ContextIdentifierPath() IString
 	SetContextIdentifierPath(value IString)
-	Delegate() objc.IObject /* cross-framework: UserActivityDelegate */
-	SetDelegate(value objc.IObject /* cross-framework: UserActivityDelegate */)
 	DetectedBarcodeDescriptor() objectivec.IObject
 	SetDetectedBarcodeDescriptor(value objectivec.IObject)
 	ExpirationDate() IDate
@@ -313,25 +311,6 @@ func (u_ UserActivity) ContextIdentifierPath() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/contextidentifierpath
 func (u_ UserActivity) SetContextIdentifierPath(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setContextIdentifierPath:"), value)
-}
-
-
-// The user activity object’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/delegate
-func (u_ UserActivity) Delegate() objc.IObject /* cross-framework: UserActivityDelegate */ {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The user activity object’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/delegate
-func (u_ UserActivity) SetDelegate(value objc.IObject /* cross-framework: UserActivityDelegate */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

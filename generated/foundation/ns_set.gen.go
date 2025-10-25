@@ -42,7 +42,6 @@ type ISet interface {
 
 	// properties:
 	AllObjects() []objc.ID
-	Count() uint
 	Description() IString
 
 
@@ -573,16 +572,6 @@ func (s_ Set) ValueForKey(key IString) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/allObjects
 func (s_ Set) AllObjects() []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("allObjects"))
-	return rv
-}
-
-
-// The number of members in the set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/count
-func (s_ Set) Count() uint {
-	rv := objc.Send[uint](s_.ID, objc.Sel("count"))
 	return rv
 }
 

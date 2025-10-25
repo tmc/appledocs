@@ -42,8 +42,6 @@ type INetService interface {
 
 	// properties:
 	Addresses() []Data
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	Domain() IString
 	HostName() IString
 	IncludesPeerToPeer() bool
@@ -194,25 +192,6 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionar
 func (n_ NetService) Addresses() []Data {
 	rv := objc.Send[[]Data](n_.ID, objc.Sel("addresses"))
 	return rv
-}
-
-
-// The delegate for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
-func (n_ NetService) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The delegate for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
-func (n_ NetService) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

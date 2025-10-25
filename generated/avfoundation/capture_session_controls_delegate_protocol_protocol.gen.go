@@ -21,10 +21,10 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSessionControlsDelegate
 type PCaptureSessionControlsDelegate interface {
 	// Required methods
-	SessionControlsDidBecomeActive(session IAVCaptureSession)
-	SessionControlsDidBecomeInactive(session IAVCaptureSession)
-	SessionControlsWillEnterFullscreenAppearance(session IAVCaptureSession)
-	SessionControlsWillExitFullscreenAppearance(session IAVCaptureSession)
+	SessionControlsDidBecomeActive(session IAVCaptureSession)/* debug [protocol_interface/required_method]: SessionControlsDidBecomeActive */
+	SessionControlsDidBecomeInactive(session IAVCaptureSession)/* debug [protocol_interface/required_method]: SessionControlsDidBecomeInactive */
+	SessionControlsWillEnterFullscreenAppearance(session IAVCaptureSession)/* debug [protocol_interface/required_method]: SessionControlsWillEnterFullscreenAppearance */
+	SessionControlsWillExitFullscreenAppearance(session IAVCaptureSession)/* debug [protocol_interface/required_method]: SessionControlsWillExitFullscreenAppearance */
 }
 
 // CaptureSessionControlsDelegate is a delegate implementation builder for the PCaptureSessionControlsDelegate protocol.

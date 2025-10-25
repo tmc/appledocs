@@ -46,13 +46,9 @@ type INotificationCenter interface {
 	
 
 	// methods:
-	AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName NotificationName, anObject objc.IObject)
 	AddObserverForNameObjectQueueUsingBlock(name NotificationName, obj objc.IObject, queue IOperationQueue, block unsafe.Pointer) unsafe.Pointer
 	PostNotification(notification INotification)
-	PostNotificationNameObject(aName NotificationName, anObject objc.IObject)
-	PostNotificationNameObjectUserInfo(aName NotificationName, anObject objc.IObject, aUserInfo IDictionary)
 	RemoveObserver(observer objc.IObject)
-	RemoveObserverNameObject(observer objc.IObject, aName NotificationName, anObject objc.IObject)
 
 
 }
@@ -143,15 +139,6 @@ func (nc _NotificationCenterClass) DefaultCenter() NotificationCenter {
 
 
 
-// Adds an entry to the notification center to call the provided selector with the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/addObserver(_:selector:name:object:)
-func (n_ NotificationCenter) AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName NotificationName, anObject objc.IObject) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
-}
-
-
 // Adds an entry to the notification center to receive notifications that passed to the provided block.
 //
 // [Full Topic]
@@ -171,39 +158,12 @@ func (n_ NotificationCenter) PostNotification(notification INotification) {
 }
 
 
-// Creates a notification with a given name and sender and posts it to the notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(name:object:)
-func (n_ NotificationCenter) PostNotificationNameObject(aName NotificationName, anObject objc.IObject) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("postNotificationName:object:"), aName, anObject)
-}
-
-
-// Creates a notification with a given name, sender, and information and posts it to the notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(name:object:userInfo:)
-func (n_ NotificationCenter) PostNotificationNameObjectUserInfo(aName NotificationName, anObject objc.IObject, aUserInfo IDictionary) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, anObject, aUserInfo)
-}
-
-
 // Removes all entries specifying an observer from the notification center’s dispatch table.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/removeObserver(_:)-2yciv
 func (n_ NotificationCenter) RemoveObserver(observer objc.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:"), observer)
-}
-
-
-// Removes matching entries from the notification center’s dispatch table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/removeObserver(_:name:object:)
-func (n_ NotificationCenter) RemoveObserverNameObject(observer objc.IObject, aName NotificationName, anObject objc.IObject) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
 }
 
 

@@ -52,8 +52,6 @@ type IURLSessionConfiguration interface {
 	Identifier() IString
 	Discretionary() bool
 	SetDiscretionary(value bool)
-	NetworkServiceType() URLRequestNetworkServiceType
-	SetNetworkServiceType(value URLRequestNetworkServiceType)
 	SessionSendsLaunchEvents() bool
 	SetSessionSendsLaunchEvents(value bool)
 	SharedContainerIdentifier() IString
@@ -350,25 +348,6 @@ func (u_ URLSessionConfiguration) Discretionary() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/isDiscretionary
 func (u_ URLSessionConfiguration) SetDiscretionary(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDiscretionary:"), value)
-}
-
-
-// The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
-func (u_ URLSessionConfiguration) NetworkServiceType() URLRequestNetworkServiceType {
-	rv := objc.Send[URLRequestNetworkServiceType](u_.ID, objc.Sel("networkServiceType"))
-	return rv
-}
-
-
-// The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
-func (u_ URLSessionConfiguration) SetNetworkServiceType(value URLRequestNetworkServiceType) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 
 

@@ -41,8 +41,6 @@ type IKeyedArchiver interface {
 	
 
 	// properties:
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	EncodedData() IData
 	OutputFormat() PropertyListFormat
 	SetOutputFormat(value PropertyListFormat)
@@ -334,25 +332,6 @@ func (k_ KeyedArchiver) SetClassNameForClass(codedName IString, cls objc.Class) 
 
 
 
-
-
-// The archiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/delegate
-func (k_ KeyedArchiver) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The archiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/delegate
-func (k_ KeyedArchiver) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
-}
 
 
 // The encoded data for the archiver.

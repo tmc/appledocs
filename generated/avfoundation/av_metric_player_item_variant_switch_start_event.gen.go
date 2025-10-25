@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class AVMetricPlayerItemVariantSwitchStartEvent */
 
 
-
-
+/* debug [class_header]: Header for AVMetricPlayerItemVariantSwitchStartEvent */
 // The class instance for the [MetricPlayerItemVariantSwitchStartEvent] class.
 var (
 	MetricPlayerItemVariantSwitchStartEventClass     _MetricPlayerItemVariantSwitchStartEventClass
@@ -29,16 +29,16 @@ func getMetricPlayerItemVariantSwitchStartEventClass() _MetricPlayerItemVariantS
 type _MetricPlayerItemVariantSwitchStartEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for MetricPlayerItemVariantSwitchStartEvent */
 // An interface definition for the [MetricPlayerItemVariantSwitchStartEvent] class.
 type IMetricPlayerItemVariantSwitchStartEvent interface {
 	IMetricEvent
 	
-
+/* debug [class_interface_properties]: Properties for MetricPlayerItemVariantSwitchStartEvent */
 	// properties:
 	AudioRendition() IAVMetricMediaRendition
 	FromVariant() IAVAssetVariant
@@ -46,19 +46,19 @@ type IMetricPlayerItemVariantSwitchStartEvent interface {
 	SubtitleRendition() IAVMetricMediaRendition
 	ToVariant() IAVAssetVariant
 	VideoRendition() IAVMetricMediaRendition
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for MetricPlayerItemVariantSwitchStartEvent */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for MetricPlayerItemVariantSwitchStartEvent */
 // Alloc allocates a new instance without initialization.
 func (mc _MetricPlayerItemVariantSwitchStartEventClass) Alloc() MetricPlayerItemVariantSwitchStartEvent {
 	rv := objc.Send[MetricPlayerItemVariantSwitchStartEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (m_ MetricPlayerItemVariantSwitchStartEvent) Autorelease() MetricPlayerItem
 func NewMetricPlayerItemVariantSwitchStartEvent() MetricPlayerItemVariantSwitchStartEvent {
 	return getMetricPlayerItemVariantSwitchStartEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for MetricPlayerItemVariantSwitchStartEvent */
 // An event that represents when the player attempts a variant switch.
 
 
@@ -112,37 +112,37 @@ func MetricPlayerItemVariantSwitchStartEventFrom(ptr unsafe.Pointer) MetricPlaye
 		MetricEvent: MetricEventFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for MetricPlayerItemVariantSwitchStartEvent *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for MetricPlayerItemVariantSwitchStartEvent */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for MetricPlayerItemVariantSwitchStartEvent */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for MetricPlayerItemVariantSwitchStartEvent */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for MetricPlayerItemVariantSwitchStartEvent */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricPlayerItemVariantSwitchStartEvent/audioRendition
 func (m_ MetricPlayerItemVariantSwitchStartEvent) AudioRendition() IAVMetricMediaRendition {
 	rv := objc.Send[MetricMediaRendition](m_.ID, objc.Sel("audioRendition"))
 	return rv
-}
+}/* debug [instance_properties/getter]: audioRendition */
 
 
 // [Full Topic]
@@ -150,7 +150,7 @@ func (m_ MetricPlayerItemVariantSwitchStartEvent) AudioRendition() IAVMetricMedi
 func (m_ MetricPlayerItemVariantSwitchStartEvent) FromVariant() IAVAssetVariant {
 	rv := objc.Send[AssetVariant](m_.ID, objc.Sel("fromVariant"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fromVariant */
 
 
 // [Full Topic]
@@ -158,7 +158,7 @@ func (m_ MetricPlayerItemVariantSwitchStartEvent) FromVariant() IAVAssetVariant 
 func (m_ MetricPlayerItemVariantSwitchStartEvent) LoadedTimeRanges() []foundation.Value {
 	rv := objc.Send[[]foundation.Value](m_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: loadedTimeRanges */
 
 
 // [Full Topic]
@@ -166,7 +166,7 @@ func (m_ MetricPlayerItemVariantSwitchStartEvent) LoadedTimeRanges() []foundatio
 func (m_ MetricPlayerItemVariantSwitchStartEvent) SubtitleRendition() IAVMetricMediaRendition {
 	rv := objc.Send[MetricMediaRendition](m_.ID, objc.Sel("subtitleRendition"))
 	return rv
-}
+}/* debug [instance_properties/getter]: subtitleRendition */
 
 
 // [Full Topic]
@@ -174,7 +174,7 @@ func (m_ MetricPlayerItemVariantSwitchStartEvent) SubtitleRendition() IAVMetricM
 func (m_ MetricPlayerItemVariantSwitchStartEvent) ToVariant() IAVAssetVariant {
 	rv := objc.Send[AssetVariant](m_.ID, objc.Sel("toVariant"))
 	return rv
-}
+}/* debug [instance_properties/getter]: toVariant */
 
 
 // [Full Topic]
@@ -182,12 +182,12 @@ func (m_ MetricPlayerItemVariantSwitchStartEvent) ToVariant() IAVAssetVariant {
 func (m_ MetricPlayerItemVariantSwitchStartEvent) VideoRendition() IAVMetricMediaRendition {
 	rv := objc.Send[MetricMediaRendition](m_.ID, objc.Sel("videoRendition"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoRendition */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVMetricPlayerItemVariantSwitchStartEvent */
 
 
 

@@ -43,7 +43,6 @@ type IHashTable interface {
 	// properties:
 	AllObjects() []objc.ID
 	AnyObject() objectivec.IObject
-	Count() uint
 	PointerFunctions() IPointerFunctions
 	SetRepresentation() unsafe.Pointer
 
@@ -344,16 +343,6 @@ func (h_ HashTable) AllObjects() []objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/anyObject
 func (h_ HashTable) AnyObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("anyObject"))
-	return rv
-}
-
-
-// The number of elements in the hash table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
-func (h_ HashTable) Count() uint {
-	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
 	return rv
 }
 

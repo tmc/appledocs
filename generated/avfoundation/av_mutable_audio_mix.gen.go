@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVMutableAudioMix */
 
 
-
-
+/* debug [class_header]: Header for AVMutableAudioMix */
 // The class instance for the [MutableAudioMix] class.
 var (
 	MutableAudioMixClass     _MutableAudioMixClass
@@ -30,32 +30,32 @@ func getMutableAudioMixClass() _MutableAudioMixClass {
 type _MutableAudioMixClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for MutableAudioMix */
 // An interface definition for the [MutableAudioMix] class.
 type IMutableAudioMix interface {
 	IAudioMix
 	
-
+/* debug [class_interface_properties]: Properties for MutableAudioMix */
 	// properties:
 	InputParameters() []AudioMixInputParameters
 	SetInputParameters(value []AudioMixInputParameters)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for MutableAudioMix */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for MutableAudioMix */
 // Alloc allocates a new instance without initialization.
 func (mc _MutableAudioMixClass) Alloc() MutableAudioMix {
 	rv := objc.Send[MutableAudioMix](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (m_ MutableAudioMix) Autorelease() MutableAudioMix {
 func NewMutableAudioMix() MutableAudioMix {
 	return getMutableAudioMixClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for MutableAudioMix */
 // An object that manages the input parameters for mixing audio tracks.
 
 
@@ -109,15 +109,15 @@ func MutableAudioMixFrom(ptr unsafe.Pointer) MutableAudioMix {
 		AudioMix: AudioMixFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for MutableAudioMix *//* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for MutableAudioMix */
 
 // Returns a new mutable audio mix.
 //
@@ -126,23 +126,23 @@ func MutableAudioMixFrom(ptr unsafe.Pointer) MutableAudioMix {
 func (mc _MutableAudioMixClass) AudioMix() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(mc.class), objc.Sel("audioMix"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AudioMix) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for MutableAudioMix */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for MutableAudioMix */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for MutableAudioMix */
 
 // An array of input parameters for the mix.
 //
@@ -151,7 +151,7 @@ func (mc _MutableAudioMixClass) AudioMix() objectivec.IObject {
 func (m_ MutableAudioMix) InputParameters() []AudioMixInputParameters {
 	rv := objc.Send[[]AudioMixInputParameters](m_.ID, objc.Sel("inputParameters"))
 	return rv
-}
+}/* debug [instance_properties/getter]: inputParameters */
 
 
 // An array of input parameters for the mix.
@@ -169,12 +169,12 @@ func (m_ MutableAudioMix) SetInputParameters(value []AudioMixInputParameters) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInputParameters:"), nsArray)
-}
+}/* debug [instance_properties/setter]: inputParameters */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVMutableAudioMix */
 
 
 

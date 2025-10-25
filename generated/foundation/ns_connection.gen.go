@@ -41,8 +41,6 @@ type IConnection interface {
 	
 
 	// properties:
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	IndependentConversationQueueing() bool
 	SetIndependentConversationQueueing(value bool)
 	LocalObjects() IArray
@@ -262,25 +260,6 @@ func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(na
 
 
 
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.property
-func (c_ Connection) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.property
-func (c_ Connection) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
-}
 
 
 // A Boolean value that indicates whether the receiver handles remote messages atomically.

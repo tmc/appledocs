@@ -42,7 +42,6 @@ type IURLSession interface {
 
 	// properties:
 	Configuration() IURLSessionConfiguration
-	Delegate() unsafe.Pointer
 	DelegateQueue() IOperationQueue
 	SessionDescription() IString
 	SetSessionDescription(value IString)
@@ -480,16 +479,6 @@ func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string)
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/configuration
 func (u_ URLSession) Configuration() IURLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// The delegate assigned when this object was created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/delegate
-func (u_ URLSession) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
 	return rv
 }
 

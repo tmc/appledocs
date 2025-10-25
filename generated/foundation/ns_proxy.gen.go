@@ -51,7 +51,6 @@ type IProxy interface {
 	AllowsWeakReference() bool
 	Dealloc()
 	Finalize()
-	ForwardInvocation(invocation IInvocation)
 	MethodSignatureForSelector(sel objc.SEL) MethodSignature /* not a class type */
 	RetainWeakReference() bool
 
@@ -178,15 +177,6 @@ func (p_ Proxy) Dealloc() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/finalize()
 func (p_ Proxy) Finalize() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("finalize"))
-}
-
-
-// Passes a given invocation to the real object the proxy represents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/forwardInvocation(_:)
-func (p_ Proxy) ForwardInvocation(invocation IInvocation) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("forwardInvocation:"), invocation)
 }
 
 

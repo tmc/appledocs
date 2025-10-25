@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetWriterInputPassDescription */
 
 
-
-
+/* debug [class_header]: Header for AVAssetWriterInputPassDescription */
 // The class instance for the [AssetWriterInputPassDescription] class.
 var (
 	AssetWriterInputPassDescriptionClass     _AssetWriterInputPassDescriptionClass
@@ -30,16 +30,16 @@ func getAssetWriterInputPassDescriptionClass() _AssetWriterInputPassDescriptionC
 type _AssetWriterInputPassDescriptionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for AssetWriterInputPassDescription */
 // An interface definition for the [AssetWriterInputPassDescription] class.
 type IAssetWriterInputPassDescription interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for AssetWriterInputPassDescription */
 	// properties:
 	SourceTimeRanges() []foundation.Value
 	CanPerformMultiplePasses() bool
@@ -48,19 +48,19 @@ type IAssetWriterInputPassDescription interface {
 	SetCurrentPassDescription(value IAVAssetWriterInputPassDescription)
 	PerformsMultiPassEncodingIfSupported() bool
 	SetPerformsMultiPassEncodingIfSupported(value bool)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for AssetWriterInputPassDescription */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for AssetWriterInputPassDescription */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetWriterInputPassDescriptionClass) Alloc() AssetWriterInputPassDescription {
 	rv := objc.Send[AssetWriterInputPassDescription](objc.ID(ac.class), objc.Sel("alloc"))
@@ -90,11 +90,11 @@ func (a_ AssetWriterInputPassDescription) Autorelease() AssetWriterInputPassDesc
 func NewAssetWriterInputPassDescription() AssetWriterInputPassDescription {
 	return getAssetWriterInputPassDescriptionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for AssetWriterInputPassDescription */
 // An object that defines the interface to query for the requirements of the current pass.
 
 
@@ -112,30 +112,30 @@ type AssetWriterInputPassDescription struct {
 func AssetWriterInputPassDescriptionFrom(ptr unsafe.Pointer) AssetWriterInputPassDescription {
 	return AssetWriterInputPassDescription{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for AssetWriterInputPassDescription *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for AssetWriterInputPassDescription */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for AssetWriterInputPassDescription */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for AssetWriterInputPassDescription */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for AssetWriterInputPassDescription */
 
 // An array of time ranges.
 //
@@ -144,7 +144,7 @@ func AssetWriterInputPassDescriptionFrom(ptr unsafe.Pointer) AssetWriterInputPas
 func (a_ AssetWriterInputPassDescription) SourceTimeRanges() []foundation.Value {
 	rv := objc.Send[[]foundation.Value](a_.ID, objc.Sel("sourceTimeRanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceTimeRanges */
 
 
 // A Boolean value that indicates whether the input may perform multiple passes over appended media data.
@@ -154,7 +154,7 @@ func (a_ AssetWriterInputPassDescription) SourceTimeRanges() []foundation.Value 
 func (a_ AssetWriterInputPassDescription) CanPerformMultiplePasses() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformMultiplePasses"))
 	return rv
-}
+}/* debug [instance_properties/getter]: canPerformMultiplePasses */
 
 
 // A Boolean value that indicates whether the input may perform multiple passes over appended media data.
@@ -163,7 +163,7 @@ func (a_ AssetWriterInputPassDescription) CanPerformMultiplePasses() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/canperformmultiplepasses
 func (a_ AssetWriterInputPassDescription) SetCanPerformMultiplePasses(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformMultiplePasses:"), value)
-}
+}/* debug [instance_properties/setter]: canPerformMultiplePasses */
 
 
 // An object that describes the requirements for the current pass.
@@ -173,7 +173,7 @@ func (a_ AssetWriterInputPassDescription) SetCanPerformMultiplePasses(value bool
 func (a_ AssetWriterInputPassDescription) CurrentPassDescription() IAVAssetWriterInputPassDescription {
 	rv := objc.Send[AssetWriterInputPassDescription](a_.ID, objc.Sel("currentPassDescription"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentPassDescription */
 
 
 // An object that describes the requirements for the current pass.
@@ -182,7 +182,7 @@ func (a_ AssetWriterInputPassDescription) CurrentPassDescription() IAVAssetWrite
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/currentpassdescription
 func (a_ AssetWriterInputPassDescription) SetCurrentPassDescription(value IAVAssetWriterInputPassDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPassDescription:"), value)
-}
+}/* debug [instance_properties/setter]: currentPassDescription */
 
 
 // A Boolean value that indicates whether the input attempts to encode the source media data using multiple passes.
@@ -192,7 +192,7 @@ func (a_ AssetWriterInputPassDescription) SetCurrentPassDescription(value IAVAss
 func (a_ AssetWriterInputPassDescription) PerformsMultiPassEncodingIfSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("performsMultiPassEncodingIfSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: performsMultiPassEncodingIfSupported */
 
 
 // A Boolean value that indicates whether the input attempts to encode the source media data using multiple passes.
@@ -201,12 +201,12 @@ func (a_ AssetWriterInputPassDescription) PerformsMultiPassEncodingIfSupported()
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/performsmultipassencodingifsupported
 func (a_ AssetWriterInputPassDescription) SetPerformsMultiPassEncodingIfSupported(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPerformsMultiPassEncodingIfSupported:"), value)
-}
+}/* debug [instance_properties/setter]: performsMultiPassEncodingIfSupported */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVAssetWriterInputPassDescription */
 
 
 

@@ -322,7 +322,12 @@ func (o_ OperationQueue) OperationCount() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
 func (o_ OperationQueue) Operations() []objc.IObject /* cross-framework: Operation */ {
 	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
-	return rv
+	// Slice of concrete type to slice of interface - needs conversion
+	result := make([]objc.IObject /* cross-framework: Operation */, len(rv))
+	for i, v := range rv {
+		result[i] = v
+	}
+	return result
 }
 
 

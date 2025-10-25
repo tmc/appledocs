@@ -57,8 +57,6 @@ type IURLRequest interface {
 	SetAllowsUltraConstrainedNetworkAccess(value bool)
 	AssumesHTTP3Capable() bool
 	SetAssumesHTTP3Capable(value bool)
-	Attribution() objectivec.IObject
-	SetAttribution(value objectivec.IObject)
 	CachePolicy() objectivec.IObject
 	SetCachePolicy(value objectivec.IObject)
 	CookiePartitionIdentifier() IString
@@ -71,8 +69,6 @@ type IURLRequest interface {
 	SetHttpMethod(value IString)
 	MainDocumentURL() IURL
 	SetMainDocumentURL(value IURL)
-	NetworkServiceType() objectivec.IObject
-	SetNetworkServiceType(value objectivec.IObject)
 	RequiresDNSSECValidation() bool
 	SetRequiresDNSSECValidation(value bool)
 	Url() IURL
@@ -323,25 +319,6 @@ func (u_ URLRequest) SetAssumesHTTP3Capable(value bool) {
 }
 
 
-// The entity that initiates the network request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
-func (u_ URLRequest) Attribution() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](u_.ID, objc.Sel("attribution"))
-	return rv
-}
-
-
-// The entity that initiates the network request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
-func (u_ URLRequest) SetAttribution(value objectivec.IObject) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAttribution:"), value)
-}
-
-
 // The request’s cache policy.
 //
 // [Full Topic]
@@ -449,25 +426,6 @@ func (u_ URLRequest) MainDocumentURL() IURL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
 func (u_ URLRequest) SetMainDocumentURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMainDocumentURL:"), value)
-}
-
-
-// The network service type of the request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.property
-func (u_ URLRequest) NetworkServiceType() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](u_.ID, objc.Sel("networkServiceType"))
-	return rv
-}
-
-
-// The network service type of the request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.property
-func (u_ URLRequest) SetNetworkServiceType(value objectivec.IObject) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 
 

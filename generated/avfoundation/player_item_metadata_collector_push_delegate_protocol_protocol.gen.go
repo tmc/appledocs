@@ -25,7 +25,7 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollectorPushDelegate
 type PPlayerItemMetadataCollectorPushDelegate interface {
 	// Required methods
-	MetadataCollectorDidCollectDateRangeMetadataGroupsIndexesOfNewGroupsIndexesOfModifiedGroups(metadataCollector IAVPlayerItemMetadataCollector, metadataGroups []DateRangeMetadataGroup, indexesOfNewGroups foundation.IndexSet, indexesOfModifiedGroups foundation.IndexSet)
+	MetadataCollectorDidCollectDateRangeMetadataGroupsIndexesOfNewGroupsIndexesOfModifiedGroups(metadataCollector IAVPlayerItemMetadataCollector, metadataGroups []DateRangeMetadataGroup, indexesOfNewGroups foundation.IndexSet, indexesOfModifiedGroups foundation.IndexSet)/* debug [protocol_interface/required_method]: MetadataCollectorDidCollectDateRangeMetadataGroupsIndexesOfNewGroupsIndexesOfModifiedGroups */
 }
 
 // PlayerItemMetadataCollectorPushDelegate is a delegate implementation builder for the PPlayerItemMetadataCollectorPushDelegate protocol.

@@ -2,9 +2,9 @@
 
 package avfoundation
 
-
+/* debug [enums.gen.go]: Generating 81 enums for AVFoundation */
 // Enum types and constants
-
+/* debug [enums.gen.go]: Processing enum AVError (87 cases) */
 // Error - An enumeration that defines the errors that framework operations can generate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code
@@ -356,7 +356,7 @@ const (
 	ErrorVideoCompositorFailed Error = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum CMTagCollectionVideoOutputPreset (2 cases) */
 // CMTagCollectionVideoOutputPreset - Constants that indicate the type of video content to output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/CMTagCollectionVideoOutputPreset
@@ -373,7 +373,7 @@ const (
 	kCMTagCollectionVideoOutputPreset_Stereoscopic CMTagCollectionVideoOutputPreset = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetExportSessionStatus (6 cases) */
 // AssetExportSessionStatus - Values that indicate the state of an export session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/Status-swift.enum
@@ -406,7 +406,7 @@ const (
 	AssetExportSessionStatusWaiting AssetExportSessionStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetImageGeneratorResult (3 cases) */
 // AssetImageGeneratorResult - Constants that indicate the result of an image generation request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetImageGenerator/Result
@@ -427,7 +427,7 @@ const (
 	AssetImageGeneratorSucceeded AssetImageGeneratorResult = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetReaderStatus (5 cases) */
 // AssetReaderStatus - Values that represent the possible states of an asset reader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader/Status-swift.enum
@@ -456,7 +456,7 @@ const (
 	AssetReaderStatusUnknown AssetReaderStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetReferenceRestrictions (7 cases) */
 // AssetReferenceRestrictions - Restrictions to use when resolving references to external media data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReferenceRestrictions
@@ -493,7 +493,7 @@ const (
 	AssetReferenceRestrictionForbidRemoteReferenceToLocal AssetReferenceRestrictions = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetSegmentType (2 cases) */
 // AssetSegmentType - Constants that define the type of a segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetSegmentType
@@ -510,7 +510,7 @@ const (
 	AssetSegmentTypeSeparable AssetSegmentType = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetTrackGroupOutputHandling (3 cases) */
 // AssetTrackGroupOutputHandling - A type that specifies policies for how an export session processes alternate tracks in a track group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackGroupOutputHandling
@@ -531,7 +531,7 @@ const (
 	AssetTrackGroupOutputHandlingPreserveAlternateTracks AssetTrackGroupOutputHandling = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAssetWriterStatus (5 cases) */
 // AssetWriterStatus - Values that indicate the state of an asset writer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/Status-swift.enum
@@ -560,7 +560,7 @@ const (
 	AssetWriterStatusWriting AssetWriterStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAudioSpatializationFormats (4 cases) */
 // AudioSpatializationFormats - A structure that defines the spatialization formats that a player item supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioSpatializationFormats
@@ -585,7 +585,7 @@ const (
 	AudioSpatializationFormatMultichannel AudioSpatializationFormats = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVAuthorizationStatus (4 cases) */
 // AuthorizationStatus - Constants that indicate the status of an app’s authorization to capture media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAuthorizationStatus
@@ -610,7 +610,7 @@ const (
 	AuthorizationStatusRestricted AuthorizationStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionAnimation (2 cases) */
 // CaptionAnimation - Animation options for a caption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/Animation-swift.enum
@@ -627,7 +627,7 @@ const (
 	CaptionAnimationNone CaptionAnimation = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionDecoration (4 cases) */
 // CaptionDecoration - Text decorations for caption text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/Decoration
@@ -652,7 +652,7 @@ const (
 	CaptionDecorationUnderline CaptionDecoration = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionFontStyle (3 cases) */
 // CaptionFontStyle - Font styles for caption text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/FontStyle
@@ -673,7 +673,7 @@ const (
 	CaptionFontStyleUnknown CaptionFontStyle = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionFontWeight (3 cases) */
 // CaptionFontWeight - Font weights for a caption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/FontWeight
@@ -694,7 +694,7 @@ const (
 	CaptionFontWeightUnknown CaptionFontWeight = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionTextAlignment (5 cases) */
 // CaptionTextAlignment - Text alignment options for a caption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/TextAlignment-swift.enum
@@ -723,7 +723,7 @@ const (
 	CaptionTextAlignmentStart CaptionTextAlignment = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionTextCombine (6 cases) */
 // CaptionTextCombine - The caption’s supported rendering policy options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/TextCombine
@@ -756,7 +756,7 @@ const (
 	CaptionTextCombineTwoDigits CaptionTextCombine = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionConversionValidatorStatus (4 cases) */
 // CaptionConversionValidatorStatus - Constants that indicate the status of a validator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionConversionValidator/Status-swift.enum
@@ -781,7 +781,7 @@ const (
 	CaptionConversionValidatorStatusValidating CaptionConversionValidatorStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionRegionDisplayAlignment (3 cases) */
 // CaptionRegionDisplayAlignment - Constants that indicate the alignment of lines in a region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionRegion/DisplayAlignment-swift.enum
@@ -802,7 +802,7 @@ const (
 	CaptionRegionDisplayAlignmentCenter CaptionRegionDisplayAlignment = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionRegionScroll (2 cases) */
 // CaptionRegionScroll - Constants that indicate the scrolling effects the system applies to a region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionRegion/Scroll-swift.enum
@@ -819,7 +819,7 @@ const (
 	CaptionRegionScrollRollUp CaptionRegionScroll = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionRegionWritingMode (2 cases) */
 // CaptionRegionWritingMode - Constants that indicate the writing mode for a region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionRegion/WritingMode-swift.enum
@@ -836,7 +836,7 @@ const (
 	CaptionRegionWritingModeTopToBottomAndRightToLeft CaptionRegionWritingMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionRubyAlignment (4 cases) */
 // CaptionRubyAlignment - Constants that indicate ruby text alignments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionRubyAlignment
@@ -861,7 +861,7 @@ const (
 	CaptionRubyAlignmentStart CaptionRubyAlignment = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionRubyPosition (2 cases) */
 // CaptionRubyPosition - Constants that indicate ruby text positions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionRubyPosition
@@ -878,7 +878,7 @@ const (
 	CaptionRubyPositionBefore CaptionRubyPosition = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptionUnitsType (3 cases) */
 // CaptionUnitsType - A structure that defines a units for caption formats.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionUnitsType
@@ -899,7 +899,7 @@ const (
 	CaptionUnitsTypeUnspecified CaptionUnitsType = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureCameraLensSmudgeDetectionStatus (4 cases) */
 // CaptureCameraLensSmudgeDetectionStatus - Constants indicating the current camera lens smudge detection status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureCameraLensSmudgeDetectionStatus
@@ -924,7 +924,7 @@ const (
 	CaptureCameraLensSmudgeDetectionStatusUnknown CaptureCameraLensSmudgeDetectionStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureColorSpace (5 cases) */
 // CaptureColorSpace - An enumeration of color spaces a device can support.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureColorSpace
@@ -953,7 +953,7 @@ const (
 	CaptureColorSpace_sRGB CaptureColorSpace = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureAutoFocusRangeRestriction (3 cases) */
 // CaptureAutoFocusRangeRestriction - Constants to specify the autofocus range of a capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/AutoFocusRangeRestriction-swift.enum
@@ -974,7 +974,7 @@ const (
 	CaptureAutoFocusRangeRestrictionNone CaptureAutoFocusRangeRestriction = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureCenterStageControlMode (3 cases) */
 // CaptureCenterStageControlMode - Constants that indicate the current Center Stage control mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/CenterStageControlMode-swift.enum
@@ -995,7 +995,7 @@ const (
 	CaptureCenterStageControlModeUser CaptureCenterStageControlMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureCinematicVideoFocusMode (3 cases) */
 // CaptureCinematicVideoFocusMode - Constants indicating the focus behavior when recording a Cinematic Video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/CinematicVideoFocusMode
@@ -1016,7 +1016,7 @@ const (
 	CaptureCinematicVideoFocusModeWeak CaptureCinematicVideoFocusMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureExposureMode (4 cases) */
 // CaptureExposureMode - Constants that specify the exposure mode of a capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/ExposureMode-swift.enum
@@ -1041,7 +1041,7 @@ const (
 	CaptureExposureModeLocked CaptureExposureMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureFlashMode (3 cases) */
 // CaptureFlashMode - Constants that specify the flash modes of a capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/FlashMode-swift.enum
@@ -1062,7 +1062,7 @@ const (
 	CaptureFlashModeOn CaptureFlashMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureFocusMode (3 cases) */
 // CaptureFocusMode - Constants to specify the focus mode of a capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/FocusMode-swift.enum
@@ -1083,7 +1083,7 @@ const (
 	CaptureFocusModeLocked CaptureFocusMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureAutoFocusSystem (3 cases) */
 // CaptureAutoFocusSystem - An enumeration of auto focus systems.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Format/AutoFocusSystem-swift.enum
@@ -1104,7 +1104,7 @@ const (
 	CaptureAutoFocusSystemPhaseDetection CaptureAutoFocusSystem = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureLensStabilizationStatus (5 cases) */
 // CaptureLensStabilizationStatus - Constants that indicate the status of optical image stabilization hardware during a bracketed photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus
@@ -1133,7 +1133,7 @@ const (
 	CaptureLensStabilizationStatusUnsupported CaptureLensStabilizationStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureMicrophoneMode (3 cases) */
 // CaptureMicrophoneMode - Constants that define the available microphone modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/MicrophoneMode
@@ -1154,7 +1154,7 @@ const (
 	CaptureMicrophoneModeWideSpectrum CaptureMicrophoneMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureDevicePosition (3 cases) */
 // CaptureDevicePosition - Constants that indicate the physical position of a capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum
@@ -1175,7 +1175,7 @@ const (
 	CaptureDevicePositionUnspecified CaptureDevicePosition = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions (4 cases) */
 // CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions - A structure that defines the conditions in which to restrict camera switching.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct
@@ -1200,7 +1200,7 @@ const (
 	CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCapturePrimaryConstituentDeviceSwitchingBehavior (4 cases) */
 // CapturePrimaryConstituentDeviceSwitchingBehavior - Constants that control when to allow a virtual device to switch its active primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum
@@ -1225,7 +1225,7 @@ const (
 	CapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported CapturePrimaryConstituentDeviceSwitchingBehavior = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureSystemPressureFactors (5 cases) */
 // CaptureSystemPressureFactors - A structure that defines the factors affecting capture system performance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class/Factors-swift.struct
@@ -1254,7 +1254,7 @@ const (
 	CaptureSystemPressureFactorSystemTemperature CaptureSystemPressureFactors = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureSystemUserInterface (2 cases) */
 // CaptureSystemUserInterface - Constants that describe the capture device configuration user interfaces.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/SystemUserInterface
@@ -1271,7 +1271,7 @@ const (
 	CaptureSystemUserInterfaceVideoEffects CaptureSystemUserInterface = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureTorchMode (3 cases) */
 // CaptureTorchMode - Constants to specify the capture device’s torch mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/TorchMode-swift.enum
@@ -1292,7 +1292,7 @@ const (
 	CaptureTorchModeOn CaptureTorchMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureDeviceTransportControlsPlaybackMode (2 cases) */
 // CaptureDeviceTransportControlsPlaybackMode - Constants that indicate the transport control’s current mode of playback, if it has one.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/TransportControlsPlaybackMode-swift.enum
@@ -1309,7 +1309,7 @@ const (
 	CaptureDeviceTransportControlsPlayingMode CaptureDeviceTransportControlsPlaybackMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureWhiteBalanceMode (3 cases) */
 // CaptureWhiteBalanceMode - Constants to specify the white balance mode of a capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceMode-swift.enum
@@ -1330,7 +1330,7 @@ const (
 	CaptureWhiteBalanceModeLocked CaptureWhiteBalanceMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureMultichannelAudioMode (3 cases) */
 // CaptureMultichannelAudioMode - Constants that indicate the modes of multichannel audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultichannelAudioMode
@@ -1351,7 +1351,7 @@ const (
 	CaptureMultichannelAudioModeStereo CaptureMultichannelAudioMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureOutputDataDroppedReason (4 cases) */
 // CaptureOutputDataDroppedReason - Constants that define reasons for why the system dropped a frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/DataDroppedReason
@@ -1376,7 +1376,7 @@ const (
 	CaptureOutputDataDroppedReasonOutOfBuffers CaptureOutputDataDroppedReason = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCapturePhotoOutputCaptureReadiness (5 cases) */
 // CapturePhotoOutputCaptureReadiness - Constants that indicate whether the output is ready to receive capture requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/CaptureReadiness-swift.enum
@@ -1405,7 +1405,7 @@ const (
 	CapturePhotoOutputCaptureReadinessSessionNotRunning CapturePhotoOutputCaptureReadiness = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCapturePhotoQualityPrioritization (3 cases) */
 // CapturePhotoQualityPrioritization - Constants that indicate how to prioritize photo quality relative to capture speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/QualityPrioritization
@@ -1426,7 +1426,7 @@ const (
 	CapturePhotoQualityPrioritizationSpeed CapturePhotoQualityPrioritization = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureSessionInterruptionReason (6 cases) */
 // CaptureSessionInterruptionReason - Constants identifying the reason a capture session was interrupted, found in an 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason
@@ -1459,7 +1459,7 @@ const (
 	CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps CaptureSessionInterruptionReason = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureTimecodeSourceType (3 cases) */
 // CaptureTimecodeSourceType - Defines possible sources for generating timecode in using a timecode generator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureTimecode/SourceType-swift.enum
@@ -1480,7 +1480,7 @@ const (
 	CaptureTimecodeSourceTypeRealTimeClock CaptureTimecodeSourceType = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureTimecodeGeneratorSynchronizationStatus (8 cases) */
 // CaptureTimecodeGeneratorSynchronizationStatus - Constants defining the synchronization status of a timecode generator .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureTimecodeGenerator/SynchronizationStatus
@@ -1521,7 +1521,7 @@ const (
 	CaptureTimecodeGeneratorSynchronizationStatusUnknown CaptureTimecodeGeneratorSynchronizationStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureVideoOrientation (4 cases) */
 // CaptureVideoOrientation - Constants indicating video orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoOrientation
@@ -1546,7 +1546,7 @@ const (
 	CaptureVideoOrientationPortraitUpsideDown CaptureVideoOrientation = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVCaptureVideoStabilizationMode (8 cases) */
 // CaptureVideoStabilizationMode - An enumeration of video stabilization modes that capture devices and formats support.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoStabilizationMode
@@ -1587,7 +1587,7 @@ const (
 	CaptureVideoStabilizationModeStandard CaptureVideoStabilizationMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVContentAuthorizationStatus (7 cases) */
 // ContentAuthorizationStatus - A value representing the status of a content authorization request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentAuthorizationStatus
@@ -1624,7 +1624,7 @@ const (
 	ContentAuthorizationUnknown ContentAuthorizationStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVContentKeyRequestStatus (6 cases) */
 // ContentKeyRequestStatus - The status for a content key request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeyRequest/Status-swift.enum
@@ -1657,7 +1657,7 @@ const (
 	ContentKeyRequestStatusRetried ContentKeyRequestStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVDelegatingPlaybackCoordinatorRateChangeOptions (1 cases) */
 // DelegatingPlaybackCoordinatorRateChangeOptions - Constants that define rate change options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorRateChangeOptions
@@ -1670,7 +1670,7 @@ const (
 	DelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately DelegatingPlaybackCoordinatorRateChangeOptions = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVDelegatingPlaybackCoordinatorSeekOptions (1 cases) */
 // DelegatingPlaybackCoordinatorSeekOptions - Constants that define seek options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekOptions
@@ -1683,7 +1683,7 @@ const (
 	DelegatingPlaybackCoordinatorSeekOptionResumeImmediately DelegatingPlaybackCoordinatorSeekOptions = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVDepthDataAccuracy (2 cases) */
 // DepthDataAccuracy - Values indicating the general accuracy of a depth data map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDepthData/Accuracy
@@ -1700,7 +1700,7 @@ const (
 	DepthDataAccuracyRelative DepthDataAccuracy = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVDepthDataQuality (2 cases) */
 // DepthDataQuality - Values indicating the overall quality of a depth data map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDepthData/Quality
@@ -1717,7 +1717,7 @@ const (
 	DepthDataQualityLow DepthDataQuality = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVExternalContentProtectionStatus (3 cases) */
 // ExternalContentProtectionStatus - Constants that specify whether sufficient protection exists to display the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalContentProtectionStatus
@@ -1738,7 +1738,7 @@ const (
 	ExternalContentProtectionStatusSufficient ExternalContentProtectionStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVExternalSyncDeviceStatus (5 cases) */
 // ExternalSyncDeviceStatus - Connection state of an external sync device
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalSyncDeviceStatus
@@ -1767,7 +1767,7 @@ const (
 	ExternalSyncDeviceStatusUnavailable ExternalSyncDeviceStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVKeyValueStatus (5 cases) */
 // KeyValueStatus - Values that indicate the loaded status of a property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVKeyValueStatus
@@ -1796,7 +1796,7 @@ const (
 	KeyValueStatusUnknown KeyValueStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVMovieWritingOptions (2 cases) */
 // MovieWritingOptions - A structure that defines options to control the writing of a movie header to a destination URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieWritingOptions
@@ -1813,7 +1813,7 @@ const (
 	MovieWritingTruncateDestinationToMovieHeaderOnly MovieWritingOptions = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerActionAtItemEnd (3 cases) */
 // PlayerActionAtItemEnd - The actions a player can take when it finishes playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/ActionAtItemEnd-swift.enum
@@ -1834,7 +1834,7 @@ const (
 	PlayerActionAtItemEndPause PlayerActionAtItemEnd = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerHDRMode (3 cases) */
 // PlayerHDRMode - A bitfield type that specifies an HDR mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/HDRMode
@@ -1855,7 +1855,7 @@ const (
 	PlayerHDRModeHLG PlayerHDRMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerNetworkResourcePriority (3 cases) */
 // PlayerNetworkResourcePriority - This defines the network resource priority for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/NetworkResourcePriority-swift.enum
@@ -1876,7 +1876,7 @@ const (
 	PlayerNetworkResourcePriorityLow PlayerNetworkResourcePriority = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerStatus (3 cases) */
 // PlayerStatus - Status values that indicate whether a player can successfully play media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/Status-swift.enum
@@ -1897,7 +1897,7 @@ const (
 	PlayerStatusUnknown PlayerStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerTimeControlStatus (3 cases) */
 // PlayerTimeControlStatus - Constants that indicate the state of playback control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/TimeControlStatus-swift.enum
@@ -1918,7 +1918,7 @@ const (
 	PlayerTimeControlStatusWaitingToPlayAtSpecifiedRate PlayerTimeControlStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerAudiovisualBackgroundPlaybackPolicy (3 cases) */
 // PlayerAudiovisualBackgroundPlaybackPolicy - Policies that describe playback behavior when an app transitions to the background while playing video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerAudiovisualBackgroundPlaybackPolicy
@@ -1939,7 +1939,7 @@ const (
 	PlayerAudiovisualBackgroundPlaybackPolicyPauses PlayerAudiovisualBackgroundPlaybackPolicy = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerInterstitialEventRestrictions (4 cases) */
 // PlayerInterstitialEventRestrictions - Constants that define restrictions on the playback of interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent/Restrictions-swift.struct
@@ -1964,7 +1964,7 @@ const (
 	PlayerInterstitialEventRestrictionRequiresPlaybackAtPreferredRateForAdvancement PlayerInterstitialEventRestrictions = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerInterstitialEventSkippableEventState (4 cases) */
 // PlayerInterstitialEventSkippableEventState - These constants describe the state for a skippable AVPlayerInterstitialEvent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent/SkippableEventState
@@ -1989,7 +1989,7 @@ const (
 	PlayerInterstitialEventSkippableEventStateNotYetEligible PlayerInterstitialEventSkippableEventState = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerInterstitialEventTimelineOccupancy (2 cases) */
 // PlayerInterstitialEventTimelineOccupancy - Constants that specify how an event occupies time on an integrated timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent/TimelineOccupancy-swift.enum
@@ -2006,7 +2006,7 @@ const (
 	PlayerInterstitialEventTimelineOccupancySinglePoint PlayerInterstitialEventTimelineOccupancy = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerInterstitialEventAssetListResponseStatus (3 cases) */
 // PlayerInterstitialEventAssetListResponseStatus - Constants that describe the status of the asset list response for an interstitial event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventAssetListResponseStatus
@@ -2027,7 +2027,7 @@ const (
 	PlayerInterstitialEventAssetListResponseStatusUnavailable PlayerInterstitialEventAssetListResponseStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerItemStatus (3 cases) */
 // PlayerItemStatus - The statuses for a player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum
@@ -2048,7 +2048,7 @@ const (
 	PlayerItemStatusUnknown PlayerItemStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerItemSegmentType (2 cases) */
 // PlayerItemSegmentType - Constants that specify the type of segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment/SegmentType-swift.enum
@@ -2065,7 +2065,7 @@ const (
 	PlayerItemSegmentTypePrimary PlayerItemSegmentType = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerLooperItemOrdering (2 cases) */
 // PlayerLooperItemOrdering - Constants that define the ordering of items in a player looper.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper/ItemOrdering
@@ -2082,7 +2082,7 @@ const (
 	PlayerLooperItemOrderingLoopingItemsPrecedeExistingItems PlayerLooperItemOrdering = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVPlayerLooperStatus (4 cases) */
 // PlayerLooperStatus - Status constants that indicate whether a looper can successfully perform looping playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper/Status-swift.enum
@@ -2107,7 +2107,7 @@ const (
 	PlayerLooperStatusUnknown PlayerLooperStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVQueuedSampleBufferRenderingStatus (3 cases) */
 // QueuedSampleBufferRenderingStatus - The statuses for sample buffer rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuedSampleBufferRenderingStatus
@@ -2128,7 +2128,7 @@ const (
 	QueuedSampleBufferRenderingStatusUnknown QueuedSampleBufferRenderingStatus = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVSampleBufferRequestDirection (3 cases) */
 // SampleBufferRequestDirection - The modes that describe the buffer request direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/Direction-swift.enum
@@ -2149,7 +2149,7 @@ const (
 	SampleBufferRequestDirectionReverse SampleBufferRequestDirection = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVSampleBufferRequestMode (3 cases) */
 // SampleBufferRequestMode - The modes in which a sample buffer generator processes a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/Mode-swift.enum
@@ -2170,7 +2170,7 @@ const (
 	SampleBufferRequestModeScheduled SampleBufferRequestMode = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVVariantPreferences (2 cases) */
 // VariantPreferences - Defines the preferences the player item uses when selecting variant playlists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVariantPreferences
@@ -2187,7 +2187,7 @@ const (
 	VariantPreferenceScalabilityToLosslessAudio VariantPreferences = 0
 )
 
-
+/* debug [enums.gen.go]: Processing enum AVVideoFieldMode (4 cases) */
 // VideoFieldMode - Constants that indicate which interlacing modes the connection applies to video flowing through it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoFieldMode

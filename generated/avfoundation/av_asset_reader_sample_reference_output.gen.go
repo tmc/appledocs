@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetReaderSampleReferenceOutput */
 
 
-
-
+/* debug [class_header]: Header for AVAssetReaderSampleReferenceOutput */
 // The class instance for the [AssetReaderSampleReferenceOutput] class.
 var (
 	AssetReaderSampleReferenceOutputClass     _AssetReaderSampleReferenceOutputClass
@@ -30,35 +30,35 @@ func getAssetReaderSampleReferenceOutputClass() _AssetReaderSampleReferenceOutpu
 type _AssetReaderSampleReferenceOutputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for AssetReaderSampleReferenceOutput */
 // An interface definition for the [AssetReaderSampleReferenceOutput] class.
 type IAssetReaderSampleReferenceOutput interface {
 	IAssetReaderOutput
 	
-
+/* debug [class_interface_properties]: Properties for AssetReaderSampleReferenceOutput */
 	// properties:
 	Track() IAVAssetTrack
 	AlwaysCopiesSampleData() bool
 	SetAlwaysCopiesSampleData(value bool)
 	KCMSampleBufferAttachmentKey_SampleReferenceByteOffset() foundation.String
 	KCMSampleBufferAttachmentKey_SampleReferenceURL() foundation.String
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for AssetReaderSampleReferenceOutput */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for AssetReaderSampleReferenceOutput */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetReaderSampleReferenceOutputClass) Alloc() AssetReaderSampleReferenceOutput {
 	rv := objc.Send[AssetReaderSampleReferenceOutput](objc.ID(ac.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (a_ AssetReaderSampleReferenceOutput) Autorelease() AssetReaderSampleRefere
 func NewAssetReaderSampleReferenceOutput() AssetReaderSampleReferenceOutput {
 	return getAssetReaderSampleReferenceOutputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for AssetReaderSampleReferenceOutput */
 // An object that reads sample references from an asset track.
 //
 // Apps can extract information about the location of samples in a track — the file URL and offset — by adding an instance of this class to an asset reader. Read the and attachments on the extracted sample buffers to get the location of the sample data. You can also append sample buffers that you extract using this class to an instance to create movie tracks that aren’t self-contained and reference data in the original file instead. To write tracks that aren’t self-contained, use instances of that you configure to write files of type . Because this output doesn’t return sample data, it ignores the value of the property.
@@ -114,11 +114,11 @@ func AssetReaderSampleReferenceOutputFrom(ptr unsafe.Pointer) AssetReaderSampleR
 		AssetReaderOutput: AssetReaderOutputFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for AssetReaderSampleReferenceOutput */
 
 // Creates an object that supplies sample references.
 //
@@ -129,13 +129,13 @@ func NewAssetReaderSampleReferenceOutputWithTrack(track IAVAssetTrack) AssetRead
 	rv := objc.Send[AssetReaderSampleReferenceOutput](instance.ID, objc.Sel("initWithTrack:"), track)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAssetReaderSampleReferenceOutputWithTrack */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for AssetReaderSampleReferenceOutput */
 
 // Returns a new object that supplies sample references.
 //
@@ -144,23 +144,23 @@ func NewAssetReaderSampleReferenceOutputWithTrack(track IAVAssetTrack) AssetRead
 func (ac _AssetReaderSampleReferenceOutputClass) AssetReaderSampleReferenceOutputWithTrack(track IAVAssetTrack) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetReaderSampleReferenceOutputWithTrack:"), track)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetReaderSampleReferenceOutputWithTrack) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for AssetReaderSampleReferenceOutput */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for AssetReaderSampleReferenceOutput */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for AssetReaderSampleReferenceOutput */
 
 // The track from which the output reads sample references.
 //
@@ -169,7 +169,7 @@ func (ac _AssetReaderSampleReferenceOutputClass) AssetReaderSampleReferenceOutpu
 func (a_ AssetReaderSampleReferenceOutput) Track() IAVAssetTrack {
 	rv := objc.Send[AssetTrack](a_.ID, objc.Sel("track"))
 	return rv
-}
+}/* debug [instance_properties/getter]: track */
 
 
 // A Boolean value that indicates whether the output vends copied sample data.
@@ -179,7 +179,7 @@ func (a_ AssetReaderSampleReferenceOutput) Track() IAVAssetTrack {
 func (a_ AssetReaderSampleReferenceOutput) AlwaysCopiesSampleData() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("alwaysCopiesSampleData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alwaysCopiesSampleData */
 
 
 // A Boolean value that indicates whether the output vends copied sample data.
@@ -188,7 +188,7 @@ func (a_ AssetReaderSampleReferenceOutput) AlwaysCopiesSampleData() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata
 func (a_ AssetReaderSampleReferenceOutput) SetAlwaysCopiesSampleData(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAlwaysCopiesSampleData:"), value)
-}
+}/* debug [instance_properties/setter]: alwaysCopiesSampleData */
 
 
 // Indicates the byte offset at which the sample data begins (type `CFNumber`).
@@ -198,7 +198,7 @@ func (a_ AssetReaderSampleReferenceOutput) SetAlwaysCopiesSampleData(value bool)
 func (a_ AssetReaderSampleReferenceOutput) KCMSampleBufferAttachmentKey_SampleReferenceByteOffset() foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCMSampleBufferAttachmentKey_SampleReferenceByteOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: kCMSampleBufferAttachmentKey_SampleReferenceByteOffset */
 
 
 // Indicates the URL where the sample data is (type `CFURL`).
@@ -208,11 +208,11 @@ func (a_ AssetReaderSampleReferenceOutput) KCMSampleBufferAttachmentKey_SampleRe
 func (a_ AssetReaderSampleReferenceOutput) KCMSampleBufferAttachmentKey_SampleReferenceURL() foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCMSampleBufferAttachmentKey_SampleReferenceURL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: kCMSampleBufferAttachmentKey_SampleReferenceURL */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVAssetReaderSampleReferenceOutput */
 
 

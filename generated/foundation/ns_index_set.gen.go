@@ -41,7 +41,6 @@ type IIndexSet interface {
 	
 
 	// properties:
-	Count() uint
 	FirstIndex() uint
 	LastIndex() uint
 
@@ -447,16 +446,6 @@ func (i_ IndexSet) IsEqualToIndexSet(indexSet IIndexSet) bool {
 
 
 
-
-
-// The number of indexes in the index set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/count
-func (i_ IndexSet) Count() uint {
-	rv := objc.Send[uint](i_.ID, objc.Sel("count"))
-	return rv
-}
 
 
 // The first index in the index set.

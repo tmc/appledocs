@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureMetadataOutput */
 
 
-
-
+/* debug [class_header]: Header for AVCaptureMetadataOutput */
 // The class instance for the [CaptureMetadataOutput] class.
 var (
 	CaptureMetadataOutputClass     _CaptureMetadataOutputClass
@@ -31,16 +31,16 @@ func getCaptureMetadataOutputClass() _CaptureMetadataOutputClass {
 type _CaptureMetadataOutputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for CaptureMetadataOutput */
 // An interface definition for the [CaptureMetadataOutput] class.
 type ICaptureMetadataOutput interface {
 	ICaptureOutput
 	
-
+/* debug [class_interface_properties]: Properties for CaptureMetadataOutput */
 	// properties:
 	AvailableMetadataObjectTypes() []string
 	MetadataObjectsCallbackQueue() objectivec.IObject
@@ -50,20 +50,20 @@ type ICaptureMetadataOutput interface {
 	RectOfInterest() corefoundation.CGRect
 	SetRectOfInterest(value corefoundation.CGRect)
 	RequiredMetadataObjectTypesForCinematicVideoCapture() []string
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for CaptureMetadataOutput */
 	// methods:
 	SetMetadataObjectsDelegateQueue(objectsDelegate unsafe.Pointer, objectsCallbackQueue objectivec.IObject)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for CaptureMetadataOutput */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureMetadataOutputClass) Alloc() CaptureMetadataOutput {
 	rv := objc.Send[CaptureMetadataOutput](objc.ID(cc.class), objc.Sel("alloc"))
@@ -93,11 +93,11 @@ func (c_ CaptureMetadataOutput) Autorelease() CaptureMetadataOutput {
 func NewCaptureMetadataOutput() CaptureMetadataOutput {
 	return getCaptureMetadataOutputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for CaptureMetadataOutput */
 // A capture output for processing timed metadata produced by a capture session.
 //
 // An object intercepts metadata objects emitted by its associated capture connection and forwards them to a delegate object for processing. You can use instances of this class to process specific types of metadata included with the input data. You use this class the way you do other output objects, typically by adding it as an output to an object.
@@ -119,26 +119,26 @@ func CaptureMetadataOutputFrom(ptr unsafe.Pointer) CaptureMetadataOutput {
 		CaptureOutput: CaptureOutputFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for CaptureMetadataOutput */
+/* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for CaptureMetadataOutput */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for CaptureMetadataOutput */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for CaptureMetadataOutput */
 
 // Sets the delegate and dispatch queue to use handle callbacks.
 //
@@ -146,13 +146,13 @@ func CaptureMetadataOutputFrom(ptr unsafe.Pointer) CaptureMetadataOutput {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataOutput/setMetadataObjectsDelegate(_:queue:)
 func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegateQueue(objectsDelegate unsafe.Pointer, objectsCallbackQueue objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectsDelegate:queue:"), objectsDelegate, objectsCallbackQueue)
-}
+}/* debug [instance_methods/method]: SetMetadataObjectsDelegateQueue */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for CaptureMetadataOutput */
 
 // An array of strings identifying the types of metadata objects that can be captured.
 //
@@ -161,7 +161,7 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegateQueue(objectsDelegate 
 func (c_ CaptureMetadataOutput) AvailableMetadataObjectTypes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("availableMetadataObjectTypes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: availableMetadataObjectTypes */
 
 
 // The dispatch queue on which to execute the delegate’s methods.
@@ -171,7 +171,7 @@ func (c_ CaptureMetadataOutput) AvailableMetadataObjectTypes() []string {
 func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("metadataObjectsCallbackQueue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metadataObjectsCallbackQueue */
 
 
 // The delegate of the capture metadata output object.
@@ -181,7 +181,7 @@ func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() objectivec.IObjec
 func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsDelegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metadataObjectsDelegate */
 
 
 // An array of strings identifying the types of metadata objects to process.
@@ -191,7 +191,7 @@ func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() unsafe.Pointer {
 func (c_ CaptureMetadataOutput) MetadataObjectTypes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("metadataObjectTypes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metadataObjectTypes */
 
 
 // An array of strings identifying the types of metadata objects to process.
@@ -209,7 +209,7 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectTypes(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectTypes:"), nsArray)
-}
+}/* debug [instance_properties/setter]: metadataObjectTypes */
 
 
 // A rectangle of interest for limiting the search area for visual metadata.
@@ -219,7 +219,7 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectTypes(value []string) {
 func (c_ CaptureMetadataOutput) RectOfInterest() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](c_.ID, objc.Sel("rectOfInterest"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rectOfInterest */
 
 
 // A rectangle of interest for limiting the search area for visual metadata.
@@ -228,7 +228,7 @@ func (c_ CaptureMetadataOutput) RectOfInterest() corefoundation.CGRect {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataOutput/rectOfInterest
 func (c_ CaptureMetadataOutput) SetRectOfInterest(value corefoundation.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRectOfInterest:"), value)
-}
+}/* debug [instance_properties/setter]: rectOfInterest */
 
 
 // The required metadata object types when Cinematic Video capture is enabled.
@@ -238,11 +238,11 @@ func (c_ CaptureMetadataOutput) SetRectOfInterest(value corefoundation.CGRect) {
 func (c_ CaptureMetadataOutput) RequiredMetadataObjectTypesForCinematicVideoCapture() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("requiredMetadataObjectTypesForCinematicVideoCapture"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requiredMetadataObjectTypesForCinematicVideoCapture */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVCaptureMetadataOutput */
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayerItemErrorLog */
 
 
-
-
+/* debug [class_header]: Header for AVPlayerItemErrorLog */
 // The class instance for the [PlayerItemErrorLog] class.
 var (
 	PlayerItemErrorLogClass     _PlayerItemErrorLogClass
@@ -30,33 +30,33 @@ func getPlayerItemErrorLogClass() _PlayerItemErrorLogClass {
 type _PlayerItemErrorLogClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PlayerItemErrorLog */
 // An interface definition for the [PlayerItemErrorLog] class.
 type IPlayerItemErrorLog interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for PlayerItemErrorLog */
 	// properties:
 	Events() []PlayerItemErrorLogEvent
 	ExtendedLogDataStringEncoding() StringEncoding /* not a class type */
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PlayerItemErrorLog */
 	// methods:
 	ExtendedLogData() foundation.Data
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PlayerItemErrorLog */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemErrorLogClass) Alloc() PlayerItemErrorLog {
 	rv := objc.Send[PlayerItemErrorLog](objc.ID(pc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (p_ PlayerItemErrorLog) Autorelease() PlayerItemErrorLog {
 func NewPlayerItemErrorLog() PlayerItemErrorLog {
 	return getPlayerItemErrorLogClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PlayerItemErrorLog */
 // The error log associated with a player item.
 
 
@@ -108,25 +108,25 @@ type PlayerItemErrorLog struct {
 func PlayerItemErrorLogFrom(ptr unsafe.Pointer) PlayerItemErrorLog {
 	return PlayerItemErrorLog{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for PlayerItemErrorLog *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PlayerItemErrorLog */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PlayerItemErrorLog */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for PlayerItemErrorLog */
 
 // Returns a serialized representation of the error log in the Extended Log File Format.
 //
@@ -135,13 +135,13 @@ func PlayerItemErrorLogFrom(ptr unsafe.Pointer) PlayerItemErrorLog {
 func (p_ PlayerItemErrorLog) ExtendedLogData() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("extendedLogData"))
 	return rv
-}
+}/* debug [instance_methods/method]: ExtendedLogData */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for PlayerItemErrorLog */
 
 // A chronologically ordered array of player item error log event objects.
 //
@@ -150,7 +150,7 @@ func (p_ PlayerItemErrorLog) ExtendedLogData() foundation.Data {
 func (p_ PlayerItemErrorLog) Events() []PlayerItemErrorLogEvent {
 	rv := objc.Send[[]PlayerItemErrorLogEvent](p_.ID, objc.Sel("events"))
 	return rv
-}
+}/* debug [instance_properties/getter]: events */
 
 
 // The string encoding of the extended log data.
@@ -160,12 +160,12 @@ func (p_ PlayerItemErrorLog) Events() []PlayerItemErrorLogEvent {
 func (p_ PlayerItemErrorLog) ExtendedLogDataStringEncoding() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](p_.ID, objc.Sel("extendedLogDataStringEncoding"))
 	return rv
-}
+}/* debug [instance_properties/getter]: extendedLogDataStringEncoding */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class AVPlayerItemErrorLog */
 
 
 

@@ -41,8 +41,6 @@ type INetServiceBrowser interface {
 	
 
 	// properties:
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	IncludesPeerToPeer() bool
 	SetIncludesPeerToPeer(value bool)
 
@@ -135,25 +133,6 @@ func NetServiceBrowserFrom(ptr unsafe.Pointer) NetServiceBrowser {
 
 
 
-
-
-// The delegate object for this instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/delegate
-func (n_ NetServiceBrowser) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The delegate object for this instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/delegate
-func (n_ NetServiceBrowser) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
-}
 
 
 // Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available.
