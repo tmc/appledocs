@@ -991,47 +991,25 @@ func (g *Generator) GenerateMissingParentStubs() []*occ2go.ParsedClass {
 				// Restore the original map
 				currentFrameworkClasses = savedClasses
 
-				// Only create stub if it's not from another framework
-				// IMPORTANT: Check if the resolved type actually matches the original class name
-				// Example: NSStream (Foundation) and SCStream (ScreenCaptureKit) both strip to "Stream"
-				// If cls.SuperClass is "NSStream" but resolvedType is "screencapturekit.Stream",
-				// these are DIFFERENT classes and we need a stub for NSStream
+				// APPLEDOCS-450: Don't generate stubs for cross-framework parents
+				// If the parent class resolves to another framework (has "."), it belongs to that framework.
+				// We should NOT create a stub copy in this framework as that creates import cycles and redundancy.
+				// The parent framework will define the class properly.
+				//
+				// Example: CKOperation inherits from NSOperation
+				//   - resolveType("CloudKit", "Operation") returns "foundation.Operation"
+				//   - Has ".", so it's from Foundation framework
+				//   - DON'T create a stub in CloudKit - use Foundation's definition instead
+
 				needsStub := false
 				if !strings.Contains(resolvedType, ".") {
-					// No framework qualifier means it's local/undefined - needs stub
+					// No framework qualifier means it's local/undefined - create a stub
+					// This handles cases where parent classes are truly missing from documentation
 					needsStub = true
-				} else {
-					// Check if the resolved framework type matches the original class name
-					// Extract the framework from resolvedType (e.g., "screencapturekit" from "screencapturekit.Stream")
-					parts := strings.Split(resolvedType, ".")
-					if len(parts) == 2 {
-						frameworkName := parts[0]
-						typeName := parts[1]
-
-						// Rebuild the expected ObjC class name based on framework prefix
-						expectedPrefix := ""
-						switch frameworkName {
-						case "foundation":
-							expectedPrefix = "NS"
-						case "screencapturekit":
-							expectedPrefix = "SC"
-						case "appkit":
-							expectedPrefix = "NS"
-						case "coregraphics":
-							expectedPrefix = "CG"
-						case "quartz", "quartzcore":
-							expectedPrefix = "CA"
-							// Add more framework prefixes as needed
-						}
-
-						expectedClassName := expectedPrefix + typeName
-						// If the original superclass name doesn't match the resolved class name,
-						// they're different classes that happen to have the same stripped name
-						if cls.SuperClass != expectedClassName {
-							needsStub = true
-						}
-					}
 				}
+				// If contains ".", it's from another framework - don't create stub
+				// If it's empty string (not found), it will also be treated as needsStub = false
+				// and will use objectivec.Object as fallback during class generation
 
 				if needsStub {
 					missing[cls.SuperClass] = true
