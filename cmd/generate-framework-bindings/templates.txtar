@@ -1176,6 +1176,77 @@ func (d *{{$builderName}}) Has{{.Name}}() bool {
 }
 {{- end}}
 {{- end}}
+
+{{- /* Generate wrapper object for protocols (Phase 3) */}}
+{{- /* Wrap existing ObjC instances that conform to a protocol */}}
+{{- if or .IsDelegate .IsDataSource}}
+{{- $wrapperName := printf "%sObject" (stripNSPrefix .Name)}}
+{{- $wrapperInterfaceName := printf "P%s" (stripNSPrefix .Name)}}
+
+// {{$wrapperName}} wraps an existing Objective-C object that conforms to the {{$wrapperInterfaceName}} protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type {{$wrapperName}} struct {
+	objc.Object
+}
+
+// New{{$wrapperName}} creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the {{.Name}} protocol.
+func New{{$wrapperName}}(obj objc.Object) *{{$wrapperName}} {
+	return &{{$wrapperName}}{obj}
+}
+
+// Make sure {{$wrapperName}} implements {{$wrapperInterfaceName}}.
+var _ {{$wrapperInterfaceName}} = (*{{$wrapperName}})(nil)
+
+{{- /* Generate method wrappers that use RespondsToSelector for optional methods */}}
+{{- range .RequiredMethods}}
+
+// {{.Name}} implements the {{$wrapperInterfaceName}} interface.
+// This required method is always available on objects conforming to {{.Name}}.
+{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goReturnType}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
+func (o *{{$wrapperName}}) {{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$returnType}}{{end}} {
+	{{- if $hasReturnValue}}
+	return objc.Send[{{$returnType}}](o.ID(), objc.Sel("{{.Selector}}"), {{formatMethodParamNames .}})
+	{{- else}}
+	objc.Send[objc.Void](o.ID(), objc.Sel("{{.Selector}}"), {{formatMethodParamNames .}})
+	{{- end}}
+}
+{{- end}}
+
+{{- range .OptionalMethods}}
+
+// {{.Name}} implements the {{$wrapperInterfaceName}} interface.
+// This optional method is only called if the object responds to the selector.
+{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goReturnType}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
+func (o *{{$wrapperName}}) {{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$returnType}}{{end}} {
+	sel := objc.Sel("{{.Selector}}")
+	{{- if $hasReturnValue}}
+	if o.RespondsToSelector(sel) {
+		return objc.Send[{{$returnType}}](o.ID(), sel, {{formatMethodParamNames .}})
+	}
+	var zero {{$returnType}}
+	return zero
+	{{- else}}
+	if o.RespondsToSelector(sel) {
+		objc.Send[objc.Void](o.ID(), sel, {{formatMethodParamNames .}})
+	}
+	{{- end}}
+}
+
+// Has{{.Name}} returns true if the object responds to the {{.Name}} selector.
+func (o *{{$wrapperName}}) Has{{.Name}}() bool {
+	return o.RespondsToSelector(objc.Sel("{{.Selector}}"))
+}
+{{- end}}
+
+{{- end}}
 {{- end -}}
 -- methods.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
