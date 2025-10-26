@@ -985,7 +985,7 @@ package {{.PackageName}}
 {{- with .Protocol}}
 {{- $hasUnsafePointer := false}}
 {{- $hasObjc := false}}
-{{- $isDelegate := or (hasSuffix .Name "Delegate") (hasSuffix .Name "DataSource")}}
+{{- $isDelegate := or .IsDelegate .IsDataSource}}
 {{- $crossFrameworkImports := getProtocolCrossFrameworkImports . $frameworkName $outputModule}}
 {{- range .RequiredMethods}}
   {{- $goType := mapObjCTypeToGo .ReturnType $frameworkName}}
@@ -1073,7 +1073,7 @@ type {{$protocolInterfaceName}} interface {
 }
 
 {{- /* Generate builder struct for delegate/datasource protocols only */}}
-{{- if or (hasSuffix .Name "Delegate") (hasSuffix .Name "DataSource")}}
+{{- if or .IsDelegate .IsDataSource}}
 {{- $builderName := stripNSPrefix .Name}}
 
 // {{$builderName}} is a delegate implementation builder for the {{$protocolInterfaceName}} protocol.

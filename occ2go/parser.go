@@ -647,6 +647,7 @@ func ParseProtocolDeclaration(tokens []appledocs.Token) *ParsedProtocol {
 
 			if i < len(tokens) && tokens[i].Kind == "identifier" {
 				proto.Name = tokens[i].Text
+				detectDelegateType(proto)
 				return proto
 			}
 		}
@@ -664,7 +665,25 @@ func ParseProtocolDeclaration(tokens []appledocs.Token) *ParsedProtocol {
 		return nil
 	}
 
+	detectDelegateType(proto)
 	return proto
+}
+
+// detectDelegateType auto-detects delegate and data source protocols based on naming conventions
+func detectDelegateType(proto *ParsedProtocol) {
+	if proto == nil || proto.Name == "" {
+		return
+	}
+
+	// Check if protocol ends with "Delegate"
+	if strings.HasSuffix(proto.Name, "Delegate") {
+		proto.IsDelegate = true
+	}
+
+	// Check if protocol ends with "DataSource"
+	if strings.HasSuffix(proto.Name, "DataSource") {
+		proto.IsDataSource = true
+	}
 }
 
 // ParseStructDeclaration parses a C struct declaration from tokens.

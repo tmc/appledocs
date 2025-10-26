@@ -80,6 +80,8 @@ type ParsedProtocol struct {
 	Availability    Availability
 	DocURL          string
 	Abstract        string
+	IsDelegate      bool // Auto-detected: true if protocol name ends with "Delegate"
+	IsDataSource    bool // Auto-detected: true if protocol name ends with "DataSource"
 }
 
 // ParsedEnum represents an Objective-C enum type declaration.
