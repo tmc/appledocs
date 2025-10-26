@@ -512,26 +512,122 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		"isClassBaseType", g.IsClassType(baseType))
 	if !g.IsClassType(goType) && !g.IsClassType(baseType) {
 		// Check if this type is known in the cross-framework registry
-		// If it is, it's a class from another framework - use objc.IObject
-		// to avoid framework hierarchy violations
-		if frameworkPkg, found := crossFrameworkTypeRegistry[goType]; found {
-			Debug.TypeMap("cross-framework type not in current framework", goType, "objc.IObject",
-				"goType", goType,
-				"returning", "objc.IObject")
-			if debugTypeAnnotations {
-				return fmt.Sprintf("objc.IObject /* type-resolution: cross-framework=%s.%s, objc-type=%s, reason=hierarchy-violation */", frameworkPkg, goType, goType)
+		// If it is, it's a class from another framework
+		// First, try the type as-is, then try the unqualified name if it's qualified
+		var lookupType string = goType
+		var frameworkPkg string
+		var found bool
+
+		// Try direct lookup first
+		if frameworkPkg, found = crossFrameworkTypeRegistry[goType]; !found {
+			// If goType is already qualified (e.g., "foundation.NSString"),
+			// extract the unqualified name and try that
+			if strings.Contains(goType, ".") {
+				parts := strings.SplitN(goType, ".", 2)
+				if len(parts) == 2 {
+					lookupType = parts[1]
+					frameworkPkg, found = crossFrameworkTypeRegistry[lookupType]
+				}
 			}
-			return "objc.IObject /* cross-framework: " + goType + " */"
 		}
-		if baseType != goType {
-			if frameworkPkg, found := crossFrameworkTypeRegistry[baseType]; found {
-				Debug.TypeMap("cross-framework type not in current framework (stripped)", baseType, "objc.IObject",
-					"baseType", baseType,
+
+		if found {
+			// Check if this would violate the framework hierarchy
+			currentLevel := getFrameworkLevel(strings.ToLower(g.Framework))
+			targetLevel := getFrameworkLevel(frameworkPkg)
+
+			if currentLevel >= 0 && targetLevel > currentLevel {
+				// Hierarchy violation - use objc.IObject
+				Debug.TypeMap("cross-framework type violates hierarchy", goType, "objc.IObject",
+					"goType", goType,
+					"currentFramework", g.Framework,
+					"currentLevel", currentLevel,
+					"targetFramework", frameworkPkg,
+					"targetLevel", targetLevel,
 					"returning", "objc.IObject")
 				if debugTypeAnnotations {
-					return fmt.Sprintf("objc.IObject /* type-resolution: cross-framework=%s.%s, objc-type=%s, stripped-from=%s, reason=hierarchy-violation */", frameworkPkg, baseType, baseType, goType)
+					return fmt.Sprintf("objc.IObject /* type-resolution: cross-framework=%s.%s, objc-type=%s, reason=hierarchy-violation */", frameworkPkg, goType, goType)
 				}
-				return "objc.IObject /* cross-framework: " + baseType + " */"
+				return "objc.IObject /* cross-framework: " + goType + " */"
+			}
+
+			// No hierarchy violation - use the properly qualified type
+			// If goType is already qualified (contains "."), use it as-is with "I" prefix
+			// Otherwise, qualify it with the framework package
+			var qualifiedType string
+			if strings.Contains(goType, ".") {
+				// Already qualified, just add the "I" prefix
+				parts := strings.SplitN(goType, ".", 2)
+				qualifiedType = parts[0] + ".I" + parts[1]
+			} else {
+				// Not qualified yet, add framework package
+				qualifiedType = frameworkPkg + ".I" + goType
+			}
+			Debug.TypeMap("cross-framework type allowed by hierarchy", goType, qualifiedType,
+				"goType", goType,
+				"currentFramework", g.Framework,
+				"currentLevel", currentLevel,
+				"targetFramework", frameworkPkg,
+				"targetLevel", targetLevel,
+				"returning", qualifiedType)
+			return qualifiedType
+		}
+		if baseType != goType {
+			// Similar lookup for baseType: try direct, then try unqualified
+			var baseFrameworkPkg string
+			var baseFound bool
+
+			// Try direct lookup first
+			if baseFrameworkPkg, baseFound = crossFrameworkTypeRegistry[baseType]; !baseFound {
+				// If baseType is already qualified, extract the unqualified name and try that
+				if strings.Contains(baseType, ".") {
+					parts := strings.SplitN(baseType, ".", 2)
+					if len(parts) == 2 {
+						baseFrameworkPkg, baseFound = crossFrameworkTypeRegistry[parts[1]]
+					}
+				}
+			}
+
+			if baseFound {
+				// Check if this would violate the framework hierarchy
+				currentLevel := getFrameworkLevel(strings.ToLower(g.Framework))
+				targetLevel := getFrameworkLevel(baseFrameworkPkg)
+
+				if currentLevel >= 0 && targetLevel > currentLevel {
+					// Hierarchy violation - use objc.IObject
+					Debug.TypeMap("cross-framework type violates hierarchy (stripped)", baseType, "objc.IObject",
+						"baseType", baseType,
+						"currentFramework", g.Framework,
+						"currentLevel", currentLevel,
+						"targetFramework", baseFrameworkPkg,
+						"targetLevel", targetLevel,
+						"returning", "objc.IObject")
+					if debugTypeAnnotations {
+						return fmt.Sprintf("objc.IObject /* type-resolution: cross-framework=%s.%s, objc-type=%s, stripped-from=%s, reason=hierarchy-violation */", baseFrameworkPkg, baseType, baseType, goType)
+					}
+					return "objc.IObject /* cross-framework: " + baseType + " */"
+				}
+
+				// No hierarchy violation - use the properly qualified type
+				// If baseType is already qualified (contains "."), use it as-is with "I" prefix
+				// Otherwise, qualify it with the framework package
+				var qualifiedType string
+				if strings.Contains(baseType, ".") {
+					// Already qualified, just add the "I" prefix
+					parts := strings.SplitN(baseType, ".", 2)
+					qualifiedType = parts[0] + ".I" + parts[1]
+				} else {
+					// Not qualified yet, add framework package
+					qualifiedType = baseFrameworkPkg + ".I" + baseType
+				}
+				Debug.TypeMap("cross-framework type allowed by hierarchy (stripped)", baseType, qualifiedType,
+					"baseType", baseType,
+					"currentFramework", g.Framework,
+					"currentLevel", currentLevel,
+					"targetFramework", baseFrameworkPkg,
+					"targetLevel", targetLevel,
+					"returning", qualifiedType)
+				return qualifiedType
 			}
 		}
 

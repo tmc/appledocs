@@ -1050,8 +1050,10 @@ type {{$protocolInterfaceName}} interface {
 	// Required methods
 {{- range .RequiredMethods}}
 	{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $returnType := $goReturnType}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
 	{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
-	{{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$goReturnType}}{{end}}{{debug "protocol_interface/required_method" .Name}}
+	{{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$returnType}}{{end}}{{debug "protocol_interface/required_method" .Name}}
 {{- end}}
 {{- end}}
 {{- if .OptionalMethods}}
@@ -1061,8 +1063,10 @@ type {{$protocolInterfaceName}} interface {
 	// Optional methods
 {{- range .OptionalMethods}}
 	{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $returnType := $goReturnType}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
 	{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
-	{{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$goReturnType}}{{end}}
+	{{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$returnType}}{{end}}
 	Has{{.Name}}() bool
 {{- end}}
 {{- end}}
@@ -1077,10 +1081,16 @@ type {{$protocolInterfaceName}} interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type {{$builderName}} struct {
 {{- range .OptionalMethods}}
-	_{{.Name}} func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}
+	{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $returnType := $goReturnType}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+	_{{.Name}} func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}
 {{- end}}
 {{- range .RequiredMethods}}
-	_{{.Name}} func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}
+	{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $returnType := $goReturnType}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+	_{{.Name}} func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}
 {{- end}}
 }
 
@@ -1092,7 +1102,10 @@ type {{$builderName}} struct {
 //
 // {{.Abstract}}
 {{- end}}
-func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}) {
+{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goReturnType}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}) {
 	d._{{.Name}} = f
 }
 {{- end}}
@@ -1103,7 +1116,10 @@ func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and
 //
 // {{.Abstract}}
 {{- end}}
-func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}) {
+{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goReturnType}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}) {
 	d._{{.Name}} = f
 }
 {{- end}}
@@ -1112,12 +1128,15 @@ func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and
 {{- range .OptionalMethods}}
 
 // {{.Name}} implements the {{$protocolInterfaceName}} interface.
-func (d *{{$builderName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
+{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goReturnType}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+func (d *{{$builderName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	if d._{{.Name}} != nil {
 		return d._{{.Name}}({{formatMethodParamNames .}})
 	}
-	var zero {{mapObjCTypeToGo .ReturnType $framework}}
+	var zero {{$returnType}}
 	return zero
 	{{- else}}
 	if d._{{.Name}} != nil {
@@ -1134,12 +1153,15 @@ func (d *{{$builderName}}) Has{{.Name}}() bool {
 {{- range .RequiredMethods}}
 
 // {{.Name}} implements the {{$protocolInterfaceName}} interface.
-func (d *{{$builderName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
+{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goReturnType}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}{{$returnType = typeToInterfaceType $goReturnType}}{{end}}
+func (d *{{$builderName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	if d._{{.Name}} != nil {
 		return d._{{.Name}}({{formatMethodParamNames .}})
 	}
-	var zero {{mapObjCTypeToGo .ReturnType $framework}}
+	var zero {{$returnType}}
 	return zero
 	{{- else}}
 	if d._{{.Name}} != nil {

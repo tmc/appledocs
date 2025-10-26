@@ -22,19 +22,17 @@ import (
 //	"String" -> "foundation"
 //	"Layer" -> "quartzcore"
 func buildCrossFrameworkTypeRegistry(outputDir string) error {
-	// Check if output directory exists
-	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
-		// Output directory doesn't exist yet, registry will be empty
-		return nil
-	}
+	// Check if output directory exists and scan frameworks if it does
+	var entries []os.DirEntry
+	if _, err := os.Stat(outputDir); !os.IsNotExist(err) {
+		// Output directory exists, scan it for already-generated frameworks
+		var err error
+		entries, err = os.ReadDir(outputDir)
+		if err != nil {
+			return fmt.Errorf("failed to read output directory: %w", err)
+		}
 
-	// Scan all subdirectories (frameworks)
-	entries, err := os.ReadDir(outputDir)
-	if err != nil {
-		return fmt.Errorf("failed to read output directory: %w", err)
-	}
-
-	for _, entry := range entries {
+		for _, entry := range entries {
 		if !entry.IsDir() {
 			continue
 		}
@@ -127,6 +125,7 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 				}
 			}
 		}
+		}
 	}
 
 	// After scanning all frameworks, override common Foundation types to ensure they're always mapped to foundation
@@ -142,6 +141,14 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		"NSData", "Data",
 		"NSDate", "Date",
 		"NSSet", "Set",
+		"NSError", "Error",
+		"NSNotification", "Notification",
+		"NSCoder", "Coder",
+		"NSUserActivity", "UserActivity",
+		"NSIndexPath", "IndexPath",
+		"NSValue", "Value",
+		"NSAttributedString", "AttributedString",
+		"NSRange", "Range",
 		"NSErrorDomain",      // typedef to String - used across all frameworks for error domains
 		"NSExtensionContext", // Foundation class, not CallKit/FileProviderUI/PhotosUI
 		"ExtensionContext",   // stripped name
