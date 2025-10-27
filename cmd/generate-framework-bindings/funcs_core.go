@@ -346,6 +346,11 @@ func getStructCrossFrameworkImports(structs []*occ2go.ParsedStruct, framework, o
 func getProtocolCrossFrameworkImports(protocol *occ2go.ParsedProtocol, framework, outputModule string) map[string]string {
 	imports := make(map[string]string)
 
+	// Delegate/DataSource protocols generate wrapper objects that use objectivec.Object
+	if protocol.IsDelegate || protocol.IsDataSource {
+		imports["objectivec"] = outputModule + "/objectivec"
+	}
+
 	// Check all methods (both required and optional)
 	allMethods := append([]*occ2go.ParsedMethod{}, protocol.RequiredMethods...)
 	allMethods = append(allMethods, protocol.OptionalMethods...)
@@ -355,12 +360,42 @@ func getProtocolCrossFrameworkImports(protocol *occ2go.ParsedProtocol, framework
 		if method.ReturnType != "" && method.ReturnType != "void" {
 			mappedType := mapObjCTypeToGo(method.ReturnType, framework)
 			checkAndAddCrossFrameworkImport(mappedType, framework, outputModule, imports)
+
+			// Also check the interface type (after typeToInterfaceType transformation)
+			interfaceType := typeToInterfaceTypeHeuristic(mappedType)
+			if interfaceType != mappedType {
+				checkAndAddCrossFrameworkImport(interfaceType, framework, outputModule, imports)
+			}
+
+			// Special case: if mapped type is "IObject" (unqualified), it will become
+			// "objectivec.IObject" in the template via typeToInterfaceType with Generator context
+			if interfaceType == "IObject" {
+				imports["objectivec"] = outputModule + "/objectivec"
+			}
 		}
 
 		// Check parameter types
 		for _, param := range method.Parameters {
 			mappedType := mapObjCTypeToGo(param.Type, framework)
 			checkAndAddCrossFrameworkImport(mappedType, framework, outputModule, imports)
+
+			// Also check the interface type (after typeToInterfaceType transformation)
+			interfaceType := typeToInterfaceTypeHeuristic(mappedType)
+			if interfaceType != mappedType {
+				checkAndAddCrossFrameworkImport(interfaceType, framework, outputModule, imports)
+			}
+
+			// Special case: if mapped type is "IObject" (unqualified), it will become
+			// "objectivec.IObject" in the template via typeToInterfaceType with Generator context
+			if interfaceType == "IObject" {
+				imports["objectivec"] = outputModule + "/objectivec"
+			}
+
+			// Special case: formatMethodParams converts objc.ID to objectivec.IObject
+			// (see generator_funcs.go:111-116)
+			if mappedType == "objc.ID" && strings.ToLower(framework) != "objectivec" {
+				imports["objectivec"] = outputModule + "/objectivec"
+			}
 		}
 	}
 

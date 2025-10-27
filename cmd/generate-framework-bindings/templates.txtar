@@ -368,9 +368,9 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return Object{ID: rv}
-	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objc.IObject"))}}
-	result := make([]objc.IObject, len(rv))
+	return objc.Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objectivec.IObject"))}}
+	result := make([]objectivec.IObject, len(rv))
 	for i, id := range rv {
 		result[i] = objc.Object{ID: id}
 	}
@@ -409,11 +409,11 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return Object{ID: rv}
+	return objc.Object{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
 	result := make([]IObject, len(rv))
 	for i, id := range rv {
-		result[i] = Object{ID: id}
+		result[i] = objc.Object{ID: id}
 	}
 	return result
 	{{- else}}
@@ -607,11 +607,11 @@ func ({{$.ClassReceiver}} {{$.ClassTypeName}}) {{.Name}}({{formatMethodParams .}
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}](objc.ID({{$.ClassReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return Object{ID: rv}
+	return objc.Object{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
 	result := make([]IObject, len(rv))
 	for i, id := range rv {
-		result[i] = Object{ID: id}
+		result[i] = objc.Object{ID: id}
 	}
 	return result
 	{{- else}}
@@ -679,11 +679,11 @@ func ({{$.InstReceiver}} {{$.StructName}}) {{.Name}}({{formatMethodParams .}}){{
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$.InstReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return Object{ID: rv}
+	return objc.Object{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
 	result := make([]IObject, len(rv))
 	for i, id := range rv {
-		result[i] = Object{ID: id}
+		result[i] = objc.Object{ID: id}
 	}
 	return result
 	{{- else}}
@@ -716,9 +716,9 @@ func ({{$.InstReceiver}} {{$.StructName}}) {{.Name}}({{formatMethodParams .}}){{
 func ({{$.InstReceiver}} {{$.StructName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$.InstReceiver}}.ID, objc.Sel("{{.Name}}"))
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return Object{ID: rv}
-	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objc.IObject"))}}
-	result := make([]objc.IObject, len(rv))
+	return objc.Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objectivec.IObject"))}}
+	result := make([]objectivec.IObject, len(rv))
 	for i, id := range rv {
 		result[i] = objc.Object{ID: id}
 	}
@@ -1187,12 +1187,12 @@ func (d *{{$builderName}}) Has{{.Name}}() bool {
 // This allows you to safely call protocol methods on any object that implements the protocol,
 // with runtime checks for optional methods using RespondsToSelector.
 type {{$wrapperName}} struct {
-	objc.Object
+	objectivec.Object
 }
 
 // New{{$wrapperName}} creates a new protocol wrapper for an existing Objective-C object.
 // The object should implement the {{.Name}} protocol.
-func New{{$wrapperName}}(obj objc.Object) *{{$wrapperName}} {
+func New{{$wrapperName}}(obj objectivec.Object) *{{$wrapperName}} {
 	return &{{$wrapperName}}{obj}
 }
 

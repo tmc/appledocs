@@ -154,7 +154,7 @@ func getStructEmbeddedField(class *occ2go.ParsedClass, framework string) string 
 // Returns the constructor body as a string (without the function signature or surrounding braces).
 func getFromConstructorBody(class *occ2go.ParsedClass, framework string) string {
 	if class == nil {
-		return "return " + classToStructName("") + "{objectivec.Object{objc.ID(ptr)}}"
+		return "return " + classToStructName("") + "{objc.Object{objc.ID(ptr)}}"
 	}
 
 	className := class.Name
@@ -171,40 +171,28 @@ func getFromConstructorBody(class *occ2go.ParsedClass, framework string) string 
 
 		// Check for self-referential case
 		if superStructName == structName {
-			if framework == "ObjectiveC" {
-				return fmt.Sprintf("return %s{Object{objc.ID(ptr)}}", structName)
-			}
-			return fmt.Sprintf("return %s{objectivec.Object{objc.ID(ptr)}}", structName)
+			return fmt.Sprintf("return %s{objc.Object{objc.ID(ptr)}}", structName)
 		}
 
 		// Check if superclass is NSObject or Object
 		if class.SuperClass == "NSObject" || superStructName == "Object" {
-			if framework == "ObjectiveC" {
-				return fmt.Sprintf("return %s{Object{objc.ID(ptr)}}", structName)
-			}
-			return fmt.Sprintf("return %s{objectivec.Object{objc.ID(ptr)}}", structName)
+			return fmt.Sprintf("return %s{objc.Object{objc.ID(ptr)}}", structName)
 		}
 
 		// Has a non-NSObject superclass - need to construct with named field
 		superResolved := resolveType(framework, superStructName)
 
 		// If superclass resolves to unsafe.Pointer, it means the parent class doesn't exist
-		// Fall back to objectivec.Object instead
+		// Fall back to objc.Object instead
 		if superResolved == "unsafe.Pointer" {
-			if framework == "ObjectiveC" {
-				return fmt.Sprintf("return %s{Object{objc.ID(ptr)}}", structName)
-			}
-			return fmt.Sprintf("return %s{objectivec.Object{objc.ID(ptr)}}", structName)
+			return fmt.Sprintf("return %s{objc.Object{objc.ID(ptr)}}", structName)
 		}
 
 		return fmt.Sprintf("return %s{\n\t\t%s: %sFrom(ptr),\n\t}", structName, superStructName, superResolved)
 	}
 
 	// No superclass - use base Object
-	if framework == "ObjectiveC" {
-		return fmt.Sprintf("return %s{Object{objc.ID(ptr)}}", structName)
-	}
-	return fmt.Sprintf("return %s{objectivec.Object{objc.ID(ptr)}}", structName)
+	return fmt.Sprintf("return %s{objc.Object{objc.ID(ptr)}}", structName)
 }
 
 // getConstructorBody generates the body of a package-level constructor function.
