@@ -89,6 +89,10 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "AffineTransformComponents", GoType: "uintptr", Framework: "CoreGraphics"}, // Opaque handle (undocumented struct)
 	{ObjCType: "CGAffineTransformComponents", GoType: "uintptr", Framework: "CoreGraphics"}, // Opaque handle (undocumented struct)
 
+	// Foundation base classes - NS-prefixed versions that should use ObjectiveC types
+	{ObjCType: "NSObject", GoType: "objectivec.Object", Framework: ""},
+	{ObjCType: "Object", GoType: "objectivec.Object", Framework: ""}, // Already-stripped version
+
 	// Foundation geometry types - NS-prefixed versions that should use CoreFoundation types
 	{ObjCType: "NSPoint", GoType: "corefoundation.CGPoint", Framework: ""},
 	{ObjCType: "NSSize", GoType: "corefoundation.CGSize", Framework: ""},

@@ -107,17 +107,27 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 
 		goType := mapObjCTypeToGo(p.Type, gf.Framework)
 
-		// Convert objc.ID to objc.IObject (or IObject if we're IN objectivec) for better type safety
+		// Convert objc.ID to objectivec.IObject (or IObject if we're IN objectivec) for better type safety
 		if goType == "objc.ID" {
 			if strings.ToLower(gf.Framework) == "objectivec" {
 				goType = "IObject"
 			} else {
-				goType = "objc.IObject"
+				goType = "objectivec.IObject"
 			}
 		} else {
 			// Use data-driven type checking instead of heuristics
 			// This calls Generator.TypeToInterfaceType which uses classIndex, enumIndex, typedefIndex
 			goType = gf.TypeToInterfaceType(goType)
+		}
+
+		// Special case: bare "Object" or "NSObject" should always be objectivec.IObject
+		// This handles cases where the parser returns "Object" directly
+		if goType == "Object" || goType == "NSObject" {
+			if strings.ToLower(gf.Framework) == "objectivec" {
+				goType = "IObject"
+			} else {
+				goType = "objectivec.IObject"
+			}
 		}
 
 		// WORKAROUND for bead appledocs-473: Strip NS/CG/CA prefix from types that look like

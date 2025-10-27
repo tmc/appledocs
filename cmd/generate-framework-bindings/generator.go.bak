@@ -302,15 +302,6 @@ func (g *Generator) IsStringBasedTypedef(typeName string) bool {
 // the Generator's data-driven type checking (enum/typedef/class indices).
 // This allows templates to use accurate type resolution instead of heuristics.
 func (g *Generator) TypeToInterfaceType(goType string) string {
-	// Special case: bare "Object" or "NSObject" should always be objectivec.IObject
-	// This handles cases where the type mapping didn't catch it
-	if goType == "Object" || goType == "NSObject" {
-		if strings.ToLower(g.Framework) == "objectivec" {
-			return "IObject"
-		}
-		return "objectivec.IObject"
-	}
-
 	// Foundation types that should map to primitives
 	// TimeInterval is NSTimeInterval which is typedef for double
 	if goType == "TimeInterval" || goType == "NSTimeInterval" {
@@ -567,20 +558,10 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 			if strings.Contains(goType, ".") {
 				// Already qualified, just add the "I" prefix
 				parts := strings.SplitN(goType, ".", 2)
-				// Check if same framework first
-				if strings.ToLower(g.Framework) == parts[0] {
-					qualifiedType = parts[1]
-				} else {
-					qualifiedType = parts[0] + ".I" + parts[1]
-				}
+				qualifiedType = parts[0] + ".I" + parts[1]
 			} else {
 				// Not qualified yet, add framework package
-				// Check if same framework first
-			if strings.ToLower(g.Framework) == frameworkPkg {
-				qualifiedType = goType
-			} else {
 				qualifiedType = frameworkPkg + ".I" + goType
-			}
 			}
 			Debug.TypeMap("cross-framework type allowed by hierarchy", goType, qualifiedType,
 				"goType", goType,
@@ -637,12 +618,7 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 					qualifiedType = parts[0] + ".I" + parts[1]
 				} else {
 					// Not qualified yet, add framework package
-					// Check if same framework first
-				if strings.ToLower(g.Framework) == baseFrameworkPkg {
-					qualifiedType = baseType
-				} else {
 					qualifiedType = baseFrameworkPkg + ".I" + baseType
-				}
 				}
 				Debug.TypeMap("cross-framework type allowed by hierarchy (stripped)", baseType, qualifiedType,
 					"baseType", baseType,

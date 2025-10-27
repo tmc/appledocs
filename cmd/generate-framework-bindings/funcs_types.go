@@ -28,6 +28,15 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 		}
 	}
 
+	// Special case: NS geometry types (NSPoint, NSSize, NSRect) should map to CoreFoundation types
+	// These are typedefs in Foundation but should use cross-framework types, not local names
+	// Also: NSObject/Object should map to objectivec.Object, not be stripped to bare "Object"
+	if cType == "NSPoint" || cType == "NSSize" || cType == "NSRect" || cType == "NSObject" || cType == "Object" {
+		if goType, found := lookupTypeMapping(cType, framework); found {
+			return goType
+		}
+	}
+
 	// Check if this C type is a typedef or struct in the current framework BEFORE mapping
 	// This handles CF*Ref types (CFTypeRef, CFAllocatorRef, etc.) and CG geometry types
 	strippedCType := stripObjCPrefix(cType)
