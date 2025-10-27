@@ -59,11 +59,11 @@ type IBinaryImageKernel interface {
 	Encode()
 	EncodeToCommandBufferInPlacePrimaryTextureSecondaryTextureFallbackCopyAllocator(commandBuffer unsafe.Pointer, inPlacePrimaryTexture unsafe.Pointer, secondaryTexture unsafe.Pointer, copyAllocator CopyAllocator /* not a class type */) bool
 	SecondarySourceRegion()
-	SecondarySourceRegionForDestinationSize(destinationSize objc.IObject /* cross-framework: MTLSize */) objc.IObject /* cross-framework: MPSRegion */
+	SecondarySourceRegionForDestinationSize(destinationSize metal.IMTLSize) MPSRegion
 	EncodeToCommandBufferPrimaryTextureSecondaryTextureDestinationTexture(commandBuffer unsafe.Pointer, primaryTexture unsafe.Pointer, secondaryTexture unsafe.Pointer, destinationTexture unsafe.Pointer)
 	EncodeToCommandBufferPrimaryTextureInPlaceSecondaryTextureFallbackCopyAllocator(commandBuffer unsafe.Pointer, primaryTexture unsafe.Pointer, inPlaceSecondaryTexture unsafe.Pointer, copyAllocator CopyAllocator /* not a class type */) bool
 	PrimarySourceRegion()
-	PrimarySourceRegionForDestinationSize(destinationSize objc.IObject /* cross-framework: MTLSize */) objc.IObject /* cross-framework: MPSRegion */
+	PrimarySourceRegionForDestinationSize(destinationSize metal.IMTLSize) MPSRegion
 	EncodeToCommandBufferPrimaryImageSecondaryImageDestinationImage(commandBuffer unsafe.Pointer, primaryImage IImage, secondaryImage IImage, destinationImage IImage)
 
 
@@ -201,7 +201,7 @@ func (b_ BinaryImageKernel) SecondarySourceRegion() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel/1618838-secondarysourceregionfordestinat
-func (b_ BinaryImageKernel) SecondarySourceRegionForDestinationSize(destinationSize objc.IObject /* cross-framework: MTLSize */) objc.IObject /* cross-framework: MPSRegion */ {
+func (b_ BinaryImageKernel) SecondarySourceRegionForDestinationSize(destinationSize metal.IMTLSize) MPSRegion {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("secondarySourceRegionForDestinationSize:"), destinationSize)
 	return rv
 }
@@ -239,7 +239,7 @@ func (b_ BinaryImageKernel) PrimarySourceRegion() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel/1618900-primarysourceregionfordestinatio
-func (b_ BinaryImageKernel) PrimarySourceRegionForDestinationSize(destinationSize objc.IObject /* cross-framework: MTLSize */) objc.IObject /* cross-framework: MPSRegion */ {
+func (b_ BinaryImageKernel) PrimarySourceRegionForDestinationSize(destinationSize metal.IMTLSize) MPSRegion {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("primarySourceRegionForDestinationSize:"), destinationSize)
 	return rv
 }

@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PSpellServerDelegate is the NSSpellServerDelegate protocol interface.
@@ -30,7 +32,7 @@ type PSpellServerDelegate interface {
 	HasSpellServerFindMisspelledWordInStringLanguageWordCountCountOnly() bool
 	SpellServerRecordResponseToCorrectionForWordLanguage(sender ISpellServer, response uint, correction IString, word IString, language IString)
 	HasSpellServerRecordResponseToCorrectionForWordLanguage() bool
-	SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(sender ISpellServer, range_ objc.IObject /* cross-framework: Range */, string_ IString, language IString) []string
+	SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(sender ISpellServer, range_ Range, string_ IString, language IString) []string
 	HasSpellServerSuggestCompletionsForPartialWordRangeInStringLanguage() bool
 	SpellServerSuggestGuessesForWordInLanguage(sender ISpellServer, word IString, language IString) []string
 	HasSpellServerSuggestGuessesForWordInLanguage() bool
@@ -46,7 +48,7 @@ type SpellServerDelegate struct {
 	_SpellServerDidLearnWordInLanguage func(sender ISpellServer, word IString, language IString)
 	_SpellServerFindMisspelledWordInStringLanguageWordCountCountOnly func(sender ISpellServer, stringToCheck IString, language IString, wordCount int, countOnly bool) Range
 	_SpellServerRecordResponseToCorrectionForWordLanguage func(sender ISpellServer, response uint, correction IString, word IString, language IString)
-	_SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage func(sender ISpellServer, range_ objc.IObject /* cross-framework: Range */, string_ IString, language IString) []string
+	_SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage func(sender ISpellServer, range_ Range, string_ IString, language IString) []string
 	_SpellServerSuggestGuessesForWordInLanguage func(sender ISpellServer, word IString, language IString) []string
 }
 
@@ -95,7 +97,7 @@ func (d *SpellServerDelegate) SetSpellServerRecordResponseToCorrectionForWordLan
 // SetSpellServerSuggestCompletionsForPartialWordRangeInStringLanguage sets the handler for the SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage delegate method.
 //
 // This delegate method returns an array of possible word completions from the spell checker, based on a partially completed string and a given range.
-func (d *SpellServerDelegate) SetSpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(f func(sender ISpellServer, range_ objc.IObject /* cross-framework: Range */, string_ IString, language IString) []string) {
+func (d *SpellServerDelegate) SetSpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(f func(sender ISpellServer, range_ Range, string_ IString, language IString) []string) {
 	d._SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage = f
 }
 
@@ -185,7 +187,7 @@ func (d *SpellServerDelegate) HasSpellServerRecordResponseToCorrectionForWordLan
 }
 
 // SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage implements the PSpellServerDelegate interface.
-func (d *SpellServerDelegate) SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(sender ISpellServer, range_ objc.IObject /* cross-framework: Range */, string_ IString, language IString) []string {
+func (d *SpellServerDelegate) SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(sender ISpellServer, range_ Range, string_ IString, language IString) []string {
 	if d._SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage != nil {
 		return d._SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(sender, range_, string_, language)
 	}
@@ -210,4 +212,108 @@ func (d *SpellServerDelegate) SpellServerSuggestGuessesForWordInLanguage(sender 
 // HasSpellServerSuggestGuessesForWordInLanguage returns true if a handler for SpellServerSuggestGuessesForWordInLanguage has been set.
 func (d *SpellServerDelegate) HasSpellServerSuggestGuessesForWordInLanguage() bool {
 	return d._SpellServerSuggestGuessesForWordInLanguage != nil
+}
+
+// SpellServerDelegateObject wraps an existing Objective-C object that conforms to the PSpellServerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type SpellServerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewSpellServerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSSpellServerDelegate protocol.
+func NewSpellServerDelegateObject(obj objectivec.Object) *SpellServerDelegateObject {
+	return &SpellServerDelegateObject{obj}
+}
+
+// Make sure SpellServerDelegateObject implements PSpellServerDelegate.
+var _ PSpellServerDelegate = (*SpellServerDelegateObject)(nil)
+
+// SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes TextCheckingTypes, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult {
+	return objc.Send[[]TextCheckingResult](o.ID, objc.Sel("spellServer:checkString:offset:types:options:orthography:wordCount:"), sender, stringToCheck, offset, checkingTypes, options, orthography, wordCount)
+}
+
+// HasSpellServerCheckStringOffsetTypesOptionsOrthographyWordCount returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerCheckStringOffsetTypesOptionsOrthographyWordCount() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerCheckGrammarInStringLanguageDetails implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerCheckGrammarInStringLanguageDetails(sender ISpellServer, stringToCheck IString, language IString, details IDictionary) Range {
+	return objc.Send[Range](o.ID, objc.Sel("spellServer:checkGrammarInString:language:details:"), sender, stringToCheck, language, details)
+}
+
+// HasSpellServerCheckGrammarInStringLanguageDetails returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerCheckGrammarInStringLanguageDetails() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerDidForgetWordInLanguage implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerDidForgetWordInLanguage(sender ISpellServer, word IString, language IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("spellServer:didForgetWord:inLanguage:"), sender, word, language)
+}
+
+// HasSpellServerDidForgetWordInLanguage returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerDidForgetWordInLanguage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerDidLearnWordInLanguage implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerDidLearnWordInLanguage(sender ISpellServer, word IString, language IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("spellServer:didLearnWord:inLanguage:"), sender, word, language)
+}
+
+// HasSpellServerDidLearnWordInLanguage returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerDidLearnWordInLanguage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerFindMisspelledWordInStringLanguageWordCountCountOnly implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerFindMisspelledWordInStringLanguageWordCountCountOnly(sender ISpellServer, stringToCheck IString, language IString, wordCount int, countOnly bool) Range {
+	return objc.Send[Range](o.ID, objc.Sel("spellServer:findMisspelledWordInString:language:wordCount:countOnly:"), sender, stringToCheck, language, wordCount, countOnly)
+}
+
+// HasSpellServerFindMisspelledWordInStringLanguageWordCountCountOnly returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerFindMisspelledWordInStringLanguageWordCountCountOnly() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerRecordResponseToCorrectionForWordLanguage implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerRecordResponseToCorrectionForWordLanguage(sender ISpellServer, response uint, correction IString, word IString, language IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("spellServer:recordResponse:toCorrection:forWord:language:"), sender, response, correction, word, language)
+}
+
+// HasSpellServerRecordResponseToCorrectionForWordLanguage returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerRecordResponseToCorrectionForWordLanguage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerSuggestCompletionsForPartialWordRangeInStringLanguage(sender ISpellServer, range_ Range, string_ IString, language IString) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("spellServer:suggestCompletionsForPartialWordRange:inString:language:"), sender, range_, string_, language)
+}
+
+// HasSpellServerSuggestCompletionsForPartialWordRangeInStringLanguage returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerSuggestCompletionsForPartialWordRangeInStringLanguage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SpellServerSuggestGuessesForWordInLanguage implements the PSpellServerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SpellServerDelegateObject) SpellServerSuggestGuessesForWordInLanguage(sender ISpellServer, word IString, language IString) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("spellServer:suggestGuessesForWord:inLanguage:"), sender, word, language)
+}
+
+// HasSpellServerSuggestGuessesForWordInLanguage returns true; this is a placeholder for optional method checks.
+func (o *SpellServerDelegateObject) HasSpellServerSuggestGuessesForWordInLanguage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

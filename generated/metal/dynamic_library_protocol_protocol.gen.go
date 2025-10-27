@@ -5,8 +5,6 @@ package metal
 import (
 
 	"github.com/tmc/appledocs/generated/foundation"
-
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PDynamicLibrary is the MTLDynamicLibrary protocol interface.
@@ -24,5 +22,5 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLDynamicLibrary
 type PDynamicLibrary interface {
 	// Required methods
-	SerializeToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: SerializeToURLError */
+	SerializeToURLError(url foundation.foundation.INSURL, error_ foundation.foundation.INSError) bool
 }

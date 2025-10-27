@@ -18,8 +18,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/dimensionsForSemanticSegmentationMatte(ofType:)
-func (c_ CaptureResolvedPhotoSettings) DimensionsForSemanticSegmentationMatteOfType(semanticSegmentationMatteType SemanticSegmentationMatteType /* typedef */) VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("dimensionsForSemanticSegmentationMatteOfType:"), semanticSegmentationMatteType)
+func (c_ CaptureResolvedPhotoSettings) DimensionsForSemanticSegmentationMatteOfType(semanticSegmentationMatteType SemanticSegmentationMatteType) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("dimensionsForSemanticSegmentationMatteOfType:"), semanticSegmentationMatteType)
 	return rv
 }
 
@@ -29,8 +29,8 @@ func (c_ CaptureResolvedPhotoSettings) DimensionsForSemanticSegmentationMatteOfT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/deferredPhotoProxyDimensions
-func (c_ CaptureResolvedPhotoSettings) DeferredPhotoProxyDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("deferredPhotoProxyDimensions"))
+func (c_ CaptureResolvedPhotoSettings) DeferredPhotoProxyDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("deferredPhotoProxyDimensions"))
 	return rv
 }
 
@@ -38,8 +38,8 @@ func (c_ CaptureResolvedPhotoSettings) DeferredPhotoProxyDimensions() VideoDimen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/embeddedThumbnailDimensions
-func (c_ CaptureResolvedPhotoSettings) EmbeddedThumbnailDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("embeddedThumbnailDimensions"))
+func (c_ CaptureResolvedPhotoSettings) EmbeddedThumbnailDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("embeddedThumbnailDimensions"))
 	return rv
 }
 
@@ -101,8 +101,8 @@ func (c_ CaptureResolvedPhotoSettings) VirtualDeviceFusionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/livePhotoMovieDimensions
-func (c_ CaptureResolvedPhotoSettings) LivePhotoMovieDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("livePhotoMovieDimensions"))
+func (c_ CaptureResolvedPhotoSettings) LivePhotoMovieDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("livePhotoMovieDimensions"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (c_ CaptureResolvedPhotoSettings) LivePhotoMovieDimensions() VideoDimension
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/photoProcessingTimeRange
-func (c_ CaptureResolvedPhotoSettings) PhotoProcessingTimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](c_.ID, objc.Sel("photoProcessingTimeRange"))
+func (c_ CaptureResolvedPhotoSettings) PhotoProcessingTimeRange() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("photoProcessingTimeRange"))
 	return rv
 }
 
@@ -119,8 +119,8 @@ func (c_ CaptureResolvedPhotoSettings) PhotoProcessingTimeRange() TimeRange /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/portraitEffectsMatteDimensions
-func (c_ CaptureResolvedPhotoSettings) PortraitEffectsMatteDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("portraitEffectsMatteDimensions"))
+func (c_ CaptureResolvedPhotoSettings) PortraitEffectsMatteDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("portraitEffectsMatteDimensions"))
 	return rv
 }
 
@@ -128,8 +128,8 @@ func (c_ CaptureResolvedPhotoSettings) PortraitEffectsMatteDimensions() VideoDim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/previewDimensions
-func (c_ CaptureResolvedPhotoSettings) PreviewDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("previewDimensions"))
+func (c_ CaptureResolvedPhotoSettings) PreviewDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("previewDimensions"))
 	return rv
 }
 
@@ -137,8 +137,8 @@ func (c_ CaptureResolvedPhotoSettings) PreviewDimensions() VideoDimensions /* no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/rawEmbeddedThumbnailDimensions
-func (c_ CaptureResolvedPhotoSettings) RawEmbeddedThumbnailDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("rawEmbeddedThumbnailDimensions"))
+func (c_ CaptureResolvedPhotoSettings) RawEmbeddedThumbnailDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("rawEmbeddedThumbnailDimensions"))
 	return rv
 }
 
@@ -146,8 +146,8 @@ func (c_ CaptureResolvedPhotoSettings) RawEmbeddedThumbnailDimensions() VideoDim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/rawPhotoDimensions
-func (c_ CaptureResolvedPhotoSettings) RawPhotoDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("rawPhotoDimensions"))
+func (c_ CaptureResolvedPhotoSettings) RawPhotoDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("rawPhotoDimensions"))
 	return rv
 }
 

@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLConnectionDelegate is the NSURLConnectionDelegate protocol interface.
@@ -165,4 +167,86 @@ func (d *URLConnectionDelegate) ConnectionShouldUseCredentialStorage(connection 
 // HasConnectionShouldUseCredentialStorage returns true if a handler for ConnectionShouldUseCredentialStorage has been set.
 func (d *URLConnectionDelegate) HasConnectionShouldUseCredentialStorage() bool {
 	return d._ConnectionShouldUseCredentialStorage != nil
+}
+
+// URLConnectionDelegateObject wraps an existing Objective-C object that conforms to the PURLConnectionDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLConnectionDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLConnectionDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLConnectionDelegate protocol.
+func NewURLConnectionDelegateObject(obj objectivec.Object) *URLConnectionDelegateObject {
+	return &URLConnectionDelegateObject{obj}
+}
+
+// Make sure URLConnectionDelegateObject implements PURLConnectionDelegate.
+var _ PURLConnectionDelegate = (*URLConnectionDelegateObject)(nil)
+
+// ConnectionCanAuthenticateAgainstProtectionSpace implements the PURLConnectionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDelegateObject) ConnectionCanAuthenticateAgainstProtectionSpace(connection IURLConnection, protectionSpace IURLProtectionSpace) bool {
+	return objc.Send[bool](o.ID, objc.Sel("connection:canAuthenticateAgainstProtectionSpace:"), connection, protectionSpace)
+}
+
+// HasConnectionCanAuthenticateAgainstProtectionSpace returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDelegateObject) HasConnectionCanAuthenticateAgainstProtectionSpace() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ConnectionDidCancelAuthenticationChallenge implements the PURLConnectionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDelegateObject) ConnectionDidCancelAuthenticationChallenge(connection IURLConnection, challenge IURLAuthenticationChallenge) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connection:didCancelAuthenticationChallenge:"), connection, challenge)
+}
+
+// HasConnectionDidCancelAuthenticationChallenge returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDelegateObject) HasConnectionDidCancelAuthenticationChallenge() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ConnectionDidFailWithError implements the PURLConnectionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDelegateObject) ConnectionDidFailWithError(connection IURLConnection, error_ IError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connection:didFailWithError:"), connection, error_)
+}
+
+// HasConnectionDidFailWithError returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDelegateObject) HasConnectionDidFailWithError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ConnectionDidReceiveAuthenticationChallenge implements the PURLConnectionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDelegateObject) ConnectionDidReceiveAuthenticationChallenge(connection IURLConnection, challenge IURLAuthenticationChallenge) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connection:didReceiveAuthenticationChallenge:"), connection, challenge)
+}
+
+// HasConnectionDidReceiveAuthenticationChallenge returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDelegateObject) HasConnectionDidReceiveAuthenticationChallenge() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ConnectionWillSendRequestForAuthenticationChallenge implements the PURLConnectionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDelegateObject) ConnectionWillSendRequestForAuthenticationChallenge(connection IURLConnection, challenge IURLAuthenticationChallenge) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connection:willSendRequestForAuthenticationChallenge:"), connection, challenge)
+}
+
+// HasConnectionWillSendRequestForAuthenticationChallenge returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDelegateObject) HasConnectionWillSendRequestForAuthenticationChallenge() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ConnectionShouldUseCredentialStorage implements the PURLConnectionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDelegateObject) ConnectionShouldUseCredentialStorage(connection IURLConnection) bool {
+	return objc.Send[bool](o.ID, objc.Sel("connectionShouldUseCredentialStorage:"), connection)
+}
+
+// HasConnectionShouldUseCredentialStorage returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDelegateObject) HasConnectionShouldUseCredentialStorage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

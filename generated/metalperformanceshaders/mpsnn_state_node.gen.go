@@ -47,8 +47,8 @@ type IStateNode interface {
 	SetSynchronizeResource(value objectivec.IObject)
 	ExportFromGraph() objectivec.IObject
 	SetExportFromGraph(value objectivec.IObject)
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	PaddingPolicy() Padding /* not a class type */
 	SetPaddingPolicy(value Padding /* not a class type */)
 	ResultImage() IMPSNNImageNode
@@ -193,7 +193,7 @@ func (s_ StateNode) SetExportFromGraph(value objectivec.IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (s_ StateNode) Label() objc.IObject /* cross-framework: NSString */ {
+func (s_ StateNode) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("label"))
 	return rv
 }
@@ -201,7 +201,7 @@ func (s_ StateNode) Label() objc.IObject /* cross-framework: NSString */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (s_ StateNode) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (s_ StateNode) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
 }
 

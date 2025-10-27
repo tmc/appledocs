@@ -18,24 +18,7 @@ func ExampleNewImage() {
 // Returns the image object associated with the specified name.
 func ExampleNewImageNamed() {
 	_ = appkit.NewImageNamed(
-		appkit.ImageName /* typedef */{}, // name ImageName /* typedef */
-	)
-	// Output:
-}
-// ExampleNewImageWithCGImageSize demonstrates how to create a Image instance using NewImageWithCGImageSize.
-// Creates a new image using the contents of the provided image.
-func ExampleNewImageWithCGImageSize() {
-	_ = appkit.NewImageWithCGImageSize(
-		appkit.ImageRef /* not a class type */{}, // cgImage ImageRef /* not a class type */
-		appkit.Size /* not a class type */{}, // size Size /* not a class type */
-	)
-	// Output:
-}
-// ExampleNewImageWithSize demonstrates how to create a Image instance using NewImageWithSize.
-// Initializes and returns an image object with the specified dimensions.
-func ExampleNewImageWithSize() {
-	_ = appkit.NewImageWithSize(
-		appkit.Size /* not a class type */{}, // size Size /* not a class type */
+		appkit.ImageName{}, // name ImageName
 	)
 	// Output:
 }

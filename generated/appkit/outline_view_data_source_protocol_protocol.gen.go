@@ -7,9 +7,11 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // POutlineViewDataSource is the NSOutlineViewDataSource protocol interface.
@@ -22,37 +24,37 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource
 type POutlineViewDataSource interface {
 	// Optional methods
-	OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool
+	OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) bool
 	HasOutlineViewAcceptDropItemChildIndex() bool
-	OutlineViewChildOfItem(outlineView IOutlineView, index int, item objc.IObject) objc.ID
+	OutlineViewChildOfItem(outlineView IOutlineView, index int, item objectivec.IObject) objc.ID
 	HasOutlineViewChildOfItem() bool
-	OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
+	OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)
 	HasOutlineViewDraggingSessionEndedAtPointOperation() bool
-	OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */)
+	OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, draggedItems foundation.foundation.INSArray)
 	HasOutlineViewDraggingSessionWillBeginAtPointForItems() bool
-	OutlineViewIsItemExpandable(outlineView IOutlineView, item objc.IObject) bool
+	OutlineViewIsItemExpandable(outlineView IOutlineView, item objectivec.IObject) bool
 	HasOutlineViewIsItemExpandable() bool
-	OutlineViewItemForPersistentObject(outlineView IOutlineView, object objc.IObject) objc.ID
+	OutlineViewItemForPersistentObject(outlineView IOutlineView, object objectivec.IObject) objc.ID
 	HasOutlineViewItemForPersistentObject() bool
-	OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(outlineView IOutlineView, dropDestination objc.IObject /* cross-framework: NSURL */, items objc.IObject /* cross-framework: NSArray */) []string
+	OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(outlineView IOutlineView, dropDestination foundation.foundation.INSURL, items foundation.foundation.INSArray) []string
 	HasOutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems() bool
-	OutlineViewNumberOfChildrenOfItem(outlineView IOutlineView, item objc.IObject) int
+	OutlineViewNumberOfChildrenOfItem(outlineView IOutlineView, item objectivec.IObject) int
 	HasOutlineViewNumberOfChildrenOfItem() bool
-	OutlineViewObjectValueForTableColumnByItem(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) objc.ID
+	OutlineViewObjectValueForTableColumnByItem(outlineView IOutlineView, tableColumn ITableColumn, item objectivec.IObject) objc.ID
 	HasOutlineViewObjectValueForTableColumnByItem() bool
-	OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objc.IObject) unsafe.Pointer
+	OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objectivec.IObject) unsafe.Pointer
 	HasOutlineViewPasteboardWriterForItem() bool
-	OutlineViewPersistentObjectForItem(outlineView IOutlineView, item objc.IObject) objc.ID
+	OutlineViewPersistentObjectForItem(outlineView IOutlineView, item objectivec.IObject) objc.ID
 	HasOutlineViewPersistentObjectForItem() bool
-	OutlineViewSetObjectValueForTableColumnByItem(outlineView IOutlineView, object objc.IObject, tableColumn ITableColumn, item objc.IObject)
+	OutlineViewSetObjectValueForTableColumnByItem(outlineView IOutlineView, object objectivec.IObject, tableColumn ITableColumn, item objectivec.IObject)
 	HasOutlineViewSetObjectValueForTableColumnByItem() bool
-	OutlineViewSortDescriptorsDidChange(outlineView IOutlineView, oldDescriptors []objc.IObject)
+	OutlineViewSortDescriptorsDidChange(outlineView IOutlineView, oldDescriptors []foundation.SortDescriptor)
 	HasOutlineViewSortDescriptorsDidChange() bool
 	OutlineViewUpdateDraggingItemsForDrag(outlineView IOutlineView, draggingInfo unsafe.Pointer)
 	HasOutlineViewUpdateDraggingItemsForDrag() bool
-	OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation
+	OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) DragOperation
 	HasOutlineViewValidateDropProposedItemProposedChildIndex() bool
-	OutlineViewWriteItemsToPasteboard(outlineView IOutlineView, items objc.IObject /* cross-framework: NSArray */, pasteboard IPasteboard) bool
+	OutlineViewWriteItemsToPasteboard(outlineView IOutlineView, items foundation.foundation.INSArray, pasteboard IPasteboard) bool
 	HasOutlineViewWriteItemsToPasteboard() bool
 }
 
@@ -60,112 +62,112 @@ type POutlineViewDataSource interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type OutlineViewDataSource struct {
-	_OutlineViewAcceptDropItemChildIndex func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool
-	_OutlineViewChildOfItem func(outlineView IOutlineView, index int, item objc.IObject) objc.ID
-	_OutlineViewDraggingSessionEndedAtPointOperation func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
-	_OutlineViewDraggingSessionWillBeginAtPointForItems func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */)
-	_OutlineViewIsItemExpandable func(outlineView IOutlineView, item objc.IObject) bool
-	_OutlineViewItemForPersistentObject func(outlineView IOutlineView, object objc.IObject) objc.ID
-	_OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems func(outlineView IOutlineView, dropDestination objc.IObject /* cross-framework: NSURL */, items objc.IObject /* cross-framework: NSArray */) []string
-	_OutlineViewNumberOfChildrenOfItem func(outlineView IOutlineView, item objc.IObject) int
-	_OutlineViewObjectValueForTableColumnByItem func(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) objc.ID
-	_OutlineViewPasteboardWriterForItem func(outlineView IOutlineView, item objc.IObject) unsafe.Pointer
-	_OutlineViewPersistentObjectForItem func(outlineView IOutlineView, item objc.IObject) objc.ID
-	_OutlineViewSetObjectValueForTableColumnByItem func(outlineView IOutlineView, object objc.IObject, tableColumn ITableColumn, item objc.IObject)
-	_OutlineViewSortDescriptorsDidChange func(outlineView IOutlineView, oldDescriptors []objc.IObject)
+	_OutlineViewAcceptDropItemChildIndex func(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) bool
+	_OutlineViewChildOfItem func(outlineView IOutlineView, index int, item objectivec.IObject) objc.ID
+	_OutlineViewDraggingSessionEndedAtPointOperation func(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)
+	_OutlineViewDraggingSessionWillBeginAtPointForItems func(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, draggedItems foundation.foundation.INSArray)
+	_OutlineViewIsItemExpandable func(outlineView IOutlineView, item objectivec.IObject) bool
+	_OutlineViewItemForPersistentObject func(outlineView IOutlineView, object objectivec.IObject) objc.ID
+	_OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems func(outlineView IOutlineView, dropDestination foundation.foundation.INSURL, items foundation.foundation.INSArray) []string
+	_OutlineViewNumberOfChildrenOfItem func(outlineView IOutlineView, item objectivec.IObject) int
+	_OutlineViewObjectValueForTableColumnByItem func(outlineView IOutlineView, tableColumn ITableColumn, item objectivec.IObject) objc.ID
+	_OutlineViewPasteboardWriterForItem func(outlineView IOutlineView, item objectivec.IObject) unsafe.Pointer
+	_OutlineViewPersistentObjectForItem func(outlineView IOutlineView, item objectivec.IObject) objc.ID
+	_OutlineViewSetObjectValueForTableColumnByItem func(outlineView IOutlineView, object objectivec.IObject, tableColumn ITableColumn, item objectivec.IObject)
+	_OutlineViewSortDescriptorsDidChange func(outlineView IOutlineView, oldDescriptors []foundation.SortDescriptor)
 	_OutlineViewUpdateDraggingItemsForDrag func(outlineView IOutlineView, draggingInfo unsafe.Pointer)
-	_OutlineViewValidateDropProposedItemProposedChildIndex func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation
-	_OutlineViewWriteItemsToPasteboard func(outlineView IOutlineView, items objc.IObject /* cross-framework: NSArray */, pasteboard IPasteboard) bool
+	_OutlineViewValidateDropProposedItemProposedChildIndex func(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) DragOperation
+	_OutlineViewWriteItemsToPasteboard func(outlineView IOutlineView, items foundation.foundation.INSArray, pasteboard IPasteboard) bool
 }
 
 // SetOutlineViewAcceptDropItemChildIndex sets the handler for the OutlineViewAcceptDropItemChildIndex delegate method.
 //
 // Returns a Boolean value that indicates whether a drop operation was successful.
-func (d *OutlineViewDataSource) SetOutlineViewAcceptDropItemChildIndex(f func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool) {
+func (d *OutlineViewDataSource) SetOutlineViewAcceptDropItemChildIndex(f func(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) bool) {
 	d._OutlineViewAcceptDropItemChildIndex = f
 }
 
 // SetOutlineViewChildOfItem sets the handler for the OutlineViewChildOfItem delegate method.
 //
 // Returns the child item at the specified index of a given item.
-func (d *OutlineViewDataSource) SetOutlineViewChildOfItem(f func(outlineView IOutlineView, index int, item objc.IObject) objc.ID) {
+func (d *OutlineViewDataSource) SetOutlineViewChildOfItem(f func(outlineView IOutlineView, index int, item objectivec.IObject) objc.ID) {
 	d._OutlineViewChildOfItem = f
 }
 
 // SetOutlineViewDraggingSessionEndedAtPointOperation sets the handler for the OutlineViewDraggingSessionEndedAtPointOperation delegate method.
 //
 // Implement this method to know when the given dragging session has ended.
-func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionEndedAtPointOperation(f func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)) {
+func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionEndedAtPointOperation(f func(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)) {
 	d._OutlineViewDraggingSessionEndedAtPointOperation = f
 }
 
 // SetOutlineViewDraggingSessionWillBeginAtPointForItems sets the handler for the OutlineViewDraggingSessionWillBeginAtPointForItems delegate method.
 //
 // Implement this method know when the given dragging session is about to begin and potentially modify the dragging session.
-func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionWillBeginAtPointForItems(f func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */)) {
+func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionWillBeginAtPointForItems(f func(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, draggedItems foundation.foundation.INSArray)) {
 	d._OutlineViewDraggingSessionWillBeginAtPointForItems = f
 }
 
 // SetOutlineViewIsItemExpandable sets the handler for the OutlineViewIsItemExpandable delegate method.
 //
 // Returns a Boolean value that indicates whether the a given item is expandable.
-func (d *OutlineViewDataSource) SetOutlineViewIsItemExpandable(f func(outlineView IOutlineView, item objc.IObject) bool) {
+func (d *OutlineViewDataSource) SetOutlineViewIsItemExpandable(f func(outlineView IOutlineView, item objectivec.IObject) bool) {
 	d._OutlineViewIsItemExpandable = f
 }
 
 // SetOutlineViewItemForPersistentObject sets the handler for the OutlineViewItemForPersistentObject delegate method.
 //
 // Invoked by   to return the item for the archived  .
-func (d *OutlineViewDataSource) SetOutlineViewItemForPersistentObject(f func(outlineView IOutlineView, object objc.IObject) objc.ID) {
+func (d *OutlineViewDataSource) SetOutlineViewItemForPersistentObject(f func(outlineView IOutlineView, object objectivec.IObject) objc.ID) {
 	d._OutlineViewItemForPersistentObject = f
 }
 
 // SetOutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems sets the handler for the OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems delegate method.
 //
 // Returns an array of filenames for the created files that the receiver promises to create.
-func (d *OutlineViewDataSource) SetOutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(f func(outlineView IOutlineView, dropDestination objc.IObject /* cross-framework: NSURL */, items objc.IObject /* cross-framework: NSArray */) []string) {
+func (d *OutlineViewDataSource) SetOutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(f func(outlineView IOutlineView, dropDestination foundation.foundation.INSURL, items foundation.foundation.INSArray) []string) {
 	d._OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems = f
 }
 
 // SetOutlineViewNumberOfChildrenOfItem sets the handler for the OutlineViewNumberOfChildrenOfItem delegate method.
 //
 // Returns the number of child items encompassed by a given item.
-func (d *OutlineViewDataSource) SetOutlineViewNumberOfChildrenOfItem(f func(outlineView IOutlineView, item objc.IObject) int) {
+func (d *OutlineViewDataSource) SetOutlineViewNumberOfChildrenOfItem(f func(outlineView IOutlineView, item objectivec.IObject) int) {
 	d._OutlineViewNumberOfChildrenOfItem = f
 }
 
 // SetOutlineViewObjectValueForTableColumnByItem sets the handler for the OutlineViewObjectValueForTableColumnByItem delegate method.
 //
 // Invoked by   to return the data object associated with the specified  .
-func (d *OutlineViewDataSource) SetOutlineViewObjectValueForTableColumnByItem(f func(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) objc.ID) {
+func (d *OutlineViewDataSource) SetOutlineViewObjectValueForTableColumnByItem(f func(outlineView IOutlineView, tableColumn ITableColumn, item objectivec.IObject) objc.ID) {
 	d._OutlineViewObjectValueForTableColumnByItem = f
 }
 
 // SetOutlineViewPasteboardWriterForItem sets the handler for the OutlineViewPasteboardWriterForItem delegate method.
 //
 // Implement this method to enable the table to be an   that supports dragging multiple items.
-func (d *OutlineViewDataSource) SetOutlineViewPasteboardWriterForItem(f func(outlineView IOutlineView, item objc.IObject) unsafe.Pointer) {
+func (d *OutlineViewDataSource) SetOutlineViewPasteboardWriterForItem(f func(outlineView IOutlineView, item objectivec.IObject) unsafe.Pointer) {
 	d._OutlineViewPasteboardWriterForItem = f
 }
 
 // SetOutlineViewPersistentObjectForItem sets the handler for the OutlineViewPersistentObjectForItem delegate method.
 //
 // Invoked by   to return an archived object for  .
-func (d *OutlineViewDataSource) SetOutlineViewPersistentObjectForItem(f func(outlineView IOutlineView, item objc.IObject) objc.ID) {
+func (d *OutlineViewDataSource) SetOutlineViewPersistentObjectForItem(f func(outlineView IOutlineView, item objectivec.IObject) objc.ID) {
 	d._OutlineViewPersistentObjectForItem = f
 }
 
 // SetOutlineViewSetObjectValueForTableColumnByItem sets the handler for the OutlineViewSetObjectValueForTableColumnByItem delegate method.
 //
 // Set the data object for a given item in a given column.
-func (d *OutlineViewDataSource) SetOutlineViewSetObjectValueForTableColumnByItem(f func(outlineView IOutlineView, object objc.IObject, tableColumn ITableColumn, item objc.IObject)) {
+func (d *OutlineViewDataSource) SetOutlineViewSetObjectValueForTableColumnByItem(f func(outlineView IOutlineView, object objectivec.IObject, tableColumn ITableColumn, item objectivec.IObject)) {
 	d._OutlineViewSetObjectValueForTableColumnByItem = f
 }
 
 // SetOutlineViewSortDescriptorsDidChange sets the handler for the OutlineViewSortDescriptorsDidChange delegate method.
 //
 // Invoked by an outline view to notify the data source that the descriptors changed and the data may need to be resorted.
-func (d *OutlineViewDataSource) SetOutlineViewSortDescriptorsDidChange(f func(outlineView IOutlineView, oldDescriptors []objc.IObject)) {
+func (d *OutlineViewDataSource) SetOutlineViewSortDescriptorsDidChange(f func(outlineView IOutlineView, oldDescriptors []foundation.SortDescriptor)) {
 	d._OutlineViewSortDescriptorsDidChange = f
 }
 
@@ -179,19 +181,19 @@ func (d *OutlineViewDataSource) SetOutlineViewUpdateDraggingItemsForDrag(f func(
 // SetOutlineViewValidateDropProposedItemProposedChildIndex sets the handler for the OutlineViewValidateDropProposedItemProposedChildIndex delegate method.
 //
 // Used by an outline view to determine a valid drop target.
-func (d *OutlineViewDataSource) SetOutlineViewValidateDropProposedItemProposedChildIndex(f func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation) {
+func (d *OutlineViewDataSource) SetOutlineViewValidateDropProposedItemProposedChildIndex(f func(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) DragOperation) {
 	d._OutlineViewValidateDropProposedItemProposedChildIndex = f
 }
 
 // SetOutlineViewWriteItemsToPasteboard sets the handler for the OutlineViewWriteItemsToPasteboard delegate method.
 //
 // Returns a Boolean value that indicates whether a drag operation is allowed.
-func (d *OutlineViewDataSource) SetOutlineViewWriteItemsToPasteboard(f func(outlineView IOutlineView, items objc.IObject /* cross-framework: NSArray */, pasteboard IPasteboard) bool) {
+func (d *OutlineViewDataSource) SetOutlineViewWriteItemsToPasteboard(f func(outlineView IOutlineView, items foundation.foundation.INSArray, pasteboard IPasteboard) bool) {
 	d._OutlineViewWriteItemsToPasteboard = f
 }
 
 // OutlineViewAcceptDropItemChildIndex implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool {
+func (d *OutlineViewDataSource) OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) bool {
 	if d._OutlineViewAcceptDropItemChildIndex != nil {
 		return d._OutlineViewAcceptDropItemChildIndex(outlineView, info, item, index)
 	}
@@ -205,7 +207,7 @@ func (d *OutlineViewDataSource) HasOutlineViewAcceptDropItemChildIndex() bool {
 }
 
 // OutlineViewChildOfItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewChildOfItem(outlineView IOutlineView, index int, item objc.IObject) objc.ID {
+func (d *OutlineViewDataSource) OutlineViewChildOfItem(outlineView IOutlineView, index int, item objectivec.IObject) objc.ID {
 	if d._OutlineViewChildOfItem != nil {
 		return d._OutlineViewChildOfItem(outlineView, index, item)
 	}
@@ -219,7 +221,7 @@ func (d *OutlineViewDataSource) HasOutlineViewChildOfItem() bool {
 }
 
 // OutlineViewDraggingSessionEndedAtPointOperation implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation) {
+func (d *OutlineViewDataSource) OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation) {
 	if d._OutlineViewDraggingSessionEndedAtPointOperation != nil {
 		d._OutlineViewDraggingSessionEndedAtPointOperation(outlineView, session, screenPoint, operation)
 	}
@@ -231,7 +233,7 @@ func (d *OutlineViewDataSource) HasOutlineViewDraggingSessionEndedAtPointOperati
 }
 
 // OutlineViewDraggingSessionWillBeginAtPointForItems implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */) {
+func (d *OutlineViewDataSource) OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, draggedItems foundation.foundation.INSArray) {
 	if d._OutlineViewDraggingSessionWillBeginAtPointForItems != nil {
 		d._OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView, session, screenPoint, draggedItems)
 	}
@@ -243,7 +245,7 @@ func (d *OutlineViewDataSource) HasOutlineViewDraggingSessionWillBeginAtPointFor
 }
 
 // OutlineViewIsItemExpandable implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewIsItemExpandable(outlineView IOutlineView, item objc.IObject) bool {
+func (d *OutlineViewDataSource) OutlineViewIsItemExpandable(outlineView IOutlineView, item objectivec.IObject) bool {
 	if d._OutlineViewIsItemExpandable != nil {
 		return d._OutlineViewIsItemExpandable(outlineView, item)
 	}
@@ -257,7 +259,7 @@ func (d *OutlineViewDataSource) HasOutlineViewIsItemExpandable() bool {
 }
 
 // OutlineViewItemForPersistentObject implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewItemForPersistentObject(outlineView IOutlineView, object objc.IObject) objc.ID {
+func (d *OutlineViewDataSource) OutlineViewItemForPersistentObject(outlineView IOutlineView, object objectivec.IObject) objc.ID {
 	if d._OutlineViewItemForPersistentObject != nil {
 		return d._OutlineViewItemForPersistentObject(outlineView, object)
 	}
@@ -271,7 +273,7 @@ func (d *OutlineViewDataSource) HasOutlineViewItemForPersistentObject() bool {
 }
 
 // OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(outlineView IOutlineView, dropDestination objc.IObject /* cross-framework: NSURL */, items objc.IObject /* cross-framework: NSArray */) []string {
+func (d *OutlineViewDataSource) OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(outlineView IOutlineView, dropDestination foundation.foundation.INSURL, items foundation.foundation.INSArray) []string {
 	if d._OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems != nil {
 		return d._OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(outlineView, dropDestination, items)
 	}
@@ -285,7 +287,7 @@ func (d *OutlineViewDataSource) HasOutlineViewNamesOfPromisedFilesDroppedAtDesti
 }
 
 // OutlineViewNumberOfChildrenOfItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewNumberOfChildrenOfItem(outlineView IOutlineView, item objc.IObject) int {
+func (d *OutlineViewDataSource) OutlineViewNumberOfChildrenOfItem(outlineView IOutlineView, item objectivec.IObject) int {
 	if d._OutlineViewNumberOfChildrenOfItem != nil {
 		return d._OutlineViewNumberOfChildrenOfItem(outlineView, item)
 	}
@@ -299,7 +301,7 @@ func (d *OutlineViewDataSource) HasOutlineViewNumberOfChildrenOfItem() bool {
 }
 
 // OutlineViewObjectValueForTableColumnByItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewObjectValueForTableColumnByItem(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) objc.ID {
+func (d *OutlineViewDataSource) OutlineViewObjectValueForTableColumnByItem(outlineView IOutlineView, tableColumn ITableColumn, item objectivec.IObject) objc.ID {
 	if d._OutlineViewObjectValueForTableColumnByItem != nil {
 		return d._OutlineViewObjectValueForTableColumnByItem(outlineView, tableColumn, item)
 	}
@@ -313,7 +315,7 @@ func (d *OutlineViewDataSource) HasOutlineViewObjectValueForTableColumnByItem() 
 }
 
 // OutlineViewPasteboardWriterForItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objc.IObject) unsafe.Pointer {
+func (d *OutlineViewDataSource) OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objectivec.IObject) unsafe.Pointer {
 	if d._OutlineViewPasteboardWriterForItem != nil {
 		return d._OutlineViewPasteboardWriterForItem(outlineView, item)
 	}
@@ -327,7 +329,7 @@ func (d *OutlineViewDataSource) HasOutlineViewPasteboardWriterForItem() bool {
 }
 
 // OutlineViewPersistentObjectForItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewPersistentObjectForItem(outlineView IOutlineView, item objc.IObject) objc.ID {
+func (d *OutlineViewDataSource) OutlineViewPersistentObjectForItem(outlineView IOutlineView, item objectivec.IObject) objc.ID {
 	if d._OutlineViewPersistentObjectForItem != nil {
 		return d._OutlineViewPersistentObjectForItem(outlineView, item)
 	}
@@ -341,7 +343,7 @@ func (d *OutlineViewDataSource) HasOutlineViewPersistentObjectForItem() bool {
 }
 
 // OutlineViewSetObjectValueForTableColumnByItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewSetObjectValueForTableColumnByItem(outlineView IOutlineView, object objc.IObject, tableColumn ITableColumn, item objc.IObject) {
+func (d *OutlineViewDataSource) OutlineViewSetObjectValueForTableColumnByItem(outlineView IOutlineView, object objectivec.IObject, tableColumn ITableColumn, item objectivec.IObject) {
 	if d._OutlineViewSetObjectValueForTableColumnByItem != nil {
 		d._OutlineViewSetObjectValueForTableColumnByItem(outlineView, object, tableColumn, item)
 	}
@@ -353,7 +355,7 @@ func (d *OutlineViewDataSource) HasOutlineViewSetObjectValueForTableColumnByItem
 }
 
 // OutlineViewSortDescriptorsDidChange implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewSortDescriptorsDidChange(outlineView IOutlineView, oldDescriptors []objc.IObject) {
+func (d *OutlineViewDataSource) OutlineViewSortDescriptorsDidChange(outlineView IOutlineView, oldDescriptors []foundation.SortDescriptor) {
 	if d._OutlineViewSortDescriptorsDidChange != nil {
 		d._OutlineViewSortDescriptorsDidChange(outlineView, oldDescriptors)
 	}
@@ -377,7 +379,7 @@ func (d *OutlineViewDataSource) HasOutlineViewUpdateDraggingItemsForDrag() bool 
 }
 
 // OutlineViewValidateDropProposedItemProposedChildIndex implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation {
+func (d *OutlineViewDataSource) OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) DragOperation {
 	if d._OutlineViewValidateDropProposedItemProposedChildIndex != nil {
 		return d._OutlineViewValidateDropProposedItemProposedChildIndex(outlineView, info, item, index)
 	}
@@ -391,7 +393,7 @@ func (d *OutlineViewDataSource) HasOutlineViewValidateDropProposedItemProposedCh
 }
 
 // OutlineViewWriteItemsToPasteboard implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewWriteItemsToPasteboard(outlineView IOutlineView, items objc.IObject /* cross-framework: NSArray */, pasteboard IPasteboard) bool {
+func (d *OutlineViewDataSource) OutlineViewWriteItemsToPasteboard(outlineView IOutlineView, items foundation.foundation.INSArray, pasteboard IPasteboard) bool {
 	if d._OutlineViewWriteItemsToPasteboard != nil {
 		return d._OutlineViewWriteItemsToPasteboard(outlineView, items, pasteboard)
 	}
@@ -402,4 +404,196 @@ func (d *OutlineViewDataSource) OutlineViewWriteItemsToPasteboard(outlineView IO
 // HasOutlineViewWriteItemsToPasteboard returns true if a handler for OutlineViewWriteItemsToPasteboard has been set.
 func (d *OutlineViewDataSource) HasOutlineViewWriteItemsToPasteboard() bool {
 	return d._OutlineViewWriteItemsToPasteboard != nil
+}
+
+// OutlineViewDataSourceObject wraps an existing Objective-C object that conforms to the POutlineViewDataSource protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type OutlineViewDataSourceObject struct {
+	objectivec.Object
+}
+
+// NewOutlineViewDataSourceObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSOutlineViewDataSource protocol.
+func NewOutlineViewDataSourceObject(obj objectivec.Object) *OutlineViewDataSourceObject {
+	return &OutlineViewDataSourceObject{obj}
+}
+
+// Make sure OutlineViewDataSourceObject implements POutlineViewDataSource.
+var _ POutlineViewDataSource = (*OutlineViewDataSourceObject)(nil)
+
+// OutlineViewAcceptDropItemChildIndex implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("outlineView:acceptDrop:item:childIndex:"), outlineView, info, item, index)
+}
+
+// HasOutlineViewAcceptDropItemChildIndex returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewAcceptDropItemChildIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewChildOfItem implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewChildOfItem(outlineView IOutlineView, index int, item objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("outlineView:child:ofItem:"), outlineView, index, item)
+}
+
+// HasOutlineViewChildOfItem returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewChildOfItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewDraggingSessionEndedAtPointOperation implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation) {
+	objc.Send[objc.ID](o.ID, objc.Sel("outlineView:draggingSession:endedAtPoint:operation:"), outlineView, session, screenPoint, operation)
+}
+
+// HasOutlineViewDraggingSessionEndedAtPointOperation returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewDraggingSessionEndedAtPointOperation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewDraggingSessionWillBeginAtPointForItems implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint corefoundation.CGPoint, draggedItems foundation.foundation.INSArray) {
+	objc.Send[objc.ID](o.ID, objc.Sel("outlineView:draggingSession:willBeginAtPoint:forItems:"), outlineView, session, screenPoint, draggedItems)
+}
+
+// HasOutlineViewDraggingSessionWillBeginAtPointForItems returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewDraggingSessionWillBeginAtPointForItems() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewIsItemExpandable implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewIsItemExpandable(outlineView IOutlineView, item objectivec.IObject) bool {
+	return objc.Send[bool](o.ID, objc.Sel("outlineView:isItemExpandable:"), outlineView, item)
+}
+
+// HasOutlineViewIsItemExpandable returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewIsItemExpandable() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewItemForPersistentObject implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewItemForPersistentObject(outlineView IOutlineView, object objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("outlineView:itemForPersistentObject:"), outlineView, object)
+}
+
+// HasOutlineViewItemForPersistentObject returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewItemForPersistentObject() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(outlineView IOutlineView, dropDestination foundation.foundation.INSURL, items foundation.foundation.INSArray) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:"), outlineView, dropDestination, items)
+}
+
+// HasOutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewNumberOfChildrenOfItem implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewNumberOfChildrenOfItem(outlineView IOutlineView, item objectivec.IObject) int {
+	return objc.Send[int](o.ID, objc.Sel("outlineView:numberOfChildrenOfItem:"), outlineView, item)
+}
+
+// HasOutlineViewNumberOfChildrenOfItem returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewNumberOfChildrenOfItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewObjectValueForTableColumnByItem implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewObjectValueForTableColumnByItem(outlineView IOutlineView, tableColumn ITableColumn, item objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("outlineView:objectValueForTableColumn:byItem:"), outlineView, tableColumn, item)
+}
+
+// HasOutlineViewObjectValueForTableColumnByItem returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewObjectValueForTableColumnByItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewPasteboardWriterForItem implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objectivec.IObject) unsafe.Pointer {
+	return objc.Send[unsafe.Pointer](o.ID, objc.Sel("outlineView:pasteboardWriterForItem:"), outlineView, item)
+}
+
+// HasOutlineViewPasteboardWriterForItem returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewPasteboardWriterForItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewPersistentObjectForItem implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewPersistentObjectForItem(outlineView IOutlineView, item objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("outlineView:persistentObjectForItem:"), outlineView, item)
+}
+
+// HasOutlineViewPersistentObjectForItem returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewPersistentObjectForItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewSetObjectValueForTableColumnByItem implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewSetObjectValueForTableColumnByItem(outlineView IOutlineView, object objectivec.IObject, tableColumn ITableColumn, item objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("outlineView:setObjectValue:forTableColumn:byItem:"), outlineView, object, tableColumn, item)
+}
+
+// HasOutlineViewSetObjectValueForTableColumnByItem returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewSetObjectValueForTableColumnByItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewSortDescriptorsDidChange implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewSortDescriptorsDidChange(outlineView IOutlineView, oldDescriptors []foundation.SortDescriptor) {
+	objc.Send[objc.ID](o.ID, objc.Sel("outlineView:sortDescriptorsDidChange:"), outlineView, oldDescriptors)
+}
+
+// HasOutlineViewSortDescriptorsDidChange returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewSortDescriptorsDidChange() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewUpdateDraggingItemsForDrag implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewUpdateDraggingItemsForDrag(outlineView IOutlineView, draggingInfo unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("outlineView:updateDraggingItemsForDrag:"), outlineView, draggingInfo)
+}
+
+// HasOutlineViewUpdateDraggingItemsForDrag returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewUpdateDraggingItemsForDrag() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewValidateDropProposedItemProposedChildIndex implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objectivec.IObject, index int) DragOperation {
+	return objc.Send[DragOperation](o.ID, objc.Sel("outlineView:validateDrop:proposedItem:proposedChildIndex:"), outlineView, info, item, index)
+}
+
+// HasOutlineViewValidateDropProposedItemProposedChildIndex returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewValidateDropProposedItemProposedChildIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// OutlineViewWriteItemsToPasteboard implements the POutlineViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *OutlineViewDataSourceObject) OutlineViewWriteItemsToPasteboard(outlineView IOutlineView, items foundation.foundation.INSArray, pasteboard IPasteboard) bool {
+	return objc.Send[bool](o.ID, objc.Sel("outlineView:writeItems:toPasteboard:"), outlineView, items, pasteboard)
+}
+
+// HasOutlineViewWriteItemsToPasteboard returns true; this is a placeholder for optional method checks.
+func (o *OutlineViewDataSourceObject) HasOutlineViewWriteItemsToPasteboard() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

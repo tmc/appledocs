@@ -158,7 +158,7 @@ func NewCNNConvolutionDescriptorCnnConvolutionDescriptorWithKernelWidthKernelHei
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionDescriptor/init(coder:)
-func NewCNNConvolutionDescriptorWithCoder(aDecoder foundation.Coder) CNNConvolutionDescriptor {
+func NewCNNConvolutionDescriptorWithCoder(aDecoder foundation.foundation.INSCoder) CNNConvolutionDescriptor {
 	instance := getCNNConvolutionDescriptorClass().Alloc()
 	rv := objc.Send[CNNConvolutionDescriptor](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -222,7 +222,7 @@ func (c_ CNNConvolutionDescriptor) SetBatchNormalizationParametersForInferenceWi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionDescriptor/encode(with:)
-func (c_ CNNConvolutionDescriptor) EncodeWithCoder(aCoder foundation.Coder) {
+func (c_ CNNConvolutionDescriptor) EncodeWithCoder(aCoder foundation.foundation.INSCoder) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeWithCoder:"), aCoder)
 }
 

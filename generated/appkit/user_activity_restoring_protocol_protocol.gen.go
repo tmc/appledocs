@@ -17,5 +17,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring
 type PUserActivityRestoring interface {
 	// Required methods
-	RestoreUserActivityState(userActivity foundation.UserActivity)/* debug [protocol_interface/required_method]: RestoreUserActivityState */
+	RestoreUserActivityState(userActivity foundation.foundation.INSUserActivity)
 }

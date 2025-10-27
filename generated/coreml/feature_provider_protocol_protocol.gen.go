@@ -23,5 +23,5 @@ import (
 // See: doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider
 type PFeatureProvider interface {
 	// Required methods
-	FeatureValueForName(featureName objc.IObject /* cross-framework: NSString */) FeatureValue/* debug [protocol_interface/required_method]: FeatureValueForName */
+	FeatureValueForName(featureName foundation.foundation.INSString) IFeatureValue
 }

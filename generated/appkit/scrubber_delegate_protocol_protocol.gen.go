@@ -6,7 +6,9 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PScrubberDelegate is the NSScrubberDelegate protocol interface.
@@ -25,7 +27,7 @@ type PScrubberDelegate interface {
 	HasDidCancelInteractingWithScrubber() bool
 	DidFinishInteractingWithScrubber(scrubber IScrubber)
 	HasDidFinishInteractingWithScrubber() bool
-	ScrubberDidChangeVisibleRange(scrubber IScrubber, visibleRange corefoundation.Range)
+	ScrubberDidChangeVisibleRange(scrubber IScrubber, visibleRange foundation.Range)
 	HasScrubberDidChangeVisibleRange() bool
 	ScrubberDidHighlightItemAtIndex(scrubber IScrubber, highlightedIndex int)
 	HasScrubberDidHighlightItemAtIndex() bool
@@ -40,7 +42,7 @@ type ScrubberDelegate struct {
 	_DidBeginInteractingWithScrubber func(scrubber IScrubber)
 	_DidCancelInteractingWithScrubber func(scrubber IScrubber)
 	_DidFinishInteractingWithScrubber func(scrubber IScrubber)
-	_ScrubberDidChangeVisibleRange func(scrubber IScrubber, visibleRange corefoundation.Range)
+	_ScrubberDidChangeVisibleRange func(scrubber IScrubber, visibleRange foundation.Range)
 	_ScrubberDidHighlightItemAtIndex func(scrubber IScrubber, highlightedIndex int)
 	_ScrubberDidSelectItemAtIndex func(scrubber IScrubber, selectedIndex int)
 }
@@ -69,7 +71,7 @@ func (d *ScrubberDelegate) SetDidFinishInteractingWithScrubber(f func(scrubber I
 // SetScrubberDidChangeVisibleRange sets the handler for the ScrubberDidChangeVisibleRange delegate method.
 //
 // Tells the delegate that the range of items currently visible in the scrubber has changed.
-func (d *ScrubberDelegate) SetScrubberDidChangeVisibleRange(f func(scrubber IScrubber, visibleRange corefoundation.Range)) {
+func (d *ScrubberDelegate) SetScrubberDidChangeVisibleRange(f func(scrubber IScrubber, visibleRange foundation.Range)) {
 	d._ScrubberDidChangeVisibleRange = f
 }
 
@@ -124,7 +126,7 @@ func (d *ScrubberDelegate) HasDidFinishInteractingWithScrubber() bool {
 }
 
 // ScrubberDidChangeVisibleRange implements the PScrubberDelegate interface.
-func (d *ScrubberDelegate) ScrubberDidChangeVisibleRange(scrubber IScrubber, visibleRange corefoundation.Range) {
+func (d *ScrubberDelegate) ScrubberDidChangeVisibleRange(scrubber IScrubber, visibleRange foundation.Range) {
 	if d._ScrubberDidChangeVisibleRange != nil {
 		d._ScrubberDidChangeVisibleRange(scrubber, visibleRange)
 	}
@@ -157,4 +159,86 @@ func (d *ScrubberDelegate) ScrubberDidSelectItemAtIndex(scrubber IScrubber, sele
 // HasScrubberDidSelectItemAtIndex returns true if a handler for ScrubberDidSelectItemAtIndex has been set.
 func (d *ScrubberDelegate) HasScrubberDidSelectItemAtIndex() bool {
 	return d._ScrubberDidSelectItemAtIndex != nil
+}
+
+// ScrubberDelegateObject wraps an existing Objective-C object that conforms to the PScrubberDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ScrubberDelegateObject struct {
+	objectivec.Object
+}
+
+// NewScrubberDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSScrubberDelegate protocol.
+func NewScrubberDelegateObject(obj objectivec.Object) *ScrubberDelegateObject {
+	return &ScrubberDelegateObject{obj}
+}
+
+// Make sure ScrubberDelegateObject implements PScrubberDelegate.
+var _ PScrubberDelegate = (*ScrubberDelegateObject)(nil)
+
+// DidBeginInteractingWithScrubber implements the PScrubberDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ScrubberDelegateObject) DidBeginInteractingWithScrubber(scrubber IScrubber) {
+	objc.Send[objc.ID](o.ID, objc.Sel("didBeginInteractingWithScrubber:"), scrubber)
+}
+
+// HasDidBeginInteractingWithScrubber returns true; this is a placeholder for optional method checks.
+func (o *ScrubberDelegateObject) HasDidBeginInteractingWithScrubber() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DidCancelInteractingWithScrubber implements the PScrubberDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ScrubberDelegateObject) DidCancelInteractingWithScrubber(scrubber IScrubber) {
+	objc.Send[objc.ID](o.ID, objc.Sel("didCancelInteractingWithScrubber:"), scrubber)
+}
+
+// HasDidCancelInteractingWithScrubber returns true; this is a placeholder for optional method checks.
+func (o *ScrubberDelegateObject) HasDidCancelInteractingWithScrubber() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DidFinishInteractingWithScrubber implements the PScrubberDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ScrubberDelegateObject) DidFinishInteractingWithScrubber(scrubber IScrubber) {
+	objc.Send[objc.ID](o.ID, objc.Sel("didFinishInteractingWithScrubber:"), scrubber)
+}
+
+// HasDidFinishInteractingWithScrubber returns true; this is a placeholder for optional method checks.
+func (o *ScrubberDelegateObject) HasDidFinishInteractingWithScrubber() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ScrubberDidChangeVisibleRange implements the PScrubberDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ScrubberDelegateObject) ScrubberDidChangeVisibleRange(scrubber IScrubber, visibleRange foundation.Range) {
+	objc.Send[objc.ID](o.ID, objc.Sel("scrubber:didChangeVisibleRange:"), scrubber, visibleRange)
+}
+
+// HasScrubberDidChangeVisibleRange returns true; this is a placeholder for optional method checks.
+func (o *ScrubberDelegateObject) HasScrubberDidChangeVisibleRange() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ScrubberDidHighlightItemAtIndex implements the PScrubberDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ScrubberDelegateObject) ScrubberDidHighlightItemAtIndex(scrubber IScrubber, highlightedIndex int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("scrubber:didHighlightItemAtIndex:"), scrubber, highlightedIndex)
+}
+
+// HasScrubberDidHighlightItemAtIndex returns true; this is a placeholder for optional method checks.
+func (o *ScrubberDelegateObject) HasScrubberDidHighlightItemAtIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ScrubberDidSelectItemAtIndex implements the PScrubberDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ScrubberDelegateObject) ScrubberDidSelectItemAtIndex(scrubber IScrubber, selectedIndex int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("scrubber:didSelectItemAtIndex:"), scrubber, selectedIndex)
+}
+
+// HasScrubberDidSelectItemAtIndex returns true; this is a placeholder for optional method checks.
+func (o *ScrubberDelegateObject) HasScrubberDidSelectItemAtIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

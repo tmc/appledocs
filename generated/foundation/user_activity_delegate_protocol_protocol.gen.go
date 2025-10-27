@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PUserActivityDelegate is the NSUserActivityDelegate protocol interface.
@@ -51,4 +53,31 @@ func (d *UserActivityDelegate) UserActivityWasContinued(userActivity IUserActivi
 // HasUserActivityWasContinued returns true if a handler for UserActivityWasContinued has been set.
 func (d *UserActivityDelegate) HasUserActivityWasContinued() bool {
 	return d._UserActivityWasContinued != nil
+}
+
+// UserActivityDelegateObject wraps an existing Objective-C object that conforms to the PUserActivityDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type UserActivityDelegateObject struct {
+	objectivec.Object
+}
+
+// NewUserActivityDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSUserActivityDelegate protocol.
+func NewUserActivityDelegateObject(obj objectivec.Object) *UserActivityDelegateObject {
+	return &UserActivityDelegateObject{obj}
+}
+
+// Make sure UserActivityDelegateObject implements PUserActivityDelegate.
+var _ PUserActivityDelegate = (*UserActivityDelegateObject)(nil)
+
+// UserActivityWasContinued implements the PUserActivityDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *UserActivityDelegateObject) UserActivityWasContinued(userActivity IUserActivity) {
+	objc.Send[objc.ID](o.ID, objc.Sel("userActivityWasContinued:"), userActivity)
+}
+
+// HasUserActivityWasContinued returns true; this is a placeholder for optional method checks.
+func (o *UserActivityDelegateObject) HasUserActivityWasContinued() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

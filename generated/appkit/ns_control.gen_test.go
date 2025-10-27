@@ -9,14 +9,6 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewControl
 
-// ExampleNewControlWithFrame demonstrates how to create a Control instance using NewControlWithFrame.
-// Initializes a control with the specified frame rectangle.
-func ExampleNewControlWithFrame() {
-	_ = appkit.NewControlWithFrame(
-		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
-	)
-	// Output:
-}
 // ExampleControl_AbortEditing demonstrates using AbortEditing on a Control instance.
 // Terminates the current editing operation and discards any edited text.
 func ExampleControl_AbortEditing() {

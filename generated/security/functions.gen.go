@@ -2,7 +2,7 @@
 
 package security
 
-/* debug [functions.gen.go]: Generating 396 functions for Security */
+
 import (
 	"unsafe"
 
@@ -842,7 +842,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLCopySimpleContents
 func SecACLCopySimpleContents(acl SecACLRef, applicationList unsafe.Pointer, description unsafe.Pointer, promptSelector unsafe.Pointer) unsafe.Pointer {
 	return _SecACLCopySimpleContents(acl, applicationList, description, promptSelector)
-}/* debug [functions.gen.go/function]: SecACLCopySimpleContents */
+}
 
 // Creates a new access control list entry from the application list, description, and prompt selector provided and adds it to an item’s access object.
 //
@@ -855,7 +855,7 @@ func SecACLCopySimpleContents(acl SecACLRef, applicationList unsafe.Pointer, des
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLCreateFromSimpleContents
 func SecACLCreateFromSimpleContents(access SecAccessRef, applicationList ArrayRef, description StringRef, promptSelector unsafe.Pointer, newAcl unsafe.Pointer) unsafe.Pointer {
 	return _SecACLCreateFromSimpleContents(access, applicationList, description, promptSelector, newAcl)
-}/* debug [functions.gen.go/function]: SecACLCreateFromSimpleContents */
+}
 
 // Retrieves the CSSM authorization tags of a given access control list entry.
 //
@@ -868,7 +868,7 @@ func SecACLCreateFromSimpleContents(access SecAccessRef, applicationList ArrayRe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLGetAuthorizations
 func SecACLGetAuthorizations(acl SecACLRef, tags unsafe.Pointer, tagCount unsafe.Pointer) unsafe.Pointer {
 	return _SecACLGetAuthorizations(acl, tags, tagCount)
-}/* debug [functions.gen.go/function]: SecACLGetAuthorizations */
+}
 
 // Sets the CSSM authorization tags for a given access control list entry.
 //
@@ -881,7 +881,7 @@ func SecACLGetAuthorizations(acl SecACLRef, tags unsafe.Pointer, tagCount unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLSetAuthorizations
 func SecACLSetAuthorizations(acl SecACLRef, tags unsafe.Pointer, tagCount unsafe.Pointer) unsafe.Pointer {
 	return _SecACLSetAuthorizations(acl, tags, tagCount)
-}/* debug [functions.gen.go/function]: SecACLSetAuthorizations */
+}
 
 // Sets the application list, description, and prompt selector for a given access control list entry.
 //
@@ -894,7 +894,7 @@ func SecACLSetAuthorizations(acl SecACLRef, tags unsafe.Pointer, tagCount unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLSetSimpleContents
 func SecACLSetSimpleContents(acl SecACLRef, applicationList ArrayRef, description StringRef, promptSelector unsafe.Pointer) unsafe.Pointer {
 	return _SecACLSetSimpleContents(acl, applicationList, description, promptSelector)
-}/* debug [functions.gen.go/function]: SecACLSetSimpleContents */
+}
 
 // Retrieves selected access control lists from a given access object.
 //
@@ -907,7 +907,7 @@ func SecACLSetSimpleContents(acl SecACLRef, applicationList ArrayRef, descriptio
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCopySelectedACLList
 func SecAccessCopySelectedACLList(accessRef SecAccessRef, action CSSM_ACL_AUTHORIZATION_TAG, aclList unsafe.Pointer) unsafe.Pointer {
 	return _SecAccessCopySelectedACLList(accessRef, action, aclList)
-}/* debug [functions.gen.go/function]: SecAccessCopySelectedACLList */
+}
 
 // Creates a new access object using the owner and access control list you provide.
 //
@@ -920,7 +920,7 @@ func SecAccessCopySelectedACLList(accessRef SecAccessRef, action CSSM_ACL_AUTHOR
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCreateFromOwnerAndACL
 func SecAccessCreateFromOwnerAndACL(owner unsafe.Pointer, aclCount unsafe.Pointer, acls unsafe.Pointer, accessRef unsafe.Pointer) unsafe.Pointer {
 	return _SecAccessCreateFromOwnerAndACL(owner, aclCount, acls, accessRef)
-}/* debug [functions.gen.go/function]: SecAccessCreateFromOwnerAndACL */
+}
 
 // Retrieves the owner and the access control list of a given access object.
 //
@@ -933,7 +933,7 @@ func SecAccessCreateFromOwnerAndACL(owner unsafe.Pointer, aclCount unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessGetOwnerAndACL
 func SecAccessGetOwnerAndACL(accessRef SecAccessRef, owner unsafe.Pointer, aclCount unsafe.Pointer, acls unsafe.Pointer) unsafe.Pointer {
 	return _SecAccessGetOwnerAndACL(accessRef, owner, aclCount, acls)
-}/* debug [functions.gen.go/function]: SecAccessGetOwnerAndACL */
+}
 
 // SecCertificateCopyNotValidAfterDate is a Security function.
 //
@@ -942,7 +942,7 @@ func SecAccessGetOwnerAndACL(accessRef SecAccessRef, owner unsafe.Pointer, aclCo
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyNotValidAfterDate(_:)
 func SecCertificateCopyNotValidAfterDate(certificate SecCertificateRef) DateRef {
 	return _SecCertificateCopyNotValidAfterDate(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyNotValidAfterDate */
+}
 
 // Retrieves the preferred certificate for the specified name and key use.
 //
@@ -955,7 +955,7 @@ func SecCertificateCopyNotValidAfterDate(certificate SecCertificateRef) DateRef 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyPreference
 func SecCertificateCopyPreference(name StringRef, keyUsage unsafe.Pointer, certificate unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateCopyPreference(name, keyUsage, certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyPreference */
+}
 
 // Creates a certificate object based on the specified data, type, and encoding.
 //
@@ -968,7 +968,7 @@ func SecCertificateCopyPreference(name StringRef, keyUsage unsafe.Pointer, certi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCreateFromData
 func SecCertificateCreateFromData(data unsafe.Pointer, type_ CSSM_CERT_TYPE, encoding CSSM_CERT_ENCODING, certificate unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateCreateFromData(data, type_, encoding, certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCreateFromData */
+}
 
 // Retrieves the algorithm identifier for a certificate.
 //
@@ -981,7 +981,7 @@ func SecCertificateCreateFromData(data unsafe.Pointer, type_ CSSM_CERT_TYPE, enc
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetAlgorithmID
 func SecCertificateGetAlgorithmID(certificate SecCertificateRef, algid unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateGetAlgorithmID(certificate, algid)
-}/* debug [functions.gen.go/function]: SecCertificateGetAlgorithmID */
+}
 
 // Retrieves the certificate library handle from a certificate object.
 //
@@ -994,7 +994,7 @@ func SecCertificateGetAlgorithmID(certificate SecCertificateRef, algid unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetCLHandle
 func SecCertificateGetCLHandle(certificate SecCertificateRef, clHandle unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateGetCLHandle(certificate, clHandle)
-}/* debug [functions.gen.go/function]: SecCertificateGetCLHandle */
+}
 
 // Retrieves the data for a certificate.
 //
@@ -1007,7 +1007,7 @@ func SecCertificateGetCLHandle(certificate SecCertificateRef, clHandle unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetData
 func SecCertificateGetData(certificate SecCertificateRef, data unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateGetData(certificate, data)
-}/* debug [functions.gen.go/function]: SecCertificateGetData */
+}
 
 // Unsupported.
 //
@@ -1020,7 +1020,7 @@ func SecCertificateGetData(certificate SecCertificateRef, data unsafe.Pointer) u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetIssuer
 func SecCertificateGetIssuer(certificate SecCertificateRef, issuer unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateGetIssuer(certificate, issuer)
-}/* debug [functions.gen.go/function]: SecCertificateGetIssuer */
+}
 
 // Unsupported.
 //
@@ -1033,7 +1033,7 @@ func SecCertificateGetIssuer(certificate SecCertificateRef, issuer unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetSubject
 func SecCertificateGetSubject(certificate SecCertificateRef, subject unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateGetSubject(certificate, subject)
-}/* debug [functions.gen.go/function]: SecCertificateGetSubject */
+}
 
 // Retrieves the type of a specified certificate.
 //
@@ -1046,7 +1046,7 @@ func SecCertificateGetSubject(certificate SecCertificateRef, subject unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetType
 func SecCertificateGetType(certificate SecCertificateRef, certificateType unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateGetType(certificate, certificateType)
-}/* debug [functions.gen.go/function]: SecCertificateGetType */
+}
 
 // Sets the preferred certificate for a specified name, key use, and date.
 //
@@ -1059,7 +1059,7 @@ func SecCertificateGetType(certificate SecCertificateRef, certificateType unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateSetPreference
 func SecCertificateSetPreference(certificate SecCertificateRef, name StringRef, keyUsage unsafe.Pointer, date DateRef) unsafe.Pointer {
 	return _SecCertificateSetPreference(certificate, name, keyUsage, date)
-}/* debug [functions.gen.go/function]: SecCertificateSetPreference */
+}
 
 // Returns the preferred identity for the specified name and key use.
 //
@@ -1072,7 +1072,7 @@ func SecCertificateSetPreference(certificate SecCertificateRef, name StringRef, 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCopyPreference
 func SecIdentityCopyPreference(name StringRef, keyUsage CSSM_KEYUSE, validIssuers ArrayRef, identity unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentityCopyPreference(name, keyUsage, validIssuers, identity)
-}/* debug [functions.gen.go/function]: SecIdentityCopyPreference */
+}
 
 // SecIdentityCreate is a Security function.
 //
@@ -1081,7 +1081,7 @@ func SecIdentityCopyPreference(name StringRef, keyUsage CSSM_KEYUSE, validIssuer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCreate(_:_:_:)
 func SecIdentityCreate(allocator AllocatorRef, certificate SecCertificateRef, privateKey SecKeyRef) SecIdentityRef {
 	return _SecIdentityCreate(allocator, certificate, privateKey)
-}/* debug [functions.gen.go/function]: SecIdentityCreate */
+}
 
 // Finds the next identity matching specified search criteria
 //
@@ -1094,7 +1094,7 @@ func SecIdentityCreate(allocator AllocatorRef, certificate SecCertificateRef, pr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentitySearchCopyNext
 func SecIdentitySearchCopyNext(searchRef SecIdentitySearchRef, identity unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentitySearchCopyNext(searchRef, identity)
-}/* debug [functions.gen.go/function]: SecIdentitySearchCopyNext */
+}
 
 // Creates a search object for finding identities.
 //
@@ -1107,7 +1107,7 @@ func SecIdentitySearchCopyNext(searchRef SecIdentitySearchRef, identity unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentitySearchCreate
 func SecIdentitySearchCreate(keychainOrArray TypeRef, keyUsage CSSM_KEYUSE, searchRef unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentitySearchCreate(keychainOrArray, keyUsage, searchRef)
-}/* debug [functions.gen.go/function]: SecIdentitySearchCreate */
+}
 
 // Returns the unique identifier of the opaque type to which a object belongs.
 //
@@ -1120,7 +1120,7 @@ func SecIdentitySearchCreate(keychainOrArray TypeRef, keyUsage CSSM_KEYUSE, sear
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentitySearchGetTypeID
 func SecIdentitySearchGetTypeID() TypeID {
 	return _SecIdentitySearchGetTypeID()
-}/* debug [functions.gen.go/function]: SecIdentitySearchGetTypeID */
+}
 
 // Sets the preferred identity for the specified name and key use.
 //
@@ -1133,7 +1133,7 @@ func SecIdentitySearchGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentitySetPreference
 func SecIdentitySetPreference(identity SecIdentityRef, name StringRef, keyUsage CSSM_KEYUSE) unsafe.Pointer {
 	return _SecIdentitySetPreference(identity, name, keyUsage)
-}/* debug [functions.gen.go/function]: SecIdentitySetPreference */
+}
 
 // Creates an asymmetric key pair and stores it in a keychain.
 //
@@ -1146,7 +1146,7 @@ func SecIdentitySetPreference(identity SecIdentityRef, name StringRef, keyUsage 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreatePair
 func SecKeyCreatePair(keychainRef SecKeychainRef, algorithm CSSM_ALGORITHMS, keySizeInBits unsafe.Pointer, contextHandle CSSM_CC_HANDLE, publicKeyUsage CSSM_KEYUSE, publicKeyAttr unsafe.Pointer, privateKeyUsage CSSM_KEYUSE, privateKeyAttr unsafe.Pointer, initialAccess SecAccessRef, publicKey unsafe.Pointer, privateKey unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyCreatePair(keychainRef, algorithm, keySizeInBits, contextHandle, publicKeyUsage, publicKeyAttr, privateKeyUsage, privateKeyAttr, initialAccess, publicKey, privateKey)
-}/* debug [functions.gen.go/function]: SecKeyCreatePair */
+}
 
 // Creates a symmetric key and optionally stores it in a keychain.
 //
@@ -1159,7 +1159,7 @@ func SecKeyCreatePair(keychainRef SecKeychainRef, algorithm CSSM_ALGORITHMS, key
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGenerate
 func SecKeyGenerate(keychainRef SecKeychainRef, algorithm CSSM_ALGORITHMS, keySizeInBits unsafe.Pointer, contextHandle CSSM_CC_HANDLE, keyUsage CSSM_KEYUSE, keyAttr unsafe.Pointer, initialAccess SecAccessRef, keyRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyGenerate(keychainRef, algorithm, keySizeInBits, contextHandle, keyUsage, keyAttr, initialAccess, keyRef)
-}/* debug [functions.gen.go/function]: SecKeyGenerate */
+}
 
 // Returns the CSSM CSP handle for a key.
 //
@@ -1172,7 +1172,7 @@ func SecKeyGenerate(keychainRef SecKeychainRef, algorithm CSSM_ALGORITHMS, keySi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGetCSPHandle
 func SecKeyGetCSPHandle(keyRef SecKeyRef, cspHandle unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyGetCSPHandle(keyRef, cspHandle)
-}/* debug [functions.gen.go/function]: SecKeyGetCSPHandle */
+}
 
 // Retrieves a pointer to the structure containing the key stored in a keychain item.
 //
@@ -1185,7 +1185,7 @@ func SecKeyGetCSPHandle(keyRef SecKeyRef, cspHandle unsafe.Pointer) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGetCSSMKey
 func SecKeyGetCSSMKey(key SecKeyRef, cssmKey unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyGetCSSMKey(key, cssmKey)
-}/* debug [functions.gen.go/function]: SecKeyGetCSSMKey */
+}
 
 // Returns an access credential for a key.
 //
@@ -1198,7 +1198,7 @@ func SecKeyGetCSSMKey(key SecKeyRef, cssmKey unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGetCredentials
 func SecKeyGetCredentials(keyRef SecKeyRef, operation CSSM_ACL_AUTHORIZATION_TAG, credentialType SecCredentialType, outCredentials unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyGetCredentials(keyRef, operation, credentialType, outCredentials)
-}/* debug [functions.gen.go/function]: SecKeyGetCredentials */
+}
 
 // Returns the CSSM CSP handle for the given keychain object.
 //
@@ -1211,7 +1211,7 @@ func SecKeyGetCredentials(keyRef SecKeyRef, operation CSSM_ACL_AUTHORIZATION_TAG
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetCSPHandle
 func SecKeychainGetCSPHandle(keychain SecKeychainRef, cspHandle unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetCSPHandle(keychain, cspHandle)
-}/* debug [functions.gen.go/function]: SecKeychainGetCSPHandle */
+}
 
 // Returns the CSSM database handle for a given keychain object.
 //
@@ -1224,7 +1224,7 @@ func SecKeychainGetCSPHandle(keychain SecKeychainRef, cspHandle unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetDLDBHandle
 func SecKeychainGetDLDBHandle(keychain SecKeychainRef, dldbHandle unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetDLDBHandle(keychain, dldbHandle)
-}/* debug [functions.gen.go/function]: SecKeychainGetDLDBHandle */
+}
 
 // Exports one or more certificates, keys, or identities.
 //
@@ -1237,7 +1237,7 @@ func SecKeychainGetDLDBHandle(keychain SecKeychainRef, dldbHandle unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemExport
 func SecKeychainItemExport(keychainItemOrArray TypeRef, outputFormat SecExternalFormat, flags SecItemImportExportFlags, keyParams unsafe.Pointer, exportedData unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemExport(keychainItemOrArray, outputFormat, flags, keyParams, exportedData)
-}/* debug [functions.gen.go/function]: SecKeychainItemExport */
+}
 
 // Returns the CSSM database handle for a given keychain item object.
 //
@@ -1250,7 +1250,7 @@ func SecKeychainItemExport(keychainItemOrArray TypeRef, outputFormat SecExternal
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemGetDLDBHandle
 func SecKeychainItemGetDLDBHandle(keyItemRef SecKeychainItemRef, dldbHandle unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemGetDLDBHandle(keyItemRef, dldbHandle)
-}/* debug [functions.gen.go/function]: SecKeychainItemGetDLDBHandle */
+}
 
 // Returns a CSSM unique record for the given keychain item object.
 //
@@ -1263,7 +1263,7 @@ func SecKeychainItemGetDLDBHandle(keyItemRef SecKeychainItemRef, dldbHandle unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemGetUniqueRecordID
 func SecKeychainItemGetUniqueRecordID(itemRef SecKeychainItemRef, uniqueRecordID unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemGetUniqueRecordID(itemRef, uniqueRecordID)
-}/* debug [functions.gen.go/function]: SecKeychainItemGetUniqueRecordID */
+}
 
 // Imports one or more certificates, keys, or identities and adds them to a keychain.
 //
@@ -1276,7 +1276,7 @@ func SecKeychainItemGetUniqueRecordID(itemRef SecKeychainItemRef, uniqueRecordID
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemImport
 func SecKeychainItemImport(importedData DataRef, fileNameOrExtension StringRef, inputFormat unsafe.Pointer, itemType unsafe.Pointer, flags SecItemImportExportFlags, keyParams unsafe.Pointer, importKeychain SecKeychainRef, outItems unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemImport(importedData, fileNameOrExtension, inputFormat, itemType, flags, keyParams, importKeychain, outItems)
-}/* debug [functions.gen.go/function]: SecKeychainItemImport */
+}
 
 // Finds the next keychain item matching the given search criteria.
 //
@@ -1289,7 +1289,7 @@ func SecKeychainItemImport(importedData DataRef, fileNameOrExtension StringRef, 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSearchCopyNext
 func SecKeychainSearchCopyNext(searchRef SecKeychainSearchRef, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainSearchCopyNext(searchRef, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainSearchCopyNext */
+}
 
 // Creates a search object matching a list of zero or more attributes.
 //
@@ -1302,7 +1302,7 @@ func SecKeychainSearchCopyNext(searchRef SecKeychainSearchRef, itemRef unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSearchCreateFromAttributes
 func SecKeychainSearchCreateFromAttributes(keychainOrArray TypeRef, itemClass SecItemClass, attrList unsafe.Pointer, searchRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainSearchCreateFromAttributes(keychainOrArray, itemClass, attrList, searchRef)
-}/* debug [functions.gen.go/function]: SecKeychainSearchCreateFromAttributes */
+}
 
 // Returns the unique identifier of the opaque type to which a keychain search object belongs.
 //
@@ -1315,7 +1315,7 @@ func SecKeychainSearchCreateFromAttributes(keychainOrArray TypeRef, itemClass Se
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSearchGetTypeID
 func SecKeychainSearchGetTypeID() TypeID {
 	return _SecKeychainSearchGetTypeID()
-}/* debug [functions.gen.go/function]: SecKeychainSearchGetTypeID */
+}
 
 // Returns a policy object for the specified policy type object identifier.
 //
@@ -1328,7 +1328,7 @@ func SecKeychainSearchGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyCreateWithOID
 func SecPolicyCreateWithOID(policyOID TypeRef) SecPolicyRef {
 	return _SecPolicyCreateWithOID(policyOID)
-}/* debug [functions.gen.go/function]: SecPolicyCreateWithOID */
+}
 
 // Retrieves a policy’s object identifier.
 //
@@ -1341,7 +1341,7 @@ func SecPolicyCreateWithOID(policyOID TypeRef) SecPolicyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyGetOID
 func SecPolicyGetOID(policyRef SecPolicyRef, oid unsafe.Pointer) unsafe.Pointer {
 	return _SecPolicyGetOID(policyRef, oid)
-}/* debug [functions.gen.go/function]: SecPolicyGetOID */
+}
 
 // Retrieves the trust policy handle for a policy object.
 //
@@ -1354,7 +1354,7 @@ func SecPolicyGetOID(policyRef SecPolicyRef, oid unsafe.Pointer) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyGetTPHandle
 func SecPolicyGetTPHandle(policyRef SecPolicyRef, tpHandle unsafe.Pointer) unsafe.Pointer {
 	return _SecPolicyGetTPHandle(policyRef, tpHandle)
-}/* debug [functions.gen.go/function]: SecPolicyGetTPHandle */
+}
 
 // Retrieves a policy’s value.
 //
@@ -1367,7 +1367,7 @@ func SecPolicyGetTPHandle(policyRef SecPolicyRef, tpHandle unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyGetValue
 func SecPolicyGetValue(policyRef SecPolicyRef, value unsafe.Pointer) unsafe.Pointer {
 	return _SecPolicyGetValue(policyRef, value)
-}/* debug [functions.gen.go/function]: SecPolicyGetValue */
+}
 
 // Retrieves a policy object for the next policy matching specified search criteria.
 //
@@ -1380,7 +1380,7 @@ func SecPolicyGetValue(policyRef SecPolicyRef, value unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicySearchCopyNext
 func SecPolicySearchCopyNext(searchRef SecPolicySearchRef, policyRef unsafe.Pointer) unsafe.Pointer {
 	return _SecPolicySearchCopyNext(searchRef, policyRef)
-}/* debug [functions.gen.go/function]: SecPolicySearchCopyNext */
+}
 
 // Creates a search object for finding policies.
 //
@@ -1393,7 +1393,7 @@ func SecPolicySearchCopyNext(searchRef SecPolicySearchRef, policyRef unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicySearchCreate
 func SecPolicySearchCreate(certType CSSM_CERT_TYPE, policyOID unsafe.Pointer, value unsafe.Pointer, searchRef unsafe.Pointer) unsafe.Pointer {
 	return _SecPolicySearchCreate(certType, policyOID, value, searchRef)
-}/* debug [functions.gen.go/function]: SecPolicySearchCreate */
+}
 
 // Returns the unique identifier of the opaque type to which a object belongs.
 //
@@ -1406,7 +1406,7 @@ func SecPolicySearchCreate(certType CSSM_CERT_TYPE, policyOID unsafe.Pointer, va
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicySearchGetTypeID
 func SecPolicySearchGetTypeID() TypeID {
 	return _SecPolicySearchGetTypeID()
-}/* debug [functions.gen.go/function]: SecPolicySearchGetTypeID */
+}
 
 // Sets properties for a policy.
 //
@@ -1419,7 +1419,7 @@ func SecPolicySearchGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicySetProperties
 func SecPolicySetProperties(policyRef SecPolicyRef, properties DictionaryRef) unsafe.Pointer {
 	return _SecPolicySetProperties(policyRef, properties)
-}/* debug [functions.gen.go/function]: SecPolicySetProperties */
+}
 
 // Sets a policy’s value.
 //
@@ -1432,7 +1432,7 @@ func SecPolicySetProperties(policyRef SecPolicyRef, properties DictionaryRef) un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicySetValue
 func SecPolicySetValue(policyRef SecPolicyRef, value unsafe.Pointer) unsafe.Pointer {
 	return _SecPolicySetValue(policyRef, value)
-}/* debug [functions.gen.go/function]: SecPolicySetValue */
+}
 
 // Retrieves the CSSM trust result.
 //
@@ -1445,7 +1445,7 @@ func SecPolicySetValue(policyRef SecPolicyRef, value unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetCssmResult
 func SecTrustGetCssmResult(trust SecTrustRef, result unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustGetCssmResult(trust, result)
-}/* debug [functions.gen.go/function]: SecTrustGetCssmResult */
+}
 
 // Retrieves the CSSM result code from the most recent trust evaluation for a trust management object.
 //
@@ -1458,7 +1458,7 @@ func SecTrustGetCssmResult(trust SecTrustRef, result unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetCssmResultCode
 func SecTrustGetCssmResultCode(trust SecTrustRef, resultCode unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustGetCssmResultCode(trust, resultCode)
-}/* debug [functions.gen.go/function]: SecTrustGetCssmResultCode */
+}
 
 // Retrieves details on the outcome of a call to the function .
 //
@@ -1471,7 +1471,7 @@ func SecTrustGetCssmResultCode(trust SecTrustRef, resultCode unsafe.Pointer) uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetResult
 func SecTrustGetResult(trustRef SecTrustRef, result unsafe.Pointer, certChain unsafe.Pointer, statusChain unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustGetResult(trustRef, result, certChain, statusChain)
-}/* debug [functions.gen.go/function]: SecTrustGetResult */
+}
 
 // Retrieves the trust policy handle.
 //
@@ -1484,7 +1484,7 @@ func SecTrustGetResult(trustRef SecTrustRef, result unsafe.Pointer, certChain un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetTPHandle
 func SecTrustGetTPHandle(trust SecTrustRef, handle unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustGetTPHandle(trust, handle)
-}/* debug [functions.gen.go/function]: SecTrustGetTPHandle */
+}
 
 // Sets the action and action data for a trust management object.
 //
@@ -1497,7 +1497,7 @@ func SecTrustGetTPHandle(trust SecTrustRef, handle unsafe.Pointer) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetParameters
 func SecTrustSetParameters(trustRef SecTrustRef, action CSSM_TP_ACTION, actionData DataRef) unsafe.Pointer {
 	return _SecTrustSetParameters(trustRef, action, actionData)
-}/* debug [functions.gen.go/function]: SecTrustSetParameters */
+}
 
 // Returns download ticket’s creation date.
 //
@@ -1510,7 +1510,7 @@ func SecTrustSetParameters(trustRef SecTrustRef, action CSSM_TP_ACTION, actionDa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecureDownloadCopyCreationDate
 func SecureDownloadCopyCreationDate(downloadRef unsafe.Pointer, date unsafe.Pointer) unsafe.Pointer {
 	return _SecureDownloadCopyCreationDate(downloadRef, date)
-}/* debug [functions.gen.go/function]: SecureDownloadCopyCreationDate */
+}
 
 // Retrieves supporting data such as the user name and other information gathered during evaluation of authorization.
 //
@@ -1521,7 +1521,7 @@ func SecureDownloadCopyCreationDate(downloadRef unsafe.Pointer, date unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationCopyInfo(_:_:_:)
 func AuthorizationCopyInfo(authorization AuthorizationRef, tag AuthorizationString, info unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationCopyInfo(authorization, tag, info)
-}/* debug [functions.gen.go/function]: AuthorizationCopyInfo */
+}
 
 // Authorizes and preauthorizes rights synchronously.
 //
@@ -1532,7 +1532,7 @@ func AuthorizationCopyInfo(authorization AuthorizationRef, tag AuthorizationStri
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)
 func AuthorizationCopyRights(authorization AuthorizationRef, rights unsafe.Pointer, environment unsafe.Pointer, flags AuthorizationFlags, authorizedRights unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationCopyRights(authorization, rights, environment, flags, authorizedRights)
-}/* debug [functions.gen.go/function]: AuthorizationCopyRights */
+}
 
 // Authorizes and preauthorizes rights asynchronously.
 //
@@ -1543,7 +1543,7 @@ func AuthorizationCopyRights(authorization AuthorizationRef, rights unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationCopyRightsAsync(_:_:_:_:_:)
 func AuthorizationCopyRightsAsync(authorization AuthorizationRef, rights unsafe.Pointer, environment unsafe.Pointer, flags AuthorizationFlags, callbackBlock unsafe.Pointer) {
 	_AuthorizationCopyRightsAsync(authorization, rights, environment, flags, callbackBlock)
-}/* debug [functions.gen.go/function]: AuthorizationCopyRightsAsync */
+}
 
 // Creates a new authorization reference and provides an option to authorize or preauthorize rights.
 //
@@ -1554,7 +1554,7 @@ func AuthorizationCopyRightsAsync(authorization AuthorizationRef, rights unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationCreate(_:_:_:_:)
 func AuthorizationCreate(rights unsafe.Pointer, environment unsafe.Pointer, flags AuthorizationFlags, authorization unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationCreate(rights, environment, flags, authorization)
-}/* debug [functions.gen.go/function]: AuthorizationCreate */
+}
 
 // Internalizes the external representation of an authorization reference.
 //
@@ -1565,7 +1565,7 @@ func AuthorizationCreate(rights unsafe.Pointer, environment unsafe.Pointer, flag
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationCreateFromExternalForm(_:_:)
 func AuthorizationCreateFromExternalForm(extForm unsafe.Pointer, authorization unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationCreateFromExternalForm(extForm, authorization)
-}/* debug [functions.gen.go/function]: AuthorizationCreateFromExternalForm */
+}
 
 // Frees the memory associated with an authorization reference.
 //
@@ -1576,7 +1576,7 @@ func AuthorizationCreateFromExternalForm(extForm unsafe.Pointer, authorization u
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFree(_:_:)
 func AuthorizationFree(authorization AuthorizationRef, flags AuthorizationFlags) unsafe.Pointer {
 	return _AuthorizationFree(authorization, flags)
-}/* debug [functions.gen.go/function]: AuthorizationFree */
+}
 
 // Frees the memory associated with a set of authorization items.
 //
@@ -1587,7 +1587,7 @@ func AuthorizationFree(authorization AuthorizationRef, flags AuthorizationFlags)
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFreeItemSet(_:)
 func AuthorizationFreeItemSet(set unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationFreeItemSet(set)
-}/* debug [functions.gen.go/function]: AuthorizationFreeItemSet */
+}
 
 // Creates an external representation of an authorization reference.
 //
@@ -1598,7 +1598,7 @@ func AuthorizationFreeItemSet(set unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationMakeExternalForm(_:_:)
 func AuthorizationMakeExternalForm(authorization AuthorizationRef, extForm unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationMakeExternalForm(authorization, extForm)
-}/* debug [functions.gen.go/function]: AuthorizationMakeExternalForm */
+}
 
 // Retrieves a right definition as a dictionary.
 //
@@ -1609,7 +1609,7 @@ func AuthorizationMakeExternalForm(authorization AuthorizationRef, extForm unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationRightGet(_:_:)
 func AuthorizationRightGet(rightName unsafe.Pointer, rightDefinition unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationRightGet(rightName, rightDefinition)
-}/* debug [functions.gen.go/function]: AuthorizationRightGet */
+}
 
 // Removes a right from the policy database.
 //
@@ -1620,7 +1620,7 @@ func AuthorizationRightGet(rightName unsafe.Pointer, rightDefinition unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationRightRemove(_:_:)
 func AuthorizationRightRemove(authRef AuthorizationRef, rightName unsafe.Pointer) unsafe.Pointer {
 	return _AuthorizationRightRemove(authRef, rightName)
-}/* debug [functions.gen.go/function]: AuthorizationRightRemove */
+}
 
 // Creates or updates a right entry in the policy database.
 //
@@ -1631,7 +1631,7 @@ func AuthorizationRightRemove(authRef AuthorizationRef, rightName unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)
 func AuthorizationRightSet(authRef AuthorizationRef, rightName unsafe.Pointer, rightDefinition TypeRef, descriptionKey StringRef, bundle BundleRef, localeTableName StringRef) unsafe.Pointer {
 	return _AuthorizationRightSet(authRef, rightName, rightDefinition, descriptionKey, bundle, localeTableName)
-}/* debug [functions.gen.go/function]: AuthorizationRightSet */
+}
 
 // Obtains an array of all of the certificates in a message.
 //
@@ -1642,7 +1642,7 @@ func AuthorizationRightSet(authRef AuthorizationRef, rightName unsafe.Pointer, r
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopyAllCerts(_:_:)
 func CMSDecoderCopyAllCerts(cmsDecoder SDecoderRef, certsOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopyAllCerts(cmsDecoder, certsOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopyAllCerts */
+}
 
 // Obtains the message content, if any.
 //
@@ -1653,7 +1653,7 @@ func CMSDecoderCopyAllCerts(cmsDecoder SDecoderRef, certsOut unsafe.Pointer) uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopyContent(_:_:)
 func CMSDecoderCopyContent(cmsDecoder SDecoderRef, contentOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopyContent(cmsDecoder, contentOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopyContent */
+}
 
 // Obtains the detached content specified with the function.
 //
@@ -1664,7 +1664,7 @@ func CMSDecoderCopyContent(cmsDecoder SDecoderRef, contentOut unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopyDetachedContent(_:_:)
 func CMSDecoderCopyDetachedContent(cmsDecoder SDecoderRef, detachedContentOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopyDetachedContent(cmsDecoder, detachedContentOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopyDetachedContent */
+}
 
 // Obtains the object identifier for the encapsulated data of a signed message.
 //
@@ -1675,7 +1675,7 @@ func CMSDecoderCopyDetachedContent(cmsDecoder SDecoderRef, detachedContentOut un
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopyEncapsulatedContentType(_:_:)
 func CMSDecoderCopyEncapsulatedContentType(cmsDecoder SDecoderRef, eContentTypeOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopyEncapsulatedContentType(cmsDecoder, eContentTypeOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopyEncapsulatedContentType */
+}
 
 // Obtains the certificate of the specified signer of a CMS message.
 //
@@ -1686,7 +1686,7 @@ func CMSDecoderCopyEncapsulatedContentType(cmsDecoder SDecoderRef, eContentTypeO
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerCert(_:_:_:)
 func CMSDecoderCopySignerCert(cmsDecoder SDecoderRef, signerIndex uintptr, signerCertOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerCert(cmsDecoder, signerIndex, signerCertOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerCert */
+}
 
 // Obtains the email address of the specified signer of a CMS message.
 //
@@ -1697,7 +1697,7 @@ func CMSDecoderCopySignerCert(cmsDecoder SDecoderRef, signerIndex uintptr, signe
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerEmailAddress(_:_:_:)
 func CMSDecoderCopySignerEmailAddress(cmsDecoder SDecoderRef, signerIndex uintptr, signerEmailAddressOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerEmailAddress(cmsDecoder, signerIndex, signerEmailAddressOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerEmailAddress */
+}
 
 // Obtains the signing time of a CMS message, if present.
 //
@@ -1708,7 +1708,7 @@ func CMSDecoderCopySignerEmailAddress(cmsDecoder SDecoderRef, signerIndex uintpt
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerSigningTime(_:_:_:)
 func CMSDecoderCopySignerSigningTime(cmsDecoder SDecoderRef, signerIndex uintptr, signingTime unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerSigningTime(cmsDecoder, signerIndex, signingTime)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerSigningTime */
+}
 
 // Obtains the status of a CMS message’s signature.
 //
@@ -1719,7 +1719,7 @@ func CMSDecoderCopySignerSigningTime(cmsDecoder SDecoderRef, signerIndex uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)
 func CMSDecoderCopySignerStatus(cmsDecoder SDecoderRef, signerIndex uintptr, policyOrArray TypeRef, evaluateSecTrust unsafe.Pointer, signerStatusOut unsafe.Pointer, secTrustOut unsafe.Pointer, certVerifyResultCodeOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerStatus(cmsDecoder, signerIndex, policyOrArray, evaluateSecTrust, signerStatusOut, secTrustOut, certVerifyResultCodeOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerStatus */
+}
 
 // Returns the timestamp of a signer of a CMS message, if present.
 //
@@ -1730,7 +1730,7 @@ func CMSDecoderCopySignerStatus(cmsDecoder SDecoderRef, signerIndex uintptr, pol
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerTimestamp(_:_:_:)
 func CMSDecoderCopySignerTimestamp(cmsDecoder SDecoderRef, signerIndex uintptr, timestamp unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerTimestamp(cmsDecoder, signerIndex, timestamp)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerTimestamp */
+}
 
 // Returns an array containing the certificates from a timestamp response.
 //
@@ -1741,7 +1741,7 @@ func CMSDecoderCopySignerTimestamp(cmsDecoder SDecoderRef, signerIndex uintptr, 
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerTimestampCertificates(_:_:_:)
 func CMSDecoderCopySignerTimestampCertificates(cmsDecoder SDecoderRef, signerIndex uintptr, certificateRefs unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerTimestampCertificates(cmsDecoder, signerIndex, certificateRefs)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerTimestampCertificates */
+}
 
 // Returns the timestamp of a signer of a CMS message using a given policy, if present.
 //
@@ -1752,7 +1752,7 @@ func CMSDecoderCopySignerTimestampCertificates(cmsDecoder SDecoderRef, signerInd
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)
 func CMSDecoderCopySignerTimestampWithPolicy(cmsDecoder SDecoderRef, timeStampPolicy TypeRef, signerIndex uintptr, timestamp unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCopySignerTimestampWithPolicy(cmsDecoder, timeStampPolicy, signerIndex, timestamp)
-}/* debug [functions.gen.go/function]: CMSDecoderCopySignerTimestampWithPolicy */
+}
 
 // Creates a CMSDecoder reference.
 //
@@ -1763,7 +1763,7 @@ func CMSDecoderCopySignerTimestampWithPolicy(cmsDecoder SDecoderRef, timeStampPo
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderCreate(_:)
 func CMSDecoderCreate(cmsDecoderOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderCreate(cmsDecoderOut)
-}/* debug [functions.gen.go/function]: CMSDecoderCreate */
+}
 
 // Indicates that there is no more data to decode.
 //
@@ -1774,7 +1774,7 @@ func CMSDecoderCreate(cmsDecoderOut unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderFinalizeMessage(_:)
 func CMSDecoderFinalizeMessage(cmsDecoder SDecoderRef) unsafe.Pointer {
 	return _CMSDecoderFinalizeMessage(cmsDecoder)
-}/* debug [functions.gen.go/function]: CMSDecoderFinalizeMessage */
+}
 
 // Obtains the number of signers of a message.
 //
@@ -1785,7 +1785,7 @@ func CMSDecoderFinalizeMessage(cmsDecoder SDecoderRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderGetNumSigners(_:_:)
 func CMSDecoderGetNumSigners(cmsDecoder SDecoderRef, numSignersOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderGetNumSigners(cmsDecoder, numSignersOut)
-}/* debug [functions.gen.go/function]: CMSDecoderGetNumSigners */
+}
 
 // Returns the type identifier for the CMSDecoder opaque type.
 //
@@ -1796,7 +1796,7 @@ func CMSDecoderGetNumSigners(cmsDecoder SDecoderRef, numSignersOut unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderGetTypeID()
 func CMSDecoderGetTypeID() TypeID {
 	return _CMSDecoderGetTypeID()
-}/* debug [functions.gen.go/function]: CMSDecoderGetTypeID */
+}
 
 // Determines whether a CMS message was encrypted.
 //
@@ -1807,7 +1807,7 @@ func CMSDecoderGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderIsContentEncrypted(_:_:)
 func CMSDecoderIsContentEncrypted(cmsDecoder SDecoderRef, isEncryptedOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSDecoderIsContentEncrypted(cmsDecoder, isEncryptedOut)
-}/* debug [functions.gen.go/function]: CMSDecoderIsContentEncrypted */
+}
 
 // Specifies the message’s detached content, if any.
 //
@@ -1818,7 +1818,7 @@ func CMSDecoderIsContentEncrypted(cmsDecoder SDecoderRef, isEncryptedOut unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderSetDetachedContent(_:_:)
 func CMSDecoderSetDetachedContent(cmsDecoder SDecoderRef, detachedContent DataRef) unsafe.Pointer {
 	return _CMSDecoderSetDetachedContent(cmsDecoder, detachedContent)
-}/* debug [functions.gen.go/function]: CMSDecoderSetDetachedContent */
+}
 
 // Specifies the keychains to search for intermediate certificates to be used in verifying a signed message’s signer certificates.
 //
@@ -1831,7 +1831,7 @@ func CMSDecoderSetDetachedContent(cmsDecoder SDecoderRef, detachedContent DataRe
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderSetSearchKeychain(_:_:)
 func CMSDecoderSetSearchKeychain(cmsDecoder SDecoderRef, keychainOrArray TypeRef) unsafe.Pointer {
 	return _CMSDecoderSetSearchKeychain(cmsDecoder, keychainOrArray)
-}/* debug [functions.gen.go/function]: CMSDecoderSetSearchKeychain */
+}
 
 // Feeds raw bytes of the message to be decoded into the decoder.
 //
@@ -1842,7 +1842,7 @@ func CMSDecoderSetSearchKeychain(cmsDecoder SDecoderRef, keychainOrArray TypeRef
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoderUpdateMessage(_:_:_:)
 func CMSDecoderUpdateMessage(cmsDecoder SDecoderRef, msgBytes unsafe.Pointer, msgBytesLen uintptr) unsafe.Pointer {
 	return _CMSDecoderUpdateMessage(cmsDecoder, msgBytes, msgBytesLen)
-}/* debug [functions.gen.go/function]: CMSDecoderUpdateMessage */
+}
 
 // Encodes a message and obtains the result in one high-level function call.
 //
@@ -1853,7 +1853,7 @@ func CMSDecoderUpdateMessage(cmsDecoder SDecoderRef, msgBytes unsafe.Pointer, ms
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncodeContent(_:_:_:_:_:_:_:_:)
 func CMSEncodeContent(signers TypeRef, recipients TypeRef, eContentTypeOID TypeRef, detachedContent unsafe.Pointer, signedAttributes SSignedAttributes, content unsafe.Pointer, contentLen uintptr, encodedContentOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncodeContent(signers, recipients, eContentTypeOID, detachedContent, signedAttributes, content, contentLen, encodedContentOut)
-}/* debug [functions.gen.go/function]: CMSEncodeContent */
+}
 
 // Specifies a message is to be encrypted and specifies the recipients of the message.
 //
@@ -1864,7 +1864,7 @@ func CMSEncodeContent(signers TypeRef, recipients TypeRef, eContentTypeOID TypeR
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderAddRecipients(_:_:)
 func CMSEncoderAddRecipients(cmsEncoder SEncoderRef, recipientOrArray TypeRef) unsafe.Pointer {
 	return _CMSEncoderAddRecipients(cmsEncoder, recipientOrArray)
-}/* debug [functions.gen.go/function]: CMSEncoderAddRecipients */
+}
 
 // Specifies attributes for a signed message.
 //
@@ -1875,7 +1875,7 @@ func CMSEncoderAddRecipients(cmsEncoder SEncoderRef, recipientOrArray TypeRef) u
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderAddSignedAttributes(_:_:)
 func CMSEncoderAddSignedAttributes(cmsEncoder SEncoderRef, signedAttributes SSignedAttributes) unsafe.Pointer {
 	return _CMSEncoderAddSignedAttributes(cmsEncoder, signedAttributes)
-}/* debug [functions.gen.go/function]: CMSEncoderAddSignedAttributes */
+}
 
 // Specifies signers of the message.
 //
@@ -1886,7 +1886,7 @@ func CMSEncoderAddSignedAttributes(cmsEncoder SEncoderRef, signedAttributes SSig
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderAddSigners(_:_:)
 func CMSEncoderAddSigners(cmsEncoder SEncoderRef, signerOrArray TypeRef) unsafe.Pointer {
 	return _CMSEncoderAddSigners(cmsEncoder, signerOrArray)
-}/* debug [functions.gen.go/function]: CMSEncoderAddSigners */
+}
 
 // Adds certificates to a message.
 //
@@ -1897,7 +1897,7 @@ func CMSEncoderAddSigners(cmsEncoder SEncoderRef, signerOrArray TypeRef) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderAddSupportingCerts(_:_:)
 func CMSEncoderAddSupportingCerts(cmsEncoder SEncoderRef, certOrArray TypeRef) unsafe.Pointer {
 	return _CMSEncoderAddSupportingCerts(cmsEncoder, certOrArray)
-}/* debug [functions.gen.go/function]: CMSEncoderAddSupportingCerts */
+}
 
 // Obtains the object identifier for the encapsulated data of a signed message.
 //
@@ -1908,7 +1908,7 @@ func CMSEncoderAddSupportingCerts(cmsEncoder SEncoderRef, certOrArray TypeRef) u
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopyEncapsulatedContentType(_:_:)
 func CMSEncoderCopyEncapsulatedContentType(cmsEncoder SEncoderRef, eContentTypeOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopyEncapsulatedContentType(cmsEncoder, eContentTypeOut)
-}/* debug [functions.gen.go/function]: CMSEncoderCopyEncapsulatedContentType */
+}
 
 // Finishes encoding the message and obtains the encoded result.
 //
@@ -1919,7 +1919,7 @@ func CMSEncoderCopyEncapsulatedContentType(cmsEncoder SEncoderRef, eContentTypeO
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopyEncodedContent(_:_:)
 func CMSEncoderCopyEncodedContent(cmsEncoder SEncoderRef, encodedContentOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopyEncodedContent(cmsEncoder, encodedContentOut)
-}/* debug [functions.gen.go/function]: CMSEncoderCopyEncodedContent */
+}
 
 // Obtains the array of recipients specified with the function.
 //
@@ -1930,7 +1930,7 @@ func CMSEncoderCopyEncodedContent(cmsEncoder SEncoderRef, encodedContentOut unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopyRecipients(_:_:)
 func CMSEncoderCopyRecipients(cmsEncoder SEncoderRef, recipientsOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopyRecipients(cmsEncoder, recipientsOut)
-}/* debug [functions.gen.go/function]: CMSEncoderCopyRecipients */
+}
 
 // Obtains the array of signers specified with the function.
 //
@@ -1941,7 +1941,7 @@ func CMSEncoderCopyRecipients(cmsEncoder SEncoderRef, recipientsOut unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopySigners(_:_:)
 func CMSEncoderCopySigners(cmsEncoder SEncoderRef, signersOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopySigners(cmsEncoder, signersOut)
-}/* debug [functions.gen.go/function]: CMSEncoderCopySigners */
+}
 
 // Returns the timestamp of a signer of a CMS message, if present.
 //
@@ -1952,7 +1952,7 @@ func CMSEncoderCopySigners(cmsEncoder SEncoderRef, signersOut unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopySignerTimestamp(_:_:_:)
 func CMSEncoderCopySignerTimestamp(cmsEncoder SEncoderRef, signerIndex uintptr, timestamp unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopySignerTimestamp(cmsEncoder, signerIndex, timestamp)
-}/* debug [functions.gen.go/function]: CMSEncoderCopySignerTimestamp */
+}
 
 // Returns the timestamp of a signer of a CMS message using a particular policy, if present.
 //
@@ -1963,7 +1963,7 @@ func CMSEncoderCopySignerTimestamp(cmsEncoder SEncoderRef, signerIndex uintptr, 
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)
 func CMSEncoderCopySignerTimestampWithPolicy(cmsEncoder SEncoderRef, timeStampPolicy TypeRef, signerIndex uintptr, timestamp unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopySignerTimestampWithPolicy(cmsEncoder, timeStampPolicy, signerIndex, timestamp)
-}/* debug [functions.gen.go/function]: CMSEncoderCopySignerTimestampWithPolicy */
+}
 
 // Obtains the certificates added to a message with .
 //
@@ -1974,7 +1974,7 @@ func CMSEncoderCopySignerTimestampWithPolicy(cmsEncoder SEncoderRef, timeStampPo
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCopySupportingCerts(_:_:)
 func CMSEncoderCopySupportingCerts(cmsEncoder SEncoderRef, certsOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCopySupportingCerts(cmsEncoder, certsOut)
-}/* debug [functions.gen.go/function]: CMSEncoderCopySupportingCerts */
+}
 
 // Creates a CMSEncoder reference.
 //
@@ -1985,7 +1985,7 @@ func CMSEncoderCopySupportingCerts(cmsEncoder SEncoderRef, certsOut unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderCreate(_:)
 func CMSEncoderCreate(cmsEncoderOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderCreate(cmsEncoderOut)
-}/* debug [functions.gen.go/function]: CMSEncoderCreate */
+}
 
 // Obtains a constant that indicates which certificates are to be included in a signed CMS message.
 //
@@ -1996,7 +1996,7 @@ func CMSEncoderCreate(cmsEncoderOut unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderGetCertificateChainMode(_:_:)
 func CMSEncoderGetCertificateChainMode(cmsEncoder SEncoderRef, chainModeOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderGetCertificateChainMode(cmsEncoder, chainModeOut)
-}/* debug [functions.gen.go/function]: CMSEncoderGetCertificateChainMode */
+}
 
 // Indicates whether the message is to have detached content.
 //
@@ -2007,7 +2007,7 @@ func CMSEncoderGetCertificateChainMode(cmsEncoder SEncoderRef, chainModeOut unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderGetHasDetachedContent(_:_:)
 func CMSEncoderGetHasDetachedContent(cmsEncoder SEncoderRef, detachedContentOut unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderGetHasDetachedContent(cmsEncoder, detachedContentOut)
-}/* debug [functions.gen.go/function]: CMSEncoderGetHasDetachedContent */
+}
 
 // Returns the type identifier for the CMSEncoder opaque type.
 //
@@ -2018,7 +2018,7 @@ func CMSEncoderGetHasDetachedContent(cmsEncoder SEncoderRef, detachedContentOut 
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderGetTypeID()
 func CMSEncoderGetTypeID() TypeID {
 	return _CMSEncoderGetTypeID()
-}/* debug [functions.gen.go/function]: CMSEncoderGetTypeID */
+}
 
 // Specifies which certificates to include in a signed CMS message.
 //
@@ -2029,7 +2029,7 @@ func CMSEncoderGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderSetCertificateChainMode(_:_:)
 func CMSEncoderSetCertificateChainMode(cmsEncoder SEncoderRef, chainMode SCertificateChainMode) unsafe.Pointer {
 	return _CMSEncoderSetCertificateChainMode(cmsEncoder, chainMode)
-}/* debug [functions.gen.go/function]: CMSEncoderSetCertificateChainMode */
+}
 
 // Specifies an object identifier for the encapsulated data of a signed message.
 //
@@ -2040,7 +2040,7 @@ func CMSEncoderSetCertificateChainMode(cmsEncoder SEncoderRef, chainMode SCertif
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderSetEncapsulatedContentTypeOID(_:_:)
 func CMSEncoderSetEncapsulatedContentTypeOID(cmsEncoder SEncoderRef, eContentTypeOID TypeRef) unsafe.Pointer {
 	return _CMSEncoderSetEncapsulatedContentTypeOID(cmsEncoder, eContentTypeOID)
-}/* debug [functions.gen.go/function]: CMSEncoderSetEncapsulatedContentTypeOID */
+}
 
 // Specifies whether the signed data is to be separate from the message.
 //
@@ -2051,7 +2051,7 @@ func CMSEncoderSetEncapsulatedContentTypeOID(cmsEncoder SEncoderRef, eContentTyp
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderSetHasDetachedContent(_:_:)
 func CMSEncoderSetHasDetachedContent(cmsEncoder SEncoderRef, detachedContent unsafe.Pointer) unsafe.Pointer {
 	return _CMSEncoderSetHasDetachedContent(cmsEncoder, detachedContent)
-}/* debug [functions.gen.go/function]: CMSEncoderSetHasDetachedContent */
+}
 
 // Sets the digest algorithm to use for the signer.
 //
@@ -2062,7 +2062,7 @@ func CMSEncoderSetHasDetachedContent(cmsEncoder SEncoderRef, detachedContent uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderSetSignerAlgorithm(_:_:)
 func CMSEncoderSetSignerAlgorithm(cmsEncoder SEncoderRef, digestAlgorithm StringRef) unsafe.Pointer {
 	return _CMSEncoderSetSignerAlgorithm(cmsEncoder, digestAlgorithm)
-}/* debug [functions.gen.go/function]: CMSEncoderSetSignerAlgorithm */
+}
 
 // Feeds content bytes into the encoder.
 //
@@ -2073,7 +2073,7 @@ func CMSEncoderSetSignerAlgorithm(cmsEncoder SEncoderRef, digestAlgorithm String
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoderUpdateContent(_:_:_:)
 func CMSEncoderUpdateContent(cmsEncoder SEncoderRef, content unsafe.Pointer, contentLen uintptr) unsafe.Pointer {
 	return _CMSEncoderUpdateContent(cmsEncoder, content, contentLen)
-}/* debug [functions.gen.go/function]: CMSEncoderUpdateContent */
+}
 
 // cssmAlgToOid is a Security function.
 //
@@ -2082,7 +2082,7 @@ func CMSEncoderUpdateContent(cmsEncoder SEncoderRef, content unsafe.Pointer, con
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssmAlgToOid(_:)
 func cssmAlgToOid(algId CSSM_ALGORITHMS) unsafe.Pointer {
 	return _cssmAlgToOid(algId)
-}/* debug [functions.gen.go/function]: cssmAlgToOid */
+}
 
 // cssmOidToAlg is a Security function.
 //
@@ -2091,7 +2091,7 @@ func cssmAlgToOid(algId CSSM_ALGORITHMS) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssmOidToAlg(_:_:)
 func cssmOidToAlg(oid unsafe.Pointer, alg unsafe.Pointer) bool {
 	return _cssmOidToAlg(oid, alg)
-}/* debug [functions.gen.go/function]: cssmOidToAlg */
+}
 
 // cssmPerror is a Security function.
 //
@@ -2100,7 +2100,7 @@ func cssmOidToAlg(oid unsafe.Pointer, alg unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssmPerror(_:_:)
 func cssmPerror(how unsafe.Pointer, error_ CSSM_RETURN) {
 	_cssmPerror(how, error_)
-}/* debug [functions.gen.go/function]: cssmPerror */
+}
 
 // sec_protocol_metadata_copy_negotiated_protocol is a Security function.
 //
@@ -2109,7 +2109,7 @@ func cssmPerror(how unsafe.Pointer, error_ CSSM_RETURN) {
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_copy_negotiated_protocol(_:)
 func sec_protocol_metadata_copy_negotiated_protocol(metadata unsafe.Pointer) unsafe.Pointer {
 	return _sec_protocol_metadata_copy_negotiated_protocol(metadata)
-}/* debug [functions.gen.go/function]: sec_protocol_metadata_copy_negotiated_protocol */
+}
 
 // sec_protocol_metadata_copy_server_name is a Security function.
 //
@@ -2118,7 +2118,7 @@ func sec_protocol_metadata_copy_negotiated_protocol(metadata unsafe.Pointer) uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_copy_server_name(_:)
 func sec_protocol_metadata_copy_server_name(metadata unsafe.Pointer) unsafe.Pointer {
 	return _sec_protocol_metadata_copy_server_name(metadata)
-}/* debug [functions.gen.go/function]: sec_protocol_metadata_copy_server_name */
+}
 
 // Creates a new access control object with the specified protection type and flags.
 //
@@ -2129,7 +2129,7 @@ func sec_protocol_metadata_copy_server_name(metadata unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessControlCreateWithFlags(_:_:_:_:)
 func SecAccessControlCreateWithFlags(allocator AllocatorRef, protection TypeRef, flags SecAccessControlCreateFlags, error_ unsafe.Pointer) SecAccessControlRef {
 	return _SecAccessControlCreateWithFlags(allocator, protection, flags, error_)
-}/* debug [functions.gen.go/function]: SecAccessControlCreateWithFlags */
+}
 
 // Returns the unique identifier of the opaque type to which a keychain item access control object belongs.
 //
@@ -2140,7 +2140,7 @@ func SecAccessControlCreateWithFlags(allocator AllocatorRef, protection TypeRef,
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessControlGetTypeID()
 func SecAccessControlGetTypeID() TypeID {
 	return _SecAccessControlGetTypeID()
-}/* debug [functions.gen.go/function]: SecAccessControlGetTypeID */
+}
 
 // Retrieves all the ACL entries of a given access instance.
 //
@@ -2153,7 +2153,7 @@ func SecAccessControlGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCopyACLList(_:_:)
 func SecAccessCopyACLList(accessRef SecAccessRef, aclList unsafe.Pointer) unsafe.Pointer {
 	return _SecAccessCopyACLList(accessRef, aclList)
-}/* debug [functions.gen.go/function]: SecAccessCopyACLList */
+}
 
 // Retrieves selected ACL entries from a given access instance.
 //
@@ -2166,7 +2166,7 @@ func SecAccessCopyACLList(accessRef SecAccessRef, aclList unsafe.Pointer) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCopyMatchingACLList(_:_:)
 func SecAccessCopyMatchingACLList(accessRef SecAccessRef, authorizationTag TypeRef) ArrayRef {
 	return _SecAccessCopyMatchingACLList(accessRef, authorizationTag)
-}/* debug [functions.gen.go/function]: SecAccessCopyMatchingACLList */
+}
 
 // Retrieves the owner and the ACL entries of a given access instance.
 //
@@ -2179,7 +2179,7 @@ func SecAccessCopyMatchingACLList(accessRef SecAccessRef, authorizationTag TypeR
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)
 func SecAccessCopyOwnerAndACL(accessRef SecAccessRef, userId unsafe.Pointer, groupId unsafe.Pointer, ownerType unsafe.Pointer, aclList unsafe.Pointer) unsafe.Pointer {
 	return _SecAccessCopyOwnerAndACL(accessRef, userId, groupId, ownerType, aclList)
-}/* debug [functions.gen.go/function]: SecAccessCopyOwnerAndACL */
+}
 
 // Creates a new access instance associated with a given protected keychain item.
 //
@@ -2192,7 +2192,7 @@ func SecAccessCopyOwnerAndACL(accessRef SecAccessRef, userId unsafe.Pointer, gro
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCreate(_:_:_:)
 func SecAccessCreate(descriptor StringRef, trustedlist ArrayRef, accessRef unsafe.Pointer) unsafe.Pointer {
 	return _SecAccessCreate(descriptor, trustedlist, accessRef)
-}/* debug [functions.gen.go/function]: SecAccessCreate */
+}
 
 // Creates a new access instance using the owner and ACL entries you provide.
 //
@@ -2205,7 +2205,7 @@ func SecAccessCreate(descriptor StringRef, trustedlist ArrayRef, accessRef unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)
 func SecAccessCreateWithOwnerAndACL(userId unsafe.Pointer, groupId unsafe.Pointer, ownerType SecAccessOwnerType, acls ArrayRef, error_ unsafe.Pointer) SecAccessRef {
 	return _SecAccessCreateWithOwnerAndACL(userId, groupId, ownerType, acls, error_)
-}/* debug [functions.gen.go/function]: SecAccessCreateWithOwnerAndACL */
+}
 
 // Returns the unique identifier of the opaque type to which an access instance belongs.
 //
@@ -2218,7 +2218,7 @@ func SecAccessCreateWithOwnerAndACL(userId unsafe.Pointer, groupId unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessGetTypeID()
 func SecAccessGetTypeID() TypeID {
 	return _SecAccessGetTypeID()
-}/* debug [functions.gen.go/function]: SecAccessGetTypeID */
+}
 
 // Retrieves the authorization tags of a given ACL entry.
 //
@@ -2231,7 +2231,7 @@ func SecAccessGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLCopyAuthorizations(_:)
 func SecACLCopyAuthorizations(acl SecACLRef) ArrayRef {
 	return _SecACLCopyAuthorizations(acl)
-}/* debug [functions.gen.go/function]: SecACLCopyAuthorizations */
+}
 
 // Returns the application list, description, and prompt selector for a given ACL entry.
 //
@@ -2244,7 +2244,7 @@ func SecACLCopyAuthorizations(acl SecACLRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLCopyContents(_:_:_:_:)
 func SecACLCopyContents(acl SecACLRef, applicationList unsafe.Pointer, description unsafe.Pointer, promptSelector unsafe.Pointer) unsafe.Pointer {
 	return _SecACLCopyContents(acl, applicationList, description, promptSelector)
-}/* debug [functions.gen.go/function]: SecACLCopyContents */
+}
 
 // Creates a new ACL entry with the given characteristics, and adds it to an access instance.
 //
@@ -2257,7 +2257,7 @@ func SecACLCopyContents(acl SecACLRef, applicationList unsafe.Pointer, descripti
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)
 func SecACLCreateWithSimpleContents(access SecAccessRef, applicationList ArrayRef, description StringRef, promptSelector SecKeychainPromptSelector, newAcl unsafe.Pointer) unsafe.Pointer {
 	return _SecACLCreateWithSimpleContents(access, applicationList, description, promptSelector, newAcl)
-}/* debug [functions.gen.go/function]: SecACLCreateWithSimpleContents */
+}
 
 // Returns the unique identifier of the opaque type to which an ACL entry belongs.
 //
@@ -2270,7 +2270,7 @@ func SecACLCreateWithSimpleContents(access SecAccessRef, applicationList ArrayRe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLGetTypeID()
 func SecACLGetTypeID() TypeID {
 	return _SecACLGetTypeID()
-}/* debug [functions.gen.go/function]: SecACLGetTypeID */
+}
 
 // Removes the specified ACL entry from the access instance that contains it.
 //
@@ -2283,7 +2283,7 @@ func SecACLGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLRemove(_:)
 func SecACLRemove(aclRef SecACLRef) unsafe.Pointer {
 	return _SecACLRemove(aclRef)
-}/* debug [functions.gen.go/function]: SecACLRemove */
+}
 
 // Sets the application list, description, and prompt selector for a given ACL entry.
 //
@@ -2296,7 +2296,7 @@ func SecACLRemove(aclRef SecACLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLSetContents(_:_:_:_:)
 func SecACLSetContents(acl SecACLRef, applicationList ArrayRef, description StringRef, promptSelector SecKeychainPromptSelector) unsafe.Pointer {
 	return _SecACLSetContents(acl, applicationList, description, promptSelector)
-}/* debug [functions.gen.go/function]: SecACLSetContents */
+}
 
 // Sets the authorization tags for a given ACL.
 //
@@ -2309,7 +2309,7 @@ func SecACLSetContents(acl SecACLRef, applicationList ArrayRef, description Stri
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecACLUpdateAuthorizations(_:_:)
 func SecACLUpdateAuthorizations(acl SecACLRef, authorizations ArrayRef) unsafe.Pointer {
 	return _SecACLUpdateAuthorizations(acl, authorizations)
-}/* debug [functions.gen.go/function]: SecACLUpdateAuthorizations */
+}
 
 // Asynchronously stores (or updates) a shared password for a website.
 //
@@ -2320,7 +2320,7 @@ func SecACLUpdateAuthorizations(acl SecACLRef, authorizations ArrayRef) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAddSharedWebCredential(_:_:_:_:)
 func SecAddSharedWebCredential(fqdn StringRef, account StringRef, password StringRef) {
 	_SecAddSharedWebCredential(fqdn, account, password)
-}/* debug [functions.gen.go/function]: SecAddSharedWebCredential */
+}
 
 // Adds a certificate to a keychain.
 //
@@ -2331,7 +2331,7 @@ func SecAddSharedWebCredential(fqdn StringRef, account StringRef, password Strin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateAddToKeychain(_:_:)
 func SecCertificateAddToKeychain(certificate SecCertificateRef, keychain SecKeychainRef) unsafe.Pointer {
 	return _SecCertificateAddToKeychain(certificate, keychain)
-}/* debug [functions.gen.go/function]: SecCertificateAddToKeychain */
+}
 
 // Retrieves the common name of the subject of a certificate.
 //
@@ -2342,7 +2342,7 @@ func SecCertificateAddToKeychain(certificate SecCertificateRef, keychain SecKeyc
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyCommonName(_:_:)
 func SecCertificateCopyCommonName(certificate SecCertificateRef, commonName unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateCopyCommonName(certificate, commonName)
-}/* debug [functions.gen.go/function]: SecCertificateCopyCommonName */
+}
 
 // Returns a DER representation of a certificate given a certificate object.
 //
@@ -2353,7 +2353,7 @@ func SecCertificateCopyCommonName(certificate SecCertificateRef, commonName unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyData(_:)
 func SecCertificateCopyData(certificate SecCertificateRef) DataRef {
 	return _SecCertificateCopyData(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyData */
+}
 
 // Retrieves the email addresses for the subject of a certificate.
 //
@@ -2364,7 +2364,7 @@ func SecCertificateCopyData(certificate SecCertificateRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyEmailAddresses(_:_:)
 func SecCertificateCopyEmailAddresses(certificate SecCertificateRef, emailAddresses unsafe.Pointer) unsafe.Pointer {
 	return _SecCertificateCopyEmailAddresses(certificate, emailAddresses)
-}/* debug [functions.gen.go/function]: SecCertificateCopyEmailAddresses */
+}
 
 // Retrieves the public key for a given certificate.
 //
@@ -2375,7 +2375,7 @@ func SecCertificateCopyEmailAddresses(certificate SecCertificateRef, emailAddres
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyKey(_:)
 func SecCertificateCopyKey(certificate SecCertificateRef) SecKeyRef {
 	return _SecCertificateCopyKey(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyKey */
+}
 
 // Returns a copy of the long description of a certificate.
 //
@@ -2386,7 +2386,7 @@ func SecCertificateCopyKey(certificate SecCertificateRef) SecKeyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyLongDescription(_:_:_:)
 func SecCertificateCopyLongDescription(alloc AllocatorRef, certificate SecCertificateRef, error_ unsafe.Pointer) StringRef {
 	return _SecCertificateCopyLongDescription(alloc, certificate, error_)
-}/* debug [functions.gen.go/function]: SecCertificateCopyLongDescription */
+}
 
 // Returns a normalized copy of the distinguished name (DN) of the issuer of a certificate.
 //
@@ -2399,7 +2399,7 @@ func SecCertificateCopyLongDescription(alloc AllocatorRef, certificate SecCertif
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyNormalizedIssuerContent(_:_:)
 func SecCertificateCopyNormalizedIssuerContent(certificate SecCertificateRef, error_ unsafe.Pointer) DataRef {
 	return _SecCertificateCopyNormalizedIssuerContent(certificate, error_)
-}/* debug [functions.gen.go/function]: SecCertificateCopyNormalizedIssuerContent */
+}
 
 // Retrieves the normalized issuer sequence from a certificate.
 //
@@ -2410,7 +2410,7 @@ func SecCertificateCopyNormalizedIssuerContent(certificate SecCertificateRef, er
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyNormalizedIssuerSequence(_:)
 func SecCertificateCopyNormalizedIssuerSequence(certificate SecCertificateRef) DataRef {
 	return _SecCertificateCopyNormalizedIssuerSequence(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyNormalizedIssuerSequence */
+}
 
 // Returns a normalized copy of the distinguished name (DN) of the subject of a certificate.
 //
@@ -2423,7 +2423,7 @@ func SecCertificateCopyNormalizedIssuerSequence(certificate SecCertificateRef) D
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyNormalizedSubjectContent(_:_:)
 func SecCertificateCopyNormalizedSubjectContent(certificate SecCertificateRef, error_ unsafe.Pointer) DataRef {
 	return _SecCertificateCopyNormalizedSubjectContent(certificate, error_)
-}/* debug [functions.gen.go/function]: SecCertificateCopyNormalizedSubjectContent */
+}
 
 // Retrieves the normalized subject sequence from a certificate.
 //
@@ -2434,7 +2434,7 @@ func SecCertificateCopyNormalizedSubjectContent(certificate SecCertificateRef, e
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyNormalizedSubjectSequence(_:)
 func SecCertificateCopyNormalizedSubjectSequence(certificate SecCertificateRef) DataRef {
 	return _SecCertificateCopyNormalizedSubjectSequence(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyNormalizedSubjectSequence */
+}
 
 // Returns the preferred certificate for the specified name and key usage.
 //
@@ -2445,7 +2445,7 @@ func SecCertificateCopyNormalizedSubjectSequence(certificate SecCertificateRef) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyPreferred(_:_:)
 func SecCertificateCopyPreferred(name StringRef, keyUsage ArrayRef) SecCertificateRef {
 	return _SecCertificateCopyPreferred(name, keyUsage)
-}/* debug [functions.gen.go/function]: SecCertificateCopyPreferred */
+}
 
 // Retrieves the public key from a certificate.
 //
@@ -2458,7 +2458,7 @@ func SecCertificateCopyPreferred(name StringRef, keyUsage ArrayRef) SecCertifica
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyPublicKey(_:_:)
 func SecCertificateCopyPublicKey(certificate SecCertificateRef) SecKeyRef {
 	return _SecCertificateCopyPublicKey(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopyPublicKey */
+}
 
 // Returns a copy of a certificate’s serial number.
 //
@@ -2471,7 +2471,7 @@ func SecCertificateCopyPublicKey(certificate SecCertificateRef) SecKeyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopySerialNumber(_:_:)
 func SecCertificateCopySerialNumber(certificate SecCertificateRef) DataRef {
 	return _SecCertificateCopySerialNumber(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopySerialNumber */
+}
 
 // Returns the certificate’s serial number.
 //
@@ -2482,7 +2482,7 @@ func SecCertificateCopySerialNumber(certificate SecCertificateRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopySerialNumberData(_:_:)
 func SecCertificateCopySerialNumberData(certificate SecCertificateRef, error_ unsafe.Pointer) DataRef {
 	return _SecCertificateCopySerialNumberData(certificate, error_)
-}/* debug [functions.gen.go/function]: SecCertificateCopySerialNumberData */
+}
 
 // Returns a copy of the short description of a certificate.
 //
@@ -2493,7 +2493,7 @@ func SecCertificateCopySerialNumberData(certificate SecCertificateRef, error_ un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyShortDescription(_:_:_:)
 func SecCertificateCopyShortDescription(alloc AllocatorRef, certificate SecCertificateRef, error_ unsafe.Pointer) StringRef {
 	return _SecCertificateCopyShortDescription(alloc, certificate, error_)
-}/* debug [functions.gen.go/function]: SecCertificateCopyShortDescription */
+}
 
 // Returns a human-readable summary of a certificate.
 //
@@ -2504,7 +2504,7 @@ func SecCertificateCopyShortDescription(alloc AllocatorRef, certificate SecCerti
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopySubjectSummary(_:)
 func SecCertificateCopySubjectSummary(certificate SecCertificateRef) StringRef {
 	return _SecCertificateCopySubjectSummary(certificate)
-}/* debug [functions.gen.go/function]: SecCertificateCopySubjectSummary */
+}
 
 // Creates a dictionary that represents a certificate’s contents.
 //
@@ -2515,7 +2515,7 @@ func SecCertificateCopySubjectSummary(certificate SecCertificateRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCopyValues(_:_:_:)
 func SecCertificateCopyValues(certificate SecCertificateRef, keys ArrayRef, error_ unsafe.Pointer) DictionaryRef {
 	return _SecCertificateCopyValues(certificate, keys, error_)
-}/* debug [functions.gen.go/function]: SecCertificateCopyValues */
+}
 
 // Creates a certificate object from a DER representation of a certificate.
 //
@@ -2526,7 +2526,7 @@ func SecCertificateCopyValues(certificate SecCertificateRef, keys ArrayRef, erro
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateCreateWithData(_:_:)
 func SecCertificateCreateWithData(allocator AllocatorRef, data DataRef) SecCertificateRef {
 	return _SecCertificateCreateWithData(allocator, data)
-}/* debug [functions.gen.go/function]: SecCertificateCreateWithData */
+}
 
 // Returns the unique identifier of the opaque type to which a certificate object belongs.
 //
@@ -2537,7 +2537,7 @@ func SecCertificateCreateWithData(allocator AllocatorRef, data DataRef) SecCerti
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateGetTypeID()
 func SecCertificateGetTypeID() TypeID {
 	return _SecCertificateGetTypeID()
-}/* debug [functions.gen.go/function]: SecCertificateGetTypeID */
+}
 
 // Sets the certificate that should be preferred for the specified name and key use.
 //
@@ -2548,7 +2548,7 @@ func SecCertificateGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificateSetPreferred(_:_:_:)
 func SecCertificateSetPreferred(certificate SecCertificateRef, name StringRef, keyUsage ArrayRef) unsafe.Pointer {
 	return _SecCertificateSetPreferred(certificate, name, keyUsage)
-}/* debug [functions.gen.go/function]: SecCertificateSetPreferred */
+}
 
 // Performs dynamic validation of signed code.
 //
@@ -2559,7 +2559,7 @@ func SecCertificateSetPreferred(certificate SecCertificateRef, name StringRef, k
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCheckValidity(_:_:_:)
 func SecCodeCheckValidity(code SecCodeRef, flags SecCSFlags, requirement SecRequirementRef) unsafe.Pointer {
 	return _SecCodeCheckValidity(code, flags, requirement)
-}/* debug [functions.gen.go/function]: SecCodeCheckValidity */
+}
 
 // Performs dynamic validation of signed code and returns detailed error information in the case of failure.
 //
@@ -2570,7 +2570,7 @@ func SecCodeCheckValidity(code SecCodeRef, flags SecCSFlags, requirement SecRequ
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCheckValidityWithErrors(_:_:_:_:)
 func SecCodeCheckValidityWithErrors(code SecCodeRef, flags SecCSFlags, requirement SecRequirementRef, errors unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCheckValidityWithErrors(code, flags, requirement, errors)
-}/* debug [functions.gen.go/function]: SecCodeCheckValidityWithErrors */
+}
 
 // Retrieves the designated code requirement of signed code.
 //
@@ -2581,7 +2581,7 @@ func SecCodeCheckValidityWithErrors(code SecCodeRef, flags SecCSFlags, requireme
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopyDesignatedRequirement(_:_:_:)
 func SecCodeCopyDesignatedRequirement(code SecStaticCodeRef, flags SecCSFlags, requirement unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopyDesignatedRequirement(code, flags, requirement)
-}/* debug [functions.gen.go/function]: SecCodeCopyDesignatedRequirement */
+}
 
 // Asks a code host to identify one of its guests given the type and value of specific attributes of the guest code.
 //
@@ -2592,7 +2592,7 @@ func SecCodeCopyDesignatedRequirement(code SecStaticCodeRef, flags SecCSFlags, r
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopyGuestWithAttributes(_:_:_:_:)
 func SecCodeCopyGuestWithAttributes(host SecCodeRef, attributes DictionaryRef, flags SecCSFlags, guest unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopyGuestWithAttributes(host, attributes, flags, guest)
-}/* debug [functions.gen.go/function]: SecCodeCopyGuestWithAttributes */
+}
 
 // Retrieves the code object for the host of specified guest code.
 //
@@ -2603,7 +2603,7 @@ func SecCodeCopyGuestWithAttributes(host SecCodeRef, attributes DictionaryRef, f
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopyHost(_:_:_:)
 func SecCodeCopyHost(guest SecCodeRef, flags SecCSFlags, host unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopyHost(guest, flags, host)
-}/* debug [functions.gen.go/function]: SecCodeCopyHost */
+}
 
 // Retrieves the location on disk of signed code, given a code or static code object.
 //
@@ -2614,7 +2614,7 @@ func SecCodeCopyHost(guest SecCodeRef, flags SecCSFlags, host unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopyPath(_:_:_:)
 func SecCodeCopyPath(staticCode SecStaticCodeRef, flags SecCSFlags, path unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopyPath(staticCode, flags, path)
-}/* debug [functions.gen.go/function]: SecCodeCopyPath */
+}
 
 // Retrieves the code object for the code making the call.
 //
@@ -2625,7 +2625,7 @@ func SecCodeCopyPath(staticCode SecStaticCodeRef, flags SecCSFlags, path unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopySelf(_:_:)
 func SecCodeCopySelf(flags SecCSFlags, self unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopySelf(flags, self)
-}/* debug [functions.gen.go/function]: SecCodeCopySelf */
+}
 
 // Retrieves various pieces of information from a code signature.
 //
@@ -2636,7 +2636,7 @@ func SecCodeCopySelf(flags SecCSFlags, self unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopySigningInformation(_:_:_:)
 func SecCodeCopySigningInformation(code SecStaticCodeRef, flags SecCSFlags, information unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopySigningInformation(code, flags, information)
-}/* debug [functions.gen.go/function]: SecCodeCopySigningInformation */
+}
 
 // Returns a static code object representing the on-disk version of the given running code.
 //
@@ -2647,7 +2647,7 @@ func SecCodeCopySigningInformation(code SecStaticCodeRef, flags SecCSFlags, info
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeCopyStaticCode(_:_:_:)
 func SecCodeCopyStaticCode(code SecCodeRef, flags SecCSFlags, staticCode unsafe.Pointer) unsafe.Pointer {
 	return _SecCodeCopyStaticCode(code, flags, staticCode)
-}/* debug [functions.gen.go/function]: SecCodeCopyStaticCode */
+}
 
 // Returns the unique identifier of the opaque type to which a code object belongs.
 //
@@ -2658,7 +2658,7 @@ func SecCodeCopyStaticCode(code SecCodeRef, flags SecCSFlags, staticCode unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeGetTypeID()
 func SecCodeGetTypeID() TypeID {
 	return _SecCodeGetTypeID()
-}/* debug [functions.gen.go/function]: SecCodeGetTypeID */
+}
 
 // Asks the kernel to accept the signing information currently attached to a code object and uses it to validate memory page-ins.
 //
@@ -2669,7 +2669,7 @@ func SecCodeGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeMapMemory(_:_:)
 func SecCodeMapMemory(code SecStaticCodeRef, flags SecCSFlags) unsafe.Pointer {
 	return _SecCodeMapMemory(code, flags)
-}/* debug [functions.gen.go/function]: SecCodeMapMemory */
+}
 
 // Returns a string explaining the meaning of a security result code.
 //
@@ -2680,7 +2680,7 @@ func SecCodeMapMemory(code SecStaticCodeRef, flags SecCSFlags) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCopyErrorMessageString(_:_:)
 func SecCopyErrorMessageString(status unsafe.Pointer, reserved unsafe.Pointer) StringRef {
 	return _SecCopyErrorMessageString(status, reserved)
-}/* debug [functions.gen.go/function]: SecCopyErrorMessageString */
+}
 
 // Returns a randomly generated password.
 //
@@ -2691,7 +2691,7 @@ func SecCopyErrorMessageString(status unsafe.Pointer, reserved unsafe.Pointer) S
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCreateSharedWebCredentialPassword()
 func SecCreateSharedWebCredentialPassword() StringRef {
 	return _SecCreateSharedWebCredentialPassword()
-}/* debug [functions.gen.go/function]: SecCreateSharedWebCredentialPassword */
+}
 
 // Creates a decode transform object.
 //
@@ -2704,7 +2704,7 @@ func SecCreateSharedWebCredentialPassword() StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecDecodeTransformCreate(_:_:)
 func SecDecodeTransformCreate(DecodeType TypeRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecDecodeTransformCreate(DecodeType, error_)
-}/* debug [functions.gen.go/function]: SecDecodeTransformCreate */
+}
 
 // Creates a decryption transform object.
 //
@@ -2717,7 +2717,7 @@ func SecDecodeTransformCreate(DecodeType TypeRef, error_ unsafe.Pointer) SecTran
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecDecryptTransformCreate(_:_:)
 func SecDecryptTransformCreate(keyRef SecKeyRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecDecryptTransformCreate(keyRef, error_)
-}/* debug [functions.gen.go/function]: SecDecryptTransformCreate */
+}
 
 // Returns the unique identifier of the opaque type to which a decryption transform belongs.
 //
@@ -2730,7 +2730,7 @@ func SecDecryptTransformCreate(keyRef SecKeyRef, error_ unsafe.Pointer) SecTrans
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecDecryptTransformGetTypeID()
 func SecDecryptTransformGetTypeID() TypeID {
 	return _SecDecryptTransformGetTypeID()
-}/* debug [functions.gen.go/function]: SecDecryptTransformGetTypeID */
+}
 
 // Creates a digest transform object.
 //
@@ -2743,7 +2743,7 @@ func SecDecryptTransformGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecDigestTransformCreate(_:_:_:)
 func SecDigestTransformCreate(digestType TypeRef, digestLength Index, error_ unsafe.Pointer) SecTransformRef {
 	return _SecDigestTransformCreate(digestType, digestLength, error_)
-}/* debug [functions.gen.go/function]: SecDigestTransformCreate */
+}
 
 // Returns the unique identifier of the opaque type to which a digest transform belongs.
 //
@@ -2756,7 +2756,7 @@ func SecDigestTransformCreate(digestType TypeRef, digestLength Index, error_ uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecDigestTransformGetTypeID()
 func SecDigestTransformGetTypeID() TypeID {
 	return _SecDigestTransformGetTypeID()
-}/* debug [functions.gen.go/function]: SecDigestTransformGetTypeID */
+}
 
 // Creates an encode transform object.
 //
@@ -2769,7 +2769,7 @@ func SecDigestTransformGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecEncodeTransformCreate(_:_:)
 func SecEncodeTransformCreate(encodeType TypeRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecEncodeTransformCreate(encodeType, error_)
-}/* debug [functions.gen.go/function]: SecEncodeTransformCreate */
+}
 
 // Creates an encryption transform object.
 //
@@ -2782,7 +2782,7 @@ func SecEncodeTransformCreate(encodeType TypeRef, error_ unsafe.Pointer) SecTran
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecEncryptTransformCreate(_:_:)
 func SecEncryptTransformCreate(keyRef SecKeyRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecEncryptTransformCreate(keyRef, error_)
-}/* debug [functions.gen.go/function]: SecEncryptTransformCreate */
+}
 
 // Returns the unique identifier of the opaque type to which an encryption transform belongs.
 //
@@ -2795,7 +2795,7 @@ func SecEncryptTransformCreate(keyRef SecKeyRef, error_ unsafe.Pointer) SecTrans
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecEncryptTransformGetTypeID()
 func SecEncryptTransformGetTypeID() TypeID {
 	return _SecEncryptTransformGetTypeID()
-}/* debug [functions.gen.go/function]: SecEncryptTransformGetTypeID */
+}
 
 // Returns the Core Foundation type ID for a transform group container.
 //
@@ -2808,7 +2808,7 @@ func SecEncryptTransformGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecGroupTransformGetTypeID()
 func SecGroupTransformGetTypeID() TypeID {
 	return _SecGroupTransformGetTypeID()
-}/* debug [functions.gen.go/function]: SecGroupTransformGetTypeID */
+}
 
 // Retrieves a certificate associated with an identity.
 //
@@ -2819,7 +2819,7 @@ func SecGroupTransformGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCopyCertificate(_:_:)
 func SecIdentityCopyCertificate(identityRef SecIdentityRef, certificateRef unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentityCopyCertificate(identityRef, certificateRef)
-}/* debug [functions.gen.go/function]: SecIdentityCopyCertificate */
+}
 
 // Retrieves the preferred identity for the specified name and key use.
 //
@@ -2830,7 +2830,7 @@ func SecIdentityCopyCertificate(identityRef SecIdentityRef, certificateRef unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCopyPreferred(_:_:_:)
 func SecIdentityCopyPreferred(name StringRef, keyUsage ArrayRef, validIssuers ArrayRef) SecIdentityRef {
 	return _SecIdentityCopyPreferred(name, keyUsage, validIssuers)
-}/* debug [functions.gen.go/function]: SecIdentityCopyPreferred */
+}
 
 // Retrieves the private key associated with an identity.
 //
@@ -2841,7 +2841,7 @@ func SecIdentityCopyPreferred(name StringRef, keyUsage ArrayRef, validIssuers Ar
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCopyPrivateKey(_:_:)
 func SecIdentityCopyPrivateKey(identityRef SecIdentityRef, privateKeyRef unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentityCopyPrivateKey(identityRef, privateKeyRef)
-}/* debug [functions.gen.go/function]: SecIdentityCopyPrivateKey */
+}
 
 // Obtains the system identity associated with a specified domain.
 //
@@ -2852,7 +2852,7 @@ func SecIdentityCopyPrivateKey(identityRef SecIdentityRef, privateKeyRef unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCopySystemIdentity(_:_:_:)
 func SecIdentityCopySystemIdentity(domain StringRef, idRef unsafe.Pointer, actualDomain unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentityCopySystemIdentity(domain, idRef, actualDomain)
-}/* debug [functions.gen.go/function]: SecIdentityCopySystemIdentity */
+}
 
 // Creates a new identity for a certificate and its associated private key.
 //
@@ -2863,7 +2863,7 @@ func SecIdentityCopySystemIdentity(domain StringRef, idRef unsafe.Pointer, actua
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityCreateWithCertificate(_:_:_:)
 func SecIdentityCreateWithCertificate(keychainOrArray TypeRef, certificateRef SecCertificateRef, identityRef unsafe.Pointer) unsafe.Pointer {
 	return _SecIdentityCreateWithCertificate(keychainOrArray, certificateRef, identityRef)
-}/* debug [functions.gen.go/function]: SecIdentityCreateWithCertificate */
+}
 
 // Returns the unique identifier of the opaque type to which an identity object belongs.
 //
@@ -2874,7 +2874,7 @@ func SecIdentityCreateWithCertificate(keychainOrArray TypeRef, certificateRef Se
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentityGetTypeID()
 func SecIdentityGetTypeID() TypeID {
 	return _SecIdentityGetTypeID()
-}/* debug [functions.gen.go/function]: SecIdentityGetTypeID */
+}
 
 // Sets the identity that should be preferred for the specified name and key use.
 //
@@ -2885,7 +2885,7 @@ func SecIdentityGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentitySetPreferred(_:_:_:)
 func SecIdentitySetPreferred(identity SecIdentityRef, name StringRef, keyUsage ArrayRef) unsafe.Pointer {
 	return _SecIdentitySetPreferred(identity, name, keyUsage)
-}/* debug [functions.gen.go/function]: SecIdentitySetPreferred */
+}
 
 // Assigns the system identity to be associated with a specified domain.
 //
@@ -2896,7 +2896,7 @@ func SecIdentitySetPreferred(identity SecIdentityRef, name StringRef, keyUsage A
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecIdentitySetSystemIdentity(_:_:)
 func SecIdentitySetSystemIdentity(domain StringRef, idRef SecIdentityRef) unsafe.Pointer {
 	return _SecIdentitySetSystemIdentity(domain, idRef)
-}/* debug [functions.gen.go/function]: SecIdentitySetSystemIdentity */
+}
 
 // Adds one or more items to a keychain.
 //
@@ -2907,7 +2907,7 @@ func SecIdentitySetSystemIdentity(domain StringRef, idRef SecIdentityRef) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemAdd(_:_:)
 func SecItemAdd(attributes DictionaryRef, result unsafe.Pointer) unsafe.Pointer {
 	return _SecItemAdd(attributes, result)
-}/* debug [functions.gen.go/function]: SecItemAdd */
+}
 
 // Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.
 //
@@ -2918,7 +2918,7 @@ func SecItemAdd(attributes DictionaryRef, result unsafe.Pointer) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemCopyMatching(_:_:)
 func SecItemCopyMatching(query DictionaryRef, result unsafe.Pointer) unsafe.Pointer {
 	return _SecItemCopyMatching(query, result)
-}/* debug [functions.gen.go/function]: SecItemCopyMatching */
+}
 
 // Deletes items that match a search query.
 //
@@ -2929,7 +2929,7 @@ func SecItemCopyMatching(query DictionaryRef, result unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemDelete(_:)
 func SecItemDelete(query DictionaryRef) unsafe.Pointer {
 	return _SecItemDelete(query)
-}/* debug [functions.gen.go/function]: SecItemDelete */
+}
 
 // Exports one or more certificates, keys, or identities.
 //
@@ -2940,7 +2940,7 @@ func SecItemDelete(query DictionaryRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemExport(_:_:_:_:_:)
 func SecItemExport(secItemOrArray TypeRef, outputFormat SecExternalFormat, flags SecItemImportExportFlags, keyParams unsafe.Pointer, exportedData unsafe.Pointer) unsafe.Pointer {
 	return _SecItemExport(secItemOrArray, outputFormat, flags, keyParams, exportedData)
-}/* debug [functions.gen.go/function]: SecItemExport */
+}
 
 // Imports one or more certificates, keys, or identities and optionally adds them to a keychain.
 //
@@ -2951,7 +2951,7 @@ func SecItemExport(secItemOrArray TypeRef, outputFormat SecExternalFormat, flags
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemImport(_:_:_:_:_:_:_:_:)
 func SecItemImport(importedData DataRef, fileNameOrExtension StringRef, inputFormat unsafe.Pointer, itemType unsafe.Pointer, flags SecItemImportExportFlags, keyParams unsafe.Pointer, importKeychain SecKeychainRef, outItems unsafe.Pointer) unsafe.Pointer {
 	return _SecItemImport(importedData, fileNameOrExtension, inputFormat, itemType, flags, keyParams, importKeychain, outItems)
-}/* debug [functions.gen.go/function]: SecItemImport */
+}
 
 // Modifies items that match a search query.
 //
@@ -2962,7 +2962,7 @@ func SecItemImport(importedData DataRef, fileNameOrExtension StringRef, inputFor
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemUpdate(_:_:)
 func SecItemUpdate(query DictionaryRef, attributesToUpdate DictionaryRef) unsafe.Pointer {
 	return _SecItemUpdate(query, attributesToUpdate)
-}/* debug [functions.gen.go/function]: SecItemUpdate */
+}
 
 // Registers your keychain event callback function.
 //
@@ -2975,7 +2975,7 @@ func SecItemUpdate(query DictionaryRef, attributesToUpdate DictionaryRef) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAddCallback(_:_:_:)
 func SecKeychainAddCallback(callbackFunction SecKeychainCallback, eventMask SecKeychainEventMask, userContext unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainAddCallback(callbackFunction, eventMask, userContext)
-}/* debug [functions.gen.go/function]: SecKeychainAddCallback */
+}
 
 // Adds a new generic password to a keychain.
 //
@@ -2988,7 +2988,7 @@ func SecKeychainAddCallback(callbackFunction SecKeychainCallback, eventMask SecK
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)
 func SecKeychainAddGenericPassword(keychain SecKeychainRef, serviceNameLength unsafe.Pointer, serviceName unsafe.Pointer, accountNameLength unsafe.Pointer, accountName unsafe.Pointer, passwordLength unsafe.Pointer, passwordData unsafe.Pointer, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainAddGenericPassword(keychain, serviceNameLength, serviceName, accountNameLength, accountName, passwordLength, passwordData, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainAddGenericPassword */
+}
 
 // Adds a new Internet password to a keychain.
 //
@@ -3001,7 +3001,7 @@ func SecKeychainAddGenericPassword(keychain SecKeychainRef, serviceNameLength un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
 func SecKeychainAddInternetPassword(keychain SecKeychainRef, serverNameLength unsafe.Pointer, serverName unsafe.Pointer, securityDomainLength unsafe.Pointer, securityDomain unsafe.Pointer, accountNameLength unsafe.Pointer, accountName unsafe.Pointer, pathLength unsafe.Pointer, path unsafe.Pointer, port unsafe.Pointer, protocol_ SecProtocolType, authenticationType SecAuthenticationType, passwordLength unsafe.Pointer, passwordData unsafe.Pointer, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainAddInternetPassword(keychain, serverNameLength, serverName, securityDomainLength, securityDomain, accountNameLength, accountName, pathLength, path, port, protocol_, authenticationType, passwordLength, passwordData, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainAddInternetPassword */
+}
 
 // Obtains tags for all possible attributes of a given item class.
 //
@@ -3014,7 +3014,7 @@ func SecKeychainAddInternetPassword(keychain SecKeychainRef, serverNameLength un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAttributeInfoForItemID(_:_:_:)
 func SecKeychainAttributeInfoForItemID(keychain SecKeychainRef, itemID unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainAttributeInfoForItemID(keychain, itemID, info)
-}/* debug [functions.gen.go/function]: SecKeychainAttributeInfoForItemID */
+}
 
 // Retrieves the application access of a keychain.
 //
@@ -3027,7 +3027,7 @@ func SecKeychainAttributeInfoForItemID(keychain SecKeychainRef, itemID unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCopyAccess(_:_:)
 func SecKeychainCopyAccess(keychain SecKeychainRef, access unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCopyAccess(keychain, access)
-}/* debug [functions.gen.go/function]: SecKeychainCopyAccess */
+}
 
 // Retrieves a pointer to the default keychain.
 //
@@ -3040,7 +3040,7 @@ func SecKeychainCopyAccess(keychain SecKeychainRef, access unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCopyDefault(_:)
 func SecKeychainCopyDefault(keychain unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCopyDefault(keychain)
-}/* debug [functions.gen.go/function]: SecKeychainCopyDefault */
+}
 
 // Retrieves the default keychain from a specified preference domain.
 //
@@ -3053,7 +3053,7 @@ func SecKeychainCopyDefault(keychain unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCopyDomainDefault(_:_:)
 func SecKeychainCopyDomainDefault(domain SecPreferencesDomain, keychain unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCopyDomainDefault(domain, keychain)
-}/* debug [functions.gen.go/function]: SecKeychainCopyDomainDefault */
+}
 
 // Retrieves the keychain search list for a specified preference domain.
 //
@@ -3066,7 +3066,7 @@ func SecKeychainCopyDomainDefault(domain SecPreferencesDomain, keychain unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCopyDomainSearchList(_:_:)
 func SecKeychainCopyDomainSearchList(domain SecPreferencesDomain, searchList unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCopyDomainSearchList(domain, searchList)
-}/* debug [functions.gen.go/function]: SecKeychainCopyDomainSearchList */
+}
 
 // Retrieves a keychain search list.
 //
@@ -3079,7 +3079,7 @@ func SecKeychainCopyDomainSearchList(domain SecPreferencesDomain, searchList uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCopySearchList(_:)
 func SecKeychainCopySearchList(searchList unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCopySearchList(searchList)
-}/* debug [functions.gen.go/function]: SecKeychainCopySearchList */
+}
 
 // Obtains a keychain’s settings.
 //
@@ -3092,7 +3092,7 @@ func SecKeychainCopySearchList(searchList unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCopySettings(_:_:)
 func SecKeychainCopySettings(keychain SecKeychainRef, outSettings unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCopySettings(keychain, outSettings)
-}/* debug [functions.gen.go/function]: SecKeychainCopySettings */
+}
 
 // Creates an empty keychain.
 //
@@ -3105,7 +3105,7 @@ func SecKeychainCopySettings(keychain SecKeychainRef, outSettings unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCreate(_:_:_:_:_:_:)
 func SecKeychainCreate(pathName unsafe.Pointer, passwordLength unsafe.Pointer, password unsafe.Pointer, promptUser unsafe.Pointer, initialAccess SecAccessRef, keychain unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainCreate(pathName, passwordLength, password, promptUser, initialAccess, keychain)
-}/* debug [functions.gen.go/function]: SecKeychainCreate */
+}
 
 // Deletes one or more keychains from the default keychain search list, and removes the keychain itself if it is a file.
 //
@@ -3118,7 +3118,7 @@ func SecKeychainCreate(pathName unsafe.Pointer, passwordLength unsafe.Pointer, p
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainDelete(_:)
 func SecKeychainDelete(keychainOrArray SecKeychainRef) unsafe.Pointer {
 	return _SecKeychainDelete(keychainOrArray)
-}/* debug [functions.gen.go/function]: SecKeychainDelete */
+}
 
 // Finds the first generic password based on the attributes passed.
 //
@@ -3131,7 +3131,7 @@ func SecKeychainDelete(keychainOrArray SecKeychainRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)
 func SecKeychainFindGenericPassword(keychainOrArray TypeRef, serviceNameLength unsafe.Pointer, serviceName unsafe.Pointer, accountNameLength unsafe.Pointer, accountName unsafe.Pointer, passwordLength unsafe.Pointer, passwordData unsafe.Pointer, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainFindGenericPassword(keychainOrArray, serviceNameLength, serviceName, accountNameLength, accountName, passwordLength, passwordData, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainFindGenericPassword */
+}
 
 // Finds the first Internet password based on the attributes passed.
 //
@@ -3144,7 +3144,7 @@ func SecKeychainFindGenericPassword(keychainOrArray TypeRef, serviceNameLength u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
 func SecKeychainFindInternetPassword(keychainOrArray TypeRef, serverNameLength unsafe.Pointer, serverName unsafe.Pointer, securityDomainLength unsafe.Pointer, securityDomain unsafe.Pointer, accountNameLength unsafe.Pointer, accountName unsafe.Pointer, pathLength unsafe.Pointer, path unsafe.Pointer, port unsafe.Pointer, protocol_ SecProtocolType, authenticationType SecAuthenticationType, passwordLength unsafe.Pointer, passwordData unsafe.Pointer, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainFindInternetPassword(keychainOrArray, serverNameLength, serverName, securityDomainLength, securityDomain, accountNameLength, accountName, pathLength, path, port, protocol_, authenticationType, passwordLength, passwordData, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainFindInternetPassword */
+}
 
 // Releases the memory acquired by calling the function.
 //
@@ -3157,7 +3157,7 @@ func SecKeychainFindInternetPassword(keychainOrArray TypeRef, serverNameLength u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainFreeAttributeInfo(_:)
 func SecKeychainFreeAttributeInfo(info unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainFreeAttributeInfo(info)
-}/* debug [functions.gen.go/function]: SecKeychainFreeAttributeInfo */
+}
 
 // Determines the path of a keychain.
 //
@@ -3170,7 +3170,7 @@ func SecKeychainFreeAttributeInfo(info unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetPath(_:_:_:)
 func SecKeychainGetPath(keychain SecKeychainRef, ioPathLength unsafe.Pointer, pathName unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetPath(keychain, ioPathLength, pathName)
-}/* debug [functions.gen.go/function]: SecKeychainGetPath */
+}
 
 // Gets the current keychain preference domain.
 //
@@ -3183,7 +3183,7 @@ func SecKeychainGetPath(keychain SecKeychainRef, ioPathLength unsafe.Pointer, pa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetPreferenceDomain(_:)
 func SecKeychainGetPreferenceDomain(domain unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetPreferenceDomain(domain)
-}/* debug [functions.gen.go/function]: SecKeychainGetPreferenceDomain */
+}
 
 // Retrieves status information of a keychain.
 //
@@ -3196,7 +3196,7 @@ func SecKeychainGetPreferenceDomain(domain unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetStatus(_:_:)
 func SecKeychainGetStatus(keychain SecKeychainRef, keychainStatus unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetStatus(keychain, keychainStatus)
-}/* debug [functions.gen.go/function]: SecKeychainGetStatus */
+}
 
 // Returns the unique identifier of the opaque type to which a keychain object belongs.
 //
@@ -3209,7 +3209,7 @@ func SecKeychainGetStatus(keychain SecKeychainRef, keychainStatus unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetTypeID()
 func SecKeychainGetTypeID() TypeID {
 	return _SecKeychainGetTypeID()
-}/* debug [functions.gen.go/function]: SecKeychainGetTypeID */
+}
 
 // Indicates whether keychain services functions that normally display a user interaction are allowed to do so.
 //
@@ -3222,7 +3222,7 @@ func SecKeychainGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetUserInteractionAllowed(_:)
 func SecKeychainGetUserInteractionAllowed(state unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetUserInteractionAllowed(state)
-}/* debug [functions.gen.go/function]: SecKeychainGetUserInteractionAllowed */
+}
 
 // Determines the version of keychain services installed on the user’s system.
 //
@@ -3235,7 +3235,7 @@ func SecKeychainGetUserInteractionAllowed(state unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainGetVersion(_:)
 func SecKeychainGetVersion(returnVers unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainGetVersion(returnVers)
-}/* debug [functions.gen.go/function]: SecKeychainGetVersion */
+}
 
 // Retrieves the access of a given keychain item.
 //
@@ -3248,7 +3248,7 @@ func SecKeychainGetVersion(returnVers unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCopyAccess(_:_:)
 func SecKeychainItemCopyAccess(itemRef SecKeychainItemRef, access unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCopyAccess(itemRef, access)
-}/* debug [functions.gen.go/function]: SecKeychainItemCopyAccess */
+}
 
 // Retrieves the data and/or attributes stored in the given keychain item.
 //
@@ -3261,7 +3261,7 @@ func SecKeychainItemCopyAccess(itemRef SecKeychainItemRef, access unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)
 func SecKeychainItemCopyAttributesAndData(itemRef SecKeychainItemRef, info unsafe.Pointer, itemClass unsafe.Pointer, attrList unsafe.Pointer, length unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCopyAttributesAndData(itemRef, info, itemClass, attrList, length, outData)
-}/* debug [functions.gen.go/function]: SecKeychainItemCopyAttributesAndData */
+}
 
 // Copies the data and attributes stored in the given keychain item.
 //
@@ -3274,7 +3274,7 @@ func SecKeychainItemCopyAttributesAndData(itemRef SecKeychainItemRef, info unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCopyContent(_:_:_:_:_:)
 func SecKeychainItemCopyContent(itemRef SecKeychainItemRef, itemClass unsafe.Pointer, attrList unsafe.Pointer, length unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCopyContent(itemRef, itemClass, attrList, length, outData)
-}/* debug [functions.gen.go/function]: SecKeychainItemCopyContent */
+}
 
 // Provides a keychain item reference, given a persistent reference.
 //
@@ -3287,7 +3287,7 @@ func SecKeychainItemCopyContent(itemRef SecKeychainItemRef, itemClass unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCopyFromPersistentReference(_:_:)
 func SecKeychainItemCopyFromPersistentReference(persistentItemRef DataRef, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCopyFromPersistentReference(persistentItemRef, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainItemCopyFromPersistentReference */
+}
 
 // Returns the keychain object of a given keychain item.
 //
@@ -3300,7 +3300,7 @@ func SecKeychainItemCopyFromPersistentReference(persistentItemRef DataRef, itemR
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCopyKeychain(_:_:)
 func SecKeychainItemCopyKeychain(itemRef SecKeychainItemRef, keychainRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCopyKeychain(itemRef, keychainRef)
-}/* debug [functions.gen.go/function]: SecKeychainItemCopyKeychain */
+}
 
 // Copies a keychain item from one keychain to another.
 //
@@ -3313,7 +3313,7 @@ func SecKeychainItemCopyKeychain(itemRef SecKeychainItemRef, keychainRef unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCreateCopy(_:_:_:_:)
 func SecKeychainItemCreateCopy(itemRef SecKeychainItemRef, destKeychainRef SecKeychainRef, initialAccess SecAccessRef, itemCopy unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCreateCopy(itemRef, destKeychainRef, initialAccess, itemCopy)
-}/* debug [functions.gen.go/function]: SecKeychainItemCreateCopy */
+}
 
 // Creates a new keychain item from the supplied parameters.
 //
@@ -3326,7 +3326,7 @@ func SecKeychainItemCreateCopy(itemRef SecKeychainItemRef, destKeychainRef SecKe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)
 func SecKeychainItemCreateFromContent(itemClass SecItemClass, attrList unsafe.Pointer, length unsafe.Pointer, data unsafe.Pointer, keychainRef SecKeychainRef, initialAccess SecAccessRef, itemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCreateFromContent(itemClass, attrList, length, data, keychainRef, initialAccess, itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainItemCreateFromContent */
+}
 
 // Creates a persistent reference for a keychain item.
 //
@@ -3339,7 +3339,7 @@ func SecKeychainItemCreateFromContent(itemClass SecItemClass, attrList unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemCreatePersistentReference(_:_:)
 func SecKeychainItemCreatePersistentReference(itemRef SecKeychainItemRef, persistentItemRef unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemCreatePersistentReference(itemRef, persistentItemRef)
-}/* debug [functions.gen.go/function]: SecKeychainItemCreatePersistentReference */
+}
 
 // Deletes a keychain item from the default keychain’s permanent data store.
 //
@@ -3352,7 +3352,7 @@ func SecKeychainItemCreatePersistentReference(itemRef SecKeychainItemRef, persis
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemDelete(_:)
 func SecKeychainItemDelete(itemRef SecKeychainItemRef) unsafe.Pointer {
 	return _SecKeychainItemDelete(itemRef)
-}/* debug [functions.gen.go/function]: SecKeychainItemDelete */
+}
 
 // Releases the memory used by the keychain attribute list and/or the keychain data retrieved in a call to .
 //
@@ -3365,7 +3365,7 @@ func SecKeychainItemDelete(itemRef SecKeychainItemRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemFreeAttributesAndData(_:_:)
 func SecKeychainItemFreeAttributesAndData(attrList unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemFreeAttributesAndData(attrList, data)
-}/* debug [functions.gen.go/function]: SecKeychainItemFreeAttributesAndData */
+}
 
 // Releases the memory used by the keychain attribute list and the keychain data retrieved in a call to the function.
 //
@@ -3378,7 +3378,7 @@ func SecKeychainItemFreeAttributesAndData(attrList unsafe.Pointer, data unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemFreeContent(_:_:)
 func SecKeychainItemFreeContent(attrList unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemFreeContent(attrList, data)
-}/* debug [functions.gen.go/function]: SecKeychainItemFreeContent */
+}
 
 // Returns the unique identifier of the opaque type to which a keychain item object belongs.
 //
@@ -3391,7 +3391,7 @@ func SecKeychainItemFreeContent(attrList unsafe.Pointer, data unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemGetTypeID()
 func SecKeychainItemGetTypeID() TypeID {
 	return _SecKeychainItemGetTypeID()
-}/* debug [functions.gen.go/function]: SecKeychainItemGetTypeID */
+}
 
 // Updates an existing keychain item after changing its attributes or data.
 //
@@ -3404,7 +3404,7 @@ func SecKeychainItemGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemModifyAttributesAndData(_:_:_:_:)
 func SecKeychainItemModifyAttributesAndData(itemRef SecKeychainItemRef, attrList unsafe.Pointer, length unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemModifyAttributesAndData(itemRef, attrList, length, data)
-}/* debug [functions.gen.go/function]: SecKeychainItemModifyAttributesAndData */
+}
 
 // Updates an existing keychain item after changing its attributes and/or data.
 //
@@ -3417,7 +3417,7 @@ func SecKeychainItemModifyAttributesAndData(itemRef SecKeychainItemRef, attrList
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemModifyContent(_:_:_:_:)
 func SecKeychainItemModifyContent(itemRef SecKeychainItemRef, attrList unsafe.Pointer, length unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainItemModifyContent(itemRef, attrList, length, data)
-}/* debug [functions.gen.go/function]: SecKeychainItemModifyContent */
+}
 
 // Sets the access of a given keychain item.
 //
@@ -3430,7 +3430,7 @@ func SecKeychainItemModifyContent(itemRef SecKeychainItemRef, attrList unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItemSetAccess(_:_:)
 func SecKeychainItemSetAccess(itemRef SecKeychainItemRef, access SecAccessRef) unsafe.Pointer {
 	return _SecKeychainItemSetAccess(itemRef, access)
-}/* debug [functions.gen.go/function]: SecKeychainItemSetAccess */
+}
 
 // Locks a keychain.
 //
@@ -3443,7 +3443,7 @@ func SecKeychainItemSetAccess(itemRef SecKeychainItemRef, access SecAccessRef) u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainLock(_:)
 func SecKeychainLock(keychain SecKeychainRef) unsafe.Pointer {
 	return _SecKeychainLock(keychain)
-}/* debug [functions.gen.go/function]: SecKeychainLock */
+}
 
 // Locks all keychains belonging to the current user.
 //
@@ -3456,7 +3456,7 @@ func SecKeychainLock(keychain SecKeychainRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainLockAll()
 func SecKeychainLockAll() unsafe.Pointer {
 	return _SecKeychainLockAll()
-}/* debug [functions.gen.go/function]: SecKeychainLockAll */
+}
 
 // Opens a keychain.
 //
@@ -3469,7 +3469,7 @@ func SecKeychainLockAll() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainOpen(_:_:)
 func SecKeychainOpen(pathName unsafe.Pointer, keychain unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainOpen(pathName, keychain)
-}/* debug [functions.gen.go/function]: SecKeychainOpen */
+}
 
 // Unregisters your keychain event callback function.
 //
@@ -3482,7 +3482,7 @@ func SecKeychainOpen(pathName unsafe.Pointer, keychain unsafe.Pointer) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainRemoveCallback(_:)
 func SecKeychainRemoveCallback(callbackFunction SecKeychainCallback) unsafe.Pointer {
 	return _SecKeychainRemoveCallback(callbackFunction)
-}/* debug [functions.gen.go/function]: SecKeychainRemoveCallback */
+}
 
 // Sets the application access for a keychain.
 //
@@ -3495,7 +3495,7 @@ func SecKeychainRemoveCallback(callbackFunction SecKeychainCallback) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetAccess(_:_:)
 func SecKeychainSetAccess(keychain SecKeychainRef, access SecAccessRef) unsafe.Pointer {
 	return _SecKeychainSetAccess(keychain, access)
-}/* debug [functions.gen.go/function]: SecKeychainSetAccess */
+}
 
 // Sets the default keychain.
 //
@@ -3508,7 +3508,7 @@ func SecKeychainSetAccess(keychain SecKeychainRef, access SecAccessRef) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetDefault(_:)
 func SecKeychainSetDefault(keychain SecKeychainRef) unsafe.Pointer {
 	return _SecKeychainSetDefault(keychain)
-}/* debug [functions.gen.go/function]: SecKeychainSetDefault */
+}
 
 // Sets the default keychain for a specified preference domain.
 //
@@ -3521,7 +3521,7 @@ func SecKeychainSetDefault(keychain SecKeychainRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetDomainDefault(_:_:)
 func SecKeychainSetDomainDefault(domain SecPreferencesDomain, keychain SecKeychainRef) unsafe.Pointer {
 	return _SecKeychainSetDomainDefault(domain, keychain)
-}/* debug [functions.gen.go/function]: SecKeychainSetDomainDefault */
+}
 
 // Sets the keychain search list for a specified preference domain.
 //
@@ -3534,7 +3534,7 @@ func SecKeychainSetDomainDefault(domain SecPreferencesDomain, keychain SecKeycha
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetDomainSearchList(_:_:)
 func SecKeychainSetDomainSearchList(domain SecPreferencesDomain, searchList ArrayRef) unsafe.Pointer {
 	return _SecKeychainSetDomainSearchList(domain, searchList)
-}/* debug [functions.gen.go/function]: SecKeychainSetDomainSearchList */
+}
 
 // Sets the keychain preference domain.
 //
@@ -3547,7 +3547,7 @@ func SecKeychainSetDomainSearchList(domain SecPreferencesDomain, searchList Arra
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetPreferenceDomain(_:)
 func SecKeychainSetPreferenceDomain(domain SecPreferencesDomain) unsafe.Pointer {
 	return _SecKeychainSetPreferenceDomain(domain)
-}/* debug [functions.gen.go/function]: SecKeychainSetPreferenceDomain */
+}
 
 // Specifies the list of keychains to use in the default keychain search list.
 //
@@ -3560,7 +3560,7 @@ func SecKeychainSetPreferenceDomain(domain SecPreferencesDomain) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetSearchList(_:)
 func SecKeychainSetSearchList(searchList ArrayRef) unsafe.Pointer {
 	return _SecKeychainSetSearchList(searchList)
-}/* debug [functions.gen.go/function]: SecKeychainSetSearchList */
+}
 
 // Changes the settings of a keychain.
 //
@@ -3573,7 +3573,7 @@ func SecKeychainSetSearchList(searchList ArrayRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetSettings(_:_:)
 func SecKeychainSetSettings(keychain SecKeychainRef, newSettings unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainSetSettings(keychain, newSettings)
-}/* debug [functions.gen.go/function]: SecKeychainSetSettings */
+}
 
 // Enables or disables the user interface for keychain services functions that automatically display a user interface.
 //
@@ -3586,7 +3586,7 @@ func SecKeychainSetSettings(keychain SecKeychainRef, newSettings unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSetUserInteractionAllowed(_:)
 func SecKeychainSetUserInteractionAllowed(state unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainSetUserInteractionAllowed(state)
-}/* debug [functions.gen.go/function]: SecKeychainSetUserInteractionAllowed */
+}
 
 // Unlocks a keychain.
 //
@@ -3599,7 +3599,7 @@ func SecKeychainSetUserInteractionAllowed(state unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainUnlock(_:_:_:_:)
 func SecKeychainUnlock(keychain SecKeychainRef, passwordLength unsafe.Pointer, password unsafe.Pointer, usePassword unsafe.Pointer) unsafe.Pointer {
 	return _SecKeychainUnlock(keychain, passwordLength, password, usePassword)
-}/* debug [functions.gen.go/function]: SecKeychainUnlock */
+}
 
 // Gets the attributes of a given key.
 //
@@ -3610,7 +3610,7 @@ func SecKeychainUnlock(keychain SecKeychainRef, passwordLength unsafe.Pointer, p
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCopyAttributes(_:)
 func SecKeyCopyAttributes(key SecKeyRef) DictionaryRef {
 	return _SecKeyCopyAttributes(key)
-}/* debug [functions.gen.go/function]: SecKeyCopyAttributes */
+}
 
 // Returns an external representation of the given key suitable for the key’s type.
 //
@@ -3621,7 +3621,7 @@ func SecKeyCopyAttributes(key SecKeyRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)
 func SecKeyCopyExternalRepresentation(key SecKeyRef, error_ unsafe.Pointer) DataRef {
 	return _SecKeyCopyExternalRepresentation(key, error_)
-}/* debug [functions.gen.go/function]: SecKeyCopyExternalRepresentation */
+}
 
 // Performs the Diffie-Hellman style of key exchange with optional key-derivation steps.
 //
@@ -3632,7 +3632,7 @@ func SecKeyCopyExternalRepresentation(key SecKeyRef, error_ unsafe.Pointer) Data
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCopyKeyExchangeResult(_:_:_:_:_:)
 func SecKeyCopyKeyExchangeResult(privateKey SecKeyRef, algorithm SecKeyAlgorithm, publicKey SecKeyRef, parameters DictionaryRef, error_ unsafe.Pointer) DataRef {
 	return _SecKeyCopyKeyExchangeResult(privateKey, algorithm, publicKey, parameters, error_)
-}/* debug [functions.gen.go/function]: SecKeyCopyKeyExchangeResult */
+}
 
 // Gets the public key associated with the given private key.
 //
@@ -3643,7 +3643,7 @@ func SecKeyCopyKeyExchangeResult(privateKey SecKeyRef, algorithm SecKeyAlgorithm
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCopyPublicKey(_:)
 func SecKeyCopyPublicKey(key SecKeyRef) SecKeyRef {
 	return _SecKeyCopyPublicKey(key)
-}/* debug [functions.gen.go/function]: SecKeyCopyPublicKey */
+}
 
 // Decrypts a block of data using a private key and specified algorithm.
 //
@@ -3654,7 +3654,7 @@ func SecKeyCopyPublicKey(key SecKeyRef) SecKeyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreateDecryptedData(_:_:_:_:)
 func SecKeyCreateDecryptedData(key SecKeyRef, algorithm SecKeyAlgorithm, ciphertext DataRef, error_ unsafe.Pointer) DataRef {
 	return _SecKeyCreateDecryptedData(key, algorithm, ciphertext, error_)
-}/* debug [functions.gen.go/function]: SecKeyCreateDecryptedData */
+}
 
 // Encrypts a block of data using a public key and specified algorithm.
 //
@@ -3665,7 +3665,7 @@ func SecKeyCreateDecryptedData(key SecKeyRef, algorithm SecKeyAlgorithm, ciphert
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreateEncryptedData(_:_:_:_:)
 func SecKeyCreateEncryptedData(key SecKeyRef, algorithm SecKeyAlgorithm, plaintext DataRef, error_ unsafe.Pointer) DataRef {
 	return _SecKeyCreateEncryptedData(key, algorithm, plaintext, error_)
-}/* debug [functions.gen.go/function]: SecKeyCreateEncryptedData */
+}
 
 // Constructs a SecKeyRef object for a symmetric key.
 //
@@ -3678,7 +3678,7 @@ func SecKeyCreateEncryptedData(key SecKeyRef, algorithm SecKeyAlgorithm, plainte
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreateFromData(_:_:_:)
 func SecKeyCreateFromData(parameters DictionaryRef, keyData DataRef, error_ unsafe.Pointer) SecKeyRef {
 	return _SecKeyCreateFromData(parameters, keyData, error_)
-}/* debug [functions.gen.go/function]: SecKeyCreateFromData */
+}
 
 // Generates a new public-private key pair.
 //
@@ -3689,7 +3689,7 @@ func SecKeyCreateFromData(parameters DictionaryRef, keyData DataRef, error_ unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreateRandomKey(_:_:)
 func SecKeyCreateRandomKey(parameters DictionaryRef, error_ unsafe.Pointer) SecKeyRef {
 	return _SecKeyCreateRandomKey(parameters, error_)
-}/* debug [functions.gen.go/function]: SecKeyCreateRandomKey */
+}
 
 // Creates the cryptographic signature for a block of data using a private key and specified algorithm.
 //
@@ -3700,7 +3700,7 @@ func SecKeyCreateRandomKey(parameters DictionaryRef, error_ unsafe.Pointer) SecK
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreateSignature(_:_:_:_:)
 func SecKeyCreateSignature(key SecKeyRef, algorithm SecKeyAlgorithm, dataToSign DataRef, error_ unsafe.Pointer) DataRef {
 	return _SecKeyCreateSignature(key, algorithm, dataToSign, error_)
-}/* debug [functions.gen.go/function]: SecKeyCreateSignature */
+}
 
 // Restores a key from an external representation of that key.
 //
@@ -3711,7 +3711,7 @@ func SecKeyCreateSignature(key SecKeyRef, algorithm SecKeyAlgorithm, dataToSign 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyCreateWithData(_:_:_:)
 func SecKeyCreateWithData(keyData DataRef, attributes DictionaryRef, error_ unsafe.Pointer) SecKeyRef {
 	return _SecKeyCreateWithData(keyData, attributes, error_)
-}/* debug [functions.gen.go/function]: SecKeyCreateWithData */
+}
 
 // Decrypts a block of ciphertext.
 
@@ -3721,7 +3721,7 @@ func SecKeyCreateWithData(keyData DataRef, attributes DictionaryRef, error_ unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyDecrypt(_:_:_:_:_:_:)
 func SecKeyDecrypt(key SecKeyRef, padding SecPadding, cipherText unsafe.Pointer, cipherTextLen uintptr, plainText unsafe.Pointer, plainTextLen unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyDecrypt(key, padding, cipherText, cipherTextLen, plainText, plainTextLen)
-}/* debug [functions.gen.go/function]: SecKeyDecrypt */
+}
 
 // Returns a key object in which the key data is derived from a password.
 //
@@ -3734,7 +3734,7 @@ func SecKeyDecrypt(key SecKeyRef, padding SecPadding, cipherText unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyDeriveFromPassword(_:_:_:)
 func SecKeyDeriveFromPassword(password StringRef, parameters DictionaryRef, error_ unsafe.Pointer) SecKeyRef {
 	return _SecKeyDeriveFromPassword(password, parameters, error_)
-}/* debug [functions.gen.go/function]: SecKeyDeriveFromPassword */
+}
 
 // Encrypts a block of plaintext.
 
@@ -3744,7 +3744,7 @@ func SecKeyDeriveFromPassword(password StringRef, parameters DictionaryRef, erro
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyEncrypt(_:_:_:_:_:_:)
 func SecKeyEncrypt(key SecKeyRef, padding SecPadding, plainText unsafe.Pointer, plainTextLen uintptr, cipherText unsafe.Pointer, cipherTextLen unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyEncrypt(key, padding, plainText, plainTextLen, cipherText, cipherTextLen)
-}/* debug [functions.gen.go/function]: SecKeyEncrypt */
+}
 
 // Creates an asymmetric key pair.
 //
@@ -3757,7 +3757,7 @@ func SecKeyEncrypt(key SecKeyRef, padding SecPadding, plainText unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGeneratePair(_:_:_:)
 func SecKeyGeneratePair(parameters DictionaryRef, publicKey unsafe.Pointer, privateKey unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyGeneratePair(parameters, publicKey, privateKey)
-}/* debug [functions.gen.go/function]: SecKeyGeneratePair */
+}
 
 // Generates a public/private key pair.
 //
@@ -3770,7 +3770,7 @@ func SecKeyGeneratePair(parameters DictionaryRef, publicKey unsafe.Pointer, priv
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGeneratePairAsync(_:_:_:)
 func SecKeyGeneratePairAsync(parameters DictionaryRef, deliveryQueue unsafe.Pointer, result unsafe.Pointer) {
 	_SecKeyGeneratePairAsync(parameters, deliveryQueue, result)
-}/* debug [functions.gen.go/function]: SecKeyGeneratePairAsync */
+}
 
 // Generates a random symmetric key.
 //
@@ -3783,7 +3783,7 @@ func SecKeyGeneratePairAsync(parameters DictionaryRef, deliveryQueue unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGenerateSymmetric(_:_:)
 func SecKeyGenerateSymmetric(parameters DictionaryRef, error_ unsafe.Pointer) SecKeyRef {
 	return _SecKeyGenerateSymmetric(parameters, error_)
-}/* debug [functions.gen.go/function]: SecKeyGenerateSymmetric */
+}
 
 // Gets the block length associated with a cryptographic key.
 //
@@ -3794,7 +3794,7 @@ func SecKeyGenerateSymmetric(parameters DictionaryRef, error_ unsafe.Pointer) Se
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGetBlockSize(_:)
 func SecKeyGetBlockSize(key SecKeyRef) uintptr {
 	return _SecKeyGetBlockSize(key)
-}/* debug [functions.gen.go/function]: SecKeyGetBlockSize */
+}
 
 // Returns the unique identifier of the opaque type to which a key object belongs.
 //
@@ -3805,7 +3805,7 @@ func SecKeyGetBlockSize(key SecKeyRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyGetTypeID()
 func SecKeyGetTypeID() TypeID {
 	return _SecKeyGetTypeID()
-}/* debug [functions.gen.go/function]: SecKeyGetTypeID */
+}
 
 // Returns a Boolean indicating whether a key is suitable for an operation using a certain algorithm.
 //
@@ -3816,7 +3816,7 @@ func SecKeyGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyIsAlgorithmSupported(_:_:_:)
 func SecKeyIsAlgorithmSupported(key SecKeyRef, operation SecKeyOperationType, algorithm SecKeyAlgorithm) unsafe.Pointer {
 	return _SecKeyIsAlgorithmSupported(key, operation, algorithm)
-}/* debug [functions.gen.go/function]: SecKeyIsAlgorithmSupported */
+}
 
 // Generates a digital signature for a block of data.
 
@@ -3826,7 +3826,7 @@ func SecKeyIsAlgorithmSupported(key SecKeyRef, operation SecKeyOperationType, al
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyRawSign(_:_:_:_:_:_:)
 func SecKeyRawSign(key SecKeyRef, padding SecPadding, dataToSign unsafe.Pointer, dataToSignLen uintptr, sig unsafe.Pointer, sigLen unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyRawSign(key, padding, dataToSign, dataToSignLen, sig, sigLen)
-}/* debug [functions.gen.go/function]: SecKeyRawSign */
+}
 
 // Verifies a digital signature.
 
@@ -3836,7 +3836,7 @@ func SecKeyRawSign(key SecKeyRef, padding SecPadding, dataToSign unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyRawVerify(_:_:_:_:_:_:)
 func SecKeyRawVerify(key SecKeyRef, padding SecPadding, signedData unsafe.Pointer, signedDataLen uintptr, sig unsafe.Pointer, sigLen uintptr) unsafe.Pointer {
 	return _SecKeyRawVerify(key, padding, signedData, signedDataLen, sig, sigLen)
-}/* debug [functions.gen.go/function]: SecKeyRawVerify */
+}
 
 // Unwraps a wrapped symmetric key.
 //
@@ -3849,7 +3849,7 @@ func SecKeyRawVerify(key SecKeyRef, padding SecPadding, signedData unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyUnwrapSymmetric(_:_:_:_:)
 func SecKeyUnwrapSymmetric(keyToUnwrap unsafe.Pointer, unwrappingKey SecKeyRef, parameters DictionaryRef, error_ unsafe.Pointer) SecKeyRef {
 	return _SecKeyUnwrapSymmetric(keyToUnwrap, unwrappingKey, parameters, error_)
-}/* debug [functions.gen.go/function]: SecKeyUnwrapSymmetric */
+}
 
 // Verifies the cryptographic signature of a block of data using a public key and specified algorithm.
 //
@@ -3860,7 +3860,7 @@ func SecKeyUnwrapSymmetric(keyToUnwrap unsafe.Pointer, unwrappingKey SecKeyRef, 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyVerifySignature(_:_:_:_:_:)
 func SecKeyVerifySignature(key SecKeyRef, algorithm SecKeyAlgorithm, signedData DataRef, signature DataRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _SecKeyVerifySignature(key, algorithm, signedData, signature, error_)
-}/* debug [functions.gen.go/function]: SecKeyVerifySignature */
+}
 
 // Wraps a symmetric key with another key.
 //
@@ -3873,7 +3873,7 @@ func SecKeyVerifySignature(key SecKeyRef, algorithm SecKeyAlgorithm, signedData 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyWrapSymmetric(_:_:_:_:)
 func SecKeyWrapSymmetric(keyToWrap SecKeyRef, wrappingKey SecKeyRef, parameters DictionaryRef, error_ unsafe.Pointer) DataRef {
 	return _SecKeyWrapSymmetric(keyToWrap, wrappingKey, parameters, error_)
-}/* debug [functions.gen.go/function]: SecKeyWrapSymmetric */
+}
 
 // Returns the identities and certificates in a PKCS #12-formatted blob.
 //
@@ -3884,7 +3884,7 @@ func SecKeyWrapSymmetric(keyToWrap SecKeyRef, wrappingKey SecKeyRef, parameters 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPKCS12Import(_:_:_:)
 func SecPKCS12Import(pkcs12_data DataRef, options DictionaryRef, items unsafe.Pointer) unsafe.Pointer {
 	return _SecPKCS12Import(pkcs12_data, options, items)
-}/* debug [functions.gen.go/function]: SecPKCS12Import */
+}
 
 // Returns a dictionary containing a policy’s properties.
 //
@@ -3895,7 +3895,7 @@ func SecPKCS12Import(pkcs12_data DataRef, options DictionaryRef, items unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyCopyProperties(_:)
 func SecPolicyCopyProperties(policyRef SecPolicyRef) DictionaryRef {
 	return _SecPolicyCopyProperties(policyRef)
-}/* debug [functions.gen.go/function]: SecPolicyCopyProperties */
+}
 
 // Returns a policy object for the default X.509 policy.
 //
@@ -3906,7 +3906,7 @@ func SecPolicyCopyProperties(policyRef SecPolicyRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyCreateBasicX509()
 func SecPolicyCreateBasicX509() SecPolicyRef {
 	return _SecPolicyCreateBasicX509()
-}/* debug [functions.gen.go/function]: SecPolicyCreateBasicX509 */
+}
 
 // Returns a policy object for checking revocation of certificates.
 //
@@ -3917,7 +3917,7 @@ func SecPolicyCreateBasicX509() SecPolicyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyCreateRevocation(_:)
 func SecPolicyCreateRevocation(revocationFlags OptionFlags) SecPolicyRef {
 	return _SecPolicyCreateRevocation(revocationFlags)
-}/* debug [functions.gen.go/function]: SecPolicyCreateRevocation */
+}
 
 // Returns a policy object for evaluating SSL certificate chains.
 //
@@ -3928,7 +3928,7 @@ func SecPolicyCreateRevocation(revocationFlags OptionFlags) SecPolicyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyCreateSSL(_:_:)
 func SecPolicyCreateSSL(server unsafe.Pointer, hostname StringRef) SecPolicyRef {
 	return _SecPolicyCreateSSL(server, hostname)
-}/* debug [functions.gen.go/function]: SecPolicyCreateSSL */
+}
 
 // Returns a policy object based on an object identifier for the policy type.
 //
@@ -3939,7 +3939,7 @@ func SecPolicyCreateSSL(server unsafe.Pointer, hostname StringRef) SecPolicyRef 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyCreateWithProperties(_:_:)
 func SecPolicyCreateWithProperties(policyIdentifier TypeRef, properties DictionaryRef) SecPolicyRef {
 	return _SecPolicyCreateWithProperties(policyIdentifier, properties)
-}/* debug [functions.gen.go/function]: SecPolicyCreateWithProperties */
+}
 
 // Returns the unique identifier of the opaque type to which a policy object belongs.
 //
@@ -3950,7 +3950,7 @@ func SecPolicyCreateWithProperties(policyIdentifier TypeRef, properties Dictiona
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicyGetTypeID()
 func SecPolicyGetTypeID() TypeID {
 	return _SecPolicyGetTypeID()
-}/* debug [functions.gen.go/function]: SecPolicyGetTypeID */
+}
 
 // Generates an array of cryptographically secure random bytes.
 //
@@ -3961,7 +3961,7 @@ func SecPolicyGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRandomCopyBytes(_:_:_:)
 func SecRandomCopyBytes(rnd SecRandomRef, count uintptr, bytes unsafe.Pointer) int {
 	return _SecRandomCopyBytes(rnd, count, bytes)
-}/* debug [functions.gen.go/function]: SecRandomCopyBytes */
+}
 
 // Asynchronously obtains one or more shared passwords for a website.
 //
@@ -3974,7 +3974,7 @@ func SecRandomCopyBytes(rnd SecRandomRef, count uintptr, bytes unsafe.Pointer) i
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequestSharedWebCredential(_:_:_:)
 func SecRequestSharedWebCredential(fqdn StringRef, account StringRef) {
 	_SecRequestSharedWebCredential(fqdn, account)
-}/* debug [functions.gen.go/function]: SecRequestSharedWebCredential */
+}
 
 // Extracts a binary form of a code requirement from a code requirement object.
 //
@@ -3985,7 +3985,7 @@ func SecRequestSharedWebCredential(fqdn StringRef, account StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementCopyData(_:_:_:)
 func SecRequirementCopyData(requirement SecRequirementRef, flags SecCSFlags, data unsafe.Pointer) unsafe.Pointer {
 	return _SecRequirementCopyData(requirement, flags, data)
-}/* debug [functions.gen.go/function]: SecRequirementCopyData */
+}
 
 // Converts a code requirement object into text form.
 //
@@ -3996,7 +3996,7 @@ func SecRequirementCopyData(requirement SecRequirementRef, flags SecCSFlags, dat
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementCopyString(_:_:_:)
 func SecRequirementCopyString(requirement SecRequirementRef, flags SecCSFlags, text unsafe.Pointer) unsafe.Pointer {
 	return _SecRequirementCopyString(requirement, flags, text)
-}/* debug [functions.gen.go/function]: SecRequirementCopyString */
+}
 
 // Creates a code requirement object from the binary form of a code requirement.
 //
@@ -4007,7 +4007,7 @@ func SecRequirementCopyString(requirement SecRequirementRef, flags SecCSFlags, t
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementCreateWithData(_:_:_:)
 func SecRequirementCreateWithData(data DataRef, flags SecCSFlags, requirement unsafe.Pointer) unsafe.Pointer {
 	return _SecRequirementCreateWithData(data, flags, requirement)
-}/* debug [functions.gen.go/function]: SecRequirementCreateWithData */
+}
 
 // Creates a code requirement object by compiling a valid text representation of a code requirement.
 //
@@ -4018,7 +4018,7 @@ func SecRequirementCreateWithData(data DataRef, flags SecCSFlags, requirement un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementCreateWithString(_:_:_:)
 func SecRequirementCreateWithString(text StringRef, flags SecCSFlags, requirement unsafe.Pointer) unsafe.Pointer {
 	return _SecRequirementCreateWithString(text, flags, requirement)
-}/* debug [functions.gen.go/function]: SecRequirementCreateWithString */
+}
 
 // Creates a code requirement object by compiling a valid text representation of a code requirement and returns detailed error information in the case of failure.
 //
@@ -4029,7 +4029,7 @@ func SecRequirementCreateWithString(text StringRef, flags SecCSFlags, requiremen
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementCreateWithStringAndErrors(_:_:_:_:)
 func SecRequirementCreateWithStringAndErrors(text StringRef, flags SecCSFlags, errors unsafe.Pointer, requirement unsafe.Pointer) unsafe.Pointer {
 	return _SecRequirementCreateWithStringAndErrors(text, flags, errors, requirement)
-}/* debug [functions.gen.go/function]: SecRequirementCreateWithStringAndErrors */
+}
 
 // Returns the unique identifier of the opaque type to which a code requirement object belongs.
 //
@@ -4040,7 +4040,7 @@ func SecRequirementCreateWithStringAndErrors(text StringRef, flags SecCSFlags, e
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementGetTypeID()
 func SecRequirementGetTypeID() TypeID {
 	return _SecRequirementGetTypeID()
-}/* debug [functions.gen.go/function]: SecRequirementGetTypeID */
+}
 
 // Creates a signing transform object.
 //
@@ -4053,7 +4053,7 @@ func SecRequirementGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecSignTransformCreate(_:_:)
 func SecSignTransformCreate(key SecKeyRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecSignTransformCreate(key, error_)
-}/* debug [functions.gen.go/function]: SecSignTransformCreate */
+}
 
 // Validates a static code object.
 //
@@ -4064,7 +4064,7 @@ func SecSignTransformCreate(key SecKeyRef, error_ unsafe.Pointer) SecTransformRe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecStaticCodeCheckValidity(_:_:_:)
 func SecStaticCodeCheckValidity(staticCode SecStaticCodeRef, flags SecCSFlags, requirement SecRequirementRef) unsafe.Pointer {
 	return _SecStaticCodeCheckValidity(staticCode, flags, requirement)
-}/* debug [functions.gen.go/function]: SecStaticCodeCheckValidity */
+}
 
 // Performs static validation of static signed code and returns detailed error information in the case of failure.
 //
@@ -4075,7 +4075,7 @@ func SecStaticCodeCheckValidity(staticCode SecStaticCodeRef, flags SecCSFlags, r
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)
 func SecStaticCodeCheckValidityWithErrors(staticCode SecStaticCodeRef, flags SecCSFlags, requirement SecRequirementRef, errors unsafe.Pointer) unsafe.Pointer {
 	return _SecStaticCodeCheckValidityWithErrors(staticCode, flags, requirement, errors)
-}/* debug [functions.gen.go/function]: SecStaticCodeCheckValidityWithErrors */
+}
 
 // Creates a static code object representing the code at a specified file system path.
 //
@@ -4086,7 +4086,7 @@ func SecStaticCodeCheckValidityWithErrors(staticCode SecStaticCodeRef, flags Sec
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecStaticCodeCreateWithPath(_:_:_:)
 func SecStaticCodeCreateWithPath(path URLRef, flags SecCSFlags, staticCode unsafe.Pointer) unsafe.Pointer {
 	return _SecStaticCodeCreateWithPath(path, flags, staticCode)
-}/* debug [functions.gen.go/function]: SecStaticCodeCreateWithPath */
+}
 
 // Creates a static code object representing the code at a specified file system path using an attributes dictionary.
 //
@@ -4097,7 +4097,7 @@ func SecStaticCodeCreateWithPath(path URLRef, flags SecCSFlags, staticCode unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)
 func SecStaticCodeCreateWithPathAndAttributes(path URLRef, flags SecCSFlags, attributes DictionaryRef, staticCode unsafe.Pointer) unsafe.Pointer {
 	return _SecStaticCodeCreateWithPathAndAttributes(path, flags, attributes, staticCode)
-}/* debug [functions.gen.go/function]: SecStaticCodeCreateWithPathAndAttributes */
+}
 
 // Returns the unique identifier of the opaque type to which a static code object belongs.
 //
@@ -4108,7 +4108,7 @@ func SecStaticCodeCreateWithPathAndAttributes(path URLRef, flags SecCSFlags, att
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecStaticCodeGetTypeID()
 func SecStaticCodeGetTypeID() TypeID {
 	return _SecStaticCodeGetTypeID()
-}/* debug [functions.gen.go/function]: SecStaticCodeGetTypeID */
+}
 
 // Returns the value of the code signing identifier.
 //
@@ -4119,7 +4119,7 @@ func SecStaticCodeGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskCopySigningIdentifier(_:_:)
 func SecTaskCopySigningIdentifier(task SecTaskRef, error_ unsafe.Pointer) StringRef {
 	return _SecTaskCopySigningIdentifier(task, error_)
-}/* debug [functions.gen.go/function]: SecTaskCopySigningIdentifier */
+}
 
 // Returns the value of a single entitlement for the represented task.
 //
@@ -4130,7 +4130,7 @@ func SecTaskCopySigningIdentifier(task SecTaskRef, error_ unsafe.Pointer) String
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskCopyValueForEntitlement(_:_:_:)
 func SecTaskCopyValueForEntitlement(task SecTaskRef, entitlement StringRef, error_ unsafe.Pointer) TypeRef {
 	return _SecTaskCopyValueForEntitlement(task, entitlement, error_)
-}/* debug [functions.gen.go/function]: SecTaskCopyValueForEntitlement */
+}
 
 // Returns the values of multiple entitlements for the represented task.
 //
@@ -4141,7 +4141,7 @@ func SecTaskCopyValueForEntitlement(task SecTaskRef, entitlement StringRef, erro
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskCopyValuesForEntitlements(_:_:_:)
 func SecTaskCopyValuesForEntitlements(task SecTaskRef, entitlements ArrayRef, error_ unsafe.Pointer) DictionaryRef {
 	return _SecTaskCopyValuesForEntitlements(task, entitlements, error_)
-}/* debug [functions.gen.go/function]: SecTaskCopyValuesForEntitlements */
+}
 
 // Creates a task object for the current task.
 //
@@ -4152,7 +4152,7 @@ func SecTaskCopyValuesForEntitlements(task SecTaskRef, entitlements ArrayRef, er
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskCreateFromSelf(_:)
 func SecTaskCreateFromSelf(allocator AllocatorRef) SecTaskRef {
 	return _SecTaskCreateFromSelf(allocator)
-}/* debug [functions.gen.go/function]: SecTaskCreateFromSelf */
+}
 
 // Creates a task object for the task that sent the Mach message represented by the audit token.
 //
@@ -4163,7 +4163,7 @@ func SecTaskCreateFromSelf(allocator AllocatorRef) SecTaskRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskCreateWithAuditToken(_:_:)
 func SecTaskCreateWithAuditToken(allocator AllocatorRef, token unsafe.Pointer) SecTaskRef {
 	return _SecTaskCreateWithAuditToken(allocator, token)
-}/* debug [functions.gen.go/function]: SecTaskCreateWithAuditToken */
+}
 
 // Returns the unique identifier of the opaque type to which a task object belongs.
 //
@@ -4174,7 +4174,7 @@ func SecTaskCreateWithAuditToken(allocator AllocatorRef, token unsafe.Pointer) S
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskGetTypeID()
 func SecTaskGetTypeID() TypeID {
 	return _SecTaskGetTypeID()
-}/* debug [functions.gen.go/function]: SecTaskGetTypeID */
+}
 
 // Chains transforms together.
 //
@@ -4187,7 +4187,7 @@ func SecTaskGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformConnectTransforms(_:_:_:_:_:_:)
 func SecTransformConnectTransforms(sourceTransformRef SecTransformRef, sourceAttributeName StringRef, destinationTransformRef SecTransformRef, destinationAttributeName StringRef, group SecGroupTransformRef, error_ unsafe.Pointer) SecGroupTransformRef {
 	return _SecTransformConnectTransforms(sourceTransformRef, sourceAttributeName, destinationTransformRef, destinationAttributeName, group, error_)
-}/* debug [functions.gen.go/function]: SecTransformConnectTransforms */
+}
 
 // Creates a dictionary that contains enough information to be able to recreate a transform.
 //
@@ -4200,7 +4200,7 @@ func SecTransformConnectTransforms(sourceTransformRef SecTransformRef, sourceAtt
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCopyExternalRepresentation(_:)
 func SecTransformCopyExternalRepresentation(transformRef SecTransformRef) DictionaryRef {
 	return _SecTransformCopyExternalRepresentation(transformRef)
-}/* debug [functions.gen.go/function]: SecTransformCopyExternalRepresentation */
+}
 
 // Creates a transform computation object.
 //
@@ -4213,7 +4213,7 @@ func SecTransformCopyExternalRepresentation(transformRef SecTransformRef) Dictio
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCreate(_:_:)
 func SecTransformCreate(name StringRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecTransformCreate(name, error_)
-}/* debug [functions.gen.go/function]: SecTransformCreate */
+}
 
 // Creates a transform instance from a dictionary of parameters.
 //
@@ -4226,7 +4226,7 @@ func SecTransformCreate(name StringRef, error_ unsafe.Pointer) SecTransformRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCreateFromExternalRepresentation(_:_:)
 func SecTransformCreateFromExternalRepresentation(dictionary DictionaryRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecTransformCreateFromExternalRepresentation(dictionary, error_)
-}/* debug [functions.gen.go/function]: SecTransformCreateFromExternalRepresentation */
+}
 
 // Creates an object that acts as a container for a set of connected transforms.
 //
@@ -4239,7 +4239,7 @@ func SecTransformCreateFromExternalRepresentation(dictionary DictionaryRef, erro
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCreateGroupTransform()
 func SecTransformCreateGroupTransform() SecGroupTransformRef {
 	return _SecTransformCreateGroupTransform()
-}/* debug [functions.gen.go/function]: SecTransformCreateGroupTransform */
+}
 
 // Creates a read transform from a read stream reference.
 //
@@ -4252,7 +4252,7 @@ func SecTransformCreateGroupTransform() SecGroupTransformRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCreateReadTransformWithReadStream(_:)
 func SecTransformCreateReadTransformWithReadStream(inputStream ReadStreamRef) SecTransformRef {
 	return _SecTransformCreateReadTransformWithReadStream(inputStream)
-}/* debug [functions.gen.go/function]: SecTransformCreateReadTransformWithReadStream */
+}
 
 // Gets an attribute value from a custom transform.
 //
@@ -4265,7 +4265,7 @@ func SecTransformCreateReadTransformWithReadStream(inputStream ReadStreamRef) Se
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCustomGetAttribute(_:_:_:)
 func SecTransformCustomGetAttribute(ref SecTransformImplementationRef, attribute SecTransformStringOrAttributeRef, type_ SecTransformMetaAttributeType) TypeRef {
 	return _SecTransformCustomGetAttribute(ref, attribute, type_)
-}/* debug [functions.gen.go/function]: SecTransformCustomGetAttribute */
+}
 
 // Sets an attribute value on a custom transform.
 //
@@ -4278,7 +4278,7 @@ func SecTransformCustomGetAttribute(ref SecTransformImplementationRef, attribute
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCustomSetAttribute(_:_:_:_:)
 func SecTransformCustomSetAttribute(ref SecTransformImplementationRef, attribute SecTransformStringOrAttributeRef, type_ SecTransformMetaAttributeType, value TypeRef) TypeRef {
 	return _SecTransformCustomSetAttribute(ref, attribute, type_, value)
-}/* debug [functions.gen.go/function]: SecTransformCustomSetAttribute */
+}
 
 // Executes a transform or transform group synchronously.
 //
@@ -4291,7 +4291,7 @@ func SecTransformCustomSetAttribute(ref SecTransformImplementationRef, attribute
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformExecute(_:_:)
 func SecTransformExecute(transformRef SecTransformRef, errorRef unsafe.Pointer) TypeRef {
 	return _SecTransformExecute(transformRef, errorRef)
-}/* debug [functions.gen.go/function]: SecTransformExecute */
+}
 
 // Executes transform or transform group asynchronously.
 //
@@ -4304,7 +4304,7 @@ func SecTransformExecute(transformRef SecTransformRef, errorRef unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformExecuteAsync(_:_:_:)
 func SecTransformExecuteAsync(transformRef SecTransformRef, deliveryQueue unsafe.Pointer, deliveryBlock unsafe.Pointer) {
 	_SecTransformExecuteAsync(transformRef, deliveryQueue, deliveryBlock)
-}/* debug [functions.gen.go/function]: SecTransformExecuteAsync */
+}
 
 // Finds a member of a transform group by its name.
 //
@@ -4317,7 +4317,7 @@ func SecTransformExecuteAsync(transformRef SecTransformRef, deliveryQueue unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformFindByName(_:_:)
 func SecTransformFindByName(transform SecGroupTransformRef, name StringRef) SecTransformRef {
 	return _SecTransformFindByName(transform, name)
-}/* debug [functions.gen.go/function]: SecTransformFindByName */
+}
 
 // Gets the current value of a transform attribute.
 //
@@ -4330,7 +4330,7 @@ func SecTransformFindByName(transform SecGroupTransformRef, name StringRef) SecT
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformGetAttribute(_:_:)
 func SecTransformGetAttribute(transformRef SecTransformRef, key StringRef) TypeRef {
 	return _SecTransformGetAttribute(transformRef, key)
-}/* debug [functions.gen.go/function]: SecTransformGetAttribute */
+}
 
 // Returns the unique identifier of the opaque type to which a security transform object belongs.
 //
@@ -4343,7 +4343,7 @@ func SecTransformGetAttribute(transformRef SecTransformRef, key StringRef) TypeR
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformGetTypeID()
 func SecTransformGetTypeID() TypeID {
 	return _SecTransformGetTypeID()
-}/* debug [functions.gen.go/function]: SecTransformGetTypeID */
+}
 
 // Returns an object from inside a ProcessData override that says that although no data is being returned the transform is still active and awaiting data.
 //
@@ -4356,7 +4356,7 @@ func SecTransformGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformNoData()
 func SecTransformNoData() TypeRef {
 	return _SecTransformNoData()
-}/* debug [functions.gen.go/function]: SecTransformNoData */
+}
 
 // Pushes a single value back for a specific attribute.
 //
@@ -4369,7 +4369,7 @@ func SecTransformNoData() TypeRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformPushbackAttribute(_:_:_:)
 func SecTransformPushbackAttribute(ref SecTransformImplementationRef, attribute SecTransformStringOrAttributeRef, value TypeRef) TypeRef {
 	return _SecTransformPushbackAttribute(ref, attribute, value)
-}/* debug [functions.gen.go/function]: SecTransformPushbackAttribute */
+}
 
 // Registers a custom transform.
 //
@@ -4382,7 +4382,7 @@ func SecTransformPushbackAttribute(ref SecTransformImplementationRef, attribute 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformRegister(_:_:_:)
 func SecTransformRegister(uniqueName StringRef, createTransformFunction unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _SecTransformRegister(uniqueName, createTransformFunction, error_)
-}/* debug [functions.gen.go/function]: SecTransformRegister */
+}
 
 // Sets a static value for an attribute in a transform.
 //
@@ -4395,7 +4395,7 @@ func SecTransformRegister(uniqueName StringRef, createTransformFunction unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformSetAttribute(_:_:_:_:)
 func SecTransformSetAttribute(transformRef SecTransformRef, key StringRef, value TypeRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _SecTransformSetAttribute(transformRef, key, value, error_)
-}/* debug [functions.gen.go/function]: SecTransformSetAttribute */
+}
 
 // Requests a callback when an attribute is set.
 //
@@ -4408,7 +4408,7 @@ func SecTransformSetAttribute(transformRef SecTransformRef, key StringRef, value
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformSetAttributeAction(_:_:_:_:)
 func SecTransformSetAttributeAction(ref SecTransformImplementationRef, action StringRef, attribute SecTransformStringOrAttributeRef, newAction unsafe.Pointer) ErrorRef {
 	return _SecTransformSetAttributeAction(ref, action, attribute, newAction)
-}/* debug [functions.gen.go/function]: SecTransformSetAttributeAction */
+}
 
 // Changes the way a custom transform processes data.
 //
@@ -4421,7 +4421,7 @@ func SecTransformSetAttributeAction(ref SecTransformImplementationRef, action St
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformSetDataAction(_:_:_:)
 func SecTransformSetDataAction(ref SecTransformImplementationRef, action StringRef, newAction unsafe.Pointer) ErrorRef {
 	return _SecTransformSetDataAction(ref, action, newAction)
-}/* debug [functions.gen.go/function]: SecTransformSetDataAction */
+}
 
 // Changes the way that a transform deals with transform lifecycle behaviors.
 //
@@ -4434,7 +4434,7 @@ func SecTransformSetDataAction(ref SecTransformImplementationRef, action StringR
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformSetTransformAction(_:_:_:)
 func SecTransformSetTransformAction(ref SecTransformImplementationRef, action StringRef, newAction unsafe.Pointer) ErrorRef {
 	return _SecTransformSetTransformAction(ref, action, newAction)
-}/* debug [functions.gen.go/function]: SecTransformSetTransformAction */
+}
 
 // Retrieves the anchor (root) certificates stored by macOS.
 //
@@ -4445,7 +4445,7 @@ func SecTransformSetTransformAction(ref SecTransformImplementationRef, action St
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyAnchorCertificates(_:)
 func SecTrustCopyAnchorCertificates(anchors unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustCopyAnchorCertificates(anchors)
-}/* debug [functions.gen.go/function]: SecTrustCopyAnchorCertificates */
+}
 
 // Retrieves the custom anchor certificates, if any, used by a given trust.
 //
@@ -4456,7 +4456,7 @@ func SecTrustCopyAnchorCertificates(anchors unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyCustomAnchorCertificates(_:_:)
 func SecTrustCopyCustomAnchorCertificates(trust SecTrustRef, anchors unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustCopyCustomAnchorCertificates(trust, anchors)
-}/* debug [functions.gen.go/function]: SecTrustCopyCustomAnchorCertificates */
+}
 
 // Returns an opaque cookie containing exceptions to trust policies that will allow future evaluations of the current certificate to succeed.
 //
@@ -4467,7 +4467,7 @@ func SecTrustCopyCustomAnchorCertificates(trust SecTrustRef, anchors unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyExceptions(_:)
 func SecTrustCopyExceptions(trust SecTrustRef) DataRef {
 	return _SecTrustCopyExceptions(trust)
-}/* debug [functions.gen.go/function]: SecTrustCopyExceptions */
+}
 
 // Retrieves the policies used by a given trust management object.
 //
@@ -4478,7 +4478,7 @@ func SecTrustCopyExceptions(trust SecTrustRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyPolicies(_:_:)
 func SecTrustCopyPolicies(trust SecTrustRef, policies unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustCopyPolicies(trust, policies)
-}/* debug [functions.gen.go/function]: SecTrustCopyPolicies */
+}
 
 // Returns an array containing the properties of a trust object.
 //
@@ -4491,7 +4491,7 @@ func SecTrustCopyPolicies(trust SecTrustRef, policies unsafe.Pointer) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyProperties(_:)
 func SecTrustCopyProperties(trust SecTrustRef) ArrayRef {
 	return _SecTrustCopyProperties(trust)
-}/* debug [functions.gen.go/function]: SecTrustCopyProperties */
+}
 
 // Returns the public key for a leaf certificate after it has been evaluated.
 //
@@ -4504,7 +4504,7 @@ func SecTrustCopyProperties(trust SecTrustRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyPublicKey(_:)
 func SecTrustCopyPublicKey(trust SecTrustRef) SecKeyRef {
 	return _SecTrustCopyPublicKey(trust)
-}/* debug [functions.gen.go/function]: SecTrustCopyPublicKey */
+}
 
 // Returns a dictionary containing information about an evaluated trust.
 //
@@ -4515,7 +4515,7 @@ func SecTrustCopyPublicKey(trust SecTrustRef) SecKeyRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCopyResult(_:)
 func SecTrustCopyResult(trust SecTrustRef) DictionaryRef {
 	return _SecTrustCopyResult(trust)
-}/* debug [functions.gen.go/function]: SecTrustCopyResult */
+}
 
 // Creates a trust management object based on certificates and policies.
 //
@@ -4526,7 +4526,7 @@ func SecTrustCopyResult(trust SecTrustRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)
 func SecTrustCreateWithCertificates(certificates TypeRef, policies TypeRef, trust unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustCreateWithCertificates(certificates, policies, trust)
-}/* debug [functions.gen.go/function]: SecTrustCreateWithCertificates */
+}
 
 // Retrieves the data of a trusted app instance.
 //
@@ -4539,7 +4539,7 @@ func SecTrustCreateWithCertificates(certificates TypeRef, policies TypeRef, trus
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustedApplicationCopyData(_:_:)
 func SecTrustedApplicationCopyData(appRef SecTrustedApplicationRef, data unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustedApplicationCopyData(appRef, data)
-}/* debug [functions.gen.go/function]: SecTrustedApplicationCopyData */
+}
 
 // Creates a trusted app instance based on the app at the given path in the file system.
 //
@@ -4552,7 +4552,7 @@ func SecTrustedApplicationCopyData(appRef SecTrustedApplicationRef, data unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)
 func SecTrustedApplicationCreateFromPath(path unsafe.Pointer, app unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustedApplicationCreateFromPath(path, app)
-}/* debug [functions.gen.go/function]: SecTrustedApplicationCreateFromPath */
+}
 
 // Returns the unique identifier of the opaque type to which a trusted app instance belongs.
 //
@@ -4565,7 +4565,7 @@ func SecTrustedApplicationCreateFromPath(path unsafe.Pointer, app unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustedApplicationGetTypeID()
 func SecTrustedApplicationGetTypeID() TypeID {
 	return _SecTrustedApplicationGetTypeID()
-}/* debug [functions.gen.go/function]: SecTrustedApplicationGetTypeID */
+}
 
 // Sets the data of a given trusted app instance.
 //
@@ -4578,7 +4578,7 @@ func SecTrustedApplicationGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustedApplicationSetData(_:_:)
 func SecTrustedApplicationSetData(appRef SecTrustedApplicationRef, data DataRef) unsafe.Pointer {
 	return _SecTrustedApplicationSetData(appRef, data)
-}/* debug [functions.gen.go/function]: SecTrustedApplicationSetData */
+}
 
 // Evaluates trust for the specified certificate and policies.
 //
@@ -4591,7 +4591,7 @@ func SecTrustedApplicationSetData(appRef SecTrustedApplicationRef, data DataRef)
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustEvaluate(_:_:)
 func SecTrustEvaluate(trust SecTrustRef, result unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustEvaluate(trust, result)
-}/* debug [functions.gen.go/function]: SecTrustEvaluate */
+}
 
 // Evaluates a trust object asynchronously on the specified dispatch queue.
 //
@@ -4604,7 +4604,7 @@ func SecTrustEvaluate(trust SecTrustRef, result unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustEvaluateAsync(_:_:_:)
 func SecTrustEvaluateAsync(trust SecTrustRef, queue unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustEvaluateAsync(trust, queue, result)
-}/* debug [functions.gen.go/function]: SecTrustEvaluateAsync */
+}
 
 // Evaluates a trust object asynchronously on the specified dispatch queue.
 //
@@ -4615,7 +4615,7 @@ func SecTrustEvaluateAsync(trust SecTrustRef, queue unsafe.Pointer, result unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustEvaluateAsyncWithError(_:_:_:)
 func SecTrustEvaluateAsyncWithError(trust SecTrustRef, queue unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustEvaluateAsyncWithError(trust, queue, result)
-}/* debug [functions.gen.go/function]: SecTrustEvaluateAsyncWithError */
+}
 
 // Evaluates trust for the specified certificate and policies.
 //
@@ -4626,7 +4626,7 @@ func SecTrustEvaluateAsyncWithError(trust SecTrustRef, queue unsafe.Pointer, res
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustEvaluateWithError(_:_:)
 func SecTrustEvaluateWithError(trust SecTrustRef, error_ unsafe.Pointer) bool {
 	return _SecTrustEvaluateWithError(trust, error_)
-}/* debug [functions.gen.go/function]: SecTrustEvaluateWithError */
+}
 
 // Returns a specific certificate from the certificate chain used to evaluate trust.
 //
@@ -4639,7 +4639,7 @@ func SecTrustEvaluateWithError(trust SecTrustRef, error_ unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetCertificateAtIndex(_:_:)
 func SecTrustGetCertificateAtIndex(trust SecTrustRef, ix Index) SecCertificateRef {
 	return _SecTrustGetCertificateAtIndex(trust, ix)
-}/* debug [functions.gen.go/function]: SecTrustGetCertificateAtIndex */
+}
 
 // Returns the number of certificates in an evaluated certificate chain.
 //
@@ -4650,7 +4650,7 @@ func SecTrustGetCertificateAtIndex(trust SecTrustRef, ix Index) SecCertificateRe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetCertificateCount(_:)
 func SecTrustGetCertificateCount(trust SecTrustRef) Index {
 	return _SecTrustGetCertificateCount(trust)
-}/* debug [functions.gen.go/function]: SecTrustGetCertificateCount */
+}
 
 // Indicates whether a trust evaluation is permitted to fetch missing intermediate certificates from the network.
 //
@@ -4661,7 +4661,7 @@ func SecTrustGetCertificateCount(trust SecTrustRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetNetworkFetchAllowed(_:_:)
 func SecTrustGetNetworkFetchAllowed(trust SecTrustRef, allowFetch unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustGetNetworkFetchAllowed(trust, allowFetch)
-}/* debug [functions.gen.go/function]: SecTrustGetNetworkFetchAllowed */
+}
 
 // Returns the result code from the most recent trust evaluation.
 //
@@ -4672,7 +4672,7 @@ func SecTrustGetNetworkFetchAllowed(trust SecTrustRef, allowFetch unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetTrustResult(_:_:)
 func SecTrustGetTrustResult(trust SecTrustRef, result unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustGetTrustResult(trust, result)
-}/* debug [functions.gen.go/function]: SecTrustGetTrustResult */
+}
 
 // Returns the unique identifier of the opaque type to which a trust object belongs.
 //
@@ -4683,7 +4683,7 @@ func SecTrustGetTrustResult(trust SecTrustRef, result unsafe.Pointer) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetTypeID()
 func SecTrustGetTypeID() TypeID {
 	return _SecTrustGetTypeID()
-}/* debug [functions.gen.go/function]: SecTrustGetTypeID */
+}
 
 // Gets the absolute time against which the certificates in a trust management object are verified.
 //
@@ -4694,7 +4694,7 @@ func SecTrustGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustGetVerifyTime(_:)
 func SecTrustGetVerifyTime(trust SecTrustRef) AbsoluteTime {
 	return _SecTrustGetVerifyTime(trust)
-}/* debug [functions.gen.go/function]: SecTrustGetVerifyTime */
+}
 
 // Sets the anchor certificates used when evaluating a trust management object.
 //
@@ -4705,7 +4705,7 @@ func SecTrustGetVerifyTime(trust SecTrustRef) AbsoluteTime {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetAnchorCertificates(_:_:)
 func SecTrustSetAnchorCertificates(trust SecTrustRef, anchorCertificates ArrayRef) unsafe.Pointer {
 	return _SecTrustSetAnchorCertificates(trust, anchorCertificates)
-}/* debug [functions.gen.go/function]: SecTrustSetAnchorCertificates */
+}
 
 // Reenables trusting built-in anchor certificates.
 //
@@ -4716,7 +4716,7 @@ func SecTrustSetAnchorCertificates(trust SecTrustRef, anchorCertificates ArrayRe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetAnchorCertificatesOnly(_:_:)
 func SecTrustSetAnchorCertificatesOnly(trust SecTrustRef, anchorCertificatesOnly unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustSetAnchorCertificatesOnly(trust, anchorCertificatesOnly)
-}/* debug [functions.gen.go/function]: SecTrustSetAnchorCertificatesOnly */
+}
 
 // Sets a list of exceptions that should be ignored when the certificate is evaluated.
 //
@@ -4727,7 +4727,7 @@ func SecTrustSetAnchorCertificatesOnly(trust SecTrustRef, anchorCertificatesOnly
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetExceptions(_:_:)
 func SecTrustSetExceptions(trust SecTrustRef, exceptions DataRef) bool {
 	return _SecTrustSetExceptions(trust, exceptions)
-}/* debug [functions.gen.go/function]: SecTrustSetExceptions */
+}
 
 // Sets the keychains searched for intermediate certificates when evaluating a trust management object.
 //
@@ -4740,7 +4740,7 @@ func SecTrustSetExceptions(trust SecTrustRef, exceptions DataRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetKeychains(_:_:)
 func SecTrustSetKeychains(trust SecTrustRef, keychainOrArray TypeRef) unsafe.Pointer {
 	return _SecTrustSetKeychains(trust, keychainOrArray)
-}/* debug [functions.gen.go/function]: SecTrustSetKeychains */
+}
 
 // Specifies whether a trust evaluation is permitted to fetch missing intermediate certificates from the network.
 //
@@ -4751,7 +4751,7 @@ func SecTrustSetKeychains(trust SecTrustRef, keychainOrArray TypeRef) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetNetworkFetchAllowed(_:_:)
 func SecTrustSetNetworkFetchAllowed(trust SecTrustRef, allowFetch unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustSetNetworkFetchAllowed(trust, allowFetch)
-}/* debug [functions.gen.go/function]: SecTrustSetNetworkFetchAllowed */
+}
 
 // Attaches Online Certificate Status Protocol (OSCP) response data to a trust object.
 //
@@ -4762,7 +4762,7 @@ func SecTrustSetNetworkFetchAllowed(trust SecTrustRef, allowFetch unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetOCSPResponse(_:_:)
 func SecTrustSetOCSPResponse(trust SecTrustRef, responseData TypeRef) unsafe.Pointer {
 	return _SecTrustSetOCSPResponse(trust, responseData)
-}/* debug [functions.gen.go/function]: SecTrustSetOCSPResponse */
+}
 
 // Sets option flags for customizing evaluation of a trust object.
 //
@@ -4773,7 +4773,7 @@ func SecTrustSetOCSPResponse(trust SecTrustRef, responseData TypeRef) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetOptions(_:_:)
 func SecTrustSetOptions(trustRef SecTrustRef, options SecTrustOptionFlags) unsafe.Pointer {
 	return _SecTrustSetOptions(trustRef, options)
-}/* debug [functions.gen.go/function]: SecTrustSetOptions */
+}
 
 // Sets the policies to use in an evaluation.
 //
@@ -4784,7 +4784,7 @@ func SecTrustSetOptions(trustRef SecTrustRef, options SecTrustOptionFlags) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetPolicies(_:_:)
 func SecTrustSetPolicies(trust SecTrustRef, policies TypeRef) unsafe.Pointer {
 	return _SecTrustSetPolicies(trust, policies)
-}/* debug [functions.gen.go/function]: SecTrustSetPolicies */
+}
 
 // Attaches signed certificate timestamp data to a trust object.
 //
@@ -4795,7 +4795,7 @@ func SecTrustSetPolicies(trust SecTrustRef, policies TypeRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetSignedCertificateTimestamps(_:_:)
 func SecTrustSetSignedCertificateTimestamps(trust SecTrustRef, sctArray ArrayRef) unsafe.Pointer {
 	return _SecTrustSetSignedCertificateTimestamps(trust, sctArray)
-}/* debug [functions.gen.go/function]: SecTrustSetSignedCertificateTimestamps */
+}
 
 // Obtains an array of all certificates that have trust settings in a specific trust settings domain.
 //
@@ -4806,7 +4806,7 @@ func SecTrustSetSignedCertificateTimestamps(trust SecTrustRef, sctArray ArrayRef
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsCopyCertificates(_:_:)
 func SecTrustSettingsCopyCertificates(domain SecTrustSettingsDomain, certArray unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustSettingsCopyCertificates(domain, certArray)
-}/* debug [functions.gen.go/function]: SecTrustSettingsCopyCertificates */
+}
 
 // Obtains the date and time at which a certificate’s trust settings were last modified.
 //
@@ -4817,7 +4817,7 @@ func SecTrustSettingsCopyCertificates(domain SecTrustSettingsDomain, certArray u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsCopyModificationDate(_:_:_:)
 func SecTrustSettingsCopyModificationDate(certRef SecCertificateRef, domain SecTrustSettingsDomain, modificationDate unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustSettingsCopyModificationDate(certRef, domain, modificationDate)
-}/* debug [functions.gen.go/function]: SecTrustSettingsCopyModificationDate */
+}
 
 // Obtains the trust settings for a certificate.
 //
@@ -4828,7 +4828,7 @@ func SecTrustSettingsCopyModificationDate(certRef SecCertificateRef, domain SecT
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsCopyTrustSettings(_:_:_:)
 func SecTrustSettingsCopyTrustSettings(certRef SecCertificateRef, domain SecTrustSettingsDomain, trustSettings unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustSettingsCopyTrustSettings(certRef, domain, trustSettings)
-}/* debug [functions.gen.go/function]: SecTrustSettingsCopyTrustSettings */
+}
 
 // Obtains an external, portable representation of the specified domain’s trust settings.
 //
@@ -4839,7 +4839,7 @@ func SecTrustSettingsCopyTrustSettings(certRef SecCertificateRef, domain SecTrus
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsCreateExternalRepresentation(_:_:)
 func SecTrustSettingsCreateExternalRepresentation(domain SecTrustSettingsDomain, trustSettings unsafe.Pointer) unsafe.Pointer {
 	return _SecTrustSettingsCreateExternalRepresentation(domain, trustSettings)
-}/* debug [functions.gen.go/function]: SecTrustSettingsCreateExternalRepresentation */
+}
 
 // Imports trust settings into a trust domain.
 //
@@ -4850,7 +4850,7 @@ func SecTrustSettingsCreateExternalRepresentation(domain SecTrustSettingsDomain,
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsImportExternalRepresentation(_:_:)
 func SecTrustSettingsImportExternalRepresentation(domain SecTrustSettingsDomain, trustSettings DataRef) unsafe.Pointer {
 	return _SecTrustSettingsImportExternalRepresentation(domain, trustSettings)
-}/* debug [functions.gen.go/function]: SecTrustSettingsImportExternalRepresentation */
+}
 
 // Deletes the trust settings for a certificate.
 //
@@ -4861,7 +4861,7 @@ func SecTrustSettingsImportExternalRepresentation(domain SecTrustSettingsDomain,
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsRemoveTrustSettings(_:_:)
 func SecTrustSettingsRemoveTrustSettings(certRef SecCertificateRef, domain SecTrustSettingsDomain) unsafe.Pointer {
 	return _SecTrustSettingsRemoveTrustSettings(certRef, domain)
-}/* debug [functions.gen.go/function]: SecTrustSettingsRemoveTrustSettings */
+}
 
 // Specifies trust settings for a certificate.
 //
@@ -4872,7 +4872,7 @@ func SecTrustSettingsRemoveTrustSettings(certRef SecCertificateRef, domain SecTr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsSetTrustSettings(_:_:_:)
 func SecTrustSettingsSetTrustSettings(certRef SecCertificateRef, domain SecTrustSettingsDomain, trustSettingsDictOrArray TypeRef) unsafe.Pointer {
 	return _SecTrustSettingsSetTrustSettings(certRef, domain, trustSettingsDictOrArray)
-}/* debug [functions.gen.go/function]: SecTrustSettingsSetTrustSettings */
+}
 
 // Sets the date and time against which the certificates in a trust management object are verified.
 //
@@ -4883,7 +4883,7 @@ func SecTrustSettingsSetTrustSettings(certRef SecCertificateRef, domain SecTrust
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSetVerifyDate(_:_:)
 func SecTrustSetVerifyDate(trust SecTrustRef, verifyDate DateRef) unsafe.Pointer {
 	return _SecTrustSetVerifyDate(trust, verifyDate)
-}/* debug [functions.gen.go/function]: SecTrustSetVerifyDate */
+}
 
 // Creates a verify transform object.
 //
@@ -4896,7 +4896,7 @@ func SecTrustSetVerifyDate(trust SecTrustRef, verifyDate DateRef) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecVerifyTransformCreate(_:_:_:)
 func SecVerifyTransformCreate(key SecKeyRef, signature DataRef, error_ unsafe.Pointer) SecTransformRef {
 	return _SecVerifyTransformCreate(key, signature, error_)
-}/* debug [functions.gen.go/function]: SecVerifyTransformCreate */
+}
 
 // Creates a security session.
 //
@@ -4907,7 +4907,7 @@ func SecVerifyTransformCreate(key SecKeyRef, signature DataRef, error_ unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SessionCreate(_:_:)
 func SessionCreate(flags SessionCreationFlags, attributes SessionAttributeBits) unsafe.Pointer {
 	return _SessionCreate(flags, attributes)
-}/* debug [functions.gen.go/function]: SessionCreate */
+}
 
 // Obtains information about a security session.
 //
@@ -4918,7 +4918,7 @@ func SessionCreate(flags SessionCreationFlags, attributes SessionAttributeBits) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SessionGetInfo(_:_:_:)
 func SessionGetInfo(session SecuritySessionId, sessionId unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
 	return _SessionGetInfo(session, sessionId, attributes)
-}/* debug [functions.gen.go/function]: SessionGetInfo */
+}
 
 // Adds a DER-encoded distinguished name to a list of acceptable names to be specified in requests for client certificates.
 //
@@ -4931,7 +4931,7 @@ func SessionGetInfo(session SecuritySessionId, sessionId unsafe.Pointer, attribu
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLAddDistinguishedName(_:_:_:)
 func SSLAddDistinguishedName(context SSLContextRef, derDN unsafe.Pointer, derDNLen uintptr) unsafe.Pointer {
 	return _SSLAddDistinguishedName(context, derDN, derDNLen)
-}/* debug [functions.gen.go/function]: SSLAddDistinguishedName */
+}
 
 // Terminates the current SSL session.
 //
@@ -4944,7 +4944,7 @@ func SSLAddDistinguishedName(context SSLContextRef, derDN unsafe.Pointer, derDNL
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLClose(_:)
 func SSLClose(context SSLContextRef) unsafe.Pointer {
 	return _SSLClose(context)
-}/* debug [functions.gen.go/function]: SSLClose */
+}
 
 // Returns the Core Foundation type ID for context objects.
 //
@@ -4957,7 +4957,7 @@ func SSLClose(context SSLContextRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLContextGetTypeID()
 func SSLContextGetTypeID() TypeID {
 	return _SSLContextGetTypeID()
-}/* debug [functions.gen.go/function]: SSLContextGetTypeID */
+}
 
 // Gets the list of supported application layer protocols.
 //
@@ -4970,7 +4970,7 @@ func SSLContextGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCopyALPNProtocols(_:_:)
 func SSLCopyALPNProtocols(context SSLContextRef, protocols unsafe.Pointer) unsafe.Pointer {
 	return _SSLCopyALPNProtocols(context, protocols)
-}/* debug [functions.gen.go/function]: SSLCopyALPNProtocols */
+}
 
 // Retrieves the current list of certification authorities.
 //
@@ -4983,7 +4983,7 @@ func SSLCopyALPNProtocols(context SSLContextRef, protocols unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCopyCertificateAuthorities(_:_:)
 func SSLCopyCertificateAuthorities(context SSLContextRef, certificates unsafe.Pointer) unsafe.Pointer {
 	return _SSLCopyCertificateAuthorities(context, certificates)
-}/* debug [functions.gen.go/function]: SSLCopyCertificateAuthorities */
+}
 
 // Retrieves the distinguished names of acceptable certification authorities.
 //
@@ -4996,7 +4996,7 @@ func SSLCopyCertificateAuthorities(context SSLContextRef, certificates unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCopyDistinguishedNames(_:_:)
 func SSLCopyDistinguishedNames(context SSLContextRef, names unsafe.Pointer) unsafe.Pointer {
 	return _SSLCopyDistinguishedNames(context, names)
-}/* debug [functions.gen.go/function]: SSLCopyDistinguishedNames */
+}
 
 // Retrieves a trust management object for the certificate used by a session.
 //
@@ -5009,7 +5009,7 @@ func SSLCopyDistinguishedNames(context SSLContextRef, names unsafe.Pointer) unsa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCopyPeerTrust(_:_:)
 func SSLCopyPeerTrust(context SSLContextRef, trust unsafe.Pointer) unsafe.Pointer {
 	return _SSLCopyPeerTrust(context, trust)
-}/* debug [functions.gen.go/function]: SSLCopyPeerTrust */
+}
 
 // Determines the buffer size needed for the peer domain name.
 //
@@ -5022,7 +5022,7 @@ func SSLCopyPeerTrust(context SSLContextRef, trust unsafe.Pointer) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCopyRequestedPeerName(_:_:_:)
 func SSLCopyRequestedPeerName(context SSLContextRef, peerName unsafe.Pointer, peerNameLen unsafe.Pointer) unsafe.Pointer {
 	return _SSLCopyRequestedPeerName(context, peerName, peerNameLen)
-}/* debug [functions.gen.go/function]: SSLCopyRequestedPeerName */
+}
 
 // Obtains the hostname specified by the client in the ServerName extension (SNI). Server only.
 //
@@ -5035,7 +5035,7 @@ func SSLCopyRequestedPeerName(context SSLContextRef, peerName unsafe.Pointer, pe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCopyRequestedPeerNameLength(_:_:)
 func SSLCopyRequestedPeerNameLength(ctx SSLContextRef, peerNameLen unsafe.Pointer) unsafe.Pointer {
 	return _SSLCopyRequestedPeerNameLength(ctx, peerNameLen)
-}/* debug [functions.gen.go/function]: SSLCopyRequestedPeerNameLength */
+}
 
 // Allocates and returns a new context.
 //
@@ -5048,7 +5048,7 @@ func SSLCopyRequestedPeerNameLength(ctx SSLContextRef, peerNameLen unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCreateContext(_:_:_:)
 func SSLCreateContext(alloc AllocatorRef, protocolSide SSLProtocolSide, connectionType SSLConnectionType) SSLContextRef {
 	return _SSLCreateContext(alloc, protocolSide, connectionType)
-}/* debug [functions.gen.go/function]: SSLCreateContext */
+}
 
 // Determines how much data is available to be read.
 //
@@ -5061,7 +5061,7 @@ func SSLCreateContext(alloc AllocatorRef, protocolSide SSLProtocolSide, connecti
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetBufferedReadSize(_:_:)
 func SSLGetBufferedReadSize(context SSLContextRef, bufferSize unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetBufferedReadSize(context, bufferSize)
-}/* debug [functions.gen.go/function]: SSLGetBufferedReadSize */
+}
 
 // Retrieves the exchange status of the client certificate.
 //
@@ -5074,7 +5074,7 @@ func SSLGetBufferedReadSize(context SSLContextRef, bufferSize unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetClientCertificateState(_:_:)
 func SSLGetClientCertificateState(context SSLContextRef, clientState unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetClientCertificateState(context, clientState)
-}/* debug [functions.gen.go/function]: SSLGetClientCertificateState */
+}
 
 // Retrieves an I/O connection—such as a socket or endpoint—for a specific session.
 //
@@ -5087,7 +5087,7 @@ func SSLGetClientCertificateState(context SSLContextRef, clientState unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetConnection(_:_:)
 func SSLGetConnection(context SSLContextRef, connection unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetConnection(context, connection)
-}/* debug [functions.gen.go/function]: SSLGetConnection */
+}
 
 // Provides the largest packet that the OS guarantees it can send without fragmentation.
 //
@@ -5100,7 +5100,7 @@ func SSLGetConnection(context SSLContextRef, connection unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetDatagramWriteSize(_:_:)
 func SSLGetDatagramWriteSize(dtlsContext SSLContextRef, bufSize unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetDatagramWriteSize(dtlsContext, bufSize)
-}/* debug [functions.gen.go/function]: SSLGetDatagramWriteSize */
+}
 
 // Retrieves the Diffie-Hellman parameters for a given context.
 //
@@ -5113,7 +5113,7 @@ func SSLGetDatagramWriteSize(dtlsContext SSLContextRef, bufSize unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetDiffieHellmanParams(_:_:_:)
 func SSLGetDiffieHellmanParams(context SSLContextRef, dhParams unsafe.Pointer, dhParamsLen unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetDiffieHellmanParams(context, dhParams, dhParamsLen)
-}/* debug [functions.gen.go/function]: SSLGetDiffieHellmanParams */
+}
 
 // Determines which SSL cipher suites are currently enabled.
 //
@@ -5126,7 +5126,7 @@ func SSLGetDiffieHellmanParams(context SSLContextRef, dhParams unsafe.Pointer, d
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetEnabledCiphers(_:_:_:)
 func SSLGetEnabledCiphers(context SSLContextRef, ciphers unsafe.Pointer, numCiphers unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetEnabledCiphers(context, ciphers, numCiphers)
-}/* debug [functions.gen.go/function]: SSLGetEnabledCiphers */
+}
 
 // Obtains the maximum datagram record size allowed by the application for a given context.
 //
@@ -5139,7 +5139,7 @@ func SSLGetEnabledCiphers(context SSLContextRef, ciphers unsafe.Pointer, numCiph
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetMaxDatagramRecordSize(_:_:)
 func SSLGetMaxDatagramRecordSize(dtlsContext SSLContextRef, maxSize unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetMaxDatagramRecordSize(dtlsContext, maxSize)
-}/* debug [functions.gen.go/function]: SSLGetMaxDatagramRecordSize */
+}
 
 // Retrieves the cipher suite negotiated for this session.
 //
@@ -5152,7 +5152,7 @@ func SSLGetMaxDatagramRecordSize(dtlsContext SSLContextRef, maxSize unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetNegotiatedCipher(_:_:)
 func SSLGetNegotiatedCipher(context SSLContextRef, cipherSuite unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetNegotiatedCipher(context, cipherSuite)
-}/* debug [functions.gen.go/function]: SSLGetNegotiatedCipher */
+}
 
 // Obtains the negotiated protocol version of the active session.
 //
@@ -5165,7 +5165,7 @@ func SSLGetNegotiatedCipher(context SSLContextRef, cipherSuite unsafe.Pointer) u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetNegotiatedProtocolVersion(_:_:)
 func SSLGetNegotiatedProtocolVersion(context SSLContextRef, protocol_ unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetNegotiatedProtocolVersion(context, protocol_)
-}/* debug [functions.gen.go/function]: SSLGetNegotiatedProtocolVersion */
+}
 
 // Determines the number of cipher suites currently enabled.
 //
@@ -5178,7 +5178,7 @@ func SSLGetNegotiatedProtocolVersion(context SSLContextRef, protocol_ unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetNumberEnabledCiphers(_:_:)
 func SSLGetNumberEnabledCiphers(context SSLContextRef, numCiphers unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetNumberEnabledCiphers(context, numCiphers)
-}/* debug [functions.gen.go/function]: SSLGetNumberEnabledCiphers */
+}
 
 // Determines the number of cipher suites supported.
 //
@@ -5191,7 +5191,7 @@ func SSLGetNumberEnabledCiphers(context SSLContextRef, numCiphers unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetNumberSupportedCiphers(_:_:)
 func SSLGetNumberSupportedCiphers(context SSLContextRef, numCiphers unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetNumberSupportedCiphers(context, numCiphers)
-}/* debug [functions.gen.go/function]: SSLGetNumberSupportedCiphers */
+}
 
 // Retrieves the peer domain name specified previously.
 //
@@ -5204,7 +5204,7 @@ func SSLGetNumberSupportedCiphers(context SSLContextRef, numCiphers unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetPeerDomainName(_:_:_:)
 func SSLGetPeerDomainName(context SSLContextRef, peerName unsafe.Pointer, peerNameLen unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetPeerDomainName(context, peerName, peerNameLen)
-}/* debug [functions.gen.go/function]: SSLGetPeerDomainName */
+}
 
 // Determines the length of a previously set peer domain name.
 //
@@ -5217,7 +5217,7 @@ func SSLGetPeerDomainName(context SSLContextRef, peerName unsafe.Pointer, peerNa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetPeerDomainNameLength(_:_:)
 func SSLGetPeerDomainNameLength(context SSLContextRef, peerNameLen unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetPeerDomainNameLength(context, peerNameLen)
-}/* debug [functions.gen.go/function]: SSLGetPeerDomainNameLength */
+}
 
 // Retrieves the current peer ID data.
 //
@@ -5230,7 +5230,7 @@ func SSLGetPeerDomainNameLength(context SSLContextRef, peerNameLen unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetPeerID(_:_:_:)
 func SSLGetPeerID(context SSLContextRef, peerID unsafe.Pointer, peerIDLen unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetPeerID(context, peerID, peerIDLen)
-}/* debug [functions.gen.go/function]: SSLGetPeerID */
+}
 
 // Gets the maximum protocol version allowed by the application for a given SSL context.
 //
@@ -5243,7 +5243,7 @@ func SSLGetPeerID(context SSLContextRef, peerID unsafe.Pointer, peerIDLen unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetProtocolVersionMax(_:_:)
 func SSLGetProtocolVersionMax(context SSLContextRef, maxVersion unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetProtocolVersionMax(context, maxVersion)
-}/* debug [functions.gen.go/function]: SSLGetProtocolVersionMax */
+}
 
 // Gets the minimum protocol version allowed by the application for a given SSL context.
 //
@@ -5256,7 +5256,7 @@ func SSLGetProtocolVersionMax(context SSLContextRef, maxVersion unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetProtocolVersionMin(_:_:)
 func SSLGetProtocolVersionMin(context SSLContextRef, minVersion unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetProtocolVersionMin(context, minVersion)
-}/* debug [functions.gen.go/function]: SSLGetProtocolVersionMin */
+}
 
 // Indicates the current setting of Secure Sockets Layer (SSL) session options.
 //
@@ -5269,7 +5269,7 @@ func SSLGetProtocolVersionMin(context SSLContextRef, minVersion unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetSessionOption(_:_:_:)
 func SSLGetSessionOption(context SSLContextRef, option SSLSessionOption, value unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetSessionOption(context, option, value)
-}/* debug [functions.gen.go/function]: SSLGetSessionOption */
+}
 
 // Retrieves the state of an SSL session.
 //
@@ -5282,7 +5282,7 @@ func SSLGetSessionOption(context SSLContextRef, option SSLSessionOption, value u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetSessionState(_:_:)
 func SSLGetSessionState(context SSLContextRef, state unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetSessionState(context, state)
-}/* debug [functions.gen.go/function]: SSLGetSessionState */
+}
 
 // Determines the values of the supported cipher suites.
 //
@@ -5295,7 +5295,7 @@ func SSLGetSessionState(context SSLContextRef, state unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLGetSupportedCiphers(_:_:_:)
 func SSLGetSupportedCiphers(context SSLContextRef, ciphers unsafe.Pointer, numCiphers unsafe.Pointer) unsafe.Pointer {
 	return _SSLGetSupportedCiphers(context, ciphers, numCiphers)
-}/* debug [functions.gen.go/function]: SSLGetSupportedCiphers */
+}
 
 // Performs the SSL handshake.
 //
@@ -5308,7 +5308,7 @@ func SSLGetSupportedCiphers(context SSLContextRef, ciphers unsafe.Pointer, numCi
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLHandshake(_:)
 func SSLHandshake(context SSLContextRef) unsafe.Pointer {
 	return _SSLHandshake(context)
-}/* debug [functions.gen.go/function]: SSLHandshake */
+}
 
 // Performs a normal application-level read operation.
 //
@@ -5321,7 +5321,7 @@ func SSLHandshake(context SSLContextRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLRead(_:_:_:_:)
 func SSLRead(context SSLContextRef, data unsafe.Pointer, dataLength uintptr, processed unsafe.Pointer) unsafe.Pointer {
 	return _SSLRead(context, data, dataLength, processed)
-}/* debug [functions.gen.go/function]: SSLRead */
+}
 
 // Requests renegotiation of the SSL handshake. Server only.
 //
@@ -5334,7 +5334,7 @@ func SSLRead(context SSLContextRef, data unsafe.Pointer, dataLength uintptr, pro
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLReHandshake(_:)
 func SSLReHandshake(context SSLContextRef) unsafe.Pointer {
 	return _SSLReHandshake(context)
-}/* debug [functions.gen.go/function]: SSLReHandshake */
+}
 
 // Sets the list of supported applicaiton layer protocols.
 //
@@ -5347,7 +5347,7 @@ func SSLReHandshake(context SSLContextRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetALPNProtocols(_:_:)
 func SSLSetALPNProtocols(context SSLContextRef, protocols ArrayRef) unsafe.Pointer {
 	return _SSLSetALPNProtocols(context, protocols)
-}/* debug [functions.gen.go/function]: SSLSetALPNProtocols */
+}
 
 // Specifies this connection’s certificate or certificates.
 //
@@ -5360,7 +5360,7 @@ func SSLSetALPNProtocols(context SSLContextRef, protocols ArrayRef) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetCertificate(_:_:)
 func SSLSetCertificate(context SSLContextRef, certRefs ArrayRef) unsafe.Pointer {
 	return _SSLSetCertificate(context, certRefs)
-}/* debug [functions.gen.go/function]: SSLSetCertificate */
+}
 
 // Adds one or more certificates to a server’s list of certification authorities (CAs) acceptable for client authentication.
 //
@@ -5373,7 +5373,7 @@ func SSLSetCertificate(context SSLContextRef, certRefs ArrayRef) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetCertificateAuthorities(_:_:_:)
 func SSLSetCertificateAuthorities(context SSLContextRef, certificateOrArray TypeRef, replaceExisting unsafe.Pointer) unsafe.Pointer {
 	return _SSLSetCertificateAuthorities(context, certificateOrArray, replaceExisting)
-}/* debug [functions.gen.go/function]: SSLSetCertificateAuthorities */
+}
 
 // Specifies the requirements for client-side authentication.
 //
@@ -5386,7 +5386,7 @@ func SSLSetCertificateAuthorities(context SSLContextRef, certificateOrArray Type
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetClientSideAuthenticate(_:_:)
 func SSLSetClientSideAuthenticate(context SSLContextRef, auth SSLAuthenticate) unsafe.Pointer {
 	return _SSLSetClientSideAuthenticate(context, auth)
-}/* debug [functions.gen.go/function]: SSLSetClientSideAuthenticate */
+}
 
 // Specifies an I/O connection for a specific session.
 //
@@ -5399,7 +5399,7 @@ func SSLSetClientSideAuthenticate(context SSLContextRef, auth SSLAuthenticate) u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetConnection(_:_:)
 func SSLSetConnection(context SSLContextRef, connection SSLConnectionRef) unsafe.Pointer {
 	return _SSLSetConnection(context, connection)
-}/* debug [functions.gen.go/function]: SSLSetConnection */
+}
 
 // Sets the cookie value used in the Datagram Transport Layer Security (DTLS) hello message.
 //
@@ -5412,7 +5412,7 @@ func SSLSetConnection(context SSLContextRef, connection SSLConnectionRef) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetDatagramHelloCookie(_:_:_:)
 func SSLSetDatagramHelloCookie(dtlsContext SSLContextRef, cookie unsafe.Pointer, cookieLen uintptr) unsafe.Pointer {
 	return _SSLSetDatagramHelloCookie(dtlsContext, cookie, cookieLen)
-}/* debug [functions.gen.go/function]: SSLSetDatagramHelloCookie */
+}
 
 // Specifies Diffie-Hellman parameters for a given context.
 //
@@ -5425,7 +5425,7 @@ func SSLSetDatagramHelloCookie(dtlsContext SSLContextRef, cookie unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetDiffieHellmanParams(_:_:_:)
 func SSLSetDiffieHellmanParams(context SSLContextRef, dhParams unsafe.Pointer, dhParamsLen uintptr) unsafe.Pointer {
 	return _SSLSetDiffieHellmanParams(context, dhParams, dhParamsLen)
-}/* debug [functions.gen.go/function]: SSLSetDiffieHellmanParams */
+}
 
 // Specifies a restricted set of SSL cipher suites to be enabled by the current SSL session context.
 //
@@ -5438,7 +5438,7 @@ func SSLSetDiffieHellmanParams(context SSLContextRef, dhParams unsafe.Pointer, d
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetEnabledCiphers(_:_:_:)
 func SSLSetEnabledCiphers(context SSLContextRef, ciphers unsafe.Pointer, numCiphers uintptr) unsafe.Pointer {
 	return _SSLSetEnabledCiphers(context, ciphers, numCiphers)
-}/* debug [functions.gen.go/function]: SSLSetEnabledCiphers */
+}
 
 // Specifies the encryption certificates used for this connection.
 //
@@ -5451,7 +5451,7 @@ func SSLSetEnabledCiphers(context SSLContextRef, ciphers unsafe.Pointer, numCiph
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetEncryptionCertificate(_:_:)
 func SSLSetEncryptionCertificate(context SSLContextRef, certRefs ArrayRef) unsafe.Pointer {
 	return _SSLSetEncryptionCertificate(context, certRefs)
-}/* debug [functions.gen.go/function]: SSLSetEncryptionCertificate */
+}
 
 // Sets the status of a session context.
 //
@@ -5464,7 +5464,7 @@ func SSLSetEncryptionCertificate(context SSLContextRef, certRefs ArrayRef) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetError(_:_:)
 func SSLSetError(context SSLContextRef, status unsafe.Pointer) unsafe.Pointer {
 	return _SSLSetError(context, status)
-}/* debug [functions.gen.go/function]: SSLSetError */
+}
 
 // Specifies callback functions that perform the network I/O operations.
 //
@@ -5477,7 +5477,7 @@ func SSLSetError(context SSLContextRef, status unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetIOFuncs(_:_:_:)
 func SSLSetIOFuncs(context SSLContextRef, readFunc SSLReadFunc, writeFunc SSLWriteFunc) unsafe.Pointer {
 	return _SSLSetIOFuncs(context, readFunc, writeFunc)
-}/* debug [functions.gen.go/function]: SSLSetIOFuncs */
+}
 
 // Sets the maximum datagram record size allowed by the application for a given context.
 //
@@ -5490,7 +5490,7 @@ func SSLSetIOFuncs(context SSLContextRef, readFunc SSLReadFunc, writeFunc SSLWri
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetMaxDatagramRecordSize(_:_:)
 func SSLSetMaxDatagramRecordSize(dtlsContext SSLContextRef, maxSize uintptr) unsafe.Pointer {
 	return _SSLSetMaxDatagramRecordSize(dtlsContext, maxSize)
-}/* debug [functions.gen.go/function]: SSLSetMaxDatagramRecordSize */
+}
 
 // Sets the OCSP response for the given SSL session.
 //
@@ -5503,7 +5503,7 @@ func SSLSetMaxDatagramRecordSize(dtlsContext SSLContextRef, maxSize uintptr) uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetOCSPResponse(_:_:)
 func SSLSetOCSPResponse(context SSLContextRef, response DataRef) unsafe.Pointer {
 	return _SSLSetOCSPResponse(context, response)
-}/* debug [functions.gen.go/function]: SSLSetOCSPResponse */
+}
 
 // Specifies the fully qualified domain name of the peer.
 //
@@ -5516,7 +5516,7 @@ func SSLSetOCSPResponse(context SSLContextRef, response DataRef) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetPeerDomainName(_:_:_:)
 func SSLSetPeerDomainName(context SSLContextRef, peerName unsafe.Pointer, peerNameLen uintptr) unsafe.Pointer {
 	return _SSLSetPeerDomainName(context, peerName, peerNameLen)
-}/* debug [functions.gen.go/function]: SSLSetPeerDomainName */
+}
 
 // Specifies data that is sufficient to uniquely identify the peer of the current session.
 //
@@ -5529,7 +5529,7 @@ func SSLSetPeerDomainName(context SSLContextRef, peerName unsafe.Pointer, peerNa
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetPeerID(_:_:_:)
 func SSLSetPeerID(context SSLContextRef, peerID unsafe.Pointer, peerIDLen uintptr) unsafe.Pointer {
 	return _SSLSetPeerID(context, peerID, peerIDLen)
-}/* debug [functions.gen.go/function]: SSLSetPeerID */
+}
 
 // Sets the maximum protocol version allowed by the application for a given SSL context.
 //
@@ -5542,7 +5542,7 @@ func SSLSetPeerID(context SSLContextRef, peerID unsafe.Pointer, peerIDLen uintpt
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetProtocolVersionMax(_:_:)
 func SSLSetProtocolVersionMax(context SSLContextRef, maxVersion SSLProtocol) unsafe.Pointer {
 	return _SSLSetProtocolVersionMax(context, maxVersion)
-}/* debug [functions.gen.go/function]: SSLSetProtocolVersionMax */
+}
 
 // Sets the minimum protocol version allowed by the application for a given SSL context.
 //
@@ -5555,7 +5555,7 @@ func SSLSetProtocolVersionMax(context SSLContextRef, maxVersion SSLProtocol) uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetProtocolVersionMin(_:_:)
 func SSLSetProtocolVersionMin(context SSLContextRef, minVersion SSLProtocol) unsafe.Pointer {
 	return _SSLSetProtocolVersionMin(context, minVersion)
-}/* debug [functions.gen.go/function]: SSLSetProtocolVersionMin */
+}
 
 // Sets a predefined configuration for the Secure Sockets Layer (SSL) session.
 //
@@ -5568,7 +5568,7 @@ func SSLSetProtocolVersionMin(context SSLContextRef, minVersion SSLProtocol) uns
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetSessionConfig(_:_:)
 func SSLSetSessionConfig(context SSLContextRef, config StringRef) unsafe.Pointer {
 	return _SSLSetSessionConfig(context, config)
-}/* debug [functions.gen.go/function]: SSLSetSessionConfig */
+}
 
 // Specifies options for a specific session.
 //
@@ -5581,7 +5581,7 @@ func SSLSetSessionConfig(context SSLContextRef, config StringRef) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetSessionOption(_:_:_:)
 func SSLSetSessionOption(context SSLContextRef, option SSLSessionOption, value unsafe.Pointer) unsafe.Pointer {
 	return _SSLSetSessionOption(context, option, value)
-}/* debug [functions.gen.go/function]: SSLSetSessionOption */
+}
 
 // Enables or disables session ticket resumption.
 //
@@ -5594,7 +5594,7 @@ func SSLSetSessionOption(context SSLContextRef, option SSLSessionOption, value u
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSetSessionTicketsEnabled(_:_:)
 func SSLSetSessionTicketsEnabled(context SSLContextRef, enabled unsafe.Pointer) unsafe.Pointer {
 	return _SSLSetSessionTicketsEnabled(context, enabled)
-}/* debug [functions.gen.go/function]: SSLSetSessionTicketsEnabled */
+}
 
 // Performs a typical application-level write operation.
 //
@@ -5607,7 +5607,7 @@ func SSLSetSessionTicketsEnabled(context SSLContextRef, enabled unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLWrite(_:_:_:_:)
 func SSLWrite(context SSLContextRef, data unsafe.Pointer, dataLength uintptr, processed unsafe.Pointer) unsafe.Pointer {
 	return _SSLWrite(context, data, dataLength, processed)
-}/* debug [functions.gen.go/function]: SSLWrite */
+}
 
 
 

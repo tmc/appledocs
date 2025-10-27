@@ -14,14 +14,17 @@ type (
 	AttributeType = _undefined // referenced in AppKit
 	AttributedString = _undefined // referenced in AppKit
 	AttributedStringKey = _undefined // referenced in AppKit
+	BarButtonItem = _undefined // referenced in AppKit
 	CollectionLayoutGroupCustomItemProvider = _undefined // referenced in AppKit
 	CollectionLayoutSectionVisibleItemsInvalidationHandler = _undefined // referenced in AppKit
+	CollectionView = _undefined // referenced in AppKit
 	CollectionViewCompositionalLayoutSectionProvider = _undefined // referenced in AppKit
 	CollectionViewDiffableDataSourceItemProvider = _undefined // referenced in AppKit
 	CollectionViewDiffableDataSourceSupplementaryViewProvider = _undefined // referenced in AppKit
 	ColorRenderingIntent = _undefined // referenced in AppKit
 	ComparisonPredicateModifier = _undefined // referenced in AppKit
 	ComparisonResult = _undefined // referenced in AppKit
+	Context = _undefined // referenced in AppKit
 	ContextRef = _undefined // referenced in AppKit
 	CorrectionIndicatorType = _undefined // referenced in AppKit
 	CorrectionResponse = _undefined // referenced in AppKit
@@ -29,8 +32,11 @@ type (
 	Dictionary = _undefined // referenced in AppKit
 	DirectDisplayID = _undefined // referenced in AppKit
 	EdgeInsets = _undefined // referenced in AppKit
+	EntityDescription = _undefined // referenced in AppKit
 	EventRef = _undefined // referenced in AppKit
+	FetchRequest = _undefined // referenced in AppKit
 	FileWrapper = _undefined // referenced in AppKit
+	Filter = _undefined // referenced in AppKit
 	ImageRef = _undefined // referenced in AppKit
 	IndexPath = _undefined // referenced in AppKit
 	InterfaceStyle = _undefined // referenced in AppKit
@@ -38,7 +44,10 @@ type (
 	LPBufferObj = _undefined // referenced in AppKit
 	LPixelFormatObj = _undefined // referenced in AppKit
 	LayerContentsGravity = _undefined // referenced in AppKit
+	ManagedObjectContext = _undefined // referenced in AppKit
+	ManagedObjectModel = _undefined // referenced in AppKit
 	MenuElement = _undefined // referenced in AppKit
+	Path = _undefined // referenced in AppKit
 	PointPointer = _undefined // referenced in AppKit
 	PopoverBehavior = _undefined // referenced in AppKit
 	Predicate = _undefined // referenced in AppKit
@@ -66,6 +75,7 @@ type (
 	TextInputClient = _undefined // referenced in AppKit
 	TextInputSourceIdentifier = _undefined // referenced in AppKit
 	TextSuggestionsDelegate = _undefined // referenced in AppKit
+	TouchBar = _undefined // referenced in AppKit
 	TrackingAreaOptions = _undefined // referenced in AppKit
 	URL = _undefined // referenced in AppKit
 )

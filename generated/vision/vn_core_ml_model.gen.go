@@ -43,8 +43,8 @@ type ICoreMLModel interface {
 	// properties:
 	FeatureProvider() unsafe.Pointer
 	SetFeatureProvider(value unsafe.Pointer)
-	InputImageFeatureName() objc.IObject /* cross-framework: NSString */
-	SetInputImageFeatureName(value objc.IObject /* cross-framework: NSString */)
+	InputImageFeatureName() foundation.foundation.INSString
+	SetInputImageFeatureName(value foundation.foundation.INSString)
 	Model() IVNCoreMLModel
 	SetModel(value IVNCoreMLModel)
 
@@ -123,7 +123,7 @@ func CoreMLModelFrom(ptr unsafe.Pointer) CoreMLModel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
-func NewCoreMLModelForMLModelError(model coreml.Model, error_ objectivec.IObject) CoreMLModel {
+func NewCoreMLModelForMLModelError(model coreml.Model, error_ foundation.foundation.INSError) CoreMLModel {
 	rv := objc.Send[CoreMLModel](objc.ID(getCoreMLModelClass().class), objc.Sel("modelForMLModel:error:"), model, error_)
 	return rv
 }
@@ -138,7 +138,7 @@ func NewCoreMLModelForMLModelError(model coreml.Model, error_ objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
-func (cc _CoreMLModelClass) ModelForMLModelError(model coreml.Model, error_ objectivec.IObject) objectivec.IObject {
+func (cc _CoreMLModelClass) ModelForMLModelError(model coreml.Model, error_ foundation.foundation.INSError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("modelForMLModel:error:"), model, error_)
 	return rv
 }
@@ -182,7 +182,7 @@ func (c_ CoreMLModel) SetFeatureProvider(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) InputImageFeatureName() objc.IObject /* cross-framework: NSString */ {
+func (c_ CoreMLModel) InputImageFeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("inputImageFeatureName"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (c_ CoreMLModel) InputImageFeatureName() objc.IObject /* cross-framework: N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) SetInputImageFeatureName(value objc.IObject /* cross-framework: NSString */) {
+func (c_ CoreMLModel) SetInputImageFeatureName(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), value)
 }
 

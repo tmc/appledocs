@@ -21,7 +21,7 @@ func ExampleNewFontCollectionWithDescriptors() {
 // Creates a named font collection object.
 func ExampleNewFontCollectionWithName() {
 	_ = appkit.NewFontCollectionWithName(
-		appkit.FontCollectionName /* typedef */{}, // name FontCollectionName /* typedef */
+		appkit.FontCollectionName{}, // name FontCollectionName
 	)
 	// Output:
 }
@@ -29,7 +29,7 @@ func ExampleNewFontCollectionWithName() {
 // Creates a font collection with the specified name and font visibility.
 func ExampleNewFontCollectionWithNameVisibility() {
 	_ = appkit.NewFontCollectionWithNameVisibility(
-		appkit.FontCollectionName /* typedef */{}, // name FontCollectionName /* typedef */
+		appkit.FontCollectionName{}, // name FontCollectionName
 		appkit.FontCollectionVisibility{}, // visibility FontCollectionVisibility
 	)
 	// Output:

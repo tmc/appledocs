@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewCharacterSet
 
+// ExampleNewCharacterSetWithRange demonstrates how to create a CharacterSet instance using NewCharacterSetWithRange.
+// Returns a character set containing characters with Unicode values in a given range.
+func ExampleNewCharacterSetWithRange() {
+	_ = foundation.NewCharacterSetWithRange(
+		foundation.Range{}, // aRange Range
+	)
+	// Output:
+}

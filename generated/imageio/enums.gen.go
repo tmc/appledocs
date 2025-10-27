@@ -2,9 +2,9 @@
 
 package imageio
 
-/* debug [enums.gen.go]: Generating 6 enums for ImageIO */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CGImageAnimationStatus (5 cases) */
+
 // CGImageAnimationStatus - Constants that indicate the result of animating an image sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageAnimationStatus
@@ -28,7 +28,7 @@ const (
 	kCGImageAnimationStatus_UnsupportedFormat CGImageAnimationStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImageMetadataErrors (5 cases) */
+
 // CGImageMetadataErrors - Constants for errors that occur when getting or setting metadata information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataErrors
@@ -57,7 +57,7 @@ const (
 	kCGImageMetadataErrorUnsupportedFormat CGImageMetadataErrors = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImageMetadataType (8 cases) */
+
 // CGImageMetadataType - Constants that indicate the XMP type for a metadata tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataType
@@ -98,7 +98,7 @@ const (
 	kCGImageMetadataTypeStructure CGImageMetadataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImagePropertyOrientation (8 cases) */
+
 // CGImagePropertyOrientation - A value describing the intended display orientation for an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImagePropertyOrientation
@@ -139,7 +139,7 @@ const (
 	kCGImagePropertyOrientationUpMirrored CGImagePropertyOrientation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImagePropertyTGACompression (2 cases) */
+
 // CGImagePropertyTGACompression enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImagePropertyTGACompression
@@ -154,7 +154,7 @@ const (
 	kCGImageTGACompressionRLE CGImagePropertyTGACompression = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImageSourceStatus (6 cases) */
+
 // CGImageSourceStatus - The set of status values for images and image sources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceStatus

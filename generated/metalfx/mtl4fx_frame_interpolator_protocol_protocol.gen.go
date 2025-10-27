@@ -18,5 +18,5 @@ import (
 // See: doc://com.apple.metalfx/documentation/MetalFX/MTL4FXFrameInterpolator
 type PMTL4FXFrameInterpolator interface {
 	// Required methods
-	EncodeToCommandBuffer(commandBuffer unsafe.Pointer)/* debug [protocol_interface/required_method]: EncodeToCommandBuffer */
+	EncodeToCommandBuffer(commandBuffer unsafe.Pointer)
 }

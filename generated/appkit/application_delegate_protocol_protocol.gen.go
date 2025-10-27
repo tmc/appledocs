@@ -7,10 +7,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
-	"github.com/tmc/appledocs/generated/cloudkit"
-
-	"github.com/tmc/appledocs/generated/coretelephony"
-
 	"github.com/tmc/appledocs/generated/foundation"
 
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -26,73 +22,73 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSApplicationDelegate
 type PApplicationDelegate interface {
 	// Optional methods
-	ApplicationContinueUserActivityRestorationHandler(application IApplication, userActivity foundation.UserActivity, restorationHandler unsafe.Pointer) bool
+	ApplicationContinueUserActivityRestorationHandler(application IApplication, userActivity foundation.foundation.INSUserActivity, restorationHandler unsafe.Pointer) bool
 	HasApplicationContinueUserActivityRestorationHandler() bool
-	ApplicationDelegateHandlesKey(sender IApplication, key objc.IObject /* cross-framework: NSString */) bool
+	ApplicationDelegateHandlesKey(sender IApplication, key foundation.foundation.INSString) bool
 	HasApplicationDelegateHandlesKey() bool
-	ApplicationDidDecodeRestorableState(app IApplication, coder foundation.Coder)
+	ApplicationDidDecodeRestorableState(app IApplication, coder foundation.foundation.INSCoder)
 	HasApplicationDidDecodeRestorableState() bool
-	ApplicationDidFailToContinueUserActivityWithTypeError(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */, error_ objc.IObject /* cross-framework: Error */)
+	ApplicationDidFailToContinueUserActivityWithTypeError(application IApplication, userActivityType foundation.foundation.INSString, error_ foundation.foundation.INSError)
 	HasApplicationDidFailToContinueUserActivityWithTypeError() bool
-	ApplicationDidFailToRegisterForRemoteNotificationsWithError(application IApplication, error_ objc.IObject /* cross-framework: Error */)
+	ApplicationDidFailToRegisterForRemoteNotificationsWithError(application IApplication, error_ foundation.foundation.INSError)
 	HasApplicationDidFailToRegisterForRemoteNotificationsWithError() bool
 	ApplicationDidReceiveRemoteNotification(application IApplication, userInfo foundation.IDictionary)
 	HasApplicationDidReceiveRemoteNotification() bool
-	ApplicationDidRegisterForRemoteNotificationsWithDeviceToken(application IApplication, deviceToken objc.IObject /* cross-framework: NSData */)
+	ApplicationDidRegisterForRemoteNotificationsWithDeviceToken(application IApplication, deviceToken foundation.foundation.INSData)
 	HasApplicationDidRegisterForRemoteNotificationsWithDeviceToken() bool
-	ApplicationDidUpdateUserActivity(application IApplication, userActivity foundation.UserActivity)
+	ApplicationDidUpdateUserActivity(application IApplication, userActivity foundation.foundation.INSUserActivity)
 	HasApplicationDidUpdateUserActivity() bool
 	ApplicationHandlerForIntent(application IApplication, intent objectivec.IObject) objc.ID
 	HasApplicationHandlerForIntent() bool
 	ApplicationOpenURLs(application IApplication, urls []foundation.URL)
 	HasApplicationOpenURLs() bool
-	ApplicationOpenFile(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
+	ApplicationOpenFile(sender IApplication, filename foundation.foundation.INSString) bool
 	HasApplicationOpenFile() bool
 	ApplicationOpenFiles(sender IApplication, filenames []string)
 	HasApplicationOpenFiles() bool
-	ApplicationOpenFileWithoutUI(sender objc.IObject, filename objc.IObject /* cross-framework: NSString */) bool
+	ApplicationOpenFileWithoutUI(sender objectivec.IObject, filename foundation.foundation.INSString) bool
 	HasApplicationOpenFileWithoutUI() bool
-	ApplicationOpenTempFile(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
+	ApplicationOpenTempFile(sender IApplication, filename foundation.foundation.INSString) bool
 	HasApplicationOpenTempFile() bool
-	ApplicationPrintFile(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
+	ApplicationPrintFile(sender IApplication, filename foundation.foundation.INSString) bool
 	HasApplicationPrintFile() bool
 	ApplicationPrintFilesWithSettingsShowPrintPanels(application IApplication, fileNames []string, printSettings foundation.IDictionary, showPrintPanels bool) ApplicationPrintReply
 	HasApplicationPrintFilesWithSettingsShowPrintPanels() bool
-	ApplicationUserDidAcceptCloudKitShareWithMetadata(application IApplication, metadata objc.IObject)
+	ApplicationUserDidAcceptCloudKitShareWithMetadata(application IApplication, metadata objectivec.IObject)
 	HasApplicationUserDidAcceptCloudKitShareWithMetadata() bool
-	ApplicationWillContinueUserActivityWithType(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */) bool
+	ApplicationWillContinueUserActivityWithType(application IApplication, userActivityType foundation.foundation.INSString) bool
 	HasApplicationWillContinueUserActivityWithType() bool
-	ApplicationWillEncodeRestorableState(app IApplication, coder foundation.Coder)
+	ApplicationWillEncodeRestorableState(app IApplication, coder foundation.foundation.INSCoder)
 	HasApplicationWillEncodeRestorableState() bool
-	ApplicationWillPresentError(application IApplication, error_ objc.IObject /* cross-framework: Error */) coretelephony.Error
+	ApplicationWillPresentError(application IApplication, error_ foundation.foundation.INSError) foundation.Error
 	HasApplicationWillPresentError() bool
-	ApplicationDidFinishLaunching(notification foundation.Notification)
+	ApplicationDidFinishLaunching(notification foundation.foundation.INSNotification)
 	HasApplicationDidFinishLaunching() bool
-	ApplicationWillBecomeActive(notification foundation.Notification)
+	ApplicationWillBecomeActive(notification foundation.foundation.INSNotification)
 	HasApplicationWillBecomeActive() bool
-	ApplicationWillFinishLaunching(notification foundation.Notification)
+	ApplicationWillFinishLaunching(notification foundation.foundation.INSNotification)
 	HasApplicationWillFinishLaunching() bool
-	ApplicationDidBecomeActive(notification foundation.Notification)
+	ApplicationDidBecomeActive(notification foundation.foundation.INSNotification)
 	HasApplicationDidBecomeActive() bool
-	ApplicationDidChangeOcclusionState(notification foundation.Notification)
+	ApplicationDidChangeOcclusionState(notification foundation.foundation.INSNotification)
 	HasApplicationDidChangeOcclusionState() bool
-	ApplicationDidChangeScreenParameters(notification foundation.Notification)
+	ApplicationDidChangeScreenParameters(notification foundation.foundation.INSNotification)
 	HasApplicationDidChangeScreenParameters() bool
-	ApplicationDidHide(notification foundation.Notification)
+	ApplicationDidHide(notification foundation.foundation.INSNotification)
 	HasApplicationDidHide() bool
-	ApplicationDidResignActive(notification foundation.Notification)
+	ApplicationDidResignActive(notification foundation.foundation.INSNotification)
 	HasApplicationDidResignActive() bool
-	ApplicationDidUnhide(notification foundation.Notification)
+	ApplicationDidUnhide(notification foundation.foundation.INSNotification)
 	HasApplicationDidUnhide() bool
-	ApplicationDidUpdate(notification foundation.Notification)
+	ApplicationDidUpdate(notification foundation.foundation.INSNotification)
 	HasApplicationDidUpdate() bool
-	ApplicationDockMenu(sender IApplication) Menu
+	ApplicationDockMenu(sender IApplication) IMenu
 	HasApplicationDockMenu() bool
 	ApplicationOpenUntitledFile(sender IApplication) bool
 	HasApplicationOpenUntitledFile() bool
-	ApplicationProtectedDataDidBecomeAvailable(notification foundation.Notification)
+	ApplicationProtectedDataDidBecomeAvailable(notification foundation.foundation.INSNotification)
 	HasApplicationProtectedDataDidBecomeAvailable() bool
-	ApplicationProtectedDataWillBecomeUnavailable(notification foundation.Notification)
+	ApplicationProtectedDataWillBecomeUnavailable(notification foundation.foundation.INSNotification)
 	HasApplicationProtectedDataWillBecomeUnavailable() bool
 	ApplicationShouldAutomaticallyLocalizeKeyEquivalents(application IApplication) bool
 	HasApplicationShouldAutomaticallyLocalizeKeyEquivalents() bool
@@ -106,15 +102,15 @@ type PApplicationDelegate interface {
 	HasApplicationShouldTerminateAfterLastWindowClosed() bool
 	ApplicationSupportsSecureRestorableState(app IApplication) bool
 	HasApplicationSupportsSecureRestorableState() bool
-	ApplicationWillHide(notification foundation.Notification)
+	ApplicationWillHide(notification foundation.foundation.INSNotification)
 	HasApplicationWillHide() bool
-	ApplicationWillResignActive(notification foundation.Notification)
+	ApplicationWillResignActive(notification foundation.foundation.INSNotification)
 	HasApplicationWillResignActive() bool
-	ApplicationWillTerminate(notification foundation.Notification)
+	ApplicationWillTerminate(notification foundation.foundation.INSNotification)
 	HasApplicationWillTerminate() bool
-	ApplicationWillUnhide(notification foundation.Notification)
+	ApplicationWillUnhide(notification foundation.foundation.INSNotification)
 	HasApplicationWillUnhide() bool
-	ApplicationWillUpdate(notification foundation.Notification)
+	ApplicationWillUpdate(notification foundation.foundation.INSNotification)
 	HasApplicationWillUpdate() bool
 }
 
@@ -122,85 +118,85 @@ type PApplicationDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ApplicationDelegate struct {
-	_ApplicationContinueUserActivityRestorationHandler func(application IApplication, userActivity foundation.UserActivity, restorationHandler unsafe.Pointer) bool
-	_ApplicationDelegateHandlesKey func(sender IApplication, key objc.IObject /* cross-framework: NSString */) bool
-	_ApplicationDidDecodeRestorableState func(app IApplication, coder foundation.Coder)
-	_ApplicationDidFailToContinueUserActivityWithTypeError func(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */, error_ objc.IObject /* cross-framework: Error */)
-	_ApplicationDidFailToRegisterForRemoteNotificationsWithError func(application IApplication, error_ objc.IObject /* cross-framework: Error */)
+	_ApplicationContinueUserActivityRestorationHandler func(application IApplication, userActivity foundation.foundation.INSUserActivity, restorationHandler unsafe.Pointer) bool
+	_ApplicationDelegateHandlesKey func(sender IApplication, key foundation.foundation.INSString) bool
+	_ApplicationDidDecodeRestorableState func(app IApplication, coder foundation.foundation.INSCoder)
+	_ApplicationDidFailToContinueUserActivityWithTypeError func(application IApplication, userActivityType foundation.foundation.INSString, error_ foundation.foundation.INSError)
+	_ApplicationDidFailToRegisterForRemoteNotificationsWithError func(application IApplication, error_ foundation.foundation.INSError)
 	_ApplicationDidReceiveRemoteNotification func(application IApplication, userInfo foundation.IDictionary)
-	_ApplicationDidRegisterForRemoteNotificationsWithDeviceToken func(application IApplication, deviceToken objc.IObject /* cross-framework: NSData */)
-	_ApplicationDidUpdateUserActivity func(application IApplication, userActivity foundation.UserActivity)
+	_ApplicationDidRegisterForRemoteNotificationsWithDeviceToken func(application IApplication, deviceToken foundation.foundation.INSData)
+	_ApplicationDidUpdateUserActivity func(application IApplication, userActivity foundation.foundation.INSUserActivity)
 	_ApplicationHandlerForIntent func(application IApplication, intent objectivec.IObject) objc.ID
 	_ApplicationOpenURLs func(application IApplication, urls []foundation.URL)
-	_ApplicationOpenFile func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
+	_ApplicationOpenFile func(sender IApplication, filename foundation.foundation.INSString) bool
 	_ApplicationOpenFiles func(sender IApplication, filenames []string)
-	_ApplicationOpenFileWithoutUI func(sender objc.IObject, filename objc.IObject /* cross-framework: NSString */) bool
-	_ApplicationOpenTempFile func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
-	_ApplicationPrintFile func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
+	_ApplicationOpenFileWithoutUI func(sender objectivec.IObject, filename foundation.foundation.INSString) bool
+	_ApplicationOpenTempFile func(sender IApplication, filename foundation.foundation.INSString) bool
+	_ApplicationPrintFile func(sender IApplication, filename foundation.foundation.INSString) bool
 	_ApplicationPrintFilesWithSettingsShowPrintPanels func(application IApplication, fileNames []string, printSettings foundation.IDictionary, showPrintPanels bool) ApplicationPrintReply
-	_ApplicationUserDidAcceptCloudKitShareWithMetadata func(application IApplication, metadata objc.IObject)
-	_ApplicationWillContinueUserActivityWithType func(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */) bool
-	_ApplicationWillEncodeRestorableState func(app IApplication, coder foundation.Coder)
-	_ApplicationWillPresentError func(application IApplication, error_ objc.IObject /* cross-framework: Error */) coretelephony.Error
-	_ApplicationDidFinishLaunching func(notification foundation.Notification)
-	_ApplicationWillBecomeActive func(notification foundation.Notification)
-	_ApplicationWillFinishLaunching func(notification foundation.Notification)
-	_ApplicationDidBecomeActive func(notification foundation.Notification)
-	_ApplicationDidChangeOcclusionState func(notification foundation.Notification)
-	_ApplicationDidChangeScreenParameters func(notification foundation.Notification)
-	_ApplicationDidHide func(notification foundation.Notification)
-	_ApplicationDidResignActive func(notification foundation.Notification)
-	_ApplicationDidUnhide func(notification foundation.Notification)
-	_ApplicationDidUpdate func(notification foundation.Notification)
-	_ApplicationDockMenu func(sender IApplication) Menu
+	_ApplicationUserDidAcceptCloudKitShareWithMetadata func(application IApplication, metadata objectivec.IObject)
+	_ApplicationWillContinueUserActivityWithType func(application IApplication, userActivityType foundation.foundation.INSString) bool
+	_ApplicationWillEncodeRestorableState func(app IApplication, coder foundation.foundation.INSCoder)
+	_ApplicationWillPresentError func(application IApplication, error_ foundation.foundation.INSError) foundation.Error
+	_ApplicationDidFinishLaunching func(notification foundation.foundation.INSNotification)
+	_ApplicationWillBecomeActive func(notification foundation.foundation.INSNotification)
+	_ApplicationWillFinishLaunching func(notification foundation.foundation.INSNotification)
+	_ApplicationDidBecomeActive func(notification foundation.foundation.INSNotification)
+	_ApplicationDidChangeOcclusionState func(notification foundation.foundation.INSNotification)
+	_ApplicationDidChangeScreenParameters func(notification foundation.foundation.INSNotification)
+	_ApplicationDidHide func(notification foundation.foundation.INSNotification)
+	_ApplicationDidResignActive func(notification foundation.foundation.INSNotification)
+	_ApplicationDidUnhide func(notification foundation.foundation.INSNotification)
+	_ApplicationDidUpdate func(notification foundation.foundation.INSNotification)
+	_ApplicationDockMenu func(sender IApplication) IMenu
 	_ApplicationOpenUntitledFile func(sender IApplication) bool
-	_ApplicationProtectedDataDidBecomeAvailable func(notification foundation.Notification)
-	_ApplicationProtectedDataWillBecomeUnavailable func(notification foundation.Notification)
+	_ApplicationProtectedDataDidBecomeAvailable func(notification foundation.foundation.INSNotification)
+	_ApplicationProtectedDataWillBecomeUnavailable func(notification foundation.foundation.INSNotification)
 	_ApplicationShouldAutomaticallyLocalizeKeyEquivalents func(application IApplication) bool
 	_ApplicationShouldHandleReopenHasVisibleWindows func(sender IApplication, hasVisibleWindows bool) bool
 	_ApplicationShouldOpenUntitledFile func(sender IApplication) bool
 	_ApplicationShouldTerminate func(sender IApplication) ApplicationTerminateReply
 	_ApplicationShouldTerminateAfterLastWindowClosed func(sender IApplication) bool
 	_ApplicationSupportsSecureRestorableState func(app IApplication) bool
-	_ApplicationWillHide func(notification foundation.Notification)
-	_ApplicationWillResignActive func(notification foundation.Notification)
-	_ApplicationWillTerminate func(notification foundation.Notification)
-	_ApplicationWillUnhide func(notification foundation.Notification)
-	_ApplicationWillUpdate func(notification foundation.Notification)
+	_ApplicationWillHide func(notification foundation.foundation.INSNotification)
+	_ApplicationWillResignActive func(notification foundation.foundation.INSNotification)
+	_ApplicationWillTerminate func(notification foundation.foundation.INSNotification)
+	_ApplicationWillUnhide func(notification foundation.foundation.INSNotification)
+	_ApplicationWillUpdate func(notification foundation.foundation.INSNotification)
 }
 
 // SetApplicationContinueUserActivityRestorationHandler sets the handler for the ApplicationContinueUserActivityRestorationHandler delegate method.
 //
 // Returns a Boolean value that indicates if the app successfully recreates the specified activity.
-func (d *ApplicationDelegate) SetApplicationContinueUserActivityRestorationHandler(f func(application IApplication, userActivity foundation.UserActivity, restorationHandler unsafe.Pointer) bool) {
+func (d *ApplicationDelegate) SetApplicationContinueUserActivityRestorationHandler(f func(application IApplication, userActivity foundation.foundation.INSUserActivity, restorationHandler unsafe.Pointer) bool) {
 	d._ApplicationContinueUserActivityRestorationHandler = f
 }
 
 // SetApplicationDelegateHandlesKey sets the handler for the ApplicationDelegateHandlesKey delegate method.
 //
 // Returns a Boolean value that indicates if the app supports the specified scripting key.
-func (d *ApplicationDelegate) SetApplicationDelegateHandlesKey(f func(sender IApplication, key objc.IObject /* cross-framework: NSString */) bool) {
+func (d *ApplicationDelegate) SetApplicationDelegateHandlesKey(f func(sender IApplication, key foundation.foundation.INSString) bool) {
 	d._ApplicationDelegateHandlesKey = f
 }
 
 // SetApplicationDidDecodeRestorableState sets the handler for the ApplicationDidDecodeRestorableState delegate method.
 //
 // Tells the delegate when the app finished decoding its restorable state.
-func (d *ApplicationDelegate) SetApplicationDidDecodeRestorableState(f func(app IApplication, coder foundation.Coder)) {
+func (d *ApplicationDelegate) SetApplicationDidDecodeRestorableState(f func(app IApplication, coder foundation.foundation.INSCoder)) {
 	d._ApplicationDidDecodeRestorableState = f
 }
 
 // SetApplicationDidFailToContinueUserActivityWithTypeError sets the handler for the ApplicationDidFailToContinueUserActivityWithTypeError delegate method.
 //
 // Tells the delegate that the app couldn’t continue the specified activity.
-func (d *ApplicationDelegate) SetApplicationDidFailToContinueUserActivityWithTypeError(f func(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */, error_ objc.IObject /* cross-framework: Error */)) {
+func (d *ApplicationDelegate) SetApplicationDidFailToContinueUserActivityWithTypeError(f func(application IApplication, userActivityType foundation.foundation.INSString, error_ foundation.foundation.INSError)) {
 	d._ApplicationDidFailToContinueUserActivityWithTypeError = f
 }
 
 // SetApplicationDidFailToRegisterForRemoteNotificationsWithError sets the handler for the ApplicationDidFailToRegisterForRemoteNotificationsWithError delegate method.
 //
 // Tells the delegate that the app was unable to register for Apple Push Services.
-func (d *ApplicationDelegate) SetApplicationDidFailToRegisterForRemoteNotificationsWithError(f func(application IApplication, error_ objc.IObject /* cross-framework: Error */)) {
+func (d *ApplicationDelegate) SetApplicationDidFailToRegisterForRemoteNotificationsWithError(f func(application IApplication, error_ foundation.foundation.INSError)) {
 	d._ApplicationDidFailToRegisterForRemoteNotificationsWithError = f
 }
 
@@ -214,14 +210,14 @@ func (d *ApplicationDelegate) SetApplicationDidReceiveRemoteNotification(f func(
 // SetApplicationDidRegisterForRemoteNotificationsWithDeviceToken sets the handler for the ApplicationDidRegisterForRemoteNotificationsWithDeviceToken delegate method.
 //
 // Tells the delegate that the app registered for Apple Push Services.
-func (d *ApplicationDelegate) SetApplicationDidRegisterForRemoteNotificationsWithDeviceToken(f func(application IApplication, deviceToken objc.IObject /* cross-framework: NSData */)) {
+func (d *ApplicationDelegate) SetApplicationDidRegisterForRemoteNotificationsWithDeviceToken(f func(application IApplication, deviceToken foundation.foundation.INSData)) {
 	d._ApplicationDidRegisterForRemoteNotificationsWithDeviceToken = f
 }
 
 // SetApplicationDidUpdateUserActivity sets the handler for the ApplicationDidUpdateUserActivity delegate method.
 //
 // Tells the delegate that there are changes to the specified activity.
-func (d *ApplicationDelegate) SetApplicationDidUpdateUserActivity(f func(application IApplication, userActivity foundation.UserActivity)) {
+func (d *ApplicationDelegate) SetApplicationDidUpdateUserActivity(f func(application IApplication, userActivity foundation.foundation.INSUserActivity)) {
 	d._ApplicationDidUpdateUserActivity = f
 }
 
@@ -242,7 +238,7 @@ func (d *ApplicationDelegate) SetApplicationOpenURLs(f func(application IApplica
 // SetApplicationOpenFile sets the handler for the ApplicationOpenFile delegate method.
 //
 // Returns a Boolean value that indicates if the app opens the specified file.
-func (d *ApplicationDelegate) SetApplicationOpenFile(f func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool) {
+func (d *ApplicationDelegate) SetApplicationOpenFile(f func(sender IApplication, filename foundation.foundation.INSString) bool) {
 	d._ApplicationOpenFile = f
 }
 
@@ -256,21 +252,21 @@ func (d *ApplicationDelegate) SetApplicationOpenFiles(f func(sender IApplication
 // SetApplicationOpenFileWithoutUI sets the handler for the ApplicationOpenFileWithoutUI delegate method.
 //
 // Returns a Boolean value that indicates if the app opens the specified file without showing its user interface.
-func (d *ApplicationDelegate) SetApplicationOpenFileWithoutUI(f func(sender objc.IObject, filename objc.IObject /* cross-framework: NSString */) bool) {
+func (d *ApplicationDelegate) SetApplicationOpenFileWithoutUI(f func(sender objectivec.IObject, filename foundation.foundation.INSString) bool) {
 	d._ApplicationOpenFileWithoutUI = f
 }
 
 // SetApplicationOpenTempFile sets the handler for the ApplicationOpenTempFile delegate method.
 //
 // Returns a Boolean value that indicates if the app opens the specified temporary file.
-func (d *ApplicationDelegate) SetApplicationOpenTempFile(f func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool) {
+func (d *ApplicationDelegate) SetApplicationOpenTempFile(f func(sender IApplication, filename foundation.foundation.INSString) bool) {
 	d._ApplicationOpenTempFile = f
 }
 
 // SetApplicationPrintFile sets the handler for the ApplicationPrintFile delegate method.
 //
 // Returns a Boolean value that indicates if the app prints the specified file in its entirety.
-func (d *ApplicationDelegate) SetApplicationPrintFile(f func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool) {
+func (d *ApplicationDelegate) SetApplicationPrintFile(f func(sender IApplication, filename foundation.foundation.INSString) bool) {
 	d._ApplicationPrintFile = f
 }
 
@@ -284,105 +280,105 @@ func (d *ApplicationDelegate) SetApplicationPrintFilesWithSettingsShowPrintPanel
 // SetApplicationUserDidAcceptCloudKitShareWithMetadata sets the handler for the ApplicationUserDidAcceptCloudKitShareWithMetadata delegate method.
 //
 // Tells the delegate when the user accepts a CloudKit sharing invitation.
-func (d *ApplicationDelegate) SetApplicationUserDidAcceptCloudKitShareWithMetadata(f func(application IApplication, metadata objc.IObject)) {
+func (d *ApplicationDelegate) SetApplicationUserDidAcceptCloudKitShareWithMetadata(f func(application IApplication, metadata objectivec.IObject)) {
 	d._ApplicationUserDidAcceptCloudKitShareWithMetadata = f
 }
 
 // SetApplicationWillContinueUserActivityWithType sets the handler for the ApplicationWillContinueUserActivityWithType delegate method.
 //
 // Returns a Boolean value that indicates if the app can continue the specified activity.
-func (d *ApplicationDelegate) SetApplicationWillContinueUserActivityWithType(f func(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */) bool) {
+func (d *ApplicationDelegate) SetApplicationWillContinueUserActivityWithType(f func(application IApplication, userActivityType foundation.foundation.INSString) bool) {
 	d._ApplicationWillContinueUserActivityWithType = f
 }
 
 // SetApplicationWillEncodeRestorableState sets the handler for the ApplicationWillEncodeRestorableState delegate method.
 //
 // Tells the delegate that the app is about to encode its restorable state.
-func (d *ApplicationDelegate) SetApplicationWillEncodeRestorableState(f func(app IApplication, coder foundation.Coder)) {
+func (d *ApplicationDelegate) SetApplicationWillEncodeRestorableState(f func(app IApplication, coder foundation.foundation.INSCoder)) {
 	d._ApplicationWillEncodeRestorableState = f
 }
 
 // SetApplicationWillPresentError sets the handler for the ApplicationWillPresentError delegate method.
 //
 // Returns an error for the app to display to the user.
-func (d *ApplicationDelegate) SetApplicationWillPresentError(f func(application IApplication, error_ objc.IObject /* cross-framework: Error */) coretelephony.Error) {
+func (d *ApplicationDelegate) SetApplicationWillPresentError(f func(application IApplication, error_ foundation.foundation.INSError) foundation.Error) {
 	d._ApplicationWillPresentError = f
 }
 
 // SetApplicationDidFinishLaunching sets the handler for the ApplicationDidFinishLaunching delegate method.
 //
 // Tells the delegate that the app’s initialization is complete but it hasn’t received its first event.
-func (d *ApplicationDelegate) SetApplicationDidFinishLaunching(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidFinishLaunching(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidFinishLaunching = f
 }
 
 // SetApplicationWillBecomeActive sets the handler for the ApplicationWillBecomeActive delegate method.
 //
 // Tells the delegate that the app is about to become active.
-func (d *ApplicationDelegate) SetApplicationWillBecomeActive(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillBecomeActive(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillBecomeActive = f
 }
 
 // SetApplicationWillFinishLaunching sets the handler for the ApplicationWillFinishLaunching delegate method.
 //
 // Tells the delegate that the app’s initialization is about to complete.
-func (d *ApplicationDelegate) SetApplicationWillFinishLaunching(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillFinishLaunching(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillFinishLaunching = f
 }
 
 // SetApplicationDidBecomeActive sets the handler for the ApplicationDidBecomeActive delegate method.
 //
 // Tells the delegate that the app is now active.
-func (d *ApplicationDelegate) SetApplicationDidBecomeActive(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidBecomeActive(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidBecomeActive = f
 }
 
 // SetApplicationDidChangeOcclusionState sets the handler for the ApplicationDidChangeOcclusionState delegate method.
 //
 // Tells the delegate about changes to the app’s occlusion state.
-func (d *ApplicationDelegate) SetApplicationDidChangeOcclusionState(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidChangeOcclusionState(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidChangeOcclusionState = f
 }
 
 // SetApplicationDidChangeScreenParameters sets the handler for the ApplicationDidChangeScreenParameters delegate method.
 //
 // Tells the delegate about changes to the configuration of any attached displays.
-func (d *ApplicationDelegate) SetApplicationDidChangeScreenParameters(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidChangeScreenParameters(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidChangeScreenParameters = f
 }
 
 // SetApplicationDidHide sets the handler for the ApplicationDidHide delegate method.
 //
 // Tells the delegate that the app is now hidden.
-func (d *ApplicationDelegate) SetApplicationDidHide(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidHide(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidHide = f
 }
 
 // SetApplicationDidResignActive sets the handler for the ApplicationDidResignActive delegate method.
 //
 // Tells the delegate that the app is no longer active and doesn’t have focus.
-func (d *ApplicationDelegate) SetApplicationDidResignActive(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidResignActive(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidResignActive = f
 }
 
 // SetApplicationDidUnhide sets the handler for the ApplicationDidUnhide delegate method.
 //
 // Tells the delegate that the app is now visible.
-func (d *ApplicationDelegate) SetApplicationDidUnhide(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidUnhide(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidUnhide = f
 }
 
 // SetApplicationDidUpdate sets the handler for the ApplicationDidUpdate delegate method.
 //
 // Tells the delegate that the app’s windows did update.
-func (d *ApplicationDelegate) SetApplicationDidUpdate(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationDidUpdate(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationDidUpdate = f
 }
 
 // SetApplicationDockMenu sets the handler for the ApplicationDockMenu delegate method.
 //
 // Returns the app’s dock menu.
-func (d *ApplicationDelegate) SetApplicationDockMenu(f func(sender IApplication) Menu) {
+func (d *ApplicationDelegate) SetApplicationDockMenu(f func(sender IApplication) IMenu) {
 	d._ApplicationDockMenu = f
 }
 
@@ -396,14 +392,14 @@ func (d *ApplicationDelegate) SetApplicationOpenUntitledFile(f func(sender IAppl
 // SetApplicationProtectedDataDidBecomeAvailable sets the handler for the ApplicationProtectedDataDidBecomeAvailable delegate method.
 //
 // Tells the delegate that protected data is now available.
-func (d *ApplicationDelegate) SetApplicationProtectedDataDidBecomeAvailable(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationProtectedDataDidBecomeAvailable(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationProtectedDataDidBecomeAvailable = f
 }
 
 // SetApplicationProtectedDataWillBecomeUnavailable sets the handler for the ApplicationProtectedDataWillBecomeUnavailable delegate method.
 //
 // Tells the delegate that protected data is about to become unavailable.
-func (d *ApplicationDelegate) SetApplicationProtectedDataWillBecomeUnavailable(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationProtectedDataWillBecomeUnavailable(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationProtectedDataWillBecomeUnavailable = f
 }
 
@@ -452,40 +448,40 @@ func (d *ApplicationDelegate) SetApplicationSupportsSecureRestorableState(f func
 // SetApplicationWillHide sets the handler for the ApplicationWillHide delegate method.
 //
 // Tells the delegate that the app is about to be hidden.
-func (d *ApplicationDelegate) SetApplicationWillHide(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillHide(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillHide = f
 }
 
 // SetApplicationWillResignActive sets the handler for the ApplicationWillResignActive delegate method.
 //
 // Tells the delegate that the app is about to become inactive and will lose focus.
-func (d *ApplicationDelegate) SetApplicationWillResignActive(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillResignActive(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillResignActive = f
 }
 
 // SetApplicationWillTerminate sets the handler for the ApplicationWillTerminate delegate method.
 //
 // Tells the delegate that the app is about to terminate.
-func (d *ApplicationDelegate) SetApplicationWillTerminate(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillTerminate(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillTerminate = f
 }
 
 // SetApplicationWillUnhide sets the handler for the ApplicationWillUnhide delegate method.
 //
 // Tells the delegate that the app is about to become visible.
-func (d *ApplicationDelegate) SetApplicationWillUnhide(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillUnhide(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillUnhide = f
 }
 
 // SetApplicationWillUpdate sets the handler for the ApplicationWillUpdate delegate method.
 //
 // Tells the delegate that the app is about to update its windows.
-func (d *ApplicationDelegate) SetApplicationWillUpdate(f func(notification foundation.Notification)) {
+func (d *ApplicationDelegate) SetApplicationWillUpdate(f func(notification foundation.foundation.INSNotification)) {
 	d._ApplicationWillUpdate = f
 }
 
 // ApplicationContinueUserActivityRestorationHandler implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationContinueUserActivityRestorationHandler(application IApplication, userActivity foundation.UserActivity, restorationHandler unsafe.Pointer) bool {
+func (d *ApplicationDelegate) ApplicationContinueUserActivityRestorationHandler(application IApplication, userActivity foundation.foundation.INSUserActivity, restorationHandler unsafe.Pointer) bool {
 	if d._ApplicationContinueUserActivityRestorationHandler != nil {
 		return d._ApplicationContinueUserActivityRestorationHandler(application, userActivity, restorationHandler)
 	}
@@ -499,7 +495,7 @@ func (d *ApplicationDelegate) HasApplicationContinueUserActivityRestorationHandl
 }
 
 // ApplicationDelegateHandlesKey implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDelegateHandlesKey(sender IApplication, key objc.IObject /* cross-framework: NSString */) bool {
+func (d *ApplicationDelegate) ApplicationDelegateHandlesKey(sender IApplication, key foundation.foundation.INSString) bool {
 	if d._ApplicationDelegateHandlesKey != nil {
 		return d._ApplicationDelegateHandlesKey(sender, key)
 	}
@@ -513,7 +509,7 @@ func (d *ApplicationDelegate) HasApplicationDelegateHandlesKey() bool {
 }
 
 // ApplicationDidDecodeRestorableState implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidDecodeRestorableState(app IApplication, coder foundation.Coder) {
+func (d *ApplicationDelegate) ApplicationDidDecodeRestorableState(app IApplication, coder foundation.foundation.INSCoder) {
 	if d._ApplicationDidDecodeRestorableState != nil {
 		d._ApplicationDidDecodeRestorableState(app, coder)
 	}
@@ -525,7 +521,7 @@ func (d *ApplicationDelegate) HasApplicationDidDecodeRestorableState() bool {
 }
 
 // ApplicationDidFailToContinueUserActivityWithTypeError implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidFailToContinueUserActivityWithTypeError(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */, error_ objc.IObject /* cross-framework: Error */) {
+func (d *ApplicationDelegate) ApplicationDidFailToContinueUserActivityWithTypeError(application IApplication, userActivityType foundation.foundation.INSString, error_ foundation.foundation.INSError) {
 	if d._ApplicationDidFailToContinueUserActivityWithTypeError != nil {
 		d._ApplicationDidFailToContinueUserActivityWithTypeError(application, userActivityType, error_)
 	}
@@ -537,7 +533,7 @@ func (d *ApplicationDelegate) HasApplicationDidFailToContinueUserActivityWithTyp
 }
 
 // ApplicationDidFailToRegisterForRemoteNotificationsWithError implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidFailToRegisterForRemoteNotificationsWithError(application IApplication, error_ objc.IObject /* cross-framework: Error */) {
+func (d *ApplicationDelegate) ApplicationDidFailToRegisterForRemoteNotificationsWithError(application IApplication, error_ foundation.foundation.INSError) {
 	if d._ApplicationDidFailToRegisterForRemoteNotificationsWithError != nil {
 		d._ApplicationDidFailToRegisterForRemoteNotificationsWithError(application, error_)
 	}
@@ -561,7 +557,7 @@ func (d *ApplicationDelegate) HasApplicationDidReceiveRemoteNotification() bool 
 }
 
 // ApplicationDidRegisterForRemoteNotificationsWithDeviceToken implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidRegisterForRemoteNotificationsWithDeviceToken(application IApplication, deviceToken objc.IObject /* cross-framework: NSData */) {
+func (d *ApplicationDelegate) ApplicationDidRegisterForRemoteNotificationsWithDeviceToken(application IApplication, deviceToken foundation.foundation.INSData) {
 	if d._ApplicationDidRegisterForRemoteNotificationsWithDeviceToken != nil {
 		d._ApplicationDidRegisterForRemoteNotificationsWithDeviceToken(application, deviceToken)
 	}
@@ -573,7 +569,7 @@ func (d *ApplicationDelegate) HasApplicationDidRegisterForRemoteNotificationsWit
 }
 
 // ApplicationDidUpdateUserActivity implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidUpdateUserActivity(application IApplication, userActivity foundation.UserActivity) {
+func (d *ApplicationDelegate) ApplicationDidUpdateUserActivity(application IApplication, userActivity foundation.foundation.INSUserActivity) {
 	if d._ApplicationDidUpdateUserActivity != nil {
 		d._ApplicationDidUpdateUserActivity(application, userActivity)
 	}
@@ -611,7 +607,7 @@ func (d *ApplicationDelegate) HasApplicationOpenURLs() bool {
 }
 
 // ApplicationOpenFile implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationOpenFile(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool {
+func (d *ApplicationDelegate) ApplicationOpenFile(sender IApplication, filename foundation.foundation.INSString) bool {
 	if d._ApplicationOpenFile != nil {
 		return d._ApplicationOpenFile(sender, filename)
 	}
@@ -637,7 +633,7 @@ func (d *ApplicationDelegate) HasApplicationOpenFiles() bool {
 }
 
 // ApplicationOpenFileWithoutUI implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationOpenFileWithoutUI(sender objc.IObject, filename objc.IObject /* cross-framework: NSString */) bool {
+func (d *ApplicationDelegate) ApplicationOpenFileWithoutUI(sender objectivec.IObject, filename foundation.foundation.INSString) bool {
 	if d._ApplicationOpenFileWithoutUI != nil {
 		return d._ApplicationOpenFileWithoutUI(sender, filename)
 	}
@@ -651,7 +647,7 @@ func (d *ApplicationDelegate) HasApplicationOpenFileWithoutUI() bool {
 }
 
 // ApplicationOpenTempFile implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationOpenTempFile(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool {
+func (d *ApplicationDelegate) ApplicationOpenTempFile(sender IApplication, filename foundation.foundation.INSString) bool {
 	if d._ApplicationOpenTempFile != nil {
 		return d._ApplicationOpenTempFile(sender, filename)
 	}
@@ -665,7 +661,7 @@ func (d *ApplicationDelegate) HasApplicationOpenTempFile() bool {
 }
 
 // ApplicationPrintFile implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationPrintFile(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool {
+func (d *ApplicationDelegate) ApplicationPrintFile(sender IApplication, filename foundation.foundation.INSString) bool {
 	if d._ApplicationPrintFile != nil {
 		return d._ApplicationPrintFile(sender, filename)
 	}
@@ -693,7 +689,7 @@ func (d *ApplicationDelegate) HasApplicationPrintFilesWithSettingsShowPrintPanel
 }
 
 // ApplicationUserDidAcceptCloudKitShareWithMetadata implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationUserDidAcceptCloudKitShareWithMetadata(application IApplication, metadata objc.IObject) {
+func (d *ApplicationDelegate) ApplicationUserDidAcceptCloudKitShareWithMetadata(application IApplication, metadata objectivec.IObject) {
 	if d._ApplicationUserDidAcceptCloudKitShareWithMetadata != nil {
 		d._ApplicationUserDidAcceptCloudKitShareWithMetadata(application, metadata)
 	}
@@ -705,7 +701,7 @@ func (d *ApplicationDelegate) HasApplicationUserDidAcceptCloudKitShareWithMetada
 }
 
 // ApplicationWillContinueUserActivityWithType implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillContinueUserActivityWithType(application IApplication, userActivityType objc.IObject /* cross-framework: NSString */) bool {
+func (d *ApplicationDelegate) ApplicationWillContinueUserActivityWithType(application IApplication, userActivityType foundation.foundation.INSString) bool {
 	if d._ApplicationWillContinueUserActivityWithType != nil {
 		return d._ApplicationWillContinueUserActivityWithType(application, userActivityType)
 	}
@@ -719,7 +715,7 @@ func (d *ApplicationDelegate) HasApplicationWillContinueUserActivityWithType() b
 }
 
 // ApplicationWillEncodeRestorableState implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillEncodeRestorableState(app IApplication, coder foundation.Coder) {
+func (d *ApplicationDelegate) ApplicationWillEncodeRestorableState(app IApplication, coder foundation.foundation.INSCoder) {
 	if d._ApplicationWillEncodeRestorableState != nil {
 		d._ApplicationWillEncodeRestorableState(app, coder)
 	}
@@ -731,11 +727,11 @@ func (d *ApplicationDelegate) HasApplicationWillEncodeRestorableState() bool {
 }
 
 // ApplicationWillPresentError implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillPresentError(application IApplication, error_ objc.IObject /* cross-framework: Error */) coretelephony.Error {
+func (d *ApplicationDelegate) ApplicationWillPresentError(application IApplication, error_ foundation.foundation.INSError) foundation.Error {
 	if d._ApplicationWillPresentError != nil {
 		return d._ApplicationWillPresentError(application, error_)
 	}
-	var zero coretelephony.Error
+	var zero foundation.Error
 	return zero
 }
 
@@ -745,7 +741,7 @@ func (d *ApplicationDelegate) HasApplicationWillPresentError() bool {
 }
 
 // ApplicationDidFinishLaunching implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidFinishLaunching(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidFinishLaunching(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidFinishLaunching != nil {
 		d._ApplicationDidFinishLaunching(notification)
 	}
@@ -757,7 +753,7 @@ func (d *ApplicationDelegate) HasApplicationDidFinishLaunching() bool {
 }
 
 // ApplicationWillBecomeActive implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillBecomeActive(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillBecomeActive(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillBecomeActive != nil {
 		d._ApplicationWillBecomeActive(notification)
 	}
@@ -769,7 +765,7 @@ func (d *ApplicationDelegate) HasApplicationWillBecomeActive() bool {
 }
 
 // ApplicationWillFinishLaunching implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillFinishLaunching(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillFinishLaunching(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillFinishLaunching != nil {
 		d._ApplicationWillFinishLaunching(notification)
 	}
@@ -781,7 +777,7 @@ func (d *ApplicationDelegate) HasApplicationWillFinishLaunching() bool {
 }
 
 // ApplicationDidBecomeActive implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidBecomeActive(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidBecomeActive(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidBecomeActive != nil {
 		d._ApplicationDidBecomeActive(notification)
 	}
@@ -793,7 +789,7 @@ func (d *ApplicationDelegate) HasApplicationDidBecomeActive() bool {
 }
 
 // ApplicationDidChangeOcclusionState implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidChangeOcclusionState(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidChangeOcclusionState(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidChangeOcclusionState != nil {
 		d._ApplicationDidChangeOcclusionState(notification)
 	}
@@ -805,7 +801,7 @@ func (d *ApplicationDelegate) HasApplicationDidChangeOcclusionState() bool {
 }
 
 // ApplicationDidChangeScreenParameters implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidChangeScreenParameters(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidChangeScreenParameters(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidChangeScreenParameters != nil {
 		d._ApplicationDidChangeScreenParameters(notification)
 	}
@@ -817,7 +813,7 @@ func (d *ApplicationDelegate) HasApplicationDidChangeScreenParameters() bool {
 }
 
 // ApplicationDidHide implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidHide(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidHide(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidHide != nil {
 		d._ApplicationDidHide(notification)
 	}
@@ -829,7 +825,7 @@ func (d *ApplicationDelegate) HasApplicationDidHide() bool {
 }
 
 // ApplicationDidResignActive implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidResignActive(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidResignActive(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidResignActive != nil {
 		d._ApplicationDidResignActive(notification)
 	}
@@ -841,7 +837,7 @@ func (d *ApplicationDelegate) HasApplicationDidResignActive() bool {
 }
 
 // ApplicationDidUnhide implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidUnhide(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidUnhide(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidUnhide != nil {
 		d._ApplicationDidUnhide(notification)
 	}
@@ -853,7 +849,7 @@ func (d *ApplicationDelegate) HasApplicationDidUnhide() bool {
 }
 
 // ApplicationDidUpdate implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDidUpdate(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationDidUpdate(notification foundation.foundation.INSNotification) {
 	if d._ApplicationDidUpdate != nil {
 		d._ApplicationDidUpdate(notification)
 	}
@@ -865,11 +861,11 @@ func (d *ApplicationDelegate) HasApplicationDidUpdate() bool {
 }
 
 // ApplicationDockMenu implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationDockMenu(sender IApplication) Menu {
+func (d *ApplicationDelegate) ApplicationDockMenu(sender IApplication) IMenu {
 	if d._ApplicationDockMenu != nil {
 		return d._ApplicationDockMenu(sender)
 	}
-	var zero Menu
+	var zero IMenu
 	return zero
 }
 
@@ -893,7 +889,7 @@ func (d *ApplicationDelegate) HasApplicationOpenUntitledFile() bool {
 }
 
 // ApplicationProtectedDataDidBecomeAvailable implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationProtectedDataDidBecomeAvailable(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationProtectedDataDidBecomeAvailable(notification foundation.foundation.INSNotification) {
 	if d._ApplicationProtectedDataDidBecomeAvailable != nil {
 		d._ApplicationProtectedDataDidBecomeAvailable(notification)
 	}
@@ -905,7 +901,7 @@ func (d *ApplicationDelegate) HasApplicationProtectedDataDidBecomeAvailable() bo
 }
 
 // ApplicationProtectedDataWillBecomeUnavailable implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationProtectedDataWillBecomeUnavailable(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationProtectedDataWillBecomeUnavailable(notification foundation.foundation.INSNotification) {
 	if d._ApplicationProtectedDataWillBecomeUnavailable != nil {
 		d._ApplicationProtectedDataWillBecomeUnavailable(notification)
 	}
@@ -1001,7 +997,7 @@ func (d *ApplicationDelegate) HasApplicationSupportsSecureRestorableState() bool
 }
 
 // ApplicationWillHide implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillHide(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillHide(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillHide != nil {
 		d._ApplicationWillHide(notification)
 	}
@@ -1013,7 +1009,7 @@ func (d *ApplicationDelegate) HasApplicationWillHide() bool {
 }
 
 // ApplicationWillResignActive implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillResignActive(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillResignActive(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillResignActive != nil {
 		d._ApplicationWillResignActive(notification)
 	}
@@ -1025,7 +1021,7 @@ func (d *ApplicationDelegate) HasApplicationWillResignActive() bool {
 }
 
 // ApplicationWillTerminate implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillTerminate(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillTerminate(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillTerminate != nil {
 		d._ApplicationWillTerminate(notification)
 	}
@@ -1037,7 +1033,7 @@ func (d *ApplicationDelegate) HasApplicationWillTerminate() bool {
 }
 
 // ApplicationWillUnhide implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillUnhide(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillUnhide(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillUnhide != nil {
 		d._ApplicationWillUnhide(notification)
 	}
@@ -1049,7 +1045,7 @@ func (d *ApplicationDelegate) HasApplicationWillUnhide() bool {
 }
 
 // ApplicationWillUpdate implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationWillUpdate(notification foundation.Notification) {
+func (d *ApplicationDelegate) ApplicationWillUpdate(notification foundation.foundation.INSNotification) {
 	if d._ApplicationWillUpdate != nil {
 		d._ApplicationWillUpdate(notification)
 	}
@@ -1058,4 +1054,515 @@ func (d *ApplicationDelegate) ApplicationWillUpdate(notification foundation.Noti
 // HasApplicationWillUpdate returns true if a handler for ApplicationWillUpdate has been set.
 func (d *ApplicationDelegate) HasApplicationWillUpdate() bool {
 	return d._ApplicationWillUpdate != nil
+}
+
+// ApplicationDelegateObject wraps an existing Objective-C object that conforms to the PApplicationDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ApplicationDelegateObject struct {
+	objectivec.Object
+}
+
+// NewApplicationDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSApplicationDelegate protocol.
+func NewApplicationDelegateObject(obj objectivec.Object) *ApplicationDelegateObject {
+	return &ApplicationDelegateObject{obj}
+}
+
+// Make sure ApplicationDelegateObject implements PApplicationDelegate.
+var _ PApplicationDelegate = (*ApplicationDelegateObject)(nil)
+
+// ApplicationContinueUserActivityRestorationHandler implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationContinueUserActivityRestorationHandler(application IApplication, userActivity foundation.foundation.INSUserActivity, restorationHandler unsafe.Pointer) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:continueUserActivity:restorationHandler:"), application, userActivity, restorationHandler)
+}
+
+// HasApplicationContinueUserActivityRestorationHandler returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationContinueUserActivityRestorationHandler() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDelegateHandlesKey implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDelegateHandlesKey(sender IApplication, key foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:delegateHandlesKey:"), sender, key)
+}
+
+// HasApplicationDelegateHandlesKey returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDelegateHandlesKey() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidDecodeRestorableState implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidDecodeRestorableState(app IApplication, coder foundation.foundation.INSCoder) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:didDecodeRestorableState:"), app, coder)
+}
+
+// HasApplicationDidDecodeRestorableState returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidDecodeRestorableState() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidFailToContinueUserActivityWithTypeError implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidFailToContinueUserActivityWithTypeError(application IApplication, userActivityType foundation.foundation.INSString, error_ foundation.foundation.INSError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:didFailToContinueUserActivityWithType:error:"), application, userActivityType, error_)
+}
+
+// HasApplicationDidFailToContinueUserActivityWithTypeError returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidFailToContinueUserActivityWithTypeError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidFailToRegisterForRemoteNotificationsWithError implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidFailToRegisterForRemoteNotificationsWithError(application IApplication, error_ foundation.foundation.INSError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:didFailToRegisterForRemoteNotificationsWithError:"), application, error_)
+}
+
+// HasApplicationDidFailToRegisterForRemoteNotificationsWithError returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidFailToRegisterForRemoteNotificationsWithError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidReceiveRemoteNotification implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidReceiveRemoteNotification(application IApplication, userInfo foundation.IDictionary) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:didReceiveRemoteNotification:"), application, userInfo)
+}
+
+// HasApplicationDidReceiveRemoteNotification returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidReceiveRemoteNotification() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidRegisterForRemoteNotificationsWithDeviceToken implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidRegisterForRemoteNotificationsWithDeviceToken(application IApplication, deviceToken foundation.foundation.INSData) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:didRegisterForRemoteNotificationsWithDeviceToken:"), application, deviceToken)
+}
+
+// HasApplicationDidRegisterForRemoteNotificationsWithDeviceToken returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidRegisterForRemoteNotificationsWithDeviceToken() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidUpdateUserActivity implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidUpdateUserActivity(application IApplication, userActivity foundation.foundation.INSUserActivity) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:didUpdateUserActivity:"), application, userActivity)
+}
+
+// HasApplicationDidUpdateUserActivity returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidUpdateUserActivity() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationHandlerForIntent implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationHandlerForIntent(application IApplication, intent objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("application:handlerForIntent:"), application, intent)
+}
+
+// HasApplicationHandlerForIntent returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationHandlerForIntent() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationOpenURLs implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationOpenURLs(application IApplication, urls []foundation.URL) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:openURLs:"), application, urls)
+}
+
+// HasApplicationOpenURLs returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationOpenURLs() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationOpenFile implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationOpenFile(sender IApplication, filename foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:openFile:"), sender, filename)
+}
+
+// HasApplicationOpenFile returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationOpenFile() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationOpenFiles implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationOpenFiles(sender IApplication, filenames []string) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:openFiles:"), sender, filenames)
+}
+
+// HasApplicationOpenFiles returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationOpenFiles() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationOpenFileWithoutUI implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationOpenFileWithoutUI(sender objectivec.IObject, filename foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:openFileWithoutUI:"), sender, filename)
+}
+
+// HasApplicationOpenFileWithoutUI returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationOpenFileWithoutUI() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationOpenTempFile implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationOpenTempFile(sender IApplication, filename foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:openTempFile:"), sender, filename)
+}
+
+// HasApplicationOpenTempFile returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationOpenTempFile() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationPrintFile implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationPrintFile(sender IApplication, filename foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:printFile:"), sender, filename)
+}
+
+// HasApplicationPrintFile returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationPrintFile() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationPrintFilesWithSettingsShowPrintPanels implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationPrintFilesWithSettingsShowPrintPanels(application IApplication, fileNames []string, printSettings foundation.IDictionary, showPrintPanels bool) ApplicationPrintReply {
+	return objc.Send[ApplicationPrintReply](o.ID, objc.Sel("application:printFiles:withSettings:showPrintPanels:"), application, fileNames, printSettings, showPrintPanels)
+}
+
+// HasApplicationPrintFilesWithSettingsShowPrintPanels returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationPrintFilesWithSettingsShowPrintPanels() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationUserDidAcceptCloudKitShareWithMetadata implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationUserDidAcceptCloudKitShareWithMetadata(application IApplication, metadata objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:userDidAcceptCloudKitShareWithMetadata:"), application, metadata)
+}
+
+// HasApplicationUserDidAcceptCloudKitShareWithMetadata returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationUserDidAcceptCloudKitShareWithMetadata() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillContinueUserActivityWithType implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillContinueUserActivityWithType(application IApplication, userActivityType foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("application:willContinueUserActivityWithType:"), application, userActivityType)
+}
+
+// HasApplicationWillContinueUserActivityWithType returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillContinueUserActivityWithType() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillEncodeRestorableState implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillEncodeRestorableState(app IApplication, coder foundation.foundation.INSCoder) {
+	objc.Send[objc.ID](o.ID, objc.Sel("application:willEncodeRestorableState:"), app, coder)
+}
+
+// HasApplicationWillEncodeRestorableState returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillEncodeRestorableState() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillPresentError implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillPresentError(application IApplication, error_ foundation.foundation.INSError) foundation.Error {
+	return objc.Send[foundation.Error](o.ID, objc.Sel("application:willPresentError:"), application, error_)
+}
+
+// HasApplicationWillPresentError returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillPresentError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidFinishLaunching implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidFinishLaunching(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidFinishLaunching:"), notification)
+}
+
+// HasApplicationDidFinishLaunching returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidFinishLaunching() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillBecomeActive implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillBecomeActive(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillBecomeActive:"), notification)
+}
+
+// HasApplicationWillBecomeActive returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillBecomeActive() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillFinishLaunching implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillFinishLaunching(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillFinishLaunching:"), notification)
+}
+
+// HasApplicationWillFinishLaunching returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillFinishLaunching() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidBecomeActive implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidBecomeActive(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidBecomeActive:"), notification)
+}
+
+// HasApplicationDidBecomeActive returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidBecomeActive() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidChangeOcclusionState implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidChangeOcclusionState(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidChangeOcclusionState:"), notification)
+}
+
+// HasApplicationDidChangeOcclusionState returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidChangeOcclusionState() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidChangeScreenParameters implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidChangeScreenParameters(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidChangeScreenParameters:"), notification)
+}
+
+// HasApplicationDidChangeScreenParameters returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidChangeScreenParameters() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidHide implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidHide(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidHide:"), notification)
+}
+
+// HasApplicationDidHide returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidHide() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidResignActive implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidResignActive(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidResignActive:"), notification)
+}
+
+// HasApplicationDidResignActive returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidResignActive() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidUnhide implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidUnhide(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidUnhide:"), notification)
+}
+
+// HasApplicationDidUnhide returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidUnhide() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDidUpdate implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDidUpdate(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationDidUpdate:"), notification)
+}
+
+// HasApplicationDidUpdate returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDidUpdate() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationDockMenu implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationDockMenu(sender IApplication) IMenu {
+	return objc.Send[IMenu](o.ID, objc.Sel("applicationDockMenu:"), sender)
+}
+
+// HasApplicationDockMenu returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationDockMenu() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationOpenUntitledFile implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationOpenUntitledFile(sender IApplication) bool {
+	return objc.Send[bool](o.ID, objc.Sel("applicationOpenUntitledFile:"), sender)
+}
+
+// HasApplicationOpenUntitledFile returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationOpenUntitledFile() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationProtectedDataDidBecomeAvailable implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationProtectedDataDidBecomeAvailable(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationProtectedDataDidBecomeAvailable:"), notification)
+}
+
+// HasApplicationProtectedDataDidBecomeAvailable returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationProtectedDataDidBecomeAvailable() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationProtectedDataWillBecomeUnavailable implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationProtectedDataWillBecomeUnavailable(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationProtectedDataWillBecomeUnavailable:"), notification)
+}
+
+// HasApplicationProtectedDataWillBecomeUnavailable returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationProtectedDataWillBecomeUnavailable() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationShouldAutomaticallyLocalizeKeyEquivalents implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationShouldAutomaticallyLocalizeKeyEquivalents(application IApplication) bool {
+	return objc.Send[bool](o.ID, objc.Sel("applicationShouldAutomaticallyLocalizeKeyEquivalents:"), application)
+}
+
+// HasApplicationShouldAutomaticallyLocalizeKeyEquivalents returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationShouldAutomaticallyLocalizeKeyEquivalents() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationShouldHandleReopenHasVisibleWindows implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationShouldHandleReopenHasVisibleWindows(sender IApplication, hasVisibleWindows bool) bool {
+	return objc.Send[bool](o.ID, objc.Sel("applicationShouldHandleReopen:hasVisibleWindows:"), sender, hasVisibleWindows)
+}
+
+// HasApplicationShouldHandleReopenHasVisibleWindows returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationShouldHandleReopenHasVisibleWindows() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationShouldOpenUntitledFile implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationShouldOpenUntitledFile(sender IApplication) bool {
+	return objc.Send[bool](o.ID, objc.Sel("applicationShouldOpenUntitledFile:"), sender)
+}
+
+// HasApplicationShouldOpenUntitledFile returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationShouldOpenUntitledFile() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationShouldTerminate implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationShouldTerminate(sender IApplication) ApplicationTerminateReply {
+	return objc.Send[ApplicationTerminateReply](o.ID, objc.Sel("applicationShouldTerminate:"), sender)
+}
+
+// HasApplicationShouldTerminate returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationShouldTerminate() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationShouldTerminateAfterLastWindowClosed implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationShouldTerminateAfterLastWindowClosed(sender IApplication) bool {
+	return objc.Send[bool](o.ID, objc.Sel("applicationShouldTerminateAfterLastWindowClosed:"), sender)
+}
+
+// HasApplicationShouldTerminateAfterLastWindowClosed returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationShouldTerminateAfterLastWindowClosed() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationSupportsSecureRestorableState implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationSupportsSecureRestorableState(app IApplication) bool {
+	return objc.Send[bool](o.ID, objc.Sel("applicationSupportsSecureRestorableState:"), app)
+}
+
+// HasApplicationSupportsSecureRestorableState returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationSupportsSecureRestorableState() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillHide implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillHide(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillHide:"), notification)
+}
+
+// HasApplicationWillHide returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillHide() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillResignActive implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillResignActive(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillResignActive:"), notification)
+}
+
+// HasApplicationWillResignActive returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillResignActive() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillTerminate implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillTerminate(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillTerminate:"), notification)
+}
+
+// HasApplicationWillTerminate returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillTerminate() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillUnhide implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillUnhide(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillUnhide:"), notification)
+}
+
+// HasApplicationWillUnhide returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillUnhide() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ApplicationWillUpdate implements the PApplicationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ApplicationDelegateObject) ApplicationWillUpdate(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("applicationWillUpdate:"), notification)
+}
+
+// HasApplicationWillUpdate returns true; this is a placeholder for optional method checks.
+func (o *ApplicationDelegateObject) HasApplicationWillUpdate() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

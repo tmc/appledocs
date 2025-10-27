@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptionRuby */
 
 
-/* debug [class_header]: Header for AVCaptionRuby */
+
+
 // The class instance for the [CaptionRuby] class.
 var (
 	CaptionRubyClass     _CaptionRubyClass
@@ -30,33 +30,33 @@ func getCaptionRubyClass() _CaptionRubyClass {
 type _CaptionRubyClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptionRuby */
+
+
 // An interface definition for the [CaptionRuby] class.
 type ICaptionRuby interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CaptionRuby */
+
 	// properties:
 	Alignment() CaptionRubyAlignment
 	Position() CaptionRubyPosition
-	Text() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+	Text() foundation.foundation.INSString
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptionRuby */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptionRuby */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptionRubyClass) Alloc() CaptionRuby {
 	rv := objc.Send[CaptionRuby](objc.ID(cc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (c_ CaptionRuby) Autorelease() CaptionRuby {
 func NewCaptionRuby() CaptionRuby {
 	return getCaptionRubyClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptionRuby */
+
+
 // An object that presents ruby characters.
 //
 // Ruby characters are small annotations, typically used in Japanese content, that render alongside the base text.
@@ -110,55 +110,55 @@ type CaptionRuby struct {
 func CaptionRubyFrom(ptr unsafe.Pointer) CaptionRuby {
 	return CaptionRuby{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptionRuby */
+
+
 
 // Creates ruby text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/Ruby/init(text:)
-func NewCaptionRubyWithText(text objc.IObject /* cross-framework: NSString */) CaptionRuby {
+func NewCaptionRubyWithText(text foundation.foundation.INSString) CaptionRuby {
 	instance := getCaptionRubyClass().Alloc()
 	rv := objc.Send[CaptionRuby](instance.ID, objc.Sel("initWithText:"), text)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCaptionRubyWithText */
+}
 
 
 // Creates ruby text with position and alignment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/Ruby/init(text:position:alignment:)
-func NewCaptionRubyWithTextPositionAlignment(text objc.IObject /* cross-framework: NSString */, position CaptionRubyPosition, alignment CaptionRubyAlignment) CaptionRuby {
+func NewCaptionRubyWithTextPositionAlignment(text foundation.foundation.INSString, position CaptionRubyPosition, alignment CaptionRubyAlignment) CaptionRuby {
 	instance := getCaptionRubyClass().Alloc()
 	rv := objc.Send[CaptionRuby](instance.ID, objc.Sel("initWithText:position:alignment:"), text, position, alignment)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCaptionRubyWithTextPositionAlignment */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CaptionRuby */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptionRuby */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptionRuby */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CaptionRuby */
+
+
+
+
+
+
+
+
+
 
 // The ruby text alignment.
 //
@@ -167,7 +167,7 @@ func NewCaptionRubyWithTextPositionAlignment(text objc.IObject /* cross-framewor
 func (c_ CaptionRuby) Alignment() CaptionRubyAlignment {
 	rv := objc.Send[CaptionRubyAlignment](c_.ID, objc.Sel("alignment"))
 	return rv
-}/* debug [instance_properties/getter]: alignment */
+}
 
 
 // The ruby text position.
@@ -177,21 +177,21 @@ func (c_ CaptionRuby) Alignment() CaptionRubyAlignment {
 func (c_ CaptionRuby) Position() CaptionRubyPosition {
 	rv := objc.Send[CaptionRubyPosition](c_.ID, objc.Sel("position"))
 	return rv
-}/* debug [instance_properties/getter]: position */
+}
 
 
 // The ruby text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption/Ruby/text
-func (c_ CaptionRuby) Text() objc.IObject /* cross-framework: NSString */ {
+func (c_ CaptionRuby) Text() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("text"))
 	return rv
-}/* debug [instance_properties/getter]: text */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVCaptionRuby */
+
+
+
 
 

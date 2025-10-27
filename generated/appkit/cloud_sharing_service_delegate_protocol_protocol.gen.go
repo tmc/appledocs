@@ -6,11 +6,9 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
-	"github.com/tmc/appledocs/generated/cloudkit"
-
-	"github.com/tmc/appledocs/generated/coretelephony"
-
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PCloudSharingServiceDelegate is the NSCloudSharingServiceDelegate protocol interface.
@@ -25,11 +23,11 @@ type PCloudSharingServiceDelegate interface {
 	// Optional methods
 	OptionsForSharingServiceShareProvider(cloudKitSharingService ISharingService, provider foundation.ItemProvider) CloudKitSharingServiceOptions
 	HasOptionsForSharingServiceShareProvider() bool
-	SharingServiceDidStopSharing(sharingService ISharingService, share objc.IObject)
+	SharingServiceDidStopSharing(sharingService ISharingService, share objectivec.IObject)
 	HasSharingServiceDidStopSharing() bool
-	SharingServiceDidCompleteForItemsError(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, error_ objc.IObject /* cross-framework: Error */)
+	SharingServiceDidCompleteForItemsError(sharingService ISharingService, items foundation.foundation.INSArray, error_ foundation.foundation.INSError)
 	HasSharingServiceDidCompleteForItemsError() bool
-	SharingServiceDidSaveShare(sharingService ISharingService, share objc.IObject)
+	SharingServiceDidSaveShare(sharingService ISharingService, share objectivec.IObject)
 	HasSharingServiceDidSaveShare() bool
 }
 
@@ -38,9 +36,9 @@ type PCloudSharingServiceDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type CloudSharingServiceDelegate struct {
 	_OptionsForSharingServiceShareProvider func(cloudKitSharingService ISharingService, provider foundation.ItemProvider) CloudKitSharingServiceOptions
-	_SharingServiceDidStopSharing func(sharingService ISharingService, share objc.IObject)
-	_SharingServiceDidCompleteForItemsError func(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, error_ objc.IObject /* cross-framework: Error */)
-	_SharingServiceDidSaveShare func(sharingService ISharingService, share objc.IObject)
+	_SharingServiceDidStopSharing func(sharingService ISharingService, share objectivec.IObject)
+	_SharingServiceDidCompleteForItemsError func(sharingService ISharingService, items foundation.foundation.INSArray, error_ foundation.foundation.INSError)
+	_SharingServiceDidSaveShare func(sharingService ISharingService, share objectivec.IObject)
 }
 
 // SetOptionsForSharingServiceShareProvider sets the handler for the OptionsForSharingServiceShareProvider delegate method.
@@ -53,21 +51,21 @@ func (d *CloudSharingServiceDelegate) SetOptionsForSharingServiceShareProvider(f
 // SetSharingServiceDidStopSharing sets the handler for the SharingServiceDidStopSharing delegate method.
 //
 // Tells the delegate when the user stops sharing the CloudKit share.
-func (d *CloudSharingServiceDelegate) SetSharingServiceDidStopSharing(f func(sharingService ISharingService, share objc.IObject)) {
+func (d *CloudSharingServiceDelegate) SetSharingServiceDidStopSharing(f func(sharingService ISharingService, share objectivec.IObject)) {
 	d._SharingServiceDidStopSharing = f
 }
 
 // SetSharingServiceDidCompleteForItemsError sets the handler for the SharingServiceDidCompleteForItemsError delegate method.
 //
 // Tells the delegate when the cloud-sharing service completes.
-func (d *CloudSharingServiceDelegate) SetSharingServiceDidCompleteForItemsError(f func(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, error_ objc.IObject /* cross-framework: Error */)) {
+func (d *CloudSharingServiceDelegate) SetSharingServiceDidCompleteForItemsError(f func(sharingService ISharingService, items foundation.foundation.INSArray, error_ foundation.foundation.INSError)) {
 	d._SharingServiceDidCompleteForItemsError = f
 }
 
 // SetSharingServiceDidSaveShare sets the handler for the SharingServiceDidSaveShare delegate method.
 //
 // Tells the delegate when the cloud-sharing service saves the CloudKit share.
-func (d *CloudSharingServiceDelegate) SetSharingServiceDidSaveShare(f func(sharingService ISharingService, share objc.IObject)) {
+func (d *CloudSharingServiceDelegate) SetSharingServiceDidSaveShare(f func(sharingService ISharingService, share objectivec.IObject)) {
 	d._SharingServiceDidSaveShare = f
 }
 
@@ -86,7 +84,7 @@ func (d *CloudSharingServiceDelegate) HasOptionsForSharingServiceShareProvider()
 }
 
 // SharingServiceDidStopSharing implements the PCloudSharingServiceDelegate interface.
-func (d *CloudSharingServiceDelegate) SharingServiceDidStopSharing(sharingService ISharingService, share objc.IObject) {
+func (d *CloudSharingServiceDelegate) SharingServiceDidStopSharing(sharingService ISharingService, share objectivec.IObject) {
 	if d._SharingServiceDidStopSharing != nil {
 		d._SharingServiceDidStopSharing(sharingService, share)
 	}
@@ -98,7 +96,7 @@ func (d *CloudSharingServiceDelegate) HasSharingServiceDidStopSharing() bool {
 }
 
 // SharingServiceDidCompleteForItemsError implements the PCloudSharingServiceDelegate interface.
-func (d *CloudSharingServiceDelegate) SharingServiceDidCompleteForItemsError(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, error_ objc.IObject /* cross-framework: Error */) {
+func (d *CloudSharingServiceDelegate) SharingServiceDidCompleteForItemsError(sharingService ISharingService, items foundation.foundation.INSArray, error_ foundation.foundation.INSError) {
 	if d._SharingServiceDidCompleteForItemsError != nil {
 		d._SharingServiceDidCompleteForItemsError(sharingService, items, error_)
 	}
@@ -110,7 +108,7 @@ func (d *CloudSharingServiceDelegate) HasSharingServiceDidCompleteForItemsError(
 }
 
 // SharingServiceDidSaveShare implements the PCloudSharingServiceDelegate interface.
-func (d *CloudSharingServiceDelegate) SharingServiceDidSaveShare(sharingService ISharingService, share objc.IObject) {
+func (d *CloudSharingServiceDelegate) SharingServiceDidSaveShare(sharingService ISharingService, share objectivec.IObject) {
 	if d._SharingServiceDidSaveShare != nil {
 		d._SharingServiceDidSaveShare(sharingService, share)
 	}
@@ -119,4 +117,64 @@ func (d *CloudSharingServiceDelegate) SharingServiceDidSaveShare(sharingService 
 // HasSharingServiceDidSaveShare returns true if a handler for SharingServiceDidSaveShare has been set.
 func (d *CloudSharingServiceDelegate) HasSharingServiceDidSaveShare() bool {
 	return d._SharingServiceDidSaveShare != nil
+}
+
+// CloudSharingServiceDelegateObject wraps an existing Objective-C object that conforms to the PCloudSharingServiceDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type CloudSharingServiceDelegateObject struct {
+	objectivec.Object
+}
+
+// NewCloudSharingServiceDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSCloudSharingServiceDelegate protocol.
+func NewCloudSharingServiceDelegateObject(obj objectivec.Object) *CloudSharingServiceDelegateObject {
+	return &CloudSharingServiceDelegateObject{obj}
+}
+
+// Make sure CloudSharingServiceDelegateObject implements PCloudSharingServiceDelegate.
+var _ PCloudSharingServiceDelegate = (*CloudSharingServiceDelegateObject)(nil)
+
+// OptionsForSharingServiceShareProvider implements the PCloudSharingServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CloudSharingServiceDelegateObject) OptionsForSharingServiceShareProvider(cloudKitSharingService ISharingService, provider foundation.ItemProvider) CloudKitSharingServiceOptions {
+	return objc.Send[CloudKitSharingServiceOptions](o.ID, objc.Sel("optionsForSharingService:shareProvider:"), cloudKitSharingService, provider)
+}
+
+// HasOptionsForSharingServiceShareProvider returns true; this is a placeholder for optional method checks.
+func (o *CloudSharingServiceDelegateObject) HasOptionsForSharingServiceShareProvider() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SharingServiceDidStopSharing implements the PCloudSharingServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CloudSharingServiceDelegateObject) SharingServiceDidStopSharing(sharingService ISharingService, share objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("sharingService:didStopSharing:"), sharingService, share)
+}
+
+// HasSharingServiceDidStopSharing returns true; this is a placeholder for optional method checks.
+func (o *CloudSharingServiceDelegateObject) HasSharingServiceDidStopSharing() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SharingServiceDidCompleteForItemsError implements the PCloudSharingServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CloudSharingServiceDelegateObject) SharingServiceDidCompleteForItemsError(sharingService ISharingService, items foundation.foundation.INSArray, error_ foundation.foundation.INSError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("sharingService:didCompleteForItems:error:"), sharingService, items, error_)
+}
+
+// HasSharingServiceDidCompleteForItemsError returns true; this is a placeholder for optional method checks.
+func (o *CloudSharingServiceDelegateObject) HasSharingServiceDidCompleteForItemsError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SharingServiceDidSaveShare implements the PCloudSharingServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CloudSharingServiceDelegateObject) SharingServiceDidSaveShare(sharingService ISharingService, share objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("sharingService:didSaveShare:"), sharingService, share)
+}
+
+// HasSharingServiceDidSaveShare returns true; this is a placeholder for optional method checks.
+func (o *CloudSharingServiceDelegateObject) HasSharingServiceDidSaveShare() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

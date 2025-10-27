@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NSObject */
 
 
-/* debug [class_header]: Header for NSObject */
+
+
 // The class instance for the [Object] class.
 var (
 	ObjectClass     _ObjectClass
@@ -29,20 +29,19 @@ func getObjectClass() _ObjectClass {
 type _ObjectClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Object */
+
+
 // An interface definition for the [Object] class.
 type IObject interface {
 	
 	
-/* debug [class_interface_properties]: Properties for Object */
+
 	// properties:
 	AccessibilityFocusedUIElement() IObject
 	AccessibilityNotifiesWhenDestroyed() bool
-	AttributeKeys() []string
 	AutoContentAccessingProxy() IObject
 	BrowserAccessibilityContainerType() IObject
 	SetBrowserAccessibilityContainerType(value IObject)
@@ -61,20 +60,18 @@ type IObject interface {
 	ExposedBindings() []string
 	Selectable() bool
 	ObjectForWebScript() IObject
-	ObjectSpecifier() IObject
 	ObservationInfo() IObject
 	SetObservationInfo(value IObject)
-	ToManyRelationshipKeys() []string
-	ToOneRelationshipKeys() []string
+	WebFrame() IObject
 	WebPlugInContainerSelectionColor() IObject
 	IsSelectable() bool
 	SetIsSelectable(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Object */
+
 	// methods:
-	AcceptsPreviewPanelControl(panel IObject) bool
+	AcceptsPreviewPanelControl(panel PreviewPanel /* not a class type */) bool
 	AccessibilityArrayAttributeCount(attribute string) uint
 	AccessibilityArrayAttributeValuesIndexMaxCount(attribute string, index uint, maxCount uint) IObject
 	AccessibilityHitTest(point IObject) IObject
@@ -91,7 +88,7 @@ type IObject interface {
 	AuthorizationViewDidHide(view IObject)
 	AuthorizationViewReleasedAuthorization(view IObject)
 	AuthorizationViewShouldDeauthorize(view IObject) bool
-	BeginPreviewPanelControl(panel IObject)
+	BeginPreviewPanelControl(panel PreviewPanel /* not a class type */)
 	BindToObjectWithKeyPathOptions(binding string, observable IObject, keyPath IObject, options IObject)
 	BrowserAccessibilityAttributedValueInRange(range_ IObject) IObject
 	BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int)
@@ -114,12 +111,12 @@ type IObject interface {
 	DidCommandBySelectorClient(aSelector objc.SEL, sender IObject) bool
 	DoesContain(object IObject) bool
 	DoesNotRecognizeSelector(aSelector objc.SEL)
-	EndPreviewPanelControl(panel IObject)
+	EndPreviewPanelControl(panel PreviewPanel /* not a class type */)
 	EraseProgressPanelEraseDidFinish(theErasePanel IObject, erase IObject) bool
 	EraseProgressPanelDidFinish(aNotification IObject)
 	EraseProgressPanelWillBegin(aNotification IObject)
-	ExceptionHandlerShouldHandleExceptionMask(sender IObject, exception IObject, aMask uint) bool
-	ExceptionHandlerShouldLogExceptionMask(sender IObject, exception IObject, aMask uint) bool
+	ExceptionHandlerShouldHandleExceptionMask(sender ExceptionHandler /* not a class type */, exception IObject, aMask uint) bool
+	ExceptionHandlerShouldLogExceptionMask(sender ExceptionHandler /* not a class type */, exception IObject, aMask uint) bool
 	FileTransferServicesAbortCompleteError(inServices IObject, inError IObject)
 	FileTransferServicesConnectionCompleteError(inServices IObject, inError IObject)
 	FileTransferServicesCopyRemoteFileCompleteError(inServices IObject, inError IObject)
@@ -134,7 +131,6 @@ type IObject interface {
 	FileTransferServicesSendFileProgressTransferProgress(inServices IObject, inProgressDescription IObject)
 	Finalize()
 	FinalizeForWebScript()
-	ForwardInvocation(anInvocation IObject)
 	ForwardingTargetForSelector(aSelector objc.SEL) IObject
 	HandleEventClient(event IObject, sender IObject) bool
 	ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser IObject, event IObject)
@@ -178,7 +174,7 @@ type IObject interface {
 	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key IObject, contentsValue IObject, properties IObject) IObject
 	NumberOfGroupsInImageBrowser(aBrowser IObject) uint
 	NumberOfItemsInImageBrowser(aBrowser IObject) uint
-	OptionDescriptionsForBinding(binding string) []objc.ID
+	OptionDescriptionsForBinding(binding string) []AttributeDescription /* not a class type */
 	OriginalString(sender IObject) IObject
 	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr IObject, arg IObject, wait bool)
 	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr IObject, arg IObject, wait bool, array []string)
@@ -192,8 +188,8 @@ type IObject interface {
 	QuartzFilterManagerDidModifyFilter(sender IObject, filter IObject)
 	QuartzFilterManagerDidRemoveFilter(sender IObject, filter IObject)
 	QuartzFilterManagerDidSelectFilter(sender IObject, filter IObject)
-	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller IObject, device IObject, info IObject, error_ int)
-	ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, device IObject, info IObject, error_ int)
+	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller IObject, device BluetoothDevice /* not a class type */, info IObject, error_ int)
+	ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, device BluetoothDevice /* not a class type */, info IObject, error_ int)
 	RemoveValueAtIndexFromPropertyWithKey(index uint, key IObject)
 	ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint, key IObject, value IObject)
 	ReplacementObjectForCoder(coder IObject) IObject
@@ -235,14 +231,14 @@ type IObject interface {
 	WebPlugInStart()
 	WebPlugInStop()
 	WillChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind uint, objects IObject)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Object */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _ObjectClass) Alloc() Object {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("alloc"))
@@ -272,11 +268,11 @@ func (o_ Object) Autorelease() Object {
 func NewObject() Object {
 	return getObjectClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Object */
+
+
 // The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.
 
 
@@ -294,16 +290,16 @@ type Object struct {
 func ObjectFrom(ptr unsafe.Pointer) Object {
 	return Object{objc.ID(ptr)}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Object */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for Object */
+
+
+
+
 
 // Returns a Boolean value that indicates whether the observed object supports automatic key-value observation for the given key.
 //
@@ -312,7 +308,7 @@ func ObjectFrom(ptr unsafe.Pointer) Object {
 func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key IObject) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("automaticallyNotifiesObserversForKey:"), key)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AutomaticallyNotifiesObserversForKey) */
+}
 
 
 // Cancels perform requests previously registered with the instance method.
@@ -321,7 +317,7 @@ func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key IObject) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/cancelPreviousPerformRequests(withTarget:)
 func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("cancelPreviousPerformRequestsWithTarget:"), aTarget)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CancelPreviousPerformRequestsWithTarget) */
+}
 
 
 // Cancels perform requests previously registered with .
@@ -330,7 +326,7 @@ func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget IObject) 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/cancelPreviousPerformRequests(withTarget:selector:object:)
 func (oc _ObjectClass) CancelPreviousPerformRequestsWithTargetSelectorObject(aTarget IObject, aSelector objc.SEL, anArgument IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("cancelPreviousPerformRequestsWithTarget:selector:object:"), aTarget, aSelector, anArgument)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CancelPreviousPerformRequestsWithTargetSelectorObject) */
+}
 
 
 // Returns the class object.
@@ -340,7 +336,7 @@ func (oc _ObjectClass) CancelPreviousPerformRequestsWithTargetSelectorObject(aTa
 func (oc _ObjectClass) Class() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(oc.class), objc.Sel("class"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Class) */
+}
 
 
 // Overridden to return the names of classes that can be used to decode objects if their class is unavailable.
@@ -350,7 +346,7 @@ func (oc _ObjectClass) Class() objc.Class {
 func (oc _ObjectClass) ClassFallbacksForKeyedArchiver() []string {
 	rv := objc.Send[[]string](objc.ID(oc.class), objc.Sel("classFallbacksForKeyedArchiver"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ClassFallbacksForKeyedArchiver) */
+}
 
 
 // Overridden by subclasses to substitute a new class during keyed unarchiving.
@@ -360,7 +356,7 @@ func (oc _ObjectClass) ClassFallbacksForKeyedArchiver() []string {
 func (oc _ObjectClass) ClassForKeyedUnarchiver() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(oc.class), objc.Sel("classForKeyedUnarchiver"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ClassForKeyedUnarchiver) */
+}
 
 
 // Returns a Boolean value that indicates whether the target conforms to a given protocol.
@@ -370,7 +366,7 @@ func (oc _ObjectClass) ClassForKeyedUnarchiver() objc.Class {
 func (oc _ObjectClass) ConformsToProtocol(protocol_ IProtocol) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("conformsToProtocol:"), protocol_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConformsToProtocol) */
+}
 
 
 // [Full Topic]
@@ -378,7 +374,7 @@ func (oc _ObjectClass) ConformsToProtocol(protocol_ IProtocol) bool {
 func (oc _ObjectClass) DebugDescription() IObject {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("debugDescription"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DebugDescription) */
+}
 
 
 // Returns an object that will be used as the placeholder for the , when a key value coding compliant property of an instance of the receiving class returns the value specified by , and no other placeholder has been specified.
@@ -388,7 +384,7 @@ func (oc _ObjectClass) DebugDescription() IObject {
 func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker IObject, binding string) IObject {
 	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("defaultPlaceholderForMarker:withBinding:"), marker, objc.String(binding))
 	return Object{ID: rv}
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultPlaceholderForMarkerWithBinding) */
+}
 
 
 // Returns a string that represents the contents of the receiving class.
@@ -398,7 +394,7 @@ func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker IObject, bi
 func (oc _ObjectClass) Description() IObject {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("description"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Description) */
+}
 
 
 // Exposes the specified , advertising its availability.
@@ -407,7 +403,7 @@ func (oc _ObjectClass) Description() IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exposeBinding(_:)
 func (oc _ObjectClass) ExposeBinding(binding string) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("exposeBinding:"), objc.String(binding))
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ExposeBinding) */
+}
 
 
 // [Full Topic]
@@ -415,7 +411,7 @@ func (oc _ObjectClass) ExposeBinding(binding string) {
 func (oc _ObjectClass) Hash() uint {
 	rv := objc.Send[uint](objc.ID(oc.class), objc.Sel("hash"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Hash) */
+}
 
 
 // Initializes the class before it receives its first message.
@@ -424,7 +420,7 @@ func (oc _ObjectClass) Hash() uint {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/initialize()
 func (oc _ObjectClass) Initialize() {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("initialize"))
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Initialize) */
+}
 
 
 // Locates and returns the address of the implementation of the instance method identified by a given selector.
@@ -434,7 +430,7 @@ func (oc _ObjectClass) Initialize() {
 func (oc _ObjectClass) InstanceMethodForSelector(aSelector objc.SEL) IMP {
 	rv := objc.Send[IMP](objc.ID(oc.class), objc.Sel("instanceMethodForSelector:"), aSelector)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=InstanceMethodForSelector) */
+}
 
 
 // Returns an object that contains a description of the instance method identified by a given selector.
@@ -444,7 +440,7 @@ func (oc _ObjectClass) InstanceMethodForSelector(aSelector objc.SEL) IMP {
 func (oc _ObjectClass) InstanceMethodSignatureForSelector(aSelector objc.SEL) MethodSignature /* not a class type */ {
 	rv := objc.Send[MethodSignature](objc.ID(oc.class), objc.Sel("instanceMethodSignatureForSelector:"), aSelector)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=InstanceMethodSignatureForSelector) */
+}
 
 
 // Returns a Boolean value that indicates whether instances of the receiver are capable of responding to a given selector.
@@ -454,7 +450,7 @@ func (oc _ObjectClass) InstanceMethodSignatureForSelector(aSelector objc.SEL) Me
 func (oc _ObjectClass) InstancesRespondToSelector(aSelector objc.SEL) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("instancesRespondToSelector:"), aSelector)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=InstancesRespondToSelector) */
+}
 
 
 // Returns whether a key should be hidden from the scripting environment.
@@ -464,7 +460,7 @@ func (oc _ObjectClass) InstancesRespondToSelector(aSelector objc.SEL) bool {
 func (oc _ObjectClass) IsKeyExcludedFromWebScript(name IObject) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("isKeyExcludedFromWebScript:"), name)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=IsKeyExcludedFromWebScript) */
+}
 
 
 // Returns whether a selector should be hidden from the scripting environment.
@@ -474,7 +470,7 @@ func (oc _ObjectClass) IsKeyExcludedFromWebScript(name IObject) bool {
 func (oc _ObjectClass) IsSelectorExcludedFromWebScript(selector objc.SEL) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("isSelectorExcludedFromWebScript:"), selector)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=IsSelectorExcludedFromWebScript) */
+}
 
 
 // Returns a Boolean value that indicates whether the receiving class is a subclass of, or identical to, a given class.
@@ -484,7 +480,7 @@ func (oc _ObjectClass) IsSelectorExcludedFromWebScript(selector objc.SEL) bool {
 func (oc _ObjectClass) IsSubclassOfClass(aClass objc.Class) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("isSubclassOfClass:"), aClass)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=IsSubclassOfClass) */
+}
 
 
 // Returns a set of key paths for properties whose values affect the value of the specified key.
@@ -494,7 +490,7 @@ func (oc _ObjectClass) IsSubclassOfClass(aClass objc.Class) bool {
 func (oc _ObjectClass) KeyPathsForValuesAffectingValueForKey(key IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("keyPathsForValuesAffectingValueForKey:"), key)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeyPathsForValuesAffectingValueForKey) */
+}
 
 
 // Invoked whenever a class or category is added to the Objective-C runtime; implement this method to perform class-specific behavior upon loading.
@@ -503,7 +499,7 @@ func (oc _ObjectClass) KeyPathsForValuesAffectingValueForKey(key IObject) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/load()
 func (oc _ObjectClass) Load() {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("load"))
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Load) */
+}
 
 
 // Dynamically provides an implementation for a given selector for a class method.
@@ -513,7 +509,7 @@ func (oc _ObjectClass) Load() {
 func (oc _ObjectClass) ResolveClassMethod(sel objc.SEL) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("resolveClassMethod:"), sel)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ResolveClassMethod) */
+}
 
 
 // Dynamically provides an implementation for a given selector for an instance method.
@@ -523,7 +519,7 @@ func (oc _ObjectClass) ResolveClassMethod(sel objc.SEL) bool {
 func (oc _ObjectClass) ResolveInstanceMethod(sel objc.SEL) bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("resolveInstanceMethod:"), sel)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ResolveInstanceMethod) */
+}
 
 
 // Sets as the default placeholder for the , when a key value coding compliant property of an instance of the receiving class returns the value specified by , and no other placeholder has been specified.
@@ -532,7 +528,7 @@ func (oc _ObjectClass) ResolveInstanceMethod(sel objc.SEL) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setDefaultPlaceholder(_:for:with:)
 func (oc _ObjectClass) SetDefaultPlaceholderForMarkerWithBinding(placeholder IObject, marker IObject, binding string) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setDefaultPlaceholder:forMarker:withBinding:"), placeholder, marker, objc.String(binding))
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SetDefaultPlaceholderForMarkerWithBinding) */
+}
 
 
 // Configures the observed object to post change notifications for a given property if any of the properties specified in a given array changes.
@@ -541,7 +537,7 @@ func (oc _ObjectClass) SetDefaultPlaceholderForMarkerWithBinding(placeholder IOb
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setKeys:triggerChangeNotificationsForDependentKey:
 func (oc _ObjectClass) SetKeysTriggerChangeNotificationsForDependentKey(keys IObject, dependentKey IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setKeys:triggerChangeNotificationsForDependentKey:"), keys, dependentKey)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SetKeysTriggerChangeNotificationsForDependentKey) */
+}
 
 
 // Sets the receiver’s version number.
@@ -550,7 +546,7 @@ func (oc _ObjectClass) SetKeysTriggerChangeNotificationsForDependentKey(keys IOb
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setVersion(_:)
 func (oc _ObjectClass) SetVersion(aVersion int) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setVersion:"), aVersion)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SetVersion) */
+}
 
 
 // Returns the class object for the receiver’s superclass.
@@ -560,7 +556,7 @@ func (oc _ObjectClass) SetVersion(aVersion int) {
 func (oc _ObjectClass) Superclass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(oc.class), objc.Sel("superclass"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Superclass) */
+}
 
 
 // Returns if the stored value methods and should use private accessor methods in preference to public accessors.
@@ -570,7 +566,7 @@ func (oc _ObjectClass) Superclass() objc.Class {
 func (oc _ObjectClass) UseStoredAccessor() bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("useStoredAccessor"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UseStoredAccessor) */
+}
 
 
 // Returns the version number assigned to the class.
@@ -580,7 +576,7 @@ func (oc _ObjectClass) UseStoredAccessor() bool {
 func (oc _ObjectClass) Version() int {
 	rv := objc.Send[int](objc.ID(oc.class), objc.Sel("version"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Version) */
+}
 
 
 // Returns the scripting environment name for a selector.
@@ -590,7 +586,7 @@ func (oc _ObjectClass) Version() int {
 func (oc _ObjectClass) WebScriptNameForSelector(selector objc.SEL) IObject {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("webScriptNameForSelector:"), selector)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=WebScriptNameForSelector) */
+}
 
 
 // Returns the scripting environment name for an attribute specified by a key.
@@ -600,21 +596,21 @@ func (oc _ObjectClass) WebScriptNameForSelector(selector objc.SEL) IObject {
 func (oc _ObjectClass) WebScriptNameForKey(name IObject) IObject {
 	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("webScriptNameForKey:"), name)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=WebScriptNameForKey) */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/withL2CAPChannelRef:
-func (oc _ObjectClass) WithL2CAPChannelRef(l2capChannelRef uintptr /* not a class type */) IObject {
-	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("withL2CAPChannelRef:"), l2capChannelRef)
+func (oc _ObjectClass) WithL2CAPChannelRef(l2capChannelRef uintptr /* not a class type */) BluetoothL2CAPChannel /* not a class type */ {
+	rv := objc.Send[BluetoothL2CAPChannel](objc.ID(oc.class), objc.Sel("withL2CAPChannelRef:"), l2capChannelRef)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=WithL2CAPChannelRef) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Object */
+
+
+
 
 // Returns a Boolean value that indicates whether the key-value coding methods should access the corresponding instance variable directly on finding no accessor method for a property.
 //
@@ -623,19 +619,19 @@ func (oc _ObjectClass) WithL2CAPChannelRef(l2capChannelRef uintptr /* not a clas
 func (oc _ObjectClass) AccessInstanceVariablesDirectly() bool {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("accessInstanceVariablesDirectly"))
 	return rv
-}/* debug [class_properties_class/property]: accessInstanceVariablesDirectly */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for Object */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/acceptsPreviewPanelControl(_:)
-func (o_ Object) AcceptsPreviewPanelControl(panel IObject) bool {
+func (o_ Object) AcceptsPreviewPanelControl(panel PreviewPanel /* not a class type */) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("acceptsPreviewPanelControl:"), panel)
 	return rv
-}/* debug [instance_methods/method]: AcceptsPreviewPanelControl */
+}
 
 
 // Returns the count of the specified accessibility array attribute.
@@ -645,7 +641,7 @@ func (o_ Object) AcceptsPreviewPanelControl(panel IObject) bool {
 func (o_ Object) AccessibilityArrayAttributeCount(attribute string) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("accessibilityArrayAttributeCount:"), objc.String(attribute))
 	return rv
-}/* debug [instance_methods/method]: AccessibilityArrayAttributeCount */
+}
 
 
 // Returns a subarray of values of an accessibility array attribute.
@@ -655,7 +651,7 @@ func (o_ Object) AccessibilityArrayAttributeCount(attribute string) uint {
 func (o_ Object) AccessibilityArrayAttributeValuesIndexMaxCount(attribute string, index uint, maxCount uint) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityArrayAttributeValues:index:maxCount:"), objc.String(attribute), index, maxCount)
 	return rv
-}/* debug [instance_methods/method]: AccessibilityArrayAttributeValuesIndexMaxCount */
+}
 
 
 // [Full Topic]
@@ -663,7 +659,7 @@ func (o_ Object) AccessibilityArrayAttributeValuesIndexMaxCount(attribute string
 func (o_ Object) AccessibilityHitTest(point IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:"), point)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: AccessibilityHitTest */
+}
 
 
 // Returns the index of the specified accessibility child in the parent.
@@ -673,7 +669,7 @@ func (o_ Object) AccessibilityHitTest(point IObject) IObject {
 func (o_ Object) AccessibilityIndexOfChild(child IObject) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("accessibilityIndexOfChild:"), child)
 	return rv
-}/* debug [instance_methods/method]: AccessibilityIndexOfChild */
+}
 
 
 // [Full Topic]
@@ -681,7 +677,7 @@ func (o_ Object) AccessibilityIndexOfChild(child IObject) uint {
 func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("accessibilityLineEndPositionFromCurrentSelection"))
 	return rv
-}/* debug [instance_methods/method]: AccessibilityLineEndPositionFromCurrentSelection */
+}
 
 
 // [Full Topic]
@@ -689,7 +685,7 @@ func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() int {
 func (o_ Object) AccessibilityLineRangeForPosition(position int) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
 	return rv
-}/* debug [instance_methods/method]: AccessibilityLineRangeForPosition */
+}
 
 
 // [Full Topic]
@@ -697,7 +693,7 @@ func (o_ Object) AccessibilityLineRangeForPosition(position int) IObject {
 func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("accessibilityLineStartPositionFromCurrentSelection"))
 	return rv
-}/* debug [instance_methods/method]: AccessibilityLineStartPositionFromCurrentSelection */
+}
 
 
 // Sent to the delegate to request the property the action applies to.
@@ -707,7 +703,7 @@ func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() int {
 func (o_ Object) ActionProperty() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("actionProperty"))
 	return rv
-}/* debug [instance_methods/method]: ActionProperty */
+}
 
 
 // Registers the observer object to receive KVO notifications for the key path relative to the object receiving this message.
@@ -716,7 +712,7 @@ func (o_ Object) ActionProperty() IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/addObserver(_:forKeyPath:options:context:)
 func (o_ Object) AddObserverForKeyPathOptionsContext(observer IObject, keyPath IObject, options uint, context IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
-}/* debug [instance_methods/method]: AddObserverForKeyPathOptionsContext */
+}
 
 
 // Implemented to attempt a recovery from an error noted in an application-modal dialog.
@@ -726,7 +722,7 @@ func (o_ Object) AddObserverForKeyPathOptionsContext(observer IObject, keyPath I
 func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error_ IObject, recoveryOptionIndex uint) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:"), error_, recoveryOptionIndex)
 	return rv
-}/* debug [instance_methods/method]: AttemptRecoveryFromErrorOptionIndex */
+}
 
 
 // Implemented to attempt a recovery from an error noted in a document-modal sheet.
@@ -735,7 +731,7 @@ func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error_ IObject, recoveryOpt
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attemptRecovery(fromError:optionIndex:delegate:didRecoverSelector:contextInfo:)
 func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ IObject, recoveryOptionIndex uint, delegate IObject, didRecoverSelector objc.SEL, contextInfo IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:"), error_, recoveryOptionIndex, delegate, didRecoverSelector, contextInfo)
-}/* debug [instance_methods/method]: AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo */
+}
 
 
 // Sent to the delegate to indicate the authorization object has been created or changed.
@@ -744,7 +740,7 @@ func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorCo
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewCreatedAuthorization(_:)
 func (o_ Object) AuthorizationViewCreatedAuthorization(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewCreatedAuthorization:"), view)
-}/* debug [instance_methods/method]: AuthorizationViewCreatedAuthorization */
+}
 
 
 // Sent to the delegate to indicate the user was authorized and the authorization view was changed to unlocked.
@@ -753,7 +749,7 @@ func (o_ Object) AuthorizationViewCreatedAuthorization(view IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidAuthorize(_:)
 func (o_ Object) AuthorizationViewDidAuthorize(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidAuthorize:"), view)
-}/* debug [instance_methods/method]: AuthorizationViewDidAuthorize */
+}
 
 
 // Sent to the delegate to indicate the user was deauthorized and the authorization view was changed to locked.
@@ -762,7 +758,7 @@ func (o_ Object) AuthorizationViewDidAuthorize(view IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidDeauthorize(_:)
 func (o_ Object) AuthorizationViewDidDeauthorize(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidDeauthorize:"), view)
-}/* debug [instance_methods/method]: AuthorizationViewDidDeauthorize */
+}
 
 
 // Sent to the delegate to indicate that the view’s visibility has changed.
@@ -771,7 +767,7 @@ func (o_ Object) AuthorizationViewDidDeauthorize(view IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidHide(_:)
 func (o_ Object) AuthorizationViewDidHide(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidHide:"), view)
-}/* debug [instance_methods/method]: AuthorizationViewDidHide */
+}
 
 
 // Sent to the delegate to indicate that deauthorization is about to occur.
@@ -780,7 +776,7 @@ func (o_ Object) AuthorizationViewDidHide(view IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewReleasedAuthorization(_:)
 func (o_ Object) AuthorizationViewReleasedAuthorization(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewReleasedAuthorization:"), view)
-}/* debug [instance_methods/method]: AuthorizationViewReleasedAuthorization */
+}
 
 
 // Sent to the delegate when a user clicks the open lock icon.
@@ -790,7 +786,7 @@ func (o_ Object) AuthorizationViewReleasedAuthorization(view IObject) {
 func (o_ Object) AuthorizationViewShouldDeauthorize(view IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("authorizationViewShouldDeauthorize:"), view)
 	return rv
-}/* debug [instance_methods/method]: AuthorizationViewShouldDeauthorize */
+}
 
 
 // Overridden by subclasses to substitute another object in place of the object that was decoded and subsequently received this message.
@@ -800,14 +796,14 @@ func (o_ Object) AuthorizationViewShouldDeauthorize(view IObject) bool {
 func (o_ Object) AwakeAfterUsingCoder(coder IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("awakeAfterUsingCoder:"), coder)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: AwakeAfterUsingCoder */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/beginPreviewPanelControl(_:)
-func (o_ Object) BeginPreviewPanelControl(panel IObject) {
+func (o_ Object) BeginPreviewPanelControl(panel PreviewPanel /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("beginPreviewPanelControl:"), panel)
-}/* debug [instance_methods/method]: BeginPreviewPanelControl */
+}
 
 
 // Establishes a binding between a given property of the receiver and the property of a given object specified by a given key path.
@@ -816,7 +812,7 @@ func (o_ Object) BeginPreviewPanelControl(panel IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/bind(_:to:withKeyPath:options:)
 func (o_ Object) BindToObjectWithKeyPathOptions(binding string, observable IObject, keyPath IObject, options IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("bind:toObject:withKeyPath:options:"), objc.String(binding), observable, keyPath, options)
-}/* debug [instance_methods/method]: BindToObjectWithKeyPathOptions */
+}
 
 
 // Returns the value for this element within the given range, as an attributed string.
@@ -826,7 +822,7 @@ func (o_ Object) BindToObjectWithKeyPathOptions(binding string, observable IObje
 func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilityAttributedValueInRange:"), range_)
 	return rv
-}/* debug [instance_methods/method]: BrowserAccessibilityAttributedValueInRange */
+}
 
 
 // Deletes text from the element at the current cursor position.
@@ -835,7 +831,7 @@ func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ IObject) IObj
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityDeleteTextAtCursor(numberOfCharacters:)
 func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityDeleteTextAtCursor:"), numberOfCharacters)
-}/* debug [instance_methods/method]: BrowserAccessibilityDeleteTextAtCursor */
+}
 
 
 // Inserts text into the element at the current cursor position.
@@ -844,7 +840,7 @@ func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int) 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityInsertTextAtCursor(text:)
 func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), text)
-}/* debug [instance_methods/method]: BrowserAccessibilityInsertTextAtCursor */
+}
 
 
 // Returns the range of selected text in the element.
@@ -854,7 +850,7 @@ func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text IObject) {
 func (o_ Object) BrowserAccessibilitySelectedTextRange() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
 	return rv
-}/* debug [instance_methods/method]: BrowserAccessibilitySelectedTextRange */
+}
 
 
 // Updates the element’s selected text.
@@ -863,7 +859,7 @@ func (o_ Object) BrowserAccessibilitySelectedTextRange() IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySetSelectedTextRange(_:)
 func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySetSelectedTextRange:"), range_)
-}/* debug [instance_methods/method]: BrowserAccessibilitySetSelectedTextRange */
+}
 
 
 // Returns this element’s value in the given range.
@@ -873,7 +869,7 @@ func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ IObject) {
 func (o_ Object) BrowserAccessibilityValueInRange(range_ IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilityValueInRange:"), range_)
 	return rv
-}/* debug [instance_methods/method]: BrowserAccessibilityValueInRange */
+}
 
 
 // Allows the delegate to handle the end-of-burn feedback.
@@ -883,7 +879,7 @@ func (o_ Object) BrowserAccessibilityValueInRange(range_ IObject) IObject {
 func (o_ Object) BurnProgressPanelBurnDidFinish(theBurnPanel IObject, burn IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("burnProgressPanel:burnDidFinish:"), theBurnPanel, burn)
 	return rv
-}/* debug [instance_methods/method]: BurnProgressPanelBurnDidFinish */
+}
 
 
 // Notification sent by the panel after ordering out.
@@ -892,7 +888,7 @@ func (o_ Object) BurnProgressPanelBurnDidFinish(theBurnPanel IObject, burn IObje
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanelDidFinish(_:)
 func (o_ Object) BurnProgressPanelDidFinish(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("burnProgressPanelDidFinish:"), aNotification)
-}/* debug [instance_methods/method]: BurnProgressPanelDidFinish */
+}
 
 
 // Notification sent by the panel before display.
@@ -901,7 +897,7 @@ func (o_ Object) BurnProgressPanelDidFinish(aNotification IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanelWillBegin(_:)
 func (o_ Object) BurnProgressPanelWillBegin(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("burnProgressPanelWillBegin:"), aNotification)
-}/* debug [instance_methods/method]: BurnProgressPanelWillBegin */
+}
 
 
 // Returns an array of candidates.
@@ -911,7 +907,7 @@ func (o_ Object) BurnProgressPanelWillBegin(aNotification IObject) {
 func (o_ Object) Candidates(sender IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("candidates:"), sender)
 	return rv
-}/* debug [instance_methods/method]: Candidates */
+}
 
 
 // Implements custom help behavior for the modal panel.
@@ -921,7 +917,7 @@ func (o_ Object) Candidates(sender IObject) IObject {
 func (o_ Object) CertificatePanelShowHelp(sender IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("certificatePanelShowHelp:"), sender)
 	return rv
-}/* debug [instance_methods/method]: CertificatePanelShowHelp */
+}
 
 
 // Implements custom help behavior for the modal panel.
@@ -931,7 +927,7 @@ func (o_ Object) CertificatePanelShowHelp(sender IObject) bool {
 func (o_ Object) ChooseIdentityPanelShowHelp(sender IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("chooseIdentityPanelShowHelp:"), sender)
 	return rv
-}/* debug [instance_methods/method]: ChooseIdentityPanelShowHelp */
+}
 
 
 // Uses type info from the class description and to attempt to convert for to the proper type, if necessary.
@@ -941,7 +937,7 @@ func (o_ Object) ChooseIdentityPanelShowHelp(sender IObject) bool {
 func (o_ Object) CoerceValueForKey(value IObject, key IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("coerceValue:forKey:"), value, key)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: CoerceValueForKey */
+}
 
 
 // Informs the controller that the composition should be committed.
@@ -950,7 +946,7 @@ func (o_ Object) CoerceValueForKey(value IObject, key IObject) IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/commitComposition(_:)
 func (o_ Object) CommitComposition(sender IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("commitComposition:"), sender)
-}/* debug [instance_methods/method]: CommitComposition */
+}
 
 
 // Return the current composed string.
@@ -960,7 +956,7 @@ func (o_ Object) CommitComposition(sender IObject) {
 func (o_ Object) ComposedString(sender IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("composedString:"), sender)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ComposedString */
+}
 
 
 // Creates and returns one or more scripting objects to be inserted into the specified relationship by copying the passed-in value and setting the properties in the copied object or objects.
@@ -970,7 +966,7 @@ func (o_ Object) ComposedString(sender IObject) IObject {
 func (o_ Object) CopyScriptingValueForKeyWithProperties(value IObject, key IObject, properties IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("copyScriptingValue:forKey:withProperties:"), value, key, properties)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: CopyScriptingValueForKeyWithProperties */
+}
 
 
 // Deallocates the memory occupied by the receiver.
@@ -979,7 +975,7 @@ func (o_ Object) CopyScriptingValueForKeyWithProperties(value IObject, key IObje
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/dealloc
 func (o_ Object) Dealloc() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("dealloc"))
-}/* debug [instance_methods/method]: Dealloc */
+}
 
 
 // Informs the observed object that the specified change has occurred on the indexes for a specified ordered to-many relationship.
@@ -988,7 +984,7 @@ func (o_ Object) Dealloc() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChange(_:valuesAt:forKey:)
 func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind uint, indexes IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("didChange:valuesAtIndexes:forKey:"), changeKind, indexes, key)
-}/* debug [instance_methods/method]: DidChangeValuesAtIndexesForKey */
+}
 
 
 // Informs the observed object that the value of a given property has changed.
@@ -997,7 +993,7 @@ func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind uint, indexes IObject
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChangeValue(forKey:)
 func (o_ Object) DidChangeValueForKey(key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("didChangeValueForKey:"), key)
-}/* debug [instance_methods/method]: DidChangeValueForKey */
+}
 
 
 // Informs the observed object that the specified change was made to a specified unordered to-many relationship.
@@ -1006,7 +1002,7 @@ func (o_ Object) DidChangeValueForKey(key IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChangeValue(forKey:withSetMutation:using:)
 func (o_ Object) DidChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind uint, objects IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("didChangeValueForKey:withSetMutation:usingObjects:"), key, mutationKind, objects)
-}/* debug [instance_methods/method]: DidChangeValueForKeyWithSetMutationUsingObjects */
+}
 
 
 // Processes a command generated by user action such as typing certain keys or pressing the mouse button.
@@ -1016,7 +1012,7 @@ func (o_ Object) DidChangeValueForKeyWithSetMutationUsingObjects(key IObject, mu
 func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("didCommandBySelector:client:"), aSelector, sender)
 	return rv
-}/* debug [instance_methods/method]: DidCommandBySelectorClient */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver contains a given object.
@@ -1026,7 +1022,7 @@ func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender IObject) 
 func (o_ Object) DoesContain(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("doesContain:"), object)
 	return rv
-}/* debug [instance_methods/method]: DoesContain */
+}
 
 
 // Handles messages the receiver doesn’t recognize.
@@ -1035,14 +1031,14 @@ func (o_ Object) DoesContain(object IObject) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/doesNotRecognizeSelector(_:)
 func (o_ Object) DoesNotRecognizeSelector(aSelector objc.SEL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("doesNotRecognizeSelector:"), aSelector)
-}/* debug [instance_methods/method]: DoesNotRecognizeSelector */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/endPreviewPanelControl(_:)
-func (o_ Object) EndPreviewPanelControl(panel IObject) {
+func (o_ Object) EndPreviewPanelControl(panel PreviewPanel /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("endPreviewPanelControl:"), panel)
-}/* debug [instance_methods/method]: EndPreviewPanelControl */
+}
 
 
 // Notification sent by the panel before display.
@@ -1052,7 +1048,7 @@ func (o_ Object) EndPreviewPanelControl(panel IObject) {
 func (o_ Object) EraseProgressPanelEraseDidFinish(theErasePanel IObject, erase IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("eraseProgressPanel:eraseDidFinish:"), theErasePanel, erase)
 	return rv
-}/* debug [instance_methods/method]: EraseProgressPanelEraseDidFinish */
+}
 
 
 // Notification sent by the panel after ordering out.
@@ -1061,7 +1057,7 @@ func (o_ Object) EraseProgressPanelEraseDidFinish(theErasePanel IObject, erase I
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanelDidFinish(_:)
 func (o_ Object) EraseProgressPanelDidFinish(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("eraseProgressPanelDidFinish:"), aNotification)
-}/* debug [instance_methods/method]: EraseProgressPanelDidFinish */
+}
 
 
 // Notification sent by the panel before display.
@@ -1070,111 +1066,111 @@ func (o_ Object) EraseProgressPanelDidFinish(aNotification IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanelWillBegin(_:)
 func (o_ Object) EraseProgressPanelWillBegin(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("eraseProgressPanelWillBegin:"), aNotification)
-}/* debug [instance_methods/method]: EraseProgressPanelWillBegin */
+}
 
 
 // Implemented by the delegate to evaluate whether the delegating exception handler should handle a given exception.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exceptionHandler(_:shouldHandle:mask:)
-func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender IObject, exception IObject, aMask uint) bool {
+func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender ExceptionHandler /* not a class type */, exception IObject, aMask uint) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("exceptionHandler:shouldHandleException:mask:"), sender, exception, aMask)
 	return rv
-}/* debug [instance_methods/method]: ExceptionHandlerShouldHandleExceptionMask */
+}
 
 
 // Implemented by the delegate to evaluate whether the delegating exception hangler should log a given exception.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exceptionHandler(_:shouldLogException:mask:)
-func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender IObject, exception IObject, aMask uint) bool {
+func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender ExceptionHandler /* not a class type */, exception IObject, aMask uint) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("exceptionHandler:shouldLogException:mask:"), sender, exception, aMask)
 	return rv
-}/* debug [instance_methods/method]: ExceptionHandlerShouldLogExceptionMask */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesAbortComplete(_:error:)
 func (o_ Object) FileTransferServicesAbortCompleteError(inServices IObject, inError IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesAbortComplete:error:"), inServices, inError)
-}/* debug [instance_methods/method]: FileTransferServicesAbortCompleteError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesConnectionComplete(_:error:)
 func (o_ Object) FileTransferServicesConnectionCompleteError(inServices IObject, inError IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesConnectionComplete:error:"), inServices, inError)
-}/* debug [instance_methods/method]: FileTransferServicesConnectionCompleteError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileComplete(_:error:)
 func (o_ Object) FileTransferServicesCopyRemoteFileCompleteError(inServices IObject, inError IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileComplete:error:"), inServices, inError)
-}/* debug [instance_methods/method]: FileTransferServicesCopyRemoteFileCompleteError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileProgress(_:transferProgress:)
 func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices IObject, inProgressDescription IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileProgress:transferProgress:"), inServices, inProgressDescription)
-}/* debug [instance_methods/method]: FileTransferServicesCopyRemoteFileProgressTransferProgress */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCreateFolderComplete(_:error:folder:)
 func (o_ Object) FileTransferServicesCreateFolderCompleteErrorFolder(inServices IObject, inError IObject, inFolderName IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCreateFolderComplete:error:folder:"), inServices, inError, inFolderName)
-}/* debug [instance_methods/method]: FileTransferServicesCreateFolderCompleteErrorFolder */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesDisconnectionComplete(_:error:)
 func (o_ Object) FileTransferServicesDisconnectionCompleteError(inServices IObject, inError IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesDisconnectionComplete:error:"), inServices, inError)
-}/* debug [instance_methods/method]: FileTransferServicesDisconnectionCompleteError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesFilePreparationComplete(_:error:)
 func (o_ Object) FileTransferServicesFilePreparationCompleteError(inServices IObject, inError IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesFilePreparationComplete:error:"), inServices, inError)
-}/* debug [instance_methods/method]: FileTransferServicesFilePreparationCompleteError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesPathChangeComplete(_:error:finalPath:)
 func (o_ Object) FileTransferServicesPathChangeCompleteErrorFinalPath(inServices IObject, inError IObject, inPath IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesPathChangeComplete:error:finalPath:"), inServices, inError, inPath)
-}/* debug [instance_methods/method]: FileTransferServicesPathChangeCompleteErrorFinalPath */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRemoveItemComplete(_:error:removedItem:)
 func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices IObject, inError IObject, inItemName IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRemoveItemComplete:error:removedItem:"), inServices, inError, inItemName)
-}/* debug [instance_methods/method]: FileTransferServicesRemoveItemCompleteErrorRemovedItem */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRetrieveFolderListingComplete(_:error:listing:)
 func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices IObject, inError IObject, inListing IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRetrieveFolderListingComplete:error:listing:"), inServices, inError, inListing)
-}/* debug [instance_methods/method]: FileTransferServicesRetrieveFolderListingCompleteErrorListing */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileComplete(_:error:)
 func (o_ Object) FileTransferServicesSendFileCompleteError(inServices IObject, inError IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileComplete:error:"), inServices, inError)
-}/* debug [instance_methods/method]: FileTransferServicesSendFileCompleteError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileProgress(_:transferProgress:)
 func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices IObject, inProgressDescription IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileProgress:transferProgress:"), inServices, inProgressDescription)
-}/* debug [instance_methods/method]: FileTransferServicesSendFileProgressTransferProgress */
+}
 
 
 // The garbage collector invokes this method on the receiver before disposing of the memory it uses.
@@ -1183,7 +1179,7 @@ func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/finalize()
 func (o_ Object) Finalize() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("finalize"))
-}/* debug [instance_methods/method]: Finalize */
+}
 
 
 // Performs cleanup when the scripting environment is reset.
@@ -1192,16 +1188,7 @@ func (o_ Object) Finalize() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/finalizeForWebScript()
 func (o_ Object) FinalizeForWebScript() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("finalizeForWebScript"))
-}/* debug [instance_methods/method]: FinalizeForWebScript */
-
-
-// Overridden by subclasses to forward messages to other objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/forwardInvocation:
-func (o_ Object) ForwardInvocation(anInvocation IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("forwardInvocation:"), anInvocation)
-}/* debug [instance_methods/method]: ForwardInvocation */
+}
 
 
 // Returns the object to which unrecognized messages should first be directed.
@@ -1211,7 +1198,7 @@ func (o_ Object) ForwardInvocation(anInvocation IObject) {
 func (o_ Object) ForwardingTargetForSelector(aSelector objc.SEL) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("forwardingTargetForSelector:"), aSelector)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ForwardingTargetForSelector */
+}
 
 
 // Handles key down and mouse events.
@@ -1221,7 +1208,7 @@ func (o_ Object) ForwardingTargetForSelector(aSelector objc.SEL) IObject {
 func (o_ Object) HandleEventClient(event IObject, sender IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("handleEvent:client:"), event, sender)
 	return rv
-}/* debug [instance_methods/method]: HandleEventClient */
+}
 
 
 // Performs custom tasks when the user right-clicks the image browser view background.
@@ -1230,7 +1217,7 @@ func (o_ Object) HandleEventClient(event IObject, sender IObject) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:backgroundWasRightClickedWith:)
 func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser IObject, event IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:backgroundWasRightClickedWithEvent:"), aBrowser, event)
-}/* debug [instance_methods/method]: ImageBrowserBackgroundWasRightClickedWithEvent */
+}
 
 
 // Performs custom tasks when the user double-clicks an item in the image browser view.
@@ -1239,7 +1226,7 @@ func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser IObject
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:cellWasDoubleClickedAt:)
 func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser IObject, index uint) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:cellWasDoubleClickedAtIndex:"), aBrowser, index)
-}/* debug [instance_methods/method]: ImageBrowserCellWasDoubleClickedAtIndex */
+}
 
 
 // Performs custom tasks when the user right-clicks an item in the image browser view.
@@ -1248,7 +1235,7 @@ func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser IObject, index
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:cellWasRightClickedAt:with:)
 func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser IObject, index uint, event IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:cellWasRightClickedAtIndex:withEvent:"), aBrowser, index, event)
-}/* debug [instance_methods/method]: ImageBrowserCellWasRightClickedAtIndexWithEvent */
+}
 
 
 // Returns the group at the specified index.
@@ -1258,7 +1245,7 @@ func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser IObjec
 func (o_ Object) ImageBrowserGroupAtIndex(aBrowser IObject, index uint) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("imageBrowser:groupAtIndex:"), aBrowser, index)
 	return rv
-}/* debug [instance_methods/method]: ImageBrowserGroupAtIndex */
+}
 
 
 // Returns an object for the item in an image browser view that corresponds to the specified index.
@@ -1268,7 +1255,7 @@ func (o_ Object) ImageBrowserGroupAtIndex(aBrowser IObject, index uint) IObject 
 func (o_ Object) ImageBrowserItemAtIndex(aBrowser IObject, index uint) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:itemAtIndex:"), aBrowser, index)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ImageBrowserItemAtIndex */
+}
 
 
 // Signals that the specified items should be moved to the specified destination.
@@ -1278,7 +1265,7 @@ func (o_ Object) ImageBrowserItemAtIndex(aBrowser IObject, index uint) IObject {
 func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser IObject, indexes IObject, destinationIndex uint) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("imageBrowser:moveItemsAtIndexes:toIndex:"), aBrowser, indexes, destinationIndex)
 	return rv
-}/* debug [instance_methods/method]: ImageBrowserMoveItemsAtIndexesToIndex */
+}
 
 
 // Signals that a remove operation should be applied to the specified items.
@@ -1287,7 +1274,7 @@ func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser IObject, indexes
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:removeItemsAt:)
 func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser IObject, indexes IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:removeItemsAtIndexes:"), aBrowser, indexes)
-}/* debug [instance_methods/method]: ImageBrowserRemoveItemsAtIndexes */
+}
 
 
 // Signals that a drag should begin.
@@ -1297,7 +1284,7 @@ func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser IObject, indexes IObj
 func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser IObject, itemIndexes IObject, pasteboard IObject) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("imageBrowser:writeItemsAtIndexes:toPasteboard:"), aBrowser, itemIndexes, pasteboard)
 	return rv
-}/* debug [instance_methods/method]: ImageBrowserWriteItemsAtIndexesToPasteboard */
+}
 
 
 // Performs custom tasks when the selection changes.
@@ -1306,7 +1293,7 @@ func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser IObject, i
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowserSelectionDidChange(_:)
 func (o_ Object) ImageBrowserSelectionDidChange(aBrowser IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowserSelectionDidChange:"), aBrowser)
-}/* debug [instance_methods/method]: ImageBrowserSelectionDidChange */
+}
 
 
 // Returns the image to display.
@@ -1316,7 +1303,7 @@ func (o_ Object) ImageBrowserSelectionDidChange(aBrowser IObject) {
 func (o_ Object) ImageRepresentation() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageRepresentation"))
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ImageRepresentation */
+}
 
 
 // Returns the representation type of the image to display.
@@ -1326,7 +1313,7 @@ func (o_ Object) ImageRepresentation() IObject {
 func (o_ Object) ImageRepresentationType() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("imageRepresentationType"))
 	return rv
-}/* debug [instance_methods/method]: ImageRepresentationType */
+}
 
 
 // Returns the display subtitle of the image.
@@ -1336,7 +1323,7 @@ func (o_ Object) ImageRepresentationType() IObject {
 func (o_ Object) ImageSubtitle() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("imageSubtitle"))
 	return rv
-}/* debug [instance_methods/method]: ImageSubtitle */
+}
 
 
 // Returns the display title of the image.
@@ -1346,7 +1333,7 @@ func (o_ Object) ImageSubtitle() IObject {
 func (o_ Object) ImageTitle() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("imageTitle"))
 	return rv
-}/* debug [instance_methods/method]: ImageTitle */
+}
 
 
 // Returns a unique string that identifies the data source item.
@@ -1356,7 +1343,7 @@ func (o_ Object) ImageTitle() IObject {
 func (o_ Object) ImageUID() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("imageUID"))
 	return rv
-}/* debug [instance_methods/method]: ImageUID */
+}
 
 
 // Returns the version of the item.
@@ -1366,7 +1353,7 @@ func (o_ Object) ImageUID() IObject {
 func (o_ Object) ImageVersion() uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("imageVersion"))
 	return rv
-}/* debug [instance_methods/method]: ImageVersion */
+}
 
 
 // Returns the indices of the specified container objects.
@@ -1376,7 +1363,7 @@ func (o_ Object) ImageVersion() uint {
 func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
 	return rv
-}/* debug [instance_methods/method]: IndicesOfObjectsByEvaluatingObjectSpecifier */
+}
 
 
 // Handles key down events that do not map to an action method.
@@ -1386,7 +1373,7 @@ func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) 
 func (o_ Object) InputTextClient(string_ IObject, sender IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:client:"), string_, sender)
 	return rv
-}/* debug [instance_methods/method]: InputTextClient */
+}
 
 
 // Receives Unicode, the key code that generated it, and any modifier flags.
@@ -1396,7 +1383,7 @@ func (o_ Object) InputTextClient(string_ IObject, sender IObject) bool {
 func (o_ Object) InputTextKeyModifiersClient(string_ IObject, keyCode int, flags uint, sender IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:key:modifiers:client:"), string_, keyCode, flags, sender)
 	return rv
-}/* debug [instance_methods/method]: InputTextKeyModifiersClient */
+}
 
 
 // Inserts an object at the specified index in the collection specified by the passed key.
@@ -1405,7 +1392,7 @@ func (o_ Object) InputTextKeyModifiersClient(string_ IObject, keyCode int, flags
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/insertValue(_:at:inPropertyWithKey:)
 func (o_ Object) InsertValueAtIndexInPropertyWithKey(value IObject, index uint, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:atIndex:inPropertyWithKey:"), value, index, key)
-}/* debug [instance_methods/method]: InsertValueAtIndexInPropertyWithKey */
+}
 
 
 // Inserts an object in the collection specified by the passed key.
@@ -1414,7 +1401,7 @@ func (o_ Object) InsertValueAtIndexInPropertyWithKey(value IObject, index uint, 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/insertValue(_:inPropertyWithKey:)
 func (o_ Object) InsertValueInPropertyWithKey(value IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:inPropertyWithKey:"), value, key)
-}/* debug [instance_methods/method]: InsertValueInPropertyWithKey */
+}
 
 
 // For a given key that defines the name of the relationship from the receiver’s class to another class, returns the name of the relationship from the other class to the receiver’s class.
@@ -1424,7 +1411,7 @@ func (o_ Object) InsertValueInPropertyWithKey(value IObject, key IObject) {
 func (o_ Object) InverseForRelationshipKey(relationshipKey IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("inverseForRelationshipKey:"), relationshipKey)
 	return rv
-}/* debug [instance_methods/method]: InverseForRelationshipKey */
+}
 
 
 // Executes when a script attempts to invoke a method on an exposed object directly.
@@ -1434,7 +1421,7 @@ func (o_ Object) InverseForRelationshipKey(relationshipKey IObject) IObject {
 func (o_ Object) InvokeDefaultMethodWithArguments(arguments IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("invokeDefaultMethodWithArguments:"), arguments)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: InvokeDefaultMethodWithArguments */
+}
 
 
 // Handles undefined method invocation from the scripting environment.
@@ -1444,7 +1431,7 @@ func (o_ Object) InvokeDefaultMethodWithArguments(arguments IObject) IObject {
 func (o_ Object) InvokeUndefinedMethodFromWebScriptWithArguments(name IObject, arguments IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("invokeUndefinedMethodFromWebScript:withArguments:"), name, arguments)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: InvokeUndefinedMethodFromWebScriptWithArguments */
+}
 
 
 // Returns a Boolean value that indicates whether receiver is considered to be “like” a given string when the case of characters in the receiver is ignored.
@@ -1454,7 +1441,7 @@ func (o_ Object) InvokeUndefinedMethodFromWebScriptWithArguments(name IObject, a
 func (o_ Object) IsCaseInsensitiveLike(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isCaseInsensitiveLike:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsCaseInsensitiveLike */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is equal to another given object.
@@ -1464,7 +1451,7 @@ func (o_ Object) IsCaseInsensitiveLike(object IObject) bool {
 func (o_ Object) IsEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsEqualTo */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is greater than another given object.
@@ -1474,7 +1461,7 @@ func (o_ Object) IsEqualTo(object IObject) bool {
 func (o_ Object) IsGreaterThan(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isGreaterThan:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsGreaterThan */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is greater than or equal to another given object.
@@ -1484,7 +1471,7 @@ func (o_ Object) IsGreaterThan(object IObject) bool {
 func (o_ Object) IsGreaterThanOrEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isGreaterThanOrEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsGreaterThanOrEqualTo */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is less than another given object.
@@ -1494,7 +1481,7 @@ func (o_ Object) IsGreaterThanOrEqualTo(object IObject) bool {
 func (o_ Object) IsLessThan(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLessThan:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsLessThan */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is less than or equal to another given object.
@@ -1504,7 +1491,7 @@ func (o_ Object) IsLessThan(object IObject) bool {
 func (o_ Object) IsLessThanOrEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLessThanOrEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsLessThanOrEqualTo */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is “like” another given object.
@@ -1514,7 +1501,7 @@ func (o_ Object) IsLessThanOrEqualTo(object IObject) bool {
 func (o_ Object) IsLike(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLike:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsLike */
+}
 
 
 // Returns a Boolean value that indicates whether the receiver is not equal to another given object.
@@ -1524,7 +1511,7 @@ func (o_ Object) IsLike(object IObject) bool {
 func (o_ Object) IsNotEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isNotEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: IsNotEqualTo */
+}
 
 
 // Locates and returns the address of the receiver’s implementation of a method so it can be called as a function.
@@ -1534,7 +1521,7 @@ func (o_ Object) IsNotEqualTo(object IObject) bool {
 func (o_ Object) MethodForSelector(aSelector objc.SEL) IMP {
 	rv := objc.Send[IMP](o_.ID, objc.Sel("methodForSelector:"), aSelector)
 	return rv
-}/* debug [instance_methods/method]: MethodForSelector */
+}
 
 
 // Returns an object that contains a description of the method identified by a given selector.
@@ -1544,7 +1531,7 @@ func (o_ Object) MethodForSelector(aSelector objc.SEL) IMP {
 func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) MethodSignature /* not a class type */ {
 	rv := objc.Send[MethodSignature](o_.ID, objc.Sel("methodSignatureForSelector:"), aSelector)
 	return rv
-}/* debug [instance_methods/method]: MethodSignatureForSelector */
+}
 
 
 // Returns a mutable array proxy that provides read-write access to an ordered to-many relationship specified by a given key.
@@ -1554,7 +1541,7 @@ func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) MethodSignature 
 func (o_ Object) MutableArrayValueForKey(key IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("mutableArrayValueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: MutableArrayValueForKey */
+}
 
 
 // Returns a mutable array that provides read-write access to the ordered to-many relationship specified by a given key path.
@@ -1564,7 +1551,7 @@ func (o_ Object) MutableArrayValueForKey(key IObject) IObject {
 func (o_ Object) MutableArrayValueForKeyPath(keyPath IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("mutableArrayValueForKeyPath:"), keyPath)
 	return rv
-}/* debug [instance_methods/method]: MutableArrayValueForKeyPath */
+}
 
 
 // Returns a mutable ordered set that provides read-write access to the uniquing ordered to-many relationship specified by a given key.
@@ -1574,7 +1561,7 @@ func (o_ Object) MutableArrayValueForKeyPath(keyPath IObject) IObject {
 func (o_ Object) MutableOrderedSetValueForKey(key IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("mutableOrderedSetValueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: MutableOrderedSetValueForKey */
+}
 
 
 // Returns a mutable ordered set that provides read-write access to the uniquing ordered to-many relationship specified by a given key path.
@@ -1584,7 +1571,7 @@ func (o_ Object) MutableOrderedSetValueForKey(key IObject) IObject {
 func (o_ Object) MutableOrderedSetValueForKeyPath(keyPath IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("mutableOrderedSetValueForKeyPath:"), keyPath)
 	return rv
-}/* debug [instance_methods/method]: MutableOrderedSetValueForKeyPath */
+}
 
 
 // Returns a mutable set proxy that provides read-write access to the unordered to-many relationship specified by a given key.
@@ -1594,7 +1581,7 @@ func (o_ Object) MutableOrderedSetValueForKeyPath(keyPath IObject) IObject {
 func (o_ Object) MutableSetValueForKey(key IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("mutableSetValueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: MutableSetValueForKey */
+}
 
 
 // Returns a mutable set that provides read-write access to the unordered to-many relationship specified by a given key path.
@@ -1604,7 +1591,7 @@ func (o_ Object) MutableSetValueForKey(key IObject) IObject {
 func (o_ Object) MutableSetValueForKeyPath(keyPath IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("mutableSetValueForKeyPath:"), keyPath)
 	return rv
-}/* debug [instance_methods/method]: MutableSetValueForKeyPath */
+}
 
 
 // Creates and returns an instance of a scriptable class, setting its contents and properties, for insertion into the relationship identified by the key.
@@ -1614,7 +1601,7 @@ func (o_ Object) MutableSetValueForKeyPath(keyPath IObject) IObject {
 func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key IObject, contentsValue IObject, properties IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), objectClass, key, contentsValue, properties)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties */
+}
 
 
 // Returns the number of groups in an image browser view.
@@ -1624,7 +1611,7 @@ func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValuePropert
 func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser IObject) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("numberOfGroupsInImageBrowser:"), aBrowser)
 	return rv
-}/* debug [instance_methods/method]: NumberOfGroupsInImageBrowser */
+}
 
 
 // Returns the number of records managed by the data source object.
@@ -1634,7 +1621,7 @@ func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser IObject) uint {
 func (o_ Object) NumberOfItemsInImageBrowser(aBrowser IObject) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("numberOfItemsInImageBrowser:"), aBrowser)
 	return rv
-}/* debug [instance_methods/method]: NumberOfItemsInImageBrowser */
+}
 
 
 // Informs the observing object when the value at the specified key path relative to the observed object has changed.
@@ -1643,17 +1630,17 @@ func (o_ Object) NumberOfItemsInImageBrowser(aBrowser IObject) uint {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/observeValue(forKeyPath:of:change:context:)
 func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath IObject, object IObject, change IObject, context IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), keyPath, object, change, context)
-}/* debug [instance_methods/method]: ObserveValueForKeyPathOfObjectChangeContext */
+}
 
 
 // Returns an array describing the options for the specified binding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/optionDescriptionsForBinding(_:)
-func (o_ Object) OptionDescriptionsForBinding(binding string) []objc.ID {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("optionDescriptionsForBinding:"), objc.String(binding))
+func (o_ Object) OptionDescriptionsForBinding(binding string) []AttributeDescription /* not a class type */ {
+	rv := objc.Send[[]AttributeDescription](o_.ID, objc.Sel("optionDescriptionsForBinding:"), objc.String(binding))
 	return rv
-}/* debug [instance_methods/method]: OptionDescriptionsForBinding */
+}
 
 
 // Return the string that consists of the precomposed Unicode characters.
@@ -1663,7 +1650,7 @@ func (o_ Object) OptionDescriptionsForBinding(binding string) []objc.ID {
 func (o_ Object) OriginalString(sender IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("originalString:"), sender)
 	return rv
-}/* debug [instance_methods/method]: OriginalString */
+}
 
 
 // Invokes a method of the receiver on the specified thread using the default mode.
@@ -1672,7 +1659,7 @@ func (o_ Object) OriginalString(sender IObject) IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:on:with:waitUntilDone:)
 func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr IObject, arg IObject, wait bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:onThread:withObject:waitUntilDone:"), aSelector, thr, arg, wait)
-}/* debug [instance_methods/method]: PerformSelectorOnThreadWithObjectWaitUntilDone */
+}
 
 
 // Invokes a method of the receiver on the specified thread using the specified modes.
@@ -1681,7 +1668,7 @@ func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.S
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:on:with:waitUntilDone:modes:)
 func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr IObject, arg IObject, wait bool, array []string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:onThread:withObject:waitUntilDone:modes:"), aSelector, thr, arg, wait, array)
-}/* debug [instance_methods/method]: PerformSelectorOnThreadWithObjectWaitUntilDoneModes */
+}
 
 
 // Invokes a method of the receiver on the current thread using the default mode after a delay.
@@ -1690,7 +1677,7 @@ func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector o
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:)
 func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay float64) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:"), aSelector, anArgument, delay)
-}/* debug [instance_methods/method]: PerformSelectorWithObjectAfterDelay */
+}
 
 
 // Invokes a method of the receiver on the current thread using the specified modes after a delay.
@@ -1699,7 +1686,7 @@ func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgum
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:inModes:)
 func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay float64, modes []string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:inModes:"), aSelector, anArgument, delay, modes)
-}/* debug [instance_methods/method]: PerformSelectorWithObjectAfterDelayInModes */
+}
 
 
 // Sent to the delegate to perform the action.
@@ -1708,7 +1695,7 @@ func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performAction(for:identifier:)
 func (o_ Object) PerformActionForPersonIdentifier(person IObject, identifier IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performActionForPerson:identifier:"), person, identifier)
-}/* debug [instance_methods/method]: PerformActionForPersonIdentifier */
+}
 
 
 // Invokes a method of the receiver on a new background thread.
@@ -1717,7 +1704,7 @@ func (o_ Object) PerformActionForPersonIdentifier(person IObject, identifier IOb
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(inBackground:with:)
 func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorInBackground:withObject:"), aSelector, arg)
-}/* debug [instance_methods/method]: PerformSelectorInBackgroundWithObject */
+}
 
 
 // Invokes a method of the receiver on the main thread using the default mode.
@@ -1726,7 +1713,7 @@ func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg I
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(onMainThread:with:waitUntilDone:)
 func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg IObject, wait bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorOnMainThread:withObject:waitUntilDone:"), aSelector, arg, wait)
-}/* debug [instance_methods/method]: PerformSelectorOnMainThreadWithObjectWaitUntilDone */
+}
 
 
 // Invokes a method of the receiver on the main thread using the specified modes.
@@ -1735,7 +1722,7 @@ func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector ob
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(onMainThread:with:waitUntilDone:modes:)
 func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg IObject, wait bool, array []string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), aSelector, arg, wait, array)
-}/* debug [instance_methods/method]: PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes */
+}
 
 
 // An optional method that an image provider object way implement. With this method, the provider object can use the Metal API to provide pixel data into a MTLTexture when the image object is rendered.
@@ -1744,7 +1731,7 @@ func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelect
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/provideImage(to:commandBuffer:originx:originy:width:height:userInfo:)
 func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture unsafe.Pointer, commandBuffer unsafe.Pointer, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("provideImageToMTLTexture:commandBuffer:originx:originy:width:height:userInfo:"), texture, commandBuffer, originx, originy, width, height, info)
-}/* debug [instance_methods/method]: ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo */
+}
 
 
 // Supplies data to a object.
@@ -1753,49 +1740,49 @@ func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightU
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/provideImageData(_:bytesPerRow:origin:_:size:_:userInfo:)
 func (o_ Object) ProvideImageDataBytesPerRowOriginSizeUserInfo(data IObject, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("provideImageData:bytesPerRow:origin::size::userInfo:"), data, rowbytes, originx, originy, width, height, info)
-}/* debug [instance_methods/method]: ProvideImageDataBytesPerRowOriginSizeUserInfo */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didAdd:)
 func (o_ Object) QuartzFilterManagerDidAddFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didAddFilter:"), sender, filter)
-}/* debug [instance_methods/method]: QuartzFilterManagerDidAddFilter */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didModifyFilter:)
 func (o_ Object) QuartzFilterManagerDidModifyFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didModifyFilter:"), sender, filter)
-}/* debug [instance_methods/method]: QuartzFilterManagerDidModifyFilter */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didRemove:)
 func (o_ Object) QuartzFilterManagerDidRemoveFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didRemoveFilter:"), sender, filter)
-}/* debug [instance_methods/method]: QuartzFilterManagerDidRemoveFilter */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didSelect:)
 func (o_ Object) QuartzFilterManagerDidSelectFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didSelectFilter:"), sender, filter)
-}/* debug [instance_methods/method]: QuartzFilterManagerDidSelectFilter */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/readLinkQuality(forDeviceComplete:device:info:error:)
-func (o_ Object) ReadLinkQualityForDeviceCompleteDeviceInfoError(controller IObject, device IObject, info IObject, error_ int) {
+func (o_ Object) ReadLinkQualityForDeviceCompleteDeviceInfoError(controller IObject, device BluetoothDevice /* not a class type */, info IObject, error_ int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("readLinkQualityForDeviceComplete:device:info:error:"), controller, device, info, error_)
-}/* debug [instance_methods/method]: ReadLinkQualityForDeviceCompleteDeviceInfoError */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/readRSSI(forDeviceComplete:device:info:error:)
-func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, device IObject, info IObject, error_ int) {
+func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, device BluetoothDevice /* not a class type */, info IObject, error_ int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("readRSSIForDeviceComplete:device:info:error:"), controller, device, info, error_)
-}/* debug [instance_methods/method]: ReadRSSIForDeviceCompleteDeviceInfoError */
+}
 
 
 // Stops the observer object from receiving change notifications for the property specified by the key path relative to the object receiving this message.
@@ -1804,7 +1791,7 @@ func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, de
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeObserver(_:forKeyPath:)
 func (o_ Object) RemoveObserverForKeyPath(observer IObject, keyPath IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
-}/* debug [instance_methods/method]: RemoveObserverForKeyPath */
+}
 
 
 // Stops the observer object from receiving change notifications for the property specified by the key path relative to the object receiving this message, given the context.
@@ -1813,7 +1800,7 @@ func (o_ Object) RemoveObserverForKeyPath(observer IObject, keyPath IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeObserver(_:forKeyPath:context:)
 func (o_ Object) RemoveObserverForKeyPathContext(observer IObject, keyPath IObject, context IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
-}/* debug [instance_methods/method]: RemoveObserverForKeyPathContext */
+}
 
 
 // Removes the object at the specified index from the collection specified by the passed key.
@@ -1822,7 +1809,7 @@ func (o_ Object) RemoveObserverForKeyPathContext(observer IObject, keyPath IObje
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeValue(at:fromPropertyWithKey:)
 func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeValueAtIndex:fromPropertyWithKey:"), index, key)
-}/* debug [instance_methods/method]: RemoveValueAtIndexFromPropertyWithKey */
+}
 
 
 // Replaces the object at the specified index in the collection specified by the passed key.
@@ -1831,7 +1818,7 @@ func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint, key IObject) 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replaceValue(at:inPropertyWithKey:withValue:)
 func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint, key IObject, value IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("replaceValueAtIndex:inPropertyWithKey:withValue:"), index, key, value)
-}/* debug [instance_methods/method]: ReplaceValueAtIndexInPropertyWithKeyWithValue */
+}
 
 
 // Overridden by subclasses to substitute another object for itself during encoding.
@@ -1841,7 +1828,7 @@ func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint, key I
 func (o_ Object) ReplacementObjectForCoder(coder IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForCoder:"), coder)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ReplacementObjectForCoder */
+}
 
 
 // Overridden by subclasses to substitute another object for itself during keyed archiving.
@@ -1851,7 +1838,7 @@ func (o_ Object) ReplacementObjectForCoder(coder IObject) IObject {
 func (o_ Object) ReplacementObjectForKeyedArchiver(archiver IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForKeyedArchiver:"), archiver)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ReplacementObjectForKeyedArchiver */
+}
 
 
 // Called to determine if the specified uniform type identifier should be shown in the save panel.
@@ -1861,7 +1848,7 @@ func (o_ Object) ReplacementObjectForKeyedArchiver(archiver IObject) IObject {
 func (o_ Object) SaveOptionsShouldShowUTType(saveOptions IObject, utType IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("saveOptions:shouldShowUTType:"), saveOptions, utType)
 	return rv
-}/* debug [instance_methods/method]: SaveOptionsShouldShowUTType */
+}
 
 
 // Returns if, in a scripting comparison, the compared object matches the beginning of .
@@ -1871,7 +1858,7 @@ func (o_ Object) SaveOptionsShouldShowUTType(saveOptions IObject, utType IObject
 func (o_ Object) ScriptingBeginsWith(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingBeginsWith:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingBeginsWith */
+}
 
 
 // Returns if, in a scripting comparison, the compared object contains .
@@ -1881,7 +1868,7 @@ func (o_ Object) ScriptingBeginsWith(object IObject) bool {
 func (o_ Object) ScriptingContains(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingContains:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingContains */
+}
 
 
 // Returns if, in a scripting comparison, the compared object matches the end of .
@@ -1891,7 +1878,7 @@ func (o_ Object) ScriptingContains(object IObject) bool {
 func (o_ Object) ScriptingEndsWith(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingEndsWith:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingEndsWith */
+}
 
 
 // Returns if, in a scripting comparison, the compared object is equal to .
@@ -1901,7 +1888,7 @@ func (o_ Object) ScriptingEndsWith(object IObject) bool {
 func (o_ Object) ScriptingIsEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingIsEqualTo */
+}
 
 
 // Returns if, in a scripting comparison, the compared object is greater than .
@@ -1911,7 +1898,7 @@ func (o_ Object) ScriptingIsEqualTo(object IObject) bool {
 func (o_ Object) ScriptingIsGreaterThan(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsGreaterThan:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingIsGreaterThan */
+}
 
 
 // Returns if, in a scripting comparison, the compared object is greater than or equal to .
@@ -1921,7 +1908,7 @@ func (o_ Object) ScriptingIsGreaterThan(object IObject) bool {
 func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsGreaterThanOrEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingIsGreaterThanOrEqualTo */
+}
 
 
 // Returns if, in a scripting comparison, the compared object is less than .
@@ -1931,7 +1918,7 @@ func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object IObject) bool {
 func (o_ Object) ScriptingIsLessThan(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsLessThan:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingIsLessThan */
+}
 
 
 // Returns if, in a scripting comparison, the compared object is less than or equal to .
@@ -1941,7 +1928,7 @@ func (o_ Object) ScriptingIsLessThan(object IObject) bool {
 func (o_ Object) ScriptingIsLessThanOrEqualTo(object IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsLessThanOrEqualTo:"), object)
 	return rv
-}/* debug [instance_methods/method]: ScriptingIsLessThanOrEqualTo */
+}
 
 
 // Given an object specifier, returns the specified object or objects in the receiving container.
@@ -1951,7 +1938,7 @@ func (o_ Object) ScriptingIsLessThanOrEqualTo(object IObject) bool {
 func (o_ Object) ScriptingValueForSpecifier(objectSpecifier IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("scriptingValueForSpecifier:"), objectSpecifier)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ScriptingValueForSpecifier */
+}
 
 
 // Invoked by when it’s given a value for a scalar value (such as an or ).
@@ -1960,14 +1947,14 @@ func (o_ Object) ScriptingValueForSpecifier(objectSpecifier IObject) IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setNilValueForKey(_:)
 func (o_ Object) SetNilValueForKey(key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNilValueForKey:"), key)
-}/* debug [instance_methods/method]: SetNilValueForKey */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setSharedObservers(_:)
 func (o_ Object) SetSharedObservers(sharedObservers IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSharedObservers:"), sharedObservers)
-}/* debug [instance_methods/method]: SetSharedObservers */
+}
 
 
 // Sets the property of the receiver specified by a given key to a given value.
@@ -1976,7 +1963,7 @@ func (o_ Object) SetSharedObservers(sharedObservers IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKey:)
 func (o_ Object) SetValueForKey(value IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, key)
-}/* debug [instance_methods/method]: SetValueForKey */
+}
 
 
 // Sets the value for the property identified by a given key path to a given value.
@@ -1985,7 +1972,7 @@ func (o_ Object) SetValueForKey(value IObject, key IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKeyPath:)
 func (o_ Object) SetValueForKeyPath(value IObject, keyPath IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKeyPath:"), value, keyPath)
-}/* debug [instance_methods/method]: SetValueForKeyPath */
+}
 
 
 // Invoked by when it finds no property for a given key.
@@ -1994,7 +1981,7 @@ func (o_ Object) SetValueForKeyPath(value IObject, keyPath IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forUndefinedKey:)
 func (o_ Object) SetValueForUndefinedKey(value IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forUndefinedKey:"), value, key)
-}/* debug [instance_methods/method]: SetValueForUndefinedKey */
+}
 
 
 // Sets properties of the receiver with values from a given dictionary, using its keys to identify the properties.
@@ -2003,7 +1990,7 @@ func (o_ Object) SetValueForUndefinedKey(value IObject, key IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValuesForKeys(_:)
 func (o_ Object) SetValuesForKeysWithDictionary(keyedValues IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValuesForKeysWithDictionary:"), keyedValues)
-}/* debug [instance_methods/method]: SetValuesForKeysWithDictionary */
+}
 
 
 // Allows the delegate to specify which device is its preferred.
@@ -2013,7 +2000,7 @@ func (o_ Object) SetValuesForKeysWithDictionary(keyedValues IObject) {
 func (o_ Object) SetupPanelDetermineBestDeviceOfAOrB(aPanel IObject, deviceA IObject, device IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("setupPanel:determineBestDeviceOfA:orB:"), aPanel, deviceA, device)
 	return rv
-}/* debug [instance_methods/method]: SetupPanelDetermineBestDeviceOfAOrB */
+}
 
 
 // This delegate method allows the delegate to determine if the media inserted in the device is suitable for whatever operation is to be performed.
@@ -2023,7 +2010,7 @@ func (o_ Object) SetupPanelDetermineBestDeviceOfAOrB(aPanel IObject, deviceA IOb
 func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel IObject, device IObject, prompt IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceContainsSuitableMedia:promptString:"), aPanel, device, prompt)
 	return rv
-}/* debug [instance_methods/method]: SetupPanelDeviceContainsSuitableMediaPromptString */
+}
 
 
 // Allows the delegate to determine if device can be used as a target.
@@ -2033,7 +2020,7 @@ func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel IObjec
 func (o_ Object) SetupPanelDeviceCouldBeTarget(aPanel IObject, device IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceCouldBeTarget:"), aPanel, device)
 	return rv
-}/* debug [instance_methods/method]: SetupPanelDeviceCouldBeTarget */
+}
 
 
 // Sent by the default notification center when the device selection in the panel has changed.
@@ -2042,7 +2029,7 @@ func (o_ Object) SetupPanelDeviceCouldBeTarget(aPanel IObject, device IObject) b
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanelDeviceSelectionChanged(_:)
 func (o_ Object) SetupPanelDeviceSelectionChanged(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setupPanelDeviceSelectionChanged:"), aNotification)
-}/* debug [instance_methods/method]: SetupPanelDeviceSelectionChanged */
+}
 
 
 // This delegate method allows the delegate to control how media reservations are handled.
@@ -2052,7 +2039,7 @@ func (o_ Object) SetupPanelDeviceSelectionChanged(aNotification IObject) {
 func (o_ Object) SetupPanelShouldHandleMediaReservations(aPanel IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanelShouldHandleMediaReservations:"), aPanel)
 	return rv
-}/* debug [instance_methods/method]: SetupPanelShouldHandleMediaReservations */
+}
 
 
 // Sent to the delegate to determine whether the action should be enabled.
@@ -2062,7 +2049,7 @@ func (o_ Object) SetupPanelShouldHandleMediaReservations(aPanel IObject) bool {
 func (o_ Object) ShouldEnableActionForPersonIdentifier(person IObject, identifier IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("shouldEnableActionForPerson:identifier:"), person, identifier)
 	return rv
-}/* debug [instance_methods/method]: ShouldEnableActionForPersonIdentifier */
+}
 
 
 // Sent to the delegate to request the title of the menu item for the action.
@@ -2072,7 +2059,7 @@ func (o_ Object) ShouldEnableActionForPersonIdentifier(person IObject, identifie
 func (o_ Object) TitleForPersonIdentifier(person IObject, identifier IObject) IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("titleForPerson:identifier:"), person, identifier)
 	return rv
-}/* debug [instance_methods/method]: TitleForPersonIdentifier */
+}
 
 
 // Removes a given binding between the receiver and a controller.
@@ -2081,7 +2068,7 @@ func (o_ Object) TitleForPersonIdentifier(person IObject, identifier IObject) IO
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/unbind(_:)
 func (o_ Object) Unbind(binding string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("unbind:"), objc.String(binding))
-}/* debug [instance_methods/method]: Unbind */
+}
 
 
 // Indicates whether the value specified by a given pointer is valid, or can be made valid, for the property identified by a given key.
@@ -2091,7 +2078,7 @@ func (o_ Object) Unbind(binding string) {
 func (o_ Object) ValidateValueForKeyError(ioValue IObject, inKey IObject, outError IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("validateValue:forKey:error:"), ioValue, inKey, outError)
 	return rv
-}/* debug [instance_methods/method]: ValidateValueForKeyError */
+}
 
 
 // Indicates whether the value specified by a given pointer is not valid for a given key path relative to the receiver.
@@ -2101,7 +2088,7 @@ func (o_ Object) ValidateValueForKeyError(ioValue IObject, inKey IObject, outErr
 func (o_ Object) ValidateValueForKeyPathError(ioValue IObject, inKeyPath IObject, outError IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("validateValue:forKeyPath:error:"), ioValue, inKeyPath, outError)
 	return rv
-}/* debug [instance_methods/method]: ValidateValueForKeyPathError */
+}
 
 
 // Retrieves an indexed object from the collection specified by the passed key.
@@ -2111,7 +2098,7 @@ func (o_ Object) ValidateValueForKeyPathError(ioValue IObject, inKeyPath IObject
 func (o_ Object) ValueAtIndexInPropertyWithKey(index uint, key IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueAtIndex:inPropertyWithKey:"), index, key)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ValueAtIndexInPropertyWithKey */
+}
 
 
 // Returns the value for the property identified by a given key.
@@ -2121,7 +2108,7 @@ func (o_ Object) ValueAtIndexInPropertyWithKey(index uint, key IObject) IObject 
 func (o_ Object) ValueForKey(key IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), key)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ValueForKey */
+}
 
 
 // Returns the value for the derived property identified by a given key path.
@@ -2131,7 +2118,7 @@ func (o_ Object) ValueForKey(key IObject) IObject {
 func (o_ Object) ValueForKeyPath(keyPath IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKeyPath:"), keyPath)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ValueForKeyPath */
+}
 
 
 // Invoked by when it finds no property corresponding to a given key.
@@ -2141,7 +2128,7 @@ func (o_ Object) ValueForKeyPath(keyPath IObject) IObject {
 func (o_ Object) ValueForUndefinedKey(key IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForUndefinedKey:"), key)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ValueForUndefinedKey */
+}
 
 
 // Retrieves a named object from the collection specified by the passed key.
@@ -2151,7 +2138,7 @@ func (o_ Object) ValueForUndefinedKey(key IObject) IObject {
 func (o_ Object) ValueWithNameInPropertyWithKey(name IObject, key IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueWithName:inPropertyWithKey:"), name, key)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ValueWithNameInPropertyWithKey */
+}
 
 
 // Retrieves an object by ID from the collection specified by the passed key.
@@ -2161,7 +2148,7 @@ func (o_ Object) ValueWithNameInPropertyWithKey(name IObject, key IObject) IObje
 func (o_ Object) ValueWithUniqueIDInPropertyWithKey(uniqueID IObject, key IObject) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueWithUniqueID:inPropertyWithKey:"), uniqueID, key)
 	return Object{ID: rv}
-}/* debug [instance_methods/method]: ValueWithUniqueIDInPropertyWithKey */
+}
 
 
 // Returns the class of the value that will be returned for the specified binding.
@@ -2171,7 +2158,7 @@ func (o_ Object) ValueWithUniqueIDInPropertyWithKey(uniqueID IObject, key IObjec
 func (o_ Object) ValueClassForBinding(binding string) objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("valueClassForBinding:"), objc.String(binding))
 	return rv
-}/* debug [instance_methods/method]: ValueClassForBinding */
+}
 
 
 // Loads a URL into a web frame.
@@ -2180,7 +2167,7 @@ func (o_ Object) ValueClassForBinding(binding string) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerLoad(_:inFrame:)
 func (o_ Object) WebPlugInContainerLoadRequestInFrame(request IObject, target IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerLoadRequest:inFrame:"), request, target)
-}/* debug [instance_methods/method]: WebPlugInContainerLoadRequestInFrame */
+}
 
 
 // Tells the container to show a status message.
@@ -2189,7 +2176,7 @@ func (o_ Object) WebPlugInContainerLoadRequestInFrame(request IObject, target IO
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerShowStatus(_:)
 func (o_ Object) WebPlugInContainerShowStatus(message IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerShowStatus:"), message)
-}/* debug [instance_methods/method]: WebPlugInContainerShowStatus */
+}
 
 
 // Prepares the plug-in for deallocation.
@@ -2198,7 +2185,7 @@ func (o_ Object) WebPlugInContainerShowStatus(message IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInDestroy()
 func (o_ Object) WebPlugInDestroy() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInDestroy"))
-}/* debug [instance_methods/method]: WebPlugInDestroy */
+}
 
 
 // Initializes the plug-in.
@@ -2207,7 +2194,7 @@ func (o_ Object) WebPlugInDestroy() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInInitialize()
 func (o_ Object) WebPlugInInitialize() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInInitialize"))
-}/* debug [instance_methods/method]: WebPlugInInitialize */
+}
 
 
 // Invoked when an error occurs loading the main resource.
@@ -2216,7 +2203,7 @@ func (o_ Object) WebPlugInInitialize() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidFailWithError(_:)
 func (o_ Object) WebPlugInMainResourceDidFailWithError(error_ IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidFailWithError:"), error_)
-}/* debug [instance_methods/method]: WebPlugInMainResourceDidFailWithError */
+}
 
 
 // Invoked when the connection successfully finishes loading data.
@@ -2225,7 +2212,7 @@ func (o_ Object) WebPlugInMainResourceDidFailWithError(error_ IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidFinishLoading()
 func (o_ Object) WebPlugInMainResourceDidFinishLoading() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidFinishLoading"))
-}/* debug [instance_methods/method]: WebPlugInMainResourceDidFinishLoading */
+}
 
 
 // Invoked when the connection loads data incrementally.
@@ -2234,7 +2221,7 @@ func (o_ Object) WebPlugInMainResourceDidFinishLoading() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidReceive(_:)-5b6f6
 func (o_ Object) WebPlugInMainResourceDidReceiveData(data IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidReceiveData:"), data)
-}/* debug [instance_methods/method]: WebPlugInMainResourceDidReceiveData */
+}
 
 
 // Invoked when the connection receives sufficient data to construct the URL response for its request.
@@ -2243,7 +2230,7 @@ func (o_ Object) WebPlugInMainResourceDidReceiveData(data IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidReceive(_:)-6x7b9
 func (o_ Object) WebPlugInMainResourceDidReceiveResponse(response IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidReceiveResponse:"), response)
-}/* debug [instance_methods/method]: WebPlugInMainResourceDidReceiveResponse */
+}
 
 
 // Controls plug-in behavior based on its selection.
@@ -2252,7 +2239,7 @@ func (o_ Object) WebPlugInMainResourceDidReceiveResponse(response IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInSetIsSelected(_:)
 func (o_ Object) WebPlugInSetIsSelected(isSelected bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInSetIsSelected:"), isSelected)
-}/* debug [instance_methods/method]: WebPlugInSetIsSelected */
+}
 
 
 // Tells the plug-in to start normal operation.
@@ -2261,7 +2248,7 @@ func (o_ Object) WebPlugInSetIsSelected(isSelected bool) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInStart()
 func (o_ Object) WebPlugInStart() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInStart"))
-}/* debug [instance_methods/method]: WebPlugInStart */
+}
 
 
 // Tells the plug-in to stop normal operation.
@@ -2270,7 +2257,7 @@ func (o_ Object) WebPlugInStart() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInStop()
 func (o_ Object) WebPlugInStop() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInStop"))
-}/* debug [instance_methods/method]: WebPlugInStop */
+}
 
 
 // Informs the observed object that the specified change is about to be executed at given indexes for a specified ordered to-many relationship.
@@ -2279,7 +2266,7 @@ func (o_ Object) WebPlugInStop() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChange(_:valuesAt:forKey:)
 func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind uint, indexes IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("willChange:valuesAtIndexes:forKey:"), changeKind, indexes, key)
-}/* debug [instance_methods/method]: WillChangeValuesAtIndexesForKey */
+}
 
 
 // Informs the observed object that the value of a given property is about to change.
@@ -2288,7 +2275,7 @@ func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind uint, indexes IObjec
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChangeValue(forKey:)
 func (o_ Object) WillChangeValueForKey(key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:"), key)
-}/* debug [instance_methods/method]: WillChangeValueForKey */
+}
 
 
 // Informs the observed object that the specified change is about to be made to a specified unordered to-many relationship.
@@ -2297,13 +2284,13 @@ func (o_ Object) WillChangeValueForKey(key IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChangeValue(forKey:withSetMutation:using:)
 func (o_ Object) WillChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind uint, objects IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:withSetMutation:usingObjects:"), key, mutationKind, objects)
-}/* debug [instance_methods/method]: WillChangeValueForKeyWithSetMutationUsingObjects */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Object */
+
+
+
 
 // Returns a Boolean value that indicates whether the key-value coding methods should access the corresponding instance variable directly on finding no accessor method for a property.
 //
@@ -2312,7 +2299,7 @@ func (o_ Object) WillChangeValueForKeyWithSetMutationUsingObjects(key IObject, m
 func (o_ Object) AccessInstanceVariablesDirectly() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessInstanceVariablesDirectly"))
 	return rv
-}/* debug [instance_properties/getter]: accessInstanceVariablesDirectly */
+}
 
 
 // [Full Topic]
@@ -2320,7 +2307,7 @@ func (o_ Object) AccessInstanceVariablesDirectly() bool {
 func (o_ Object) AccessibilityFocusedUIElement() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityFocusedUIElement"))
 	return Object{ID: rv}
-}/* debug [instance_properties/getter]: accessibilityFocusedUIElement */
+}
 
 
 // A Boolean value that indicates whether a custom accessibility object sends a notification when its corresponding UI element is destroyed.
@@ -2330,17 +2317,7 @@ func (o_ Object) AccessibilityFocusedUIElement() IObject {
 func (o_ Object) AccessibilityNotifiesWhenDestroyed() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityNotifiesWhenDestroyed"))
 	return rv
-}/* debug [instance_properties/getter]: accessibilityNotifiesWhenDestroyed */
-
-
-// An array of objects containing the names of immutable values that instances of the receiver’s class contain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attributeKeys
-func (o_ Object) AttributeKeys() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("attributeKeys"))
-	return rv
-}/* debug [instance_properties/getter]: attributeKeys */
+}
 
 
 // A proxy for the receiving object
@@ -2350,7 +2327,7 @@ func (o_ Object) AttributeKeys() []string {
 func (o_ Object) AutoContentAccessingProxy() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("autoContentAccessingProxy"))
 	return Object{ID: rv}
-}/* debug [instance_properties/getter]: autoContentAccessingProxy */
+}
 
 
 // The kind of container that contains this element.
@@ -2360,7 +2337,7 @@ func (o_ Object) AutoContentAccessingProxy() IObject {
 func (o_ Object) BrowserAccessibilityContainerType() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilityContainerType"))
 	return rv
-}/* debug [instance_properties/getter]: browserAccessibilityContainerType */
+}
 
 
 // The kind of container that contains this element.
@@ -2369,7 +2346,7 @@ func (o_ Object) BrowserAccessibilityContainerType() IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityContainerType
 func (o_ Object) SetBrowserAccessibilityContainerType(value IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityContainerType:"), value)
-}/* debug [instance_properties/setter]: browserAccessibilityContainerType */
+}
 
 
 // A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
@@ -2379,7 +2356,7 @@ func (o_ Object) SetBrowserAccessibilityContainerType(value IObject) {
 func (o_ Object) BrowserAccessibilityHasDOMFocus() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityHasDOMFocus"))
 	return rv
-}/* debug [instance_properties/getter]: browserAccessibilityHasDOMFocus */
+}
 
 
 // A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
@@ -2388,7 +2365,7 @@ func (o_ Object) BrowserAccessibilityHasDOMFocus() bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityHasDOMFocus
 func (o_ Object) SetBrowserAccessibilityHasDOMFocus(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityHasDOMFocus:"), value)
-}/* debug [instance_properties/setter]: browserAccessibilityHasDOMFocus */
+}
 
 
 // A Boolean value that’s the element’s value for aria-required.
@@ -2398,7 +2375,7 @@ func (o_ Object) SetBrowserAccessibilityHasDOMFocus(value bool) {
 func (o_ Object) BrowserAccessibilityIsRequired() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityIsRequired"))
 	return rv
-}/* debug [instance_properties/getter]: browserAccessibilityIsRequired */
+}
 
 
 // A Boolean value that’s the element’s value for aria-required.
@@ -2407,7 +2384,7 @@ func (o_ Object) BrowserAccessibilityIsRequired() bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityIsRequired
 func (o_ Object) SetBrowserAccessibilityIsRequired(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityIsRequired:"), value)
-}/* debug [instance_properties/setter]: browserAccessibilityIsRequired */
+}
 
 
 // The element’s value for aria-pressed.
@@ -2417,7 +2394,7 @@ func (o_ Object) SetBrowserAccessibilityIsRequired(value bool) {
 func (o_ Object) BrowserAccessibilityPressedState() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilityPressedState"))
 	return rv
-}/* debug [instance_properties/getter]: browserAccessibilityPressedState */
+}
 
 
 // The element’s value for aria-pressed.
@@ -2426,7 +2403,7 @@ func (o_ Object) BrowserAccessibilityPressedState() IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityPressedState
 func (o_ Object) SetBrowserAccessibilityPressedState(value IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityPressedState:"), value)
-}/* debug [instance_properties/setter]: browserAccessibilityPressedState */
+}
 
 
 // The receiver’s Apple event type code, as stored in the object for the object’s class.
@@ -2436,7 +2413,7 @@ func (o_ Object) SetBrowserAccessibilityPressedState(value IObject) {
 func (o_ Object) ClassCode() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](o_.ID, objc.Sel("classCode"))
 	return rv
-}/* debug [instance_properties/getter]: classCode */
+}
 
 
 // An object containing information about the attributes and relationships of the receiver’s class.
@@ -2446,7 +2423,7 @@ func (o_ Object) ClassCode() uint32 /* not a class type */ {
 func (o_ Object) ClassDescription() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("classDescription"))
 	return rv
-}/* debug [instance_properties/getter]: classDescription */
+}
 
 
 // The class to substitute for the receiver’s own class during archiving.
@@ -2456,7 +2433,7 @@ func (o_ Object) ClassDescription() IObject {
 func (o_ Object) ClassForArchiver() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForArchiver"))
 	return rv
-}/* debug [instance_properties/getter]: classForArchiver */
+}
 
 
 // Overridden by subclasses to substitute a class other than its own during coding.
@@ -2466,7 +2443,7 @@ func (o_ Object) ClassForArchiver() objc.Class {
 func (o_ Object) ClassForCoder() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForCoder"))
 	return rv
-}/* debug [instance_properties/getter]: classForCoder */
+}
 
 
 // Subclasses to substitute a new class for instances during keyed archiving.
@@ -2476,7 +2453,7 @@ func (o_ Object) ClassForCoder() objc.Class {
 func (o_ Object) ClassForKeyedArchiver() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForKeyedArchiver"))
 	return rv
-}/* debug [instance_properties/getter]: classForKeyedArchiver */
+}
 
 
 // Class to substitute for the receiver in distribution encoding.
@@ -2486,7 +2463,7 @@ func (o_ Object) ClassForKeyedArchiver() objc.Class {
 func (o_ Object) ClassForPortCoder() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForPortCoder"))
 	return rv
-}/* debug [instance_properties/getter]: classForPortCoder */
+}
 
 
 // Returns an array containing the bindings exposed by the receiver.
@@ -2496,7 +2473,7 @@ func (o_ Object) ClassForPortCoder() objc.Class {
 func (o_ Object) ExposedBindings() []string {
 	rv := objc.Send[[]string](o_.ID, objc.Sel("exposedBindings"))
 	return rv
-}/* debug [instance_properties/getter]: exposedBindings */
+}
 
 
 // [Full Topic]
@@ -2504,7 +2481,7 @@ func (o_ Object) ExposedBindings() []string {
 func (o_ Object) Selectable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("selectable"))
 	return rv
-}/* debug [instance_properties/getter]: selectable */
+}
 
 
 // Returns an object that exposes the plug-in’s scripting interface.
@@ -2514,17 +2491,7 @@ func (o_ Object) Selectable() bool {
 func (o_ Object) ObjectForWebScript() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("objectForWebScript"))
 	return Object{ID: rv}
-}/* debug [instance_properties/getter]: objectForWebScript */
-
-
-// Returns an object specifier for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectSpecifier
-func (o_ Object) ObjectSpecifier() IObject {
-	rv := objc.Send[Object](o_.ID, objc.Sel("objectSpecifier"))
-	return rv
-}/* debug [instance_properties/getter]: objectSpecifier */
+}
 
 
 // Returns a pointer that identifies information about all of the observers that are registered with the observed object.
@@ -2534,7 +2501,7 @@ func (o_ Object) ObjectSpecifier() IObject {
 func (o_ Object) ObservationInfo() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("observationInfo"))
 	return rv
-}/* debug [instance_properties/getter]: observationInfo */
+}
 
 
 // Returns a pointer that identifies information about all of the observers that are registered with the observed object.
@@ -2543,27 +2510,17 @@ func (o_ Object) ObservationInfo() IObject {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/observationInfo
 func (o_ Object) SetObservationInfo(value IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setObservationInfo:"), value)
-}/* debug [instance_properties/setter]: observationInfo */
+}
 
 
-// An array containing the keys for the to-many relationship properties of the receiver.
+// Returns the that contains the plug-in.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/toManyRelationshipKeys
-func (o_ Object) ToManyRelationshipKeys() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("toManyRelationshipKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webFrame
+func (o_ Object) WebFrame() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("webFrame"))
 	return rv
-}/* debug [instance_properties/getter]: toManyRelationshipKeys */
-
-
-// The keys for the to-one relationship properties of the receiver, if any.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/toOneRelationshipKeys
-func (o_ Object) ToOneRelationshipKeys() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("toOneRelationshipKeys"))
-	return rv
-}/* debug [instance_properties/getter]: toOneRelationshipKeys */
+}
 
 
 // Returns the plug-in selection color.
@@ -2573,7 +2530,7 @@ func (o_ Object) ToOneRelationshipKeys() []string {
 func (o_ Object) WebPlugInContainerSelectionColor() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("webPlugInContainerSelectionColor"))
 	return rv
-}/* debug [instance_properties/getter]: webPlugInContainerSelectionColor */
+}
 
 
 // [Full Topic]
@@ -2581,18 +2538,18 @@ func (o_ Object) WebPlugInContainerSelectionColor() IObject {
 func (o_ Object) IsSelectable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isSelectable"))
 	return rv
-}/* debug [instance_properties/getter]: isSelectable */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isselectable
 func (o_ Object) SetIsSelectable(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSelectable:"), value)
-}/* debug [instance_properties/setter]: isSelectable */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSObject */
+
+
+
 
 

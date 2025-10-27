@@ -7,13 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/audiotoolbox"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
-/* debug [class.gen.go]: Generating class AUPannerView */
 
 
-/* debug [class_header]: Header for AUPannerView */
+
+
 // The class instance for the [PannerView] class.
 var (
 	PannerViewClass     _PannerViewClass
@@ -30,31 +30,31 @@ func getPannerViewClass() _PannerViewClass {
 type _PannerViewClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PannerView */
+
+
 // An interface definition for the [PannerView] class.
 type IPannerView interface {
-	IView
+	appkit.IView
 	
-/* debug [class_interface_properties]: Properties for PannerView */
+
 	// properties:
-	AudioUnit() audiotoolbox.AudioUnit
-/* debug [class_interface_properties]: End properties */
+	AudioUnit() unsafe.Pointer
+
 
 	
-/* debug [class_interface_methods]: Methods for PannerView */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PannerView */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PannerViewClass) Alloc() PannerView {
 	rv := objc.Send[PannerView](objc.ID(pc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (p_ PannerView) Autorelease() PannerView {
 func NewPannerView() PannerView {
 	return getPannerViewClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PannerView */
+
+
 // A view that provides a specialized user interface for a Cocoa-based panner audio unit.
 
 
@@ -97,7 +97,7 @@ func NewPannerView() PannerView {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView
 type PannerView struct {
-	View
+	appkit.View
 }
 
 // PannerViewFrom constructs a [PannerView] from an unsafe.Pointer.
@@ -105,67 +105,67 @@ type PannerView struct {
 // A view that provides a specialized user interface for a Cocoa-based panner audio unit.
 func PannerViewFrom(ptr unsafe.Pointer) PannerView {
 	return PannerView{
-		View: ViewFrom(ptr),
+		View: appkit.ViewFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PannerView */
+
+
 
 // Creates a panner view for an audio unit.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView/init(audioUnit:)
-func NewPannerViewAUPannerViewWithAudioUnit(au audiotoolbox.AudioUnit) PannerView {
+func NewPannerViewAUPannerViewWithAudioUnit(au unsafe.Pointer) PannerView {
 	rv := objc.Send[PannerView](objc.ID(getPannerViewClass().class), objc.Sel("AUPannerViewWithAudioUnit:"), au)
 	return rv
-}/* debug [class_init_methods/constructor]: NewPannerViewAUPannerViewWithAudioUnit */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for PannerView */
+
+
+
 
 // Creates a panner view for an audio unit.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView/init(audioUnit:)
-func (pc _PannerViewClass) AUPannerViewWithAudioUnit(au audiotoolbox.AudioUnit) IPannerView {
+func (pc _PannerViewClass) AUPannerViewWithAudioUnit(au unsafe.Pointer) IPannerView {
 	rv := objc.Send[PannerView](objc.ID(pc.class), objc.Sel("AUPannerViewWithAudioUnit:"), au)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AUPannerViewWithAudioUnit) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for PannerView */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PannerView */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for PannerView */
+
+
+
+
+
+
+
 
 // The panner audio unit associated with the generic panner view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView/audioUnit
-func (p_ PannerView) AudioUnit() audiotoolbox.AudioUnit {
-	rv := objc.Send[audiotoolbox.AudioUnit](p_.ID, objc.Sel("audioUnit"))
+func (p_ PannerView) AudioUnit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioUnit"))
 	return rv
-}/* debug [instance_properties/getter]: audioUnit */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AUPannerView */
+
+
+
 
 

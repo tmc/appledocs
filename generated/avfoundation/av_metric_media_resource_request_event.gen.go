@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
-/* debug [class.gen.go]: Generating class AVMetricMediaResourceRequestEvent */
 
 
-/* debug [class_header]: Header for AVMetricMediaResourceRequestEvent */
+
+
 // The class instance for the [MetricMediaResourceRequestEvent] class.
 var (
 	MetricMediaResourceRequestEventClass     _MetricMediaResourceRequestEventClass
@@ -30,42 +29,42 @@ func getMetricMediaResourceRequestEventClass() _MetricMediaResourceRequestEventC
 type _MetricMediaResourceRequestEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetricMediaResourceRequestEvent */
+
+
 // An interface definition for the [MetricMediaResourceRequestEvent] class.
 type IMetricMediaResourceRequestEvent interface {
 	IMetricEvent
 	
-/* debug [class_interface_properties]: Properties for MetricMediaResourceRequestEvent */
+
 	// properties:
-	ByteRange() corefoundation.Range
+	ByteRange() foundation.Range
 	ErrorEvent() IAVMetricErrorEvent
 	NetworkTransactionMetrics() foundation.URLSessionTaskMetrics
-	RequestEndTime() objc.IObject /* cross-framework: NSDate */
-	RequestStartTime() objc.IObject /* cross-framework: NSDate */
-	ResponseEndTime() objc.IObject /* cross-framework: NSDate */
-	ResponseStartTime() objc.IObject /* cross-framework: NSDate */
-	ServerAddress() objc.IObject /* cross-framework: NSString */
-	Url() objc.IObject /* cross-framework: NSURL */
+	RequestEndTime() foundation.foundation.INSDate
+	RequestStartTime() foundation.foundation.INSDate
+	ResponseEndTime() foundation.foundation.INSDate
+	ResponseStartTime() foundation.foundation.INSDate
+	ServerAddress() foundation.foundation.INSString
+	Url() foundation.foundation.INSURL
 	ReadFromCache() bool
 	WasReadFromCache() bool
 	SetWasReadFromCache(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetricMediaResourceRequestEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetricMediaResourceRequestEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetricMediaResourceRequestEventClass) Alloc() MetricMediaResourceRequestEvent {
 	rv := objc.Send[MetricMediaResourceRequestEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -95,11 +94,11 @@ func (m_ MetricMediaResourceRequestEvent) Autorelease() MetricMediaResourceReque
 func NewMetricMediaResourceRequestEvent() MetricMediaResourceRequestEvent {
 	return getMetricMediaResourceRequestEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetricMediaResourceRequestEvent */
+
+
 // An event that represents a media resource request.
 
 
@@ -119,37 +118,37 @@ func MetricMediaResourceRequestEventFrom(ptr unsafe.Pointer) MetricMediaResource
 		MetricEvent: MetricEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetricMediaResourceRequestEvent *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetricMediaResourceRequestEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetricMediaResourceRequestEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetricMediaResourceRequestEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetricMediaResourceRequestEvent */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/byteRange
-func (m_ MetricMediaResourceRequestEvent) ByteRange() corefoundation.Range {
-	rv := objc.Send[corefoundation.Range](m_.ID, objc.Sel("byteRange"))
+func (m_ MetricMediaResourceRequestEvent) ByteRange() foundation.Range {
+	rv := objc.Send[foundation.Range](m_.ID, objc.Sel("byteRange"))
 	return rv
-}/* debug [instance_properties/getter]: byteRange */
+}
 
 
 // [Full Topic]
@@ -157,7 +156,7 @@ func (m_ MetricMediaResourceRequestEvent) ByteRange() corefoundation.Range {
 func (m_ MetricMediaResourceRequestEvent) ErrorEvent() IAVMetricErrorEvent {
 	rv := objc.Send[MetricErrorEvent](m_.ID, objc.Sel("errorEvent"))
 	return rv
-}/* debug [instance_properties/getter]: errorEvent */
+}
 
 
 // [Full Topic]
@@ -165,55 +164,55 @@ func (m_ MetricMediaResourceRequestEvent) ErrorEvent() IAVMetricErrorEvent {
 func (m_ MetricMediaResourceRequestEvent) NetworkTransactionMetrics() foundation.URLSessionTaskMetrics {
 	rv := objc.Send[foundation.URLSessionTaskMetrics](m_.ID, objc.Sel("networkTransactionMetrics"))
 	return rv
-}/* debug [instance_properties/getter]: networkTransactionMetrics */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/requestEndTime
-func (m_ MetricMediaResourceRequestEvent) RequestEndTime() objc.IObject /* cross-framework: NSDate */ {
+func (m_ MetricMediaResourceRequestEvent) RequestEndTime() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("requestEndTime"))
 	return rv
-}/* debug [instance_properties/getter]: requestEndTime */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/requestStartTime
-func (m_ MetricMediaResourceRequestEvent) RequestStartTime() objc.IObject /* cross-framework: NSDate */ {
+func (m_ MetricMediaResourceRequestEvent) RequestStartTime() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("requestStartTime"))
 	return rv
-}/* debug [instance_properties/getter]: requestStartTime */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/responseEndTime
-func (m_ MetricMediaResourceRequestEvent) ResponseEndTime() objc.IObject /* cross-framework: NSDate */ {
+func (m_ MetricMediaResourceRequestEvent) ResponseEndTime() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("responseEndTime"))
 	return rv
-}/* debug [instance_properties/getter]: responseEndTime */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/responseStartTime
-func (m_ MetricMediaResourceRequestEvent) ResponseStartTime() objc.IObject /* cross-framework: NSDate */ {
+func (m_ MetricMediaResourceRequestEvent) ResponseStartTime() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("responseStartTime"))
 	return rv
-}/* debug [instance_properties/getter]: responseStartTime */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/serverAddress
-func (m_ MetricMediaResourceRequestEvent) ServerAddress() objc.IObject /* cross-framework: NSString */ {
+func (m_ MetricMediaResourceRequestEvent) ServerAddress() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("serverAddress"))
 	return rv
-}/* debug [instance_properties/getter]: serverAddress */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricMediaResourceRequestEvent/url
-func (m_ MetricMediaResourceRequestEvent) Url() objc.IObject /* cross-framework: NSURL */ {
+func (m_ MetricMediaResourceRequestEvent) Url() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](m_.ID, objc.Sel("url"))
 	return rv
-}/* debug [instance_properties/getter]: url */
+}
 
 
 // [Full Topic]
@@ -221,7 +220,7 @@ func (m_ MetricMediaResourceRequestEvent) Url() objc.IObject /* cross-framework:
 func (m_ MetricMediaResourceRequestEvent) ReadFromCache() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("readFromCache"))
 	return rv
-}/* debug [instance_properties/getter]: readFromCache */
+}
 
 
 // [Full Topic]
@@ -229,19 +228,19 @@ func (m_ MetricMediaResourceRequestEvent) ReadFromCache() bool {
 func (m_ MetricMediaResourceRequestEvent) WasReadFromCache() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("wasReadFromCache"))
 	return rv
-}/* debug [instance_properties/getter]: wasReadFromCache */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetricmediaresourcerequestevent/wasreadfromcache
 func (m_ MetricMediaResourceRequestEvent) SetWasReadFromCache(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWasReadFromCache:"), value)
-}/* debug [instance_properties/setter]: wasReadFromCache */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMetricMediaResourceRequestEvent */
+
+
+
 
 
 

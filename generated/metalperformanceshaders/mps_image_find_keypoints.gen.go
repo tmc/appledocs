@@ -51,7 +51,7 @@ type IImageFindKeypoints interface {
 
 	// methods:
 	Encode()
-	EncodeToCommandBufferSourceTextureRegionsNumberOfRegionsKeypointCountBufferKeypointCountBufferOffsetKeypointDataBufferKeypointDataBufferOffset(commandBuffer unsafe.Pointer, source unsafe.Pointer, regions objc.IObject /* cross-framework: MTLRegion */, numberOfRegions uint, keypointCountBuffer unsafe.Pointer, keypointCountBufferOffset uint, keypointDataBuffer unsafe.Pointer, keypointDataBufferOffset uint)
+	EncodeToCommandBufferSourceTextureRegionsNumberOfRegionsKeypointCountBufferKeypointCountBufferOffsetKeypointDataBufferKeypointDataBufferOffset(commandBuffer unsafe.Pointer, source unsafe.Pointer, regions metal.IMTLRegion, numberOfRegions uint, keypointCountBuffer unsafe.Pointer, keypointCountBufferOffset uint, keypointDataBuffer unsafe.Pointer, keypointDataBufferOffset uint)
 
 
 }
@@ -133,7 +133,7 @@ func NewImageFindKeypointsWithCoderDevice(aDecoder foundation.Coder, device unsa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefindkeypoints/2873309-initwithdevice
-func NewImageFindKeypointsWithDeviceInfo(device unsafe.Pointer, info objc.IObject /* cross-framework: MPSImageKeypointRangeInfo */) ImageFindKeypoints {
+func NewImageFindKeypointsWithDeviceInfo(device unsafe.Pointer, info ImageKeypointRangeInfo) ImageFindKeypoints {
 	instance := getImageFindKeypointsClass().Alloc()
 	rv := objc.Send[ImageFindKeypoints](instance.ID, objc.Sel("initWithDevice:info:"), device, info)
 	rv.Autorelease()
@@ -165,7 +165,7 @@ func (i_ ImageFindKeypoints) Encode() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefindkeypoints/2873307-encodetocommandbuffer
-func (i_ ImageFindKeypoints) EncodeToCommandBufferSourceTextureRegionsNumberOfRegionsKeypointCountBufferKeypointCountBufferOffsetKeypointDataBufferKeypointDataBufferOffset(commandBuffer unsafe.Pointer, source unsafe.Pointer, regions objc.IObject /* cross-framework: MTLRegion */, numberOfRegions uint, keypointCountBuffer unsafe.Pointer, keypointCountBufferOffset uint, keypointDataBuffer unsafe.Pointer, keypointDataBufferOffset uint) {
+func (i_ ImageFindKeypoints) EncodeToCommandBufferSourceTextureRegionsNumberOfRegionsKeypointCountBufferKeypointCountBufferOffsetKeypointDataBufferKeypointDataBufferOffset(commandBuffer unsafe.Pointer, source unsafe.Pointer, regions metal.IMTLRegion, numberOfRegions uint, keypointCountBuffer unsafe.Pointer, keypointCountBufferOffset uint, keypointDataBuffer unsafe.Pointer, keypointDataBufferOffset uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:"), commandBuffer, source, regions, numberOfRegions, keypointCountBuffer, keypointCountBufferOffset, keypointDataBuffer, keypointDataBufferOffset)
 }
 

@@ -13,7 +13,7 @@ var _ = appkit.NewTextList
 // Returns an initialized text list.
 func ExampleNewTextListWithMarkerFormatOptions() {
 	_ = appkit.NewTextListWithMarkerFormatOptions(
-		appkit.TextListMarkerFormat /* typedef */{}, // markerFormat TextListMarkerFormat /* typedef */
+		appkit.TextListMarkerFormat{}, // markerFormat TextListMarkerFormat
 		0, // options uint
 	)
 	// Output:
@@ -22,7 +22,7 @@ func ExampleNewTextListWithMarkerFormatOptions() {
 // Returns a new text list with the format, options, and starting item number you provide.
 func ExampleNewTextListWithMarkerFormatOptionsStartingItemNumber() {
 	_ = appkit.NewTextListWithMarkerFormatOptionsStartingItemNumber(
-		appkit.TextListMarkerFormat /* typedef */{}, // markerFormat TextListMarkerFormat /* typedef */
+		appkit.TextListMarkerFormat{}, // markerFormat TextListMarkerFormat
 		appkit.TextListOptions{}, // options TextListOptions
 		0, // startingItemNumber int
 	)

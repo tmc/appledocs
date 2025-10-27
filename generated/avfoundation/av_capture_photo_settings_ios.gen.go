@@ -227,11 +227,11 @@ func (c_ CapturePhotoSettings) SetPortraitEffectsMatteDeliveryEnabled(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoSettings/livePhotoMovieFileURL
-func (c_ CapturePhotoSettings) LivePhotoMovieFileURL() objc.IObject /* cross-framework: NSURL */ {
+func (c_ CapturePhotoSettings) LivePhotoMovieFileURL() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](c_.ID, objc.Sel("livePhotoMovieFileURL"))
 	return rv
 }
-func (c_ CapturePhotoSettings) SetLivePhotoMovieFileURL(value objc.IObject /* cross-framework: NSURL */) {
+func (c_ CapturePhotoSettings) SetLivePhotoMovieFileURL(value foundation.foundation.INSURL) {
 	c_.ID.Send(objc.RegisterName("setLivePhotoMovieFileURL:"), value)
 }
 
@@ -251,11 +251,11 @@ func (c_ CapturePhotoSettings) SetLivePhotoMovieMetadata(value []MetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoSettings/livePhotoVideoCodecType
-func (c_ CapturePhotoSettings) LivePhotoVideoCodecType() VideoCodecType /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("livePhotoVideoCodecType"))
+func (c_ CapturePhotoSettings) LivePhotoVideoCodecType() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("livePhotoVideoCodecType"))
 	return rv
 }
-func (c_ CapturePhotoSettings) SetLivePhotoVideoCodecType(value VideoCodecType /* typedef */) {
+func (c_ CapturePhotoSettings) SetLivePhotoVideoCodecType(value VideoCodecType) {
 	c_.ID.Send(objc.RegisterName("setLivePhotoVideoCodecType:"), value)
 }
 
@@ -309,8 +309,8 @@ func (c_ CapturePhotoSettings) SetRawFileFormat(value foundation.IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoSettings/rawFileType
-func (c_ CapturePhotoSettings) RawFileType() FileType /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("rawFileType"))
+func (c_ CapturePhotoSettings) RawFileType() FileType {
+	rv := objc.Send[FileType](c_.ID, objc.Sel("rawFileType"))
 	return rv
 }
 

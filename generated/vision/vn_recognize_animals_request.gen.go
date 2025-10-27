@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -49,7 +48,7 @@ type IRecognizeAnimalsRequest interface {
 	
 
 	// methods:
-	SupportedIdentifiersAndReturnError(error_ objectivec.IObject) []string
+	SupportedIdentifiersAndReturnError(error_ foundation.foundation.INSError) []string
 
 
 }
@@ -127,7 +126,7 @@ func RecognizeAnimalsRequestFrom(ptr unsafe.Pointer) RecognizeAnimalsRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeAnimalsRequest/knownAnimalIdentifiers(forRevision:)
-func (rc _RecognizeAnimalsRequestClass) KnownAnimalIdentifiersForRevisionError(requestRevision uint, error_ objectivec.IObject) []string {
+func (rc _RecognizeAnimalsRequestClass) KnownAnimalIdentifiersForRevisionError(requestRevision uint, error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("knownAnimalIdentifiersForRevision:error:"), requestRevision, error_)
 	return rv
 }
@@ -147,7 +146,7 @@ func (rc _RecognizeAnimalsRequestClass) KnownAnimalIdentifiersForRevisionError(r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeAnimalsRequest/supportedIdentifiers()
-func (r_ RecognizeAnimalsRequest) SupportedIdentifiersAndReturnError(error_ objectivec.IObject) []string {
+func (r_ RecognizeAnimalsRequest) SupportedIdentifiersAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("supportedIdentifiersAndReturnError:"), error_)
 	return rv
 }

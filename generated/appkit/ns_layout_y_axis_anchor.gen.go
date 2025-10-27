@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NSLayoutYAxisAnchor */
 
 
-/* debug [class_header]: Header for NSLayoutYAxisAnchor */
+
+
 // The class instance for the [LayoutYAxisAnchor] class.
 var (
 	LayoutYAxisAnchorClass     _LayoutYAxisAnchorClass
@@ -29,34 +29,34 @@ func getLayoutYAxisAnchorClass() _LayoutYAxisAnchorClass {
 type _LayoutYAxisAnchorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for LayoutYAxisAnchor */
+
+
 // An interface definition for the [LayoutYAxisAnchor] class.
 type ILayoutYAxisAnchor interface {
 	ILayoutAnchor
 	
-/* debug [class_interface_properties]: Properties for LayoutYAxisAnchor */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for LayoutYAxisAnchor */
+
 	// methods:
 	AnchorWithOffsetToAnchor(otherAnchor ILayoutYAxisAnchor) ILayoutDimension
 	ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint
 	ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint
 	ConstraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for LayoutYAxisAnchor */
+
+
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutYAxisAnchorClass) Alloc() LayoutYAxisAnchor {
 	rv := objc.Send[LayoutYAxisAnchor](objc.ID(lc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (l_ LayoutYAxisAnchor) Autorelease() LayoutYAxisAnchor {
 func NewLayoutYAxisAnchor() LayoutYAxisAnchor {
 	return getLayoutYAxisAnchorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for LayoutYAxisAnchor */
+
+
 // A factory class for creating vertical layout constraint objects using a fluent API.
 //
 // adds type information to the methods inherited from . Specifically, the generic methods declared by must now take a matching object. For more information on using layout anchors, see .
@@ -112,25 +112,25 @@ func LayoutYAxisAnchorFrom(ptr unsafe.Pointer) LayoutYAxisAnchor {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for LayoutYAxisAnchor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for LayoutYAxisAnchor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for LayoutYAxisAnchor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for LayoutYAxisAnchor */
+
+
+
+
+
+
+
 
 // Creates a layout dimension object from two anchors.
 //
@@ -139,7 +139,7 @@ func LayoutYAxisAnchorFrom(ptr unsafe.Pointer) LayoutYAxisAnchor {
 func (l_ LayoutYAxisAnchor) AnchorWithOffsetToAnchor(otherAnchor ILayoutYAxisAnchor) ILayoutDimension {
 	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("anchorWithOffsetToAnchor:"), otherAnchor)
 	return rv
-}/* debug [instance_methods/method]: AnchorWithOffsetToAnchor */
+}
 
 
 // Returns a constraint that defines the specific distance at which the current anchor is positioned below the specified anchor.
@@ -149,7 +149,7 @@ func (l_ LayoutYAxisAnchor) AnchorWithOffsetToAnchor(otherAnchor ILayoutYAxisAnc
 func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint {
 	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
 	return rv
-}/* debug [instance_methods/method]: ConstraintEqualToSystemSpacingBelowAnchorMultiplier */
+}
 
 
 // Returns a constraint that defines the minimum distance by which the current anchor is positioned below the specified anchor.
@@ -159,7 +159,7 @@ func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(
 func (l_ LayoutYAxisAnchor) ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint {
 	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
 	return rv
-}/* debug [instance_methods/method]: ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier */
+}
 
 
 // Returns a constraint that defines the maximum distance by which the current anchor is positioned below the specified anchor.
@@ -169,17 +169,17 @@ func (l_ LayoutYAxisAnchor) ConstraintGreaterThanOrEqualToSystemSpacingBelowAnch
 func (l_ LayoutYAxisAnchor) ConstraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint {
 	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
 	return rv
-}/* debug [instance_methods/method]: ConstraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for LayoutYAxisAnchor */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NSLayoutYAxisAnchor */
+
+
+
+
+
 
 
 

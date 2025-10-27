@@ -52,8 +52,8 @@ type IDetectHumanBodyPoseRequest interface {
 	
 
 	// methods:
-	SupportedJointNamesAndReturnError(error_ objectivec.IObject) []string
-	SupportedJointsGroupNamesAndReturnError(error_ objectivec.IObject) []string
+	SupportedJointNamesAndReturnError(error_ foundation.foundation.INSError) []string
+	SupportedJointsGroupNamesAndReturnError(error_ foundation.foundation.INSError) []string
 
 
 }
@@ -131,7 +131,7 @@ func DetectHumanBodyPoseRequestFrom(ptr unsafe.Pointer) DetectHumanBodyPoseReque
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanBodyPoseRequest/supportedJointNames(forRevision:)
-func (dc _DetectHumanBodyPoseRequestClass) SupportedJointNamesForRevisionError(revision uint, error_ objectivec.IObject) []string {
+func (dc _DetectHumanBodyPoseRequestClass) SupportedJointNamesForRevisionError(revision uint, error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("supportedJointNamesForRevision:error:"), revision, error_)
 	return rv
 }
@@ -141,7 +141,7 @@ func (dc _DetectHumanBodyPoseRequestClass) SupportedJointNamesForRevisionError(r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanBodyPoseRequest/supportedJointsGroupNames(forRevision:)
-func (dc _DetectHumanBodyPoseRequestClass) SupportedJointsGroupNamesForRevisionError(revision uint, error_ objectivec.IObject) []string {
+func (dc _DetectHumanBodyPoseRequestClass) SupportedJointsGroupNamesForRevisionError(revision uint, error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("supportedJointsGroupNamesForRevision:error:"), revision, error_)
 	return rv
 }
@@ -161,7 +161,7 @@ func (dc _DetectHumanBodyPoseRequestClass) SupportedJointsGroupNamesForRevisionE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanBodyPoseRequest/supportedJointNamesAndReturnError:
-func (d_ DetectHumanBodyPoseRequest) SupportedJointNamesAndReturnError(error_ objectivec.IObject) []string {
+func (d_ DetectHumanBodyPoseRequest) SupportedJointNamesAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedJointNamesAndReturnError:"), error_)
 	return rv
 }
@@ -171,7 +171,7 @@ func (d_ DetectHumanBodyPoseRequest) SupportedJointNamesAndReturnError(error_ ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanBodyPoseRequest/supportedJointsGroupNamesAndReturnError:
-func (d_ DetectHumanBodyPoseRequest) SupportedJointsGroupNamesAndReturnError(error_ objectivec.IObject) []string {
+func (d_ DetectHumanBodyPoseRequest) SupportedJointsGroupNamesAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedJointsGroupNamesAndReturnError:"), error_)
 	return rv
 }

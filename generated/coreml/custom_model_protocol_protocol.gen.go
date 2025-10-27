@@ -26,9 +26,9 @@ import (
 // See: doc://com.apple.coreml/documentation/CoreML/MLCustomModel
 type PCustomModel interface {
 	// Required methods
-	InitWithModelDescriptionParameterDictionaryError(modelDescription IMLModelDescription, parameters foundation.IDictionary, error_ objectivec.IObject) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithModelDescriptionParameterDictionaryError */
-	PredictionFromFeaturesOptionsError(input unsafe.Pointer, options IMLPredictionOptions, error_ objectivec.IObject) unsafe.Pointer/* debug [protocol_interface/required_method]: PredictionFromFeaturesOptionsError */
+	InitWithModelDescriptionParameterDictionaryError(modelDescription IMLModelDescription, parameters foundation.IDictionary, error_ foundation.foundation.INSError) objectivec.IObject
+	PredictionFromFeaturesOptionsError(input unsafe.Pointer, options IMLPredictionOptions, error_ foundation.foundation.INSError) unsafe.Pointer
 	// Optional methods
-	PredictionsFromBatchOptionsError(inputBatch unsafe.Pointer, options IMLPredictionOptions, error_ objectivec.IObject) unsafe.Pointer
+	PredictionsFromBatchOptionsError(inputBatch unsafe.Pointer, options IMLPredictionOptions, error_ foundation.foundation.INSError) unsafe.Pointer
 	HasPredictionsFromBatchOptionsError() bool
 }

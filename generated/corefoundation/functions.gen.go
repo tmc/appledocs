@@ -2,7 +2,7 @@
 
 package corefoundation
 
-/* debug [functions.gen.go]: Generating 825 functions for CoreFoundation */
+
 import (
 	"unsafe"
 
@@ -1700,7 +1700,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeAddGregorianUnits(_:_:_:)
 func CFAbsoluteTimeAddGregorianUnits(at AbsoluteTime, tz TimeZoneRef, units GregorianUnits) AbsoluteTime {
 	return _CFAbsoluteTimeAddGregorianUnits(at, tz, units)
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeAddGregorianUnits */
+}
 
 // Returns the current system absolute time.
 //
@@ -1711,7 +1711,7 @@ func CFAbsoluteTimeAddGregorianUnits(at AbsoluteTime, tz TimeZoneRef, units Greg
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetCurrent()
 func CFAbsoluteTimeGetCurrent() AbsoluteTime {
 	return _CFAbsoluteTimeGetCurrent()
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeGetCurrent */
+}
 
 // Returns an integer representing the day of the week indicated by the specified absolute time.
 //
@@ -1724,7 +1724,7 @@ func CFAbsoluteTimeGetCurrent() AbsoluteTime {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDayOfWeek(_:_:)
 func CFAbsoluteTimeGetDayOfWeek(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetDayOfWeek(at, tz)
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeGetDayOfWeek */
+}
 
 // Returns an integer representing the day of the year indicated by the specified absolute time.
 //
@@ -1737,7 +1737,7 @@ func CFAbsoluteTimeGetDayOfWeek(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDayOfYear(_:_:)
 func CFAbsoluteTimeGetDayOfYear(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetDayOfYear(at, tz)
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeGetDayOfYear */
+}
 
 // Computes the time difference between two specified absolute times and returns the result as an interval in Gregorian units.
 //
@@ -1750,7 +1750,7 @@ func CFAbsoluteTimeGetDayOfYear(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDifferenceAsGregorianUnits(_:_:_:_:)
 func CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1 AbsoluteTime, at2 AbsoluteTime, tz TimeZoneRef, unitFlags OptionFlags) GregorianUnits {
 	return _CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1, at2, tz, unitFlags)
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeGetDifferenceAsGregorianUnits */
+}
 
 // Converts an absolute time value into a Gregorian date.
 //
@@ -1763,7 +1763,7 @@ func CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1 AbsoluteTime, at2 AbsoluteT
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetGregorianDate(_:_:)
 func CFAbsoluteTimeGetGregorianDate(at AbsoluteTime, tz TimeZoneRef) GregorianDate {
 	return _CFAbsoluteTimeGetGregorianDate(at, tz)
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeGetGregorianDate */
+}
 
 // Returns an integer representing the week of the year indicated by the specified absolute time.
 //
@@ -1776,7 +1776,7 @@ func CFAbsoluteTimeGetGregorianDate(at AbsoluteTime, tz TimeZoneRef) GregorianDa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetWeekOfYear(_:_:)
 func CFAbsoluteTimeGetWeekOfYear(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetWeekOfYear(at, tz)
-}/* debug [functions.gen.go/function]: CFAbsoluteTimeGetWeekOfYear */
+}
 
 // Allocates memory using the specified allocator.
 //
@@ -1787,7 +1787,7 @@ func CFAbsoluteTimeGetWeekOfYear(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocate(_:_:_:)
 func CFAllocatorAllocate(allocator AllocatorRef, size Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorAllocate(allocator, size, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorAllocate */
+}
 
 // CFAllocatorAllocateBytes is a CoreFoundation function.
 //
@@ -1796,7 +1796,7 @@ func CFAllocatorAllocate(allocator AllocatorRef, size Index, hint OptionFlags) u
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocateBytes(_:_:_:)
 func CFAllocatorAllocateBytes(allocator AllocatorRef, size Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorAllocateBytes(allocator, size, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorAllocateBytes */
+}
 
 // CFAllocatorAllocateTyped is a CoreFoundation function.
 //
@@ -1805,7 +1805,7 @@ func CFAllocatorAllocateBytes(allocator AllocatorRef, size Index, hint OptionFla
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocateTyped(_:_:_:_:)
 func CFAllocatorAllocateTyped(allocator AllocatorRef, size Index, descriptor AllocatorTypeID, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorAllocateTyped(allocator, size, descriptor, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorAllocateTyped */
+}
 
 // Creates an allocator object.
 //
@@ -1816,7 +1816,7 @@ func CFAllocatorAllocateTyped(allocator AllocatorRef, size Index, descriptor All
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorCreate(_:_:)
 func CFAllocatorCreate(allocator AllocatorRef, context unsafe.Pointer) AllocatorRef {
 	return _CFAllocatorCreate(allocator, context)
-}/* debug [functions.gen.go/function]: CFAllocatorCreate */
+}
 
 // CFAllocatorCreateWithZone is a CoreFoundation function.
 
@@ -1824,7 +1824,7 @@ func CFAllocatorCreate(allocator AllocatorRef, context unsafe.Pointer) Allocator
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorCreateWithZone
 func CFAllocatorCreateWithZone(allocator AllocatorRef, zone unsafe.Pointer) AllocatorRef {
 	return _CFAllocatorCreateWithZone(allocator, zone)
-}/* debug [functions.gen.go/function]: CFAllocatorCreateWithZone */
+}
 
 // Deallocates a block of memory with a given allocator.
 //
@@ -1835,7 +1835,7 @@ func CFAllocatorCreateWithZone(allocator AllocatorRef, zone unsafe.Pointer) Allo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorDeallocate(_:_:)
 func CFAllocatorDeallocate(allocator AllocatorRef, ptr unsafe.Pointer) {
 	_CFAllocatorDeallocate(allocator, ptr)
-}/* debug [functions.gen.go/function]: CFAllocatorDeallocate */
+}
 
 // Obtains the context of the specified allocator or of the default allocator.
 //
@@ -1846,7 +1846,7 @@ func CFAllocatorDeallocate(allocator AllocatorRef, ptr unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetContext(_:_:)
 func CFAllocatorGetContext(allocator AllocatorRef, context unsafe.Pointer) {
 	_CFAllocatorGetContext(allocator, context)
-}/* debug [functions.gen.go/function]: CFAllocatorGetContext */
+}
 
 // Gets the default allocator object for the current thread.
 //
@@ -1857,7 +1857,7 @@ func CFAllocatorGetContext(allocator AllocatorRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetDefault()
 func CFAllocatorGetDefault() AllocatorRef {
 	return _CFAllocatorGetDefault()
-}/* debug [functions.gen.go/function]: CFAllocatorGetDefault */
+}
 
 // Obtains the number of bytes likely to be allocated upon a specific request.
 //
@@ -1868,7 +1868,7 @@ func CFAllocatorGetDefault() AllocatorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetPreferredSizeForSize(_:_:_:)
 func CFAllocatorGetPreferredSizeForSize(allocator AllocatorRef, size Index, hint OptionFlags) Index {
 	return _CFAllocatorGetPreferredSizeForSize(allocator, size, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorGetPreferredSizeForSize */
+}
 
 // Returns the type identifier for the CFAllocator opaque type.
 //
@@ -1879,7 +1879,7 @@ func CFAllocatorGetPreferredSizeForSize(allocator AllocatorRef, size Index, hint
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetTypeID()
 func CFAllocatorGetTypeID() TypeID {
 	return _CFAllocatorGetTypeID()
-}/* debug [functions.gen.go/function]: CFAllocatorGetTypeID */
+}
 
 // Reallocates memory using the specified allocator.
 //
@@ -1890,7 +1890,7 @@ func CFAllocatorGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocate(_:_:_:_:)
 func CFAllocatorReallocate(allocator AllocatorRef, ptr unsafe.Pointer, newsize Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorReallocate(allocator, ptr, newsize, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorReallocate */
+}
 
 // CFAllocatorReallocateBytes is a CoreFoundation function.
 //
@@ -1899,7 +1899,7 @@ func CFAllocatorReallocate(allocator AllocatorRef, ptr unsafe.Pointer, newsize I
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocateBytes(_:_:_:_:)
 func CFAllocatorReallocateBytes(allocator AllocatorRef, ptr unsafe.Pointer, newsize Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorReallocateBytes(allocator, ptr, newsize, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorReallocateBytes */
+}
 
 // CFAllocatorReallocateTyped is a CoreFoundation function.
 //
@@ -1908,7 +1908,7 @@ func CFAllocatorReallocateBytes(allocator AllocatorRef, ptr unsafe.Pointer, news
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocateTyped(_:_:_:_:_:)
 func CFAllocatorReallocateTyped(allocator AllocatorRef, ptr unsafe.Pointer, newsize Index, descriptor AllocatorTypeID, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorReallocateTyped(allocator, ptr, newsize, descriptor, hint)
-}/* debug [functions.gen.go/function]: CFAllocatorReallocateTyped */
+}
 
 // Sets the given allocator as the default for the current thread.
 //
@@ -1919,7 +1919,7 @@ func CFAllocatorReallocateTyped(allocator AllocatorRef, ptr unsafe.Pointer, news
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorSetDefault(_:)
 func CFAllocatorSetDefault(allocator AllocatorRef) {
 	_CFAllocatorSetDefault(allocator)
-}/* debug [functions.gen.go/function]: CFAllocatorSetDefault */
+}
 
 // Adds the values from one array to another array.
 //
@@ -1930,7 +1930,7 @@ func CFAllocatorSetDefault(allocator AllocatorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayAppendArray(_:_:_:)
 func CFArrayAppendArray(theArray MutableArrayRef, otherArray ArrayRef, otherRange Range) {
 	_CFArrayAppendArray(theArray, otherArray, otherRange)
-}/* debug [functions.gen.go/function]: CFArrayAppendArray */
+}
 
 // Adds a value to an array giving it the new largest index.
 //
@@ -1941,7 +1941,7 @@ func CFArrayAppendArray(theArray MutableArrayRef, otherArray ArrayRef, otherRang
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayAppendValue(_:_:)
 func CFArrayAppendValue(theArray MutableArrayRef, value unsafe.Pointer) {
 	_CFArrayAppendValue(theArray, value)
-}/* debug [functions.gen.go/function]: CFArrayAppendValue */
+}
 
 // Calls a function once for each element in range in an array.
 //
@@ -1952,7 +1952,7 @@ func CFArrayAppendValue(theArray MutableArrayRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayApplyFunction(_:_:_:_:)
 func CFArrayApplyFunction(theArray ArrayRef, range_ Range, applier ArrayApplierFunction, context unsafe.Pointer) {
 	_CFArrayApplyFunction(theArray, range_, applier, context)
-}/* debug [functions.gen.go/function]: CFArrayApplyFunction */
+}
 
 // Searches an array for a value using a binary search algorithm.
 //
@@ -1963,7 +1963,7 @@ func CFArrayApplyFunction(theArray ArrayRef, range_ Range, applier ArrayApplierF
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayBSearchValues(_:_:_:_:_:)
 func CFArrayBSearchValues(theArray ArrayRef, range_ Range, value unsafe.Pointer, comparator ComparatorFunction, context unsafe.Pointer) Index {
 	return _CFArrayBSearchValues(theArray, range_, value, comparator, context)
-}/* debug [functions.gen.go/function]: CFArrayBSearchValues */
+}
 
 // Reports whether or not a value is in an array.
 //
@@ -1974,7 +1974,7 @@ func CFArrayBSearchValues(theArray ArrayRef, range_ Range, value unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayContainsValue(_:_:_:)
 func CFArrayContainsValue(theArray ArrayRef, range_ Range, value unsafe.Pointer) unsafe.Pointer {
 	return _CFArrayContainsValue(theArray, range_, value)
-}/* debug [functions.gen.go/function]: CFArrayContainsValue */
+}
 
 // Creates a new immutable array with the given values.
 //
@@ -1985,7 +1985,7 @@ func CFArrayContainsValue(theArray ArrayRef, range_ Range, value unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreate(_:_:_:_:)
 func CFArrayCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index, callBacks unsafe.Pointer) ArrayRef {
 	return _CFArrayCreate(allocator, values, numValues, callBacks)
-}/* debug [functions.gen.go/function]: CFArrayCreate */
+}
 
 // Creates a new immutable array with the values from another array.
 //
@@ -1996,7 +1996,7 @@ func CFArrayCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Inde
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateCopy(_:_:)
 func CFArrayCreateCopy(allocator AllocatorRef, theArray ArrayRef) ArrayRef {
 	return _CFArrayCreateCopy(allocator, theArray)
-}/* debug [functions.gen.go/function]: CFArrayCreateCopy */
+}
 
 // Creates a new empty mutable array.
 //
@@ -2007,7 +2007,7 @@ func CFArrayCreateCopy(allocator AllocatorRef, theArray ArrayRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateMutable(_:_:_:)
 func CFArrayCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer) MutableArrayRef {
 	return _CFArrayCreateMutable(allocator, capacity, callBacks)
-}/* debug [functions.gen.go/function]: CFArrayCreateMutable */
+}
 
 // Creates a new mutable array with the values from another array.
 //
@@ -2018,7 +2018,7 @@ func CFArrayCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateMutableCopy(_:_:_:)
 func CFArrayCreateMutableCopy(allocator AllocatorRef, capacity Index, theArray ArrayRef) MutableArrayRef {
 	return _CFArrayCreateMutableCopy(allocator, capacity, theArray)
-}/* debug [functions.gen.go/function]: CFArrayCreateMutableCopy */
+}
 
 // Exchanges the values at two indices of an array.
 //
@@ -2029,7 +2029,7 @@ func CFArrayCreateMutableCopy(allocator AllocatorRef, capacity Index, theArray A
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayExchangeValuesAtIndices(_:_:_:)
 func CFArrayExchangeValuesAtIndices(theArray MutableArrayRef, idx1 Index, idx2 Index) {
 	_CFArrayExchangeValuesAtIndices(theArray, idx1, idx2)
-}/* debug [functions.gen.go/function]: CFArrayExchangeValuesAtIndices */
+}
 
 // Returns the number of values currently in an array.
 //
@@ -2040,7 +2040,7 @@ func CFArrayExchangeValuesAtIndices(theArray MutableArrayRef, idx1 Index, idx2 I
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetCount(_:)
 func CFArrayGetCount(theArray ArrayRef) Index {
 	return _CFArrayGetCount(theArray)
-}/* debug [functions.gen.go/function]: CFArrayGetCount */
+}
 
 // Counts the number of times a given value occurs in an array.
 //
@@ -2051,7 +2051,7 @@ func CFArrayGetCount(theArray ArrayRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetCountOfValue(_:_:_:)
 func CFArrayGetCountOfValue(theArray ArrayRef, range_ Range, value unsafe.Pointer) Index {
 	return _CFArrayGetCountOfValue(theArray, range_, value)
-}/* debug [functions.gen.go/function]: CFArrayGetCountOfValue */
+}
 
 // Searches an array forward for a value.
 //
@@ -2062,7 +2062,7 @@ func CFArrayGetCountOfValue(theArray ArrayRef, range_ Range, value unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetFirstIndexOfValue(_:_:_:)
 func CFArrayGetFirstIndexOfValue(theArray ArrayRef, range_ Range, value unsafe.Pointer) Index {
 	return _CFArrayGetFirstIndexOfValue(theArray, range_, value)
-}/* debug [functions.gen.go/function]: CFArrayGetFirstIndexOfValue */
+}
 
 // Searches an array backward for a value.
 //
@@ -2073,7 +2073,7 @@ func CFArrayGetFirstIndexOfValue(theArray ArrayRef, range_ Range, value unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetLastIndexOfValue(_:_:_:)
 func CFArrayGetLastIndexOfValue(theArray ArrayRef, range_ Range, value unsafe.Pointer) Index {
 	return _CFArrayGetLastIndexOfValue(theArray, range_, value)
-}/* debug [functions.gen.go/function]: CFArrayGetLastIndexOfValue */
+}
 
 // Returns the type identifier for the CFArray opaque type.
 //
@@ -2084,7 +2084,7 @@ func CFArrayGetLastIndexOfValue(theArray ArrayRef, range_ Range, value unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetTypeID()
 func CFArrayGetTypeID() TypeID {
 	return _CFArrayGetTypeID()
-}/* debug [functions.gen.go/function]: CFArrayGetTypeID */
+}
 
 // Retrieves a value at a given index.
 //
@@ -2095,7 +2095,7 @@ func CFArrayGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetValueAtIndex(_:_:)
 func CFArrayGetValueAtIndex(theArray ArrayRef, idx Index) unsafe.Pointer {
 	return _CFArrayGetValueAtIndex(theArray, idx)
-}/* debug [functions.gen.go/function]: CFArrayGetValueAtIndex */
+}
 
 // Fills a buffer with values from an array.
 //
@@ -2106,7 +2106,7 @@ func CFArrayGetValueAtIndex(theArray ArrayRef, idx Index) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetValues(_:_:_:)
 func CFArrayGetValues(theArray ArrayRef, range_ Range, values unsafe.Pointer) {
 	_CFArrayGetValues(theArray, range_, values)
-}/* debug [functions.gen.go/function]: CFArrayGetValues */
+}
 
 // Inserts a value into an array at a given index.
 //
@@ -2117,7 +2117,7 @@ func CFArrayGetValues(theArray ArrayRef, range_ Range, values unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayInsertValueAtIndex(_:_:_:)
 func CFArrayInsertValueAtIndex(theArray MutableArrayRef, idx Index, value unsafe.Pointer) {
 	_CFArrayInsertValueAtIndex(theArray, idx, value)
-}/* debug [functions.gen.go/function]: CFArrayInsertValueAtIndex */
+}
 
 // Removes all the values from an array, making it empty.
 //
@@ -2128,7 +2128,7 @@ func CFArrayInsertValueAtIndex(theArray MutableArrayRef, idx Index, value unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRemoveAllValues(_:)
 func CFArrayRemoveAllValues(theArray MutableArrayRef) {
 	_CFArrayRemoveAllValues(theArray)
-}/* debug [functions.gen.go/function]: CFArrayRemoveAllValues */
+}
 
 // Removes the value at a given index from an array.
 //
@@ -2139,7 +2139,7 @@ func CFArrayRemoveAllValues(theArray MutableArrayRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRemoveValueAtIndex(_:_:)
 func CFArrayRemoveValueAtIndex(theArray MutableArrayRef, idx Index) {
 	_CFArrayRemoveValueAtIndex(theArray, idx)
-}/* debug [functions.gen.go/function]: CFArrayRemoveValueAtIndex */
+}
 
 // Replaces a range of values in an array.
 //
@@ -2150,7 +2150,7 @@ func CFArrayRemoveValueAtIndex(theArray MutableArrayRef, idx Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayReplaceValues(_:_:_:_:)
 func CFArrayReplaceValues(theArray MutableArrayRef, range_ Range, newValues unsafe.Pointer, newCount Index) {
 	_CFArrayReplaceValues(theArray, range_, newValues, newCount)
-}/* debug [functions.gen.go/function]: CFArrayReplaceValues */
+}
 
 // Changes the value at a given index in an array.
 //
@@ -2161,7 +2161,7 @@ func CFArrayReplaceValues(theArray MutableArrayRef, range_ Range, newValues unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArraySetValueAtIndex(_:_:_:)
 func CFArraySetValueAtIndex(theArray MutableArrayRef, idx Index, value unsafe.Pointer) {
 	_CFArraySetValueAtIndex(theArray, idx, value)
-}/* debug [functions.gen.go/function]: CFArraySetValueAtIndex */
+}
 
 // Sorts the values in an array using a given comparison function.
 //
@@ -2172,7 +2172,7 @@ func CFArraySetValueAtIndex(theArray MutableArrayRef, idx Index, value unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArraySortValues(_:_:_:_:)
 func CFArraySortValues(theArray MutableArrayRef, range_ Range, comparator ComparatorFunction, context unsafe.Pointer) {
 	_CFArraySortValues(theArray, range_, comparator, context)
-}/* debug [functions.gen.go/function]: CFArraySortValues */
+}
 
 // Defers internal consistency-checking and coalescing for a mutable attributed string.
 //
@@ -2183,7 +2183,7 @@ func CFArraySortValues(theArray MutableArrayRef, range_ Range, comparator Compar
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringBeginEditing(_:)
 func CFAttributedStringBeginEditing(aStr MutableAttributedStringRef) {
 	_CFAttributedStringBeginEditing(aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringBeginEditing */
+}
 
 // Creates an attributed string with specified string and attributes.
 //
@@ -2194,7 +2194,7 @@ func CFAttributedStringBeginEditing(aStr MutableAttributedStringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreate(_:_:_:)
 func CFAttributedStringCreate(alloc AllocatorRef, str StringRef, attributes DictionaryRef) AttributedStringRef {
 	return _CFAttributedStringCreate(alloc, str, attributes)
-}/* debug [functions.gen.go/function]: CFAttributedStringCreate */
+}
 
 // Creates an immutable copy of an attributed string.
 //
@@ -2205,7 +2205,7 @@ func CFAttributedStringCreate(alloc AllocatorRef, str StringRef, attributes Dict
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateCopy(_:_:)
 func CFAttributedStringCreateCopy(alloc AllocatorRef, aStr AttributedStringRef) AttributedStringRef {
 	return _CFAttributedStringCreateCopy(alloc, aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringCreateCopy */
+}
 
 // Creates a mutable attributed string.
 //
@@ -2216,7 +2216,7 @@ func CFAttributedStringCreateCopy(alloc AllocatorRef, aStr AttributedStringRef) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateMutable(_:_:)
 func CFAttributedStringCreateMutable(alloc AllocatorRef, maxLength Index) MutableAttributedStringRef {
 	return _CFAttributedStringCreateMutable(alloc, maxLength)
-}/* debug [functions.gen.go/function]: CFAttributedStringCreateMutable */
+}
 
 // Creates a mutable copy of an attributed string.
 //
@@ -2227,7 +2227,7 @@ func CFAttributedStringCreateMutable(alloc AllocatorRef, maxLength Index) Mutabl
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateMutableCopy(_:_:_:)
 func CFAttributedStringCreateMutableCopy(alloc AllocatorRef, maxLength Index, aStr AttributedStringRef) MutableAttributedStringRef {
 	return _CFAttributedStringCreateMutableCopy(alloc, maxLength, aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringCreateMutableCopy */
+}
 
 // Creates a sub-attributed string from the specified range.
 //
@@ -2238,7 +2238,7 @@ func CFAttributedStringCreateMutableCopy(alloc AllocatorRef, maxLength Index, aS
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateWithSubstring(_:_:_:)
 func CFAttributedStringCreateWithSubstring(alloc AllocatorRef, aStr AttributedStringRef, range_ Range) AttributedStringRef {
 	return _CFAttributedStringCreateWithSubstring(alloc, aStr, range_)
-}/* debug [functions.gen.go/function]: CFAttributedStringCreateWithSubstring */
+}
 
 // Re-enables internal consistency-checking and coalescing for a mutable attributed string.
 //
@@ -2249,7 +2249,7 @@ func CFAttributedStringCreateWithSubstring(alloc AllocatorRef, aStr AttributedSt
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringEndEditing(_:)
 func CFAttributedStringEndEditing(aStr MutableAttributedStringRef) {
 	_CFAttributedStringEndEditing(aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringEndEditing */
+}
 
 // Returns the value of a given attribute of an attributed string at a specified location.
 //
@@ -2260,7 +2260,7 @@ func CFAttributedStringEndEditing(aStr MutableAttributedStringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttribute(_:_:_:_:)
 func CFAttributedStringGetAttribute(aStr AttributedStringRef, loc Index, attrName StringRef, effectiveRange unsafe.Pointer) TypeRef {
 	return _CFAttributedStringGetAttribute(aStr, loc, attrName, effectiveRange)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetAttribute */
+}
 
 // Returns the value of a given attribute of an attributed string at a specified location.
 //
@@ -2271,7 +2271,7 @@ func CFAttributedStringGetAttribute(aStr AttributedStringRef, loc Index, attrNam
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttributeAndLongestEffectiveRange(_:_:_:_:_:)
 func CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr AttributedStringRef, loc Index, attrName StringRef, inRange Range, longestEffectiveRange unsafe.Pointer) TypeRef {
 	return _CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr, loc, attrName, inRange, longestEffectiveRange)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetAttributeAndLongestEffectiveRange */
+}
 
 // Returns the attributes of an attributed string at a specified location.
 //
@@ -2282,7 +2282,7 @@ func CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr AttributedStrin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttributes(_:_:_:)
 func CFAttributedStringGetAttributes(aStr AttributedStringRef, loc Index, effectiveRange unsafe.Pointer) DictionaryRef {
 	return _CFAttributedStringGetAttributes(aStr, loc, effectiveRange)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetAttributes */
+}
 
 // Returns the attributes of an attributed string at a specified location.
 //
@@ -2293,7 +2293,7 @@ func CFAttributedStringGetAttributes(aStr AttributedStringRef, loc Index, effect
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttributesAndLongestEffectiveRange(_:_:_:_:)
 func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr AttributedStringRef, loc Index, inRange Range, longestEffectiveRange unsafe.Pointer) DictionaryRef {
 	return _CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr, loc, inRange, longestEffectiveRange)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetAttributesAndLongestEffectiveRange */
+}
 
 // CFAttributedStringGetBidiLevelsAndResolvedDirections is a CoreFoundation function.
 //
@@ -2302,7 +2302,7 @@ func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr AttributedStri
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetBidiLevelsAndResolvedDirections(_:_:_:_:_:)
 func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString AttributedStringRef, range_ Range, baseDirection int8, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetBidiLevelsAndResolvedDirections */
+}
 
 // Returns the length of the attributed string in characters.
 //
@@ -2313,7 +2313,7 @@ func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString Attri
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetLength(_:)
 func CFAttributedStringGetLength(aStr AttributedStringRef) Index {
 	return _CFAttributedStringGetLength(aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetLength */
+}
 
 // Gets as a mutable string the string for an attributed string.
 //
@@ -2324,7 +2324,7 @@ func CFAttributedStringGetLength(aStr AttributedStringRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetMutableString(_:)
 func CFAttributedStringGetMutableString(aStr MutableAttributedStringRef) MutableStringRef {
 	return _CFAttributedStringGetMutableString(aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetMutableString */
+}
 
 // CFAttributedStringGetStatisticalWritingDirections is a CoreFoundation function.
 //
@@ -2333,7 +2333,7 @@ func CFAttributedStringGetMutableString(aStr MutableAttributedStringRef) Mutable
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetStatisticalWritingDirections(_:_:_:_:_:)
 func CFAttributedStringGetStatisticalWritingDirections(attributedString AttributedStringRef, range_ Range, baseDirection int8, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetStatisticalWritingDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetStatisticalWritingDirections */
+}
 
 // Returns the string for an attributed string.
 //
@@ -2344,7 +2344,7 @@ func CFAttributedStringGetStatisticalWritingDirections(attributedString Attribut
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetString(_:)
 func CFAttributedStringGetString(aStr AttributedStringRef) StringRef {
 	return _CFAttributedStringGetString(aStr)
-}/* debug [functions.gen.go/function]: CFAttributedStringGetString */
+}
 
 // Returns the type identifier for the CFAttributedString opaque type.
 //
@@ -2355,7 +2355,7 @@ func CFAttributedStringGetString(aStr AttributedStringRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetTypeID()
 func CFAttributedStringGetTypeID() TypeID {
 	return _CFAttributedStringGetTypeID()
-}/* debug [functions.gen.go/function]: CFAttributedStringGetTypeID */
+}
 
 // Removes the value of a single attribute over a specified range.
 //
@@ -2366,7 +2366,7 @@ func CFAttributedStringGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringRemoveAttribute(_:_:_:)
 func CFAttributedStringRemoveAttribute(aStr MutableAttributedStringRef, range_ Range, attrName StringRef) {
 	_CFAttributedStringRemoveAttribute(aStr, range_, attrName)
-}/* debug [functions.gen.go/function]: CFAttributedStringRemoveAttribute */
+}
 
 // Replaces the attributed substring over a range with another attributed string.
 //
@@ -2377,7 +2377,7 @@ func CFAttributedStringRemoveAttribute(aStr MutableAttributedStringRef, range_ R
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringReplaceAttributedString(_:_:_:)
 func CFAttributedStringReplaceAttributedString(aStr MutableAttributedStringRef, range_ Range, replacement AttributedStringRef) {
 	_CFAttributedStringReplaceAttributedString(aStr, range_, replacement)
-}/* debug [functions.gen.go/function]: CFAttributedStringReplaceAttributedString */
+}
 
 // Modifies the string of an attributed string.
 //
@@ -2388,7 +2388,7 @@ func CFAttributedStringReplaceAttributedString(aStr MutableAttributedStringRef, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringReplaceString(_:_:_:)
 func CFAttributedStringReplaceString(aStr MutableAttributedStringRef, range_ Range, replacement StringRef) {
 	_CFAttributedStringReplaceString(aStr, range_, replacement)
-}/* debug [functions.gen.go/function]: CFAttributedStringReplaceString */
+}
 
 // Sets the value of a single attribute over the specified range.
 //
@@ -2399,7 +2399,7 @@ func CFAttributedStringReplaceString(aStr MutableAttributedStringRef, range_ Ran
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringSetAttribute(_:_:_:_:)
 func CFAttributedStringSetAttribute(aStr MutableAttributedStringRef, range_ Range, attrName StringRef, value TypeRef) {
 	_CFAttributedStringSetAttribute(aStr, range_, attrName, value)
-}/* debug [functions.gen.go/function]: CFAttributedStringSetAttribute */
+}
 
 // Sets the value of attributes of a mutable attributed string over a specified range.
 //
@@ -2410,7 +2410,7 @@ func CFAttributedStringSetAttribute(aStr MutableAttributedStringRef, range_ Rang
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringSetAttributes(_:_:_:_:)
 func CFAttributedStringSetAttributes(aStr MutableAttributedStringRef, range_ Range, replacement DictionaryRef, clearOtherAttributes unsafe.Pointer) {
 	_CFAttributedStringSetAttributes(aStr, range_, replacement, clearOtherAttributes)
-}/* debug [functions.gen.go/function]: CFAttributedStringSetAttributes */
+}
 
 // CFAutorelease is a CoreFoundation function.
 //
@@ -2419,7 +2419,7 @@ func CFAttributedStringSetAttributes(aStr MutableAttributedStringRef, range_ Ran
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAutorelease
 func CFAutorelease(arg TypeRef) TypeRef {
 	return _CFAutorelease(arg)
-}/* debug [functions.gen.go/function]: CFAutorelease */
+}
 
 // Adds a value to a mutable bag.
 //
@@ -2430,7 +2430,7 @@ func CFAutorelease(arg TypeRef) TypeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagAddValue(_:_:)
 func CFBagAddValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagAddValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagAddValue */
+}
 
 // Calls a function once for each value in a bag.
 //
@@ -2441,7 +2441,7 @@ func CFBagAddValue(theBag MutableBagRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagApplyFunction(_:_:_:)
 func CFBagApplyFunction(theBag BagRef, applier BagApplierFunction, context unsafe.Pointer) {
 	_CFBagApplyFunction(theBag, applier, context)
-}/* debug [functions.gen.go/function]: CFBagApplyFunction */
+}
 
 // Reports whether or not a value is in a bag.
 //
@@ -2452,7 +2452,7 @@ func CFBagApplyFunction(theBag BagRef, applier BagApplierFunction, context unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagContainsValue(_:_:)
 func CFBagContainsValue(theBag BagRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBagContainsValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagContainsValue */
+}
 
 // Creates an immutable bag containing specified values.
 //
@@ -2463,7 +2463,7 @@ func CFBagContainsValue(theBag BagRef, value unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreate(_:_:_:_:)
 func CFBagCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index, callBacks unsafe.Pointer) BagRef {
 	return _CFBagCreate(allocator, values, numValues, callBacks)
-}/* debug [functions.gen.go/function]: CFBagCreate */
+}
 
 // Creates an immutable bag with the values of another bag.
 //
@@ -2474,7 +2474,7 @@ func CFBagCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateCopy(_:_:)
 func CFBagCreateCopy(allocator AllocatorRef, theBag BagRef) BagRef {
 	return _CFBagCreateCopy(allocator, theBag)
-}/* debug [functions.gen.go/function]: CFBagCreateCopy */
+}
 
 // Creates a new empty mutable bag.
 //
@@ -2485,7 +2485,7 @@ func CFBagCreateCopy(allocator AllocatorRef, theBag BagRef) BagRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateMutable(_:_:_:)
 func CFBagCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer) MutableBagRef {
 	return _CFBagCreateMutable(allocator, capacity, callBacks)
-}/* debug [functions.gen.go/function]: CFBagCreateMutable */
+}
 
 // Creates a new mutable bag with the values from another bag.
 //
@@ -2496,7 +2496,7 @@ func CFBagCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateMutableCopy(_:_:_:)
 func CFBagCreateMutableCopy(allocator AllocatorRef, capacity Index, theBag BagRef) MutableBagRef {
 	return _CFBagCreateMutableCopy(allocator, capacity, theBag)
-}/* debug [functions.gen.go/function]: CFBagCreateMutableCopy */
+}
 
 // Returns the number of values currently in a bag.
 //
@@ -2507,7 +2507,7 @@ func CFBagCreateMutableCopy(allocator AllocatorRef, capacity Index, theBag BagRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetCount(_:)
 func CFBagGetCount(theBag BagRef) Index {
 	return _CFBagGetCount(theBag)
-}/* debug [functions.gen.go/function]: CFBagGetCount */
+}
 
 // Returns the number of times a value occurs in a bag.
 //
@@ -2518,7 +2518,7 @@ func CFBagGetCount(theBag BagRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetCountOfValue(_:_:)
 func CFBagGetCountOfValue(theBag BagRef, value unsafe.Pointer) Index {
 	return _CFBagGetCountOfValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagGetCountOfValue */
+}
 
 // Returns the type identifier for the CFBag opaque type.
 //
@@ -2529,7 +2529,7 @@ func CFBagGetCountOfValue(theBag BagRef, value unsafe.Pointer) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetTypeID()
 func CFBagGetTypeID() TypeID {
 	return _CFBagGetTypeID()
-}/* debug [functions.gen.go/function]: CFBagGetTypeID */
+}
 
 // Returns a requested value from a bag.
 //
@@ -2540,7 +2540,7 @@ func CFBagGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValue(_:_:)
 func CFBagGetValue(theBag BagRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBagGetValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagGetValue */
+}
 
 // Reports whether or not a value is in a bag, and returns that value indirectly if it exists.
 //
@@ -2551,7 +2551,7 @@ func CFBagGetValue(theBag BagRef, value unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValueIfPresent(_:_:_:)
 func CFBagGetValueIfPresent(theBag BagRef, candidate unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBagGetValueIfPresent(theBag, candidate, value)
-}/* debug [functions.gen.go/function]: CFBagGetValueIfPresent */
+}
 
 // Fills a buffer with values from a bag.
 //
@@ -2562,7 +2562,7 @@ func CFBagGetValueIfPresent(theBag BagRef, candidate unsafe.Pointer, value unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValues(_:_:)
 func CFBagGetValues(theBag BagRef, values unsafe.Pointer) {
 	_CFBagGetValues(theBag, values)
-}/* debug [functions.gen.go/function]: CFBagGetValues */
+}
 
 // Removes all values from a mutable bag.
 //
@@ -2573,7 +2573,7 @@ func CFBagGetValues(theBag BagRef, values unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRemoveAllValues(_:)
 func CFBagRemoveAllValues(theBag MutableBagRef) {
 	_CFBagRemoveAllValues(theBag)
-}/* debug [functions.gen.go/function]: CFBagRemoveAllValues */
+}
 
 // Removes a value from a mutable bag.
 //
@@ -2584,7 +2584,7 @@ func CFBagRemoveAllValues(theBag MutableBagRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRemoveValue(_:_:)
 func CFBagRemoveValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagRemoveValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagRemoveValue */
+}
 
 // Replaces a value in a mutable bag.
 //
@@ -2595,7 +2595,7 @@ func CFBagRemoveValue(theBag MutableBagRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagReplaceValue(_:_:)
 func CFBagReplaceValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagReplaceValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagReplaceValue */
+}
 
 // Sets a value in a mutable bag.
 //
@@ -2606,7 +2606,7 @@ func CFBagReplaceValue(theBag MutableBagRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagSetValue(_:_:)
 func CFBagSetValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagSetValue(theBag, value)
-}/* debug [functions.gen.go/function]: CFBagSetValue */
+}
 
 // Adds a value to a binary heap.
 //
@@ -2617,7 +2617,7 @@ func CFBagSetValue(theBag MutableBagRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapAddValue(_:_:)
 func CFBinaryHeapAddValue(heap BinaryHeapRef, value unsafe.Pointer) {
 	_CFBinaryHeapAddValue(heap, value)
-}/* debug [functions.gen.go/function]: CFBinaryHeapAddValue */
+}
 
 // Iteratively applies a function to all the values in a binary heap.
 //
@@ -2628,7 +2628,7 @@ func CFBinaryHeapAddValue(heap BinaryHeapRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapApplyFunction(_:_:_:)
 func CFBinaryHeapApplyFunction(heap BinaryHeapRef, applier BinaryHeapApplierFunction, context unsafe.Pointer) {
 	_CFBinaryHeapApplyFunction(heap, applier, context)
-}/* debug [functions.gen.go/function]: CFBinaryHeapApplyFunction */
+}
 
 // Returns whether a given value is in a binary heap.
 //
@@ -2639,7 +2639,7 @@ func CFBinaryHeapApplyFunction(heap BinaryHeapRef, applier BinaryHeapApplierFunc
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapContainsValue(_:_:)
 func CFBinaryHeapContainsValue(heap BinaryHeapRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBinaryHeapContainsValue(heap, value)
-}/* debug [functions.gen.go/function]: CFBinaryHeapContainsValue */
+}
 
 // Creates a new mutable or fixed-mutable binary heap.
 //
@@ -2650,7 +2650,7 @@ func CFBinaryHeapContainsValue(heap BinaryHeapRef, value unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapCreate(_:_:_:_:)
 func CFBinaryHeapCreate(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer, compareContext unsafe.Pointer) BinaryHeapRef {
 	return _CFBinaryHeapCreate(allocator, capacity, callBacks, compareContext)
-}/* debug [functions.gen.go/function]: CFBinaryHeapCreate */
+}
 
 // Creates a new mutable or fixed-mutable binary heap with the values from a pre-existing binary heap.
 //
@@ -2661,7 +2661,7 @@ func CFBinaryHeapCreate(allocator AllocatorRef, capacity Index, callBacks unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapCreateCopy(_:_:_:)
 func CFBinaryHeapCreateCopy(allocator AllocatorRef, capacity Index, heap BinaryHeapRef) BinaryHeapRef {
 	return _CFBinaryHeapCreateCopy(allocator, capacity, heap)
-}/* debug [functions.gen.go/function]: CFBinaryHeapCreateCopy */
+}
 
 // Returns the number of values currently in a binary heap.
 //
@@ -2672,7 +2672,7 @@ func CFBinaryHeapCreateCopy(allocator AllocatorRef, capacity Index, heap BinaryH
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetCount(_:)
 func CFBinaryHeapGetCount(heap BinaryHeapRef) Index {
 	return _CFBinaryHeapGetCount(heap)
-}/* debug [functions.gen.go/function]: CFBinaryHeapGetCount */
+}
 
 // Counts the number of times a given value occurs in a binary heap.
 //
@@ -2683,7 +2683,7 @@ func CFBinaryHeapGetCount(heap BinaryHeapRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetCountOfValue(_:_:)
 func CFBinaryHeapGetCountOfValue(heap BinaryHeapRef, value unsafe.Pointer) Index {
 	return _CFBinaryHeapGetCountOfValue(heap, value)
-}/* debug [functions.gen.go/function]: CFBinaryHeapGetCountOfValue */
+}
 
 // Returns the minimum value in a binary heap.
 //
@@ -2694,7 +2694,7 @@ func CFBinaryHeapGetCountOfValue(heap BinaryHeapRef, value unsafe.Pointer) Index
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetMinimum(_:)
 func CFBinaryHeapGetMinimum(heap BinaryHeapRef) unsafe.Pointer {
 	return _CFBinaryHeapGetMinimum(heap)
-}/* debug [functions.gen.go/function]: CFBinaryHeapGetMinimum */
+}
 
 // Returns the minimum value in a binary heap, if present.
 //
@@ -2705,7 +2705,7 @@ func CFBinaryHeapGetMinimum(heap BinaryHeapRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetMinimumIfPresent(_:_:)
 func CFBinaryHeapGetMinimumIfPresent(heap BinaryHeapRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBinaryHeapGetMinimumIfPresent(heap, value)
-}/* debug [functions.gen.go/function]: CFBinaryHeapGetMinimumIfPresent */
+}
 
 // Returns the type identifier of the opaque type.
 //
@@ -2716,7 +2716,7 @@ func CFBinaryHeapGetMinimumIfPresent(heap BinaryHeapRef, value unsafe.Pointer) u
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetTypeID()
 func CFBinaryHeapGetTypeID() TypeID {
 	return _CFBinaryHeapGetTypeID()
-}/* debug [functions.gen.go/function]: CFBinaryHeapGetTypeID */
+}
 
 // Copies all the values from a binary heap into a sorted C array.
 //
@@ -2727,7 +2727,7 @@ func CFBinaryHeapGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetValues(_:_:)
 func CFBinaryHeapGetValues(heap BinaryHeapRef, values unsafe.Pointer) {
 	_CFBinaryHeapGetValues(heap, values)
-}/* debug [functions.gen.go/function]: CFBinaryHeapGetValues */
+}
 
 // Removes all values from a binary heap, making it empty.
 //
@@ -2738,7 +2738,7 @@ func CFBinaryHeapGetValues(heap BinaryHeapRef, values unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapRemoveAllValues(_:)
 func CFBinaryHeapRemoveAllValues(heap BinaryHeapRef) {
 	_CFBinaryHeapRemoveAllValues(heap)
-}/* debug [functions.gen.go/function]: CFBinaryHeapRemoveAllValues */
+}
 
 // Removes the minimum value from a binary heap.
 //
@@ -2749,7 +2749,7 @@ func CFBinaryHeapRemoveAllValues(heap BinaryHeapRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapRemoveMinimumValue(_:)
 func CFBinaryHeapRemoveMinimumValue(heap BinaryHeapRef) {
 	_CFBinaryHeapRemoveMinimumValue(heap)
-}/* debug [functions.gen.go/function]: CFBinaryHeapRemoveMinimumValue */
+}
 
 // Returns whether a bit vector contains a particular bit value.
 //
@@ -2760,7 +2760,7 @@ func CFBinaryHeapRemoveMinimumValue(heap BinaryHeapRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorContainsBit(_:_:_:)
 func CFBitVectorContainsBit(bv BitVectorRef, range_ Range, value Bit) unsafe.Pointer {
 	return _CFBitVectorContainsBit(bv, range_, value)
-}/* debug [functions.gen.go/function]: CFBitVectorContainsBit */
+}
 
 // Creates an immutable bit vector from a block of memory.
 //
@@ -2771,7 +2771,7 @@ func CFBitVectorContainsBit(bv BitVectorRef, range_ Range, value Bit) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreate(_:_:_:)
 func CFBitVectorCreate(allocator AllocatorRef, bytes unsafe.Pointer, numBits Index) BitVectorRef {
 	return _CFBitVectorCreate(allocator, bytes, numBits)
-}/* debug [functions.gen.go/function]: CFBitVectorCreate */
+}
 
 // Creates an immutable bit vector that is a copy of another bit vector.
 //
@@ -2782,7 +2782,7 @@ func CFBitVectorCreate(allocator AllocatorRef, bytes unsafe.Pointer, numBits Ind
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreateCopy(_:_:)
 func CFBitVectorCreateCopy(allocator AllocatorRef, bv BitVectorRef) BitVectorRef {
 	return _CFBitVectorCreateCopy(allocator, bv)
-}/* debug [functions.gen.go/function]: CFBitVectorCreateCopy */
+}
 
 // Creates a mutable bit vector.
 //
@@ -2793,7 +2793,7 @@ func CFBitVectorCreateCopy(allocator AllocatorRef, bv BitVectorRef) BitVectorRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreateMutable(_:_:)
 func CFBitVectorCreateMutable(allocator AllocatorRef, capacity Index) MutableBitVectorRef {
 	return _CFBitVectorCreateMutable(allocator, capacity)
-}/* debug [functions.gen.go/function]: CFBitVectorCreateMutable */
+}
 
 // Creates a new mutable bit vector from a pre-existing bit vector.
 //
@@ -2804,7 +2804,7 @@ func CFBitVectorCreateMutable(allocator AllocatorRef, capacity Index) MutableBit
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreateMutableCopy(_:_:_:)
 func CFBitVectorCreateMutableCopy(allocator AllocatorRef, capacity Index, bv BitVectorRef) MutableBitVectorRef {
 	return _CFBitVectorCreateMutableCopy(allocator, capacity, bv)
-}/* debug [functions.gen.go/function]: CFBitVectorCreateMutableCopy */
+}
 
 // Flips a bit value in a bit vector.
 //
@@ -2815,7 +2815,7 @@ func CFBitVectorCreateMutableCopy(allocator AllocatorRef, capacity Index, bv Bit
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorFlipBitAtIndex(_:_:)
 func CFBitVectorFlipBitAtIndex(bv MutableBitVectorRef, idx Index) {
 	_CFBitVectorFlipBitAtIndex(bv, idx)
-}/* debug [functions.gen.go/function]: CFBitVectorFlipBitAtIndex */
+}
 
 // Flips a range of bit values in a bit vector.
 //
@@ -2826,7 +2826,7 @@ func CFBitVectorFlipBitAtIndex(bv MutableBitVectorRef, idx Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorFlipBits(_:_:)
 func CFBitVectorFlipBits(bv MutableBitVectorRef, range_ Range) {
 	_CFBitVectorFlipBits(bv, range_)
-}/* debug [functions.gen.go/function]: CFBitVectorFlipBits */
+}
 
 // Returns the bit value at a given index in a bit vector.
 //
@@ -2837,7 +2837,7 @@ func CFBitVectorFlipBits(bv MutableBitVectorRef, range_ Range) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetBitAtIndex(_:_:)
 func CFBitVectorGetBitAtIndex(bv BitVectorRef, idx Index) Bit {
 	return _CFBitVectorGetBitAtIndex(bv, idx)
-}/* debug [functions.gen.go/function]: CFBitVectorGetBitAtIndex */
+}
 
 // Returns the bit values in a range of indices in a bit vector.
 //
@@ -2848,7 +2848,7 @@ func CFBitVectorGetBitAtIndex(bv BitVectorRef, idx Index) Bit {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetBits(_:_:_:)
 func CFBitVectorGetBits(bv BitVectorRef, range_ Range, bytes unsafe.Pointer) {
 	_CFBitVectorGetBits(bv, range_, bytes)
-}/* debug [functions.gen.go/function]: CFBitVectorGetBits */
+}
 
 // Returns the number of bit values in a bit vector.
 //
@@ -2859,7 +2859,7 @@ func CFBitVectorGetBits(bv BitVectorRef, range_ Range, bytes unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetCount(_:)
 func CFBitVectorGetCount(bv BitVectorRef) Index {
 	return _CFBitVectorGetCount(bv)
-}/* debug [functions.gen.go/function]: CFBitVectorGetCount */
+}
 
 // Counts the number of times a certain bit value occurs within a range of bits in a bit vector.
 //
@@ -2870,7 +2870,7 @@ func CFBitVectorGetCount(bv BitVectorRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetCountOfBit(_:_:_:)
 func CFBitVectorGetCountOfBit(bv BitVectorRef, range_ Range, value Bit) Index {
 	return _CFBitVectorGetCountOfBit(bv, range_, value)
-}/* debug [functions.gen.go/function]: CFBitVectorGetCountOfBit */
+}
 
 // Locates the first occurrence of a certain bit value within a range of bits in a bit vector.
 //
@@ -2881,7 +2881,7 @@ func CFBitVectorGetCountOfBit(bv BitVectorRef, range_ Range, value Bit) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetFirstIndexOfBit(_:_:_:)
 func CFBitVectorGetFirstIndexOfBit(bv BitVectorRef, range_ Range, value Bit) Index {
 	return _CFBitVectorGetFirstIndexOfBit(bv, range_, value)
-}/* debug [functions.gen.go/function]: CFBitVectorGetFirstIndexOfBit */
+}
 
 // Locates the last occurrence of a certain bit value within a range of bits in a bit vector.
 //
@@ -2892,7 +2892,7 @@ func CFBitVectorGetFirstIndexOfBit(bv BitVectorRef, range_ Range, value Bit) Ind
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetLastIndexOfBit(_:_:_:)
 func CFBitVectorGetLastIndexOfBit(bv BitVectorRef, range_ Range, value Bit) Index {
 	return _CFBitVectorGetLastIndexOfBit(bv, range_, value)
-}/* debug [functions.gen.go/function]: CFBitVectorGetLastIndexOfBit */
+}
 
 // Returns the type identifier for the CFBitVector opaque type.
 //
@@ -2903,7 +2903,7 @@ func CFBitVectorGetLastIndexOfBit(bv BitVectorRef, range_ Range, value Bit) Inde
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetTypeID()
 func CFBitVectorGetTypeID() TypeID {
 	return _CFBitVectorGetTypeID()
-}/* debug [functions.gen.go/function]: CFBitVectorGetTypeID */
+}
 
 // Sets all bits in a bit vector to a particular value.
 //
@@ -2914,7 +2914,7 @@ func CFBitVectorGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetAllBits(_:_:)
 func CFBitVectorSetAllBits(bv MutableBitVectorRef, value Bit) {
 	_CFBitVectorSetAllBits(bv, value)
-}/* debug [functions.gen.go/function]: CFBitVectorSetAllBits */
+}
 
 // Sets the value of a particular bit in a bit vector.
 //
@@ -2925,7 +2925,7 @@ func CFBitVectorSetAllBits(bv MutableBitVectorRef, value Bit) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetBitAtIndex(_:_:_:)
 func CFBitVectorSetBitAtIndex(bv MutableBitVectorRef, idx Index, value Bit) {
 	_CFBitVectorSetBitAtIndex(bv, idx, value)
-}/* debug [functions.gen.go/function]: CFBitVectorSetBitAtIndex */
+}
 
 // Sets a range of bits in a bit vector to a particular value.
 //
@@ -2936,7 +2936,7 @@ func CFBitVectorSetBitAtIndex(bv MutableBitVectorRef, idx Index, value Bit) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetBits(_:_:_:)
 func CFBitVectorSetBits(bv MutableBitVectorRef, range_ Range, value Bit) {
 	_CFBitVectorSetBits(bv, range_, value)
-}/* debug [functions.gen.go/function]: CFBitVectorSetBits */
+}
 
 // Changes the size of a mutable bit vector.
 //
@@ -2947,7 +2947,7 @@ func CFBitVectorSetBits(bv MutableBitVectorRef, range_ Range, value Bit) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetCount(_:_:)
 func CFBitVectorSetCount(bv MutableBitVectorRef, count Index) {
 	_CFBitVectorSetCount(bv, count)
-}/* debug [functions.gen.go/function]: CFBitVectorSetCount */
+}
 
 // Returns the Core Foundation type identifier for the CFBoolean opaque type.
 //
@@ -2958,7 +2958,7 @@ func CFBitVectorSetCount(bv MutableBitVectorRef, count Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBooleanGetTypeID()
 func CFBooleanGetTypeID() TypeID {
 	return _CFBooleanGetTypeID()
-}/* debug [functions.gen.go/function]: CFBooleanGetTypeID */
+}
 
 // Returns the value of a CFBoolean object as a standard C type .
 //
@@ -2969,7 +2969,7 @@ func CFBooleanGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBooleanGetValue(_:)
 func CFBooleanGetValue(boolean BooleanRef) unsafe.Pointer {
 	return _CFBooleanGetValue(boolean)
-}/* debug [functions.gen.go/function]: CFBooleanGetValue */
+}
 
 // Closes an open resource map for a bundle.
 //
@@ -2982,7 +2982,7 @@ func CFBooleanGetValue(boolean BooleanRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCloseBundleResourceMap(_:_:)
 func CFBundleCloseBundleResourceMap(bundle BundleRef, refNum BundleRefNum) {
 	_CFBundleCloseBundleResourceMap(bundle, refNum)
-}/* debug [functions.gen.go/function]: CFBundleCloseBundleResourceMap */
+}
 
 // Returns the location of a bundle’s auxiliary executable code.
 //
@@ -2993,7 +2993,7 @@ func CFBundleCloseBundleResourceMap(bundle BundleRef, refNum BundleRefNum) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyAuxiliaryExecutableURL(_:_:)
 func CFBundleCopyAuxiliaryExecutableURL(bundle BundleRef, executableName StringRef) URLRef {
 	return _CFBundleCopyAuxiliaryExecutableURL(bundle, executableName)
-}/* debug [functions.gen.go/function]: CFBundleCopyAuxiliaryExecutableURL */
+}
 
 // Returns the location of a bundle’s built in plug-in.
 //
@@ -3004,7 +3004,7 @@ func CFBundleCopyAuxiliaryExecutableURL(bundle BundleRef, executableName StringR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyBuiltInPlugInsURL(_:)
 func CFBundleCopyBuiltInPlugInsURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyBuiltInPlugInsURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyBuiltInPlugInsURL */
+}
 
 // Returns an array containing a bundle’s localizations.
 //
@@ -3015,7 +3015,7 @@ func CFBundleCopyBuiltInPlugInsURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyBundleLocalizations(_:)
 func CFBundleCopyBundleLocalizations(bundle BundleRef) ArrayRef {
 	return _CFBundleCopyBundleLocalizations(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyBundleLocalizations */
+}
 
 // Returns the location of a bundle.
 //
@@ -3026,7 +3026,7 @@ func CFBundleCopyBundleLocalizations(bundle BundleRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyBundleURL(_:)
 func CFBundleCopyBundleURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyBundleURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyBundleURL */
+}
 
 // Returns an array of CFNumbers representing the architectures a given bundle provides.
 //
@@ -3037,7 +3037,7 @@ func CFBundleCopyBundleURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyExecutableArchitectures(_:)
 func CFBundleCopyExecutableArchitectures(bundle BundleRef) ArrayRef {
 	return _CFBundleCopyExecutableArchitectures(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyExecutableArchitectures */
+}
 
 // Returns an array of CFNumbers representing the architectures a given URL provides.
 //
@@ -3048,7 +3048,7 @@ func CFBundleCopyExecutableArchitectures(bundle BundleRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyExecutableArchitecturesForURL(_:)
 func CFBundleCopyExecutableArchitecturesForURL(url URLRef) ArrayRef {
 	return _CFBundleCopyExecutableArchitecturesForURL(url)
-}/* debug [functions.gen.go/function]: CFBundleCopyExecutableArchitecturesForURL */
+}
 
 // Returns the location of a bundle’s main executable code.
 //
@@ -3059,7 +3059,7 @@ func CFBundleCopyExecutableArchitecturesForURL(url URLRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyExecutableURL(_:)
 func CFBundleCopyExecutableURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyExecutableURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyExecutableURL */
+}
 
 // Returns the information dictionary for a given URL location.
 //
@@ -3070,7 +3070,7 @@ func CFBundleCopyExecutableURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyInfoDictionaryForURL(_:)
 func CFBundleCopyInfoDictionaryForURL(url URLRef) DictionaryRef {
 	return _CFBundleCopyInfoDictionaryForURL(url)
-}/* debug [functions.gen.go/function]: CFBundleCopyInfoDictionaryForURL */
+}
 
 // Returns a bundle’s information dictionary.
 //
@@ -3081,7 +3081,7 @@ func CFBundleCopyInfoDictionaryForURL(url URLRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyInfoDictionaryInDirectory(_:)
 func CFBundleCopyInfoDictionaryInDirectory(bundleURL URLRef) DictionaryRef {
 	return _CFBundleCopyInfoDictionaryInDirectory(bundleURL)
-}/* debug [functions.gen.go/function]: CFBundleCopyInfoDictionaryInDirectory */
+}
 
 // Given an array of possible localizations and preferred locations, returns the one or more of them that CFBundle would use, without reference to the current application context.
 //
@@ -3092,7 +3092,7 @@ func CFBundleCopyInfoDictionaryInDirectory(bundleURL URLRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizationsForPreferences(_:_:)
 func CFBundleCopyLocalizationsForPreferences(locArray ArrayRef, prefArray ArrayRef) ArrayRef {
 	return _CFBundleCopyLocalizationsForPreferences(locArray, prefArray)
-}/* debug [functions.gen.go/function]: CFBundleCopyLocalizationsForPreferences */
+}
 
 // Returns an array containing the localizations for a bundle or executable at a particular location.
 //
@@ -3103,7 +3103,7 @@ func CFBundleCopyLocalizationsForPreferences(locArray ArrayRef, prefArray ArrayR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizationsForURL(_:)
 func CFBundleCopyLocalizationsForURL(url URLRef) ArrayRef {
 	return _CFBundleCopyLocalizationsForURL(url)
-}/* debug [functions.gen.go/function]: CFBundleCopyLocalizationsForURL */
+}
 
 // Returns a localized string from a bundle’s strings file.
 //
@@ -3114,7 +3114,7 @@ func CFBundleCopyLocalizationsForURL(url URLRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizedString(_:_:_:_:)
 func CFBundleCopyLocalizedString(bundle BundleRef, key StringRef, value StringRef, tableName StringRef) StringRef {
 	return _CFBundleCopyLocalizedString(bundle, key, value, tableName)
-}/* debug [functions.gen.go/function]: CFBundleCopyLocalizedString */
+}
 
 // Returns a localized string from a bundle’s strings file.
 //
@@ -3125,7 +3125,7 @@ func CFBundleCopyLocalizedString(bundle BundleRef, key StringRef, value StringRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizedStringForLocalizations(_:_:_:_:_:)
 func CFBundleCopyLocalizedStringForLocalizations(bundle BundleRef, key StringRef, value StringRef, tableName StringRef, localizations ArrayRef) StringRef {
 	return _CFBundleCopyLocalizedStringForLocalizations(bundle, key, value, tableName, localizations)
-}/* debug [functions.gen.go/function]: CFBundleCopyLocalizedStringForLocalizations */
+}
 
 // Given an array of possible localizations, returns the one or more of them that CFBundle would use in the current application context.
 //
@@ -3136,7 +3136,7 @@ func CFBundleCopyLocalizedStringForLocalizations(bundle BundleRef, key StringRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyPreferredLocalizationsFromArray(_:)
 func CFBundleCopyPreferredLocalizationsFromArray(locArray ArrayRef) ArrayRef {
 	return _CFBundleCopyPreferredLocalizationsFromArray(locArray)
-}/* debug [functions.gen.go/function]: CFBundleCopyPreferredLocalizationsFromArray */
+}
 
 // Returns the location of a bundle’s private Frameworks directory.
 //
@@ -3147,7 +3147,7 @@ func CFBundleCopyPreferredLocalizationsFromArray(locArray ArrayRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyPrivateFrameworksURL(_:)
 func CFBundleCopyPrivateFrameworksURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyPrivateFrameworksURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyPrivateFrameworksURL */
+}
 
 // Returns the location of a resource contained in the specified bundle.
 //
@@ -3158,7 +3158,7 @@ func CFBundleCopyPrivateFrameworksURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURL(_:_:_:_:)
 func CFBundleCopyResourceURL(bundle BundleRef, resourceName StringRef, resourceType StringRef, subDirName StringRef) URLRef {
 	return _CFBundleCopyResourceURL(bundle, resourceName, resourceType, subDirName)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourceURL */
+}
 
 // Returns the location of a localized resource in a bundle.
 //
@@ -3169,7 +3169,7 @@ func CFBundleCopyResourceURL(bundle BundleRef, resourceName StringRef, resourceT
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLForLocalization(_:_:_:_:_:)
 func CFBundleCopyResourceURLForLocalization(bundle BundleRef, resourceName StringRef, resourceType StringRef, subDirName StringRef, localizationName StringRef) URLRef {
 	return _CFBundleCopyResourceURLForLocalization(bundle, resourceName, resourceType, subDirName, localizationName)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourceURLForLocalization */
+}
 
 // Returns the location of a resource contained in the specified bundle directory without requiring the creation of a CFBundle object.
 //
@@ -3180,7 +3180,7 @@ func CFBundleCopyResourceURLForLocalization(bundle BundleRef, resourceName Strin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLInDirectory(_:_:_:_:)
 func CFBundleCopyResourceURLInDirectory(bundleURL URLRef, resourceName StringRef, resourceType StringRef, subDirName StringRef) URLRef {
 	return _CFBundleCopyResourceURLInDirectory(bundleURL, resourceName, resourceType, subDirName)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourceURLInDirectory */
+}
 
 // Assembles an array of URLs specifying all of the resources of the specified type found in a bundle.
 //
@@ -3191,7 +3191,7 @@ func CFBundleCopyResourceURLInDirectory(bundleURL URLRef, resourceName StringRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLsOfType(_:_:_:)
 func CFBundleCopyResourceURLsOfType(bundle BundleRef, resourceType StringRef, subDirName StringRef) ArrayRef {
 	return _CFBundleCopyResourceURLsOfType(bundle, resourceType, subDirName)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourceURLsOfType */
+}
 
 // Returns an array containing copies of the URL locations for a specified bundle, resource, and localization name.
 //
@@ -3202,7 +3202,7 @@ func CFBundleCopyResourceURLsOfType(bundle BundleRef, resourceType StringRef, su
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLsOfTypeForLocalization(_:_:_:_:)
 func CFBundleCopyResourceURLsOfTypeForLocalization(bundle BundleRef, resourceType StringRef, subDirName StringRef, localizationName StringRef) ArrayRef {
 	return _CFBundleCopyResourceURLsOfTypeForLocalization(bundle, resourceType, subDirName, localizationName)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourceURLsOfTypeForLocalization */
+}
 
 // Returns an array of CFURL objects describing the locations of all resources in a bundle of the specified type without needing to create a CFBundle object.
 //
@@ -3213,7 +3213,7 @@ func CFBundleCopyResourceURLsOfTypeForLocalization(bundle BundleRef, resourceTyp
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLsOfTypeInDirectory(_:_:_:)
 func CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL URLRef, resourceType StringRef, subDirName StringRef) ArrayRef {
 	return _CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL, resourceType, subDirName)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourceURLsOfTypeInDirectory */
+}
 
 // Returns the location of a bundle’s Resources directory.
 //
@@ -3224,7 +3224,7 @@ func CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL URLRef, resourceType St
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourcesDirectoryURL(_:)
 func CFBundleCopyResourcesDirectoryURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyResourcesDirectoryURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopyResourcesDirectoryURL */
+}
 
 // Returns the location of a bundle’s shared frameworks directory.
 //
@@ -3235,7 +3235,7 @@ func CFBundleCopyResourcesDirectoryURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopySharedFrameworksURL(_:)
 func CFBundleCopySharedFrameworksURL(bundle BundleRef) URLRef {
 	return _CFBundleCopySharedFrameworksURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopySharedFrameworksURL */
+}
 
 // Returns the location of a bundle’s shared support files directory.
 //
@@ -3246,7 +3246,7 @@ func CFBundleCopySharedFrameworksURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopySharedSupportURL(_:)
 func CFBundleCopySharedSupportURL(bundle BundleRef) URLRef {
 	return _CFBundleCopySharedSupportURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopySharedSupportURL */
+}
 
 // Returns the location of the bundle’s support files directory.
 //
@@ -3257,7 +3257,7 @@ func CFBundleCopySharedSupportURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopySupportFilesDirectoryURL(_:)
 func CFBundleCopySupportFilesDirectoryURL(bundle BundleRef) URLRef {
 	return _CFBundleCopySupportFilesDirectoryURL(bundle)
-}/* debug [functions.gen.go/function]: CFBundleCopySupportFilesDirectoryURL */
+}
 
 // Creates a CFBundle object.
 //
@@ -3268,7 +3268,7 @@ func CFBundleCopySupportFilesDirectoryURL(bundle BundleRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCreate(_:_:)
 func CFBundleCreate(allocator AllocatorRef, bundleURL URLRef) BundleRef {
 	return _CFBundleCreate(allocator, bundleURL)
-}/* debug [functions.gen.go/function]: CFBundleCreate */
+}
 
 // Searches a directory and constructs an array of CFBundle objects from all valid bundles in the specified directory.
 //
@@ -3279,7 +3279,7 @@ func CFBundleCreate(allocator AllocatorRef, bundleURL URLRef) BundleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCreateBundlesFromDirectory(_:_:_:)
 func CFBundleCreateBundlesFromDirectory(allocator AllocatorRef, directoryURL URLRef, bundleType StringRef) ArrayRef {
 	return _CFBundleCreateBundlesFromDirectory(allocator, directoryURL, bundleType)
-}/* debug [functions.gen.go/function]: CFBundleCreateBundlesFromDirectory */
+}
 
 // Returns an array containing all of the bundles currently open in the application.
 //
@@ -3290,7 +3290,7 @@ func CFBundleCreateBundlesFromDirectory(allocator AllocatorRef, directoryURL URL
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetAllBundles()
 func CFBundleGetAllBundles() ArrayRef {
 	return _CFBundleGetAllBundles()
-}/* debug [functions.gen.go/function]: CFBundleGetAllBundles */
+}
 
 // Locate a bundle given its program-defined identifier.
 //
@@ -3301,7 +3301,7 @@ func CFBundleGetAllBundles() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetBundleWithIdentifier(_:)
 func CFBundleGetBundleWithIdentifier(bundleID StringRef) BundleRef {
 	return _CFBundleGetBundleWithIdentifier(bundleID)
-}/* debug [functions.gen.go/function]: CFBundleGetBundleWithIdentifier */
+}
 
 // Returns a data pointer to a symbol of the given name.
 //
@@ -3312,7 +3312,7 @@ func CFBundleGetBundleWithIdentifier(bundleID StringRef) BundleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetDataPointerForName(_:_:)
 func CFBundleGetDataPointerForName(bundle BundleRef, symbolName StringRef) unsafe.Pointer {
 	return _CFBundleGetDataPointerForName(bundle, symbolName)
-}/* debug [functions.gen.go/function]: CFBundleGetDataPointerForName */
+}
 
 // Returns a C array of data pointer to symbols of the given names.
 //
@@ -3323,7 +3323,7 @@ func CFBundleGetDataPointerForName(bundle BundleRef, symbolName StringRef) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetDataPointersForNames(_:_:_:)
 func CFBundleGetDataPointersForNames(bundle BundleRef, symbolNames ArrayRef, stbl unsafe.Pointer) {
 	_CFBundleGetDataPointersForNames(bundle, symbolNames, stbl)
-}/* debug [functions.gen.go/function]: CFBundleGetDataPointersForNames */
+}
 
 // Returns the bundle’s development region from the bundle’s information property list.
 //
@@ -3334,7 +3334,7 @@ func CFBundleGetDataPointersForNames(bundle BundleRef, symbolNames ArrayRef, stb
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetDevelopmentRegion(_:)
 func CFBundleGetDevelopmentRegion(bundle BundleRef) StringRef {
 	return _CFBundleGetDevelopmentRegion(bundle)
-}/* debug [functions.gen.go/function]: CFBundleGetDevelopmentRegion */
+}
 
 // Returns a pointer to a function in a bundle’s executable code using the function name as the search key.
 //
@@ -3345,7 +3345,7 @@ func CFBundleGetDevelopmentRegion(bundle BundleRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetFunctionPointerForName(_:_:)
 func CFBundleGetFunctionPointerForName(bundle BundleRef, functionName StringRef) unsafe.Pointer {
 	return _CFBundleGetFunctionPointerForName(bundle, functionName)
-}/* debug [functions.gen.go/function]: CFBundleGetFunctionPointerForName */
+}
 
 // Constructs a function table containing pointers to all of the functions found in a bundle’s main executable code.
 //
@@ -3356,7 +3356,7 @@ func CFBundleGetFunctionPointerForName(bundle BundleRef, functionName StringRef)
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetFunctionPointersForNames(_:_:_:)
 func CFBundleGetFunctionPointersForNames(bundle BundleRef, functionNames ArrayRef, ftbl unsafe.Pointer) {
 	_CFBundleGetFunctionPointersForNames(bundle, functionNames, ftbl)
-}/* debug [functions.gen.go/function]: CFBundleGetFunctionPointersForNames */
+}
 
 // Returns the bundle identifier from a bundle’s information property list.
 //
@@ -3367,7 +3367,7 @@ func CFBundleGetFunctionPointersForNames(bundle BundleRef, functionNames ArrayRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetIdentifier(_:)
 func CFBundleGetIdentifier(bundle BundleRef) StringRef {
 	return _CFBundleGetIdentifier(bundle)
-}/* debug [functions.gen.go/function]: CFBundleGetIdentifier */
+}
 
 // Returns a bundle’s information dictionary.
 //
@@ -3378,7 +3378,7 @@ func CFBundleGetIdentifier(bundle BundleRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetInfoDictionary(_:)
 func CFBundleGetInfoDictionary(bundle BundleRef) DictionaryRef {
 	return _CFBundleGetInfoDictionary(bundle)
-}/* debug [functions.gen.go/function]: CFBundleGetInfoDictionary */
+}
 
 // Returns a bundle’s localized information dictionary.
 //
@@ -3389,7 +3389,7 @@ func CFBundleGetInfoDictionary(bundle BundleRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetLocalInfoDictionary(_:)
 func CFBundleGetLocalInfoDictionary(bundle BundleRef) DictionaryRef {
 	return _CFBundleGetLocalInfoDictionary(bundle)
-}/* debug [functions.gen.go/function]: CFBundleGetLocalInfoDictionary */
+}
 
 // Returns an application’s main bundle.
 //
@@ -3400,7 +3400,7 @@ func CFBundleGetLocalInfoDictionary(bundle BundleRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetMainBundle()
 func CFBundleGetMainBundle() BundleRef {
 	return _CFBundleGetMainBundle()
-}/* debug [functions.gen.go/function]: CFBundleGetMainBundle */
+}
 
 // Returns a bundle’s package type and creator.
 //
@@ -3411,7 +3411,7 @@ func CFBundleGetMainBundle() BundleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetPackageInfo(_:_:_:)
 func CFBundleGetPackageInfo(bundle BundleRef, packageType unsafe.Pointer, packageCreator unsafe.Pointer) {
 	_CFBundleGetPackageInfo(bundle, packageType, packageCreator)
-}/* debug [functions.gen.go/function]: CFBundleGetPackageInfo */
+}
 
 // Returns a bundle’s package type and creator without having to create a CFBundle object.
 //
@@ -3422,7 +3422,7 @@ func CFBundleGetPackageInfo(bundle BundleRef, packageType unsafe.Pointer, packag
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetPackageInfoInDirectory(_:_:_:)
 func CFBundleGetPackageInfoInDirectory(url URLRef, packageType unsafe.Pointer, packageCreator unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleGetPackageInfoInDirectory(url, packageType, packageCreator)
-}/* debug [functions.gen.go/function]: CFBundleGetPackageInfoInDirectory */
+}
 
 // Returns a bundle’s plug-in.
 //
@@ -3433,7 +3433,7 @@ func CFBundleGetPackageInfoInDirectory(url URLRef, packageType unsafe.Pointer, p
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetPlugIn(_:)
 func CFBundleGetPlugIn(bundle BundleRef) PlugInRef {
 	return _CFBundleGetPlugIn(bundle)
-}/* debug [functions.gen.go/function]: CFBundleGetPlugIn */
+}
 
 // Returns the type identifier for the CFBundle opaque type.
 //
@@ -3444,7 +3444,7 @@ func CFBundleGetPlugIn(bundle BundleRef) PlugInRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetTypeID()
 func CFBundleGetTypeID() TypeID {
 	return _CFBundleGetTypeID()
-}/* debug [functions.gen.go/function]: CFBundleGetTypeID */
+}
 
 // Returns a value (localized if possible) from a bundle’s information dictionary.
 //
@@ -3455,7 +3455,7 @@ func CFBundleGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetValueForInfoDictionaryKey(_:_:)
 func CFBundleGetValueForInfoDictionaryKey(bundle BundleRef, key StringRef) TypeRef {
 	return _CFBundleGetValueForInfoDictionaryKey(bundle, key)
-}/* debug [functions.gen.go/function]: CFBundleGetValueForInfoDictionaryKey */
+}
 
 // Returns a bundle’s version number.
 //
@@ -3466,7 +3466,7 @@ func CFBundleGetValueForInfoDictionaryKey(bundle BundleRef, key StringRef) TypeR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetVersionNumber(_:)
 func CFBundleGetVersionNumber(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleGetVersionNumber(bundle)
-}/* debug [functions.gen.go/function]: CFBundleGetVersionNumber */
+}
 
 // CFBundleIsArchitectureLoadable is a CoreFoundation function.
 //
@@ -3475,7 +3475,7 @@ func CFBundleGetVersionNumber(bundle BundleRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsArchitectureLoadable(_:)
 func CFBundleIsArchitectureLoadable(arch unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleIsArchitectureLoadable(arch)
-}/* debug [functions.gen.go/function]: CFBundleIsArchitectureLoadable */
+}
 
 // CFBundleIsExecutableLoadable is a CoreFoundation function.
 //
@@ -3484,7 +3484,7 @@ func CFBundleIsArchitectureLoadable(arch unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsExecutableLoadable(_:)
 func CFBundleIsExecutableLoadable(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleIsExecutableLoadable(bundle)
-}/* debug [functions.gen.go/function]: CFBundleIsExecutableLoadable */
+}
 
 // CFBundleIsExecutableLoadableForURL is a CoreFoundation function.
 //
@@ -3493,7 +3493,7 @@ func CFBundleIsExecutableLoadable(bundle BundleRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsExecutableLoadableForURL(_:)
 func CFBundleIsExecutableLoadableForURL(url URLRef) unsafe.Pointer {
 	return _CFBundleIsExecutableLoadableForURL(url)
-}/* debug [functions.gen.go/function]: CFBundleIsExecutableLoadableForURL */
+}
 
 // Obtains information about the load status for a bundle’s main executable.
 //
@@ -3504,7 +3504,7 @@ func CFBundleIsExecutableLoadableForURL(url URLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsExecutableLoaded(_:)
 func CFBundleIsExecutableLoaded(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleIsExecutableLoaded(bundle)
-}/* debug [functions.gen.go/function]: CFBundleIsExecutableLoaded */
+}
 
 // Loads a bundle’s main executable code into memory and dynamically links it into the running application.
 //
@@ -3515,7 +3515,7 @@ func CFBundleIsExecutableLoaded(bundle BundleRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleLoadExecutable(_:)
 func CFBundleLoadExecutable(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleLoadExecutable(bundle)
-}/* debug [functions.gen.go/function]: CFBundleLoadExecutable */
+}
 
 // Returns a Boolean value that indicates whether a given bundle is loaded, attempting to load it if necessary.
 //
@@ -3526,7 +3526,7 @@ func CFBundleLoadExecutable(bundle BundleRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleLoadExecutableAndReturnError(_:_:)
 func CFBundleLoadExecutableAndReturnError(bundle BundleRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleLoadExecutableAndReturnError(bundle, error_)
-}/* debug [functions.gen.go/function]: CFBundleLoadExecutableAndReturnError */
+}
 
 // Opens the non-localized and localized resource files (if any) for a bundle in separate resource maps.
 //
@@ -3539,7 +3539,7 @@ func CFBundleLoadExecutableAndReturnError(bundle BundleRef, error_ unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleOpenBundleResourceFiles(_:_:_:)
 func CFBundleOpenBundleResourceFiles(bundle BundleRef, refNum unsafe.Pointer, localizedRefNum unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleOpenBundleResourceFiles(bundle, refNum, localizedRefNum)
-}/* debug [functions.gen.go/function]: CFBundleOpenBundleResourceFiles */
+}
 
 // Opens the non-localized and localized resource files (if any) for a bundle in a single resource map.
 //
@@ -3552,7 +3552,7 @@ func CFBundleOpenBundleResourceFiles(bundle BundleRef, refNum unsafe.Pointer, lo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleOpenBundleResourceMap(_:)
 func CFBundleOpenBundleResourceMap(bundle BundleRef) BundleRefNum {
 	return _CFBundleOpenBundleResourceMap(bundle)
-}/* debug [functions.gen.go/function]: CFBundleOpenBundleResourceMap */
+}
 
 // Returns a Boolean value that indicates whether a given bundle is loaded or appears to be loadable.
 //
@@ -3563,7 +3563,7 @@ func CFBundleOpenBundleResourceMap(bundle BundleRef) BundleRefNum {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundlePreflightExecutable(_:_:)
 func CFBundlePreflightExecutable(bundle BundleRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFBundlePreflightExecutable(bundle, error_)
-}/* debug [functions.gen.go/function]: CFBundlePreflightExecutable */
+}
 
 // Unloads the main executable for the specified bundle.
 //
@@ -3574,7 +3574,7 @@ func CFBundlePreflightExecutable(bundle BundleRef, error_ unsafe.Pointer) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleUnloadExecutable(_:)
 func CFBundleUnloadExecutable(bundle BundleRef) {
 	_CFBundleUnloadExecutable(bundle)
-}/* debug [functions.gen.go/function]: CFBundleUnloadExecutable */
+}
 
 // Computes the absolute time when specified components are added to a given absolute time.
 //
@@ -3585,7 +3585,7 @@ func CFBundleUnloadExecutable(bundle BundleRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarAddComponents
 func CFCalendarAddComponents(calendar CalendarRef, at unsafe.Pointer, options OptionFlags, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarAddComponents(calendar, at, options, componentDesc)
-}/* debug [functions.gen.go/function]: CFCalendarAddComponents */
+}
 
 // Computes the absolute time from components in a description string.
 //
@@ -3596,7 +3596,7 @@ func CFCalendarAddComponents(calendar CalendarRef, at unsafe.Pointer, options Op
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarComposeAbsoluteTime
 func CFCalendarComposeAbsoluteTime(calendar CalendarRef, at unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarComposeAbsoluteTime(calendar, at, componentDesc)
-}/* debug [functions.gen.go/function]: CFCalendarComposeAbsoluteTime */
+}
 
 // Returns a copy of the logical calendar for the current user.
 //
@@ -3607,7 +3607,7 @@ func CFCalendarComposeAbsoluteTime(calendar CalendarRef, at unsafe.Pointer, comp
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCopyCurrent()
 func CFCalendarCopyCurrent() CalendarRef {
 	return _CFCalendarCopyCurrent()
-}/* debug [functions.gen.go/function]: CFCalendarCopyCurrent */
+}
 
 // Returns a locale object for a specified calendar.
 //
@@ -3618,7 +3618,7 @@ func CFCalendarCopyCurrent() CalendarRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCopyLocale(_:)
 func CFCalendarCopyLocale(calendar CalendarRef) LocaleRef {
 	return _CFCalendarCopyLocale(calendar)
-}/* debug [functions.gen.go/function]: CFCalendarCopyLocale */
+}
 
 // Returns a time zone object for a specified calendar.
 //
@@ -3629,7 +3629,7 @@ func CFCalendarCopyLocale(calendar CalendarRef) LocaleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCopyTimeZone(_:)
 func CFCalendarCopyTimeZone(calendar CalendarRef) TimeZoneRef {
 	return _CFCalendarCopyTimeZone(calendar)
-}/* debug [functions.gen.go/function]: CFCalendarCopyTimeZone */
+}
 
 // Returns a calendar object for the calendar identified by a calendar identifier.
 //
@@ -3640,7 +3640,7 @@ func CFCalendarCopyTimeZone(calendar CalendarRef) TimeZoneRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCreateWithIdentifier(_:_:)
 func CFCalendarCreateWithIdentifier(allocator AllocatorRef, identifier CalendarIdentifier) CalendarRef {
 	return _CFCalendarCreateWithIdentifier(allocator, identifier)
-}/* debug [functions.gen.go/function]: CFCalendarCreateWithIdentifier */
+}
 
 // Computes the components which are indicated by the componentDesc description string for the given absolute time.
 //
@@ -3651,7 +3651,7 @@ func CFCalendarCreateWithIdentifier(allocator AllocatorRef, identifier CalendarI
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarDecomposeAbsoluteTime
 func CFCalendarDecomposeAbsoluteTime(calendar CalendarRef, at AbsoluteTime, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarDecomposeAbsoluteTime(calendar, at, componentDesc)
-}/* debug [functions.gen.go/function]: CFCalendarDecomposeAbsoluteTime */
+}
 
 // Computes the difference between the two absolute times, in terms of specified calendrical components.
 //
@@ -3662,7 +3662,7 @@ func CFCalendarDecomposeAbsoluteTime(calendar CalendarRef, at AbsoluteTime, comp
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetComponentDifference
 func CFCalendarGetComponentDifference(calendar CalendarRef, startingAT AbsoluteTime, resultAT AbsoluteTime, options OptionFlags, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarGetComponentDifference(calendar, startingAT, resultAT, options, componentDesc)
-}/* debug [functions.gen.go/function]: CFCalendarGetComponentDifference */
+}
 
 // Returns the index of first weekday for a specified calendar.
 //
@@ -3673,7 +3673,7 @@ func CFCalendarGetComponentDifference(calendar CalendarRef, startingAT AbsoluteT
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetFirstWeekday(_:)
 func CFCalendarGetFirstWeekday(calendar CalendarRef) Index {
 	return _CFCalendarGetFirstWeekday(calendar)
-}/* debug [functions.gen.go/function]: CFCalendarGetFirstWeekday */
+}
 
 // Returns the given calendar’s identifier.
 //
@@ -3684,7 +3684,7 @@ func CFCalendarGetFirstWeekday(calendar CalendarRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetIdentifier(_:)
 func CFCalendarGetIdentifier(calendar CalendarRef) CalendarIdentifier {
 	return _CFCalendarGetIdentifier(calendar)
-}/* debug [functions.gen.go/function]: CFCalendarGetIdentifier */
+}
 
 // Returns the maximum range limits of the values that a specified unit can take on in a given calendar.
 //
@@ -3695,7 +3695,7 @@ func CFCalendarGetIdentifier(calendar CalendarRef) CalendarIdentifier {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetMaximumRangeOfUnit(_:_:)
 func CFCalendarGetMaximumRangeOfUnit(calendar CalendarRef, unit CalendarUnit) Range {
 	return _CFCalendarGetMaximumRangeOfUnit(calendar, unit)
-}/* debug [functions.gen.go/function]: CFCalendarGetMaximumRangeOfUnit */
+}
 
 // Returns the minimum number of days in the first week of a specified calendar.
 //
@@ -3706,7 +3706,7 @@ func CFCalendarGetMaximumRangeOfUnit(calendar CalendarRef, unit CalendarUnit) Ra
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetMinimumDaysInFirstWeek(_:)
 func CFCalendarGetMinimumDaysInFirstWeek(calendar CalendarRef) Index {
 	return _CFCalendarGetMinimumDaysInFirstWeek(calendar)
-}/* debug [functions.gen.go/function]: CFCalendarGetMinimumDaysInFirstWeek */
+}
 
 // Returns the minimum range limits of the values that a specified unit can take on in a given calendar.
 //
@@ -3717,7 +3717,7 @@ func CFCalendarGetMinimumDaysInFirstWeek(calendar CalendarRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetMinimumRangeOfUnit(_:_:)
 func CFCalendarGetMinimumRangeOfUnit(calendar CalendarRef, unit CalendarUnit) Range {
 	return _CFCalendarGetMinimumRangeOfUnit(calendar, unit)
-}/* debug [functions.gen.go/function]: CFCalendarGetMinimumRangeOfUnit */
+}
 
 // Returns the ordinal number of a calendrical unit within a larger unit at a specified absolute time.
 //
@@ -3728,7 +3728,7 @@ func CFCalendarGetMinimumRangeOfUnit(calendar CalendarRef, unit CalendarUnit) Ra
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetOrdinalityOfUnit(_:_:_:_:)
 func CFCalendarGetOrdinalityOfUnit(calendar CalendarRef, smallerUnit CalendarUnit, biggerUnit CalendarUnit, at AbsoluteTime) Index {
 	return _CFCalendarGetOrdinalityOfUnit(calendar, smallerUnit, biggerUnit, at)
-}/* debug [functions.gen.go/function]: CFCalendarGetOrdinalityOfUnit */
+}
 
 // Returns the range of values that one unit can take on within a larger unit during which a specific absolute time occurs.
 //
@@ -3739,7 +3739,7 @@ func CFCalendarGetOrdinalityOfUnit(calendar CalendarRef, smallerUnit CalendarUni
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetRangeOfUnit(_:_:_:_:)
 func CFCalendarGetRangeOfUnit(calendar CalendarRef, smallerUnit CalendarUnit, biggerUnit CalendarUnit, at AbsoluteTime) Range {
 	return _CFCalendarGetRangeOfUnit(calendar, smallerUnit, biggerUnit, at)
-}/* debug [functions.gen.go/function]: CFCalendarGetRangeOfUnit */
+}
 
 // Returns by reference the start time and duration of a given calendar unit that contains a given absolute time.
 //
@@ -3750,7 +3750,7 @@ func CFCalendarGetRangeOfUnit(calendar CalendarRef, smallerUnit CalendarUnit, bi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetTimeRangeOfUnit(_:_:_:_:_:)
 func CFCalendarGetTimeRangeOfUnit(calendar CalendarRef, unit CalendarUnit, at AbsoluteTime, startp unsafe.Pointer, tip unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarGetTimeRangeOfUnit(calendar, unit, at, startp, tip)
-}/* debug [functions.gen.go/function]: CFCalendarGetTimeRangeOfUnit */
+}
 
 // Returns the type identifier for the CFCalendar opaque type.
 //
@@ -3761,7 +3761,7 @@ func CFCalendarGetTimeRangeOfUnit(calendar CalendarRef, unit CalendarUnit, at Ab
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetTypeID()
 func CFCalendarGetTypeID() TypeID {
 	return _CFCalendarGetTypeID()
-}/* debug [functions.gen.go/function]: CFCalendarGetTypeID */
+}
 
 // Sets the first weekday for a calendar.
 //
@@ -3772,7 +3772,7 @@ func CFCalendarGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetFirstWeekday(_:_:)
 func CFCalendarSetFirstWeekday(calendar CalendarRef, wkdy Index) {
 	_CFCalendarSetFirstWeekday(calendar, wkdy)
-}/* debug [functions.gen.go/function]: CFCalendarSetFirstWeekday */
+}
 
 // Sets the locale for a calendar.
 //
@@ -3783,7 +3783,7 @@ func CFCalendarSetFirstWeekday(calendar CalendarRef, wkdy Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetLocale(_:_:)
 func CFCalendarSetLocale(calendar CalendarRef, locale LocaleRef) {
 	_CFCalendarSetLocale(calendar, locale)
-}/* debug [functions.gen.go/function]: CFCalendarSetLocale */
+}
 
 // Sets the minimum number of days in the first week of a specified calendar.
 //
@@ -3794,7 +3794,7 @@ func CFCalendarSetLocale(calendar CalendarRef, locale LocaleRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetMinimumDaysInFirstWeek(_:_:)
 func CFCalendarSetMinimumDaysInFirstWeek(calendar CalendarRef, mwd Index) {
 	_CFCalendarSetMinimumDaysInFirstWeek(calendar, mwd)
-}/* debug [functions.gen.go/function]: CFCalendarSetMinimumDaysInFirstWeek */
+}
 
 // Sets the time zone for a calendar.
 //
@@ -3805,7 +3805,7 @@ func CFCalendarSetMinimumDaysInFirstWeek(calendar CalendarRef, mwd Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetTimeZone(_:_:)
 func CFCalendarSetTimeZone(calendar CalendarRef, tz TimeZoneRef) {
 	_CFCalendarSetTimeZone(calendar, tz)
-}/* debug [functions.gen.go/function]: CFCalendarSetTimeZone */
+}
 
 // Adds a given range to a character set.
 //
@@ -3816,7 +3816,7 @@ func CFCalendarSetTimeZone(calendar CalendarRef, tz TimeZoneRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetAddCharactersInRange(_:_:)
 func CFCharacterSetAddCharactersInRange(theSet MutableCharacterSetRef, theRange Range) {
 	_CFCharacterSetAddCharactersInRange(theSet, theRange)
-}/* debug [functions.gen.go/function]: CFCharacterSetAddCharactersInRange */
+}
 
 // Adds the characters in a given string to a character set.
 //
@@ -3827,7 +3827,7 @@ func CFCharacterSetAddCharactersInRange(theSet MutableCharacterSetRef, theRange 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetAddCharactersInString(_:_:)
 func CFCharacterSetAddCharactersInString(theSet MutableCharacterSetRef, theString StringRef) {
 	_CFCharacterSetAddCharactersInString(theSet, theString)
-}/* debug [functions.gen.go/function]: CFCharacterSetAddCharactersInString */
+}
 
 // Creates a new immutable data with the bitmap representation from the given character set.
 //
@@ -3838,7 +3838,7 @@ func CFCharacterSetAddCharactersInString(theSet MutableCharacterSetRef, theStrin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateBitmapRepresentation(_:_:)
 func CFCharacterSetCreateBitmapRepresentation(alloc AllocatorRef, theSet CharacterSetRef) DataRef {
 	return _CFCharacterSetCreateBitmapRepresentation(alloc, theSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateBitmapRepresentation */
+}
 
 // Creates a new character set with the values from a given character set.
 //
@@ -3849,7 +3849,7 @@ func CFCharacterSetCreateBitmapRepresentation(alloc AllocatorRef, theSet Charact
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateCopy(_:_:)
 func CFCharacterSetCreateCopy(alloc AllocatorRef, theSet CharacterSetRef) CharacterSetRef {
 	return _CFCharacterSetCreateCopy(alloc, theSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateCopy */
+}
 
 // Creates a new immutable character set that is the invert of the specified character set.
 //
@@ -3860,7 +3860,7 @@ func CFCharacterSetCreateCopy(alloc AllocatorRef, theSet CharacterSetRef) Charac
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateInvertedSet(_:_:)
 func CFCharacterSetCreateInvertedSet(alloc AllocatorRef, theSet CharacterSetRef) CharacterSetRef {
 	return _CFCharacterSetCreateInvertedSet(alloc, theSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateInvertedSet */
+}
 
 // Creates a new empty mutable character set.
 //
@@ -3871,7 +3871,7 @@ func CFCharacterSetCreateInvertedSet(alloc AllocatorRef, theSet CharacterSetRef)
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateMutable(_:)
 func CFCharacterSetCreateMutable(alloc AllocatorRef) MutableCharacterSetRef {
 	return _CFCharacterSetCreateMutable(alloc)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateMutable */
+}
 
 // Creates a new mutable character set with the values from another character set.
 //
@@ -3882,7 +3882,7 @@ func CFCharacterSetCreateMutable(alloc AllocatorRef) MutableCharacterSetRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateMutableCopy(_:_:)
 func CFCharacterSetCreateMutableCopy(alloc AllocatorRef, theSet CharacterSetRef) MutableCharacterSetRef {
 	return _CFCharacterSetCreateMutableCopy(alloc, theSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateMutableCopy */
+}
 
 // Creates a new immutable character set with the bitmap representation specified by given data.
 //
@@ -3893,7 +3893,7 @@ func CFCharacterSetCreateMutableCopy(alloc AllocatorRef, theSet CharacterSetRef)
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateWithBitmapRepresentation(_:_:)
 func CFCharacterSetCreateWithBitmapRepresentation(alloc AllocatorRef, theData DataRef) CharacterSetRef {
 	return _CFCharacterSetCreateWithBitmapRepresentation(alloc, theData)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateWithBitmapRepresentation */
+}
 
 // Creates a new character set with the values from the given range of Unicode characters.
 //
@@ -3904,7 +3904,7 @@ func CFCharacterSetCreateWithBitmapRepresentation(alloc AllocatorRef, theData Da
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateWithCharactersInRange(_:_:)
 func CFCharacterSetCreateWithCharactersInRange(alloc AllocatorRef, theRange Range) CharacterSetRef {
 	return _CFCharacterSetCreateWithCharactersInRange(alloc, theRange)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateWithCharactersInRange */
+}
 
 // Creates a new character set with the values in the given string.
 //
@@ -3915,7 +3915,7 @@ func CFCharacterSetCreateWithCharactersInRange(alloc AllocatorRef, theRange Rang
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateWithCharactersInString(_:_:)
 func CFCharacterSetCreateWithCharactersInString(alloc AllocatorRef, theString StringRef) CharacterSetRef {
 	return _CFCharacterSetCreateWithCharactersInString(alloc, theString)
-}/* debug [functions.gen.go/function]: CFCharacterSetCreateWithCharactersInString */
+}
 
 // Returns a predefined character set.
 //
@@ -3926,7 +3926,7 @@ func CFCharacterSetCreateWithCharactersInString(alloc AllocatorRef, theString St
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetGetPredefined(_:)
 func CFCharacterSetGetPredefined(theSetIdentifier CharacterSetPredefinedSet) CharacterSetRef {
 	return _CFCharacterSetGetPredefined(theSetIdentifier)
-}/* debug [functions.gen.go/function]: CFCharacterSetGetPredefined */
+}
 
 // Returns the type identifier of the CFCharacterSet opaque type.
 //
@@ -3937,7 +3937,7 @@ func CFCharacterSetGetPredefined(theSetIdentifier CharacterSetPredefinedSet) Cha
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetGetTypeID()
 func CFCharacterSetGetTypeID() TypeID {
 	return _CFCharacterSetGetTypeID()
-}/* debug [functions.gen.go/function]: CFCharacterSetGetTypeID */
+}
 
 // Reports whether or not a character set contains at least one member character in the specified plane.
 //
@@ -3948,7 +3948,7 @@ func CFCharacterSetGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetHasMemberInPlane(_:_:)
 func CFCharacterSetHasMemberInPlane(theSet CharacterSetRef, thePlane Index) unsafe.Pointer {
 	return _CFCharacterSetHasMemberInPlane(theSet, thePlane)
-}/* debug [functions.gen.go/function]: CFCharacterSetHasMemberInPlane */
+}
 
 // Forms an intersection of two character sets.
 //
@@ -3959,7 +3959,7 @@ func CFCharacterSetHasMemberInPlane(theSet CharacterSetRef, thePlane Index) unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIntersect(_:_:)
 func CFCharacterSetIntersect(theSet MutableCharacterSetRef, theOtherSet CharacterSetRef) {
 	_CFCharacterSetIntersect(theSet, theOtherSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetIntersect */
+}
 
 // Inverts the content of a given character set.
 //
@@ -3970,7 +3970,7 @@ func CFCharacterSetIntersect(theSet MutableCharacterSetRef, theOtherSet Characte
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetInvert(_:)
 func CFCharacterSetInvert(theSet MutableCharacterSetRef) {
 	_CFCharacterSetInvert(theSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetInvert */
+}
 
 // Reports whether or not a given Unicode character is in a character set.
 //
@@ -3981,7 +3981,7 @@ func CFCharacterSetInvert(theSet MutableCharacterSetRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIsCharacterMember(_:_:)
 func CFCharacterSetIsCharacterMember(theSet CharacterSetRef, theChar unsafe.Pointer) unsafe.Pointer {
 	return _CFCharacterSetIsCharacterMember(theSet, theChar)
-}/* debug [functions.gen.go/function]: CFCharacterSetIsCharacterMember */
+}
 
 // Reports whether or not a given UTF-32 character is in a character set.
 //
@@ -3992,7 +3992,7 @@ func CFCharacterSetIsCharacterMember(theSet CharacterSetRef, theChar unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIsLongCharacterMember(_:_:)
 func CFCharacterSetIsLongCharacterMember(theSet CharacterSetRef, theChar unsafe.Pointer) unsafe.Pointer {
 	return _CFCharacterSetIsLongCharacterMember(theSet, theChar)
-}/* debug [functions.gen.go/function]: CFCharacterSetIsLongCharacterMember */
+}
 
 // Reports whether or not a character set is a superset of another set.
 //
@@ -4003,7 +4003,7 @@ func CFCharacterSetIsLongCharacterMember(theSet CharacterSetRef, theChar unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIsSupersetOfSet(_:_:)
 func CFCharacterSetIsSupersetOfSet(theSet CharacterSetRef, theOtherset CharacterSetRef) unsafe.Pointer {
 	return _CFCharacterSetIsSupersetOfSet(theSet, theOtherset)
-}/* debug [functions.gen.go/function]: CFCharacterSetIsSupersetOfSet */
+}
 
 // Removes a given range of Unicode characters from a character set.
 //
@@ -4014,7 +4014,7 @@ func CFCharacterSetIsSupersetOfSet(theSet CharacterSetRef, theOtherset Character
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetRemoveCharactersInRange(_:_:)
 func CFCharacterSetRemoveCharactersInRange(theSet MutableCharacterSetRef, theRange Range) {
 	_CFCharacterSetRemoveCharactersInRange(theSet, theRange)
-}/* debug [functions.gen.go/function]: CFCharacterSetRemoveCharactersInRange */
+}
 
 // Removes the characters in a given string from a character set.
 //
@@ -4025,7 +4025,7 @@ func CFCharacterSetRemoveCharactersInRange(theSet MutableCharacterSetRef, theRan
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetRemoveCharactersInString(_:_:)
 func CFCharacterSetRemoveCharactersInString(theSet MutableCharacterSetRef, theString StringRef) {
 	_CFCharacterSetRemoveCharactersInString(theSet, theString)
-}/* debug [functions.gen.go/function]: CFCharacterSetRemoveCharactersInString */
+}
 
 // Forms the union of two character sets.
 //
@@ -4036,7 +4036,7 @@ func CFCharacterSetRemoveCharactersInString(theSet MutableCharacterSetRef, theSt
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetUnion(_:_:)
 func CFCharacterSetUnion(theSet MutableCharacterSetRef, theOtherSet CharacterSetRef) {
 	_CFCharacterSetUnion(theSet, theOtherSet)
-}/* debug [functions.gen.go/function]: CFCharacterSetUnion */
+}
 
 // Returns a textual description of a Core Foundation object.
 //
@@ -4047,7 +4047,7 @@ func CFCharacterSetUnion(theSet MutableCharacterSetRef, theOtherSet CharacterSet
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyDescription(_:)
 func CFCopyDescription(cf TypeRef) StringRef {
 	return _CFCopyDescription(cf)
-}/* debug [functions.gen.go/function]: CFCopyDescription */
+}
 
 // CFCopyHomeDirectoryURL is a CoreFoundation function.
 
@@ -4055,7 +4055,7 @@ func CFCopyDescription(cf TypeRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyHomeDirectoryURL()
 func CFCopyHomeDirectoryURL() URLRef {
 	return _CFCopyHomeDirectoryURL()
-}/* debug [functions.gen.go/function]: CFCopyHomeDirectoryURL */
+}
 
 // Returns a textual description of a Core Foundation type, as identified by its type ID, which can be used when debugging.
 //
@@ -4066,7 +4066,7 @@ func CFCopyHomeDirectoryURL() URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyTypeIDDescription(_:)
 func CFCopyTypeIDDescription(type_id TypeID) StringRef {
 	return _CFCopyTypeIDDescription(type_id)
-}/* debug [functions.gen.go/function]: CFCopyTypeIDDescription */
+}
 
 // Appends the bytes from a byte buffer to the contents of a CFData object.
 //
@@ -4077,7 +4077,7 @@ func CFCopyTypeIDDescription(type_id TypeID) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataAppendBytes(_:_:_:)
 func CFDataAppendBytes(theData MutableDataRef, bytes unsafe.Pointer, length Index) {
 	_CFDataAppendBytes(theData, bytes, length)
-}/* debug [functions.gen.go/function]: CFDataAppendBytes */
+}
 
 // Creates an immutable CFData object using data copied from a specified byte buffer.
 //
@@ -4088,7 +4088,7 @@ func CFDataAppendBytes(theData MutableDataRef, bytes unsafe.Pointer, length Inde
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreate(_:_:_:)
 func CFDataCreate(allocator AllocatorRef, bytes unsafe.Pointer, length Index) DataRef {
 	return _CFDataCreate(allocator, bytes, length)
-}/* debug [functions.gen.go/function]: CFDataCreate */
+}
 
 // Creates an immutable copy of a CFData object.
 //
@@ -4099,7 +4099,7 @@ func CFDataCreate(allocator AllocatorRef, bytes unsafe.Pointer, length Index) Da
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateCopy(_:_:)
 func CFDataCreateCopy(allocator AllocatorRef, theData DataRef) DataRef {
 	return _CFDataCreateCopy(allocator, theData)
-}/* debug [functions.gen.go/function]: CFDataCreateCopy */
+}
 
 // Creates an empty CFMutableData object.
 //
@@ -4110,7 +4110,7 @@ func CFDataCreateCopy(allocator AllocatorRef, theData DataRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateMutable(_:_:)
 func CFDataCreateMutable(allocator AllocatorRef, capacity Index) MutableDataRef {
 	return _CFDataCreateMutable(allocator, capacity)
-}/* debug [functions.gen.go/function]: CFDataCreateMutable */
+}
 
 // Creates a CFMutableData object by copying another CFData object.
 //
@@ -4121,7 +4121,7 @@ func CFDataCreateMutable(allocator AllocatorRef, capacity Index) MutableDataRef 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateMutableCopy(_:_:_:)
 func CFDataCreateMutableCopy(allocator AllocatorRef, capacity Index, theData DataRef) MutableDataRef {
 	return _CFDataCreateMutableCopy(allocator, capacity, theData)
-}/* debug [functions.gen.go/function]: CFDataCreateMutableCopy */
+}
 
 // Creates an immutable CFData object from an external (client-owned) byte buffer.
 //
@@ -4132,7 +4132,7 @@ func CFDataCreateMutableCopy(allocator AllocatorRef, capacity Index, theData Dat
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateWithBytesNoCopy(_:_:_:_:)
 func CFDataCreateWithBytesNoCopy(allocator AllocatorRef, bytes unsafe.Pointer, length Index, bytesDeallocator AllocatorRef) DataRef {
 	return _CFDataCreateWithBytesNoCopy(allocator, bytes, length, bytesDeallocator)
-}/* debug [functions.gen.go/function]: CFDataCreateWithBytesNoCopy */
+}
 
 // Deletes the bytes in a CFMutableData object within a specified range.
 //
@@ -4143,7 +4143,7 @@ func CFDataCreateWithBytesNoCopy(allocator AllocatorRef, bytes unsafe.Pointer, l
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataDeleteBytes(_:_:)
 func CFDataDeleteBytes(theData MutableDataRef, range_ Range) {
 	_CFDataDeleteBytes(theData, range_)
-}/* debug [functions.gen.go/function]: CFDataDeleteBytes */
+}
 
 // Finds and returns the range within a data object of the first occurrence of the given data, within a given range, subject to any given options.
 //
@@ -4154,7 +4154,7 @@ func CFDataDeleteBytes(theData MutableDataRef, range_ Range) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataFind(_:_:_:_:)
 func CFDataFind(theData DataRef, dataToFind DataRef, searchRange Range, compareOptions DataSearchFlags) Range {
 	return _CFDataFind(theData, dataToFind, searchRange, compareOptions)
-}/* debug [functions.gen.go/function]: CFDataFind */
+}
 
 // Returns a read-only pointer to the bytes of a CFData object.
 //
@@ -4165,7 +4165,7 @@ func CFDataFind(theData DataRef, dataToFind DataRef, searchRange Range, compareO
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetBytePtr(_:)
 func CFDataGetBytePtr(theData DataRef) unsafe.Pointer {
 	return _CFDataGetBytePtr(theData)
-}/* debug [functions.gen.go/function]: CFDataGetBytePtr */
+}
 
 // Copies the byte contents of a CFData object to an external buffer.
 //
@@ -4176,7 +4176,7 @@ func CFDataGetBytePtr(theData DataRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetBytes(_:_:_:)
 func CFDataGetBytes(theData DataRef, range_ Range, buffer unsafe.Pointer) {
 	_CFDataGetBytes(theData, range_, buffer)
-}/* debug [functions.gen.go/function]: CFDataGetBytes */
+}
 
 // Returns the number of bytes contained by a CFData object.
 //
@@ -4187,7 +4187,7 @@ func CFDataGetBytes(theData DataRef, range_ Range, buffer unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetLength(_:)
 func CFDataGetLength(theData DataRef) Index {
 	return _CFDataGetLength(theData)
-}/* debug [functions.gen.go/function]: CFDataGetLength */
+}
 
 // Returns a pointer to a mutable byte buffer of a CFMutableData object.
 //
@@ -4198,7 +4198,7 @@ func CFDataGetLength(theData DataRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetMutableBytePtr(_:)
 func CFDataGetMutableBytePtr(theData MutableDataRef) unsafe.Pointer {
 	return _CFDataGetMutableBytePtr(theData)
-}/* debug [functions.gen.go/function]: CFDataGetMutableBytePtr */
+}
 
 // Returns the type identifier for the CFData opaque type.
 //
@@ -4209,7 +4209,7 @@ func CFDataGetMutableBytePtr(theData MutableDataRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetTypeID()
 func CFDataGetTypeID() TypeID {
 	return _CFDataGetTypeID()
-}/* debug [functions.gen.go/function]: CFDataGetTypeID */
+}
 
 // Increases the length of a CFMutableData object’s internal byte buffer, zero-filling the extension to the buffer.
 //
@@ -4220,7 +4220,7 @@ func CFDataGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataIncreaseLength(_:_:)
 func CFDataIncreaseLength(theData MutableDataRef, extraLength Index) {
 	_CFDataIncreaseLength(theData, extraLength)
-}/* debug [functions.gen.go/function]: CFDataIncreaseLength */
+}
 
 // Replaces those bytes in a CFMutableData object that fall within a specified range with other bytes.
 //
@@ -4231,7 +4231,7 @@ func CFDataIncreaseLength(theData MutableDataRef, extraLength Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataReplaceBytes(_:_:_:_:)
 func CFDataReplaceBytes(theData MutableDataRef, range_ Range, newBytes unsafe.Pointer, newLength Index) {
 	_CFDataReplaceBytes(theData, range_, newBytes, newLength)
-}/* debug [functions.gen.go/function]: CFDataReplaceBytes */
+}
 
 // Resets the length of a CFMutableData object’s internal byte buffer.
 //
@@ -4242,7 +4242,7 @@ func CFDataReplaceBytes(theData MutableDataRef, range_ Range, newBytes unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataSetLength(_:_:)
 func CFDataSetLength(theData MutableDataRef, length Index) {
 	_CFDataSetLength(theData, length)
-}/* debug [functions.gen.go/function]: CFDataSetLength */
+}
 
 // Compares two objects and returns a comparison result.
 //
@@ -4253,7 +4253,7 @@ func CFDataSetLength(theData MutableDataRef, length Index) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateCompare(_:_:_:)
 func CFDateCompare(theDate DateRef, otherDate DateRef, context unsafe.Pointer) ComparisonResult {
 	return _CFDateCompare(theDate, otherDate, context)
-}/* debug [functions.gen.go/function]: CFDateCompare */
+}
 
 // Creates a object given an absolute time.
 //
@@ -4264,7 +4264,7 @@ func CFDateCompare(theDate DateRef, otherDate DateRef, context unsafe.Pointer) C
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateCreate(_:_:)
 func CFDateCreate(allocator AllocatorRef, at AbsoluteTime) DateRef {
 	return _CFDateCreate(allocator, at)
-}/* debug [functions.gen.go/function]: CFDateCreate */
+}
 
 // Returns a copy of a date formatter’s value for a given key.
 //
@@ -4275,7 +4275,7 @@ func CFDateCreate(allocator AllocatorRef, at AbsoluteTime) DateRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCopyProperty(_:_:)
 func CFDateFormatterCopyProperty(formatter DateFormatterRef, key DateFormatterKey) TypeRef {
 	return _CFDateFormatterCopyProperty(formatter, key)
-}/* debug [functions.gen.go/function]: CFDateFormatterCopyProperty */
+}
 
 // Creates a new CFDateFormatter object, localized to the given locale, which will format dates to the given date and time styles.
 //
@@ -4286,7 +4286,7 @@ func CFDateFormatterCopyProperty(formatter DateFormatterRef, key DateFormatterKe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreate(_:_:_:_:)
 func CFDateFormatterCreate(allocator AllocatorRef, locale LocaleRef, dateStyle DateFormatterStyle, timeStyle DateFormatterStyle) DateFormatterRef {
 	return _CFDateFormatterCreate(allocator, locale, dateStyle, timeStyle)
-}/* debug [functions.gen.go/function]: CFDateFormatterCreate */
+}
 
 // Returns a localized date format string representing the given date format components arranged appropriately for the specified locale.
 //
@@ -4297,7 +4297,7 @@ func CFDateFormatterCreate(allocator AllocatorRef, locale LocaleRef, dateStyle D
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateDateFormatFromTemplate(_:_:_:_:)
 func CFDateFormatterCreateDateFormatFromTemplate(allocator AllocatorRef, tmplate StringRef, options OptionFlags, locale LocaleRef) StringRef {
 	return _CFDateFormatterCreateDateFormatFromTemplate(allocator, tmplate, options, locale)
-}/* debug [functions.gen.go/function]: CFDateFormatterCreateDateFormatFromTemplate */
+}
 
 // Returns a date object representing a given string.
 //
@@ -4308,7 +4308,7 @@ func CFDateFormatterCreateDateFormatFromTemplate(allocator AllocatorRef, tmplate
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateDateFromString(_:_:_:_:)
 func CFDateFormatterCreateDateFromString(allocator AllocatorRef, formatter DateFormatterRef, string_ StringRef, rangep unsafe.Pointer) DateRef {
 	return _CFDateFormatterCreateDateFromString(allocator, formatter, string_, rangep)
-}/* debug [functions.gen.go/function]: CFDateFormatterCreateDateFromString */
+}
 
 // CFDateFormatterCreateISO8601Formatter is a CoreFoundation function.
 //
@@ -4317,7 +4317,7 @@ func CFDateFormatterCreateDateFromString(allocator AllocatorRef, formatter DateF
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateISO8601Formatter(_:_:)
 func CFDateFormatterCreateISO8601Formatter(allocator AllocatorRef, formatOptions ISO8601DateFormatOptions) DateFormatterRef {
 	return _CFDateFormatterCreateISO8601Formatter(allocator, formatOptions)
-}/* debug [functions.gen.go/function]: CFDateFormatterCreateISO8601Formatter */
+}
 
 // Returns a string representation of the given absolute time using the specified date formatter.
 //
@@ -4328,7 +4328,7 @@ func CFDateFormatterCreateISO8601Formatter(allocator AllocatorRef, formatOptions
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateStringWithAbsoluteTime(_:_:_:)
 func CFDateFormatterCreateStringWithAbsoluteTime(allocator AllocatorRef, formatter DateFormatterRef, at AbsoluteTime) StringRef {
 	return _CFDateFormatterCreateStringWithAbsoluteTime(allocator, formatter, at)
-}/* debug [functions.gen.go/function]: CFDateFormatterCreateStringWithAbsoluteTime */
+}
 
 // Returns a string representation of the given date using the specified date formatter.
 //
@@ -4339,7 +4339,7 @@ func CFDateFormatterCreateStringWithAbsoluteTime(allocator AllocatorRef, formatt
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateStringWithDate(_:_:_:)
 func CFDateFormatterCreateStringWithDate(allocator AllocatorRef, formatter DateFormatterRef, date DateRef) StringRef {
 	return _CFDateFormatterCreateStringWithDate(allocator, formatter, date)
-}/* debug [functions.gen.go/function]: CFDateFormatterCreateStringWithDate */
+}
 
 // Returns an absolute time object representing a given string.
 //
@@ -4350,7 +4350,7 @@ func CFDateFormatterCreateStringWithDate(allocator AllocatorRef, formatter DateF
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetAbsoluteTimeFromString(_:_:_:_:)
 func CFDateFormatterGetAbsoluteTimeFromString(formatter DateFormatterRef, string_ StringRef, rangep unsafe.Pointer, atp unsafe.Pointer) unsafe.Pointer {
 	return _CFDateFormatterGetAbsoluteTimeFromString(formatter, string_, rangep, atp)
-}/* debug [functions.gen.go/function]: CFDateFormatterGetAbsoluteTimeFromString */
+}
 
 // Returns the date style used to create the given date formatter object.
 //
@@ -4361,7 +4361,7 @@ func CFDateFormatterGetAbsoluteTimeFromString(formatter DateFormatterRef, string
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetDateStyle(_:)
 func CFDateFormatterGetDateStyle(formatter DateFormatterRef) DateFormatterStyle {
 	return _CFDateFormatterGetDateStyle(formatter)
-}/* debug [functions.gen.go/function]: CFDateFormatterGetDateStyle */
+}
 
 // Returns a format string for the given date formatter object.
 //
@@ -4372,7 +4372,7 @@ func CFDateFormatterGetDateStyle(formatter DateFormatterRef) DateFormatterStyle 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetFormat(_:)
 func CFDateFormatterGetFormat(formatter DateFormatterRef) StringRef {
 	return _CFDateFormatterGetFormat(formatter)
-}/* debug [functions.gen.go/function]: CFDateFormatterGetFormat */
+}
 
 // Returns the locale object used to create the given date formatter object.
 //
@@ -4383,7 +4383,7 @@ func CFDateFormatterGetFormat(formatter DateFormatterRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetLocale(_:)
 func CFDateFormatterGetLocale(formatter DateFormatterRef) LocaleRef {
 	return _CFDateFormatterGetLocale(formatter)
-}/* debug [functions.gen.go/function]: CFDateFormatterGetLocale */
+}
 
 // Returns the time style used to create the given date formatter object.
 //
@@ -4394,7 +4394,7 @@ func CFDateFormatterGetLocale(formatter DateFormatterRef) LocaleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetTimeStyle(_:)
 func CFDateFormatterGetTimeStyle(formatter DateFormatterRef) DateFormatterStyle {
 	return _CFDateFormatterGetTimeStyle(formatter)
-}/* debug [functions.gen.go/function]: CFDateFormatterGetTimeStyle */
+}
 
 // Returns the type identifier for CFDateFormatter.
 //
@@ -4405,7 +4405,7 @@ func CFDateFormatterGetTimeStyle(formatter DateFormatterRef) DateFormatterStyle 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetTypeID()
 func CFDateFormatterGetTypeID() TypeID {
 	return _CFDateFormatterGetTypeID()
-}/* debug [functions.gen.go/function]: CFDateFormatterGetTypeID */
+}
 
 // Sets the format string of the given date formatter to the specified value.
 //
@@ -4416,7 +4416,7 @@ func CFDateFormatterGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterSetFormat(_:_:)
 func CFDateFormatterSetFormat(formatter DateFormatterRef, formatString StringRef) {
 	_CFDateFormatterSetFormat(formatter, formatString)
-}/* debug [functions.gen.go/function]: CFDateFormatterSetFormat */
+}
 
 // Sets a date formatter property using a key-value pair.
 //
@@ -4427,7 +4427,7 @@ func CFDateFormatterSetFormat(formatter DateFormatterRef, formatString StringRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterSetProperty(_:_:_:)
 func CFDateFormatterSetProperty(formatter DateFormatterRef, key StringRef, value TypeRef) {
 	_CFDateFormatterSetProperty(formatter, key, value)
-}/* debug [functions.gen.go/function]: CFDateFormatterSetProperty */
+}
 
 // Returns a object’s absolute time.
 //
@@ -4438,7 +4438,7 @@ func CFDateFormatterSetProperty(formatter DateFormatterRef, key StringRef, value
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateGetAbsoluteTime(_:)
 func CFDateGetAbsoluteTime(theDate DateRef) AbsoluteTime {
 	return _CFDateGetAbsoluteTime(theDate)
-}/* debug [functions.gen.go/function]: CFDateGetAbsoluteTime */
+}
 
 // Returns the number of elapsed seconds between the given objects.
 //
@@ -4449,7 +4449,7 @@ func CFDateGetAbsoluteTime(theDate DateRef) AbsoluteTime {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateGetTimeIntervalSinceDate(_:_:)
 func CFDateGetTimeIntervalSinceDate(theDate DateRef, otherDate DateRef) TimeInterval {
 	return _CFDateGetTimeIntervalSinceDate(theDate, otherDate)
-}/* debug [functions.gen.go/function]: CFDateGetTimeIntervalSinceDate */
+}
 
 // Returns the type identifier for the opaque type.
 //
@@ -4460,7 +4460,7 @@ func CFDateGetTimeIntervalSinceDate(theDate DateRef, otherDate DateRef) TimeInte
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateGetTypeID()
 func CFDateGetTypeID() TypeID {
 	return _CFDateGetTypeID()
-}/* debug [functions.gen.go/function]: CFDateGetTypeID */
+}
 
 // Adds a key-value pair to a dictionary if the specified key is not already present.
 //
@@ -4471,7 +4471,7 @@ func CFDateGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryAddValue(_:_:_:)
 func CFDictionaryAddValue(theDict MutableDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_CFDictionaryAddValue(theDict, key, value)
-}/* debug [functions.gen.go/function]: CFDictionaryAddValue */
+}
 
 // Calls a function once for each key-value pair in a dictionary.
 //
@@ -4482,7 +4482,7 @@ func CFDictionaryAddValue(theDict MutableDictionaryRef, key unsafe.Pointer, valu
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryApplyFunction(_:_:_:)
 func CFDictionaryApplyFunction(theDict DictionaryRef, applier DictionaryApplierFunction, context unsafe.Pointer) {
 	_CFDictionaryApplyFunction(theDict, applier, context)
-}/* debug [functions.gen.go/function]: CFDictionaryApplyFunction */
+}
 
 // Returns a Boolean value that indicates whether a given key is in a dictionary.
 //
@@ -4493,7 +4493,7 @@ func CFDictionaryApplyFunction(theDict DictionaryRef, applier DictionaryApplierF
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryContainsKey(_:_:)
 func CFDictionaryContainsKey(theDict DictionaryRef, key unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryContainsKey(theDict, key)
-}/* debug [functions.gen.go/function]: CFDictionaryContainsKey */
+}
 
 // Returns a Boolean value that indicates whether a given value is in a dictionary.
 //
@@ -4504,7 +4504,7 @@ func CFDictionaryContainsKey(theDict DictionaryRef, key unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryContainsValue(_:_:)
 func CFDictionaryContainsValue(theDict DictionaryRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryContainsValue(theDict, value)
-}/* debug [functions.gen.go/function]: CFDictionaryContainsValue */
+}
 
 // Creates an immutable dictionary containing the specified key-value pairs.
 //
@@ -4515,7 +4515,7 @@ func CFDictionaryContainsValue(theDict DictionaryRef, value unsafe.Pointer) unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreate(_:_:_:_:_:_:)
 func CFDictionaryCreate(allocator AllocatorRef, keys unsafe.Pointer, values unsafe.Pointer, numValues Index, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) DictionaryRef {
 	return _CFDictionaryCreate(allocator, keys, values, numValues, keyCallBacks, valueCallBacks)
-}/* debug [functions.gen.go/function]: CFDictionaryCreate */
+}
 
 // Creates and returns a new immutable dictionary with the key-value pairs of another dictionary.
 //
@@ -4526,7 +4526,7 @@ func CFDictionaryCreate(allocator AllocatorRef, keys unsafe.Pointer, values unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateCopy(_:_:)
 func CFDictionaryCreateCopy(allocator AllocatorRef, theDict DictionaryRef) DictionaryRef {
 	return _CFDictionaryCreateCopy(allocator, theDict)
-}/* debug [functions.gen.go/function]: CFDictionaryCreateCopy */
+}
 
 // Creates a new mutable dictionary.
 //
@@ -4537,7 +4537,7 @@ func CFDictionaryCreateCopy(allocator AllocatorRef, theDict DictionaryRef) Dicti
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateMutable(_:_:_:_:)
 func CFDictionaryCreateMutable(allocator AllocatorRef, capacity Index, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) MutableDictionaryRef {
 	return _CFDictionaryCreateMutable(allocator, capacity, keyCallBacks, valueCallBacks)
-}/* debug [functions.gen.go/function]: CFDictionaryCreateMutable */
+}
 
 // Creates a new mutable dictionary with the key-value pairs from another dictionary.
 //
@@ -4548,7 +4548,7 @@ func CFDictionaryCreateMutable(allocator AllocatorRef, capacity Index, keyCallBa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateMutableCopy(_:_:_:)
 func CFDictionaryCreateMutableCopy(allocator AllocatorRef, capacity Index, theDict DictionaryRef) MutableDictionaryRef {
 	return _CFDictionaryCreateMutableCopy(allocator, capacity, theDict)
-}/* debug [functions.gen.go/function]: CFDictionaryCreateMutableCopy */
+}
 
 // Returns the number of key-value pairs in a dictionary.
 //
@@ -4559,7 +4559,7 @@ func CFDictionaryCreateMutableCopy(allocator AllocatorRef, capacity Index, theDi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetCount(_:)
 func CFDictionaryGetCount(theDict DictionaryRef) Index {
 	return _CFDictionaryGetCount(theDict)
-}/* debug [functions.gen.go/function]: CFDictionaryGetCount */
+}
 
 // Returns the number of times a key occurs in a dictionary.
 //
@@ -4570,7 +4570,7 @@ func CFDictionaryGetCount(theDict DictionaryRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetCountOfKey(_:_:)
 func CFDictionaryGetCountOfKey(theDict DictionaryRef, key unsafe.Pointer) Index {
 	return _CFDictionaryGetCountOfKey(theDict, key)
-}/* debug [functions.gen.go/function]: CFDictionaryGetCountOfKey */
+}
 
 // Counts the number of times a given value occurs in the dictionary.
 //
@@ -4581,7 +4581,7 @@ func CFDictionaryGetCountOfKey(theDict DictionaryRef, key unsafe.Pointer) Index 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetCountOfValue(_:_:)
 func CFDictionaryGetCountOfValue(theDict DictionaryRef, value unsafe.Pointer) Index {
 	return _CFDictionaryGetCountOfValue(theDict, value)
-}/* debug [functions.gen.go/function]: CFDictionaryGetCountOfValue */
+}
 
 // Fills two buffers with the keys and values from a dictionary.
 //
@@ -4592,7 +4592,7 @@ func CFDictionaryGetCountOfValue(theDict DictionaryRef, value unsafe.Pointer) In
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetKeysAndValues(_:_:_:)
 func CFDictionaryGetKeysAndValues(theDict DictionaryRef, keys unsafe.Pointer, values unsafe.Pointer) {
 	_CFDictionaryGetKeysAndValues(theDict, keys, values)
-}/* debug [functions.gen.go/function]: CFDictionaryGetKeysAndValues */
+}
 
 // Returns the type identifier for the CFDictionary opaque type.
 //
@@ -4603,7 +4603,7 @@ func CFDictionaryGetKeysAndValues(theDict DictionaryRef, keys unsafe.Pointer, va
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetTypeID()
 func CFDictionaryGetTypeID() TypeID {
 	return _CFDictionaryGetTypeID()
-}/* debug [functions.gen.go/function]: CFDictionaryGetTypeID */
+}
 
 // Returns the value associated with a given key.
 //
@@ -4614,7 +4614,7 @@ func CFDictionaryGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetValue(_:_:)
 func CFDictionaryGetValue(theDict DictionaryRef, key unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryGetValue(theDict, key)
-}/* debug [functions.gen.go/function]: CFDictionaryGetValue */
+}
 
 // Returns a Boolean value that indicates whether a given value for a given key is in a dictionary, and returns that value indirectly if it exists.
 //
@@ -4625,7 +4625,7 @@ func CFDictionaryGetValue(theDict DictionaryRef, key unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetValueIfPresent(_:_:_:)
 func CFDictionaryGetValueIfPresent(theDict DictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryGetValueIfPresent(theDict, key, value)
-}/* debug [functions.gen.go/function]: CFDictionaryGetValueIfPresent */
+}
 
 // Removes all the key-value pairs from a dictionary, making it empty.
 //
@@ -4636,7 +4636,7 @@ func CFDictionaryGetValueIfPresent(theDict DictionaryRef, key unsafe.Pointer, va
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRemoveAllValues(_:)
 func CFDictionaryRemoveAllValues(theDict MutableDictionaryRef) {
 	_CFDictionaryRemoveAllValues(theDict)
-}/* debug [functions.gen.go/function]: CFDictionaryRemoveAllValues */
+}
 
 // Removes a key-value pair.
 //
@@ -4647,7 +4647,7 @@ func CFDictionaryRemoveAllValues(theDict MutableDictionaryRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRemoveValue(_:_:)
 func CFDictionaryRemoveValue(theDict MutableDictionaryRef, key unsafe.Pointer) {
 	_CFDictionaryRemoveValue(theDict, key)
-}/* debug [functions.gen.go/function]: CFDictionaryRemoveValue */
+}
 
 // Replaces a value corresponding to a given key.
 //
@@ -4658,7 +4658,7 @@ func CFDictionaryRemoveValue(theDict MutableDictionaryRef, key unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryReplaceValue(_:_:_:)
 func CFDictionaryReplaceValue(theDict MutableDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_CFDictionaryReplaceValue(theDict, key, value)
-}/* debug [functions.gen.go/function]: CFDictionaryReplaceValue */
+}
 
 // Sets the value corresponding to a given key.
 //
@@ -4669,7 +4669,7 @@ func CFDictionaryReplaceValue(theDict MutableDictionaryRef, key unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionarySetValue(_:_:_:)
 func CFDictionarySetValue(theDict MutableDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_CFDictionarySetValue(theDict, key, value)
-}/* debug [functions.gen.go/function]: CFDictionarySetValue */
+}
 
 // Determines whether two Core Foundation objects are considered equal.
 //
@@ -4680,7 +4680,7 @@ func CFDictionarySetValue(theDict MutableDictionaryRef, key unsafe.Pointer, valu
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFEqual(_:_:)
 func CFEqual(cf1 TypeRef, cf2 TypeRef) unsafe.Pointer {
 	return _CFEqual(cf1, cf2)
-}/* debug [functions.gen.go/function]: CFEqual */
+}
 
 // Returns a human-presentable description for a given error.
 //
@@ -4691,7 +4691,7 @@ func CFEqual(cf1 TypeRef, cf2 TypeRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyDescription(_:)
 func CFErrorCopyDescription(err ErrorRef) StringRef {
 	return _CFErrorCopyDescription(err)
-}/* debug [functions.gen.go/function]: CFErrorCopyDescription */
+}
 
 // Returns a human-presentable failure reason for a given error.
 //
@@ -4702,7 +4702,7 @@ func CFErrorCopyDescription(err ErrorRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyFailureReason(_:)
 func CFErrorCopyFailureReason(err ErrorRef) StringRef {
 	return _CFErrorCopyFailureReason(err)
-}/* debug [functions.gen.go/function]: CFErrorCopyFailureReason */
+}
 
 // Returns a human presentable recovery suggestion for a given error.
 //
@@ -4713,7 +4713,7 @@ func CFErrorCopyFailureReason(err ErrorRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyRecoverySuggestion(_:)
 func CFErrorCopyRecoverySuggestion(err ErrorRef) StringRef {
 	return _CFErrorCopyRecoverySuggestion(err)
-}/* debug [functions.gen.go/function]: CFErrorCopyRecoverySuggestion */
+}
 
 // Returns the user info dictionary for a given CFError.
 //
@@ -4724,7 +4724,7 @@ func CFErrorCopyRecoverySuggestion(err ErrorRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyUserInfo(_:)
 func CFErrorCopyUserInfo(err ErrorRef) DictionaryRef {
 	return _CFErrorCopyUserInfo(err)
-}/* debug [functions.gen.go/function]: CFErrorCopyUserInfo */
+}
 
 // Creates a new CFError object.
 //
@@ -4735,7 +4735,7 @@ func CFErrorCopyUserInfo(err ErrorRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCreate(_:_:_:_:)
 func CFErrorCreate(allocator AllocatorRef, domain ErrorDomain, code Index, userInfo DictionaryRef) ErrorRef {
 	return _CFErrorCreate(allocator, domain, code, userInfo)
-}/* debug [functions.gen.go/function]: CFErrorCreate */
+}
 
 // Creates a new CFError object using given keys and values to create the user info dictionary.
 //
@@ -4746,7 +4746,7 @@ func CFErrorCreate(allocator AllocatorRef, domain ErrorDomain, code Index, userI
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCreateWithUserInfoKeysAndValues(_:_:_:_:_:_:)
 func CFErrorCreateWithUserInfoKeysAndValues(allocator AllocatorRef, domain ErrorDomain, code Index, userInfoKeys unsafe.Pointer, userInfoValues unsafe.Pointer, numUserInfoValues Index) ErrorRef {
 	return _CFErrorCreateWithUserInfoKeysAndValues(allocator, domain, code, userInfoKeys, userInfoValues, numUserInfoValues)
-}/* debug [functions.gen.go/function]: CFErrorCreateWithUserInfoKeysAndValues */
+}
 
 // Returns the error code for a given CFError.
 //
@@ -4757,7 +4757,7 @@ func CFErrorCreateWithUserInfoKeysAndValues(allocator AllocatorRef, domain Error
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorGetCode(_:)
 func CFErrorGetCode(err ErrorRef) Index {
 	return _CFErrorGetCode(err)
-}/* debug [functions.gen.go/function]: CFErrorGetCode */
+}
 
 // Returns the error domain for a given CFError.
 //
@@ -4768,7 +4768,7 @@ func CFErrorGetCode(err ErrorRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorGetDomain(_:)
 func CFErrorGetDomain(err ErrorRef) ErrorDomain {
 	return _CFErrorGetDomain(err)
-}/* debug [functions.gen.go/function]: CFErrorGetDomain */
+}
 
 // Returns the type identifier for the CFError opaque type.
 //
@@ -4779,7 +4779,7 @@ func CFErrorGetDomain(err ErrorRef) ErrorDomain {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorGetTypeID()
 func CFErrorGetTypeID() TypeID {
 	return _CFErrorGetTypeID()
-}/* debug [functions.gen.go/function]: CFErrorGetTypeID */
+}
 
 // Creates a new CFFileDescriptor.
 //
@@ -4790,7 +4790,7 @@ func CFErrorGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorCreate(_:_:_:_:_:)
 func CFFileDescriptorCreate(allocator AllocatorRef, fd FileDescriptorNativeDescriptor, closeOnInvalidate unsafe.Pointer, callout FileDescriptorCallBack, context unsafe.Pointer) FileDescriptorRef {
 	return _CFFileDescriptorCreate(allocator, fd, closeOnInvalidate, callout, context)
-}/* debug [functions.gen.go/function]: CFFileDescriptorCreate */
+}
 
 // Creates a new runloop source for a given CFFileDescriptor.
 //
@@ -4801,7 +4801,7 @@ func CFFileDescriptorCreate(allocator AllocatorRef, fd FileDescriptorNativeDescr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorCreateRunLoopSource(_:_:_:)
 func CFFileDescriptorCreateRunLoopSource(allocator AllocatorRef, f FileDescriptorRef, order Index) RunLoopSourceRef {
 	return _CFFileDescriptorCreateRunLoopSource(allocator, f, order)
-}/* debug [functions.gen.go/function]: CFFileDescriptorCreateRunLoopSource */
+}
 
 // Disables callbacks for a given CFFileDescriptor.
 //
@@ -4812,7 +4812,7 @@ func CFFileDescriptorCreateRunLoopSource(allocator AllocatorRef, f FileDescripto
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorDisableCallBacks(_:_:)
 func CFFileDescriptorDisableCallBacks(f FileDescriptorRef, callBackTypes OptionFlags) {
 	_CFFileDescriptorDisableCallBacks(f, callBackTypes)
-}/* debug [functions.gen.go/function]: CFFileDescriptorDisableCallBacks */
+}
 
 // Enables callbacks for a given CFFileDescriptor.
 //
@@ -4823,7 +4823,7 @@ func CFFileDescriptorDisableCallBacks(f FileDescriptorRef, callBackTypes OptionF
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorEnableCallBacks(_:_:)
 func CFFileDescriptorEnableCallBacks(f FileDescriptorRef, callBackTypes OptionFlags) {
 	_CFFileDescriptorEnableCallBacks(f, callBackTypes)
-}/* debug [functions.gen.go/function]: CFFileDescriptorEnableCallBacks */
+}
 
 // Gets the context for a given CFFileDescriptor.
 //
@@ -4834,7 +4834,7 @@ func CFFileDescriptorEnableCallBacks(f FileDescriptorRef, callBackTypes OptionFl
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorGetContext(_:_:)
 func CFFileDescriptorGetContext(f FileDescriptorRef, context unsafe.Pointer) {
 	_CFFileDescriptorGetContext(f, context)
-}/* debug [functions.gen.go/function]: CFFileDescriptorGetContext */
+}
 
 // Returns the native file descriptor for a given CFFileDescriptor.
 //
@@ -4845,7 +4845,7 @@ func CFFileDescriptorGetContext(f FileDescriptorRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorGetNativeDescriptor(_:)
 func CFFileDescriptorGetNativeDescriptor(f FileDescriptorRef) FileDescriptorNativeDescriptor {
 	return _CFFileDescriptorGetNativeDescriptor(f)
-}/* debug [functions.gen.go/function]: CFFileDescriptorGetNativeDescriptor */
+}
 
 // Returns the type identifier for the CFFileDescriptor opaque type.
 //
@@ -4856,7 +4856,7 @@ func CFFileDescriptorGetNativeDescriptor(f FileDescriptorRef) FileDescriptorNati
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorGetTypeID()
 func CFFileDescriptorGetTypeID() TypeID {
 	return _CFFileDescriptorGetTypeID()
-}/* debug [functions.gen.go/function]: CFFileDescriptorGetTypeID */
+}
 
 // Invalidates a CFFileDescriptor object.
 //
@@ -4867,7 +4867,7 @@ func CFFileDescriptorGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorInvalidate(_:)
 func CFFileDescriptorInvalidate(f FileDescriptorRef) {
 	_CFFileDescriptorInvalidate(f)
-}/* debug [functions.gen.go/function]: CFFileDescriptorInvalidate */
+}
 
 // Returns a Boolean value that indicates whether the native file descriptor for a given CFFileDescriptor is valid.
 //
@@ -4878,7 +4878,7 @@ func CFFileDescriptorInvalidate(f FileDescriptorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorIsValid(_:)
 func CFFileDescriptorIsValid(f FileDescriptorRef) unsafe.Pointer {
 	return _CFFileDescriptorIsValid(f)
-}/* debug [functions.gen.go/function]: CFFileDescriptorIsValid */
+}
 
 // Clears properties from a object.
 //
@@ -4889,7 +4889,7 @@ func CFFileDescriptorIsValid(f FileDescriptorRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityClearProperties(_:_:)
 func CFFileSecurityClearProperties(fileSec FileSecurityRef, clearPropertyMask FileSecurityClearOptions) unsafe.Pointer {
 	return _CFFileSecurityClearProperties(fileSec, clearPropertyMask)
-}/* debug [functions.gen.go/function]: CFFileSecurityClearProperties */
+}
 
 // Copies the access control list associated with a object.
 //
@@ -4900,7 +4900,7 @@ func CFFileSecurityClearProperties(fileSec FileSecurityRef, clearPropertyMask Fi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCopyAccessControlList(_:_:)
 func CFFileSecurityCopyAccessControlList(fileSec FileSecurityRef, accessControlList unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityCopyAccessControlList(fileSec, accessControlList)
-}/* debug [functions.gen.go/function]: CFFileSecurityCopyAccessControlList */
+}
 
 // Copies the group UUID associated with a object.
 //
@@ -4911,7 +4911,7 @@ func CFFileSecurityCopyAccessControlList(fileSec FileSecurityRef, accessControlL
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCopyGroupUUID(_:_:)
 func CFFileSecurityCopyGroupUUID(fileSec FileSecurityRef, groupUUID unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityCopyGroupUUID(fileSec, groupUUID)
-}/* debug [functions.gen.go/function]: CFFileSecurityCopyGroupUUID */
+}
 
 // Copies the owner UUID associated with a object.
 //
@@ -4922,7 +4922,7 @@ func CFFileSecurityCopyGroupUUID(fileSec FileSecurityRef, groupUUID unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCopyOwnerUUID(_:_:)
 func CFFileSecurityCopyOwnerUUID(fileSec FileSecurityRef, ownerUUID unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityCopyOwnerUUID(fileSec, ownerUUID)
-}/* debug [functions.gen.go/function]: CFFileSecurityCopyOwnerUUID */
+}
 
 // Creates a object.
 //
@@ -4933,7 +4933,7 @@ func CFFileSecurityCopyOwnerUUID(fileSec FileSecurityRef, ownerUUID unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCreate(_:)
 func CFFileSecurityCreate(allocator AllocatorRef) FileSecurityRef {
 	return _CFFileSecurityCreate(allocator)
-}/* debug [functions.gen.go/function]: CFFileSecurityCreate */
+}
 
 // Creates a copy of a object.
 //
@@ -4944,7 +4944,7 @@ func CFFileSecurityCreate(allocator AllocatorRef) FileSecurityRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCreateCopy(_:_:)
 func CFFileSecurityCreateCopy(allocator AllocatorRef, fileSec FileSecurityRef) FileSecurityRef {
 	return _CFFileSecurityCreateCopy(allocator, fileSec)
-}/* debug [functions.gen.go/function]: CFFileSecurityCreateCopy */
+}
 
 // Gets the group ID associated with a object
 //
@@ -4955,7 +4955,7 @@ func CFFileSecurityCreateCopy(allocator AllocatorRef, fileSec FileSecurityRef) F
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetGroup(_:_:)
 func CFFileSecurityGetGroup(fileSec FileSecurityRef, group unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityGetGroup(fileSec, group)
-}/* debug [functions.gen.go/function]: CFFileSecurityGetGroup */
+}
 
 // Gets the file mode associated with a object.
 //
@@ -4966,7 +4966,7 @@ func CFFileSecurityGetGroup(fileSec FileSecurityRef, group unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetMode(_:_:)
 func CFFileSecurityGetMode(fileSec FileSecurityRef, mode unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityGetMode(fileSec, mode)
-}/* debug [functions.gen.go/function]: CFFileSecurityGetMode */
+}
 
 // Gets the owner ID associated with a object.
 //
@@ -4977,7 +4977,7 @@ func CFFileSecurityGetMode(fileSec FileSecurityRef, mode unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetOwner(_:_:)
 func CFFileSecurityGetOwner(fileSec FileSecurityRef, owner unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityGetOwner(fileSec, owner)
-}/* debug [functions.gen.go/function]: CFFileSecurityGetOwner */
+}
 
 // Returns the type identifier for the opaque type.
 //
@@ -4988,7 +4988,7 @@ func CFFileSecurityGetOwner(fileSec FileSecurityRef, owner unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetTypeID()
 func CFFileSecurityGetTypeID() TypeID {
 	return _CFFileSecurityGetTypeID()
-}/* debug [functions.gen.go/function]: CFFileSecurityGetTypeID */
+}
 
 // Sets the access control list associated with a object.
 //
@@ -4999,7 +4999,7 @@ func CFFileSecurityGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetAccessControlList(_:_:)
 func CFFileSecuritySetAccessControlList(fileSec FileSecurityRef, accessControlList unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetAccessControlList(fileSec, accessControlList)
-}/* debug [functions.gen.go/function]: CFFileSecuritySetAccessControlList */
+}
 
 // Sets the group ID associated with a object.
 //
@@ -5010,7 +5010,7 @@ func CFFileSecuritySetAccessControlList(fileSec FileSecurityRef, accessControlLi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetGroup(_:_:)
 func CFFileSecuritySetGroup(fileSec FileSecurityRef, group unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetGroup(fileSec, group)
-}/* debug [functions.gen.go/function]: CFFileSecuritySetGroup */
+}
 
 // Sets the group UUID associated with a object.
 //
@@ -5021,7 +5021,7 @@ func CFFileSecuritySetGroup(fileSec FileSecurityRef, group unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetGroupUUID(_:_:)
 func CFFileSecuritySetGroupUUID(fileSec FileSecurityRef, groupUUID UUIDRef) unsafe.Pointer {
 	return _CFFileSecuritySetGroupUUID(fileSec, groupUUID)
-}/* debug [functions.gen.go/function]: CFFileSecuritySetGroupUUID */
+}
 
 // Sets the file mode associated with a object.
 //
@@ -5032,7 +5032,7 @@ func CFFileSecuritySetGroupUUID(fileSec FileSecurityRef, groupUUID UUIDRef) unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetMode(_:_:)
 func CFFileSecuritySetMode(fileSec FileSecurityRef, mode unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetMode(fileSec, mode)
-}/* debug [functions.gen.go/function]: CFFileSecuritySetMode */
+}
 
 // Sets the owner ID associated with a object.
 //
@@ -5043,7 +5043,7 @@ func CFFileSecuritySetMode(fileSec FileSecurityRef, mode unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetOwner(_:_:)
 func CFFileSecuritySetOwner(fileSec FileSecurityRef, owner unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetOwner(fileSec, owner)
-}/* debug [functions.gen.go/function]: CFFileSecuritySetOwner */
+}
 
 // Sets the owner UUID associated with a object.
 //
@@ -5054,7 +5054,7 @@ func CFFileSecuritySetOwner(fileSec FileSecurityRef, owner unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetOwnerUUID(_:_:)
 func CFFileSecuritySetOwnerUUID(fileSec FileSecurityRef, ownerUUID UUIDRef) unsafe.Pointer {
 	return _CFFileSecuritySetOwnerUUID(fileSec, ownerUUID)
-}/* debug [functions.gen.go/function]: CFFileSecuritySetOwnerUUID */
+}
 
 // Returns the allocator used to allocate a Core Foundation object.
 //
@@ -5065,7 +5065,7 @@ func CFFileSecuritySetOwnerUUID(fileSec FileSecurityRef, ownerUUID UUIDRef) unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetAllocator(_:)
 func CFGetAllocator(cf TypeRef) AllocatorRef {
 	return _CFGetAllocator(cf)
-}/* debug [functions.gen.go/function]: CFGetAllocator */
+}
 
 // Returns the reference count of a Core Foundation object.
 //
@@ -5076,7 +5076,7 @@ func CFGetAllocator(cf TypeRef) AllocatorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetRetainCount(_:)
 func CFGetRetainCount(cf TypeRef) Index {
 	return _CFGetRetainCount(cf)
-}/* debug [functions.gen.go/function]: CFGetRetainCount */
+}
 
 // Returns the unique identifier of an opaque type to which a Core Foundation object belongs.
 //
@@ -5087,7 +5087,7 @@ func CFGetRetainCount(cf TypeRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetTypeID(_:)
 func CFGetTypeID(cf TypeRef) TypeID {
 	return _CFGetTypeID(cf)
-}/* debug [functions.gen.go/function]: CFGetTypeID */
+}
 
 // Converts a Gregorian date value into an absolute time value.
 //
@@ -5100,7 +5100,7 @@ func CFGetTypeID(cf TypeRef) TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGregorianDateGetAbsoluteTime(_:_:)
 func CFGregorianDateGetAbsoluteTime(gdate GregorianDate, tz TimeZoneRef) AbsoluteTime {
 	return _CFGregorianDateGetAbsoluteTime(gdate, tz)
-}/* debug [functions.gen.go/function]: CFGregorianDateGetAbsoluteTime */
+}
 
 // Checks the specified fields of a CFGregorianDate structure for valid values.
 //
@@ -5113,7 +5113,7 @@ func CFGregorianDateGetAbsoluteTime(gdate GregorianDate, tz TimeZoneRef) Absolut
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGregorianDateIsValid(_:_:)
 func CFGregorianDateIsValid(gdate GregorianDate, unitFlags OptionFlags) unsafe.Pointer {
 	return _CFGregorianDateIsValid(gdate, unitFlags)
-}/* debug [functions.gen.go/function]: CFGregorianDateIsValid */
+}
 
 // Returns a code that can be used to identify an object in a hashing structure.
 //
@@ -5124,7 +5124,7 @@ func CFGregorianDateIsValid(gdate GregorianDate, unitFlags OptionFlags) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFHash(_:)
 func CFHash(cf TypeRef) HashCode {
 	return _CFHash(cf)
-}/* debug [functions.gen.go/function]: CFHash */
+}
 
 // Returns an array of CFString objects that represents all locales for which locale data is available.
 //
@@ -5135,7 +5135,7 @@ func CFHash(cf TypeRef) HashCode {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyAvailableLocaleIdentifiers()
 func CFLocaleCopyAvailableLocaleIdentifiers() ArrayRef {
 	return _CFLocaleCopyAvailableLocaleIdentifiers()
-}/* debug [functions.gen.go/function]: CFLocaleCopyAvailableLocaleIdentifiers */
+}
 
 // Returns an array of strings that represents ISO currency codes for currencies in common use.
 //
@@ -5146,7 +5146,7 @@ func CFLocaleCopyAvailableLocaleIdentifiers() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyCommonISOCurrencyCodes()
 func CFLocaleCopyCommonISOCurrencyCodes() ArrayRef {
 	return _CFLocaleCopyCommonISOCurrencyCodes()
-}/* debug [functions.gen.go/function]: CFLocaleCopyCommonISOCurrencyCodes */
+}
 
 // Returns a copy of the logical locale for the current user.
 //
@@ -5157,7 +5157,7 @@ func CFLocaleCopyCommonISOCurrencyCodes() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyCurrent()
 func CFLocaleCopyCurrent() LocaleRef {
 	return _CFLocaleCopyCurrent()
-}/* debug [functions.gen.go/function]: CFLocaleCopyCurrent */
+}
 
 // Returns the display name for the given value.
 //
@@ -5168,7 +5168,7 @@ func CFLocaleCopyCurrent() LocaleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyDisplayNameForPropertyValue(_:_:_:)
 func CFLocaleCopyDisplayNameForPropertyValue(displayLocale LocaleRef, key LocaleKey, value StringRef) StringRef {
 	return _CFLocaleCopyDisplayNameForPropertyValue(displayLocale, key, value)
-}/* debug [functions.gen.go/function]: CFLocaleCopyDisplayNameForPropertyValue */
+}
 
 // Returns an array of CFString objects that represents all known legal ISO country codes.
 //
@@ -5179,7 +5179,7 @@ func CFLocaleCopyDisplayNameForPropertyValue(displayLocale LocaleRef, key Locale
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyISOCountryCodes()
 func CFLocaleCopyISOCountryCodes() ArrayRef {
 	return _CFLocaleCopyISOCountryCodes()
-}/* debug [functions.gen.go/function]: CFLocaleCopyISOCountryCodes */
+}
 
 // Returns an array of CFString objects that represents all known legal ISO currency codes.
 //
@@ -5190,7 +5190,7 @@ func CFLocaleCopyISOCountryCodes() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyISOCurrencyCodes()
 func CFLocaleCopyISOCurrencyCodes() ArrayRef {
 	return _CFLocaleCopyISOCurrencyCodes()
-}/* debug [functions.gen.go/function]: CFLocaleCopyISOCurrencyCodes */
+}
 
 // Returns an array of CFString objects that represents all known legal ISO language codes.
 //
@@ -5201,7 +5201,7 @@ func CFLocaleCopyISOCurrencyCodes() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyISOLanguageCodes()
 func CFLocaleCopyISOLanguageCodes() ArrayRef {
 	return _CFLocaleCopyISOLanguageCodes()
-}/* debug [functions.gen.go/function]: CFLocaleCopyISOLanguageCodes */
+}
 
 // Returns the array of canonicalized language IDs that the user prefers.
 //
@@ -5212,7 +5212,7 @@ func CFLocaleCopyISOLanguageCodes() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyPreferredLanguages()
 func CFLocaleCopyPreferredLanguages() ArrayRef {
 	return _CFLocaleCopyPreferredLanguages()
-}/* debug [functions.gen.go/function]: CFLocaleCopyPreferredLanguages */
+}
 
 // Creates a locale for the given arbitrary locale identifier.
 //
@@ -5223,7 +5223,7 @@ func CFLocaleCopyPreferredLanguages() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreate(_:_:)
 func CFLocaleCreate(allocator AllocatorRef, localeIdentifier LocaleIdentifier) LocaleRef {
 	return _CFLocaleCreate(allocator, localeIdentifier)
-}/* debug [functions.gen.go/function]: CFLocaleCreate */
+}
 
 // Returns a canonical language identifier by mapping an arbitrary locale identification string to the canonical identifier
 //
@@ -5234,7 +5234,7 @@ func CFLocaleCreate(allocator AllocatorRef, localeIdentifier LocaleIdentifier) L
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCanonicalLanguageIdentifierFromString(_:_:)
 func CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator AllocatorRef, localeIdentifier StringRef) LocaleIdentifier {
 	return _CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator, localeIdentifier)
-}/* debug [functions.gen.go/function]: CFLocaleCreateCanonicalLanguageIdentifierFromString */
+}
 
 // Returns a canonical locale identifier from given language and region codes.
 //
@@ -5245,7 +5245,7 @@ func CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator AllocatorRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(_:_:_:)
 func CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator AllocatorRef, lcode unsafe.Pointer, rcode unsafe.Pointer) LocaleIdentifier {
 	return _CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator, lcode, rcode)
-}/* debug [functions.gen.go/function]: CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes */
+}
 
 // Returns a canonical locale identifier by mapping an arbitrary locale identification string to the canonical identifier.
 //
@@ -5256,7 +5256,7 @@ func CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator All
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCanonicalLocaleIdentifierFromString(_:_:)
 func CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator AllocatorRef, localeIdentifier StringRef) LocaleIdentifier {
 	return _CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator, localeIdentifier)
-}/* debug [functions.gen.go/function]: CFLocaleCreateCanonicalLocaleIdentifierFromString */
+}
 
 // Returns a dictionary containing the result from parsing a locale ID consisting of language, script, country or region, variant, and keyword/value pairs.
 //
@@ -5267,7 +5267,7 @@ func CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator AllocatorRef, l
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateComponentsFromLocaleIdentifier(_:_:)
 func CFLocaleCreateComponentsFromLocaleIdentifier(allocator AllocatorRef, localeID LocaleIdentifier) DictionaryRef {
 	return _CFLocaleCreateComponentsFromLocaleIdentifier(allocator, localeID)
-}/* debug [functions.gen.go/function]: CFLocaleCreateComponentsFromLocaleIdentifier */
+}
 
 // Returns a copy of a locale.
 //
@@ -5278,7 +5278,7 @@ func CFLocaleCreateComponentsFromLocaleIdentifier(allocator AllocatorRef, locale
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCopy(_:_:)
 func CFLocaleCreateCopy(allocator AllocatorRef, locale LocaleRef) LocaleRef {
 	return _CFLocaleCreateCopy(allocator, locale)
-}/* debug [functions.gen.go/function]: CFLocaleCreateCopy */
+}
 
 // Returns a locale identifier consisting of language, script, country or region, variant, and keyword/value pairs derived from a dictionary containing the source information.
 //
@@ -5289,7 +5289,7 @@ func CFLocaleCreateCopy(allocator AllocatorRef, locale LocaleRef) LocaleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateLocaleIdentifierFromComponents(_:_:)
 func CFLocaleCreateLocaleIdentifierFromComponents(allocator AllocatorRef, dictionary DictionaryRef) LocaleIdentifier {
 	return _CFLocaleCreateLocaleIdentifierFromComponents(allocator, dictionary)
-}/* debug [functions.gen.go/function]: CFLocaleCreateLocaleIdentifierFromComponents */
+}
 
 // Returns a locale identifier from a Windows locale code.
 //
@@ -5300,7 +5300,7 @@ func CFLocaleCreateLocaleIdentifierFromComponents(allocator AllocatorRef, dictio
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(_:_:)
 func CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator AllocatorRef, lcid uint32) LocaleIdentifier {
 	return _CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator, lcid)
-}/* debug [functions.gen.go/function]: CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode */
+}
 
 // Returns the given locale’s identifier.
 //
@@ -5311,7 +5311,7 @@ func CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator AllocatorRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetIdentifier(_:)
 func CFLocaleGetIdentifier(locale LocaleRef) LocaleIdentifier {
 	return _CFLocaleGetIdentifier(locale)
-}/* debug [functions.gen.go/function]: CFLocaleGetIdentifier */
+}
 
 // Returns the character direction for the specified ISO language code.
 //
@@ -5322,7 +5322,7 @@ func CFLocaleGetIdentifier(locale LocaleRef) LocaleIdentifier {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetLanguageCharacterDirection(_:)
 func CFLocaleGetLanguageCharacterDirection(isoLangCode StringRef) LocaleLanguageDirection {
 	return _CFLocaleGetLanguageCharacterDirection(isoLangCode)
-}/* debug [functions.gen.go/function]: CFLocaleGetLanguageCharacterDirection */
+}
 
 // Returns the line direction for the specified ISO language code.
 //
@@ -5333,7 +5333,7 @@ func CFLocaleGetLanguageCharacterDirection(isoLangCode StringRef) LocaleLanguage
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetLanguageLineDirection(_:)
 func CFLocaleGetLanguageLineDirection(isoLangCode StringRef) LocaleLanguageDirection {
 	return _CFLocaleGetLanguageLineDirection(isoLangCode)
-}/* debug [functions.gen.go/function]: CFLocaleGetLanguageLineDirection */
+}
 
 // Returns the root, canonical locale.
 //
@@ -5344,7 +5344,7 @@ func CFLocaleGetLanguageLineDirection(isoLangCode StringRef) LocaleLanguageDirec
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetSystem()
 func CFLocaleGetSystem() LocaleRef {
 	return _CFLocaleGetSystem()
-}/* debug [functions.gen.go/function]: CFLocaleGetSystem */
+}
 
 // Returns the type identifier for the CFLocale opaque type.
 //
@@ -5355,7 +5355,7 @@ func CFLocaleGetSystem() LocaleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetTypeID()
 func CFLocaleGetTypeID() TypeID {
 	return _CFLocaleGetTypeID()
-}/* debug [functions.gen.go/function]: CFLocaleGetTypeID */
+}
 
 // Returns the corresponding value for the given key of a locale’s key-value pair.
 //
@@ -5366,7 +5366,7 @@ func CFLocaleGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetValue(_:_:)
 func CFLocaleGetValue(locale LocaleRef, key LocaleKey) TypeRef {
 	return _CFLocaleGetValue(locale, key)
-}/* debug [functions.gen.go/function]: CFLocaleGetValue */
+}
 
 // Returns a Windows locale code from the locale identifier.
 //
@@ -5377,7 +5377,7 @@ func CFLocaleGetValue(locale LocaleRef, key LocaleKey) TypeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(_:)
 func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier LocaleIdentifier) uint32 {
 	return _CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier)
-}/* debug [functions.gen.go/function]: CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier */
+}
 
 // Creates a CFMachPort object with a new Mach port.
 //
@@ -5388,7 +5388,7 @@ func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier LocaleIde
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCreate(_:_:_:_:)
 func CFMachPortCreate(allocator AllocatorRef, callout MachPortCallBack, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) MachPortRef {
 	return _CFMachPortCreate(allocator, callout, context, shouldFreeInfo)
-}/* debug [functions.gen.go/function]: CFMachPortCreate */
+}
 
 // Creates a CFRunLoopSource object for a CFMachPort object.
 //
@@ -5399,7 +5399,7 @@ func CFMachPortCreate(allocator AllocatorRef, callout MachPortCallBack, context 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCreateRunLoopSource(_:_:_:)
 func CFMachPortCreateRunLoopSource(allocator AllocatorRef, port MachPortRef, order Index) RunLoopSourceRef {
 	return _CFMachPortCreateRunLoopSource(allocator, port, order)
-}/* debug [functions.gen.go/function]: CFMachPortCreateRunLoopSource */
+}
 
 // Creates a CFMachPort object for a pre-existing native Mach port.
 //
@@ -5410,7 +5410,7 @@ func CFMachPortCreateRunLoopSource(allocator AllocatorRef, port MachPortRef, ord
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCreateWithPort(_:_:_:_:_:)
 func CFMachPortCreateWithPort(allocator AllocatorRef, portNum unsafe.Pointer, callout MachPortCallBack, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) MachPortRef {
 	return _CFMachPortCreateWithPort(allocator, portNum, callout, context, shouldFreeInfo)
-}/* debug [functions.gen.go/function]: CFMachPortCreateWithPort */
+}
 
 // Returns the context information for a CFMachPort object.
 //
@@ -5421,7 +5421,7 @@ func CFMachPortCreateWithPort(allocator AllocatorRef, portNum unsafe.Pointer, ca
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetContext(_:_:)
 func CFMachPortGetContext(port MachPortRef, context unsafe.Pointer) {
 	_CFMachPortGetContext(port, context)
-}/* debug [functions.gen.go/function]: CFMachPortGetContext */
+}
 
 // Returns the invalidation callback function for a CFMachPort object.
 //
@@ -5432,7 +5432,7 @@ func CFMachPortGetContext(port MachPortRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetInvalidationCallBack(_:)
 func CFMachPortGetInvalidationCallBack(port MachPortRef) MachPortInvalidationCallBack {
 	return _CFMachPortGetInvalidationCallBack(port)
-}/* debug [functions.gen.go/function]: CFMachPortGetInvalidationCallBack */
+}
 
 // Returns the native Mach port represented by a CFMachPort object.
 //
@@ -5443,7 +5443,7 @@ func CFMachPortGetInvalidationCallBack(port MachPortRef) MachPortInvalidationCal
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetPort(_:)
 func CFMachPortGetPort(port MachPortRef) unsafe.Pointer {
 	return _CFMachPortGetPort(port)
-}/* debug [functions.gen.go/function]: CFMachPortGetPort */
+}
 
 // Returns the type identifier for the CFMachPort opaque type.
 //
@@ -5454,7 +5454,7 @@ func CFMachPortGetPort(port MachPortRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetTypeID()
 func CFMachPortGetTypeID() TypeID {
 	return _CFMachPortGetTypeID()
-}/* debug [functions.gen.go/function]: CFMachPortGetTypeID */
+}
 
 // Invalidates a CFMachPort object, stopping it from receiving any more messages.
 //
@@ -5465,7 +5465,7 @@ func CFMachPortGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortInvalidate(_:)
 func CFMachPortInvalidate(port MachPortRef) {
 	_CFMachPortInvalidate(port)
-}/* debug [functions.gen.go/function]: CFMachPortInvalidate */
+}
 
 // Returns a Boolean value that indicates whether a CFMachPort object is valid and able to receive messages.
 //
@@ -5476,7 +5476,7 @@ func CFMachPortInvalidate(port MachPortRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortIsValid(_:)
 func CFMachPortIsValid(port MachPortRef) unsafe.Pointer {
 	return _CFMachPortIsValid(port)
-}/* debug [functions.gen.go/function]: CFMachPortIsValid */
+}
 
 // Sets the callback function invoked when a CFMachPort object is invalidated.
 //
@@ -5487,7 +5487,7 @@ func CFMachPortIsValid(port MachPortRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortSetInvalidationCallBack(_:_:)
 func CFMachPortSetInvalidationCallBack(port MachPortRef, callout MachPortInvalidationCallBack) {
 	_CFMachPortSetInvalidationCallBack(port, callout)
-}/* debug [functions.gen.go/function]: CFMachPortSetInvalidationCallBack */
+}
 
 // Makes a newly-allocated Core Foundation object eligible for garbage collection.
 //
@@ -5498,7 +5498,7 @@ func CFMachPortSetInvalidationCallBack(port MachPortRef, callout MachPortInvalid
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMakeCollectable
 func CFMakeCollectable(cf TypeRef) TypeRef {
 	return _CFMakeCollectable(cf)
-}/* debug [functions.gen.go/function]: CFMakeCollectable */
+}
 
 // Returns a local CFMessagePort object.
 //
@@ -5509,7 +5509,7 @@ func CFMakeCollectable(cf TypeRef) TypeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCreateLocal(_:_:_:_:_:)
 func CFMessagePortCreateLocal(allocator AllocatorRef, name StringRef, callout MessagePortCallBack, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) MessagePortRef {
 	return _CFMessagePortCreateLocal(allocator, name, callout, context, shouldFreeInfo)
-}/* debug [functions.gen.go/function]: CFMessagePortCreateLocal */
+}
 
 // Returns a CFMessagePort object connected to a remote port.
 //
@@ -5520,7 +5520,7 @@ func CFMessagePortCreateLocal(allocator AllocatorRef, name StringRef, callout Me
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCreateRemote(_:_:)
 func CFMessagePortCreateRemote(allocator AllocatorRef, name StringRef) MessagePortRef {
 	return _CFMessagePortCreateRemote(allocator, name)
-}/* debug [functions.gen.go/function]: CFMessagePortCreateRemote */
+}
 
 // Creates a CFRunLoopSource object for a CFMessagePort object.
 //
@@ -5531,7 +5531,7 @@ func CFMessagePortCreateRemote(allocator AllocatorRef, name StringRef) MessagePo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCreateRunLoopSource(_:_:_:)
 func CFMessagePortCreateRunLoopSource(allocator AllocatorRef, local MessagePortRef, order Index) RunLoopSourceRef {
 	return _CFMessagePortCreateRunLoopSource(allocator, local, order)
-}/* debug [functions.gen.go/function]: CFMessagePortCreateRunLoopSource */
+}
 
 // Returns the context information for a CFMessagePort object.
 //
@@ -5542,7 +5542,7 @@ func CFMessagePortCreateRunLoopSource(allocator AllocatorRef, local MessagePortR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetContext(_:_:)
 func CFMessagePortGetContext(ms MessagePortRef, context unsafe.Pointer) {
 	_CFMessagePortGetContext(ms, context)
-}/* debug [functions.gen.go/function]: CFMessagePortGetContext */
+}
 
 // Returns the invalidation callback function for a CFMessagePort object.
 //
@@ -5553,7 +5553,7 @@ func CFMessagePortGetContext(ms MessagePortRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetInvalidationCallBack(_:)
 func CFMessagePortGetInvalidationCallBack(ms MessagePortRef) MessagePortInvalidationCallBack {
 	return _CFMessagePortGetInvalidationCallBack(ms)
-}/* debug [functions.gen.go/function]: CFMessagePortGetInvalidationCallBack */
+}
 
 // Returns the name with which a CFMessagePort object is registered.
 //
@@ -5564,7 +5564,7 @@ func CFMessagePortGetInvalidationCallBack(ms MessagePortRef) MessagePortInvalida
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetName(_:)
 func CFMessagePortGetName(ms MessagePortRef) StringRef {
 	return _CFMessagePortGetName(ms)
-}/* debug [functions.gen.go/function]: CFMessagePortGetName */
+}
 
 // Returns the type identifier for the CFMessagePort opaque type.
 //
@@ -5575,7 +5575,7 @@ func CFMessagePortGetName(ms MessagePortRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetTypeID()
 func CFMessagePortGetTypeID() TypeID {
 	return _CFMessagePortGetTypeID()
-}/* debug [functions.gen.go/function]: CFMessagePortGetTypeID */
+}
 
 // Invalidates a CFMessagePort object, stopping it from receiving or sending any more messages.
 //
@@ -5586,7 +5586,7 @@ func CFMessagePortGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortInvalidate(_:)
 func CFMessagePortInvalidate(ms MessagePortRef) {
 	_CFMessagePortInvalidate(ms)
-}/* debug [functions.gen.go/function]: CFMessagePortInvalidate */
+}
 
 // Returns a Boolean value that indicates whether a CFMessagePort object represents a remote port.
 //
@@ -5597,7 +5597,7 @@ func CFMessagePortInvalidate(ms MessagePortRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortIsRemote(_:)
 func CFMessagePortIsRemote(ms MessagePortRef) unsafe.Pointer {
 	return _CFMessagePortIsRemote(ms)
-}/* debug [functions.gen.go/function]: CFMessagePortIsRemote */
+}
 
 // Returns a Boolean value that indicates whether a CFMessagePort object is valid and able to send or receive messages.
 //
@@ -5608,7 +5608,7 @@ func CFMessagePortIsRemote(ms MessagePortRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortIsValid(_:)
 func CFMessagePortIsValid(ms MessagePortRef) unsafe.Pointer {
 	return _CFMessagePortIsValid(ms)
-}/* debug [functions.gen.go/function]: CFMessagePortIsValid */
+}
 
 // Sends a message to a remote CFMessagePort object.
 //
@@ -5619,7 +5619,7 @@ func CFMessagePortIsValid(ms MessagePortRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSendRequest(_:_:_:_:_:_:_:)
 func CFMessagePortSendRequest(remote MessagePortRef, msgid unsafe.Pointer, data DataRef, sendTimeout TimeInterval, rcvTimeout TimeInterval, replyMode StringRef, returnData unsafe.Pointer) unsafe.Pointer {
 	return _CFMessagePortSendRequest(remote, msgid, data, sendTimeout, rcvTimeout, replyMode, returnData)
-}/* debug [functions.gen.go/function]: CFMessagePortSendRequest */
+}
 
 // Schedules callbacks for the specified message port on the specified dispatch queue.
 //
@@ -5630,7 +5630,7 @@ func CFMessagePortSendRequest(remote MessagePortRef, msgid unsafe.Pointer, data 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSetDispatchQueue(_:_:)
 func CFMessagePortSetDispatchQueue(ms MessagePortRef, queue unsafe.Pointer) {
 	_CFMessagePortSetDispatchQueue(ms, queue)
-}/* debug [functions.gen.go/function]: CFMessagePortSetDispatchQueue */
+}
 
 // Sets the callback function invoked when a CFMessagePort object is invalidated.
 //
@@ -5641,7 +5641,7 @@ func CFMessagePortSetDispatchQueue(ms MessagePortRef, queue unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSetInvalidationCallBack(_:_:)
 func CFMessagePortSetInvalidationCallBack(ms MessagePortRef, callout MessagePortInvalidationCallBack) {
 	_CFMessagePortSetInvalidationCallBack(ms, callout)
-}/* debug [functions.gen.go/function]: CFMessagePortSetInvalidationCallBack */
+}
 
 // Sets the name of a local CFMessagePort object.
 //
@@ -5652,7 +5652,7 @@ func CFMessagePortSetInvalidationCallBack(ms MessagePortRef, callout MessagePort
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSetName(_:_:)
 func CFMessagePortSetName(ms MessagePortRef, newName StringRef) unsafe.Pointer {
 	return _CFMessagePortSetName(ms, newName)
-}/* debug [functions.gen.go/function]: CFMessagePortSetName */
+}
 
 // Registers an observer to receive notifications.
 //
@@ -5663,7 +5663,7 @@ func CFMessagePortSetName(ms MessagePortRef, newName StringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterAddObserver(_:_:_:_:_:_:)
 func CFNotificationCenterAddObserver(center NotificationCenterRef, observer unsafe.Pointer, callBack NotificationCallback, name StringRef, object unsafe.Pointer, suspensionBehavior NotificationSuspensionBehavior) {
 	_CFNotificationCenterAddObserver(center, observer, callBack, name, object, suspensionBehavior)
-}/* debug [functions.gen.go/function]: CFNotificationCenterAddObserver */
+}
 
 // Returns the application’s Darwin notification center.
 //
@@ -5674,7 +5674,7 @@ func CFNotificationCenterAddObserver(center NotificationCenterRef, observer unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetDarwinNotifyCenter()
 func CFNotificationCenterGetDarwinNotifyCenter() NotificationCenterRef {
 	return _CFNotificationCenterGetDarwinNotifyCenter()
-}/* debug [functions.gen.go/function]: CFNotificationCenterGetDarwinNotifyCenter */
+}
 
 // Returns the application’s distributed notification center.
 //
@@ -5685,7 +5685,7 @@ func CFNotificationCenterGetDarwinNotifyCenter() NotificationCenterRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetDistributedCenter()
 func CFNotificationCenterGetDistributedCenter() NotificationCenterRef {
 	return _CFNotificationCenterGetDistributedCenter()
-}/* debug [functions.gen.go/function]: CFNotificationCenterGetDistributedCenter */
+}
 
 // Returns the application’s local notification center.
 //
@@ -5696,7 +5696,7 @@ func CFNotificationCenterGetDistributedCenter() NotificationCenterRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetLocalCenter()
 func CFNotificationCenterGetLocalCenter() NotificationCenterRef {
 	return _CFNotificationCenterGetLocalCenter()
-}/* debug [functions.gen.go/function]: CFNotificationCenterGetLocalCenter */
+}
 
 // Returns the type identifier for the CFNotificationCenter opaque type.
 //
@@ -5707,7 +5707,7 @@ func CFNotificationCenterGetLocalCenter() NotificationCenterRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetTypeID()
 func CFNotificationCenterGetTypeID() TypeID {
 	return _CFNotificationCenterGetTypeID()
-}/* debug [functions.gen.go/function]: CFNotificationCenterGetTypeID */
+}
 
 // Posts a notification for an object.
 //
@@ -5718,7 +5718,7 @@ func CFNotificationCenterGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterPostNotification(_:_:_:_:_:)
 func CFNotificationCenterPostNotification(center NotificationCenterRef, name NotificationName, object unsafe.Pointer, userInfo DictionaryRef, deliverImmediately unsafe.Pointer) {
 	_CFNotificationCenterPostNotification(center, name, object, userInfo, deliverImmediately)
-}/* debug [functions.gen.go/function]: CFNotificationCenterPostNotification */
+}
 
 // Posts a notification for an object using specified options.
 //
@@ -5729,7 +5729,7 @@ func CFNotificationCenterPostNotification(center NotificationCenterRef, name Not
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterPostNotificationWithOptions(_:_:_:_:_:)
 func CFNotificationCenterPostNotificationWithOptions(center NotificationCenterRef, name NotificationName, object unsafe.Pointer, userInfo DictionaryRef, options OptionFlags) {
 	_CFNotificationCenterPostNotificationWithOptions(center, name, object, userInfo, options)
-}/* debug [functions.gen.go/function]: CFNotificationCenterPostNotificationWithOptions */
+}
 
 // Stops an observer from receiving any notifications from any object.
 //
@@ -5740,7 +5740,7 @@ func CFNotificationCenterPostNotificationWithOptions(center NotificationCenterRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterRemoveEveryObserver(_:_:)
 func CFNotificationCenterRemoveEveryObserver(center NotificationCenterRef, observer unsafe.Pointer) {
 	_CFNotificationCenterRemoveEveryObserver(center, observer)
-}/* debug [functions.gen.go/function]: CFNotificationCenterRemoveEveryObserver */
+}
 
 // Stops an observer from receiving certain notifications.
 //
@@ -5751,7 +5751,7 @@ func CFNotificationCenterRemoveEveryObserver(center NotificationCenterRef, obser
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterRemoveObserver(_:_:_:_:)
 func CFNotificationCenterRemoveObserver(center NotificationCenterRef, observer unsafe.Pointer, name NotificationName, object unsafe.Pointer) {
 	_CFNotificationCenterRemoveObserver(center, observer, name, object)
-}/* debug [functions.gen.go/function]: CFNotificationCenterRemoveObserver */
+}
 
 // Returns the type identifier for the CFNull opaque type.
 //
@@ -5762,7 +5762,7 @@ func CFNotificationCenterRemoveObserver(center NotificationCenterRef, observer u
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNullGetTypeID()
 func CFNullGetTypeID() TypeID {
 	return _CFNullGetTypeID()
-}/* debug [functions.gen.go/function]: CFNullGetTypeID */
+}
 
 // Compares two CFNumber objects and returns a comparison result.
 //
@@ -5773,7 +5773,7 @@ func CFNullGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberCompare(_:_:_:)
 func CFNumberCompare(number NumberRef, otherNumber NumberRef, context unsafe.Pointer) ComparisonResult {
 	return _CFNumberCompare(number, otherNumber, context)
-}/* debug [functions.gen.go/function]: CFNumberCompare */
+}
 
 // Creates a CFNumber object using a specified value.
 //
@@ -5784,7 +5784,7 @@ func CFNumberCompare(number NumberRef, otherNumber NumberRef, context unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberCreate(_:_:_:)
 func CFNumberCreate(allocator AllocatorRef, theType NumberType, valuePtr unsafe.Pointer) NumberRef {
 	return _CFNumberCreate(allocator, theType, valuePtr)
-}/* debug [functions.gen.go/function]: CFNumberCreate */
+}
 
 // Returns a copy of a number formatter’s value for a given key.
 //
@@ -5795,7 +5795,7 @@ func CFNumberCreate(allocator AllocatorRef, theType NumberType, valuePtr unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCopyProperty(_:_:)
 func CFNumberFormatterCopyProperty(formatter NumberFormatterRef, key NumberFormatterKey) TypeRef {
 	return _CFNumberFormatterCopyProperty(formatter, key)
-}/* debug [functions.gen.go/function]: CFNumberFormatterCopyProperty */
+}
 
 // Creates a new CFNumberFormatter object, localized to the given locale, which will format numbers to the given style.
 //
@@ -5806,7 +5806,7 @@ func CFNumberFormatterCopyProperty(formatter NumberFormatterRef, key NumberForma
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreate(_:_:_:)
 func CFNumberFormatterCreate(allocator AllocatorRef, locale LocaleRef, style NumberFormatterStyle) NumberFormatterRef {
 	return _CFNumberFormatterCreate(allocator, locale, style)
-}/* debug [functions.gen.go/function]: CFNumberFormatterCreate */
+}
 
 // Returns a number object representing a given string.
 //
@@ -5817,7 +5817,7 @@ func CFNumberFormatterCreate(allocator AllocatorRef, locale LocaleRef, style Num
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateNumberFromString(_:_:_:_:_:)
 func CFNumberFormatterCreateNumberFromString(allocator AllocatorRef, formatter NumberFormatterRef, string_ StringRef, rangep unsafe.Pointer, options OptionFlags) NumberRef {
 	return _CFNumberFormatterCreateNumberFromString(allocator, formatter, string_, rangep, options)
-}/* debug [functions.gen.go/function]: CFNumberFormatterCreateNumberFromString */
+}
 
 // Returns a string representation of the given number using the specified number formatter.
 //
@@ -5828,7 +5828,7 @@ func CFNumberFormatterCreateNumberFromString(allocator AllocatorRef, formatter N
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateStringWithNumber(_:_:_:)
 func CFNumberFormatterCreateStringWithNumber(allocator AllocatorRef, formatter NumberFormatterRef, number NumberRef) StringRef {
 	return _CFNumberFormatterCreateStringWithNumber(allocator, formatter, number)
-}/* debug [functions.gen.go/function]: CFNumberFormatterCreateStringWithNumber */
+}
 
 // Returns a string representation of the given number or value using the specified number formatter.
 //
@@ -5839,7 +5839,7 @@ func CFNumberFormatterCreateStringWithNumber(allocator AllocatorRef, formatter N
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateStringWithValue(_:_:_:_:)
 func CFNumberFormatterCreateStringWithValue(allocator AllocatorRef, formatter NumberFormatterRef, numberType NumberType, valuePtr unsafe.Pointer) StringRef {
 	return _CFNumberFormatterCreateStringWithValue(allocator, formatter, numberType, valuePtr)
-}/* debug [functions.gen.go/function]: CFNumberFormatterCreateStringWithValue */
+}
 
 // Returns the number of fraction digits that should be displayed, and the rounding increment, for a given currency.
 //
@@ -5850,7 +5850,7 @@ func CFNumberFormatterCreateStringWithValue(allocator AllocatorRef, formatter Nu
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetDecimalInfoForCurrencyCode(_:_:_:)
 func CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode StringRef, defaultFractionDigits unsafe.Pointer, roundingIncrement []float64) unsafe.Pointer {
 	return _CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode, defaultFractionDigits, roundingIncrement)
-}/* debug [functions.gen.go/function]: CFNumberFormatterGetDecimalInfoForCurrencyCode */
+}
 
 // Returns a format string for the given number formatter object.
 //
@@ -5861,7 +5861,7 @@ func CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode StringRef, defa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetFormat(_:)
 func CFNumberFormatterGetFormat(formatter NumberFormatterRef) StringRef {
 	return _CFNumberFormatterGetFormat(formatter)
-}/* debug [functions.gen.go/function]: CFNumberFormatterGetFormat */
+}
 
 // Returns the locale object used to create the given number formatter object.
 //
@@ -5872,7 +5872,7 @@ func CFNumberFormatterGetFormat(formatter NumberFormatterRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetLocale(_:)
 func CFNumberFormatterGetLocale(formatter NumberFormatterRef) LocaleRef {
 	return _CFNumberFormatterGetLocale(formatter)
-}/* debug [functions.gen.go/function]: CFNumberFormatterGetLocale */
+}
 
 // Returns the number style used to create the given number formatter object.
 //
@@ -5883,7 +5883,7 @@ func CFNumberFormatterGetLocale(formatter NumberFormatterRef) LocaleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetStyle(_:)
 func CFNumberFormatterGetStyle(formatter NumberFormatterRef) NumberFormatterStyle {
 	return _CFNumberFormatterGetStyle(formatter)
-}/* debug [functions.gen.go/function]: CFNumberFormatterGetStyle */
+}
 
 // Returns the type identifier for the opaque type.
 //
@@ -5894,7 +5894,7 @@ func CFNumberFormatterGetStyle(formatter NumberFormatterRef) NumberFormatterStyl
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetTypeID()
 func CFNumberFormatterGetTypeID() TypeID {
 	return _CFNumberFormatterGetTypeID()
-}/* debug [functions.gen.go/function]: CFNumberFormatterGetTypeID */
+}
 
 // Returns a number or value representing a given string.
 //
@@ -5905,7 +5905,7 @@ func CFNumberFormatterGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetValueFromString(_:_:_:_:_:)
 func CFNumberFormatterGetValueFromString(formatter NumberFormatterRef, string_ StringRef, rangep unsafe.Pointer, numberType NumberType, valuePtr unsafe.Pointer) unsafe.Pointer {
 	return _CFNumberFormatterGetValueFromString(formatter, string_, rangep, numberType, valuePtr)
-}/* debug [functions.gen.go/function]: CFNumberFormatterGetValueFromString */
+}
 
 // Sets the format string of a number formatter.
 //
@@ -5916,7 +5916,7 @@ func CFNumberFormatterGetValueFromString(formatter NumberFormatterRef, string_ S
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterSetFormat(_:_:)
 func CFNumberFormatterSetFormat(formatter NumberFormatterRef, formatString StringRef) {
 	_CFNumberFormatterSetFormat(formatter, formatString)
-}/* debug [functions.gen.go/function]: CFNumberFormatterSetFormat */
+}
 
 // Sets a number formatter property using a key-value pair.
 //
@@ -5927,7 +5927,7 @@ func CFNumberFormatterSetFormat(formatter NumberFormatterRef, formatString Strin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterSetProperty(_:_:_:)
 func CFNumberFormatterSetProperty(formatter NumberFormatterRef, key NumberFormatterKey, value TypeRef) {
 	_CFNumberFormatterSetProperty(formatter, key, value)
-}/* debug [functions.gen.go/function]: CFNumberFormatterSetProperty */
+}
 
 // Returns the number of bytes used by a CFNumber object to store its value.
 //
@@ -5938,7 +5938,7 @@ func CFNumberFormatterSetProperty(formatter NumberFormatterRef, key NumberFormat
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetByteSize(_:)
 func CFNumberGetByteSize(number NumberRef) Index {
 	return _CFNumberGetByteSize(number)
-}/* debug [functions.gen.go/function]: CFNumberGetByteSize */
+}
 
 // Returns the type used by a CFNumber object to store its value.
 //
@@ -5949,7 +5949,7 @@ func CFNumberGetByteSize(number NumberRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetType(_:)
 func CFNumberGetType(number NumberRef) NumberType {
 	return _CFNumberGetType(number)
-}/* debug [functions.gen.go/function]: CFNumberGetType */
+}
 
 // Returns the type identifier for the CFNumber opaque type.
 //
@@ -5960,7 +5960,7 @@ func CFNumberGetType(number NumberRef) NumberType {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetTypeID()
 func CFNumberGetTypeID() TypeID {
 	return _CFNumberGetTypeID()
-}/* debug [functions.gen.go/function]: CFNumberGetTypeID */
+}
 
 // Obtains the value of a CFNumber object cast to a specified type.
 //
@@ -5971,7 +5971,7 @@ func CFNumberGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetValue(_:_:_:)
 func CFNumberGetValue(number NumberRef, theType NumberType, valuePtr unsafe.Pointer) unsafe.Pointer {
 	return _CFNumberGetValue(number, theType, valuePtr)
-}/* debug [functions.gen.go/function]: CFNumberGetValue */
+}
 
 // Determines whether a CFNumber object contains a value stored as one of the defined floating point types.
 //
@@ -5982,7 +5982,7 @@ func CFNumberGetValue(number NumberRef, theType NumberType, valuePtr unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberIsFloatType(_:)
 func CFNumberIsFloatType(number NumberRef) unsafe.Pointer {
 	return _CFNumberIsFloatType(number)
-}/* debug [functions.gen.go/function]: CFNumberIsFloatType */
+}
 
 // Registers a new instance of a type with .
 //
@@ -5993,7 +5993,7 @@ func CFNumberIsFloatType(number NumberRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInAddInstanceForFactory(_:)
 func CFPlugInAddInstanceForFactory(factoryID UUIDRef) {
 	_CFPlugInAddInstanceForFactory(factoryID)
-}/* debug [functions.gen.go/function]: CFPlugInAddInstanceForFactory */
+}
 
 // Creates a CFPlugIn given its URL.
 //
@@ -6004,7 +6004,7 @@ func CFPlugInAddInstanceForFactory(factoryID UUIDRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInCreate(_:_:)
 func CFPlugInCreate(allocator AllocatorRef, plugInURL URLRef) PlugInRef {
 	return _CFPlugInCreate(allocator, plugInURL)
-}/* debug [functions.gen.go/function]: CFPlugInCreate */
+}
 
 // Searches all registered plug-ins for factory functions capable of creating an instance of the given type.
 //
@@ -6015,7 +6015,7 @@ func CFPlugInCreate(allocator AllocatorRef, plugInURL URLRef) PlugInRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInFindFactoriesForPlugInType(_:)
 func CFPlugInFindFactoriesForPlugInType(typeUUID UUIDRef) ArrayRef {
 	return _CFPlugInFindFactoriesForPlugInType(typeUUID)
-}/* debug [functions.gen.go/function]: CFPlugInFindFactoriesForPlugInType */
+}
 
 // Searches the given plug-in for factory functions capable of creating an instance of the given type.
 //
@@ -6026,7 +6026,7 @@ func CFPlugInFindFactoriesForPlugInType(typeUUID UUIDRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInFindFactoriesForPlugInTypeInPlugIn(_:_:)
 func CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID UUIDRef, plugIn PlugInRef) ArrayRef {
 	return _CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID, plugIn)
-}/* debug [functions.gen.go/function]: CFPlugInFindFactoriesForPlugInTypeInPlugIn */
+}
 
 // Returns a plug-in’s bundle.
 //
@@ -6037,7 +6037,7 @@ func CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID UUIDRef, plugIn PlugInR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInGetBundle(_:)
 func CFPlugInGetBundle(plugIn PlugInRef) BundleRef {
 	return _CFPlugInGetBundle(plugIn)
-}/* debug [functions.gen.go/function]: CFPlugInGetBundle */
+}
 
 // Returns the type identifier for the opaque type.
 //
@@ -6048,7 +6048,7 @@ func CFPlugInGetBundle(plugIn PlugInRef) BundleRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInGetTypeID()
 func CFPlugInGetTypeID() TypeID {
 	return _CFPlugInGetTypeID()
-}/* debug [functions.gen.go/function]: CFPlugInGetTypeID */
+}
 
 // Creates a instance of a given type using a given factory.
 //
@@ -6059,7 +6059,7 @@ func CFPlugInGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceCreate(_:_:_:)
 func CFPlugInInstanceCreate(allocator AllocatorRef, factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInInstanceCreate(allocator, factoryUUID, typeUUID)
-}/* debug [functions.gen.go/function]: CFPlugInInstanceCreate */
+}
 
 // Not recommended.
 //
@@ -6070,7 +6070,7 @@ func CFPlugInInstanceCreate(allocator AllocatorRef, factoryUUID UUIDRef, typeUUI
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceCreateWithInstanceDataSize(_:_:_:_:_:)
 func CFPlugInInstanceCreateWithInstanceDataSize(allocator AllocatorRef, instanceDataSize Index, deallocateInstanceFunction PlugInInstanceDeallocateInstanceDataFunction, factoryName StringRef, getInterfaceFunction PlugInInstanceGetInterfaceFunction) PlugInInstanceRef {
 	return _CFPlugInInstanceCreateWithInstanceDataSize(allocator, instanceDataSize, deallocateInstanceFunction, factoryName, getInterfaceFunction)
-}/* debug [functions.gen.go/function]: CFPlugInInstanceCreateWithInstanceDataSize */
+}
 
 // Not recommended.
 //
@@ -6081,7 +6081,7 @@ func CFPlugInInstanceCreateWithInstanceDataSize(allocator AllocatorRef, instance
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetFactoryName(_:)
 func CFPlugInInstanceGetFactoryName(instance PlugInInstanceRef) StringRef {
 	return _CFPlugInInstanceGetFactoryName(instance)
-}/* debug [functions.gen.go/function]: CFPlugInInstanceGetFactoryName */
+}
 
 // Not recommended.
 //
@@ -6092,7 +6092,7 @@ func CFPlugInInstanceGetFactoryName(instance PlugInInstanceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetInstanceData(_:)
 func CFPlugInInstanceGetInstanceData(instance PlugInInstanceRef) unsafe.Pointer {
 	return _CFPlugInInstanceGetInstanceData(instance)
-}/* debug [functions.gen.go/function]: CFPlugInInstanceGetInstanceData */
+}
 
 // Not recommended.
 //
@@ -6103,7 +6103,7 @@ func CFPlugInInstanceGetInstanceData(instance PlugInInstanceRef) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetInterfaceFunctionTable(_:_:_:)
 func CFPlugInInstanceGetInterfaceFunctionTable(instance PlugInInstanceRef, interfaceName StringRef, ftbl unsafe.Pointer) unsafe.Pointer {
 	return _CFPlugInInstanceGetInterfaceFunctionTable(instance, interfaceName, ftbl)
-}/* debug [functions.gen.go/function]: CFPlugInInstanceGetInterfaceFunctionTable */
+}
 
 // Not recommended.
 //
@@ -6114,7 +6114,7 @@ func CFPlugInInstanceGetInterfaceFunctionTable(instance PlugInInstanceRef, inter
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetTypeID()
 func CFPlugInInstanceGetTypeID() TypeID {
 	return _CFPlugInInstanceGetTypeID()
-}/* debug [functions.gen.go/function]: CFPlugInInstanceGetTypeID */
+}
 
 // Determines whether or not a plug-in is loaded on demand.
 //
@@ -6125,7 +6125,7 @@ func CFPlugInInstanceGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInIsLoadOnDemand(_:)
 func CFPlugInIsLoadOnDemand(plugIn PlugInRef) unsafe.Pointer {
 	return _CFPlugInIsLoadOnDemand(plugIn)
-}/* debug [functions.gen.go/function]: CFPlugInIsLoadOnDemand */
+}
 
 // Registers a factory function and its UUID with a object.
 //
@@ -6136,7 +6136,7 @@ func CFPlugInIsLoadOnDemand(plugIn PlugInRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRegisterFactoryFunction(_:_:)
 func CFPlugInRegisterFactoryFunction(factoryUUID UUIDRef, func_ PlugInFactoryFunction) unsafe.Pointer {
 	return _CFPlugInRegisterFactoryFunction(factoryUUID, func_)
-}/* debug [functions.gen.go/function]: CFPlugInRegisterFactoryFunction */
+}
 
 // Registers a factory function with a object using the function’s name instead of its UUID.
 //
@@ -6147,7 +6147,7 @@ func CFPlugInRegisterFactoryFunction(factoryUUID UUIDRef, func_ PlugInFactoryFun
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRegisterFactoryFunctionByName(_:_:_:)
 func CFPlugInRegisterFactoryFunctionByName(factoryUUID UUIDRef, plugIn PlugInRef, functionName StringRef) unsafe.Pointer {
 	return _CFPlugInRegisterFactoryFunctionByName(factoryUUID, plugIn, functionName)
-}/* debug [functions.gen.go/function]: CFPlugInRegisterFactoryFunctionByName */
+}
 
 // Registers a type and its corresponding factory function with a object.
 //
@@ -6158,7 +6158,7 @@ func CFPlugInRegisterFactoryFunctionByName(factoryUUID UUIDRef, plugIn PlugInRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRegisterPlugInType(_:_:)
 func CFPlugInRegisterPlugInType(factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInRegisterPlugInType(factoryUUID, typeUUID)
-}/* debug [functions.gen.go/function]: CFPlugInRegisterPlugInType */
+}
 
 // Unregisters an instance of a type with .
 //
@@ -6169,7 +6169,7 @@ func CFPlugInRegisterPlugInType(factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRemoveInstanceForFactory(_:)
 func CFPlugInRemoveInstanceForFactory(factoryID UUIDRef) {
 	_CFPlugInRemoveInstanceForFactory(factoryID)
-}/* debug [functions.gen.go/function]: CFPlugInRemoveInstanceForFactory */
+}
 
 // Enables or disables load on demand for plug-ins that do dynamic registration (only when a client requests an instance of a supported type).
 //
@@ -6180,7 +6180,7 @@ func CFPlugInRemoveInstanceForFactory(factoryID UUIDRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInSetLoadOnDemand(_:_:)
 func CFPlugInSetLoadOnDemand(plugIn PlugInRef, flag unsafe.Pointer) {
 	_CFPlugInSetLoadOnDemand(plugIn, flag)
-}/* debug [functions.gen.go/function]: CFPlugInSetLoadOnDemand */
+}
 
 // Removes the given function from a plug-in’s list of registered factory functions.
 //
@@ -6191,7 +6191,7 @@ func CFPlugInSetLoadOnDemand(plugIn PlugInRef, flag unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInUnregisterFactory(_:)
 func CFPlugInUnregisterFactory(factoryUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInUnregisterFactory(factoryUUID)
-}/* debug [functions.gen.go/function]: CFPlugInUnregisterFactory */
+}
 
 // Removes the given type from a plug-in’s list of registered types.
 //
@@ -6202,7 +6202,7 @@ func CFPlugInUnregisterFactory(factoryUUID UUIDRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInUnregisterPlugInType(_:_:)
 func CFPlugInUnregisterPlugInType(factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInUnregisterPlugInType(factoryUUID, typeUUID)
-}/* debug [functions.gen.go/function]: CFPlugInUnregisterPlugInType */
+}
 
 // Adds suite preferences to an application’s preference search chain.
 //
@@ -6213,7 +6213,7 @@ func CFPlugInUnregisterPlugInType(factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesAddSuitePreferencesToApp(_:_:)
 func CFPreferencesAddSuitePreferencesToApp(applicationID StringRef, suiteID StringRef) {
 	_CFPreferencesAddSuitePreferencesToApp(applicationID, suiteID)
-}/* debug [functions.gen.go/function]: CFPreferencesAddSuitePreferencesToApp */
+}
 
 // Writes to permanent storage all pending changes to the preference data for the application, and reads the latest preference data from permanent storage.
 //
@@ -6224,7 +6224,7 @@ func CFPreferencesAddSuitePreferencesToApp(applicationID StringRef, suiteID Stri
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesAppSynchronize(_:)
 func CFPreferencesAppSynchronize(applicationID StringRef) unsafe.Pointer {
 	return _CFPreferencesAppSynchronize(applicationID)
-}/* debug [functions.gen.go/function]: CFPreferencesAppSynchronize */
+}
 
 // Determines whether or not a given key has been imposed on the user.
 //
@@ -6235,7 +6235,7 @@ func CFPreferencesAppSynchronize(applicationID StringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesAppValueIsForced(_:_:)
 func CFPreferencesAppValueIsForced(key StringRef, applicationID StringRef) unsafe.Pointer {
 	return _CFPreferencesAppValueIsForced(key, applicationID)
-}/* debug [functions.gen.go/function]: CFPreferencesAppValueIsForced */
+}
 
 // Obtains a preference value for the specified key and application.
 //
@@ -6246,7 +6246,7 @@ func CFPreferencesAppValueIsForced(key StringRef, applicationID StringRef) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyAppValue(_:_:)
 func CFPreferencesCopyAppValue(key StringRef, applicationID StringRef) PropertyListRef {
 	return _CFPreferencesCopyAppValue(key, applicationID)
-}/* debug [functions.gen.go/function]: CFPreferencesCopyAppValue */
+}
 
 // Constructs and returns the list of all applications that have preferences in the scope of the specified user and host.
 
@@ -6256,7 +6256,7 @@ func CFPreferencesCopyAppValue(key StringRef, applicationID StringRef) PropertyL
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyApplicationList(_:_:)
 func CFPreferencesCopyApplicationList(userName StringRef, hostName StringRef) ArrayRef {
 	return _CFPreferencesCopyApplicationList(userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesCopyApplicationList */
+}
 
 // Constructs and returns the list of all keys set in the specified domain.
 //
@@ -6267,7 +6267,7 @@ func CFPreferencesCopyApplicationList(userName StringRef, hostName StringRef) Ar
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyKeyList(_:_:_:)
 func CFPreferencesCopyKeyList(applicationID StringRef, userName StringRef, hostName StringRef) ArrayRef {
 	return _CFPreferencesCopyKeyList(applicationID, userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesCopyKeyList */
+}
 
 // Returns a dictionary containing preference values for multiple keys.
 //
@@ -6278,7 +6278,7 @@ func CFPreferencesCopyKeyList(applicationID StringRef, userName StringRef, hostN
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyMultiple(_:_:_:_:)
 func CFPreferencesCopyMultiple(keysToFetch ArrayRef, applicationID StringRef, userName StringRef, hostName StringRef) DictionaryRef {
 	return _CFPreferencesCopyMultiple(keysToFetch, applicationID, userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesCopyMultiple */
+}
 
 // Returns a preference value for a given domain.
 //
@@ -6289,7 +6289,7 @@ func CFPreferencesCopyMultiple(keysToFetch ArrayRef, applicationID StringRef, us
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyValue(_:_:_:_:)
 func CFPreferencesCopyValue(key StringRef, applicationID StringRef, userName StringRef, hostName StringRef) PropertyListRef {
 	return _CFPreferencesCopyValue(key, applicationID, userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesCopyValue */
+}
 
 // Convenience function that directly obtains a Boolean preference value for the specified key.
 //
@@ -6300,7 +6300,7 @@ func CFPreferencesCopyValue(key StringRef, applicationID StringRef, userName Str
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesGetAppBooleanValue(_:_:_:)
 func CFPreferencesGetAppBooleanValue(key StringRef, applicationID StringRef, keyExistsAndHasValidFormat unsafe.Pointer) unsafe.Pointer {
 	return _CFPreferencesGetAppBooleanValue(key, applicationID, keyExistsAndHasValidFormat)
-}/* debug [functions.gen.go/function]: CFPreferencesGetAppBooleanValue */
+}
 
 // Convenience function that directly obtains an integer preference value for the specified key.
 //
@@ -6311,7 +6311,7 @@ func CFPreferencesGetAppBooleanValue(key StringRef, applicationID StringRef, key
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesGetAppIntegerValue(_:_:_:)
 func CFPreferencesGetAppIntegerValue(key StringRef, applicationID StringRef, keyExistsAndHasValidFormat unsafe.Pointer) Index {
 	return _CFPreferencesGetAppIntegerValue(key, applicationID, keyExistsAndHasValidFormat)
-}/* debug [functions.gen.go/function]: CFPreferencesGetAppIntegerValue */
+}
 
 // Removes suite preferences from an application’s search chain.
 //
@@ -6322,7 +6322,7 @@ func CFPreferencesGetAppIntegerValue(key StringRef, applicationID StringRef, key
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesRemoveSuitePreferencesFromApp(_:_:)
 func CFPreferencesRemoveSuitePreferencesFromApp(applicationID StringRef, suiteID StringRef) {
 	_CFPreferencesRemoveSuitePreferencesFromApp(applicationID, suiteID)
-}/* debug [functions.gen.go/function]: CFPreferencesRemoveSuitePreferencesFromApp */
+}
 
 // Adds, modifies, or removes a preference.
 //
@@ -6333,7 +6333,7 @@ func CFPreferencesRemoveSuitePreferencesFromApp(applicationID StringRef, suiteID
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSetAppValue(_:_:_:)
 func CFPreferencesSetAppValue(key StringRef, value PropertyListRef, applicationID StringRef) {
 	_CFPreferencesSetAppValue(key, value, applicationID)
-}/* debug [functions.gen.go/function]: CFPreferencesSetAppValue */
+}
 
 // Convenience function that allows you to set and remove multiple preference values.
 //
@@ -6344,7 +6344,7 @@ func CFPreferencesSetAppValue(key StringRef, value PropertyListRef, applicationI
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSetMultiple(_:_:_:_:_:)
 func CFPreferencesSetMultiple(keysToSet DictionaryRef, keysToRemove ArrayRef, applicationID StringRef, userName StringRef, hostName StringRef) {
 	_CFPreferencesSetMultiple(keysToSet, keysToRemove, applicationID, userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesSetMultiple */
+}
 
 // Adds, modifies, or removes a preference value for the specified domain.
 //
@@ -6355,7 +6355,7 @@ func CFPreferencesSetMultiple(keysToSet DictionaryRef, keysToRemove ArrayRef, ap
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSetValue(_:_:_:_:_:)
 func CFPreferencesSetValue(key StringRef, value PropertyListRef, applicationID StringRef, userName StringRef, hostName StringRef) {
 	_CFPreferencesSetValue(key, value, applicationID, userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesSetValue */
+}
 
 // For the specified domain, writes all pending changes to preference data to permanent storage, and reads latest preference data from permanent storage.
 //
@@ -6366,7 +6366,7 @@ func CFPreferencesSetValue(key StringRef, value PropertyListRef, applicationID S
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSynchronize(_:_:_:)
 func CFPreferencesSynchronize(applicationID StringRef, userName StringRef, hostName StringRef) unsafe.Pointer {
 	return _CFPreferencesSynchronize(applicationID, userName, hostName)
-}/* debug [functions.gen.go/function]: CFPreferencesSynchronize */
+}
 
 // Returns a CFData object containing a serialized representation of a given property list in a specified format.
 //
@@ -6377,7 +6377,7 @@ func CFPreferencesSynchronize(applicationID StringRef, userName StringRef, hostN
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateData(_:_:_:_:_:)
 func CFPropertyListCreateData(allocator AllocatorRef, propertyList PropertyListRef, format PropertyListFormat, options OptionFlags, error_ unsafe.Pointer) DataRef {
 	return _CFPropertyListCreateData(allocator, propertyList, format, options, error_)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateData */
+}
 
 // Recursively creates a copy of a given property list.
 //
@@ -6388,7 +6388,7 @@ func CFPropertyListCreateData(allocator AllocatorRef, propertyList PropertyListR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateDeepCopy(_:_:_:)
 func CFPropertyListCreateDeepCopy(allocator AllocatorRef, propertyList PropertyListRef, mutabilityOption OptionFlags) PropertyListRef {
 	return _CFPropertyListCreateDeepCopy(allocator, propertyList, mutabilityOption)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateDeepCopy */
+}
 
 // Creates a property list using data from a stream.
 //
@@ -6401,7 +6401,7 @@ func CFPropertyListCreateDeepCopy(allocator AllocatorRef, propertyList PropertyL
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateFromStream(_:_:_:_:_:_:)
 func CFPropertyListCreateFromStream(allocator AllocatorRef, stream ReadStreamRef, streamLength Index, mutabilityOption OptionFlags, format unsafe.Pointer, errorString unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateFromStream(allocator, stream, streamLength, mutabilityOption, format, errorString)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateFromStream */
+}
 
 // Creates a property list using the specified XML or binary property list data.
 //
@@ -6414,7 +6414,7 @@ func CFPropertyListCreateFromStream(allocator AllocatorRef, stream ReadStreamRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateFromXMLData(_:_:_:_:)
 func CFPropertyListCreateFromXMLData(allocator AllocatorRef, xmlData DataRef, mutabilityOption OptionFlags, errorString unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateFromXMLData(allocator, xmlData, mutabilityOption, errorString)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateFromXMLData */
+}
 
 // Creates a property list from a given CFData object.
 //
@@ -6425,7 +6425,7 @@ func CFPropertyListCreateFromXMLData(allocator AllocatorRef, xmlData DataRef, mu
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateWithData(_:_:_:_:_:)
 func CFPropertyListCreateWithData(allocator AllocatorRef, data DataRef, options OptionFlags, format unsafe.Pointer, error_ unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateWithData(allocator, data, options, format, error_)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateWithData */
+}
 
 // Create and return a property list with a CFReadStream input.
 //
@@ -6436,7 +6436,7 @@ func CFPropertyListCreateWithData(allocator AllocatorRef, data DataRef, options 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateWithStream(_:_:_:_:_:_:)
 func CFPropertyListCreateWithStream(allocator AllocatorRef, stream ReadStreamRef, streamLength Index, options OptionFlags, format unsafe.Pointer, error_ unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateWithStream(allocator, stream, streamLength, options, format, error_)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateWithStream */
+}
 
 // Creates an XML representation of the specified property list.
 //
@@ -6449,7 +6449,7 @@ func CFPropertyListCreateWithStream(allocator AllocatorRef, stream ReadStreamRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateXMLData(_:_:)
 func CFPropertyListCreateXMLData(allocator AllocatorRef, propertyList PropertyListRef) DataRef {
 	return _CFPropertyListCreateXMLData(allocator, propertyList)
-}/* debug [functions.gen.go/function]: CFPropertyListCreateXMLData */
+}
 
 // Determines if a property list is valid.
 //
@@ -6460,7 +6460,7 @@ func CFPropertyListCreateXMLData(allocator AllocatorRef, propertyList PropertyLi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListIsValid(_:_:)
 func CFPropertyListIsValid(plist PropertyListRef, format PropertyListFormat) unsafe.Pointer {
 	return _CFPropertyListIsValid(plist, format)
-}/* debug [functions.gen.go/function]: CFPropertyListIsValid */
+}
 
 // Write the bytes of a serialized property list out to a stream.
 //
@@ -6471,7 +6471,7 @@ func CFPropertyListIsValid(plist PropertyListRef, format PropertyListFormat) uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListWrite(_:_:_:_:_:)
 func CFPropertyListWrite(propertyList PropertyListRef, stream WriteStreamRef, format PropertyListFormat, options OptionFlags, error_ unsafe.Pointer) Index {
 	return _CFPropertyListWrite(propertyList, stream, format, options, error_)
-}/* debug [functions.gen.go/function]: CFPropertyListWrite */
+}
 
 // Writes the bytes of a property list serialization out to a stream.
 //
@@ -6484,7 +6484,7 @@ func CFPropertyListWrite(propertyList PropertyListRef, stream WriteStreamRef, fo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListWriteToStream(_:_:_:_:)
 func CFPropertyListWriteToStream(propertyList PropertyListRef, stream WriteStreamRef, format PropertyListFormat, errorString unsafe.Pointer) Index {
 	return _CFPropertyListWriteToStream(propertyList, stream, format, errorString)
-}/* debug [functions.gen.go/function]: CFPropertyListWriteToStream */
+}
 
 // Closes a readable stream.
 //
@@ -6495,7 +6495,7 @@ func CFPropertyListWriteToStream(propertyList PropertyListRef, stream WriteStrea
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamClose(_:)
 func CFReadStreamClose(stream ReadStreamRef) {
 	_CFReadStreamClose(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamClose */
+}
 
 // CFReadStreamCopyDispatchQueue is a CoreFoundation function.
 //
@@ -6504,7 +6504,7 @@ func CFReadStreamClose(stream ReadStreamRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyDispatchQueue(_:)
 func CFReadStreamCopyDispatchQueue(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamCopyDispatchQueue(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamCopyDispatchQueue */
+}
 
 // Returns the error associated with a stream.
 //
@@ -6515,7 +6515,7 @@ func CFReadStreamCopyDispatchQueue(stream ReadStreamRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyError(_:)
 func CFReadStreamCopyError(stream ReadStreamRef) ErrorRef {
 	return _CFReadStreamCopyError(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamCopyError */
+}
 
 // Returns the value of a property for a stream.
 //
@@ -6526,7 +6526,7 @@ func CFReadStreamCopyError(stream ReadStreamRef) ErrorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyProperty(_:_:)
 func CFReadStreamCopyProperty(stream ReadStreamRef, propertyName StreamPropertyKey) TypeRef {
 	return _CFReadStreamCopyProperty(stream, propertyName)
-}/* debug [functions.gen.go/function]: CFReadStreamCopyProperty */
+}
 
 // Creates a readable stream for a block of memory.
 //
@@ -6537,7 +6537,7 @@ func CFReadStreamCopyProperty(stream ReadStreamRef, propertyName StreamPropertyK
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCreateWithBytesNoCopy(_:_:_:_:)
 func CFReadStreamCreateWithBytesNoCopy(alloc AllocatorRef, bytes unsafe.Pointer, length Index, bytesDeallocator AllocatorRef) ReadStreamRef {
 	return _CFReadStreamCreateWithBytesNoCopy(alloc, bytes, length, bytesDeallocator)
-}/* debug [functions.gen.go/function]: CFReadStreamCreateWithBytesNoCopy */
+}
 
 // Creates a readable stream for a file.
 //
@@ -6548,7 +6548,7 @@ func CFReadStreamCreateWithBytesNoCopy(alloc AllocatorRef, bytes unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCreateWithFile(_:_:)
 func CFReadStreamCreateWithFile(alloc AllocatorRef, fileURL URLRef) ReadStreamRef {
 	return _CFReadStreamCreateWithFile(alloc, fileURL)
-}/* debug [functions.gen.go/function]: CFReadStreamCreateWithFile */
+}
 
 // Returns a pointer to a stream’s internal buffer of unread data, if possible.
 //
@@ -6559,7 +6559,7 @@ func CFReadStreamCreateWithFile(alloc AllocatorRef, fileURL URLRef) ReadStreamRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetBuffer(_:_:_:)
 func CFReadStreamGetBuffer(stream ReadStreamRef, maxBytesToRead Index, numBytesRead unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamGetBuffer(stream, maxBytesToRead, numBytesRead)
-}/* debug [functions.gen.go/function]: CFReadStreamGetBuffer */
+}
 
 // Returns the error status of a stream.
 //
@@ -6570,7 +6570,7 @@ func CFReadStreamGetBuffer(stream ReadStreamRef, maxBytesToRead Index, numBytesR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetError(_:)
 func CFReadStreamGetError(stream ReadStreamRef) StreamError {
 	return _CFReadStreamGetError(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamGetError */
+}
 
 // Returns the current state of a stream.
 //
@@ -6581,7 +6581,7 @@ func CFReadStreamGetError(stream ReadStreamRef) StreamError {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetStatus(_:)
 func CFReadStreamGetStatus(stream ReadStreamRef) StreamStatus {
 	return _CFReadStreamGetStatus(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamGetStatus */
+}
 
 // Returns the type identifier the opaque type.
 //
@@ -6592,7 +6592,7 @@ func CFReadStreamGetStatus(stream ReadStreamRef) StreamStatus {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetTypeID()
 func CFReadStreamGetTypeID() TypeID {
 	return _CFReadStreamGetTypeID()
-}/* debug [functions.gen.go/function]: CFReadStreamGetTypeID */
+}
 
 // Returns a Boolean value that indicates whether a readable stream has data that can be read without blocking.
 //
@@ -6603,7 +6603,7 @@ func CFReadStreamGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamHasBytesAvailable(_:)
 func CFReadStreamHasBytesAvailable(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamHasBytesAvailable(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamHasBytesAvailable */
+}
 
 // Opens a stream for reading.
 //
@@ -6614,7 +6614,7 @@ func CFReadStreamHasBytesAvailable(stream ReadStreamRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamOpen(_:)
 func CFReadStreamOpen(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamOpen(stream)
-}/* debug [functions.gen.go/function]: CFReadStreamOpen */
+}
 
 // Reads data from a readable stream.
 //
@@ -6625,7 +6625,7 @@ func CFReadStreamOpen(stream ReadStreamRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamRead(_:_:_:)
 func CFReadStreamRead(stream ReadStreamRef, buffer unsafe.Pointer, bufferLength Index) Index {
 	return _CFReadStreamRead(stream, buffer, bufferLength)
-}/* debug [functions.gen.go/function]: CFReadStreamRead */
+}
 
 // Schedules a stream into a run loop.
 //
@@ -6636,7 +6636,7 @@ func CFReadStreamRead(stream ReadStreamRef, buffer unsafe.Pointer, bufferLength 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamScheduleWithRunLoop(_:_:_:)
 func CFReadStreamScheduleWithRunLoop(stream ReadStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFReadStreamScheduleWithRunLoop(stream, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFReadStreamScheduleWithRunLoop */
+}
 
 // Assigns a client to a stream, which receives callbacks when certain events occur.
 //
@@ -6647,7 +6647,7 @@ func CFReadStreamScheduleWithRunLoop(stream ReadStreamRef, runLoop RunLoopRef, r
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetClient(_:_:_:_:)
 func CFReadStreamSetClient(stream ReadStreamRef, streamEvents OptionFlags, clientCB ReadStreamClientCallBack, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamSetClient(stream, streamEvents, clientCB, clientContext)
-}/* debug [functions.gen.go/function]: CFReadStreamSetClient */
+}
 
 // CFReadStreamSetDispatchQueue is a CoreFoundation function.
 //
@@ -6656,7 +6656,7 @@ func CFReadStreamSetClient(stream ReadStreamRef, streamEvents OptionFlags, clien
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetDispatchQueue(_:_:)
 func CFReadStreamSetDispatchQueue(stream ReadStreamRef, q unsafe.Pointer) {
 	_CFReadStreamSetDispatchQueue(stream, q)
-}/* debug [functions.gen.go/function]: CFReadStreamSetDispatchQueue */
+}
 
 // Sets the value of a property for a stream.
 //
@@ -6667,7 +6667,7 @@ func CFReadStreamSetDispatchQueue(stream ReadStreamRef, q unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetProperty(_:_:_:)
 func CFReadStreamSetProperty(stream ReadStreamRef, propertyName StreamPropertyKey, propertyValue TypeRef) unsafe.Pointer {
 	return _CFReadStreamSetProperty(stream, propertyName, propertyValue)
-}/* debug [functions.gen.go/function]: CFReadStreamSetProperty */
+}
 
 // Removes a read stream from a given run loop.
 //
@@ -6678,7 +6678,7 @@ func CFReadStreamSetProperty(stream ReadStreamRef, propertyName StreamPropertyKe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamUnscheduleFromRunLoop(_:_:_:)
 func CFReadStreamUnscheduleFromRunLoop(stream ReadStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFReadStreamUnscheduleFromRunLoop(stream, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFReadStreamUnscheduleFromRunLoop */
+}
 
 // Releases a Core Foundation object.
 //
@@ -6689,7 +6689,7 @@ func CFReadStreamUnscheduleFromRunLoop(stream ReadStreamRef, runLoop RunLoopRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRelease
 func CFRelease(cf TypeRef) {
 	_CFRelease(cf)
-}/* debug [functions.gen.go/function]: CFRelease */
+}
 
 // Retains a Core Foundation object.
 //
@@ -6700,7 +6700,7 @@ func CFRelease(cf TypeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRetain
 func CFRetain(cf TypeRef) TypeRef {
 	return _CFRetain(cf)
-}/* debug [functions.gen.go/function]: CFRetain */
+}
 
 // Adds a mode to the set of run loop common modes.
 //
@@ -6711,7 +6711,7 @@ func CFRetain(cf TypeRef) TypeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddCommonMode(_:_:)
 func CFRunLoopAddCommonMode(rl RunLoopRef, mode RunLoopMode) {
 	_CFRunLoopAddCommonMode(rl, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopAddCommonMode */
+}
 
 // Adds a CFRunLoopObserver object to a run loop mode.
 //
@@ -6722,7 +6722,7 @@ func CFRunLoopAddCommonMode(rl RunLoopRef, mode RunLoopMode) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddObserver(_:_:_:)
 func CFRunLoopAddObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLoopMode) {
 	_CFRunLoopAddObserver(rl, observer, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopAddObserver */
+}
 
 // Adds a CFRunLoopSource object to a run loop mode.
 //
@@ -6733,7 +6733,7 @@ func CFRunLoopAddObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddSource(_:_:_:)
 func CFRunLoopAddSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode) {
 	_CFRunLoopAddSource(rl, source, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopAddSource */
+}
 
 // Adds a CFRunLoopTimer object to a run loop mode.
 //
@@ -6744,7 +6744,7 @@ func CFRunLoopAddSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddTimer(_:_:_:)
 func CFRunLoopAddTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) {
 	_CFRunLoopAddTimer(rl, timer, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopAddTimer */
+}
 
 // Returns a Boolean value that indicates whether a run loop mode contains a particular CFRunLoopObserver object.
 //
@@ -6755,7 +6755,7 @@ func CFRunLoopAddTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopContainsObserver(_:_:_:)
 func CFRunLoopContainsObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLoopMode) unsafe.Pointer {
 	return _CFRunLoopContainsObserver(rl, observer, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopContainsObserver */
+}
 
 // Returns a Boolean value that indicates whether a run loop mode contains a particular CFRunLoopSource object.
 //
@@ -6766,7 +6766,7 @@ func CFRunLoopContainsObserver(rl RunLoopRef, observer RunLoopObserverRef, mode 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopContainsSource(_:_:_:)
 func CFRunLoopContainsSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode) unsafe.Pointer {
 	return _CFRunLoopContainsSource(rl, source, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopContainsSource */
+}
 
 // Returns a Boolean value that indicates whether a run loop mode contains a particular CFRunLoopTimer object.
 //
@@ -6777,7 +6777,7 @@ func CFRunLoopContainsSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopContainsTimer(_:_:_:)
 func CFRunLoopContainsTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) unsafe.Pointer {
 	return _CFRunLoopContainsTimer(rl, timer, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopContainsTimer */
+}
 
 // Returns an array that contains all the defined modes for a CFRunLoop object.
 //
@@ -6788,7 +6788,7 @@ func CFRunLoopContainsTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopCopyAllModes(_:)
 func CFRunLoopCopyAllModes(rl RunLoopRef) ArrayRef {
 	return _CFRunLoopCopyAllModes(rl)
-}/* debug [functions.gen.go/function]: CFRunLoopCopyAllModes */
+}
 
 // Returns the name of the mode in which a given run loop is currently running.
 //
@@ -6799,7 +6799,7 @@ func CFRunLoopCopyAllModes(rl RunLoopRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopCopyCurrentMode(_:)
 func CFRunLoopCopyCurrentMode(rl RunLoopRef) RunLoopMode {
 	return _CFRunLoopCopyCurrentMode(rl)
-}/* debug [functions.gen.go/function]: CFRunLoopCopyCurrentMode */
+}
 
 // Returns the CFRunLoop object for the current thread.
 //
@@ -6810,7 +6810,7 @@ func CFRunLoopCopyCurrentMode(rl RunLoopRef) RunLoopMode {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetCurrent()
 func CFRunLoopGetCurrent() RunLoopRef {
 	return _CFRunLoopGetCurrent()
-}/* debug [functions.gen.go/function]: CFRunLoopGetCurrent */
+}
 
 // Returns the main CFRunLoop object.
 //
@@ -6821,7 +6821,7 @@ func CFRunLoopGetCurrent() RunLoopRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetMain()
 func CFRunLoopGetMain() RunLoopRef {
 	return _CFRunLoopGetMain()
-}/* debug [functions.gen.go/function]: CFRunLoopGetMain */
+}
 
 // Returns the time at which the next timer will fire.
 //
@@ -6832,7 +6832,7 @@ func CFRunLoopGetMain() RunLoopRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetNextTimerFireDate(_:_:)
 func CFRunLoopGetNextTimerFireDate(rl RunLoopRef, mode RunLoopMode) AbsoluteTime {
 	return _CFRunLoopGetNextTimerFireDate(rl, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopGetNextTimerFireDate */
+}
 
 // Returns the type identifier for the CFRunLoop opaque type.
 //
@@ -6843,7 +6843,7 @@ func CFRunLoopGetNextTimerFireDate(rl RunLoopRef, mode RunLoopMode) AbsoluteTime
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetTypeID()
 func CFRunLoopGetTypeID() TypeID {
 	return _CFRunLoopGetTypeID()
-}/* debug [functions.gen.go/function]: CFRunLoopGetTypeID */
+}
 
 // Returns a Boolean value that indicates whether the run loop is waiting for an event.
 //
@@ -6854,7 +6854,7 @@ func CFRunLoopGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopIsWaiting(_:)
 func CFRunLoopIsWaiting(rl RunLoopRef) unsafe.Pointer {
 	return _CFRunLoopIsWaiting(rl)
-}/* debug [functions.gen.go/function]: CFRunLoopIsWaiting */
+}
 
 // Creates a CFRunLoopObserver object with a function callback.
 //
@@ -6865,7 +6865,7 @@ func CFRunLoopIsWaiting(rl RunLoopRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverCreate(_:_:_:_:_:_:)
 func CFRunLoopObserverCreate(allocator AllocatorRef, activities OptionFlags, repeats unsafe.Pointer, order Index, callout RunLoopObserverCallBack, context unsafe.Pointer) RunLoopObserverRef {
 	return _CFRunLoopObserverCreate(allocator, activities, repeats, order, callout, context)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverCreate */
+}
 
 // Creates a CFRunLoopObserver object with a block-based handler.
 //
@@ -6876,7 +6876,7 @@ func CFRunLoopObserverCreate(allocator AllocatorRef, activities OptionFlags, rep
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverCreateWithHandler(_:_:_:_:_:)
 func CFRunLoopObserverCreateWithHandler(allocator AllocatorRef, activities OptionFlags, repeats unsafe.Pointer, order Index) RunLoopObserverRef {
 	return _CFRunLoopObserverCreateWithHandler(allocator, activities, repeats, order)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverCreateWithHandler */
+}
 
 // Returns a Boolean value that indicates whether a CFRunLoopObserver repeats.
 //
@@ -6887,7 +6887,7 @@ func CFRunLoopObserverCreateWithHandler(allocator AllocatorRef, activities Optio
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverDoesRepeat(_:)
 func CFRunLoopObserverDoesRepeat(observer RunLoopObserverRef) unsafe.Pointer {
 	return _CFRunLoopObserverDoesRepeat(observer)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverDoesRepeat */
+}
 
 // Returns the run loop stages during which an observer runs.
 //
@@ -6898,7 +6898,7 @@ func CFRunLoopObserverDoesRepeat(observer RunLoopObserverRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetActivities(_:)
 func CFRunLoopObserverGetActivities(observer RunLoopObserverRef) OptionFlags {
 	return _CFRunLoopObserverGetActivities(observer)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverGetActivities */
+}
 
 // Returns the context information for a CFRunLoopObserver object.
 //
@@ -6909,7 +6909,7 @@ func CFRunLoopObserverGetActivities(observer RunLoopObserverRef) OptionFlags {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetContext(_:_:)
 func CFRunLoopObserverGetContext(observer RunLoopObserverRef, context unsafe.Pointer) {
 	_CFRunLoopObserverGetContext(observer, context)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverGetContext */
+}
 
 // Returns the ordering parameter for a CFRunLoopObserver object.
 //
@@ -6920,7 +6920,7 @@ func CFRunLoopObserverGetContext(observer RunLoopObserverRef, context unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetOrder(_:)
 func CFRunLoopObserverGetOrder(observer RunLoopObserverRef) Index {
 	return _CFRunLoopObserverGetOrder(observer)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverGetOrder */
+}
 
 // Returns the type identifier for the CFRunLoopObserver opaque type.
 //
@@ -6931,7 +6931,7 @@ func CFRunLoopObserverGetOrder(observer RunLoopObserverRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetTypeID()
 func CFRunLoopObserverGetTypeID() TypeID {
 	return _CFRunLoopObserverGetTypeID()
-}/* debug [functions.gen.go/function]: CFRunLoopObserverGetTypeID */
+}
 
 // Invalidates a CFRunLoopObserver object, stopping it from ever firing again.
 //
@@ -6942,7 +6942,7 @@ func CFRunLoopObserverGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverInvalidate(_:)
 func CFRunLoopObserverInvalidate(observer RunLoopObserverRef) {
 	_CFRunLoopObserverInvalidate(observer)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverInvalidate */
+}
 
 // Returns a Boolean value that indicates whether a CFRunLoopObserver object is valid and able to fire.
 //
@@ -6953,7 +6953,7 @@ func CFRunLoopObserverInvalidate(observer RunLoopObserverRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverIsValid(_:)
 func CFRunLoopObserverIsValid(observer RunLoopObserverRef) unsafe.Pointer {
 	return _CFRunLoopObserverIsValid(observer)
-}/* debug [functions.gen.go/function]: CFRunLoopObserverIsValid */
+}
 
 // Enqueues a block object on a given runloop to be executed as the runloop cycles in specified modes.
 //
@@ -6964,7 +6964,7 @@ func CFRunLoopObserverIsValid(observer RunLoopObserverRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopPerformBlock(_:_:_:)
 func CFRunLoopPerformBlock(rl RunLoopRef, mode TypeRef) {
 	_CFRunLoopPerformBlock(rl, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopPerformBlock */
+}
 
 // Removes a CFRunLoopObserver object from a run loop mode.
 //
@@ -6975,7 +6975,7 @@ func CFRunLoopPerformBlock(rl RunLoopRef, mode TypeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRemoveObserver(_:_:_:)
 func CFRunLoopRemoveObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLoopMode) {
 	_CFRunLoopRemoveObserver(rl, observer, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopRemoveObserver */
+}
 
 // Removes a CFRunLoopSource object from a run loop mode.
 //
@@ -6986,7 +6986,7 @@ func CFRunLoopRemoveObserver(rl RunLoopRef, observer RunLoopObserverRef, mode Ru
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRemoveSource(_:_:_:)
 func CFRunLoopRemoveSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode) {
 	_CFRunLoopRemoveSource(rl, source, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopRemoveSource */
+}
 
 // Removes a CFRunLoopTimer object from a run loop mode.
 //
@@ -6997,7 +6997,7 @@ func CFRunLoopRemoveSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopM
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRemoveTimer(_:_:_:)
 func CFRunLoopRemoveTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) {
 	_CFRunLoopRemoveTimer(rl, timer, mode)
-}/* debug [functions.gen.go/function]: CFRunLoopRemoveTimer */
+}
 
 // Runs the current thread’s CFRunLoop object in its default mode indefinitely.
 //
@@ -7008,7 +7008,7 @@ func CFRunLoopRemoveTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRun()
 func CFRunLoopRun() {
 	_CFRunLoopRun()
-}/* debug [functions.gen.go/function]: CFRunLoopRun */
+}
 
 // Runs the current thread’s CFRunLoop object in a particular mode.
 //
@@ -7019,7 +7019,7 @@ func CFRunLoopRun() {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunInMode(_:_:_:)
 func CFRunLoopRunInMode(mode RunLoopMode, seconds TimeInterval, returnAfterSourceHandled unsafe.Pointer) RunLoopRunResult {
 	return _CFRunLoopRunInMode(mode, seconds, returnAfterSourceHandled)
-}/* debug [functions.gen.go/function]: CFRunLoopRunInMode */
+}
 
 // Creates a CFRunLoopSource object.
 //
@@ -7030,7 +7030,7 @@ func CFRunLoopRunInMode(mode RunLoopMode, seconds TimeInterval, returnAfterSourc
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceCreate(_:_:_:)
 func CFRunLoopSourceCreate(allocator AllocatorRef, order Index, context unsafe.Pointer) RunLoopSourceRef {
 	return _CFRunLoopSourceCreate(allocator, order, context)
-}/* debug [functions.gen.go/function]: CFRunLoopSourceCreate */
+}
 
 // Returns the context information for a CFRunLoopSource object.
 //
@@ -7041,7 +7041,7 @@ func CFRunLoopSourceCreate(allocator AllocatorRef, order Index, context unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceGetContext(_:_:)
 func CFRunLoopSourceGetContext(source RunLoopSourceRef, context unsafe.Pointer) {
 	_CFRunLoopSourceGetContext(source, context)
-}/* debug [functions.gen.go/function]: CFRunLoopSourceGetContext */
+}
 
 // Returns the ordering parameter for a CFRunLoopSource object.
 //
@@ -7052,7 +7052,7 @@ func CFRunLoopSourceGetContext(source RunLoopSourceRef, context unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceGetOrder(_:)
 func CFRunLoopSourceGetOrder(source RunLoopSourceRef) Index {
 	return _CFRunLoopSourceGetOrder(source)
-}/* debug [functions.gen.go/function]: CFRunLoopSourceGetOrder */
+}
 
 // Returns the type identifier of the CFRunLoopSource opaque type.
 //
@@ -7063,7 +7063,7 @@ func CFRunLoopSourceGetOrder(source RunLoopSourceRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceGetTypeID()
 func CFRunLoopSourceGetTypeID() TypeID {
 	return _CFRunLoopSourceGetTypeID()
-}/* debug [functions.gen.go/function]: CFRunLoopSourceGetTypeID */
+}
 
 // Invalidates a CFRunLoopSource object, stopping it from ever firing again.
 //
@@ -7074,7 +7074,7 @@ func CFRunLoopSourceGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceInvalidate(_:)
 func CFRunLoopSourceInvalidate(source RunLoopSourceRef) {
 	_CFRunLoopSourceInvalidate(source)
-}/* debug [functions.gen.go/function]: CFRunLoopSourceInvalidate */
+}
 
 // Returns a Boolean value that indicates whether a CFRunLoopSource object is valid and able to fire.
 //
@@ -7085,7 +7085,7 @@ func CFRunLoopSourceInvalidate(source RunLoopSourceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceIsValid(_:)
 func CFRunLoopSourceIsValid(source RunLoopSourceRef) unsafe.Pointer {
 	return _CFRunLoopSourceIsValid(source)
-}/* debug [functions.gen.go/function]: CFRunLoopSourceIsValid */
+}
 
 // Signals a CFRunLoopSource object, marking it as ready to fire.
 //
@@ -7096,7 +7096,7 @@ func CFRunLoopSourceIsValid(source RunLoopSourceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceSignal(_:)
 func CFRunLoopSourceSignal(source RunLoopSourceRef) {
 	_CFRunLoopSourceSignal(source)
-}/* debug [functions.gen.go/function]: CFRunLoopSourceSignal */
+}
 
 // Forces a CFRunLoop object to stop running.
 //
@@ -7107,7 +7107,7 @@ func CFRunLoopSourceSignal(source RunLoopSourceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopStop(_:)
 func CFRunLoopStop(rl RunLoopRef) {
 	_CFRunLoopStop(rl)
-}/* debug [functions.gen.go/function]: CFRunLoopStop */
+}
 
 // Creates a new CFRunLoopTimer object with a function callback.
 //
@@ -7118,7 +7118,7 @@ func CFRunLoopStop(rl RunLoopRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerCreate(_:_:_:_:_:_:_:)
 func CFRunLoopTimerCreate(allocator AllocatorRef, fireDate AbsoluteTime, interval TimeInterval, flags OptionFlags, order Index, callout RunLoopTimerCallBack, context unsafe.Pointer) RunLoopTimerRef {
 	return _CFRunLoopTimerCreate(allocator, fireDate, interval, flags, order, callout, context)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerCreate */
+}
 
 // Creates a new CFRunLoopTimer object with a block-based handler.
 //
@@ -7129,7 +7129,7 @@ func CFRunLoopTimerCreate(allocator AllocatorRef, fireDate AbsoluteTime, interva
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerCreateWithHandler(_:_:_:_:_:_:)
 func CFRunLoopTimerCreateWithHandler(allocator AllocatorRef, fireDate AbsoluteTime, interval TimeInterval, flags OptionFlags, order Index) RunLoopTimerRef {
 	return _CFRunLoopTimerCreateWithHandler(allocator, fireDate, interval, flags, order)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerCreateWithHandler */
+}
 
 // Returns a Boolean value that indicates whether a CFRunLoopTimer object repeats.
 //
@@ -7140,7 +7140,7 @@ func CFRunLoopTimerCreateWithHandler(allocator AllocatorRef, fireDate AbsoluteTi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerDoesRepeat(_:)
 func CFRunLoopTimerDoesRepeat(timer RunLoopTimerRef) unsafe.Pointer {
 	return _CFRunLoopTimerDoesRepeat(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerDoesRepeat */
+}
 
 // Returns the context information for a CFRunLoopTimer object.
 //
@@ -7151,7 +7151,7 @@ func CFRunLoopTimerDoesRepeat(timer RunLoopTimerRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetContext(_:_:)
 func CFRunLoopTimerGetContext(timer RunLoopTimerRef, context unsafe.Pointer) {
 	_CFRunLoopTimerGetContext(timer, context)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerGetContext */
+}
 
 // Returns the firing interval of a repeating CFRunLoopTimer object.
 //
@@ -7162,7 +7162,7 @@ func CFRunLoopTimerGetContext(timer RunLoopTimerRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetInterval(_:)
 func CFRunLoopTimerGetInterval(timer RunLoopTimerRef) TimeInterval {
 	return _CFRunLoopTimerGetInterval(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerGetInterval */
+}
 
 // Returns the next firing time for a CFRunLoopTimer object.
 //
@@ -7173,7 +7173,7 @@ func CFRunLoopTimerGetInterval(timer RunLoopTimerRef) TimeInterval {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetNextFireDate(_:)
 func CFRunLoopTimerGetNextFireDate(timer RunLoopTimerRef) AbsoluteTime {
 	return _CFRunLoopTimerGetNextFireDate(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerGetNextFireDate */
+}
 
 // Returns the ordering parameter for a CFRunLoopTimer object.
 //
@@ -7184,7 +7184,7 @@ func CFRunLoopTimerGetNextFireDate(timer RunLoopTimerRef) AbsoluteTime {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetOrder(_:)
 func CFRunLoopTimerGetOrder(timer RunLoopTimerRef) Index {
 	return _CFRunLoopTimerGetOrder(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerGetOrder */
+}
 
 // CFRunLoopTimerGetTolerance is a CoreFoundation function.
 //
@@ -7193,7 +7193,7 @@ func CFRunLoopTimerGetOrder(timer RunLoopTimerRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetTolerance(_:)
 func CFRunLoopTimerGetTolerance(timer RunLoopTimerRef) TimeInterval {
 	return _CFRunLoopTimerGetTolerance(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerGetTolerance */
+}
 
 // Returns the type identifier of the CFRunLoopTimer opaque type.
 //
@@ -7204,7 +7204,7 @@ func CFRunLoopTimerGetTolerance(timer RunLoopTimerRef) TimeInterval {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetTypeID()
 func CFRunLoopTimerGetTypeID() TypeID {
 	return _CFRunLoopTimerGetTypeID()
-}/* debug [functions.gen.go/function]: CFRunLoopTimerGetTypeID */
+}
 
 // Invalidates a CFRunLoopTimer object, stopping it from ever firing again.
 //
@@ -7215,7 +7215,7 @@ func CFRunLoopTimerGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerInvalidate(_:)
 func CFRunLoopTimerInvalidate(timer RunLoopTimerRef) {
 	_CFRunLoopTimerInvalidate(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerInvalidate */
+}
 
 // Returns a Boolean value that indicates whether a CFRunLoopTimer object is valid and able to fire.
 //
@@ -7226,7 +7226,7 @@ func CFRunLoopTimerInvalidate(timer RunLoopTimerRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerIsValid(_:)
 func CFRunLoopTimerIsValid(timer RunLoopTimerRef) unsafe.Pointer {
 	return _CFRunLoopTimerIsValid(timer)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerIsValid */
+}
 
 // Sets the next firing date for a CFRunLoopTimer object .
 //
@@ -7237,7 +7237,7 @@ func CFRunLoopTimerIsValid(timer RunLoopTimerRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerSetNextFireDate(_:_:)
 func CFRunLoopTimerSetNextFireDate(timer RunLoopTimerRef, fireDate AbsoluteTime) {
 	_CFRunLoopTimerSetNextFireDate(timer, fireDate)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerSetNextFireDate */
+}
 
 // CFRunLoopTimerSetTolerance is a CoreFoundation function.
 //
@@ -7246,7 +7246,7 @@ func CFRunLoopTimerSetNextFireDate(timer RunLoopTimerRef, fireDate AbsoluteTime)
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerSetTolerance(_:_:)
 func CFRunLoopTimerSetTolerance(timer RunLoopTimerRef, tolerance TimeInterval) {
 	_CFRunLoopTimerSetTolerance(timer, tolerance)
-}/* debug [functions.gen.go/function]: CFRunLoopTimerSetTolerance */
+}
 
 // Wakes a waiting CFRunLoop object.
 //
@@ -7257,7 +7257,7 @@ func CFRunLoopTimerSetTolerance(timer RunLoopTimerRef, tolerance TimeInterval) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopWakeUp(_:)
 func CFRunLoopWakeUp(rl RunLoopRef) {
 	_CFRunLoopWakeUp(rl)
-}/* debug [functions.gen.go/function]: CFRunLoopWakeUp */
+}
 
 // Adds a value to a CFMutableSet object.
 //
@@ -7268,7 +7268,7 @@ func CFRunLoopWakeUp(rl RunLoopRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetAddValue(_:_:)
 func CFSetAddValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetAddValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetAddValue */
+}
 
 // Calls a function once for each value in a set.
 //
@@ -7279,7 +7279,7 @@ func CFSetAddValue(theSet MutableSetRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetApplyFunction(_:_:_:)
 func CFSetApplyFunction(theSet SetRef, applier SetApplierFunction, context unsafe.Pointer) {
 	_CFSetApplyFunction(theSet, applier, context)
-}/* debug [functions.gen.go/function]: CFSetApplyFunction */
+}
 
 // Returns a Boolean that indicates whether a set contains a given value.
 //
@@ -7290,7 +7290,7 @@ func CFSetApplyFunction(theSet SetRef, applier SetApplierFunction, context unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetContainsValue(_:_:)
 func CFSetContainsValue(theSet SetRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFSetContainsValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetContainsValue */
+}
 
 // Creates an immutable CFSet object containing supplied values.
 //
@@ -7301,7 +7301,7 @@ func CFSetContainsValue(theSet SetRef, value unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreate(_:_:_:_:)
 func CFSetCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index, callBacks unsafe.Pointer) SetRef {
 	return _CFSetCreate(allocator, values, numValues, callBacks)
-}/* debug [functions.gen.go/function]: CFSetCreate */
+}
 
 // Creates an immutable set containing the values of an existing set.
 //
@@ -7312,7 +7312,7 @@ func CFSetCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreateCopy(_:_:)
 func CFSetCreateCopy(allocator AllocatorRef, theSet SetRef) SetRef {
 	return _CFSetCreateCopy(allocator, theSet)
-}/* debug [functions.gen.go/function]: CFSetCreateCopy */
+}
 
 // Creates an empty CFMutableSet object.
 //
@@ -7323,7 +7323,7 @@ func CFSetCreateCopy(allocator AllocatorRef, theSet SetRef) SetRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreateMutable(_:_:_:)
 func CFSetCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer) MutableSetRef {
 	return _CFSetCreateMutable(allocator, capacity, callBacks)
-}/* debug [functions.gen.go/function]: CFSetCreateMutable */
+}
 
 // Creates a new mutable set with the values from another set.
 //
@@ -7334,7 +7334,7 @@ func CFSetCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreateMutableCopy(_:_:_:)
 func CFSetCreateMutableCopy(allocator AllocatorRef, capacity Index, theSet SetRef) MutableSetRef {
 	return _CFSetCreateMutableCopy(allocator, capacity, theSet)
-}/* debug [functions.gen.go/function]: CFSetCreateMutableCopy */
+}
 
 // Returns the number of values currently in a set.
 //
@@ -7345,7 +7345,7 @@ func CFSetCreateMutableCopy(allocator AllocatorRef, capacity Index, theSet SetRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetCount(_:)
 func CFSetGetCount(theSet SetRef) Index {
 	return _CFSetGetCount(theSet)
-}/* debug [functions.gen.go/function]: CFSetGetCount */
+}
 
 // Returns the number of values in a set that match a given value.
 //
@@ -7356,7 +7356,7 @@ func CFSetGetCount(theSet SetRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetCountOfValue(_:_:)
 func CFSetGetCountOfValue(theSet SetRef, value unsafe.Pointer) Index {
 	return _CFSetGetCountOfValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetGetCountOfValue */
+}
 
 // Returns the type identifier for the CFSet type.
 //
@@ -7367,7 +7367,7 @@ func CFSetGetCountOfValue(theSet SetRef, value unsafe.Pointer) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetTypeID()
 func CFSetGetTypeID() TypeID {
 	return _CFSetGetTypeID()
-}/* debug [functions.gen.go/function]: CFSetGetTypeID */
+}
 
 // Obtains a specified value from a set.
 //
@@ -7378,7 +7378,7 @@ func CFSetGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetValue(_:_:)
 func CFSetGetValue(theSet SetRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFSetGetValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetGetValue */
+}
 
 // Reports whether or not a value is in a set, and if it exists returns the value indirectly.
 //
@@ -7389,7 +7389,7 @@ func CFSetGetValue(theSet SetRef, value unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetValueIfPresent(_:_:_:)
 func CFSetGetValueIfPresent(theSet SetRef, candidate unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFSetGetValueIfPresent(theSet, candidate, value)
-}/* debug [functions.gen.go/function]: CFSetGetValueIfPresent */
+}
 
 // Obtains all values in a set.
 //
@@ -7400,7 +7400,7 @@ func CFSetGetValueIfPresent(theSet SetRef, candidate unsafe.Pointer, value unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetValues(_:_:)
 func CFSetGetValues(theSet SetRef, values unsafe.Pointer) {
 	_CFSetGetValues(theSet, values)
-}/* debug [functions.gen.go/function]: CFSetGetValues */
+}
 
 // Removes all values from a CFMutableSet object.
 //
@@ -7411,7 +7411,7 @@ func CFSetGetValues(theSet SetRef, values unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetRemoveAllValues(_:)
 func CFSetRemoveAllValues(theSet MutableSetRef) {
 	_CFSetRemoveAllValues(theSet)
-}/* debug [functions.gen.go/function]: CFSetRemoveAllValues */
+}
 
 // Removes a value from a CFMutableSet object.
 //
@@ -7422,7 +7422,7 @@ func CFSetRemoveAllValues(theSet MutableSetRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetRemoveValue(_:_:)
 func CFSetRemoveValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetRemoveValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetRemoveValue */
+}
 
 // Replaces a value in a CFMutableSet object.
 //
@@ -7433,7 +7433,7 @@ func CFSetRemoveValue(theSet MutableSetRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetReplaceValue(_:_:)
 func CFSetReplaceValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetReplaceValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetReplaceValue */
+}
 
 // Sets a value in a CFMutableSet object.
 //
@@ -7444,7 +7444,7 @@ func CFSetReplaceValue(theSet MutableSetRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetSetValue(_:_:)
 func CFSetSetValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetSetValue(theSet, value)
-}/* debug [functions.gen.go/function]: CFSetSetValue */
+}
 
 // Prints a description of a Core Foundation object to stderr.
 //
@@ -7455,7 +7455,7 @@ func CFSetSetValue(theSet MutableSetRef, value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFShow(_:)
 func CFShow(obj TypeRef) {
 	_CFShow(obj)
-}/* debug [functions.gen.go/function]: CFShow */
+}
 
 // Prints the attributes of a string during debugging.
 //
@@ -7466,7 +7466,7 @@ func CFShow(obj TypeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFShowStr(_:)
 func CFShowStr(str StringRef) {
 	_CFShowStr(str)
-}/* debug [functions.gen.go/function]: CFShowStr */
+}
 
 // Opens a connection to a remote socket.
 //
@@ -7477,7 +7477,7 @@ func CFShowStr(str StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketConnectToAddress(_:_:_:)
 func CFSocketConnectToAddress(s SocketRef, address DataRef, timeout TimeInterval) SocketError {
 	return _CFSocketConnectToAddress(s, address, timeout)
-}/* debug [functions.gen.go/function]: CFSocketConnectToAddress */
+}
 
 // Returns the local address of a CFSocket object.
 //
@@ -7488,7 +7488,7 @@ func CFSocketConnectToAddress(s SocketRef, address DataRef, timeout TimeInterval
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyAddress(_:)
 func CFSocketCopyAddress(s SocketRef) DataRef {
 	return _CFSocketCopyAddress(s)
-}/* debug [functions.gen.go/function]: CFSocketCopyAddress */
+}
 
 // Returns the remote address to which a CFSocket object is connected.
 //
@@ -7499,7 +7499,7 @@ func CFSocketCopyAddress(s SocketRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyPeerAddress(_:)
 func CFSocketCopyPeerAddress(s SocketRef) DataRef {
 	return _CFSocketCopyPeerAddress(s)
-}/* debug [functions.gen.go/function]: CFSocketCopyPeerAddress */
+}
 
 // Returns a socket signature registered with a CFSocket name server.
 //
@@ -7510,7 +7510,7 @@ func CFSocketCopyPeerAddress(s SocketRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyRegisteredSocketSignature(_:_:_:_:_:)
 func CFSocketCopyRegisteredSocketSignature(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, signature unsafe.Pointer, nameServerAddress unsafe.Pointer) SocketError {
 	return _CFSocketCopyRegisteredSocketSignature(nameServerSignature, timeout, name, signature, nameServerAddress)
-}/* debug [functions.gen.go/function]: CFSocketCopyRegisteredSocketSignature */
+}
 
 // Returns a value registered with a CFSocket name server.
 //
@@ -7521,7 +7521,7 @@ func CFSocketCopyRegisteredSocketSignature(nameServerSignature unsafe.Pointer, t
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyRegisteredValue(_:_:_:_:_:)
 func CFSocketCopyRegisteredValue(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, value unsafe.Pointer, nameServerAddress unsafe.Pointer) SocketError {
 	return _CFSocketCopyRegisteredValue(nameServerSignature, timeout, name, value, nameServerAddress)
-}/* debug [functions.gen.go/function]: CFSocketCopyRegisteredValue */
+}
 
 // Creates a CFSocket object of a specified protocol and type.
 //
@@ -7532,7 +7532,7 @@ func CFSocketCopyRegisteredValue(nameServerSignature unsafe.Pointer, timeout Tim
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreate(_:_:_:_:_:_:_:)
 func CFSocketCreate(allocator AllocatorRef, protocolFamily unsafe.Pointer, socketType unsafe.Pointer, protocol_ unsafe.Pointer, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer) SocketRef {
 	return _CFSocketCreate(allocator, protocolFamily, socketType, protocol_, callBackTypes, callout, context)
-}/* debug [functions.gen.go/function]: CFSocketCreate */
+}
 
 // Creates a CFSocket object and opens a connection to a remote socket.
 //
@@ -7543,7 +7543,7 @@ func CFSocketCreate(allocator AllocatorRef, protocolFamily unsafe.Pointer, socke
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateConnectedToSocketSignature(_:_:_:_:_:_:)
 func CFSocketCreateConnectedToSocketSignature(allocator AllocatorRef, signature unsafe.Pointer, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer, timeout TimeInterval) SocketRef {
 	return _CFSocketCreateConnectedToSocketSignature(allocator, signature, callBackTypes, callout, context, timeout)
-}/* debug [functions.gen.go/function]: CFSocketCreateConnectedToSocketSignature */
+}
 
 // Creates a CFRunLoopSource object for a CFSocket object.
 //
@@ -7554,7 +7554,7 @@ func CFSocketCreateConnectedToSocketSignature(allocator AllocatorRef, signature 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateRunLoopSource(_:_:_:)
 func CFSocketCreateRunLoopSource(allocator AllocatorRef, s SocketRef, order Index) RunLoopSourceRef {
 	return _CFSocketCreateRunLoopSource(allocator, s, order)
-}/* debug [functions.gen.go/function]: CFSocketCreateRunLoopSource */
+}
 
 // Creates a CFSocket object for a pre-existing native socket.
 //
@@ -7565,7 +7565,7 @@ func CFSocketCreateRunLoopSource(allocator AllocatorRef, s SocketRef, order Inde
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateWithNative(_:_:_:_:_:)
 func CFSocketCreateWithNative(allocator AllocatorRef, sock SocketNativeHandle, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer) SocketRef {
 	return _CFSocketCreateWithNative(allocator, sock, callBackTypes, callout, context)
-}/* debug [functions.gen.go/function]: CFSocketCreateWithNative */
+}
 
 // Creates a CFSocket object using information from a CFSocketSignature structure.
 //
@@ -7576,7 +7576,7 @@ func CFSocketCreateWithNative(allocator AllocatorRef, sock SocketNativeHandle, c
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateWithSocketSignature(_:_:_:_:_:)
 func CFSocketCreateWithSocketSignature(allocator AllocatorRef, signature unsafe.Pointer, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer) SocketRef {
 	return _CFSocketCreateWithSocketSignature(allocator, signature, callBackTypes, callout, context)
-}/* debug [functions.gen.go/function]: CFSocketCreateWithSocketSignature */
+}
 
 // Disables the callback function of a CFSocket object for certain types of socket activity.
 //
@@ -7587,7 +7587,7 @@ func CFSocketCreateWithSocketSignature(allocator AllocatorRef, signature unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketDisableCallBacks(_:_:)
 func CFSocketDisableCallBacks(s SocketRef, callBackTypes OptionFlags) {
 	_CFSocketDisableCallBacks(s, callBackTypes)
-}/* debug [functions.gen.go/function]: CFSocketDisableCallBacks */
+}
 
 // Enables the callback function of a CFSocket object for certain types of socket activity.
 //
@@ -7598,7 +7598,7 @@ func CFSocketDisableCallBacks(s SocketRef, callBackTypes OptionFlags) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketEnableCallBacks(_:_:)
 func CFSocketEnableCallBacks(s SocketRef, callBackTypes OptionFlags) {
 	_CFSocketEnableCallBacks(s, callBackTypes)
-}/* debug [functions.gen.go/function]: CFSocketEnableCallBacks */
+}
 
 // Returns the context information for a CFSocket object.
 //
@@ -7609,7 +7609,7 @@ func CFSocketEnableCallBacks(s SocketRef, callBackTypes OptionFlags) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetContext(_:_:)
 func CFSocketGetContext(s SocketRef, context unsafe.Pointer) {
 	_CFSocketGetContext(s, context)
-}/* debug [functions.gen.go/function]: CFSocketGetContext */
+}
 
 // Returns the default port number with which to connect to a CFSocket name server.
 //
@@ -7620,7 +7620,7 @@ func CFSocketGetContext(s SocketRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetDefaultNameRegistryPortNumber()
 func CFSocketGetDefaultNameRegistryPortNumber() unsafe.Pointer {
 	return _CFSocketGetDefaultNameRegistryPortNumber()
-}/* debug [functions.gen.go/function]: CFSocketGetDefaultNameRegistryPortNumber */
+}
 
 // Returns the native socket associated with a CFSocket object.
 //
@@ -7631,7 +7631,7 @@ func CFSocketGetDefaultNameRegistryPortNumber() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetNative(_:)
 func CFSocketGetNative(s SocketRef) SocketNativeHandle {
 	return _CFSocketGetNative(s)
-}/* debug [functions.gen.go/function]: CFSocketGetNative */
+}
 
 // Returns flags that control certain behaviors of a CFSocket object.
 //
@@ -7642,7 +7642,7 @@ func CFSocketGetNative(s SocketRef) SocketNativeHandle {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetSocketFlags(_:)
 func CFSocketGetSocketFlags(s SocketRef) OptionFlags {
 	return _CFSocketGetSocketFlags(s)
-}/* debug [functions.gen.go/function]: CFSocketGetSocketFlags */
+}
 
 // Returns the type identifier for the CFSocket opaque type.
 //
@@ -7653,7 +7653,7 @@ func CFSocketGetSocketFlags(s SocketRef) OptionFlags {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetTypeID()
 func CFSocketGetTypeID() TypeID {
 	return _CFSocketGetTypeID()
-}/* debug [functions.gen.go/function]: CFSocketGetTypeID */
+}
 
 // Invalidates a CFSocket object, stopping it from sending or receiving any more messages.
 //
@@ -7664,7 +7664,7 @@ func CFSocketGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketInvalidate(_:)
 func CFSocketInvalidate(s SocketRef) {
 	_CFSocketInvalidate(s)
-}/* debug [functions.gen.go/function]: CFSocketInvalidate */
+}
 
 // Returns a Boolean value that indicates whether a CFSocket object is valid and able to send or receive messages.
 //
@@ -7675,7 +7675,7 @@ func CFSocketInvalidate(s SocketRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketIsValid(_:)
 func CFSocketIsValid(s SocketRef) unsafe.Pointer {
 	return _CFSocketIsValid(s)
-}/* debug [functions.gen.go/function]: CFSocketIsValid */
+}
 
 // Registers a socket signature with a CFSocket name server.
 //
@@ -7686,7 +7686,7 @@ func CFSocketIsValid(s SocketRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketRegisterSocketSignature(_:_:_:_:)
 func CFSocketRegisterSocketSignature(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, signature unsafe.Pointer) SocketError {
 	return _CFSocketRegisterSocketSignature(nameServerSignature, timeout, name, signature)
-}/* debug [functions.gen.go/function]: CFSocketRegisterSocketSignature */
+}
 
 // Registers a property-list value with a CFSocket name server.
 //
@@ -7697,7 +7697,7 @@ func CFSocketRegisterSocketSignature(nameServerSignature unsafe.Pointer, timeout
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketRegisterValue(_:_:_:_:)
 func CFSocketRegisterValue(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, value PropertyListRef) SocketError {
 	return _CFSocketRegisterValue(nameServerSignature, timeout, name, value)
-}/* debug [functions.gen.go/function]: CFSocketRegisterValue */
+}
 
 // Sends data over a CFSocket object.
 //
@@ -7708,7 +7708,7 @@ func CFSocketRegisterValue(nameServerSignature unsafe.Pointer, timeout TimeInter
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSendData(_:_:_:_:)
 func CFSocketSendData(s SocketRef, address DataRef, data DataRef, timeout TimeInterval) SocketError {
 	return _CFSocketSendData(s, address, data, timeout)
-}/* debug [functions.gen.go/function]: CFSocketSendData */
+}
 
 // Binds a local address to a CFSocket object and configures it for listening.
 //
@@ -7719,7 +7719,7 @@ func CFSocketSendData(s SocketRef, address DataRef, data DataRef, timeout TimeIn
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetAddress(_:_:)
 func CFSocketSetAddress(s SocketRef, address DataRef) SocketError {
 	return _CFSocketSetAddress(s, address)
-}/* debug [functions.gen.go/function]: CFSocketSetAddress */
+}
 
 // Sets the default port number with which to connect to a CFSocket name server.
 //
@@ -7730,7 +7730,7 @@ func CFSocketSetAddress(s SocketRef, address DataRef) SocketError {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetDefaultNameRegistryPortNumber(_:)
 func CFSocketSetDefaultNameRegistryPortNumber(port unsafe.Pointer) {
 	_CFSocketSetDefaultNameRegistryPortNumber(port)
-}/* debug [functions.gen.go/function]: CFSocketSetDefaultNameRegistryPortNumber */
+}
 
 // Sets flags that control certain behaviors of a CFSocket object.
 //
@@ -7741,7 +7741,7 @@ func CFSocketSetDefaultNameRegistryPortNumber(port unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetSocketFlags(_:_:)
 func CFSocketSetSocketFlags(s SocketRef, flags OptionFlags) {
 	_CFSocketSetSocketFlags(s, flags)
-}/* debug [functions.gen.go/function]: CFSocketSetSocketFlags */
+}
 
 // Unregisters a value or socket signature with a CFSocket name server.
 //
@@ -7752,7 +7752,7 @@ func CFSocketSetSocketFlags(s SocketRef, flags OptionFlags) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketUnregister(_:_:_:)
 func CFSocketUnregister(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef) SocketError {
 	return _CFSocketUnregister(nameServerSignature, timeout, name)
-}/* debug [functions.gen.go/function]: CFSocketUnregister */
+}
 
 // Creates a bound pair of read and write streams.
 //
@@ -7763,7 +7763,7 @@ func CFSocketUnregister(nameServerSignature unsafe.Pointer, timeout TimeInterval
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreateBoundPair(_:_:_:_:)
 func CFStreamCreateBoundPair(alloc AllocatorRef, readStream unsafe.Pointer, writeStream unsafe.Pointer, transferBufferSize Index) {
 	_CFStreamCreateBoundPair(alloc, readStream, writeStream, transferBufferSize)
-}/* debug [functions.gen.go/function]: CFStreamCreateBoundPair */
+}
 
 // Creates readable and writable streams connected to a socket.
 //
@@ -7776,7 +7776,7 @@ func CFStreamCreateBoundPair(alloc AllocatorRef, readStream unsafe.Pointer, writ
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithPeerSocketSignature(_:_:_:_:)
 func CFStreamCreatePairWithPeerSocketSignature(alloc AllocatorRef, signature unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithPeerSocketSignature(alloc, signature, readStream, writeStream)
-}/* debug [functions.gen.go/function]: CFStreamCreatePairWithPeerSocketSignature */
+}
 
 // Creates readable and writable streams connected to a socket.
 //
@@ -7789,7 +7789,7 @@ func CFStreamCreatePairWithPeerSocketSignature(alloc AllocatorRef, signature uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithSocket(_:_:_:_:)
 func CFStreamCreatePairWithSocket(alloc AllocatorRef, sock SocketNativeHandle, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocket(alloc, sock, readStream, writeStream)
-}/* debug [functions.gen.go/function]: CFStreamCreatePairWithSocket */
+}
 
 // Creates readable and writable streams connected to a TCP/IP port of a particular host.
 //
@@ -7802,7 +7802,7 @@ func CFStreamCreatePairWithSocket(alloc AllocatorRef, sock SocketNativeHandle, r
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithSocketToHost(_:_:_:_:_:)
 func CFStreamCreatePairWithSocketToHost(alloc AllocatorRef, host StringRef, port unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToHost(alloc, host, port, readStream, writeStream)
-}/* debug [functions.gen.go/function]: CFStreamCreatePairWithSocketToHost */
+}
 
 // Appends the characters of a string to those of a CFMutableString object.
 //
@@ -7813,7 +7813,7 @@ func CFStreamCreatePairWithSocketToHost(alloc AllocatorRef, host StringRef, port
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppend(_:_:)
 func CFStringAppend(theString MutableStringRef, appendedString StringRef) {
 	_CFStringAppend(theString, appendedString)
-}/* debug [functions.gen.go/function]: CFStringAppend */
+}
 
 // Appends a C string to the character contents of a CFMutableString object.
 //
@@ -7824,7 +7824,7 @@ func CFStringAppend(theString MutableStringRef, appendedString StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendCString(_:_:_:)
 func CFStringAppendCString(theString MutableStringRef, cStr unsafe.Pointer, encoding StringEncoding) {
 	_CFStringAppendCString(theString, cStr, encoding)
-}/* debug [functions.gen.go/function]: CFStringAppendCString */
+}
 
 // Appends a buffer of Unicode characters to the character contents of a CFMutableString object.
 //
@@ -7835,7 +7835,7 @@ func CFStringAppendCString(theString MutableStringRef, cStr unsafe.Pointer, enco
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendCharacters(_:_:_:)
 func CFStringAppendCharacters(theString MutableStringRef, chars unsafe.Pointer, numChars Index) {
 	_CFStringAppendCharacters(theString, chars, numChars)
-}/* debug [functions.gen.go/function]: CFStringAppendCharacters */
+}
 
 // Appends a formatted string to the character contents of a CFMutableString object.
 //
@@ -7846,7 +7846,7 @@ func CFStringAppendCharacters(theString MutableStringRef, chars unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendFormat
 func CFStringAppendFormat(theString MutableStringRef, formatOptions DictionaryRef, format StringRef) {
 	_CFStringAppendFormat(theString, formatOptions, format)
-}/* debug [functions.gen.go/function]: CFStringAppendFormat */
+}
 
 // Appends a formatted string to the character contents of a CFMutableString object.
 //
@@ -7857,7 +7857,7 @@ func CFStringAppendFormat(theString MutableStringRef, formatOptions DictionaryRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendFormatAndArguments(_:_:_:_:)
 func CFStringAppendFormatAndArguments(theString MutableStringRef, formatOptions DictionaryRef, format StringRef, arguments unsafe.Pointer) {
 	_CFStringAppendFormatAndArguments(theString, formatOptions, format, arguments)
-}/* debug [functions.gen.go/function]: CFStringAppendFormatAndArguments */
+}
 
 // Appends a Pascal string to the character contents of a CFMutableString object.
 //
@@ -7868,7 +7868,7 @@ func CFStringAppendFormatAndArguments(theString MutableStringRef, formatOptions 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendPascalString(_:_:_:)
 func CFStringAppendPascalString(theString MutableStringRef, pStr unsafe.Pointer, encoding StringEncoding) {
 	_CFStringAppendPascalString(theString, pStr, encoding)
-}/* debug [functions.gen.go/function]: CFStringAppendPascalString */
+}
 
 // Changes the first character in each word of a string to uppercase (if it is a lowercase alphabetical character).
 //
@@ -7879,7 +7879,7 @@ func CFStringAppendPascalString(theString MutableStringRef, pStr unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCapitalize(_:_:)
 func CFStringCapitalize(theString MutableStringRef, locale LocaleRef) {
 	_CFStringCapitalize(theString, locale)
-}/* debug [functions.gen.go/function]: CFStringCapitalize */
+}
 
 // Compares one string with another string.
 //
@@ -7890,7 +7890,7 @@ func CFStringCapitalize(theString MutableStringRef, locale LocaleRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompare(_:_:_:)
 func CFStringCompare(theString1 StringRef, theString2 StringRef, compareOptions StringCompareFlags) ComparisonResult {
 	return _CFStringCompare(theString1, theString2, compareOptions)
-}/* debug [functions.gen.go/function]: CFStringCompare */
+}
 
 // Compares a range of the characters in one string with that of another string.
 //
@@ -7901,7 +7901,7 @@ func CFStringCompare(theString1 StringRef, theString2 StringRef, compareOptions 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompareWithOptions(_:_:_:_:)
 func CFStringCompareWithOptions(theString1 StringRef, theString2 StringRef, rangeToCompare Range, compareOptions StringCompareFlags) ComparisonResult {
 	return _CFStringCompareWithOptions(theString1, theString2, rangeToCompare, compareOptions)
-}/* debug [functions.gen.go/function]: CFStringCompareWithOptions */
+}
 
 // Compares a range of the characters in one string with another string using a given locale.
 //
@@ -7912,7 +7912,7 @@ func CFStringCompareWithOptions(theString1 StringRef, theString2 StringRef, rang
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompareWithOptionsAndLocale(_:_:_:_:_:)
 func CFStringCompareWithOptionsAndLocale(theString1 StringRef, theString2 StringRef, rangeToCompare Range, compareOptions StringCompareFlags, locale LocaleRef) ComparisonResult {
 	return _CFStringCompareWithOptionsAndLocale(theString1, theString2, rangeToCompare, compareOptions, locale)
-}/* debug [functions.gen.go/function]: CFStringCompareWithOptionsAndLocale */
+}
 
 // Returns the name of the IANA registry “charset” that is the closest mapping to a specified string encoding.
 //
@@ -7923,7 +7923,7 @@ func CFStringCompareWithOptionsAndLocale(theString1 StringRef, theString2 String
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertEncodingToIANACharSetName(_:)
 func CFStringConvertEncodingToIANACharSetName(encoding StringEncoding) StringRef {
 	return _CFStringConvertEncodingToIANACharSetName(encoding)
-}/* debug [functions.gen.go/function]: CFStringConvertEncodingToIANACharSetName */
+}
 
 // Returns the Cocoa encoding constant that maps most closely to a given Core Foundation encoding constant.
 //
@@ -7934,7 +7934,7 @@ func CFStringConvertEncodingToIANACharSetName(encoding StringEncoding) StringRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertEncodingToNSStringEncoding(_:)
 func CFStringConvertEncodingToNSStringEncoding(encoding StringEncoding) unsafe.Pointer {
 	return _CFStringConvertEncodingToNSStringEncoding(encoding)
-}/* debug [functions.gen.go/function]: CFStringConvertEncodingToNSStringEncoding */
+}
 
 // Returns the Windows codepage identifier that maps most closely to a given Core Foundation encoding constant.
 //
@@ -7945,7 +7945,7 @@ func CFStringConvertEncodingToNSStringEncoding(encoding StringEncoding) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertEncodingToWindowsCodepage(_:)
 func CFStringConvertEncodingToWindowsCodepage(encoding StringEncoding) unsafe.Pointer {
 	return _CFStringConvertEncodingToWindowsCodepage(encoding)
-}/* debug [functions.gen.go/function]: CFStringConvertEncodingToWindowsCodepage */
+}
 
 // Returns the Core Foundation encoding constant that is the closest mapping to a given IANA registry “charset” name.
 //
@@ -7956,7 +7956,7 @@ func CFStringConvertEncodingToWindowsCodepage(encoding StringEncoding) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertIANACharSetNameToEncoding(_:)
 func CFStringConvertIANACharSetNameToEncoding(theString StringRef) StringEncoding {
 	return _CFStringConvertIANACharSetNameToEncoding(theString)
-}/* debug [functions.gen.go/function]: CFStringConvertIANACharSetNameToEncoding */
+}
 
 // Returns the Core Foundation encoding constant that is the closest mapping to a given Cocoa encoding.
 //
@@ -7967,7 +7967,7 @@ func CFStringConvertIANACharSetNameToEncoding(theString StringRef) StringEncodin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertNSStringEncodingToEncoding(_:)
 func CFStringConvertNSStringEncodingToEncoding(encoding unsafe.Pointer) StringEncoding {
 	return _CFStringConvertNSStringEncodingToEncoding(encoding)
-}/* debug [functions.gen.go/function]: CFStringConvertNSStringEncodingToEncoding */
+}
 
 // Returns the Core Foundation encoding constant that is the closest mapping to a given Windows codepage identifier.
 //
@@ -7978,7 +7978,7 @@ func CFStringConvertNSStringEncodingToEncoding(encoding unsafe.Pointer) StringEn
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertWindowsCodepageToEncoding(_:)
 func CFStringConvertWindowsCodepageToEncoding(codepage unsafe.Pointer) StringEncoding {
 	return _CFStringConvertWindowsCodepageToEncoding(codepage)
-}/* debug [functions.gen.go/function]: CFStringConvertWindowsCodepageToEncoding */
+}
 
 // Creates an array of CFString objects from a single CFString object.
 //
@@ -7989,7 +7989,7 @@ func CFStringConvertWindowsCodepageToEncoding(codepage unsafe.Pointer) StringEnc
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateArrayBySeparatingStrings(_:_:_:)
 func CFStringCreateArrayBySeparatingStrings(alloc AllocatorRef, theString StringRef, separatorString StringRef) ArrayRef {
 	return _CFStringCreateArrayBySeparatingStrings(alloc, theString, separatorString)
-}/* debug [functions.gen.go/function]: CFStringCreateArrayBySeparatingStrings */
+}
 
 // Searches a string for multiple occurrences of a substring and creates an array of ranges identifying the locations of these substrings within the target string.
 //
@@ -8000,7 +8000,7 @@ func CFStringCreateArrayBySeparatingStrings(alloc AllocatorRef, theString String
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateArrayWithFindResults(_:_:_:_:_:)
 func CFStringCreateArrayWithFindResults(alloc AllocatorRef, theString StringRef, stringToFind StringRef, rangeToSearch Range, compareOptions StringCompareFlags) ArrayRef {
 	return _CFStringCreateArrayWithFindResults(alloc, theString, stringToFind, rangeToSearch, compareOptions)
-}/* debug [functions.gen.go/function]: CFStringCreateArrayWithFindResults */
+}
 
 // Creates a single string from the individual CFString objects that comprise the elements of an array.
 //
@@ -8011,7 +8011,7 @@ func CFStringCreateArrayWithFindResults(alloc AllocatorRef, theString StringRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateByCombiningStrings(_:_:_:)
 func CFStringCreateByCombiningStrings(alloc AllocatorRef, theArray ArrayRef, separatorString StringRef) StringRef {
 	return _CFStringCreateByCombiningStrings(alloc, theArray, separatorString)
-}/* debug [functions.gen.go/function]: CFStringCreateByCombiningStrings */
+}
 
 // Creates an immutable copy of a string.
 //
@@ -8022,7 +8022,7 @@ func CFStringCreateByCombiningStrings(alloc AllocatorRef, theArray ArrayRef, sep
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateCopy(_:_:)
 func CFStringCreateCopy(alloc AllocatorRef, theString StringRef) StringRef {
 	return _CFStringCreateCopy(alloc, theString)
-}/* debug [functions.gen.go/function]: CFStringCreateCopy */
+}
 
 // Creates an “external representation” of a CFString object, that is, a CFData object.
 //
@@ -8033,7 +8033,7 @@ func CFStringCreateCopy(alloc AllocatorRef, theString StringRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateExternalRepresentation(_:_:_:_:)
 func CFStringCreateExternalRepresentation(alloc AllocatorRef, theString StringRef, encoding StringEncoding, lossByte unsafe.Pointer) DataRef {
 	return _CFStringCreateExternalRepresentation(alloc, theString, encoding, lossByte)
-}/* debug [functions.gen.go/function]: CFStringCreateExternalRepresentation */
+}
 
 // Creates a string from its “external representation.”
 //
@@ -8044,7 +8044,7 @@ func CFStringCreateExternalRepresentation(alloc AllocatorRef, theString StringRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateFromExternalRepresentation(_:_:_:)
 func CFStringCreateFromExternalRepresentation(alloc AllocatorRef, data DataRef, encoding StringEncoding) StringRef {
 	return _CFStringCreateFromExternalRepresentation(alloc, data, encoding)
-}/* debug [functions.gen.go/function]: CFStringCreateFromExternalRepresentation */
+}
 
 // Creates an empty CFMutableString object.
 //
@@ -8055,7 +8055,7 @@ func CFStringCreateFromExternalRepresentation(alloc AllocatorRef, data DataRef, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutable(_:_:)
 func CFStringCreateMutable(alloc AllocatorRef, maxLength Index) MutableStringRef {
 	return _CFStringCreateMutable(alloc, maxLength)
-}/* debug [functions.gen.go/function]: CFStringCreateMutable */
+}
 
 // Creates a mutable copy of a string.
 //
@@ -8066,7 +8066,7 @@ func CFStringCreateMutable(alloc AllocatorRef, maxLength Index) MutableStringRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutableCopy(_:_:_:)
 func CFStringCreateMutableCopy(alloc AllocatorRef, maxLength Index, theString StringRef) MutableStringRef {
 	return _CFStringCreateMutableCopy(alloc, maxLength, theString)
-}/* debug [functions.gen.go/function]: CFStringCreateMutableCopy */
+}
 
 // Creates a CFMutableString object whose Unicode character buffer is controlled externally.
 //
@@ -8077,7 +8077,7 @@ func CFStringCreateMutableCopy(alloc AllocatorRef, maxLength Index, theString St
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutableWithExternalCharactersNoCopy(_:_:_:_:_:)
 func CFStringCreateMutableWithExternalCharactersNoCopy(alloc AllocatorRef, chars unsafe.Pointer, numChars Index, capacity Index, externalCharactersAllocator AllocatorRef) MutableStringRef {
 	return _CFStringCreateMutableWithExternalCharactersNoCopy(alloc, chars, numChars, capacity, externalCharactersAllocator)
-}/* debug [functions.gen.go/function]: CFStringCreateMutableWithExternalCharactersNoCopy */
+}
 
 // CFStringCreateStringWithValidatedFormat is a CoreFoundation function.
 //
@@ -8086,7 +8086,7 @@ func CFStringCreateMutableWithExternalCharactersNoCopy(alloc AllocatorRef, chars
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateStringWithValidatedFormat
 func CFStringCreateStringWithValidatedFormat(alloc AllocatorRef, formatOptions DictionaryRef, validFormatSpecifiers StringRef, format StringRef, errorPtr unsafe.Pointer) StringRef {
 	return _CFStringCreateStringWithValidatedFormat(alloc, formatOptions, validFormatSpecifiers, format, errorPtr)
-}/* debug [functions.gen.go/function]: CFStringCreateStringWithValidatedFormat */
+}
 
 // CFStringCreateStringWithValidatedFormatAndArguments is a CoreFoundation function.
 //
@@ -8095,7 +8095,7 @@ func CFStringCreateStringWithValidatedFormat(alloc AllocatorRef, formatOptions D
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateStringWithValidatedFormatAndArguments
 func CFStringCreateStringWithValidatedFormatAndArguments(alloc AllocatorRef, formatOptions DictionaryRef, validFormatSpecifiers StringRef, format StringRef, arguments unsafe.Pointer, errorPtr unsafe.Pointer) StringRef {
 	return _CFStringCreateStringWithValidatedFormatAndArguments(alloc, formatOptions, validFormatSpecifiers, format, arguments, errorPtr)
-}/* debug [functions.gen.go/function]: CFStringCreateStringWithValidatedFormatAndArguments */
+}
 
 // Creates a string from a buffer containing characters in a specified encoding.
 //
@@ -8106,7 +8106,7 @@ func CFStringCreateStringWithValidatedFormatAndArguments(alloc AllocatorRef, for
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithBytes(_:_:_:_:_:)
 func CFStringCreateWithBytes(alloc AllocatorRef, bytes unsafe.Pointer, numBytes Index, encoding StringEncoding, isExternalRepresentation unsafe.Pointer) StringRef {
 	return _CFStringCreateWithBytes(alloc, bytes, numBytes, encoding, isExternalRepresentation)
-}/* debug [functions.gen.go/function]: CFStringCreateWithBytes */
+}
 
 // Creates a string from a buffer, containing characters in a specified encoding, that might serve as the backing store for the new string.
 //
@@ -8117,7 +8117,7 @@ func CFStringCreateWithBytes(alloc AllocatorRef, bytes unsafe.Pointer, numBytes 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithBytesNoCopy(_:_:_:_:_:_:)
 func CFStringCreateWithBytesNoCopy(alloc AllocatorRef, bytes unsafe.Pointer, numBytes Index, encoding StringEncoding, isExternalRepresentation unsafe.Pointer, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithBytesNoCopy(alloc, bytes, numBytes, encoding, isExternalRepresentation, contentsDeallocator)
-}/* debug [functions.gen.go/function]: CFStringCreateWithBytesNoCopy */
+}
 
 // Creates an immutable string from a C string.
 //
@@ -8128,7 +8128,7 @@ func CFStringCreateWithBytesNoCopy(alloc AllocatorRef, bytes unsafe.Pointer, num
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCString(_:_:_:)
 func CFStringCreateWithCString(alloc AllocatorRef, cStr unsafe.Pointer, encoding StringEncoding) StringRef {
 	return _CFStringCreateWithCString(alloc, cStr, encoding)
-}/* debug [functions.gen.go/function]: CFStringCreateWithCString */
+}
 
 // Creates a CFString object from an external C string buffer that might serve as the backing store for the object.
 //
@@ -8139,7 +8139,7 @@ func CFStringCreateWithCString(alloc AllocatorRef, cStr unsafe.Pointer, encoding
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCStringNoCopy(_:_:_:_:)
 func CFStringCreateWithCStringNoCopy(alloc AllocatorRef, cStr unsafe.Pointer, encoding StringEncoding, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithCStringNoCopy(alloc, cStr, encoding, contentsDeallocator)
-}/* debug [functions.gen.go/function]: CFStringCreateWithCStringNoCopy */
+}
 
 // Creates a string from a buffer of Unicode characters.
 //
@@ -8150,7 +8150,7 @@ func CFStringCreateWithCStringNoCopy(alloc AllocatorRef, cStr unsafe.Pointer, en
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCharacters(_:_:_:)
 func CFStringCreateWithCharacters(alloc AllocatorRef, chars unsafe.Pointer, numChars Index) StringRef {
 	return _CFStringCreateWithCharacters(alloc, chars, numChars)
-}/* debug [functions.gen.go/function]: CFStringCreateWithCharacters */
+}
 
 // Creates a string from a buffer of Unicode characters that might serve as the backing store for the object.
 //
@@ -8161,7 +8161,7 @@ func CFStringCreateWithCharacters(alloc AllocatorRef, chars unsafe.Pointer, numC
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCharactersNoCopy(_:_:_:_:)
 func CFStringCreateWithCharactersNoCopy(alloc AllocatorRef, chars unsafe.Pointer, numChars Index, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithCharactersNoCopy(alloc, chars, numChars, contentsDeallocator)
-}/* debug [functions.gen.go/function]: CFStringCreateWithCharactersNoCopy */
+}
 
 // Creates a CFString from a zero-terminated POSIX file system representation.
 //
@@ -8172,7 +8172,7 @@ func CFStringCreateWithCharactersNoCopy(alloc AllocatorRef, chars unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithFileSystemRepresentation(_:_:)
 func CFStringCreateWithFileSystemRepresentation(alloc AllocatorRef, buffer unsafe.Pointer) StringRef {
 	return _CFStringCreateWithFileSystemRepresentation(alloc, buffer)
-}/* debug [functions.gen.go/function]: CFStringCreateWithFileSystemRepresentation */
+}
 
 // Creates an immutable string from a formatted string and a variable number of arguments.
 //
@@ -8183,7 +8183,7 @@ func CFStringCreateWithFileSystemRepresentation(alloc AllocatorRef, buffer unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithFormat
 func CFStringCreateWithFormat(alloc AllocatorRef, formatOptions DictionaryRef, format StringRef) StringRef {
 	return _CFStringCreateWithFormat(alloc, formatOptions, format)
-}/* debug [functions.gen.go/function]: CFStringCreateWithFormat */
+}
 
 // Creates an immutable string from a formatted string and a variable number of arguments (specified in a parameter of type ).
 //
@@ -8194,7 +8194,7 @@ func CFStringCreateWithFormat(alloc AllocatorRef, formatOptions DictionaryRef, f
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithFormatAndArguments(_:_:_:_:)
 func CFStringCreateWithFormatAndArguments(alloc AllocatorRef, formatOptions DictionaryRef, format StringRef, arguments unsafe.Pointer) StringRef {
 	return _CFStringCreateWithFormatAndArguments(alloc, formatOptions, format, arguments)
-}/* debug [functions.gen.go/function]: CFStringCreateWithFormatAndArguments */
+}
 
 // Creates an immutable CFString object from a Pascal string.
 //
@@ -8205,7 +8205,7 @@ func CFStringCreateWithFormatAndArguments(alloc AllocatorRef, formatOptions Dict
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithPascalString(_:_:_:)
 func CFStringCreateWithPascalString(alloc AllocatorRef, pStr unsafe.Pointer, encoding StringEncoding) StringRef {
 	return _CFStringCreateWithPascalString(alloc, pStr, encoding)
-}/* debug [functions.gen.go/function]: CFStringCreateWithPascalString */
+}
 
 // Creates a CFString object from an external Pascal string buffer that might serve as the backing store for the object.
 //
@@ -8216,7 +8216,7 @@ func CFStringCreateWithPascalString(alloc AllocatorRef, pStr unsafe.Pointer, enc
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithPascalStringNoCopy(_:_:_:_:)
 func CFStringCreateWithPascalStringNoCopy(alloc AllocatorRef, pStr unsafe.Pointer, encoding StringEncoding, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithPascalStringNoCopy(alloc, pStr, encoding, contentsDeallocator)
-}/* debug [functions.gen.go/function]: CFStringCreateWithPascalStringNoCopy */
+}
 
 // Creates an immutable string from a segment (substring) of an existing string.
 //
@@ -8227,7 +8227,7 @@ func CFStringCreateWithPascalStringNoCopy(alloc AllocatorRef, pStr unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithSubstring(_:_:_:)
 func CFStringCreateWithSubstring(alloc AllocatorRef, str StringRef, range_ Range) StringRef {
 	return _CFStringCreateWithSubstring(alloc, str, range_)
-}/* debug [functions.gen.go/function]: CFStringCreateWithSubstring */
+}
 
 // Deletes a range of characters in a string.
 //
@@ -8238,7 +8238,7 @@ func CFStringCreateWithSubstring(alloc AllocatorRef, str StringRef, range_ Range
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringDelete(_:_:)
 func CFStringDelete(theString MutableStringRef, range_ Range) {
 	_CFStringDelete(theString, range_)
-}/* debug [functions.gen.go/function]: CFStringDelete */
+}
 
 // Searches for a substring within a string and, if it is found, yields the range of the substring within the object’s characters.
 //
@@ -8249,7 +8249,7 @@ func CFStringDelete(theString MutableStringRef, range_ Range) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFind(_:_:_:)
 func CFStringFind(theString StringRef, stringToFind StringRef, compareOptions StringCompareFlags) Range {
 	return _CFStringFind(theString, stringToFind, compareOptions)
-}/* debug [functions.gen.go/function]: CFStringFind */
+}
 
 // Replaces all occurrences of a substring within a given range.
 //
@@ -8260,7 +8260,7 @@ func CFStringFind(theString StringRef, stringToFind StringRef, compareOptions St
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindAndReplace(_:_:_:_:_:)
 func CFStringFindAndReplace(theString MutableStringRef, stringToFind StringRef, replacementString StringRef, rangeToSearch Range, compareOptions StringCompareFlags) Index {
 	return _CFStringFindAndReplace(theString, stringToFind, replacementString, rangeToSearch, compareOptions)
-}/* debug [functions.gen.go/function]: CFStringFindAndReplace */
+}
 
 // Query the range of the first character contained in the specified character set.
 //
@@ -8271,7 +8271,7 @@ func CFStringFindAndReplace(theString MutableStringRef, stringToFind StringRef, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindCharacterFromSet(_:_:_:_:_:)
 func CFStringFindCharacterFromSet(theString StringRef, theSet CharacterSetRef, rangeToSearch Range, searchOptions StringCompareFlags, result unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFindCharacterFromSet(theString, theSet, rangeToSearch, searchOptions, result)
-}/* debug [functions.gen.go/function]: CFStringFindCharacterFromSet */
+}
 
 // Searches for a substring within a range of the characters represented by a string and, if the substring is found, returns its range within the object’s characters.
 //
@@ -8282,7 +8282,7 @@ func CFStringFindCharacterFromSet(theString StringRef, theSet CharacterSetRef, r
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindWithOptions(_:_:_:_:_:)
 func CFStringFindWithOptions(theString StringRef, stringToFind StringRef, rangeToSearch Range, searchOptions StringCompareFlags, result unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFindWithOptions(theString, stringToFind, rangeToSearch, searchOptions, result)
-}/* debug [functions.gen.go/function]: CFStringFindWithOptions */
+}
 
 // Returns a Boolean value that indicates whether a given string was found in a given source string.
 //
@@ -8293,7 +8293,7 @@ func CFStringFindWithOptions(theString StringRef, stringToFind StringRef, rangeT
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindWithOptionsAndLocale(_:_:_:_:_:_:)
 func CFStringFindWithOptionsAndLocale(theString StringRef, stringToFind StringRef, rangeToSearch Range, searchOptions StringCompareFlags, locale LocaleRef, result unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFindWithOptionsAndLocale(theString, stringToFind, rangeToSearch, searchOptions, locale, result)
-}/* debug [functions.gen.go/function]: CFStringFindWithOptionsAndLocale */
+}
 
 // Folds a given string into the form specified by optional flags.
 //
@@ -8304,7 +8304,7 @@ func CFStringFindWithOptionsAndLocale(theString StringRef, stringToFind StringRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFold(_:_:_:)
 func CFStringFold(theString MutableStringRef, theFlags StringCompareFlags, theLocale LocaleRef) {
 	_CFStringFold(theString, theFlags, theLocale)
-}/* debug [functions.gen.go/function]: CFStringFold */
+}
 
 // Fetches a range of the characters from a string into a byte buffer after converting the characters to a specified encoding.
 //
@@ -8315,7 +8315,7 @@ func CFStringFold(theString MutableStringRef, theFlags StringCompareFlags, theLo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetBytes(_:_:_:_:_:_:_:_:)
 func CFStringGetBytes(theString StringRef, range_ Range, encoding StringEncoding, lossByte unsafe.Pointer, isExternalRepresentation unsafe.Pointer, buffer unsafe.Pointer, maxBufLen Index, usedBufLen unsafe.Pointer) Index {
 	return _CFStringGetBytes(theString, range_, encoding, lossByte, isExternalRepresentation, buffer, maxBufLen, usedBufLen)
-}/* debug [functions.gen.go/function]: CFStringGetBytes */
+}
 
 // Copies the character contents of a string to a local C string buffer after converting the characters to a given encoding.
 //
@@ -8326,7 +8326,7 @@ func CFStringGetBytes(theString StringRef, range_ Range, encoding StringEncoding
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCString(_:_:_:_:)
 func CFStringGetCString(theString StringRef, buffer unsafe.Pointer, bufferSize Index, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetCString(theString, buffer, bufferSize, encoding)
-}/* debug [functions.gen.go/function]: CFStringGetCString */
+}
 
 // Quickly obtains a pointer to a C-string buffer containing the characters of a string in a given encoding.
 //
@@ -8337,7 +8337,7 @@ func CFStringGetCString(theString StringRef, buffer unsafe.Pointer, bufferSize I
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCStringPtr(_:_:)
 func CFStringGetCStringPtr(theString StringRef, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetCStringPtr(theString, encoding)
-}/* debug [functions.gen.go/function]: CFStringGetCStringPtr */
+}
 
 // Returns the Unicode character at a specified location in a string.
 //
@@ -8348,7 +8348,7 @@ func CFStringGetCStringPtr(theString StringRef, encoding StringEncoding) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCharacterAtIndex(_:_:)
 func CFStringGetCharacterAtIndex(theString StringRef, idx Index) unsafe.Pointer {
 	return _CFStringGetCharacterAtIndex(theString, idx)
-}/* debug [functions.gen.go/function]: CFStringGetCharacterAtIndex */
+}
 
 // Copies a range of the Unicode characters from a string to a user-provided buffer.
 //
@@ -8359,7 +8359,7 @@ func CFStringGetCharacterAtIndex(theString StringRef, idx Index) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCharacters(_:_:_:)
 func CFStringGetCharacters(theString StringRef, range_ Range, buffer unsafe.Pointer) {
 	_CFStringGetCharacters(theString, range_, buffer)
-}/* debug [functions.gen.go/function]: CFStringGetCharacters */
+}
 
 // Quickly obtains a pointer to the contents of a string as a buffer of Unicode characters.
 //
@@ -8370,7 +8370,7 @@ func CFStringGetCharacters(theString StringRef, range_ Range, buffer unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCharactersPtr(_:)
 func CFStringGetCharactersPtr(theString StringRef) unsafe.Pointer {
 	return _CFStringGetCharactersPtr(theString)
-}/* debug [functions.gen.go/function]: CFStringGetCharactersPtr */
+}
 
 // Returns the primary value represented by a string.
 //
@@ -8381,7 +8381,7 @@ func CFStringGetCharactersPtr(theString StringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetDoubleValue(_:)
 func CFStringGetDoubleValue(str StringRef) float64 {
 	return _CFStringGetDoubleValue(str)
-}/* debug [functions.gen.go/function]: CFStringGetDoubleValue */
+}
 
 // Returns for a CFString object the character encoding that requires the least conversion time.
 //
@@ -8392,7 +8392,7 @@ func CFStringGetDoubleValue(str StringRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetFastestEncoding(_:)
 func CFStringGetFastestEncoding(theString StringRef) StringEncoding {
 	return _CFStringGetFastestEncoding(theString)
-}/* debug [functions.gen.go/function]: CFStringGetFastestEncoding */
+}
 
 // Extracts the contents of a string as a -terminated 8-bit string appropriate for passing to POSIX APIs.
 //
@@ -8403,7 +8403,7 @@ func CFStringGetFastestEncoding(theString StringRef) StringEncoding {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetFileSystemRepresentation(_:_:_:)
 func CFStringGetFileSystemRepresentation(string_ StringRef, buffer unsafe.Pointer, maxBufLen Index) unsafe.Pointer {
 	return _CFStringGetFileSystemRepresentation(string_, buffer, maxBufLen)
-}/* debug [functions.gen.go/function]: CFStringGetFileSystemRepresentation */
+}
 
 // Retrieve the first potential hyphenation location found before the specified location.
 //
@@ -8414,7 +8414,7 @@ func CFStringGetFileSystemRepresentation(string_ StringRef, buffer unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetHyphenationLocationBeforeIndex(_:_:_:_:_:_:)
 func CFStringGetHyphenationLocationBeforeIndex(string_ StringRef, location Index, limitRange Range, options OptionFlags, locale LocaleRef, character unsafe.Pointer) Index {
 	return _CFStringGetHyphenationLocationBeforeIndex(string_, location, limitRange, options, locale, character)
-}/* debug [functions.gen.go/function]: CFStringGetHyphenationLocationBeforeIndex */
+}
 
 // Returns the integer value represented by a string.
 //
@@ -8425,7 +8425,7 @@ func CFStringGetHyphenationLocationBeforeIndex(string_ StringRef, location Index
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetIntValue(_:)
 func CFStringGetIntValue(str StringRef) unsafe.Pointer {
 	return _CFStringGetIntValue(str)
-}/* debug [functions.gen.go/function]: CFStringGetIntValue */
+}
 
 // Returns the number (in terms of UTF-16 code pairs) of Unicode characters in a string.
 //
@@ -8436,7 +8436,7 @@ func CFStringGetIntValue(str StringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetLength(_:)
 func CFStringGetLength(theString StringRef) Index {
 	return _CFStringGetLength(theString)
-}/* debug [functions.gen.go/function]: CFStringGetLength */
+}
 
 // Given a range of characters in a string, obtains the line bounds—that is, the indexes of the first character and the final characters of the lines containing the range.
 //
@@ -8447,7 +8447,7 @@ func CFStringGetLength(theString StringRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetLineBounds(_:_:_:_:_:)
 func CFStringGetLineBounds(theString StringRef, range_ Range, lineBeginIndex unsafe.Pointer, lineEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
 	_CFStringGetLineBounds(theString, range_, lineBeginIndex, lineEndIndex, contentsEndIndex)
-}/* debug [functions.gen.go/function]: CFStringGetLineBounds */
+}
 
 // Returns a pointer to a list of string encodings supported by the current system.
 //
@@ -8458,7 +8458,7 @@ func CFStringGetLineBounds(theString StringRef, range_ Range, lineBeginIndex uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetListOfAvailableEncodings()
 func CFStringGetListOfAvailableEncodings() unsafe.Pointer {
 	return _CFStringGetListOfAvailableEncodings()
-}/* debug [functions.gen.go/function]: CFStringGetListOfAvailableEncodings */
+}
 
 // Returns the maximum number of bytes a string of a specified length (in Unicode characters) will take up if encoded in a specified encoding.
 //
@@ -8469,7 +8469,7 @@ func CFStringGetListOfAvailableEncodings() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMaximumSizeForEncoding(_:_:)
 func CFStringGetMaximumSizeForEncoding(length Index, encoding StringEncoding) Index {
 	return _CFStringGetMaximumSizeForEncoding(length, encoding)
-}/* debug [functions.gen.go/function]: CFStringGetMaximumSizeForEncoding */
+}
 
 // Determines the upper bound on the number of bytes required to hold the file system representation of the string.
 //
@@ -8480,7 +8480,7 @@ func CFStringGetMaximumSizeForEncoding(length Index, encoding StringEncoding) In
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMaximumSizeOfFileSystemRepresentation(_:)
 func CFStringGetMaximumSizeOfFileSystemRepresentation(string_ StringRef) Index {
 	return _CFStringGetMaximumSizeOfFileSystemRepresentation(string_)
-}/* debug [functions.gen.go/function]: CFStringGetMaximumSizeOfFileSystemRepresentation */
+}
 
 // Returns the most compatible Mac OS script value for the given input encoding.
 //
@@ -8491,7 +8491,7 @@ func CFStringGetMaximumSizeOfFileSystemRepresentation(string_ StringRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMostCompatibleMacStringEncoding(_:)
 func CFStringGetMostCompatibleMacStringEncoding(encoding StringEncoding) StringEncoding {
 	return _CFStringGetMostCompatibleMacStringEncoding(encoding)
-}/* debug [functions.gen.go/function]: CFStringGetMostCompatibleMacStringEncoding */
+}
 
 // Returns the canonical name of a specified string encoding.
 //
@@ -8502,7 +8502,7 @@ func CFStringGetMostCompatibleMacStringEncoding(encoding StringEncoding) StringE
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetNameOfEncoding(_:)
 func CFStringGetNameOfEncoding(encoding StringEncoding) StringRef {
 	return _CFStringGetNameOfEncoding(encoding)
-}/* debug [functions.gen.go/function]: CFStringGetNameOfEncoding */
+}
 
 // Given a range of characters in a string, obtains the paragraph bounds—that is, the indexes of the first character and the final characters of the paragraph(s) containing the range.
 //
@@ -8513,7 +8513,7 @@ func CFStringGetNameOfEncoding(encoding StringEncoding) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetParagraphBounds(_:_:_:_:_:)
 func CFStringGetParagraphBounds(string_ StringRef, range_ Range, parBeginIndex unsafe.Pointer, parEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
 	_CFStringGetParagraphBounds(string_, range_, parBeginIndex, parEndIndex, contentsEndIndex)
-}/* debug [functions.gen.go/function]: CFStringGetParagraphBounds */
+}
 
 // Copies the character contents of a CFString object to a local Pascal string buffer after converting the characters to a requested encoding.
 //
@@ -8524,7 +8524,7 @@ func CFStringGetParagraphBounds(string_ StringRef, range_ Range, parBeginIndex u
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetPascalString(_:_:_:_:)
 func CFStringGetPascalString(theString StringRef, buffer unsafe.Pointer, bufferSize Index, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetPascalString(theString, buffer, bufferSize, encoding)
-}/* debug [functions.gen.go/function]: CFStringGetPascalString */
+}
 
 // Quickly obtains a pointer to a Pascal buffer containing the characters of a string in a given encoding.
 //
@@ -8535,7 +8535,7 @@ func CFStringGetPascalString(theString StringRef, buffer unsafe.Pointer, bufferS
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetPascalStringPtr(_:_:)
 func CFStringGetPascalStringPtr(theString StringRef, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetPascalStringPtr(theString, encoding)
-}/* debug [functions.gen.go/function]: CFStringGetPascalStringPtr */
+}
 
 // Returns the range of the composed character sequence at a specified index.
 //
@@ -8546,7 +8546,7 @@ func CFStringGetPascalStringPtr(theString StringRef, encoding StringEncoding) un
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetRangeOfComposedCharactersAtIndex(_:_:)
 func CFStringGetRangeOfComposedCharactersAtIndex(theString StringRef, theIndex Index) Range {
 	return _CFStringGetRangeOfComposedCharactersAtIndex(theString, theIndex)
-}/* debug [functions.gen.go/function]: CFStringGetRangeOfComposedCharactersAtIndex */
+}
 
 // Returns the smallest encoding on the current system for the character contents of a string.
 //
@@ -8557,7 +8557,7 @@ func CFStringGetRangeOfComposedCharactersAtIndex(theString StringRef, theIndex I
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetSmallestEncoding(_:)
 func CFStringGetSmallestEncoding(theString StringRef) StringEncoding {
 	return _CFStringGetSmallestEncoding(theString)
-}/* debug [functions.gen.go/function]: CFStringGetSmallestEncoding */
+}
 
 // Returns the default encoding used by the operating system when it creates strings.
 //
@@ -8568,7 +8568,7 @@ func CFStringGetSmallestEncoding(theString StringRef) StringEncoding {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetSystemEncoding()
 func CFStringGetSystemEncoding() StringEncoding {
 	return _CFStringGetSystemEncoding()
-}/* debug [functions.gen.go/function]: CFStringGetSystemEncoding */
+}
 
 // Returns the type identifier for the CFString opaque type.
 //
@@ -8579,7 +8579,7 @@ func CFStringGetSystemEncoding() StringEncoding {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetTypeID()
 func CFStringGetTypeID() TypeID {
 	return _CFStringGetTypeID()
-}/* debug [functions.gen.go/function]: CFStringGetTypeID */
+}
 
 // Determines if the character data of a string begin with a specified sequence of characters.
 //
@@ -8590,7 +8590,7 @@ func CFStringGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringHasPrefix(_:_:)
 func CFStringHasPrefix(theString StringRef, prefix StringRef) unsafe.Pointer {
 	return _CFStringHasPrefix(theString, prefix)
-}/* debug [functions.gen.go/function]: CFStringHasPrefix */
+}
 
 // Determines if a string ends with a specified sequence of characters.
 //
@@ -8601,7 +8601,7 @@ func CFStringHasPrefix(theString StringRef, prefix StringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringHasSuffix(_:_:)
 func CFStringHasSuffix(theString StringRef, suffix StringRef) unsafe.Pointer {
 	return _CFStringHasSuffix(theString, suffix)
-}/* debug [functions.gen.go/function]: CFStringHasSuffix */
+}
 
 // Inserts a string at a specified location in the character buffer of a CFMutableString object.
 //
@@ -8612,7 +8612,7 @@ func CFStringHasSuffix(theString StringRef, suffix StringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringInsert(_:_:_:)
 func CFStringInsert(str MutableStringRef, idx Index, insertedStr StringRef) {
 	_CFStringInsert(str, idx, insertedStr)
-}/* debug [functions.gen.go/function]: CFStringInsert */
+}
 
 // Determines whether a given Core Foundation string encoding is available on the current system.
 //
@@ -8623,7 +8623,7 @@ func CFStringInsert(str MutableStringRef, idx Index, insertedStr StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringIsEncodingAvailable(_:)
 func CFStringIsEncodingAvailable(encoding StringEncoding) unsafe.Pointer {
 	return _CFStringIsEncodingAvailable(encoding)
-}/* debug [functions.gen.go/function]: CFStringIsEncodingAvailable */
+}
 
 // Returns a Boolean value that indicates whether hyphenation data is available.
 //
@@ -8634,7 +8634,7 @@ func CFStringIsEncodingAvailable(encoding StringEncoding) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringIsHyphenationAvailableForLocale(_:)
 func CFStringIsHyphenationAvailableForLocale(locale LocaleRef) unsafe.Pointer {
 	return _CFStringIsHyphenationAvailableForLocale(locale)
-}/* debug [functions.gen.go/function]: CFStringIsHyphenationAvailableForLocale */
+}
 
 // Changes all uppercase alphabetical characters in a CFMutableString to lowercase.
 //
@@ -8645,7 +8645,7 @@ func CFStringIsHyphenationAvailableForLocale(locale LocaleRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringLowercase(_:_:)
 func CFStringLowercase(theString MutableStringRef, locale LocaleRef) {
 	_CFStringLowercase(theString, locale)
-}/* debug [functions.gen.go/function]: CFStringLowercase */
+}
 
 // Normalizes the string into the specified form as described in Unicode Technical Report #15.
 //
@@ -8656,7 +8656,7 @@ func CFStringLowercase(theString MutableStringRef, locale LocaleRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringNormalize(_:_:)
 func CFStringNormalize(theString MutableStringRef, theForm StringNormalizationForm) {
 	_CFStringNormalize(theString, theForm)
-}/* debug [functions.gen.go/function]: CFStringNormalize */
+}
 
 // Enlarges a string, padding it with specified characters, or truncates the string.
 //
@@ -8667,7 +8667,7 @@ func CFStringNormalize(theString MutableStringRef, theForm StringNormalizationFo
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringPad(_:_:_:_:)
 func CFStringPad(theString MutableStringRef, padString StringRef, length Index, indexIntoPad Index) {
 	_CFStringPad(theString, padString, length, indexIntoPad)
-}/* debug [functions.gen.go/function]: CFStringPad */
+}
 
 // Replaces part of the character contents of a CFMutableString object with another string.
 //
@@ -8678,7 +8678,7 @@ func CFStringPad(theString MutableStringRef, padString StringRef, length Index, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringReplace(_:_:_:)
 func CFStringReplace(theString MutableStringRef, range_ Range, replacement StringRef) {
 	_CFStringReplace(theString, range_, replacement)
-}/* debug [functions.gen.go/function]: CFStringReplace */
+}
 
 // Replaces all characters of a CFMutableString object with other characters.
 //
@@ -8689,7 +8689,7 @@ func CFStringReplace(theString MutableStringRef, range_ Range, replacement Strin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringReplaceAll(_:_:)
 func CFStringReplaceAll(theString MutableStringRef, replacement StringRef) {
 	_CFStringReplaceAll(theString, replacement)
-}/* debug [functions.gen.go/function]: CFStringReplaceAll */
+}
 
 // Notifies a CFMutableString object that its external backing store of Unicode characters has changed.
 //
@@ -8700,7 +8700,7 @@ func CFStringReplaceAll(theString MutableStringRef, replacement StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringSetExternalCharactersNoCopy(_:_:_:_:)
 func CFStringSetExternalCharactersNoCopy(theString MutableStringRef, chars unsafe.Pointer, length Index, capacity Index) {
 	_CFStringSetExternalCharactersNoCopy(theString, chars, length, capacity)
-}/* debug [functions.gen.go/function]: CFStringSetExternalCharactersNoCopy */
+}
 
 // Advances the tokenizer to the next token and sets that as the current token.
 //
@@ -8711,7 +8711,7 @@ func CFStringSetExternalCharactersNoCopy(theString MutableStringRef, chars unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerAdvanceToNextToken(_:)
 func CFStringTokenizerAdvanceToNextToken(tokenizer StringTokenizerRef) StringTokenizerTokenType {
 	return _CFStringTokenizerAdvanceToNextToken(tokenizer)
-}/* debug [functions.gen.go/function]: CFStringTokenizerAdvanceToNextToken */
+}
 
 // Guesses a language of a given string and returns the guess as a BCP 47 string.
 //
@@ -8722,7 +8722,7 @@ func CFStringTokenizerAdvanceToNextToken(tokenizer StringTokenizerRef) StringTok
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCopyBestStringLanguage(_:_:)
 func CFStringTokenizerCopyBestStringLanguage(string_ StringRef, range_ Range) StringRef {
 	return _CFStringTokenizerCopyBestStringLanguage(string_, range_)
-}/* debug [functions.gen.go/function]: CFStringTokenizerCopyBestStringLanguage */
+}
 
 // Returns a given attribute of the current token.
 //
@@ -8733,7 +8733,7 @@ func CFStringTokenizerCopyBestStringLanguage(string_ StringRef, range_ Range) St
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCopyCurrentTokenAttribute(_:_:)
 func CFStringTokenizerCopyCurrentTokenAttribute(tokenizer StringTokenizerRef, attribute OptionFlags) TypeRef {
 	return _CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, attribute)
-}/* debug [functions.gen.go/function]: CFStringTokenizerCopyCurrentTokenAttribute */
+}
 
 // Returns a tokenizer for a given string.
 //
@@ -8744,7 +8744,7 @@ func CFStringTokenizerCopyCurrentTokenAttribute(tokenizer StringTokenizerRef, at
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCreate(_:_:_:_:_:)
 func CFStringTokenizerCreate(alloc AllocatorRef, string_ StringRef, range_ Range, options OptionFlags, locale LocaleRef) StringTokenizerRef {
 	return _CFStringTokenizerCreate(alloc, string_, range_, options, locale)
-}/* debug [functions.gen.go/function]: CFStringTokenizerCreate */
+}
 
 // Retrieves the subtokens or derived subtokens contained in the compound token.
 //
@@ -8755,7 +8755,7 @@ func CFStringTokenizerCreate(alloc AllocatorRef, string_ StringRef, range_ Range
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGetCurrentSubTokens(_:_:_:_:)
 func CFStringTokenizerGetCurrentSubTokens(tokenizer StringTokenizerRef, ranges unsafe.Pointer, maxRangeLength Index, derivedSubTokens MutableArrayRef) Index {
 	return _CFStringTokenizerGetCurrentSubTokens(tokenizer, ranges, maxRangeLength, derivedSubTokens)
-}/* debug [functions.gen.go/function]: CFStringTokenizerGetCurrentSubTokens */
+}
 
 // Returns the range of the current token.
 //
@@ -8766,7 +8766,7 @@ func CFStringTokenizerGetCurrentSubTokens(tokenizer StringTokenizerRef, ranges u
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGetCurrentTokenRange(_:)
 func CFStringTokenizerGetCurrentTokenRange(tokenizer StringTokenizerRef) Range {
 	return _CFStringTokenizerGetCurrentTokenRange(tokenizer)
-}/* debug [functions.gen.go/function]: CFStringTokenizerGetCurrentTokenRange */
+}
 
 // Returns the type ID for CFStringTokenizer.
 //
@@ -8777,7 +8777,7 @@ func CFStringTokenizerGetCurrentTokenRange(tokenizer StringTokenizerRef) Range {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGetTypeID()
 func CFStringTokenizerGetTypeID() TypeID {
 	return _CFStringTokenizerGetTypeID()
-}/* debug [functions.gen.go/function]: CFStringTokenizerGetTypeID */
+}
 
 // Finds a token that includes the character at a given index, and set it as the current token.
 //
@@ -8788,7 +8788,7 @@ func CFStringTokenizerGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGoToTokenAtIndex(_:_:)
 func CFStringTokenizerGoToTokenAtIndex(tokenizer StringTokenizerRef, index Index) StringTokenizerTokenType {
 	return _CFStringTokenizerGoToTokenAtIndex(tokenizer, index)
-}/* debug [functions.gen.go/function]: CFStringTokenizerGoToTokenAtIndex */
+}
 
 // Sets the string for a tokenizer.
 //
@@ -8799,7 +8799,7 @@ func CFStringTokenizerGoToTokenAtIndex(tokenizer StringTokenizerRef, index Index
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerSetString(_:_:_:)
 func CFStringTokenizerSetString(tokenizer StringTokenizerRef, string_ StringRef, range_ Range) {
 	_CFStringTokenizerSetString(tokenizer, string_, range_)
-}/* debug [functions.gen.go/function]: CFStringTokenizerSetString */
+}
 
 // Perform in-place transliteration on a mutable string.
 //
@@ -8810,7 +8810,7 @@ func CFStringTokenizerSetString(tokenizer StringTokenizerRef, string_ StringRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTransform(_:_:_:_:)
 func CFStringTransform(string_ MutableStringRef, range_ unsafe.Pointer, transform StringRef, reverse unsafe.Pointer) unsafe.Pointer {
 	return _CFStringTransform(string_, range_, transform, reverse)
-}/* debug [functions.gen.go/function]: CFStringTransform */
+}
 
 // Trims a specified substring from the beginning and end of a CFMutableString object.
 //
@@ -8821,7 +8821,7 @@ func CFStringTransform(string_ MutableStringRef, range_ unsafe.Pointer, transfor
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTrim(_:_:)
 func CFStringTrim(theString MutableStringRef, trimString StringRef) {
 	_CFStringTrim(theString, trimString)
-}/* debug [functions.gen.go/function]: CFStringTrim */
+}
 
 // Trims whitespace from the beginning and end of a CFMutableString object.
 //
@@ -8832,7 +8832,7 @@ func CFStringTrim(theString MutableStringRef, trimString StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTrimWhitespace(_:)
 func CFStringTrimWhitespace(theString MutableStringRef) {
 	_CFStringTrimWhitespace(theString)
-}/* debug [functions.gen.go/function]: CFStringTrimWhitespace */
+}
 
 // Changes all lowercase alphabetical characters in a CFMutableString object to uppercase.
 //
@@ -8843,7 +8843,7 @@ func CFStringTrimWhitespace(theString MutableStringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringUppercase(_:_:)
 func CFStringUppercase(theString MutableStringRef, locale LocaleRef) {
 	_CFStringUppercase(theString, locale)
-}/* debug [functions.gen.go/function]: CFStringUppercase */
+}
 
 // Returns the abbreviation of a time zone at a specified date.
 //
@@ -8854,7 +8854,7 @@ func CFStringUppercase(theString MutableStringRef, locale LocaleRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyAbbreviation(_:_:)
 func CFTimeZoneCopyAbbreviation(tz TimeZoneRef, at AbsoluteTime) StringRef {
 	return _CFTimeZoneCopyAbbreviation(tz, at)
-}/* debug [functions.gen.go/function]: CFTimeZoneCopyAbbreviation */
+}
 
 // Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
 //
@@ -8865,7 +8865,7 @@ func CFTimeZoneCopyAbbreviation(tz TimeZoneRef, at AbsoluteTime) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyAbbreviationDictionary()
 func CFTimeZoneCopyAbbreviationDictionary() DictionaryRef {
 	return _CFTimeZoneCopyAbbreviationDictionary()
-}/* debug [functions.gen.go/function]: CFTimeZoneCopyAbbreviationDictionary */
+}
 
 // Returns the default time zone set for your application.
 //
@@ -8876,7 +8876,7 @@ func CFTimeZoneCopyAbbreviationDictionary() DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyDefault()
 func CFTimeZoneCopyDefault() TimeZoneRef {
 	return _CFTimeZoneCopyDefault()
-}/* debug [functions.gen.go/function]: CFTimeZoneCopyDefault */
+}
 
 // Returns an array of strings containing the names of all the time zones known to the system.
 //
@@ -8887,7 +8887,7 @@ func CFTimeZoneCopyDefault() TimeZoneRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyKnownNames()
 func CFTimeZoneCopyKnownNames() ArrayRef {
 	return _CFTimeZoneCopyKnownNames()
-}/* debug [functions.gen.go/function]: CFTimeZoneCopyKnownNames */
+}
 
 // Returns the localized name of a given time zone.
 //
@@ -8898,7 +8898,7 @@ func CFTimeZoneCopyKnownNames() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyLocalizedName(_:_:_:)
 func CFTimeZoneCopyLocalizedName(tz TimeZoneRef, style TimeZoneNameStyle, locale LocaleRef) StringRef {
 	return _CFTimeZoneCopyLocalizedName(tz, style, locale)
-}/* debug [functions.gen.go/function]: CFTimeZoneCopyLocalizedName */
+}
 
 // Returns the time zone currently used by the system.
 //
@@ -8909,7 +8909,7 @@ func CFTimeZoneCopyLocalizedName(tz TimeZoneRef, style TimeZoneNameStyle, locale
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopySystem()
 func CFTimeZoneCopySystem() TimeZoneRef {
 	return _CFTimeZoneCopySystem()
-}/* debug [functions.gen.go/function]: CFTimeZoneCopySystem */
+}
 
 // Creates a time zone with a given name and data.
 //
@@ -8920,7 +8920,7 @@ func CFTimeZoneCopySystem() TimeZoneRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCreate(_:_:_:)
 func CFTimeZoneCreate(allocator AllocatorRef, name StringRef, data DataRef) TimeZoneRef {
 	return _CFTimeZoneCreate(allocator, name, data)
-}/* debug [functions.gen.go/function]: CFTimeZoneCreate */
+}
 
 // Returns the time zone object identified by a given name or abbreviation.
 //
@@ -8931,7 +8931,7 @@ func CFTimeZoneCreate(allocator AllocatorRef, name StringRef, data DataRef) Time
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCreateWithName(_:_:_:)
 func CFTimeZoneCreateWithName(allocator AllocatorRef, name StringRef, tryAbbrev unsafe.Pointer) TimeZoneRef {
 	return _CFTimeZoneCreateWithName(allocator, name, tryAbbrev)
-}/* debug [functions.gen.go/function]: CFTimeZoneCreateWithName */
+}
 
 // Returns a time zone object for the specified time interval offset from Greenwich Mean Time (GMT).
 //
@@ -8942,7 +8942,7 @@ func CFTimeZoneCreateWithName(allocator AllocatorRef, name StringRef, tryAbbrev 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCreateWithTimeIntervalFromGMT(_:_:)
 func CFTimeZoneCreateWithTimeIntervalFromGMT(allocator AllocatorRef, ti TimeInterval) TimeZoneRef {
 	return _CFTimeZoneCreateWithTimeIntervalFromGMT(allocator, ti)
-}/* debug [functions.gen.go/function]: CFTimeZoneCreateWithTimeIntervalFromGMT */
+}
 
 // Returns the data that stores the information used by a time zone.
 //
@@ -8953,7 +8953,7 @@ func CFTimeZoneCreateWithTimeIntervalFromGMT(allocator AllocatorRef, ti TimeInte
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetData(_:)
 func CFTimeZoneGetData(tz TimeZoneRef) DataRef {
 	return _CFTimeZoneGetData(tz)
-}/* debug [functions.gen.go/function]: CFTimeZoneGetData */
+}
 
 // Returns the daylight saving time offset for a time zone at a given time.
 //
@@ -8964,7 +8964,7 @@ func CFTimeZoneGetData(tz TimeZoneRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetDaylightSavingTimeOffset(_:_:)
 func CFTimeZoneGetDaylightSavingTimeOffset(tz TimeZoneRef, at AbsoluteTime) TimeInterval {
 	return _CFTimeZoneGetDaylightSavingTimeOffset(tz, at)
-}/* debug [functions.gen.go/function]: CFTimeZoneGetDaylightSavingTimeOffset */
+}
 
 // Returns the geopolitical region name that identifies a given time zone.
 //
@@ -8975,7 +8975,7 @@ func CFTimeZoneGetDaylightSavingTimeOffset(tz TimeZoneRef, at AbsoluteTime) Time
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetName(_:)
 func CFTimeZoneGetName(tz TimeZoneRef) StringRef {
 	return _CFTimeZoneGetName(tz)
-}/* debug [functions.gen.go/function]: CFTimeZoneGetName */
+}
 
 // Returns the time in a given time zone of the next daylight saving time transition after a given time.
 //
@@ -8986,7 +8986,7 @@ func CFTimeZoneGetName(tz TimeZoneRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetNextDaylightSavingTimeTransition(_:_:)
 func CFTimeZoneGetNextDaylightSavingTimeTransition(tz TimeZoneRef, at AbsoluteTime) AbsoluteTime {
 	return _CFTimeZoneGetNextDaylightSavingTimeTransition(tz, at)
-}/* debug [functions.gen.go/function]: CFTimeZoneGetNextDaylightSavingTimeTransition */
+}
 
 // Returns the difference in seconds between the receiver and Greenwich Mean Time (GMT) at the specified date.
 //
@@ -8997,7 +8997,7 @@ func CFTimeZoneGetNextDaylightSavingTimeTransition(tz TimeZoneRef, at AbsoluteTi
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetSecondsFromGMT(_:_:)
 func CFTimeZoneGetSecondsFromGMT(tz TimeZoneRef, at AbsoluteTime) TimeInterval {
 	return _CFTimeZoneGetSecondsFromGMT(tz, at)
-}/* debug [functions.gen.go/function]: CFTimeZoneGetSecondsFromGMT */
+}
 
 // Returns the type identifier for the CFTimeZone opaque type.
 //
@@ -9008,7 +9008,7 @@ func CFTimeZoneGetSecondsFromGMT(tz TimeZoneRef, at AbsoluteTime) TimeInterval {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetTypeID()
 func CFTimeZoneGetTypeID() TypeID {
 	return _CFTimeZoneGetTypeID()
-}/* debug [functions.gen.go/function]: CFTimeZoneGetTypeID */
+}
 
 // Returns whether or not a time zone is in daylight savings time at a specified date.
 //
@@ -9019,7 +9019,7 @@ func CFTimeZoneGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneIsDaylightSavingTime(_:_:)
 func CFTimeZoneIsDaylightSavingTime(tz TimeZoneRef, at AbsoluteTime) unsafe.Pointer {
 	return _CFTimeZoneIsDaylightSavingTime(tz, at)
-}/* debug [functions.gen.go/function]: CFTimeZoneIsDaylightSavingTime */
+}
 
 // Clears the previously determined system time zone, if any.
 //
@@ -9030,7 +9030,7 @@ func CFTimeZoneIsDaylightSavingTime(tz TimeZoneRef, at AbsoluteTime) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneResetSystem()
 func CFTimeZoneResetSystem() {
 	_CFTimeZoneResetSystem()
-}/* debug [functions.gen.go/function]: CFTimeZoneResetSystem */
+}
 
 // Sets the abbreviation dictionary to a given dictionary.
 //
@@ -9041,7 +9041,7 @@ func CFTimeZoneResetSystem() {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneSetAbbreviationDictionary(_:)
 func CFTimeZoneSetAbbreviationDictionary(dict DictionaryRef) {
 	_CFTimeZoneSetAbbreviationDictionary(dict)
-}/* debug [functions.gen.go/function]: CFTimeZoneSetAbbreviationDictionary */
+}
 
 // Sets the default time zone for your application the given time zone.
 //
@@ -9052,7 +9052,7 @@ func CFTimeZoneSetAbbreviationDictionary(dict DictionaryRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneSetDefault(_:)
 func CFTimeZoneSetDefault(tz TimeZoneRef) {
 	_CFTimeZoneSetDefault(tz)
-}/* debug [functions.gen.go/function]: CFTimeZoneSetDefault */
+}
 
 // Adds a new child to a tree as the last in its list of children.
 //
@@ -9063,7 +9063,7 @@ func CFTimeZoneSetDefault(tz TimeZoneRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeAppendChild(_:_:)
 func CFTreeAppendChild(tree TreeRef, newChild TreeRef) {
 	_CFTreeAppendChild(tree, newChild)
-}/* debug [functions.gen.go/function]: CFTreeAppendChild */
+}
 
 // Calls a function once for each immediate child of a tree.
 //
@@ -9074,7 +9074,7 @@ func CFTreeAppendChild(tree TreeRef, newChild TreeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeApplyFunctionToChildren(_:_:_:)
 func CFTreeApplyFunctionToChildren(tree TreeRef, applier TreeApplierFunction, context unsafe.Pointer) {
 	_CFTreeApplyFunctionToChildren(tree, applier, context)
-}/* debug [functions.gen.go/function]: CFTreeApplyFunctionToChildren */
+}
 
 // Creates a new CFTree object.
 //
@@ -9085,7 +9085,7 @@ func CFTreeApplyFunctionToChildren(tree TreeRef, applier TreeApplierFunction, co
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeCreate(_:_:)
 func CFTreeCreate(allocator AllocatorRef, context unsafe.Pointer) TreeRef {
 	return _CFTreeCreate(allocator, context)
-}/* debug [functions.gen.go/function]: CFTreeCreate */
+}
 
 // Returns the root tree of a given tree.
 //
@@ -9096,7 +9096,7 @@ func CFTreeCreate(allocator AllocatorRef, context unsafe.Pointer) TreeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeFindRoot(_:)
 func CFTreeFindRoot(tree TreeRef) TreeRef {
 	return _CFTreeFindRoot(tree)
-}/* debug [functions.gen.go/function]: CFTreeFindRoot */
+}
 
 // Returns the child of a tree at the specified index.
 //
@@ -9107,7 +9107,7 @@ func CFTreeFindRoot(tree TreeRef) TreeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetChildAtIndex(_:_:)
 func CFTreeGetChildAtIndex(tree TreeRef, idx Index) TreeRef {
 	return _CFTreeGetChildAtIndex(tree, idx)
-}/* debug [functions.gen.go/function]: CFTreeGetChildAtIndex */
+}
 
 // Returns the number of children in a tree.
 //
@@ -9118,7 +9118,7 @@ func CFTreeGetChildAtIndex(tree TreeRef, idx Index) TreeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetChildCount(_:)
 func CFTreeGetChildCount(tree TreeRef) Index {
 	return _CFTreeGetChildCount(tree)
-}/* debug [functions.gen.go/function]: CFTreeGetChildCount */
+}
 
 // Fills a buffer with children from the tree.
 //
@@ -9129,7 +9129,7 @@ func CFTreeGetChildCount(tree TreeRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetChildren(_:_:)
 func CFTreeGetChildren(tree TreeRef, children unsafe.Pointer) {
 	_CFTreeGetChildren(tree, children)
-}/* debug [functions.gen.go/function]: CFTreeGetChildren */
+}
 
 // Returns the context of the specified tree.
 //
@@ -9140,7 +9140,7 @@ func CFTreeGetChildren(tree TreeRef, children unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetContext(_:_:)
 func CFTreeGetContext(tree TreeRef, context unsafe.Pointer) {
 	_CFTreeGetContext(tree, context)
-}/* debug [functions.gen.go/function]: CFTreeGetContext */
+}
 
 // Returns the first child of a tree.
 //
@@ -9151,7 +9151,7 @@ func CFTreeGetContext(tree TreeRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetFirstChild(_:)
 func CFTreeGetFirstChild(tree TreeRef) TreeRef {
 	return _CFTreeGetFirstChild(tree)
-}/* debug [functions.gen.go/function]: CFTreeGetFirstChild */
+}
 
 // Returns the next sibling, adjacent to a given tree, in the parent’s children list.
 //
@@ -9162,7 +9162,7 @@ func CFTreeGetFirstChild(tree TreeRef) TreeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetNextSibling(_:)
 func CFTreeGetNextSibling(tree TreeRef) TreeRef {
 	return _CFTreeGetNextSibling(tree)
-}/* debug [functions.gen.go/function]: CFTreeGetNextSibling */
+}
 
 // Returns the parent of a given tree.
 //
@@ -9173,7 +9173,7 @@ func CFTreeGetNextSibling(tree TreeRef) TreeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetParent(_:)
 func CFTreeGetParent(tree TreeRef) TreeRef {
 	return _CFTreeGetParent(tree)
-}/* debug [functions.gen.go/function]: CFTreeGetParent */
+}
 
 // Returns the type identifier of the CFTree opaque type.
 //
@@ -9184,7 +9184,7 @@ func CFTreeGetParent(tree TreeRef) TreeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetTypeID()
 func CFTreeGetTypeID() TypeID {
 	return _CFTreeGetTypeID()
-}/* debug [functions.gen.go/function]: CFTreeGetTypeID */
+}
 
 // Inserts a new sibling after a given tree.
 //
@@ -9195,7 +9195,7 @@ func CFTreeGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeInsertSibling(_:_:)
 func CFTreeInsertSibling(tree TreeRef, newSibling TreeRef) {
 	_CFTreeInsertSibling(tree, newSibling)
-}/* debug [functions.gen.go/function]: CFTreeInsertSibling */
+}
 
 // Adds a new child to the specified tree as the first in its list of children.
 //
@@ -9206,7 +9206,7 @@ func CFTreeInsertSibling(tree TreeRef, newSibling TreeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreePrependChild(_:_:)
 func CFTreePrependChild(tree TreeRef, newChild TreeRef) {
 	_CFTreePrependChild(tree, newChild)
-}/* debug [functions.gen.go/function]: CFTreePrependChild */
+}
 
 // Removes a tree from its parent.
 //
@@ -9217,7 +9217,7 @@ func CFTreePrependChild(tree TreeRef, newChild TreeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeRemove(_:)
 func CFTreeRemove(tree TreeRef) {
 	_CFTreeRemove(tree)
-}/* debug [functions.gen.go/function]: CFTreeRemove */
+}
 
 // Removes all the children of a tree.
 //
@@ -9228,7 +9228,7 @@ func CFTreeRemove(tree TreeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeRemoveAllChildren(_:)
 func CFTreeRemoveAllChildren(tree TreeRef) {
 	_CFTreeRemoveAllChildren(tree)
-}/* debug [functions.gen.go/function]: CFTreeRemoveAllChildren */
+}
 
 // Replaces the context of a tree by releasing the old information pointer and retaining the new one.
 //
@@ -9239,7 +9239,7 @@ func CFTreeRemoveAllChildren(tree TreeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeSetContext(_:_:)
 func CFTreeSetContext(tree TreeRef, context unsafe.Pointer) {
 	_CFTreeSetContext(tree, context)
-}/* debug [functions.gen.go/function]: CFTreeSetContext */
+}
 
 // Sorts the immediate children of a tree using a specified comparator function.
 //
@@ -9250,7 +9250,7 @@ func CFTreeSetContext(tree TreeRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeSortChildren(_:_:_:)
 func CFTreeSortChildren(tree TreeRef, comparator ComparatorFunction, context unsafe.Pointer) {
 	_CFTreeSortChildren(tree, comparator, context)
-}/* debug [functions.gen.go/function]: CFTreeSortChildren */
+}
 
 // Determines if the given URL conforms to RFC 1808 and therefore can be decomposed.
 //
@@ -9261,7 +9261,7 @@ func CFTreeSortChildren(tree TreeRef, comparator ComparatorFunction, context uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCanBeDecomposed(_:)
 func CFURLCanBeDecomposed(anURL URLRef) unsafe.Pointer {
 	return _CFURLCanBeDecomposed(anURL)
-}/* debug [functions.gen.go/function]: CFURLCanBeDecomposed */
+}
 
 // Removes all cached resource values and temporary resource values from the URL object.
 //
@@ -9272,7 +9272,7 @@ func CFURLCanBeDecomposed(anURL URLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLClearResourcePropertyCache(_:)
 func CFURLClearResourcePropertyCache(url URLRef) {
 	_CFURLClearResourcePropertyCache(url)
-}/* debug [functions.gen.go/function]: CFURLClearResourcePropertyCache */
+}
 
 // Removes the cached resource value identified by a given key from the URL object.
 //
@@ -9283,7 +9283,7 @@ func CFURLClearResourcePropertyCache(url URLRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLClearResourcePropertyCacheForKey(_:_:)
 func CFURLClearResourcePropertyCacheForKey(url URLRef, key StringRef) {
 	_CFURLClearResourcePropertyCacheForKey(url, key)
-}/* debug [functions.gen.go/function]: CFURLClearResourcePropertyCacheForKey */
+}
 
 // Creates a new object by resolving the relative portion of a URL against its base.
 //
@@ -9294,7 +9294,7 @@ func CFURLClearResourcePropertyCacheForKey(url URLRef, key StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyAbsoluteURL(_:)
 func CFURLCopyAbsoluteURL(relativeURL URLRef) URLRef {
 	return _CFURLCopyAbsoluteURL(relativeURL)
-}/* debug [functions.gen.go/function]: CFURLCopyAbsoluteURL */
+}
 
 // Returns the path portion of a given URL.
 //
@@ -9305,7 +9305,7 @@ func CFURLCopyAbsoluteURL(relativeURL URLRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyFileSystemPath(_:_:)
 func CFURLCopyFileSystemPath(anURL URLRef, pathStyle URLPathStyle) StringRef {
 	return _CFURLCopyFileSystemPath(anURL, pathStyle)
-}/* debug [functions.gen.go/function]: CFURLCopyFileSystemPath */
+}
 
 // Returns the fragment from a given URL.
 //
@@ -9316,7 +9316,7 @@ func CFURLCopyFileSystemPath(anURL URLRef, pathStyle URLPathStyle) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyFragment(_:_:)
 func CFURLCopyFragment(anURL URLRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCopyFragment(anURL, charactersToLeaveEscaped)
-}/* debug [functions.gen.go/function]: CFURLCopyFragment */
+}
 
 // Returns the host name of a given URL.
 //
@@ -9327,7 +9327,7 @@ func CFURLCopyFragment(anURL URLRef, charactersToLeaveEscaped StringRef) StringR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyHostName(_:)
 func CFURLCopyHostName(anURL URLRef) StringRef {
 	return _CFURLCopyHostName(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyHostName */
+}
 
 // Returns the last path component of a given URL.
 //
@@ -9338,7 +9338,7 @@ func CFURLCopyHostName(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyLastPathComponent(_:)
 func CFURLCopyLastPathComponent(url URLRef) StringRef {
 	return _CFURLCopyLastPathComponent(url)
-}/* debug [functions.gen.go/function]: CFURLCopyLastPathComponent */
+}
 
 // Returns the net location portion of a given URL.
 //
@@ -9349,7 +9349,7 @@ func CFURLCopyLastPathComponent(url URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyNetLocation(_:)
 func CFURLCopyNetLocation(anURL URLRef) StringRef {
 	return _CFURLCopyNetLocation(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyNetLocation */
+}
 
 // Returns the parameter string from a given URL.
 //
@@ -9362,7 +9362,7 @@ func CFURLCopyNetLocation(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyParameterString(_:_:)
 func CFURLCopyParameterString(anURL URLRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCopyParameterString(anURL, charactersToLeaveEscaped)
-}/* debug [functions.gen.go/function]: CFURLCopyParameterString */
+}
 
 // Returns the password of a given URL.
 //
@@ -9373,7 +9373,7 @@ func CFURLCopyParameterString(anURL URLRef, charactersToLeaveEscaped StringRef) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyPassword(_:)
 func CFURLCopyPassword(anURL URLRef) StringRef {
 	return _CFURLCopyPassword(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyPassword */
+}
 
 // Returns the path portion of a given URL.
 //
@@ -9384,7 +9384,7 @@ func CFURLCopyPassword(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyPath(_:)
 func CFURLCopyPath(anURL URLRef) StringRef {
 	return _CFURLCopyPath(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyPath */
+}
 
 // Returns the path extension of a given URL.
 //
@@ -9395,7 +9395,7 @@ func CFURLCopyPath(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyPathExtension(_:)
 func CFURLCopyPathExtension(url URLRef) StringRef {
 	return _CFURLCopyPathExtension(url)
-}/* debug [functions.gen.go/function]: CFURLCopyPathExtension */
+}
 
 // Returns the query string of a given URL.
 //
@@ -9406,7 +9406,7 @@ func CFURLCopyPathExtension(url URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyQueryString(_:_:)
 func CFURLCopyQueryString(anURL URLRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCopyQueryString(anURL, charactersToLeaveEscaped)
-}/* debug [functions.gen.go/function]: CFURLCopyQueryString */
+}
 
 // Returns the resource values for the properties identified by specified array of keys.
 //
@@ -9417,7 +9417,7 @@ func CFURLCopyQueryString(anURL URLRef, charactersToLeaveEscaped StringRef) Stri
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourcePropertiesForKeys(_:_:_:)
 func CFURLCopyResourcePropertiesForKeys(url URLRef, keys ArrayRef, error_ unsafe.Pointer) DictionaryRef {
 	return _CFURLCopyResourcePropertiesForKeys(url, keys, error_)
-}/* debug [functions.gen.go/function]: CFURLCopyResourcePropertiesForKeys */
+}
 
 // Returns the value of a given resource property of a given URL.
 //
@@ -9428,7 +9428,7 @@ func CFURLCopyResourcePropertiesForKeys(url URLRef, keys ArrayRef, error_ unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourcePropertyForKey(_:_:_:_:)
 func CFURLCopyResourcePropertyForKey(url URLRef, key StringRef, propertyValueTypeRefPtr unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLCopyResourcePropertyForKey(url, key, propertyValueTypeRefPtr, error_)
-}/* debug [functions.gen.go/function]: CFURLCopyResourcePropertyForKey */
+}
 
 // Returns any additional resource specifiers after the path.
 //
@@ -9439,7 +9439,7 @@ func CFURLCopyResourcePropertyForKey(url URLRef, key StringRef, propertyValueTyp
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourceSpecifier(_:)
 func CFURLCopyResourceSpecifier(anURL URLRef) StringRef {
 	return _CFURLCopyResourceSpecifier(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyResourceSpecifier */
+}
 
 // Returns the scheme portion of a given URL.
 //
@@ -9450,7 +9450,7 @@ func CFURLCopyResourceSpecifier(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyScheme(_:)
 func CFURLCopyScheme(anURL URLRef) StringRef {
 	return _CFURLCopyScheme(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyScheme */
+}
 
 // Returns the path portion of a given URL.
 //
@@ -9461,7 +9461,7 @@ func CFURLCopyScheme(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyStrictPath(_:_:)
 func CFURLCopyStrictPath(anURL URLRef, isAbsolute unsafe.Pointer) StringRef {
 	return _CFURLCopyStrictPath(anURL, isAbsolute)
-}/* debug [functions.gen.go/function]: CFURLCopyStrictPath */
+}
 
 // Returns the user name from a given URL.
 //
@@ -9472,7 +9472,7 @@ func CFURLCopyStrictPath(anURL URLRef, isAbsolute unsafe.Pointer) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyUserName(_:)
 func CFURLCopyUserName(anURL URLRef) StringRef {
 	return _CFURLCopyUserName(anURL)
-}/* debug [functions.gen.go/function]: CFURLCopyUserName */
+}
 
 // Creates a new object by resolving the relative portion of a URL, specified as bytes, against its given base URL.
 //
@@ -9483,7 +9483,7 @@ func CFURLCopyUserName(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateAbsoluteURLWithBytes(_:_:_:_:_:_:)
 func CFURLCreateAbsoluteURLWithBytes(alloc AllocatorRef, relativeURLBytes unsafe.Pointer, length Index, encoding StringEncoding, baseURL URLRef, useCompatibilityMode unsafe.Pointer) URLRef {
 	return _CFURLCreateAbsoluteURLWithBytes(alloc, relativeURLBytes, length, encoding, baseURL, useCompatibilityMode)
-}/* debug [functions.gen.go/function]: CFURLCreateAbsoluteURLWithBytes */
+}
 
 // Returns bookmark data for a URL, created with specified options and resource values.
 //
@@ -9494,7 +9494,7 @@ func CFURLCreateAbsoluteURLWithBytes(alloc AllocatorRef, relativeURLBytes unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkData(_:_:_:_:_:_:)
 func CFURLCreateBookmarkData(allocator AllocatorRef, url URLRef, options URLBookmarkCreationOptions, resourcePropertiesToInclude ArrayRef, relativeToURL URLRef, error_ unsafe.Pointer) DataRef {
 	return _CFURLCreateBookmarkData(allocator, url, options, resourcePropertiesToInclude, relativeToURL, error_)
-}/* debug [functions.gen.go/function]: CFURLCreateBookmarkData */
+}
 
 // Initializes and returns bookmark data derived from an alias record.
 //
@@ -9507,7 +9507,7 @@ func CFURLCreateBookmarkData(allocator AllocatorRef, url URLRef, options URLBook
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkDataFromAliasRecord(_:_:)
 func CFURLCreateBookmarkDataFromAliasRecord(allocatorRef AllocatorRef, aliasRecordDataRef DataRef) DataRef {
 	return _CFURLCreateBookmarkDataFromAliasRecord(allocatorRef, aliasRecordDataRef)
-}/* debug [functions.gen.go/function]: CFURLCreateBookmarkDataFromAliasRecord */
+}
 
 // Initializes and returns bookmark data derived from a file pointed to by a specified URL.
 //
@@ -9518,7 +9518,7 @@ func CFURLCreateBookmarkDataFromAliasRecord(allocatorRef AllocatorRef, aliasReco
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkDataFromFile(_:_:_:)
 func CFURLCreateBookmarkDataFromFile(allocator AllocatorRef, fileURL URLRef, errorRef unsafe.Pointer) DataRef {
 	return _CFURLCreateBookmarkDataFromFile(allocator, fileURL, errorRef)
-}/* debug [functions.gen.go/function]: CFURLCreateBookmarkDataFromFile */
+}
 
 // Returns a new URL made by resolving bookmark data.
 //
@@ -9529,7 +9529,7 @@ func CFURLCreateBookmarkDataFromFile(allocator AllocatorRef, fileURL URLRef, err
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateByResolvingBookmarkData(_:_:_:_:_:_:_:)
 func CFURLCreateByResolvingBookmarkData(allocator AllocatorRef, bookmark DataRef, options URLBookmarkResolutionOptions, relativeToURL URLRef, resourcePropertiesToInclude ArrayRef, isStale unsafe.Pointer, error_ unsafe.Pointer) URLRef {
 	return _CFURLCreateByResolvingBookmarkData(allocator, bookmark, options, relativeToURL, resourcePropertiesToInclude, isStale, error_)
-}/* debug [functions.gen.go/function]: CFURLCreateByResolvingBookmarkData */
+}
 
 // Creates a copy of a given URL and appends a path component.
 //
@@ -9540,7 +9540,7 @@ func CFURLCreateByResolvingBookmarkData(allocator AllocatorRef, bookmark DataRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyAppendingPathComponent(_:_:_:_:)
 func CFURLCreateCopyAppendingPathComponent(allocator AllocatorRef, url URLRef, pathComponent StringRef, isDirectory unsafe.Pointer) URLRef {
 	return _CFURLCreateCopyAppendingPathComponent(allocator, url, pathComponent, isDirectory)
-}/* debug [functions.gen.go/function]: CFURLCreateCopyAppendingPathComponent */
+}
 
 // Creates a copy of a given URL and appends a path extension.
 //
@@ -9551,7 +9551,7 @@ func CFURLCreateCopyAppendingPathComponent(allocator AllocatorRef, url URLRef, p
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyAppendingPathExtension(_:_:_:)
 func CFURLCreateCopyAppendingPathExtension(allocator AllocatorRef, url URLRef, extension StringRef) URLRef {
 	return _CFURLCreateCopyAppendingPathExtension(allocator, url, extension)
-}/* debug [functions.gen.go/function]: CFURLCreateCopyAppendingPathExtension */
+}
 
 // Creates a copy of a given URL with the last path component deleted.
 //
@@ -9562,7 +9562,7 @@ func CFURLCreateCopyAppendingPathExtension(allocator AllocatorRef, url URLRef, e
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyDeletingLastPathComponent(_:_:)
 func CFURLCreateCopyDeletingLastPathComponent(allocator AllocatorRef, url URLRef) URLRef {
 	return _CFURLCreateCopyDeletingLastPathComponent(allocator, url)
-}/* debug [functions.gen.go/function]: CFURLCreateCopyDeletingLastPathComponent */
+}
 
 // Creates a copy of a given URL with its last path extension removed.
 //
@@ -9573,7 +9573,7 @@ func CFURLCreateCopyDeletingLastPathComponent(allocator AllocatorRef, url URLRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyDeletingPathExtension(_:_:)
 func CFURLCreateCopyDeletingPathExtension(allocator AllocatorRef, url URLRef) URLRef {
 	return _CFURLCreateCopyDeletingPathExtension(allocator, url)
-}/* debug [functions.gen.go/function]: CFURLCreateCopyDeletingPathExtension */
+}
 
 // Creates a object containing the content of a given URL.
 //
@@ -9584,7 +9584,7 @@ func CFURLCreateCopyDeletingPathExtension(allocator AllocatorRef, url URLRef) UR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateData(_:_:_:_:)
 func CFURLCreateData(allocator AllocatorRef, url URLRef, encoding StringEncoding, escapeWhitespace unsafe.Pointer) DataRef {
 	return _CFURLCreateData(allocator, url, encoding, escapeWhitespace)
-}/* debug [functions.gen.go/function]: CFURLCreateData */
+}
 
 // Loads the data and properties referred to by a given URL.
 
@@ -9594,7 +9594,7 @@ func CFURLCreateData(allocator AllocatorRef, url URLRef, encoding StringEncoding
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateDataAndPropertiesFromResource(_:_:_:_:_:_:)
 func CFURLCreateDataAndPropertiesFromResource(alloc AllocatorRef, url URLRef, resourceData unsafe.Pointer, properties unsafe.Pointer, desiredProperties ArrayRef, errorCode unsafe.Pointer) unsafe.Pointer {
 	return _CFURLCreateDataAndPropertiesFromResource(alloc, url, resourceData, properties, desiredProperties, errorCode)
-}/* debug [functions.gen.go/function]: CFURLCreateDataAndPropertiesFromResource */
+}
 
 // Returns a new file path URL that refers to the same resource as a specified URL.
 //
@@ -9605,7 +9605,7 @@ func CFURLCreateDataAndPropertiesFromResource(alloc AllocatorRef, url URLRef, re
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFilePathURL(_:_:_:)
 func CFURLCreateFilePathURL(allocator AllocatorRef, url URLRef, error_ unsafe.Pointer) URLRef {
 	return _CFURLCreateFilePathURL(allocator, url, error_)
-}/* debug [functions.gen.go/function]: CFURLCreateFilePathURL */
+}
 
 // Returns a new file reference URL that points to the same resource as a specified URL.
 //
@@ -9616,7 +9616,7 @@ func CFURLCreateFilePathURL(allocator AllocatorRef, url URLRef, error_ unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFileReferenceURL(_:_:_:)
 func CFURLCreateFileReferenceURL(allocator AllocatorRef, url URLRef, error_ unsafe.Pointer) URLRef {
 	return _CFURLCreateFileReferenceURL(allocator, url, error_)
-}/* debug [functions.gen.go/function]: CFURLCreateFileReferenceURL */
+}
 
 // Creates a URL from a given directory or file.
 
@@ -9626,7 +9626,7 @@ func CFURLCreateFileReferenceURL(allocator AllocatorRef, url URLRef, error_ unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFromFSRef(_:_:)
 func CFURLCreateFromFSRef(allocator AllocatorRef, fsRef unsafe.Pointer) URLRef {
 	return _CFURLCreateFromFSRef(allocator, fsRef)
-}/* debug [functions.gen.go/function]: CFURLCreateFromFSRef */
+}
 
 // Creates a new object for a file system entity using the native representation.
 //
@@ -9637,7 +9637,7 @@ func CFURLCreateFromFSRef(allocator AllocatorRef, fsRef unsafe.Pointer) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFromFileSystemRepresentation(_:_:_:_:)
 func CFURLCreateFromFileSystemRepresentation(allocator AllocatorRef, buffer unsafe.Pointer, bufLen Index, isDirectory unsafe.Pointer) URLRef {
 	return _CFURLCreateFromFileSystemRepresentation(allocator, buffer, bufLen, isDirectory)
-}/* debug [functions.gen.go/function]: CFURLCreateFromFileSystemRepresentation */
+}
 
 // Creates a object from a native character string path relative to a base URL.
 //
@@ -9648,7 +9648,7 @@ func CFURLCreateFromFileSystemRepresentation(allocator AllocatorRef, buffer unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFromFileSystemRepresentationRelativeToBase(_:_:_:_:_:)
 func CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator AllocatorRef, buffer unsafe.Pointer, bufLen Index, isDirectory unsafe.Pointer, baseURL URLRef) URLRef {
 	return _CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator, buffer, bufLen, isDirectory, baseURL)
-}/* debug [functions.gen.go/function]: CFURLCreateFromFileSystemRepresentationRelativeToBase */
+}
 
 // Returns a given property specified by a given URL and property string.
 
@@ -9658,7 +9658,7 @@ func CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator AllocatorRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreatePropertyFromResource(_:_:_:_:)
 func CFURLCreatePropertyFromResource(alloc AllocatorRef, url URLRef, property StringRef, errorCode unsafe.Pointer) TypeRef {
 	return _CFURLCreatePropertyFromResource(alloc, url, property, errorCode)
-}/* debug [functions.gen.go/function]: CFURLCreatePropertyFromResource */
+}
 
 // Returns the resource values for properties identified by a specified array of keys contained in specified bookmark data.
 //
@@ -9669,7 +9669,7 @@ func CFURLCreatePropertyFromResource(alloc AllocatorRef, url URLRef, property St
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateResourcePropertiesForKeysFromBookmarkData(_:_:_:)
 func CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator AllocatorRef, resourcePropertiesToReturn ArrayRef, bookmark DataRef) DictionaryRef {
 	return _CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator, resourcePropertiesToReturn, bookmark)
-}/* debug [functions.gen.go/function]: CFURLCreateResourcePropertiesForKeysFromBookmarkData */
+}
 
 // Returns the value of a resource property from specified bookmark data.
 //
@@ -9680,7 +9680,7 @@ func CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator AllocatorRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateResourcePropertyForKeyFromBookmarkData(_:_:_:)
 func CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator AllocatorRef, resourcePropertyKey StringRef, bookmark DataRef) TypeRef {
 	return _CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator, resourcePropertyKey, bookmark)
-}/* debug [functions.gen.go/function]: CFURLCreateResourcePropertyForKeyFromBookmarkData */
+}
 
 // Creates a copy of a string, replacing certain characters with the equivalent percent escape sequence based on the specified encoding.
 //
@@ -9693,7 +9693,7 @@ func CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator AllocatorRef, r
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateStringByAddingPercentEscapes(_:_:_:_:_:)
 func CFURLCreateStringByAddingPercentEscapes(allocator AllocatorRef, originalString StringRef, charactersToLeaveUnescaped StringRef, legalURLCharactersToBeEscaped StringRef, encoding StringEncoding) StringRef {
 	return _CFURLCreateStringByAddingPercentEscapes(allocator, originalString, charactersToLeaveUnescaped, legalURLCharactersToBeEscaped, encoding)
-}/* debug [functions.gen.go/function]: CFURLCreateStringByAddingPercentEscapes */
+}
 
 // Creates a new string by replacing any percent escape sequences with their character equivalent.
 //
@@ -9704,7 +9704,7 @@ func CFURLCreateStringByAddingPercentEscapes(allocator AllocatorRef, originalStr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateStringByReplacingPercentEscapes(_:_:_:)
 func CFURLCreateStringByReplacingPercentEscapes(allocator AllocatorRef, originalString StringRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCreateStringByReplacingPercentEscapes(allocator, originalString, charactersToLeaveEscaped)
-}/* debug [functions.gen.go/function]: CFURLCreateStringByReplacingPercentEscapes */
+}
 
 // Creates a new string by replacing any percent escape sequences with their character equivalent.
 //
@@ -9717,7 +9717,7 @@ func CFURLCreateStringByReplacingPercentEscapes(allocator AllocatorRef, original
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_:_:_:_:)
 func CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator AllocatorRef, origString StringRef, charsToLeaveEscaped StringRef, encoding StringEncoding) StringRef {
 	return _CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator, origString, charsToLeaveEscaped, encoding)
-}/* debug [functions.gen.go/function]: CFURLCreateStringByReplacingPercentEscapesUsingEncoding */
+}
 
 // Creates a object using a given character bytes.
 //
@@ -9728,7 +9728,7 @@ func CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator Allocator
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithBytes(_:_:_:_:_:)
 func CFURLCreateWithBytes(allocator AllocatorRef, URLBytes unsafe.Pointer, length Index, encoding StringEncoding, baseURL URLRef) URLRef {
 	return _CFURLCreateWithBytes(allocator, URLBytes, length, encoding, baseURL)
-}/* debug [functions.gen.go/function]: CFURLCreateWithBytes */
+}
 
 // Creates a object using a local file system path string.
 //
@@ -9739,7 +9739,7 @@ func CFURLCreateWithBytes(allocator AllocatorRef, URLBytes unsafe.Pointer, lengt
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithFileSystemPath(_:_:_:_:)
 func CFURLCreateWithFileSystemPath(allocator AllocatorRef, filePath StringRef, pathStyle URLPathStyle, isDirectory unsafe.Pointer) URLRef {
 	return _CFURLCreateWithFileSystemPath(allocator, filePath, pathStyle, isDirectory)
-}/* debug [functions.gen.go/function]: CFURLCreateWithFileSystemPath */
+}
 
 // Creates a object using a local file system path string relative to a base URL.
 //
@@ -9750,7 +9750,7 @@ func CFURLCreateWithFileSystemPath(allocator AllocatorRef, filePath StringRef, p
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithFileSystemPathRelativeToBase(_:_:_:_:_:)
 func CFURLCreateWithFileSystemPathRelativeToBase(allocator AllocatorRef, filePath StringRef, pathStyle URLPathStyle, isDirectory unsafe.Pointer, baseURL URLRef) URLRef {
 	return _CFURLCreateWithFileSystemPathRelativeToBase(allocator, filePath, pathStyle, isDirectory, baseURL)
-}/* debug [functions.gen.go/function]: CFURLCreateWithFileSystemPathRelativeToBase */
+}
 
 // Creates a object using a given object.
 //
@@ -9761,7 +9761,7 @@ func CFURLCreateWithFileSystemPathRelativeToBase(allocator AllocatorRef, filePat
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithString(_:_:_:)
 func CFURLCreateWithString(allocator AllocatorRef, URLString StringRef, baseURL URLRef) URLRef {
 	return _CFURLCreateWithString(allocator, URLString, baseURL)
-}/* debug [functions.gen.go/function]: CFURLCreateWithString */
+}
 
 // Destroys a resource indicated by a given URL.
 
@@ -9771,7 +9771,7 @@ func CFURLCreateWithString(allocator AllocatorRef, URLString StringRef, baseURL 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLDestroyResource(_:_:)
 func CFURLDestroyResource(url URLRef, errorCode unsafe.Pointer) unsafe.Pointer {
 	return _CFURLDestroyResource(url, errorCode)
-}/* debug [functions.gen.go/function]: CFURLDestroyResource */
+}
 
 // Creates and returns a directory enumerator with provided enumerator behavior options and properties to be prefetched.
 //
@@ -9782,7 +9782,7 @@ func CFURLDestroyResource(url URLRef, errorCode unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorCreateForDirectoryURL(_:_:_:_:)
 func CFURLEnumeratorCreateForDirectoryURL(alloc AllocatorRef, directoryURL URLRef, option URLEnumeratorOptions, propertyKeys ArrayRef) URLEnumeratorRef {
 	return _CFURLEnumeratorCreateForDirectoryURL(alloc, directoryURL, option, propertyKeys)
-}/* debug [functions.gen.go/function]: CFURLEnumeratorCreateForDirectoryURL */
+}
 
 // Creates and returns a volume enumerator with provided enumerator behavior options and properties to be prefetched.
 //
@@ -9793,7 +9793,7 @@ func CFURLEnumeratorCreateForDirectoryURL(alloc AllocatorRef, directoryURL URLRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorCreateForMountedVolumes(_:_:_:)
 func CFURLEnumeratorCreateForMountedVolumes(alloc AllocatorRef, option URLEnumeratorOptions, propertyKeys ArrayRef) URLEnumeratorRef {
 	return _CFURLEnumeratorCreateForMountedVolumes(alloc, option, propertyKeys)
-}/* debug [functions.gen.go/function]: CFURLEnumeratorCreateForMountedVolumes */
+}
 
 // Returns the number of levels a recursive directory enumerator has descended.
 //
@@ -9804,7 +9804,7 @@ func CFURLEnumeratorCreateForMountedVolumes(alloc AllocatorRef, option URLEnumer
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetDescendentLevel(_:)
 func CFURLEnumeratorGetDescendentLevel(enumerator URLEnumeratorRef) Index {
 	return _CFURLEnumeratorGetDescendentLevel(enumerator)
-}/* debug [functions.gen.go/function]: CFURLEnumeratorGetDescendentLevel */
+}
 
 // Advances an enumerator to the next URL.
 //
@@ -9815,7 +9815,7 @@ func CFURLEnumeratorGetDescendentLevel(enumerator URLEnumeratorRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetNextURL(_:_:_:)
 func CFURLEnumeratorGetNextURL(enumerator URLEnumeratorRef, url unsafe.Pointer, error_ unsafe.Pointer) URLEnumeratorResult {
 	return _CFURLEnumeratorGetNextURL(enumerator, url, error_)
-}/* debug [functions.gen.go/function]: CFURLEnumeratorGetNextURL */
+}
 
 // This function is unimplemented, so it performs no operation.
 
@@ -9825,7 +9825,7 @@ func CFURLEnumeratorGetNextURL(enumerator URLEnumeratorRef, url unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetSourceDidChange(_:)
 func CFURLEnumeratorGetSourceDidChange(enumerator URLEnumeratorRef) unsafe.Pointer {
 	return _CFURLEnumeratorGetSourceDidChange(enumerator)
-}/* debug [functions.gen.go/function]: CFURLEnumeratorGetSourceDidChange */
+}
 
 // Returns the opaque type identifier for the CFURLEnumerator opaque type.
 //
@@ -9836,7 +9836,7 @@ func CFURLEnumeratorGetSourceDidChange(enumerator URLEnumeratorRef) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetTypeID()
 func CFURLEnumeratorGetTypeID() TypeID {
 	return _CFURLEnumeratorGetTypeID()
-}/* debug [functions.gen.go/function]: CFURLEnumeratorGetTypeID */
+}
 
 // Tells a recursive enumerator not to descend into the directory at the URL that was returned by the most recent call to the function.
 //
@@ -9847,7 +9847,7 @@ func CFURLEnumeratorGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorSkipDescendents(_:)
 func CFURLEnumeratorSkipDescendents(enumerator URLEnumeratorRef) {
 	_CFURLEnumeratorSkipDescendents(enumerator)
-}/* debug [functions.gen.go/function]: CFURLEnumeratorSkipDescendents */
+}
 
 // Returns the base URL of a given URL if it exists.
 //
@@ -9858,7 +9858,7 @@ func CFURLEnumeratorSkipDescendents(enumerator URLEnumeratorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetBaseURL(_:)
 func CFURLGetBaseURL(anURL URLRef) URLRef {
 	return _CFURLGetBaseURL(anURL)
-}/* debug [functions.gen.go/function]: CFURLGetBaseURL */
+}
 
 // Returns the range of the specified component in the bytes of a URL.
 //
@@ -9869,7 +9869,7 @@ func CFURLGetBaseURL(anURL URLRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetByteRangeForComponent(_:_:_:)
 func CFURLGetByteRangeForComponent(url URLRef, component URLComponentType, rangeIncludingSeparators unsafe.Pointer) Range {
 	return _CFURLGetByteRangeForComponent(url, component, rangeIncludingSeparators)
-}/* debug [functions.gen.go/function]: CFURLGetByteRangeForComponent */
+}
 
 // Returns by reference the byte representation of a URL object.
 //
@@ -9880,7 +9880,7 @@ func CFURLGetByteRangeForComponent(url URLRef, component URLComponentType, range
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetBytes(_:_:_:)
 func CFURLGetBytes(url URLRef, buffer unsafe.Pointer, bufferLength Index) Index {
 	return _CFURLGetBytes(url, buffer, bufferLength)
-}/* debug [functions.gen.go/function]: CFURLGetBytes */
+}
 
 // Converts a given URL to a file or directory object.
 
@@ -9890,7 +9890,7 @@ func CFURLGetBytes(url URLRef, buffer unsafe.Pointer, bufferLength Index) Index 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetFSRef(_:_:)
 func CFURLGetFSRef(url URLRef, fsRef unsafe.Pointer) unsafe.Pointer {
 	return _CFURLGetFSRef(url, fsRef)
-}/* debug [functions.gen.go/function]: CFURLGetFSRef */
+}
 
 // Fills a buffer with the file system’s native string representation of a given URL’s path.
 //
@@ -9901,7 +9901,7 @@ func CFURLGetFSRef(url URLRef, fsRef unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetFileSystemRepresentation(_:_:_:_:)
 func CFURLGetFileSystemRepresentation(url URLRef, resolveAgainstBase unsafe.Pointer, buffer unsafe.Pointer, maxBufLen Index) unsafe.Pointer {
 	return _CFURLGetFileSystemRepresentation(url, resolveAgainstBase, buffer, maxBufLen)
-}/* debug [functions.gen.go/function]: CFURLGetFileSystemRepresentation */
+}
 
 // Returns the port number from a given URL.
 //
@@ -9912,7 +9912,7 @@ func CFURLGetFileSystemRepresentation(url URLRef, resolveAgainstBase unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetPortNumber(_:)
 func CFURLGetPortNumber(anURL URLRef) unsafe.Pointer {
 	return _CFURLGetPortNumber(anURL)
-}/* debug [functions.gen.go/function]: CFURLGetPortNumber */
+}
 
 // Returns the URL as a object.
 //
@@ -9923,7 +9923,7 @@ func CFURLGetPortNumber(anURL URLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetString(_:)
 func CFURLGetString(anURL URLRef) StringRef {
 	return _CFURLGetString(anURL)
-}/* debug [functions.gen.go/function]: CFURLGetString */
+}
 
 // Returns the type identifier for the opaque type.
 //
@@ -9934,7 +9934,7 @@ func CFURLGetString(anURL URLRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetTypeID()
 func CFURLGetTypeID() TypeID {
 	return _CFURLGetTypeID()
-}/* debug [functions.gen.go/function]: CFURLGetTypeID */
+}
 
 // Determines if a given URL’s path represents a directory.
 //
@@ -9945,7 +9945,7 @@ func CFURLGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLHasDirectoryPath(_:)
 func CFURLHasDirectoryPath(anURL URLRef) unsafe.Pointer {
 	return _CFURLHasDirectoryPath(anURL)
-}/* debug [functions.gen.go/function]: CFURLHasDirectoryPath */
+}
 
 // CFURLIsFileReferenceURL is a CoreFoundation function.
 //
@@ -9954,7 +9954,7 @@ func CFURLHasDirectoryPath(anURL URLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLIsFileReferenceURL(_:)
 func CFURLIsFileReferenceURL(url URLRef) unsafe.Pointer {
 	return _CFURLIsFileReferenceURL(url)
-}/* debug [functions.gen.go/function]: CFURLIsFileReferenceURL */
+}
 
 // Returns whether the resource pointed to by a file URL can be reached.
 //
@@ -9965,7 +9965,7 @@ func CFURLIsFileReferenceURL(url URLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLResourceIsReachable(_:_:)
 func CFURLResourceIsReachable(url URLRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLResourceIsReachable(url, error_)
-}/* debug [functions.gen.go/function]: CFURLResourceIsReachable */
+}
 
 // Sets the URL’s resource properties for a given set of keys to a given set of values.
 //
@@ -9976,7 +9976,7 @@ func CFURLResourceIsReachable(url URLRef, error_ unsafe.Pointer) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetResourcePropertiesForKeys(_:_:_:)
 func CFURLSetResourcePropertiesForKeys(url URLRef, keyedPropertyValues DictionaryRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLSetResourcePropertiesForKeys(url, keyedPropertyValues, error_)
-}/* debug [functions.gen.go/function]: CFURLSetResourcePropertiesForKeys */
+}
 
 // Sets the URL’s resource property for a given key to a given value.
 //
@@ -9987,7 +9987,7 @@ func CFURLSetResourcePropertiesForKeys(url URLRef, keyedPropertyValues Dictionar
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetResourcePropertyForKey(_:_:_:_:)
 func CFURLSetResourcePropertyForKey(url URLRef, key StringRef, propertyValue TypeRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLSetResourcePropertyForKey(url, key, propertyValue, error_)
-}/* debug [functions.gen.go/function]: CFURLSetResourcePropertyForKey */
+}
 
 // Sets a temporary resource value on the URL.
 //
@@ -9998,7 +9998,7 @@ func CFURLSetResourcePropertyForKey(url URLRef, key StringRef, propertyValue Typ
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetTemporaryResourcePropertyForKey(_:_:_:)
 func CFURLSetTemporaryResourcePropertyForKey(url URLRef, key StringRef, propertyValue TypeRef) {
 	_CFURLSetTemporaryResourcePropertyForKey(url, key, propertyValue)
-}/* debug [functions.gen.go/function]: CFURLSetTemporaryResourcePropertyForKey */
+}
 
 // In an app that has adopted App Sandbox, makes the resource pointed to by a security-scoped URL available to the app.
 //
@@ -10009,7 +10009,7 @@ func CFURLSetTemporaryResourcePropertyForKey(url URLRef, key StringRef, property
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLStartAccessingSecurityScopedResource(_:)
 func CFURLStartAccessingSecurityScopedResource(url URLRef) unsafe.Pointer {
 	return _CFURLStartAccessingSecurityScopedResource(url)
-}/* debug [functions.gen.go/function]: CFURLStartAccessingSecurityScopedResource */
+}
 
 // In an app that adopts App Sandbox, revokes access to the resource pointed to by a security-scoped URL.
 //
@@ -10020,7 +10020,7 @@ func CFURLStartAccessingSecurityScopedResource(url URLRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLStopAccessingSecurityScopedResource(_:)
 func CFURLStopAccessingSecurityScopedResource(url URLRef) {
 	_CFURLStopAccessingSecurityScopedResource(url)
-}/* debug [functions.gen.go/function]: CFURLStopAccessingSecurityScopedResource */
+}
 
 // Creates an alias file on disk at a specified location with specified bookmark data.
 //
@@ -10031,7 +10031,7 @@ func CFURLStopAccessingSecurityScopedResource(url URLRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLWriteBookmarkDataToFile(_:_:_:_:)
 func CFURLWriteBookmarkDataToFile(bookmarkRef DataRef, fileURL URLRef, options URLBookmarkFileCreationOptions, errorRef unsafe.Pointer) unsafe.Pointer {
 	return _CFURLWriteBookmarkDataToFile(bookmarkRef, fileURL, options, errorRef)
-}/* debug [functions.gen.go/function]: CFURLWriteBookmarkDataToFile */
+}
 
 // Writes the given data and properties to a given URL.
 
@@ -10041,7 +10041,7 @@ func CFURLWriteBookmarkDataToFile(bookmarkRef DataRef, fileURL URLRef, options U
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLWriteDataAndPropertiesToResource(_:_:_:_:)
 func CFURLWriteDataAndPropertiesToResource(url URLRef, dataToWrite DataRef, propertiesToWrite DictionaryRef, errorCode unsafe.Pointer) unsafe.Pointer {
 	return _CFURLWriteDataAndPropertiesToResource(url, dataToWrite, propertiesToWrite, errorCode)
-}/* debug [functions.gen.go/function]: CFURLWriteDataAndPropertiesToResource */
+}
 
 // Creates a Universally Unique Identifier (UUID) object.
 //
@@ -10052,7 +10052,7 @@ func CFURLWriteDataAndPropertiesToResource(url URLRef, dataToWrite DataRef, prop
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreate(_:)
 func CFUUIDCreate(alloc AllocatorRef) UUIDRef {
 	return _CFUUIDCreate(alloc)
-}/* debug [functions.gen.go/function]: CFUUIDCreate */
+}
 
 // Creates a CFUUID object for a specified string.
 //
@@ -10063,7 +10063,7 @@ func CFUUIDCreate(alloc AllocatorRef) UUIDRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateFromString(_:_:)
 func CFUUIDCreateFromString(alloc AllocatorRef, uuidStr StringRef) UUIDRef {
 	return _CFUUIDCreateFromString(alloc, uuidStr)
-}/* debug [functions.gen.go/function]: CFUUIDCreateFromString */
+}
 
 // Creates a CFUUID object from raw UUID bytes.
 //
@@ -10074,7 +10074,7 @@ func CFUUIDCreateFromString(alloc AllocatorRef, uuidStr StringRef) UUIDRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateFromUUIDBytes(_:_:)
 func CFUUIDCreateFromUUIDBytes(alloc AllocatorRef, bytes UUIDBytes) UUIDRef {
 	return _CFUUIDCreateFromUUIDBytes(alloc, bytes)
-}/* debug [functions.gen.go/function]: CFUUIDCreateFromUUIDBytes */
+}
 
 // Returns the string representation of a specified CFUUID object.
 //
@@ -10085,7 +10085,7 @@ func CFUUIDCreateFromUUIDBytes(alloc AllocatorRef, bytes UUIDBytes) UUIDRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateString(_:_:)
 func CFUUIDCreateString(alloc AllocatorRef, uuid UUIDRef) StringRef {
 	return _CFUUIDCreateString(alloc, uuid)
-}/* debug [functions.gen.go/function]: CFUUIDCreateString */
+}
 
 // Creates a CFUUID object from raw UUID bytes.
 //
@@ -10096,7 +10096,7 @@ func CFUUIDCreateString(alloc AllocatorRef, uuid UUIDRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateWithBytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
 func CFUUIDCreateWithBytes(alloc AllocatorRef, byte0 unsafe.Pointer, byte1 unsafe.Pointer, byte2 unsafe.Pointer, byte3 unsafe.Pointer, byte4 unsafe.Pointer, byte5 unsafe.Pointer, byte6 unsafe.Pointer, byte7 unsafe.Pointer, byte8 unsafe.Pointer, byte9 unsafe.Pointer, byte10 unsafe.Pointer, byte11 unsafe.Pointer, byte12 unsafe.Pointer, byte13 unsafe.Pointer, byte14 unsafe.Pointer, byte15 unsafe.Pointer) UUIDRef {
 	return _CFUUIDCreateWithBytes(alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15)
-}/* debug [functions.gen.go/function]: CFUUIDCreateWithBytes */
+}
 
 // Returns a CFUUID object from raw UUID bytes.
 //
@@ -10107,7 +10107,7 @@ func CFUUIDCreateWithBytes(alloc AllocatorRef, byte0 unsafe.Pointer, byte1 unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDGetConstantUUIDWithBytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
 func CFUUIDGetConstantUUIDWithBytes(alloc AllocatorRef, byte0 unsafe.Pointer, byte1 unsafe.Pointer, byte2 unsafe.Pointer, byte3 unsafe.Pointer, byte4 unsafe.Pointer, byte5 unsafe.Pointer, byte6 unsafe.Pointer, byte7 unsafe.Pointer, byte8 unsafe.Pointer, byte9 unsafe.Pointer, byte10 unsafe.Pointer, byte11 unsafe.Pointer, byte12 unsafe.Pointer, byte13 unsafe.Pointer, byte14 unsafe.Pointer, byte15 unsafe.Pointer) UUIDRef {
 	return _CFUUIDGetConstantUUIDWithBytes(alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15)
-}/* debug [functions.gen.go/function]: CFUUIDGetConstantUUIDWithBytes */
+}
 
 // Returns the type identifier for all CFUUID objects.
 //
@@ -10118,7 +10118,7 @@ func CFUUIDGetConstantUUIDWithBytes(alloc AllocatorRef, byte0 unsafe.Pointer, by
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDGetTypeID()
 func CFUUIDGetTypeID() TypeID {
 	return _CFUUIDGetTypeID()
-}/* debug [functions.gen.go/function]: CFUUIDGetTypeID */
+}
 
 // Returns the value of a UUID object as raw bytes.
 //
@@ -10129,7 +10129,7 @@ func CFUUIDGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDGetUUIDBytes(_:)
 func CFUUIDGetUUIDBytes(uuid UUIDRef) UUIDBytes {
 	return _CFUUIDGetUUIDBytes(uuid)
-}/* debug [functions.gen.go/function]: CFUUIDGetUUIDBytes */
+}
 
 // Cancels a user notification dialog.
 //
@@ -10140,7 +10140,7 @@ func CFUUIDGetUUIDBytes(uuid UUIDRef) UUIDBytes {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCancel(_:)
 func CFUserNotificationCancel(userNotification UserNotificationRef) unsafe.Pointer {
 	return _CFUserNotificationCancel(userNotification)
-}/* debug [functions.gen.go/function]: CFUserNotificationCancel */
+}
 
 // Creates a CFUserNotification object and displays its notification dialog on screen.
 //
@@ -10151,7 +10151,7 @@ func CFUserNotificationCancel(userNotification UserNotificationRef) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCreate(_:_:_:_:_:)
 func CFUserNotificationCreate(allocator AllocatorRef, timeout TimeInterval, flags OptionFlags, error_ unsafe.Pointer, dictionary DictionaryRef) UserNotificationRef {
 	return _CFUserNotificationCreate(allocator, timeout, flags, error_, dictionary)
-}/* debug [functions.gen.go/function]: CFUserNotificationCreate */
+}
 
 // Creates a run loop source for a user notification.
 //
@@ -10162,7 +10162,7 @@ func CFUserNotificationCreate(allocator AllocatorRef, timeout TimeInterval, flag
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCreateRunLoopSource(_:_:_:_:)
 func CFUserNotificationCreateRunLoopSource(allocator AllocatorRef, userNotification UserNotificationRef, callout UserNotificationCallBack, order Index) RunLoopSourceRef {
 	return _CFUserNotificationCreateRunLoopSource(allocator, userNotification, callout, order)
-}/* debug [functions.gen.go/function]: CFUserNotificationCreateRunLoopSource */
+}
 
 // Displays a user notification dialog and waits for a user response.
 //
@@ -10173,7 +10173,7 @@ func CFUserNotificationCreateRunLoopSource(allocator AllocatorRef, userNotificat
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationDisplayAlert(_:_:_:_:_:_:_:_:_:_:_:)
 func CFUserNotificationDisplayAlert(timeout TimeInterval, flags OptionFlags, iconURL URLRef, soundURL URLRef, localizationURL URLRef, alertHeader StringRef, alertMessage StringRef, defaultButtonTitle StringRef, alternateButtonTitle StringRef, otherButtonTitle StringRef, responseFlags unsafe.Pointer) unsafe.Pointer {
 	return _CFUserNotificationDisplayAlert(timeout, flags, iconURL, soundURL, localizationURL, alertHeader, alertMessage, defaultButtonTitle, alternateButtonTitle, otherButtonTitle, responseFlags)
-}/* debug [functions.gen.go/function]: CFUserNotificationDisplayAlert */
+}
 
 // Displays a user notification dialog that does not need a user response.
 //
@@ -10184,7 +10184,7 @@ func CFUserNotificationDisplayAlert(timeout TimeInterval, flags OptionFlags, ico
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationDisplayNotice(_:_:_:_:_:_:_:_:)
 func CFUserNotificationDisplayNotice(timeout TimeInterval, flags OptionFlags, iconURL URLRef, soundURL URLRef, localizationURL URLRef, alertHeader StringRef, alertMessage StringRef, defaultButtonTitle StringRef) unsafe.Pointer {
 	return _CFUserNotificationDisplayNotice(timeout, flags, iconURL, soundURL, localizationURL, alertHeader, alertMessage, defaultButtonTitle)
-}/* debug [functions.gen.go/function]: CFUserNotificationDisplayNotice */
+}
 
 // Returns the dictionary containing all the text field values from a dismissed notification dialog.
 //
@@ -10195,7 +10195,7 @@ func CFUserNotificationDisplayNotice(timeout TimeInterval, flags OptionFlags, ic
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationGetResponseDictionary(_:)
 func CFUserNotificationGetResponseDictionary(userNotification UserNotificationRef) DictionaryRef {
 	return _CFUserNotificationGetResponseDictionary(userNotification)
-}/* debug [functions.gen.go/function]: CFUserNotificationGetResponseDictionary */
+}
 
 // Extracts the values of the text fields from a dismissed notification dialog.
 //
@@ -10206,7 +10206,7 @@ func CFUserNotificationGetResponseDictionary(userNotification UserNotificationRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationGetResponseValue(_:_:_:)
 func CFUserNotificationGetResponseValue(userNotification UserNotificationRef, key StringRef, idx Index) StringRef {
 	return _CFUserNotificationGetResponseValue(userNotification, key, idx)
-}/* debug [functions.gen.go/function]: CFUserNotificationGetResponseValue */
+}
 
 // Returns the type identifier for the opaque type.
 //
@@ -10217,7 +10217,7 @@ func CFUserNotificationGetResponseValue(userNotification UserNotificationRef, ke
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationGetTypeID()
 func CFUserNotificationGetTypeID() TypeID {
 	return _CFUserNotificationGetTypeID()
-}/* debug [functions.gen.go/function]: CFUserNotificationGetTypeID */
+}
 
 // Waits for the user to respond to a notification or for the notification to time out.
 //
@@ -10228,7 +10228,7 @@ func CFUserNotificationGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationReceiveResponse(_:_:_:)
 func CFUserNotificationReceiveResponse(userNotification UserNotificationRef, timeout TimeInterval, responseFlags unsafe.Pointer) unsafe.Pointer {
 	return _CFUserNotificationReceiveResponse(userNotification, timeout, responseFlags)
-}/* debug [functions.gen.go/function]: CFUserNotificationReceiveResponse */
+}
 
 // Updates a displayed user notification dialog with new user interface information.
 //
@@ -10239,7 +10239,7 @@ func CFUserNotificationReceiveResponse(userNotification UserNotificationRef, tim
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationUpdate(_:_:_:_:)
 func CFUserNotificationUpdate(userNotification UserNotificationRef, timeout TimeInterval, flags OptionFlags, dictionary DictionaryRef) unsafe.Pointer {
 	return _CFUserNotificationUpdate(userNotification, timeout, flags, dictionary)
-}/* debug [functions.gen.go/function]: CFUserNotificationUpdate */
+}
 
 // Returns whether a writable stream can accept new data without blocking.
 //
@@ -10250,7 +10250,7 @@ func CFUserNotificationUpdate(userNotification UserNotificationRef, timeout Time
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCanAcceptBytes(_:)
 func CFWriteStreamCanAcceptBytes(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamCanAcceptBytes(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamCanAcceptBytes */
+}
 
 // Closes a writable stream.
 //
@@ -10261,7 +10261,7 @@ func CFWriteStreamCanAcceptBytes(stream WriteStreamRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamClose(_:)
 func CFWriteStreamClose(stream WriteStreamRef) {
 	_CFWriteStreamClose(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamClose */
+}
 
 // CFWriteStreamCopyDispatchQueue is a CoreFoundation function.
 //
@@ -10270,7 +10270,7 @@ func CFWriteStreamClose(stream WriteStreamRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCopyDispatchQueue(_:)
 func CFWriteStreamCopyDispatchQueue(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamCopyDispatchQueue(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamCopyDispatchQueue */
+}
 
 // Returns the error associated with a stream.
 //
@@ -10281,7 +10281,7 @@ func CFWriteStreamCopyDispatchQueue(stream WriteStreamRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCopyError(_:)
 func CFWriteStreamCopyError(stream WriteStreamRef) ErrorRef {
 	return _CFWriteStreamCopyError(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamCopyError */
+}
 
 // Returns the value of a property for a stream.
 //
@@ -10292,7 +10292,7 @@ func CFWriteStreamCopyError(stream WriteStreamRef) ErrorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCopyProperty(_:_:)
 func CFWriteStreamCopyProperty(stream WriteStreamRef, propertyName StreamPropertyKey) TypeRef {
 	return _CFWriteStreamCopyProperty(stream, propertyName)
-}/* debug [functions.gen.go/function]: CFWriteStreamCopyProperty */
+}
 
 // Creates a writable stream for a growable block of memory.
 //
@@ -10303,7 +10303,7 @@ func CFWriteStreamCopyProperty(stream WriteStreamRef, propertyName StreamPropert
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCreateWithAllocatedBuffers(_:_:)
 func CFWriteStreamCreateWithAllocatedBuffers(alloc AllocatorRef, bufferAllocator AllocatorRef) WriteStreamRef {
 	return _CFWriteStreamCreateWithAllocatedBuffers(alloc, bufferAllocator)
-}/* debug [functions.gen.go/function]: CFWriteStreamCreateWithAllocatedBuffers */
+}
 
 // Creates a writable stream for a fixed-size block of memory.
 //
@@ -10314,7 +10314,7 @@ func CFWriteStreamCreateWithAllocatedBuffers(alloc AllocatorRef, bufferAllocator
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCreateWithBuffer(_:_:_:)
 func CFWriteStreamCreateWithBuffer(alloc AllocatorRef, buffer unsafe.Pointer, bufferCapacity Index) WriteStreamRef {
 	return _CFWriteStreamCreateWithBuffer(alloc, buffer, bufferCapacity)
-}/* debug [functions.gen.go/function]: CFWriteStreamCreateWithBuffer */
+}
 
 // Creates a writable stream for a file.
 //
@@ -10325,7 +10325,7 @@ func CFWriteStreamCreateWithBuffer(alloc AllocatorRef, buffer unsafe.Pointer, bu
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCreateWithFile(_:_:)
 func CFWriteStreamCreateWithFile(alloc AllocatorRef, fileURL URLRef) WriteStreamRef {
 	return _CFWriteStreamCreateWithFile(alloc, fileURL)
-}/* debug [functions.gen.go/function]: CFWriteStreamCreateWithFile */
+}
 
 // Returns the error status of a stream.
 //
@@ -10336,7 +10336,7 @@ func CFWriteStreamCreateWithFile(alloc AllocatorRef, fileURL URLRef) WriteStream
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamGetError(_:)
 func CFWriteStreamGetError(stream WriteStreamRef) StreamError {
 	return _CFWriteStreamGetError(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamGetError */
+}
 
 // Returns the current state of a stream.
 //
@@ -10347,7 +10347,7 @@ func CFWriteStreamGetError(stream WriteStreamRef) StreamError {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamGetStatus(_:)
 func CFWriteStreamGetStatus(stream WriteStreamRef) StreamStatus {
 	return _CFWriteStreamGetStatus(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamGetStatus */
+}
 
 // Returns the type identifier of all CFWriteStream objects.
 //
@@ -10358,7 +10358,7 @@ func CFWriteStreamGetStatus(stream WriteStreamRef) StreamStatus {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamGetTypeID()
 func CFWriteStreamGetTypeID() TypeID {
 	return _CFWriteStreamGetTypeID()
-}/* debug [functions.gen.go/function]: CFWriteStreamGetTypeID */
+}
 
 // Opens a stream for writing.
 //
@@ -10369,7 +10369,7 @@ func CFWriteStreamGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamOpen(_:)
 func CFWriteStreamOpen(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamOpen(stream)
-}/* debug [functions.gen.go/function]: CFWriteStreamOpen */
+}
 
 // Schedules a stream into a run loop.
 //
@@ -10380,7 +10380,7 @@ func CFWriteStreamOpen(stream WriteStreamRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamScheduleWithRunLoop(_:_:_:)
 func CFWriteStreamScheduleWithRunLoop(stream WriteStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFWriteStreamScheduleWithRunLoop(stream, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFWriteStreamScheduleWithRunLoop */
+}
 
 // Assigns a client to a stream, which receives callbacks when certain events occur.
 //
@@ -10391,7 +10391,7 @@ func CFWriteStreamScheduleWithRunLoop(stream WriteStreamRef, runLoop RunLoopRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamSetClient(_:_:_:_:)
 func CFWriteStreamSetClient(stream WriteStreamRef, streamEvents OptionFlags, clientCB WriteStreamClientCallBack, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFWriteStreamSetClient(stream, streamEvents, clientCB, clientContext)
-}/* debug [functions.gen.go/function]: CFWriteStreamSetClient */
+}
 
 // CFWriteStreamSetDispatchQueue is a CoreFoundation function.
 //
@@ -10400,7 +10400,7 @@ func CFWriteStreamSetClient(stream WriteStreamRef, streamEvents OptionFlags, cli
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamSetDispatchQueue(_:_:)
 func CFWriteStreamSetDispatchQueue(stream WriteStreamRef, q unsafe.Pointer) {
 	_CFWriteStreamSetDispatchQueue(stream, q)
-}/* debug [functions.gen.go/function]: CFWriteStreamSetDispatchQueue */
+}
 
 // Sets the value of a property for a stream.
 //
@@ -10411,7 +10411,7 @@ func CFWriteStreamSetDispatchQueue(stream WriteStreamRef, q unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamSetProperty(_:_:_:)
 func CFWriteStreamSetProperty(stream WriteStreamRef, propertyName StreamPropertyKey, propertyValue TypeRef) unsafe.Pointer {
 	return _CFWriteStreamSetProperty(stream, propertyName, propertyValue)
-}/* debug [functions.gen.go/function]: CFWriteStreamSetProperty */
+}
 
 // Removes a stream from a particular run loop.
 //
@@ -10422,7 +10422,7 @@ func CFWriteStreamSetProperty(stream WriteStreamRef, propertyName StreamProperty
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamUnscheduleFromRunLoop(_:_:_:)
 func CFWriteStreamUnscheduleFromRunLoop(stream WriteStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFWriteStreamUnscheduleFromRunLoop(stream, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFWriteStreamUnscheduleFromRunLoop */
+}
 
 // Writes data to a writable stream.
 //
@@ -10433,7 +10433,7 @@ func CFWriteStreamUnscheduleFromRunLoop(stream WriteStreamRef, runLoop RunLoopRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamWrite(_:_:_:)
 func CFWriteStreamWrite(stream WriteStreamRef, buffer unsafe.Pointer, bufferLength Index) Index {
 	return _CFWriteStreamWrite(stream, buffer, bufferLength)
-}/* debug [functions.gen.go/function]: CFWriteStreamWrite */
+}
 
 // Given a CFString object containing XML source with unescaped entities, returns a string with specified XML entities escaped.
 //
@@ -10444,7 +10444,7 @@ func CFWriteStreamWrite(stream WriteStreamRef, buffer unsafe.Pointer, bufferLeng
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLCreateStringByEscapingEntities(_:_:_:)
 func CFXMLCreateStringByEscapingEntities(allocator AllocatorRef, string_ StringRef, entitiesDictionary DictionaryRef) StringRef {
 	return _CFXMLCreateStringByEscapingEntities(allocator, string_, entitiesDictionary)
-}/* debug [functions.gen.go/function]: CFXMLCreateStringByEscapingEntities */
+}
 
 // Given a CFString object containing XML source with escaped entities, returns a string with specified XML entities unescaped.
 //
@@ -10455,7 +10455,7 @@ func CFXMLCreateStringByEscapingEntities(allocator AllocatorRef, string_ StringR
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLCreateStringByUnescapingEntities(_:_:_:)
 func CFXMLCreateStringByUnescapingEntities(allocator AllocatorRef, string_ StringRef, entitiesDictionary DictionaryRef) StringRef {
 	return _CFXMLCreateStringByUnescapingEntities(allocator, string_, entitiesDictionary)
-}/* debug [functions.gen.go/function]: CFXMLCreateStringByUnescapingEntities */
+}
 
 // Creates a new CFXMLNode.
 //
@@ -10468,7 +10468,7 @@ func CFXMLCreateStringByUnescapingEntities(allocator AllocatorRef, string_ Strin
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeCreate
 func CFXMLNodeCreate(alloc AllocatorRef, xmlType XMLNodeTypeCode, dataString StringRef, additionalInfoPtr unsafe.Pointer, version Index) XMLNodeRef {
 	return _CFXMLNodeCreate(alloc, xmlType, dataString, additionalInfoPtr, version)
-}/* debug [functions.gen.go/function]: CFXMLNodeCreate */
+}
 
 // Creates a copy of a CFXMLNode object.
 //
@@ -10481,7 +10481,7 @@ func CFXMLNodeCreate(alloc AllocatorRef, xmlType XMLNodeTypeCode, dataString Str
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeCreateCopy
 func CFXMLNodeCreateCopy(alloc AllocatorRef, origNode XMLNodeRef) XMLNodeRef {
 	return _CFXMLNodeCreateCopy(alloc, origNode)
-}/* debug [functions.gen.go/function]: CFXMLNodeCreateCopy */
+}
 
 // Returns the additional information pointer of a CFXMLNode object.
 //
@@ -10494,7 +10494,7 @@ func CFXMLNodeCreateCopy(alloc AllocatorRef, origNode XMLNodeRef) XMLNodeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetInfoPtr
 func CFXMLNodeGetInfoPtr(node XMLNodeRef) unsafe.Pointer {
 	return _CFXMLNodeGetInfoPtr(node)
-}/* debug [functions.gen.go/function]: CFXMLNodeGetInfoPtr */
+}
 
 // Returns the data string from a CFXMLNode.
 //
@@ -10507,7 +10507,7 @@ func CFXMLNodeGetInfoPtr(node XMLNodeRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetString
 func CFXMLNodeGetString(node XMLNodeRef) StringRef {
 	return _CFXMLNodeGetString(node)
-}/* debug [functions.gen.go/function]: CFXMLNodeGetString */
+}
 
 // Returns the XML structure type code for a CFXMLNode object.
 //
@@ -10520,7 +10520,7 @@ func CFXMLNodeGetString(node XMLNodeRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetTypeCode
 func CFXMLNodeGetTypeCode(node XMLNodeRef) XMLNodeTypeCode {
 	return _CFXMLNodeGetTypeCode(node)
-}/* debug [functions.gen.go/function]: CFXMLNodeGetTypeCode */
+}
 
 // Returns the type identifier code for the CFXMLNode opaque type.
 //
@@ -10533,7 +10533,7 @@ func CFXMLNodeGetTypeCode(node XMLNodeRef) XMLNodeTypeCode {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetTypeID
 func CFXMLNodeGetTypeID() TypeID {
 	return _CFXMLNodeGetTypeID()
-}/* debug [functions.gen.go/function]: CFXMLNodeGetTypeID */
+}
 
 // Returns the version number for a CFXMLNode object.
 //
@@ -10546,7 +10546,7 @@ func CFXMLNodeGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetVersion
 func CFXMLNodeGetVersion(node XMLNodeRef) Index {
 	return _CFXMLNodeGetVersion(node)
-}/* debug [functions.gen.go/function]: CFXMLNodeGetVersion */
+}
 
 // Causes a parser to abort with the given error code and description.
 //
@@ -10559,7 +10559,7 @@ func CFXMLNodeGetVersion(node XMLNodeRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserAbort
 func CFXMLParserAbort(parser XMLParserRef, errorCode XMLParserStatusCode, errorDescription StringRef) {
 	_CFXMLParserAbort(parser, errorCode, errorDescription)
-}/* debug [functions.gen.go/function]: CFXMLParserAbort */
+}
 
 // Returns the user-readable description of the current error condition.
 //
@@ -10572,7 +10572,7 @@ func CFXMLParserAbort(parser XMLParserRef, errorCode XMLParserStatusCode, errorD
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCopyErrorDescription
 func CFXMLParserCopyErrorDescription(parser XMLParserRef) StringRef {
 	return _CFXMLParserCopyErrorDescription(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserCopyErrorDescription */
+}
 
 // Creates a new XML parser for the specified XML data.
 //
@@ -10585,7 +10585,7 @@ func CFXMLParserCopyErrorDescription(parser XMLParserRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCreate
 func CFXMLParserCreate(allocator AllocatorRef, xmlData DataRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index, callBacks unsafe.Pointer, context unsafe.Pointer) XMLParserRef {
 	return _CFXMLParserCreate(allocator, xmlData, dataSource, parseOptions, versionOfNodes, callBacks, context)
-}/* debug [functions.gen.go/function]: CFXMLParserCreate */
+}
 
 // Creates a new XML parser for the specified XML data at the specified URL.
 //
@@ -10598,7 +10598,7 @@ func CFXMLParserCreate(allocator AllocatorRef, xmlData DataRef, dataSource URLRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCreateWithDataFromURL
 func CFXMLParserCreateWithDataFromURL(allocator AllocatorRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index, callBacks unsafe.Pointer, context unsafe.Pointer) XMLParserRef {
 	return _CFXMLParserCreateWithDataFromURL(allocator, dataSource, parseOptions, versionOfNodes, callBacks, context)
-}/* debug [functions.gen.go/function]: CFXMLParserCreateWithDataFromURL */
+}
 
 // Returns the callbacks associated with an XML parser when it was created.
 //
@@ -10611,7 +10611,7 @@ func CFXMLParserCreateWithDataFromURL(allocator AllocatorRef, dataSource URLRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetCallBacks
 func CFXMLParserGetCallBacks(parser XMLParserRef, callBacks unsafe.Pointer) {
 	_CFXMLParserGetCallBacks(parser, callBacks)
-}/* debug [functions.gen.go/function]: CFXMLParserGetCallBacks */
+}
 
 // Returns the context for an XML parser.
 //
@@ -10624,7 +10624,7 @@ func CFXMLParserGetCallBacks(parser XMLParserRef, callBacks unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetContext
 func CFXMLParserGetContext(parser XMLParserRef, context unsafe.Pointer) {
 	_CFXMLParserGetContext(parser, context)
-}/* debug [functions.gen.go/function]: CFXMLParserGetContext */
+}
 
 // Returns the top-most object returned by the create XML structure callback.
 //
@@ -10637,7 +10637,7 @@ func CFXMLParserGetContext(parser XMLParserRef, context unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetDocument
 func CFXMLParserGetDocument(parser XMLParserRef) unsafe.Pointer {
 	return _CFXMLParserGetDocument(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserGetDocument */
+}
 
 // Returns the line number of the current parse location.
 //
@@ -10650,7 +10650,7 @@ func CFXMLParserGetDocument(parser XMLParserRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetLineNumber
 func CFXMLParserGetLineNumber(parser XMLParserRef) Index {
 	return _CFXMLParserGetLineNumber(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserGetLineNumber */
+}
 
 // Returns the character index of the current parse location.
 //
@@ -10663,7 +10663,7 @@ func CFXMLParserGetLineNumber(parser XMLParserRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetLocation
 func CFXMLParserGetLocation(parser XMLParserRef) Index {
 	return _CFXMLParserGetLocation(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserGetLocation */
+}
 
 // Returns the URL for the XML data being parsed.
 //
@@ -10676,7 +10676,7 @@ func CFXMLParserGetLocation(parser XMLParserRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetSourceURL
 func CFXMLParserGetSourceURL(parser XMLParserRef) URLRef {
 	return _CFXMLParserGetSourceURL(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserGetSourceURL */
+}
 
 // Returns a numeric code indicating the current status of the parser.
 //
@@ -10689,7 +10689,7 @@ func CFXMLParserGetSourceURL(parser XMLParserRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetStatusCode
 func CFXMLParserGetStatusCode(parser XMLParserRef) XMLParserStatusCode {
 	return _CFXMLParserGetStatusCode(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserGetStatusCode */
+}
 
 // Returns the type identifier for the CFXMLParser opaque type.
 //
@@ -10702,7 +10702,7 @@ func CFXMLParserGetStatusCode(parser XMLParserRef) XMLParserStatusCode {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetTypeID
 func CFXMLParserGetTypeID() TypeID {
 	return _CFXMLParserGetTypeID()
-}/* debug [functions.gen.go/function]: CFXMLParserGetTypeID */
+}
 
 // Begins a parse of the XML data that was associated with the parser when it was created.
 //
@@ -10715,7 +10715,7 @@ func CFXMLParserGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserParse
 func CFXMLParserParse(parser XMLParserRef) unsafe.Pointer {
 	return _CFXMLParserParse(parser)
-}/* debug [functions.gen.go/function]: CFXMLParserParse */
+}
 
 // Parses the given XML data and returns the resulting CFXMLTree object.
 //
@@ -10728,7 +10728,7 @@ func CFXMLParserParse(parser XMLParserRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateFromData
 func CFXMLTreeCreateFromData(allocator AllocatorRef, xmlData DataRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index) XMLTreeRef {
 	return _CFXMLTreeCreateFromData(allocator, xmlData, dataSource, parseOptions, versionOfNodes)
-}/* debug [functions.gen.go/function]: CFXMLTreeCreateFromData */
+}
 
 // Parses the given XML data and returns the resulting CFXMLTree object and any error information.
 //
@@ -10741,7 +10741,7 @@ func CFXMLTreeCreateFromData(allocator AllocatorRef, xmlData DataRef, dataSource
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateFromDataWithError
 func CFXMLTreeCreateFromDataWithError(allocator AllocatorRef, xmlData DataRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index, errorDict unsafe.Pointer) XMLTreeRef {
 	return _CFXMLTreeCreateFromDataWithError(allocator, xmlData, dataSource, parseOptions, versionOfNodes, errorDict)
-}/* debug [functions.gen.go/function]: CFXMLTreeCreateFromDataWithError */
+}
 
 // Creates a new CFXMLTree object by loading the data to be parsed directly from a data source.
 //
@@ -10754,7 +10754,7 @@ func CFXMLTreeCreateFromDataWithError(allocator AllocatorRef, xmlData DataRef, d
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateWithDataFromURL
 func CFXMLTreeCreateWithDataFromURL(allocator AllocatorRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index) XMLTreeRef {
 	return _CFXMLTreeCreateWithDataFromURL(allocator, dataSource, parseOptions, versionOfNodes)
-}/* debug [functions.gen.go/function]: CFXMLTreeCreateWithDataFromURL */
+}
 
 // Creates a childless, parentless CFXMLTree object node for a CFXMLNode object.
 //
@@ -10767,7 +10767,7 @@ func CFXMLTreeCreateWithDataFromURL(allocator AllocatorRef, dataSource URLRef, p
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateWithNode
 func CFXMLTreeCreateWithNode(allocator AllocatorRef, node XMLNodeRef) XMLTreeRef {
 	return _CFXMLTreeCreateWithNode(allocator, node)
-}/* debug [functions.gen.go/function]: CFXMLTreeCreateWithNode */
+}
 
 // Generates an XML document from a CFXMLTree object which is ready to be written to permanent storage.
 //
@@ -10780,7 +10780,7 @@ func CFXMLTreeCreateWithNode(allocator AllocatorRef, node XMLNodeRef) XMLTreeRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateXMLData
 func CFXMLTreeCreateXMLData(allocator AllocatorRef, xmlTree XMLTreeRef) DataRef {
 	return _CFXMLTreeCreateXMLData(allocator, xmlTree)
-}/* debug [functions.gen.go/function]: CFXMLTreeCreateXMLData */
+}
 
 // Returns the node of a CFXMLTree object.
 //
@@ -10793,7 +10793,7 @@ func CFXMLTreeCreateXMLData(allocator AllocatorRef, xmlTree XMLTreeRef) DataRef 
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeGetNode
 func CFXMLTreeGetNode(xmlTree XMLTreeRef) XMLNodeRef {
 	return _CFXMLTreeGetNode(xmlTree)
-}/* debug [functions.gen.go/function]: CFXMLTreeGetNode */
+}
 
 // inset is a CoreFoundation function.
 
@@ -10801,7 +10801,7 @@ func CFXMLTreeGetNode(xmlTree XMLTreeRef) XMLNodeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CGRect/inset(by:)
 func inset(insets unsafe.Pointer, p1   UIEdgeInsets) unsafe.Pointer {
 	return _inset(insets, p1)
-}/* debug [functions.gen.go/function]: inset */
+}
 
 
 

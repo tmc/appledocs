@@ -17,5 +17,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityImage
 type PAccessibilityImage interface {
 	// Required methods
-	AccessibilityLabel() foundation.String/* debug [protocol_interface/required_method]: AccessibilityLabel */
+	AccessibilityLabel() foundation.String
 }

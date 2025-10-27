@@ -8,13 +8,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for LocationManager
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestHistoricalLocations(purposeKey:sampleCount:completionHandler:)
-func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey objc.IObject /* cross-framework: NSString */, sampleCount int, handler unsafe.Pointer) {
+func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey foundation.foundation.INSString, sampleCount int, handler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:"), purposeKey, sampleCount, handler)
 }
 
@@ -55,3 +57,8 @@ func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
 func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool) {
 	l_.ID.Send(objc.RegisterName("setShowsBackgroundLocationIndicator:"), value)
 }
+
+
+
+
+

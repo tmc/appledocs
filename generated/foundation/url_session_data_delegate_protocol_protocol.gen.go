@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLSessionDataDelegate is the NSURLSessionDataDelegate protocol interface.
@@ -95,4 +97,53 @@ func (d *URLSessionDataDelegate) URLSessionDataTaskDidReceiveData(session IURLSe
 // HasURLSessionDataTaskDidReceiveData returns true if a handler for URLSessionDataTaskDidReceiveData has been set.
 func (d *URLSessionDataDelegate) HasURLSessionDataTaskDidReceiveData() bool {
 	return d._URLSessionDataTaskDidReceiveData != nil
+}
+
+// URLSessionDataDelegateObject wraps an existing Objective-C object that conforms to the PURLSessionDataDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLSessionDataDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLSessionDataDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLSessionDataDelegate protocol.
+func NewURLSessionDataDelegateObject(obj objectivec.Object) *URLSessionDataDelegateObject {
+	return &URLSessionDataDelegateObject{obj}
+}
+
+// Make sure URLSessionDataDelegateObject implements PURLSessionDataDelegate.
+var _ PURLSessionDataDelegate = (*URLSessionDataDelegateObject)(nil)
+
+// URLSessionDataTaskDidBecomeDownloadTask implements the PURLSessionDataDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDataDelegateObject) URLSessionDataTaskDidBecomeDownloadTask(session IURLSession, dataTask IURLSessionDataTask, downloadTask IURLSessionDownloadTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:dataTask:didBecomeDownloadTask:"), session, dataTask, downloadTask)
+}
+
+// HasURLSessionDataTaskDidBecomeDownloadTask returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDataDelegateObject) HasURLSessionDataTaskDidBecomeDownloadTask() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionDataTaskDidBecomeStreamTask implements the PURLSessionDataDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDataDelegateObject) URLSessionDataTaskDidBecomeStreamTask(session IURLSession, dataTask IURLSessionDataTask, streamTask IURLSessionStreamTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:dataTask:didBecomeStreamTask:"), session, dataTask, streamTask)
+}
+
+// HasURLSessionDataTaskDidBecomeStreamTask returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDataDelegateObject) HasURLSessionDataTaskDidBecomeStreamTask() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionDataTaskDidReceiveData implements the PURLSessionDataDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDataDelegateObject) URLSessionDataTaskDidReceiveData(session IURLSession, dataTask IURLSessionDataTask, data IData) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:dataTask:didReceiveData:"), session, dataTask, data)
+}
+
+// HasURLSessionDataTaskDidReceiveData returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDataDelegateObject) HasURLSessionDataTaskDidReceiveData() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

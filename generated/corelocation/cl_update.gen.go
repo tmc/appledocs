@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [Update] class.
 var (
 	UpdateClass     _UpdateClass
@@ -27,9 +31,15 @@ type _UpdateClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Update] class.
 type IUpdate interface {
 	objectivec.IObject
+	
+
 	// properties:
 	AccuracyLimited() bool
 	AuthorizationDenied() bool
@@ -42,25 +52,18 @@ type IUpdate interface {
 	LocationUnavailable() bool
 	ServiceSessionRequired() bool
 	Stationary() bool
+
+
+	
+
 	// methods:
+
+
 }
 
-// An object that represents a location update.
 
-// An object that represents a location update.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate
-type Update struct {
-	objectivec.Object
-}
 
-// UpdateFrom constructs a [Update] from an unsafe.Pointer.
-//
-// An object that represents a location update.
-func UpdateFrom(ptr unsafe.Pointer) Update {
-	return Update{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (uc _UpdateClass) Alloc() Update {
@@ -69,7 +72,6 @@ func (uc _UpdateClass) Alloc() Update {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UpdateClass) New() Update {
 	rv := objc.Send[Update](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,12 +95,59 @@ func NewUpdate() Update {
 	return getUpdateClass().New()
 }
 
+
+
+
+
+// An object that represents a location update.
+
+
+// An object that represents a location update.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate
+type Update struct {
+	objectivec.Object
+}
+
+// UpdateFrom constructs a [Update] from an unsafe.Pointer.
+//
+// An object that represents a location update.
+func UpdateFrom(ptr unsafe.Pointer) Update {
+	return Update{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/accuracyLimited
 func (u_ Update) AccuracyLimited() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("accuracyLimited"))
 	return rv
 }
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDenied
@@ -107,12 +156,14 @@ func (u_ Update) AuthorizationDenied() bool {
 	return rv
 }
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDeniedGlobally
 func (u_ Update) AuthorizationDeniedGlobally() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
 }
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRequestInProgress
@@ -121,6 +172,7 @@ func (u_ Update) AuthorizationRequestInProgress() bool {
 	return rv
 }
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRestricted
 func (u_ Update) AuthorizationRestricted() bool {
@@ -128,12 +180,14 @@ func (u_ Update) AuthorizationRestricted() bool {
 	return rv
 }
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/insufficientlyInUse
 func (u_ Update) InsufficientlyInUse() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
 }
+
 
 // A Boolean value that indicates whether the device is stationary.
 //
@@ -144,6 +198,7 @@ func (u_ Update) IsStationary() bool {
 	return rv
 }
 
+
 // A person’s location, if available.
 //
 // [Full Topic]
@@ -153,12 +208,14 @@ func (u_ Update) Location() ICLLocation {
 	return rv
 }
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/locationUnavailable
 func (u_ Update) LocationUnavailable() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("locationUnavailable"))
 	return rv
 }
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/serviceSessionRequired
@@ -167,9 +224,18 @@ func (u_ Update) ServiceSessionRequired() bool {
 	return rv
 }
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/stationary
 func (u_ Update) Stationary() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("stationary"))
 	return rv
 }
+
+
+
+
+
+
+
+

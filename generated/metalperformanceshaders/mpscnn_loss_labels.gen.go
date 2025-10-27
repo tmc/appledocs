@@ -128,7 +128,7 @@ func NewCNNLossLabelsWithDeviceLabelsDescriptor(device unsafe.Pointer, labelsDes
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosslabels/2951841-initwithdevice
-func NewCNNLossLabelsWithDeviceLossImageSizeLabelsDescriptorWeightsDescriptor(device unsafe.Pointer, lossImageSize objc.IObject /* cross-framework: MTLSize */, labelsDescriptor ICNNLossDataDescriptor, weightsDescriptor ICNNLossDataDescriptor) CNNLossLabels {
+func NewCNNLossLabelsWithDeviceLossImageSizeLabelsDescriptorWeightsDescriptor(device unsafe.Pointer, lossImageSize metal.IMTLSize, labelsDescriptor ICNNLossDataDescriptor, weightsDescriptor ICNNLossDataDescriptor) CNNLossLabels {
 	instance := getCNNLossLabelsClass().Alloc()
 	rv := objc.Send[CNNLossLabels](instance.ID, objc.Sel("initWithDevice:lossImageSize:labelsDescriptor:weightsDescriptor:"), device, lossImageSize, labelsDescriptor, weightsDescriptor)
 	rv.Autorelease()
@@ -138,7 +138,7 @@ func NewCNNLossLabelsWithDeviceLossImageSizeLabelsDescriptorWeightsDescriptor(de
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosslabels/3114086-initwithdevice
-func NewCNNLossLabelsWithDeviceLossImageSizeLabelsImageWeightsImage(device unsafe.Pointer, lossImageSize objc.IObject /* cross-framework: MTLSize */, labelsImage IImage, weightsImage IImage) CNNLossLabels {
+func NewCNNLossLabelsWithDeviceLossImageSizeLabelsImageWeightsImage(device unsafe.Pointer, lossImageSize metal.IMTLSize, labelsImage IImage, weightsImage IImage) CNNLossLabels {
 	instance := getCNNLossLabelsClass().Alloc()
 	rv := objc.Send[CNNLossLabels](instance.ID, objc.Sel("initWithDevice:lossImageSize:labelsImage:weightsImage:"), device, lossImageSize, labelsImage, weightsImage)
 	rv.Autorelease()

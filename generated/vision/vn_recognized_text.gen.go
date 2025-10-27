@@ -41,14 +41,14 @@ type IRecognizedText interface {
 	
 
 	// properties:
-	Confidence() Confidence /* typedef */
-	String() objc.IObject /* cross-framework: NSString */
+	Confidence() Confidence
+	String() foundation.foundation.INSString
 
 
 	
 
 	// methods:
-	BoundingBoxForRangeError(range_ corefoundation.Range, error_ objectivec.IObject) IRectangleObservation
+	BoundingBoxForRangeError(range_ foundation.Range, error_ foundation.foundation.INSError) IRectangleObservation
 
 
 }
@@ -134,7 +134,7 @@ func RecognizedTextFrom(ptr unsafe.Pointer) RecognizedText {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedText/boundingBoxForRange:error:
-func (r_ RecognizedText) BoundingBoxForRangeError(range_ corefoundation.Range, error_ objectivec.IObject) IRectangleObservation {
+func (r_ RecognizedText) BoundingBoxForRangeError(range_ foundation.Range, error_ foundation.foundation.INSError) IRectangleObservation {
 	rv := objc.Send[RectangleObservation](r_.ID, objc.Sel("boundingBoxForRange:error:"), range_, error_)
 	return rv
 }
@@ -149,8 +149,8 @@ func (r_ RecognizedText) BoundingBoxForRangeError(range_ corefoundation.Range, e
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedText/confidence
-func (r_ RecognizedText) Confidence() Confidence /* typedef */ {
-	rv := objc.Send[float32](r_.ID, objc.Sel("confidence"))
+func (r_ RecognizedText) Confidence() Confidence {
+	rv := objc.Send[Confidence](r_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -159,7 +159,7 @@ func (r_ RecognizedText) Confidence() Confidence /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedText/string
-func (r_ RecognizedText) String() objc.IObject /* cross-framework: NSString */ {
+func (r_ RecognizedText) String() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("string"))
 	return rv
 }

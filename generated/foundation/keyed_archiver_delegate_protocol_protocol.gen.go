@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PKeyedArchiverDelegate is the NSKeyedArchiverDelegate protocol interface.
@@ -23,11 +25,11 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSKeyedArchiverDelegate
 type PKeyedArchiverDelegate interface {
 	// Optional methods
-	ArchiverDidEncodeObject(archiver IKeyedArchiver, object objc.IObject)
+	ArchiverDidEncodeObject(archiver IKeyedArchiver, object objectivec.IObject)
 	HasArchiverDidEncodeObject() bool
-	ArchiverWillEncodeObject(archiver IKeyedArchiver, object objc.IObject) objc.ID
+	ArchiverWillEncodeObject(archiver IKeyedArchiver, object objectivec.IObject) objc.ID
 	HasArchiverWillEncodeObject() bool
-	ArchiverWillReplaceObjectWithObject(archiver IKeyedArchiver, object objc.IObject, newObject objc.IObject)
+	ArchiverWillReplaceObjectWithObject(archiver IKeyedArchiver, object objectivec.IObject, newObject objectivec.IObject)
 	HasArchiverWillReplaceObjectWithObject() bool
 	ArchiverDidFinish(archiver IKeyedArchiver)
 	HasArchiverDidFinish() bool
@@ -39,9 +41,9 @@ type PKeyedArchiverDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type KeyedArchiverDelegate struct {
-	_ArchiverDidEncodeObject func(archiver IKeyedArchiver, object objc.IObject)
-	_ArchiverWillEncodeObject func(archiver IKeyedArchiver, object objc.IObject) objc.ID
-	_ArchiverWillReplaceObjectWithObject func(archiver IKeyedArchiver, object objc.IObject, newObject objc.IObject)
+	_ArchiverDidEncodeObject func(archiver IKeyedArchiver, object objectivec.IObject)
+	_ArchiverWillEncodeObject func(archiver IKeyedArchiver, object objectivec.IObject) objc.ID
+	_ArchiverWillReplaceObjectWithObject func(archiver IKeyedArchiver, object objectivec.IObject, newObject objectivec.IObject)
 	_ArchiverDidFinish func(archiver IKeyedArchiver)
 	_ArchiverWillFinish func(archiver IKeyedArchiver)
 }
@@ -49,21 +51,21 @@ type KeyedArchiverDelegate struct {
 // SetArchiverDidEncodeObject sets the handler for the ArchiverDidEncodeObject delegate method.
 //
 // Informs the delegate that a given object has been encoded.
-func (d *KeyedArchiverDelegate) SetArchiverDidEncodeObject(f func(archiver IKeyedArchiver, object objc.IObject)) {
+func (d *KeyedArchiverDelegate) SetArchiverDidEncodeObject(f func(archiver IKeyedArchiver, object objectivec.IObject)) {
 	d._ArchiverDidEncodeObject = f
 }
 
 // SetArchiverWillEncodeObject sets the handler for the ArchiverWillEncodeObject delegate method.
 //
 // Informs the delegate that   is about to be encoded.
-func (d *KeyedArchiverDelegate) SetArchiverWillEncodeObject(f func(archiver IKeyedArchiver, object objc.IObject) objc.ID) {
+func (d *KeyedArchiverDelegate) SetArchiverWillEncodeObject(f func(archiver IKeyedArchiver, object objectivec.IObject) objc.ID) {
 	d._ArchiverWillEncodeObject = f
 }
 
 // SetArchiverWillReplaceObjectWithObject sets the handler for the ArchiverWillReplaceObjectWithObject delegate method.
 //
 // Informs the delegate that one given object is being substituted for another given object.
-func (d *KeyedArchiverDelegate) SetArchiverWillReplaceObjectWithObject(f func(archiver IKeyedArchiver, object objc.IObject, newObject objc.IObject)) {
+func (d *KeyedArchiverDelegate) SetArchiverWillReplaceObjectWithObject(f func(archiver IKeyedArchiver, object objectivec.IObject, newObject objectivec.IObject)) {
 	d._ArchiverWillReplaceObjectWithObject = f
 }
 
@@ -82,7 +84,7 @@ func (d *KeyedArchiverDelegate) SetArchiverWillFinish(f func(archiver IKeyedArch
 }
 
 // ArchiverDidEncodeObject implements the PKeyedArchiverDelegate interface.
-func (d *KeyedArchiverDelegate) ArchiverDidEncodeObject(archiver IKeyedArchiver, object objc.IObject) {
+func (d *KeyedArchiverDelegate) ArchiverDidEncodeObject(archiver IKeyedArchiver, object objectivec.IObject) {
 	if d._ArchiverDidEncodeObject != nil {
 		d._ArchiverDidEncodeObject(archiver, object)
 	}
@@ -94,7 +96,7 @@ func (d *KeyedArchiverDelegate) HasArchiverDidEncodeObject() bool {
 }
 
 // ArchiverWillEncodeObject implements the PKeyedArchiverDelegate interface.
-func (d *KeyedArchiverDelegate) ArchiverWillEncodeObject(archiver IKeyedArchiver, object objc.IObject) objc.ID {
+func (d *KeyedArchiverDelegate) ArchiverWillEncodeObject(archiver IKeyedArchiver, object objectivec.IObject) objc.ID {
 	if d._ArchiverWillEncodeObject != nil {
 		return d._ArchiverWillEncodeObject(archiver, object)
 	}
@@ -108,7 +110,7 @@ func (d *KeyedArchiverDelegate) HasArchiverWillEncodeObject() bool {
 }
 
 // ArchiverWillReplaceObjectWithObject implements the PKeyedArchiverDelegate interface.
-func (d *KeyedArchiverDelegate) ArchiverWillReplaceObjectWithObject(archiver IKeyedArchiver, object objc.IObject, newObject objc.IObject) {
+func (d *KeyedArchiverDelegate) ArchiverWillReplaceObjectWithObject(archiver IKeyedArchiver, object objectivec.IObject, newObject objectivec.IObject) {
 	if d._ArchiverWillReplaceObjectWithObject != nil {
 		d._ArchiverWillReplaceObjectWithObject(archiver, object, newObject)
 	}
@@ -141,4 +143,75 @@ func (d *KeyedArchiverDelegate) ArchiverWillFinish(archiver IKeyedArchiver) {
 // HasArchiverWillFinish returns true if a handler for ArchiverWillFinish has been set.
 func (d *KeyedArchiverDelegate) HasArchiverWillFinish() bool {
 	return d._ArchiverWillFinish != nil
+}
+
+// KeyedArchiverDelegateObject wraps an existing Objective-C object that conforms to the PKeyedArchiverDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type KeyedArchiverDelegateObject struct {
+	objectivec.Object
+}
+
+// NewKeyedArchiverDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSKeyedArchiverDelegate protocol.
+func NewKeyedArchiverDelegateObject(obj objectivec.Object) *KeyedArchiverDelegateObject {
+	return &KeyedArchiverDelegateObject{obj}
+}
+
+// Make sure KeyedArchiverDelegateObject implements PKeyedArchiverDelegate.
+var _ PKeyedArchiverDelegate = (*KeyedArchiverDelegateObject)(nil)
+
+// ArchiverDidEncodeObject implements the PKeyedArchiverDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *KeyedArchiverDelegateObject) ArchiverDidEncodeObject(archiver IKeyedArchiver, object objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("archiver:didEncodeObject:"), archiver, object)
+}
+
+// HasArchiverDidEncodeObject returns true; this is a placeholder for optional method checks.
+func (o *KeyedArchiverDelegateObject) HasArchiverDidEncodeObject() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ArchiverWillEncodeObject implements the PKeyedArchiverDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *KeyedArchiverDelegateObject) ArchiverWillEncodeObject(archiver IKeyedArchiver, object objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("archiver:willEncodeObject:"), archiver, object)
+}
+
+// HasArchiverWillEncodeObject returns true; this is a placeholder for optional method checks.
+func (o *KeyedArchiverDelegateObject) HasArchiverWillEncodeObject() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ArchiverWillReplaceObjectWithObject implements the PKeyedArchiverDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *KeyedArchiverDelegateObject) ArchiverWillReplaceObjectWithObject(archiver IKeyedArchiver, object objectivec.IObject, newObject objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("archiver:willReplaceObject:withObject:"), archiver, object, newObject)
+}
+
+// HasArchiverWillReplaceObjectWithObject returns true; this is a placeholder for optional method checks.
+func (o *KeyedArchiverDelegateObject) HasArchiverWillReplaceObjectWithObject() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ArchiverDidFinish implements the PKeyedArchiverDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *KeyedArchiverDelegateObject) ArchiverDidFinish(archiver IKeyedArchiver) {
+	objc.Send[objc.ID](o.ID, objc.Sel("archiverDidFinish:"), archiver)
+}
+
+// HasArchiverDidFinish returns true; this is a placeholder for optional method checks.
+func (o *KeyedArchiverDelegateObject) HasArchiverDidFinish() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ArchiverWillFinish implements the PKeyedArchiverDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *KeyedArchiverDelegateObject) ArchiverWillFinish(archiver IKeyedArchiver) {
+	objc.Send[objc.ID](o.ID, objc.Sel("archiverWillFinish:"), archiver)
+}
+
+// HasArchiverWillFinish returns true; this is a placeholder for optional method checks.
+func (o *KeyedArchiverDelegateObject) HasArchiverWillFinish() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

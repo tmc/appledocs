@@ -5,7 +5,7 @@ package fskit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coretelephony"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PFSVolumeKernelOffloadedIOOperations is the FSVolumeKernelOffloadedIOOperations protocol interface.
@@ -18,10 +18,10 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSVolumeKernelOffloadedIOOperations
 type PFSVolumeKernelOffloadedIOOperations interface {
 	// Required methods
-	BlockmapFileOffsetLengthFlagsOperationIDPackerReplyHandler(file IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, flags FSBlockmapFlags, operationID FSOperationID /* typedef */, packer IFSExtentPacker, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: BlockmapFileOffsetLengthFlagsOperationIDPackerReplyHandler */
-	CompleteIOForFileOffsetLengthStatusFlagsOperationIDReplyHandler(file IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, status objc.IObject /* cross-framework: Error */, flags FSCompleteIOFlags, operationID FSOperationID /* typedef */, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: CompleteIOForFileOffsetLengthStatusFlagsOperationIDReplyHandler */
-	CreateFileNamedInDirectoryAttributesPackerReplyHandler(name IFSFileName, directory IFSItem, attributes IFSItemSetAttributesRequest, packer IFSExtentPacker, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: CreateFileNamedInDirectoryAttributesPackerReplyHandler */
-	LookupItemNamedInDirectoryPackerReplyHandler(name IFSFileName, directory IFSItem, packer IFSExtentPacker, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: LookupItemNamedInDirectoryPackerReplyHandler */
+	BlockmapFileOffsetLengthFlagsOperationIDPackerReplyHandler(file IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, flags FSBlockmapFlags, operationID FSOperationID, packer IFSExtentPacker, reply unsafe.Pointer)
+	CompleteIOForFileOffsetLengthStatusFlagsOperationIDReplyHandler(file IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, status foundation.foundation.INSError, flags FSCompleteIOFlags, operationID FSOperationID, reply unsafe.Pointer)
+	CreateFileNamedInDirectoryAttributesPackerReplyHandler(name IFSFileName, directory IFSItem, attributes IFSItemSetAttributesRequest, packer IFSExtentPacker, reply unsafe.Pointer)
+	LookupItemNamedInDirectoryPackerReplyHandler(name IFSFileName, directory IFSItem, packer IFSExtentPacker, reply unsafe.Pointer)
 	// Optional methods
 	PreallocateSpaceForFileAtOffsetLengthFlagsPackerReplyHandler(file IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, flags FSPreallocateFlags, packer IFSExtentPacker, reply unsafe.Pointer)
 	HasPreallocateSpaceForFileAtOffsetLengthFlagsPackerReplyHandler() bool

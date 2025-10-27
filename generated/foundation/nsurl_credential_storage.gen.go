@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSURLCredentialStorage */
 
 
-/* debug [class_header]: Header for NSURLCredentialStorage */
+
+
 // The class instance for the [URLCredentialStorage] class.
 var (
 	URLCredentialStorageClass     _URLCredentialStorageClass
@@ -30,32 +30,32 @@ func getURLCredentialStorageClass() _URLCredentialStorageClass {
 type _URLCredentialStorageClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for URLCredentialStorage */
+
+
 // An interface definition for the [URLCredentialStorage] class.
 type IURLCredentialStorage interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for URLCredentialStorage */
+
 	// properties:
 	AllCredentials() IURLCredential
 	SetAllCredentials(value IURLCredential)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for URLCredentialStorage */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for URLCredentialStorage */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLCredentialStorageClass) Alloc() URLCredentialStorage {
 	rv := objc.Send[URLCredentialStorage](objc.ID(uc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (u_ URLCredentialStorage) Autorelease() URLCredentialStorage {
 func NewURLCredentialStorage() URLCredentialStorage {
 	return getURLCredentialStorageClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for URLCredentialStorage */
+
+
 // The manager of a shared credentials cache.
 //
 // The shared cache stores and retrieves instances of . You can store password-based credentials permanently, based on the they were created with. Certificate-based credentials are never stored permanently.
@@ -109,30 +109,30 @@ type URLCredentialStorage struct {
 func URLCredentialStorageFrom(ptr unsafe.Pointer) URLCredentialStorage {
 	return URLCredentialStorage{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for URLCredentialStorage *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for URLCredentialStorage */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for URLCredentialStorage */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for URLCredentialStorage */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for URLCredentialStorage */
+
+
+
+
+
+
+
+
+
 
 // The credentials for all available protection spaces.
 //
@@ -141,7 +141,7 @@ func URLCredentialStorageFrom(ptr unsafe.Pointer) URLCredentialStorage {
 func (u_ URLCredentialStorage) AllCredentials() IURLCredential {
 	rv := objc.Send[URLCredential](u_.ID, objc.Sel("allCredentials"))
 	return rv
-}/* debug [instance_properties/getter]: allCredentials */
+}
 
 
 // The credentials for all available protection spaces.
@@ -150,12 +150,12 @@ func (u_ URLCredentialStorage) AllCredentials() IURLCredential {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
 func (u_ URLCredentialStorage) SetAllCredentials(value IURLCredential) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllCredentials:"), value)
-}/* debug [instance_properties/setter]: allCredentials */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSURLCredentialStorage */
+
+
+
 
 
 

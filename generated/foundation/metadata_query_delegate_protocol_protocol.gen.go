@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PMetadataQueryDelegate is the NSMetadataQueryDelegate protocol interface.
@@ -23,7 +25,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSMetadataQueryDelegate
 type PMetadataQueryDelegate interface {
 	// Optional methods
-	MetadataQueryReplacementValueForAttributeValue(query IMetadataQuery, attrName IString, attrValue objc.IObject) objc.ID
+	MetadataQueryReplacementValueForAttributeValue(query IMetadataQuery, attrName IString, attrValue objectivec.IObject) objc.ID
 	HasMetadataQueryReplacementValueForAttributeValue() bool
 }
 
@@ -31,18 +33,18 @@ type PMetadataQueryDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type MetadataQueryDelegate struct {
-	_MetadataQueryReplacementValueForAttributeValue func(query IMetadataQuery, attrName IString, attrValue objc.IObject) objc.ID
+	_MetadataQueryReplacementValueForAttributeValue func(query IMetadataQuery, attrName IString, attrValue objectivec.IObject) objc.ID
 }
 
 // SetMetadataQueryReplacementValueForAttributeValue sets the handler for the MetadataQueryReplacementValueForAttributeValue delegate method.
 //
 // Returns a different value for a given attribute and value.
-func (d *MetadataQueryDelegate) SetMetadataQueryReplacementValueForAttributeValue(f func(query IMetadataQuery, attrName IString, attrValue objc.IObject) objc.ID) {
+func (d *MetadataQueryDelegate) SetMetadataQueryReplacementValueForAttributeValue(f func(query IMetadataQuery, attrName IString, attrValue objectivec.IObject) objc.ID) {
 	d._MetadataQueryReplacementValueForAttributeValue = f
 }
 
 // MetadataQueryReplacementValueForAttributeValue implements the PMetadataQueryDelegate interface.
-func (d *MetadataQueryDelegate) MetadataQueryReplacementValueForAttributeValue(query IMetadataQuery, attrName IString, attrValue objc.IObject) objc.ID {
+func (d *MetadataQueryDelegate) MetadataQueryReplacementValueForAttributeValue(query IMetadataQuery, attrName IString, attrValue objectivec.IObject) objc.ID {
 	if d._MetadataQueryReplacementValueForAttributeValue != nil {
 		return d._MetadataQueryReplacementValueForAttributeValue(query, attrName, attrValue)
 	}
@@ -53,4 +55,31 @@ func (d *MetadataQueryDelegate) MetadataQueryReplacementValueForAttributeValue(q
 // HasMetadataQueryReplacementValueForAttributeValue returns true if a handler for MetadataQueryReplacementValueForAttributeValue has been set.
 func (d *MetadataQueryDelegate) HasMetadataQueryReplacementValueForAttributeValue() bool {
 	return d._MetadataQueryReplacementValueForAttributeValue != nil
+}
+
+// MetadataQueryDelegateObject wraps an existing Objective-C object that conforms to the PMetadataQueryDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type MetadataQueryDelegateObject struct {
+	objectivec.Object
+}
+
+// NewMetadataQueryDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSMetadataQueryDelegate protocol.
+func NewMetadataQueryDelegateObject(obj objectivec.Object) *MetadataQueryDelegateObject {
+	return &MetadataQueryDelegateObject{obj}
+}
+
+// Make sure MetadataQueryDelegateObject implements PMetadataQueryDelegate.
+var _ PMetadataQueryDelegate = (*MetadataQueryDelegateObject)(nil)
+
+// MetadataQueryReplacementValueForAttributeValue implements the PMetadataQueryDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *MetadataQueryDelegateObject) MetadataQueryReplacementValueForAttributeValue(query IMetadataQuery, attrName IString, attrValue objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("metadataQuery:replacementValueForAttribute:value:"), query, attrName, attrValue)
+}
+
+// HasMetadataQueryReplacementValueForAttributeValue returns true; this is a placeholder for optional method checks.
+func (o *MetadataQueryDelegateObject) HasMetadataQueryReplacementValueForAttributeValue() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

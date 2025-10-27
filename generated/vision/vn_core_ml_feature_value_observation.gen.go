@@ -40,14 +40,14 @@ type ICoreMLFeatureValueObservation interface {
 	
 
 	// properties:
-	FeatureName() objc.IObject /* cross-framework: NSString */
+	FeatureName() foundation.foundation.INSString
 	FeatureValue() coreml.FeatureValue
 	ModelDescription() coreml.ModelDescription
 	SetModelDescription(value coreml.ModelDescription)
 	OutputDescriptionsByName() coreml.FeatureDescription
 	SetOutputDescriptionsByName(value coreml.FeatureDescription)
-	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
-	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
+	PredictedFeatureName() foundation.foundation.INSString
+	SetPredictedFeatureName(value foundation.foundation.INSString)
 
 
 	
@@ -145,7 +145,7 @@ func CoreMLFeatureValueObservationFrom(ptr unsafe.Pointer) CoreMLFeatureValueObs
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLFeatureValueObservation/featureName
-func (c_ CoreMLFeatureValueObservation) FeatureName() objc.IObject /* cross-framework: NSString */ {
+func (c_ CoreMLFeatureValueObservation) FeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("featureName"))
 	return rv
 }
@@ -203,7 +203,7 @@ func (c_ CoreMLFeatureValueObservation) SetOutputDescriptionsByName(value coreml
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
@@ -213,7 +213,7 @@ func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
+func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 

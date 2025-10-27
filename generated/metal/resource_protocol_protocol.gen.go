@@ -22,8 +22,8 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLResource
 type PResource interface {
 	// Required methods
-	IsAliasable() bool/* debug [protocol_interface/required_method]: IsAliasable */
-	MakeAliasable()/* debug [protocol_interface/required_method]: MakeAliasable */
-	SetOwnerWithIdentity(task_id_token objectivec.IObject) objectivec.IObject/* debug [protocol_interface/required_method]: SetOwnerWithIdentity */
-	SetPurgeableState(state PurgeableState) PurgeableState/* debug [protocol_interface/required_method]: SetPurgeableState */
+	IsAliasable() bool
+	MakeAliasable()
+	SetOwnerWithIdentity(task_id_token objectivec.IObject) objectivec.IObject
+	SetPurgeableState(state PurgeableState) PurgeableState
 }

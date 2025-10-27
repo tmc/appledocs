@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [LocationUpdater] class.
 var (
 	LocationUpdaterClass     _LocationUpdaterClass
@@ -27,32 +31,31 @@ type _LocationUpdaterClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [LocationUpdater] class.
 type ILocationUpdater interface {
 	objectivec.IObject
+	
+
 	// properties:
+
+
+	
+
 	// methods:
 	Invalidate()
 	Pause()
 	Resume()
+
+
 }
 
-// An object that provides device location updates.
 
-// An object that provides device location updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater
-type LocationUpdater struct {
-	objectivec.Object
-}
 
-// LocationUpdaterFrom constructs a [LocationUpdater] from an unsafe.Pointer.
-//
-// An object that provides device location updates.
-func LocationUpdaterFrom(ptr unsafe.Pointer) LocationUpdater {
-	return LocationUpdater{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (lc _LocationUpdaterClass) Alloc() LocationUpdater {
@@ -61,7 +64,6 @@ func (lc _LocationUpdaterClass) Alloc() LocationUpdater {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LocationUpdaterClass) New() LocationUpdater {
 	rv := objc.Send[LocationUpdater](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,23 +87,66 @@ func NewLocationUpdater() LocationUpdater {
 	return getLocationUpdaterClass().New()
 }
 
+
+
+
+
+// An object that provides device location updates.
+
+
+// An object that provides device location updates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater
+type LocationUpdater struct {
+	objectivec.Object
+}
+
+// LocationUpdaterFrom constructs a [LocationUpdater] from an unsafe.Pointer.
+//
+// An object that provides device location updates.
+func LocationUpdaterFrom(ptr unsafe.Pointer) LocationUpdater {
+	return LocationUpdater{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
 // Creates a location updater with the configuration and queue that you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/liveUpdaterWithConfiguration:queue:handler:
-func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configuration LiveUpdateConfiguration, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithConfiguration:queue:handler:"), configuration, queue, handler)
+func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configuration LiveUpdateConfiguration, queue objectivec.IObject, handler unsafe.Pointer) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("liveUpdaterWithConfiguration:queue:handler:"), configuration, queue, handler)
 	return rv
 }
+
 
 // Creates a location updater on the queue you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/liveUpdaterWithQueue:handler:
-func (lc _LocationUpdaterClass) LiveUpdaterWithQueueHandler(queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithQueue:handler:"), queue, handler)
+func (lc _LocationUpdaterClass) LiveUpdaterWithQueueHandler(queue objectivec.IObject, handler unsafe.Pointer) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("liveUpdaterWithQueue:handler:"), queue, handler)
 	return rv
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // Invalidates the updater.
 //
@@ -111,6 +156,7 @@ func (l_ LocationUpdater) Invalidate() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("invalidate"))
 }
 
+
 // Pauses the updater.
 //
 // [Full Topic]
@@ -119,6 +165,7 @@ func (l_ LocationUpdater) Pause() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("pause"))
 }
 
+
 // Resumes the updater.
 //
 // [Full Topic]
@@ -126,3 +173,16 @@ func (l_ LocationUpdater) Pause() {
 func (l_ LocationUpdater) Resume() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("resume"))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

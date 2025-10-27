@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NSUnitPower */
 
 
-/* debug [class_header]: Header for NSUnitPower */
+
+
 // The class instance for the [UnitPower] class.
 var (
 	UnitPowerClass     _UnitPowerClass
@@ -29,30 +29,30 @@ func getUnitPowerClass() _UnitPowerClass {
 type _UnitPowerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for UnitPower */
+
+
 // An interface definition for the [UnitPower] class.
 type IUnitPower interface {
 	IDimension
 	
-/* debug [class_interface_properties]: Properties for UnitPower */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for UnitPower */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for UnitPower */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitPowerClass) Alloc() UnitPower {
 	rv := objc.Send[UnitPower](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitPower) Autorelease() UnitPower {
 func NewUnitPower() UnitPower {
 	return getUnitPowerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for UnitPower */
+
+
 // A unit of measure for power.
 //
 // You typically use instances of to represent specific quantities of power using the class.
@@ -108,20 +108,20 @@ func UnitPowerFrom(ptr unsafe.Pointer) UnitPower {
 		Dimension: DimensionFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for UnitPower *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for UnitPower */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for UnitPower */
+
+
+
+
+
 
 // The picowatts unit of power.
 //
@@ -130,17 +130,17 @@ func UnitPowerFrom(ptr unsafe.Pointer) UnitPower {
 func (uc _UnitPowerClass) Picowatts() UnitPower {
 	rv := objc.Send[UnitPower](objc.ID(uc.class), objc.Sel("picowatts"))
 	return rv
-}/* debug [class_properties_class/property]: picowatts */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for UnitPower */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for UnitPower */
+
+
+
+
 
 // The picowatts unit of power.
 //
@@ -149,12 +149,12 @@ func (uc _UnitPowerClass) Picowatts() UnitPower {
 func (u_ UnitPower) Picowatts() IUnitPower {
 	rv := objc.Send[UnitPower](u_.ID, objc.Sel("picowatts"))
 	return rv
-}/* debug [instance_properties/getter]: picowatts */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSUnitPower */
+
+
+
 
 
 

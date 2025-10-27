@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLIntersectionFunctionTableDescriptor */
 
 
-/* debug [class_header]: Header for MTLIntersectionFunctionTableDescriptor */
+
+
 // The class instance for the [IntersectionFunctionTableDescriptor] class.
 var (
 	IntersectionFunctionTableDescriptorClass     _IntersectionFunctionTableDescriptorClass
@@ -30,32 +30,32 @@ func getIntersectionFunctionTableDescriptorClass() _IntersectionFunctionTableDes
 type _IntersectionFunctionTableDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for IntersectionFunctionTableDescriptor */
+
+
 // An interface definition for the [IntersectionFunctionTableDescriptor] class.
 type IIntersectionFunctionTableDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for IntersectionFunctionTableDescriptor */
+
 	// properties:
 	FunctionCount() uint
 	SetFunctionCount(value uint)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for IntersectionFunctionTableDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for IntersectionFunctionTableDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _IntersectionFunctionTableDescriptorClass) Alloc() IntersectionFunctionTableDescriptor {
 	rv := objc.Send[IntersectionFunctionTableDescriptor](objc.ID(ic.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (i_ IntersectionFunctionTableDescriptor) Autorelease() IntersectionFunction
 func NewIntersectionFunctionTableDescriptor() IntersectionFunctionTableDescriptor {
 	return getIntersectionFunctionTableDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for IntersectionFunctionTableDescriptor */
+
+
 // A specification of how to create an intersection function table.
 
 
@@ -107,15 +107,15 @@ type IntersectionFunctionTableDescriptor struct {
 func IntersectionFunctionTableDescriptorFrom(ptr unsafe.Pointer) IntersectionFunctionTableDescriptor {
 	return IntersectionFunctionTableDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for IntersectionFunctionTableDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for IntersectionFunctionTableDescriptor */
+
+
+
 
 // Creates an intersection function table descriptor.
 //
@@ -124,23 +124,23 @@ func IntersectionFunctionTableDescriptorFrom(ptr unsafe.Pointer) IntersectionFun
 func (ic _IntersectionFunctionTableDescriptorClass) IntersectionFunctionTableDescriptor() IIntersectionFunctionTableDescriptor {
 	rv := objc.Send[IntersectionFunctionTableDescriptor](objc.ID(ic.class), objc.Sel("intersectionFunctionTableDescriptor"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=IntersectionFunctionTableDescriptor) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for IntersectionFunctionTableDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for IntersectionFunctionTableDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for IntersectionFunctionTableDescriptor */
+
+
+
+
+
+
+
 
 // The number of entries in the intersection function table.
 //
@@ -149,7 +149,7 @@ func (ic _IntersectionFunctionTableDescriptorClass) IntersectionFunctionTableDes
 func (i_ IntersectionFunctionTableDescriptor) FunctionCount() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("functionCount"))
 	return rv
-}/* debug [instance_properties/getter]: functionCount */
+}
 
 
 // The number of entries in the intersection function table.
@@ -158,12 +158,12 @@ func (i_ IntersectionFunctionTableDescriptor) FunctionCount() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionTableDescriptor/functionCount
 func (i_ IntersectionFunctionTableDescriptor) SetFunctionCount(value uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFunctionCount:"), value)
-}/* debug [instance_properties/setter]: functionCount */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLIntersectionFunctionTableDescriptor */
+
+
+
 
 
 

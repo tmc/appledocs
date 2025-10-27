@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLCaptureManager */
 
 
-/* debug [class_header]: Header for MTLCaptureManager */
+
+
 // The class instance for the [CaptureManager] class.
 var (
 	CaptureManagerClass     _CaptureManagerClass
@@ -30,39 +30,39 @@ func getCaptureManagerClass() _CaptureManagerClass {
 type _CaptureManagerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptureManager */
+
+
 // An interface definition for the [CaptureManager] class.
 type ICaptureManager interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CaptureManager */
+
 	// properties:
 	DefaultCaptureScope() unsafe.Pointer
 	SetDefaultCaptureScope(value unsafe.Pointer)
 	IsCapturing() bool
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptureManager */
+
 	// methods:
 	NewCaptureScopeWithCommandQueue(commandQueue unsafe.Pointer) unsafe.Pointer
 	NewCaptureScopeWithMTL4CommandQueue(commandQueue unsafe.Pointer) unsafe.Pointer
 	NewCaptureScopeWithDevice(device unsafe.Pointer) unsafe.Pointer
-	StartCaptureWithDescriptorError(descriptor IMTLCaptureDescriptor, error_ objectivec.IObject) bool
+	StartCaptureWithDescriptorError(descriptor IMTLCaptureDescriptor, error_ foundation.foundation.INSError) bool
 	StopCapture()
 	SupportsDestination(destination CaptureDestination) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptureManager */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureManagerClass) Alloc() CaptureManager {
 	rv := objc.Send[CaptureManager](objc.ID(cc.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (c_ CaptureManager) Autorelease() CaptureManager {
 func NewCaptureManager() CaptureManager {
 	return getCaptureManagerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptureManager */
+
+
 // An instance you use to capture Metal command data in your app.
 //
 // A capture manager works with the frame capture feature to: Capture data about Metal commands programmatically. See . Only capture commands that apply to a specific , command queue, or instance. Assign a default instance for captures you create in Xcode by clicking the Capture GPU workload button in the debug bar, which has an icon with the Metal logo. The Metal debugger requires you to enable GPU Frame Capture in your project settings; see . For more information about Metal frame capture, see .
@@ -116,16 +116,16 @@ type CaptureManager struct {
 func CaptureManagerFrom(ptr unsafe.Pointer) CaptureManager {
 	return CaptureManager{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptureManager */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CaptureManager */
+
+
+
+
 
 // Provides the shared capture manager for your Metal app.
 //
@@ -134,18 +134,18 @@ func CaptureManagerFrom(ptr unsafe.Pointer) CaptureManager {
 func (cc _CaptureManagerClass) SharedCaptureManager() ICaptureManager {
 	rv := objc.Send[CaptureManager](objc.ID(cc.class), objc.Sel("sharedCaptureManager"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedCaptureManager) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CaptureManager */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptureManager */
+
+
+
+
+
 
 // Creates a capture scope for commands submitted to a specific command queue.
 //
@@ -154,7 +154,7 @@ func (cc _CaptureManagerClass) SharedCaptureManager() ICaptureManager {
 func (c_ CaptureManager) NewCaptureScopeWithCommandQueue(commandQueue unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("newCaptureScopeWithCommandQueue:"), commandQueue)
 	return rv
-}/* debug [instance_methods/method]: NewCaptureScopeWithCommandQueue */
+}
 
 
 // [Full Topic]
@@ -162,7 +162,7 @@ func (c_ CaptureManager) NewCaptureScopeWithCommandQueue(commandQueue unsafe.Poi
 func (c_ CaptureManager) NewCaptureScopeWithMTL4CommandQueue(commandQueue unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("newCaptureScopeWithMTL4CommandQueue:"), commandQueue)
 	return rv
-}/* debug [instance_methods/method]: NewCaptureScopeWithMTL4CommandQueue */
+}
 
 
 // Creates a capture scope for commands submitted to a specific device object.
@@ -172,17 +172,17 @@ func (c_ CaptureManager) NewCaptureScopeWithMTL4CommandQueue(commandQueue unsafe
 func (c_ CaptureManager) NewCaptureScopeWithDevice(device unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("newCaptureScopeWithDevice:"), device)
 	return rv
-}/* debug [instance_methods/method]: NewCaptureScopeWithDevice */
+}
 
 
 // Starts capturing any of your app’s Metal commands, with the capture session defined by a descriptor object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCaptureManager/startCapture(with:)
-func (c_ CaptureManager) StartCaptureWithDescriptorError(descriptor IMTLCaptureDescriptor, error_ objectivec.IObject) bool {
+func (c_ CaptureManager) StartCaptureWithDescriptorError(descriptor IMTLCaptureDescriptor, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startCaptureWithDescriptor:error:"), descriptor, error_)
 	return rv
-}/* debug [instance_methods/method]: StartCaptureWithDescriptorError */
+}
 
 
 // Stops capturing Metal commands.
@@ -191,7 +191,7 @@ func (c_ CaptureManager) StartCaptureWithDescriptorError(descriptor IMTLCaptureD
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCaptureManager/stopCapture()
 func (c_ CaptureManager) StopCapture() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopCapture"))
-}/* debug [instance_methods/method]: StopCapture */
+}
 
 
 // Checks to see whether a particular capture destination is supported.
@@ -201,13 +201,13 @@ func (c_ CaptureManager) StopCapture() {
 func (c_ CaptureManager) SupportsDestination(destination CaptureDestination) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsDestination:"), destination)
 	return rv
-}/* debug [instance_methods/method]: SupportsDestination */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for CaptureManager */
+
+
+
 
 // The capture scope to use when a capture is initiated in Xcode.
 //
@@ -216,7 +216,7 @@ func (c_ CaptureManager) SupportsDestination(destination CaptureDestination) boo
 func (c_ CaptureManager) DefaultCaptureScope() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultCaptureScope"))
 	return rv
-}/* debug [instance_properties/getter]: defaultCaptureScope */
+}
 
 
 // The capture scope to use when a capture is initiated in Xcode.
@@ -225,7 +225,7 @@ func (c_ CaptureManager) DefaultCaptureScope() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCaptureManager/defaultCaptureScope
 func (c_ CaptureManager) SetDefaultCaptureScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultCaptureScope:"), value)
-}/* debug [instance_properties/setter]: defaultCaptureScope */
+}
 
 
 // A Boolean value that indicates whether Metal commands are being captured.
@@ -235,11 +235,11 @@ func (c_ CaptureManager) SetDefaultCaptureScope(value unsafe.Pointer) {
 func (c_ CaptureManager) IsCapturing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCapturing"))
 	return rv
-}/* debug [instance_properties/getter]: isCapturing */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLCaptureManager */
+
+
+
 
 

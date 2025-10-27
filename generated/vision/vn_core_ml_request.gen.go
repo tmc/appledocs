@@ -45,12 +45,12 @@ type ICoreMLRequest interface {
 	SetImageCropAndScaleOption(value ImageCropAndScaleOption)
 	Model() IVNCoreMLModel
 	VNCoreMLRequestRevision1() int
-	Confidence() Confidence /* typedef */
-	SetConfidence(value Confidence /* typedef */)
+	Confidence() Confidence
+	SetConfidence(value Confidence)
 	ModelDescription() coreml.ModelDescription
 	SetModelDescription(value coreml.ModelDescription)
-	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
-	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
+	PredictedFeatureName() foundation.foundation.INSString
+	SetPredictedFeatureName(value foundation.foundation.INSString)
 
 
 	
@@ -212,8 +212,8 @@ func (c_ CoreMLRequest) VNCoreMLRequestRevision1() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
-func (c_ CoreMLRequest) Confidence() Confidence /* typedef */ {
-	rv := objc.Send[float32](c_.ID, objc.Sel("confidence"))
+func (c_ CoreMLRequest) Confidence() Confidence {
+	rv := objc.Send[Confidence](c_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (c_ CoreMLRequest) Confidence() Confidence /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
-func (c_ CoreMLRequest) SetConfidence(value Confidence /* typedef */) {
+func (c_ CoreMLRequest) SetConfidence(value Confidence) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
 
@@ -250,7 +250,7 @@ func (c_ CoreMLRequest) SetModelDescription(value coreml.ModelDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+func (c_ CoreMLRequest) PredictedFeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
@@ -260,7 +260,7 @@ func (c_ CoreMLRequest) PredictedFeatureName() objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
+func (c_ CoreMLRequest) SetPredictedFeatureName(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 

@@ -21,7 +21,7 @@ func ExampleNewMutableFontCollectionWithDescriptors() {
 // Creates a mutable named font collection object.
 func ExampleNewMutableFontCollectionWithName() {
 	_ = appkit.NewMutableFontCollectionWithName(
-		appkit.FontCollectionName /* typedef */{}, // name FontCollectionName /* typedef */
+		appkit.FontCollectionName{}, // name FontCollectionName
 	)
 	// Output:
 }
@@ -29,7 +29,7 @@ func ExampleNewMutableFontCollectionWithName() {
 // Creates a mutable font collection with the specified name and font visibility.
 func ExampleNewMutableFontCollectionWithNameVisibility() {
 	_ = appkit.NewMutableFontCollectionWithNameVisibility(
-		appkit.FontCollectionName /* typedef */{}, // name FontCollectionName /* typedef */
+		appkit.FontCollectionName{}, // name FontCollectionName
 		appkit.FontCollectionVisibility{}, // visibility FontCollectionVisibility
 	)
 	// Output:

@@ -41,7 +41,7 @@ type IFaceLandmarks interface {
 	
 
 	// properties:
-	Confidence() Confidence /* typedef */
+	Confidence() Confidence
 	Landmarks() IVNFaceLandmarks2D
 	SetLandmarks(value IVNFaceLandmarks2D)
 
@@ -139,8 +139,8 @@ func FaceLandmarksFrom(ptr unsafe.Pointer) FaceLandmarks {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceLandmarks/confidence
-func (f_ FaceLandmarks) Confidence() Confidence /* typedef */ {
-	rv := objc.Send[float32](f_.ID, objc.Sel("confidence"))
+func (f_ FaceLandmarks) Confidence() Confidence {
+	rv := objc.Send[Confidence](f_.ID, objc.Sel("confidence"))
 	return rv
 }
 

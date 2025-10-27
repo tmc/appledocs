@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PCandidateListTouchBarItemDelegate is the NSCandidateListTouchBarItemDelegate protocol interface.
@@ -111,4 +113,64 @@ func (d *CandidateListTouchBarItemDelegate) CandidateListTouchBarItemEndSelectin
 // HasCandidateListTouchBarItemEndSelectingCandidateAtIndex returns true if a handler for CandidateListTouchBarItemEndSelectingCandidateAtIndex has been set.
 func (d *CandidateListTouchBarItemDelegate) HasCandidateListTouchBarItemEndSelectingCandidateAtIndex() bool {
 	return d._CandidateListTouchBarItemEndSelectingCandidateAtIndex != nil
+}
+
+// CandidateListTouchBarItemDelegateObject wraps an existing Objective-C object that conforms to the PCandidateListTouchBarItemDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type CandidateListTouchBarItemDelegateObject struct {
+	objectivec.Object
+}
+
+// NewCandidateListTouchBarItemDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSCandidateListTouchBarItemDelegate protocol.
+func NewCandidateListTouchBarItemDelegateObject(obj objectivec.Object) *CandidateListTouchBarItemDelegateObject {
+	return &CandidateListTouchBarItemDelegateObject{obj}
+}
+
+// Make sure CandidateListTouchBarItemDelegateObject implements PCandidateListTouchBarItemDelegate.
+var _ PCandidateListTouchBarItemDelegate = (*CandidateListTouchBarItemDelegateObject)(nil)
+
+// CandidateListTouchBarItemBeginSelectingCandidateAtIndex implements the PCandidateListTouchBarItemDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CandidateListTouchBarItemDelegateObject) CandidateListTouchBarItemBeginSelectingCandidateAtIndex(anItem ICandidateListTouchBarItem, index int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("candidateListTouchBarItem:beginSelectingCandidateAtIndex:"), anItem, index)
+}
+
+// HasCandidateListTouchBarItemBeginSelectingCandidateAtIndex returns true; this is a placeholder for optional method checks.
+func (o *CandidateListTouchBarItemDelegateObject) HasCandidateListTouchBarItemBeginSelectingCandidateAtIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// CandidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex implements the PCandidateListTouchBarItemDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CandidateListTouchBarItemDelegateObject) CandidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex(anItem ICandidateListTouchBarItem, previousIndex int, index int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:"), anItem, previousIndex, index)
+}
+
+// HasCandidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex returns true; this is a placeholder for optional method checks.
+func (o *CandidateListTouchBarItemDelegateObject) HasCandidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// CandidateListTouchBarItemChangedCandidateListVisibility implements the PCandidateListTouchBarItemDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CandidateListTouchBarItemDelegateObject) CandidateListTouchBarItemChangedCandidateListVisibility(anItem ICandidateListTouchBarItem, isVisible bool) {
+	objc.Send[objc.ID](o.ID, objc.Sel("candidateListTouchBarItem:changedCandidateListVisibility:"), anItem, isVisible)
+}
+
+// HasCandidateListTouchBarItemChangedCandidateListVisibility returns true; this is a placeholder for optional method checks.
+func (o *CandidateListTouchBarItemDelegateObject) HasCandidateListTouchBarItemChangedCandidateListVisibility() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// CandidateListTouchBarItemEndSelectingCandidateAtIndex implements the PCandidateListTouchBarItemDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *CandidateListTouchBarItemDelegateObject) CandidateListTouchBarItemEndSelectingCandidateAtIndex(anItem ICandidateListTouchBarItem, index int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("candidateListTouchBarItem:endSelectingCandidateAtIndex:"), anItem, index)
+}
+
+// HasCandidateListTouchBarItemEndSelectingCandidateAtIndex returns true; this is a placeholder for optional method checks.
+func (o *CandidateListTouchBarItemDelegateObject) HasCandidateListTouchBarItemEndSelectingCandidateAtIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

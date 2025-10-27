@@ -60,7 +60,7 @@ type IMatrixNeuron interface {
 	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject
 	Encode()
 	EncodeToCommandBufferInputMatrixBiasVectorResultMatrix(commandBuffer unsafe.Pointer, inputMatrix IMatrix, biasVector IVector, resultMatrix IMatrix)
-	SetNeuronToPReLUWithParametersA(A objc.IObject /* cross-framework: NSData */)
+	SetNeuronToPReLUWithParametersA(A foundation.foundation.INSData)
 	SetNeuronTypeParameterAParameterBParameterC(neuronType CNNNeuronType, parameterA float32, parameterB float32, parameterC float32)
 
 
@@ -223,7 +223,7 @@ func (m_ MatrixNeuron) EncodeToCommandBufferInputMatrixBiasVectorResultMatrix(co
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixNeuron/setNeuronToPReLUWithParametersA(_:)
-func (m_ MatrixNeuron) SetNeuronToPReLUWithParametersA(A objc.IObject /* cross-framework: NSData */) {
+func (m_ MatrixNeuron) SetNeuronToPReLUWithParametersA(A foundation.foundation.INSData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeuronToPReLUWithParametersA:"), A)
 }
 

@@ -2,7 +2,7 @@
 
 package threadnetwork
 
-/* debug [functions.gen.go]: Generating 0 functions for ThreadNetwork */
+
 import (
 	"github.com/ebitengine/purego"
 )

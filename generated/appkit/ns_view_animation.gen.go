@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSViewAnimation */
 
 
-/* debug [class_header]: Header for NSViewAnimation */
+
+
 // The class instance for the [ViewAnimation] class.
 var (
 	ViewAnimationClass     _ViewAnimationClass
@@ -31,32 +30,32 @@ func getViewAnimationClass() _ViewAnimationClass {
 type _ViewAnimationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ViewAnimation */
+
+
 // An interface definition for the [ViewAnimation] class.
 type IViewAnimation interface {
 	IAnimation
 	
-/* debug [class_interface_properties]: Properties for ViewAnimation */
+
 	// properties:
 	ViewAnimations() foundation.IDictionary
 	SetViewAnimations(value foundation.IDictionary)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ViewAnimation */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ViewAnimation */
+
+
 // Alloc allocates a new instance without initialization.
 func (vc _ViewAnimationClass) Alloc() ViewAnimation {
 	rv := objc.Send[ViewAnimation](objc.ID(vc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (v_ ViewAnimation) Autorelease() ViewAnimation {
 func NewViewAnimation() ViewAnimation {
 	return getViewAnimationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ViewAnimation */
+
+
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
 //
 // An object takes an array of dictionaries from which it determines the objects to animate and the effects to apply to them. Each dictionary must have a target object and, optionally, properties that specify beginning and ending frame and whether to fade in or fade out. (See for further information.) Animations with are, by default, in non-blocking mode over a duration of 0.5 seconds using the ease in-out animation curve. But you can configure the animation to have any duration, curve, frame rate, and blocking mode. You may also set progress marks, assign a delegate, and implement delegation methods in order to animate view and windows concurrent with the ones specified as targets in the view-animation dictionary. Invoking the method on a running object moves the animation to the end frame.
@@ -112,11 +111,11 @@ func ViewAnimationFrom(ptr unsafe.Pointer) ViewAnimation {
 		Animation: AnimationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ViewAnimation */
+
+
 
 // Returns an object initialized with the supplied information.
 //
@@ -127,28 +126,28 @@ func NewViewAnimationWithViewAnimations(viewAnimations foundation.IDictionary) V
 	rv := objc.Send[ViewAnimation](instance.ID, objc.Sel("initWithViewAnimations:"), viewAnimations)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewViewAnimationWithViewAnimations */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ViewAnimation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ViewAnimation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ViewAnimation */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ViewAnimation */
+
+
+
+
+
+
+
+
+
 
 // The dictionaries defining the objects to animate.
 //
@@ -157,7 +156,7 @@ func NewViewAnimationWithViewAnimations(viewAnimations foundation.IDictionary) V
 func (v_ ViewAnimation) ViewAnimations() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](v_.ID, objc.Sel("viewAnimations"))
 	return rv
-}/* debug [instance_properties/getter]: viewAnimations */
+}
 
 
 // The dictionaries defining the objects to animate.
@@ -166,11 +165,11 @@ func (v_ ViewAnimation) ViewAnimations() foundation.IDictionary {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation/viewAnimations
 func (v_ ViewAnimation) SetViewAnimations(value foundation.IDictionary) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setViewAnimations:"), value)
-}/* debug [instance_properties/setter]: viewAnimations */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSViewAnimation */
+
+
+
 
 

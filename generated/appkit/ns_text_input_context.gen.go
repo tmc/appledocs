@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSTextInputContext */
 
 
-/* debug [class_header]: Header for NSTextInputContext */
+
+
 // The class instance for the [TextInputContext] class.
 var (
 	TextInputContextClass     _TextInputContextClass
@@ -31,40 +30,40 @@ func getTextInputContextClass() _TextInputContextClass {
 type _TextInputContextClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TextInputContext */
+
+
 // An interface definition for the [TextInputContext] class.
 type ITextInputContext interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for TextInputContext */
+
 	// properties:
 	AcceptsGlyphInfo() bool
 	SetAcceptsGlyphInfo(value bool)
-	AllowedInputSourceLocales() objc.IObject /* cross-framework: NSString */
-	SetAllowedInputSourceLocales(value objc.IObject /* cross-framework: NSString */)
+	AllowedInputSourceLocales() foundation.foundation.INSString
+	SetAllowedInputSourceLocales(value foundation.foundation.INSString)
 	Client() TextInputClient /* not a class type */
 	SetClient(value TextInputClient /* not a class type */)
 	KeyboardInputSources() TextInputSourceIdentifier /* not a class type */
 	SetKeyboardInputSources(value TextInputSourceIdentifier /* not a class type */)
 	SelectedKeyboardInputSource() TextInputSourceIdentifier /* not a class type */
 	SetSelectedKeyboardInputSource(value TextInputSourceIdentifier /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TextInputContext */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TextInputContext */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextInputContextClass) Alloc() TextInputContext {
 	rv := objc.Send[TextInputContext](objc.ID(tc.class), objc.Sel("alloc"))
@@ -94,11 +93,11 @@ func (t_ TextInputContext) Autorelease() TextInputContext {
 func NewTextInputContext() TextInputContext {
 	return getTextInputContextClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TextInputContext */
+
+
 // An object that represents the Cocoa text input system.
 //
 // The text input system communicates primarily with the client of the activated input context via the protocol.
@@ -118,11 +117,11 @@ type TextInputContext struct {
 func TextInputContextFrom(ptr unsafe.Pointer) TextInputContext {
 	return TextInputContext{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TextInputContext */
+
+
 
 // The designated initializer
 //
@@ -133,28 +132,28 @@ func NewTextInputContextWithClient(client unsafe.Pointer) TextInputContext {
 	rv := objc.Send[TextInputContext](instance.ID, objc.Sel("initWithClient:"), client)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTextInputContextWithClient */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for TextInputContext */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TextInputContext */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TextInputContext */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TextInputContext */
+
+
+
+
+
+
+
+
+
 
 // A Boolean value that indicates whether the client handles
 //
@@ -163,7 +162,7 @@ func NewTextInputContextWithClient(client unsafe.Pointer) TextInputContext {
 func (t_ TextInputContext) AcceptsGlyphInfo() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsGlyphInfo"))
 	return rv
-}/* debug [instance_properties/getter]: acceptsGlyphInfo */
+}
 
 
 // A Boolean value that indicates whether the client handles
@@ -172,26 +171,26 @@ func (t_ TextInputContext) AcceptsGlyphInfo() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
 func (t_ TextInputContext) SetAcceptsGlyphInfo(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsGlyphInfo:"), value)
-}/* debug [instance_properties/setter]: acceptsGlyphInfo */
+}
 
 
 // The set of keyboard input source locales allowed when this input context is active.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/allowedinputsourcelocales
-func (t_ TextInputContext) AllowedInputSourceLocales() objc.IObject /* cross-framework: NSString */ {
+func (t_ TextInputContext) AllowedInputSourceLocales() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
-}/* debug [instance_properties/getter]: allowedInputSourceLocales */
+}
 
 
 // The set of keyboard input source locales allowed when this input context is active.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/allowedinputsourcelocales
-func (t_ TextInputContext) SetAllowedInputSourceLocales(value objc.IObject /* cross-framework: NSString */) {
+func (t_ TextInputContext) SetAllowedInputSourceLocales(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), value)
-}/* debug [instance_properties/setter]: allowedInputSourceLocales */
+}
 
 
 // The owner of this input context. (read-only)
@@ -201,7 +200,7 @@ func (t_ TextInputContext) SetAllowedInputSourceLocales(value objc.IObject /* cr
 func (t_ TextInputContext) Client() TextInputClient /* not a class type */ {
 	rv := objc.Send[TextInputClient](t_.ID, objc.Sel("client"))
 	return rv
-}/* debug [instance_properties/getter]: client */
+}
 
 
 // The owner of this input context. (read-only)
@@ -210,7 +209,7 @@ func (t_ TextInputContext) Client() TextInputClient /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/client
 func (t_ TextInputContext) SetClient(value TextInputClient /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
-}/* debug [instance_properties/setter]: client */
+}
 
 
 // The array of keyboard text input source identifier strings available to the receiver. (read-only)
@@ -220,7 +219,7 @@ func (t_ TextInputContext) SetClient(value TextInputClient /* not a class type *
 func (t_ TextInputContext) KeyboardInputSources() TextInputSourceIdentifier /* not a class type */ {
 	rv := objc.Send[TextInputSourceIdentifier](t_.ID, objc.Sel("keyboardInputSources"))
 	return rv
-}/* debug [instance_properties/getter]: keyboardInputSources */
+}
 
 
 // The array of keyboard text input source identifier strings available to the receiver. (read-only)
@@ -229,7 +228,7 @@ func (t_ TextInputContext) KeyboardInputSources() TextInputSourceIdentifier /* n
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardinputsources
 func (t_ TextInputContext) SetKeyboardInputSources(value TextInputSourceIdentifier /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeyboardInputSources:"), value)
-}/* debug [instance_properties/setter]: keyboardInputSources */
+}
 
 
 // The identifier string for the selected keyboard text input source.
@@ -239,7 +238,7 @@ func (t_ TextInputContext) SetKeyboardInputSources(value TextInputSourceIdentifi
 func (t_ TextInputContext) SelectedKeyboardInputSource() TextInputSourceIdentifier /* not a class type */ {
 	rv := objc.Send[TextInputSourceIdentifier](t_.ID, objc.Sel("selectedKeyboardInputSource"))
 	return rv
-}/* debug [instance_properties/getter]: selectedKeyboardInputSource */
+}
 
 
 // The identifier string for the selected keyboard text input source.
@@ -248,11 +247,11 @@ func (t_ TextInputContext) SelectedKeyboardInputSource() TextInputSourceIdentifi
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/selectedkeyboardinputsource
 func (t_ TextInputContext) SetSelectedKeyboardInputSource(value TextInputSourceIdentifier /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedKeyboardInputSource:"), value)
-}/* debug [instance_properties/setter]: selectedKeyboardInputSource */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSTextInputContext */
+
+
+
 
 

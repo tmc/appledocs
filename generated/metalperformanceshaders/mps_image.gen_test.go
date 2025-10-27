@@ -4,6 +4,7 @@ package metalperformanceshaders_test
 
 import (
 	"github.com/tmc/appledocs/generated/metalperformanceshaders"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // Suppress unused import errors

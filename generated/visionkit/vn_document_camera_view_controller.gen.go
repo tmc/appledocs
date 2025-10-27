@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 
@@ -36,7 +37,7 @@ type _DocumentCameraViewControllerClass struct {
 
 // An interface definition for the [DocumentCameraViewController] class.
 type IDocumentCameraViewController interface {
-	IViewController
+	appkit.IViewController
 	
 
 	// properties:
@@ -95,7 +96,7 @@ func NewDocumentCameraViewController() DocumentCameraViewController {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController
 type DocumentCameraViewController struct {
-	ViewController
+	appkit.ViewController
 }
 
 // DocumentCameraViewControllerFrom constructs a [DocumentCameraViewController] from an unsafe.Pointer.
@@ -103,7 +104,7 @@ type DocumentCameraViewController struct {
 // An object that presents UI for a camera pass-through that helps people scan physical documents.
 func DocumentCameraViewControllerFrom(ptr unsafe.Pointer) DocumentCameraViewController {
 	return DocumentCameraViewController{
-		ViewController: ViewControllerFrom(ptr),
+		ViewController: appkit.ViewControllerFrom(ptr),
 	}
 }
 

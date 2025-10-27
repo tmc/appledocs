@@ -136,7 +136,7 @@ func NewPadWithDevice(device unsafe.Pointer) Pad {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/3037430-initwithdevice
-func NewPadWithDevicePaddingSizeBeforePaddingSizeAfter(device unsafe.Pointer, paddingSizeBefore objc.IObject /* cross-framework: MPSImageCoordinate */, paddingSizeAfter objc.IObject /* cross-framework: MPSImageCoordinate */) Pad {
+func NewPadWithDevicePaddingSizeBeforePaddingSizeAfter(device unsafe.Pointer, paddingSizeBefore ImageCoordinate, paddingSizeAfter ImageCoordinate) Pad {
 	instance := getPadClass().Alloc()
 	rv := objc.Send[Pad](instance.ID, objc.Sel("initWithDevice:paddingSizeBefore:paddingSizeAfter:"), device, paddingSizeBefore, paddingSizeAfter)
 	rv.Autorelease()
@@ -146,7 +146,7 @@ func NewPadWithDevicePaddingSizeBeforePaddingSizeAfter(device unsafe.Pointer, pa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/3037431-initwithdevice
-func NewPadWithDevicePaddingSizeBeforePaddingSizeAfterFillValueArray(device unsafe.Pointer, paddingSizeBefore objc.IObject /* cross-framework: MPSImageCoordinate */, paddingSizeAfter objc.IObject /* cross-framework: MPSImageCoordinate */, fillValueArray foundation.Data) Pad {
+func NewPadWithDevicePaddingSizeBeforePaddingSizeAfterFillValueArray(device unsafe.Pointer, paddingSizeBefore ImageCoordinate, paddingSizeAfter ImageCoordinate, fillValueArray foundation.Data) Pad {
 	instance := getPadClass().Alloc()
 	rv := objc.Send[Pad](instance.ID, objc.Sel("initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:"), device, paddingSizeBefore, paddingSizeAfter, fillValueArray)
 	rv.Autorelease()

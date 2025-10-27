@@ -17,7 +17,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySwitch
 type PAccessibilitySwitch interface {
 	// Required methods
-	AccessibilityValue() foundation.String/* debug [protocol_interface/required_method]: AccessibilityValue */
+	AccessibilityValue() foundation.String
 	// Optional methods
 	AccessibilityPerformDecrement() bool
 	HasAccessibilityPerformDecrement() bool

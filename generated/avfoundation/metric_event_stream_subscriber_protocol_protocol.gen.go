@@ -22,5 +22,5 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamSubscriber
 type PMetricEventStreamSubscriber interface {
 	// Required methods
-	PublisherDidReceiveEvent(publisher unsafe.Pointer, event IAVMetricEvent)/* debug [protocol_interface/required_method]: PublisherDidReceiveEvent */
+	PublisherDidReceiveEvent(publisher unsafe.Pointer, event IAVMetricEvent)
 }

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSActionCell */
 
 
-/* debug [class_header]: Header for NSActionCell */
+
+
 // The class instance for the [ActionCell] class.
 var (
 	ActionCellClass     _ActionCellClass
@@ -31,16 +30,16 @@ func getActionCellClass() _ActionCellClass {
 type _ActionCellClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ActionCell */
+
+
 // An interface definition for the [ActionCell] class.
 type IActionCell interface {
 	ICell
 	
-/* debug [class_interface_properties]: Properties for ActionCell */
+
 	// properties:
 	Action() objc.SEL
 	SetAction(value objc.SEL)
@@ -56,21 +55,21 @@ type IActionCell interface {
 	SetIntValue(value objectivec.IObject)
 	IntegerValue() int
 	SetIntegerValue(value int)
-	StringValue() objc.IObject /* cross-framework: NSString */
-	SetStringValue(value objc.IObject /* cross-framework: NSString */)
-/* debug [class_interface_properties]: End properties */
+	StringValue() foundation.foundation.INSString
+	SetStringValue(value foundation.foundation.INSString)
+
 
 	
-/* debug [class_interface_methods]: Methods for ActionCell */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ActionCell */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _ActionCellClass) Alloc() ActionCell {
 	rv := objc.Send[ActionCell](objc.ID(ac.class), objc.Sel("alloc"))
@@ -100,11 +99,11 @@ func (a_ ActionCell) Autorelease() ActionCell {
 func NewActionCell() ActionCell {
 	return getActionCellClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ActionCell */
+
+
 // An active area inside a control.
 //
 // An does three things: it displays text or an icon; it provides the target object and action method used by its object; and it handles mouse (cursor) tracking by properly highlighting its area and sending action messages to its target based on cursor movement. The of an is the view in which the receiver was last drawn.
@@ -126,30 +125,30 @@ func ActionCellFrom(ptr unsafe.Pointer) ActionCell {
 		Cell: CellFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ActionCell *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ActionCell */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ActionCell */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ActionCell */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ActionCell */
+
+
+
+
+
+
+
+
+
 
 // Returns the receiver’s action-message selector.
 //
@@ -158,7 +157,7 @@ func ActionCellFrom(ptr unsafe.Pointer) ActionCell {
 func (a_ ActionCell) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](a_.ID, objc.Sel("action"))
 	return rv
-}/* debug [instance_properties/getter]: action */
+}
 
 
 // Returns the receiver’s action-message selector.
@@ -167,7 +166,7 @@ func (a_ ActionCell) Action() objc.SEL {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
 func (a_ ActionCell) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAction:"), value)
-}/* debug [instance_properties/setter]: action */
+}
 
 
 // Returns the receiver’s tag.
@@ -177,7 +176,7 @@ func (a_ ActionCell) SetAction(value objc.SEL) {
 func (a_ ActionCell) Tag() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("tag"))
 	return rv
-}/* debug [instance_properties/getter]: tag */
+}
 
 
 // Returns the receiver’s tag.
@@ -186,7 +185,7 @@ func (a_ ActionCell) Tag() int {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
 func (a_ ActionCell) SetTag(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTag:"), value)
-}/* debug [instance_properties/setter]: tag */
+}
 
 
 // Returns the receiver’s target object.
@@ -196,7 +195,7 @@ func (a_ ActionCell) SetTag(value int) {
 func (a_ ActionCell) Target() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
 	return rv
-}/* debug [instance_properties/getter]: target */
+}
 
 
 // Returns the receiver’s target object.
@@ -205,7 +204,7 @@ func (a_ ActionCell) Target() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
 func (a_ ActionCell) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
-}/* debug [instance_properties/setter]: target */
+}
 
 
 // The view associated with the cell.
@@ -215,7 +214,7 @@ func (a_ ActionCell) SetTarget(value objc.ID) {
 func (a_ ActionCell) ControlView() IView {
 	rv := objc.Send[View](a_.ID, objc.Sel("controlView"))
 	return rv
-}/* debug [instance_properties/getter]: controlView */
+}
 
 
 // The view associated with the cell.
@@ -224,7 +223,7 @@ func (a_ ActionCell) ControlView() IView {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
 func (a_ ActionCell) SetControlView(value IView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlView:"), value)
-}/* debug [instance_properties/setter]: controlView */
+}
 
 
 // The cell’s value as a single-precision floating-point number.
@@ -234,7 +233,7 @@ func (a_ ActionCell) SetControlView(value IView) {
 func (a_ ActionCell) FloatValue() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("floatValue"))
 	return rv
-}/* debug [instance_properties/getter]: floatValue */
+}
 
 
 // The cell’s value as a single-precision floating-point number.
@@ -243,7 +242,7 @@ func (a_ ActionCell) FloatValue() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
 func (a_ ActionCell) SetFloatValue(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFloatValue:"), value)
-}/* debug [instance_properties/setter]: floatValue */
+}
 
 
 // The cell’s value as an integer.
@@ -253,7 +252,7 @@ func (a_ ActionCell) SetFloatValue(value float32) {
 func (a_ ActionCell) IntValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("intValue"))
 	return rv
-}/* debug [instance_properties/getter]: intValue */
+}
 
 
 // The cell’s value as an integer.
@@ -262,7 +261,7 @@ func (a_ ActionCell) IntValue() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/intvalue
 func (a_ ActionCell) SetIntValue(value objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntValue:"), value)
-}/* debug [instance_properties/setter]: intValue */
+}
 
 
 // The cell’s value as an integer value.
@@ -272,7 +271,7 @@ func (a_ ActionCell) SetIntValue(value objectivec.IObject) {
 func (a_ ActionCell) IntegerValue() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("integerValue"))
 	return rv
-}/* debug [instance_properties/getter]: integerValue */
+}
 
 
 // The cell’s value as an integer value.
@@ -281,31 +280,31 @@ func (a_ ActionCell) IntegerValue() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
 func (a_ ActionCell) SetIntegerValue(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntegerValue:"), value)
-}/* debug [instance_properties/setter]: integerValue */
+}
 
 
 // The cell’s value as a string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
-func (a_ ActionCell) StringValue() objc.IObject /* cross-framework: NSString */ {
+func (a_ ActionCell) StringValue() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("stringValue"))
 	return rv
-}/* debug [instance_properties/getter]: stringValue */
+}
 
 
 // The cell’s value as a string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
-func (a_ ActionCell) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
+func (a_ ActionCell) SetStringValue(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), value)
-}/* debug [instance_properties/setter]: stringValue */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSActionCell */
+
+
+
 
 
 

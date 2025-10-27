@@ -11,29 +11,10 @@ import (
 
 // Type aliases for convenience
 type (
-	ID       = purego.ID
-	SEL      = purego.SEL
-	Class    = purego.Class
-	Protocol = purego.Protocol
+	ID    = purego.ID
+	SEL   = purego.SEL
+	Class = purego.Class
 )
-
-// Additional type aliases for advanced use cases
-type (
-	MethodDef = purego.MethodDef
-	FieldDef  = purego.FieldDef
-)
-
-// Re-export common functions for convenience
-var (
-	RegisterClass = purego.RegisterClass
-	RegisterName  = purego.RegisterName
-	GetProtocol   = purego.GetProtocol
-)
-
-// IObject is the root interface for all Objective-C objects.
-// It provides access to the underlying objc.ID.
-type IObject interface {
-}
 
 var (
 	selCache sync.Map // map[string]purego.SEL
@@ -78,3 +59,4 @@ func String(s string) ID {
 	initOnce.Do(initStringHelpers)
 	return Send[ID](ID(nsStringClass), selStringWithUTF8, s)
 }
+

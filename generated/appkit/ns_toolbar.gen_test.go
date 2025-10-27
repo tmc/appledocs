@@ -19,7 +19,7 @@ func ExampleNewToolbar() {
 // Creates a newly allocated toolbar with the specified identifier.
 func ExampleNewToolbarWithIdentifier() {
 	_ = appkit.NewToolbarWithIdentifier(
-		appkit.ToolbarIdentifier /* typedef */{}, // identifier ToolbarIdentifier /* typedef */
+		appkit.ToolbarIdentifier{}, // identifier ToolbarIdentifier
 	)
 	// Output:
 }

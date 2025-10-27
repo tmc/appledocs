@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTabViewDelegate is the NSTabViewDelegate protocol interface.
@@ -113,4 +115,64 @@ func (d *TabViewDelegate) TabViewDidChangeNumberOfTabViewItems(tabView ITabView)
 // HasTabViewDidChangeNumberOfTabViewItems returns true if a handler for TabViewDidChangeNumberOfTabViewItems has been set.
 func (d *TabViewDelegate) HasTabViewDidChangeNumberOfTabViewItems() bool {
 	return d._TabViewDidChangeNumberOfTabViewItems != nil
+}
+
+// TabViewDelegateObject wraps an existing Objective-C object that conforms to the PTabViewDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type TabViewDelegateObject struct {
+	objectivec.Object
+}
+
+// NewTabViewDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSTabViewDelegate protocol.
+func NewTabViewDelegateObject(obj objectivec.Object) *TabViewDelegateObject {
+	return &TabViewDelegateObject{obj}
+}
+
+// Make sure TabViewDelegateObject implements PTabViewDelegate.
+var _ PTabViewDelegate = (*TabViewDelegateObject)(nil)
+
+// TabViewDidSelectTabViewItem implements the PTabViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TabViewDelegateObject) TabViewDidSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tabView:didSelectTabViewItem:"), tabView, tabViewItem)
+}
+
+// HasTabViewDidSelectTabViewItem returns true; this is a placeholder for optional method checks.
+func (o *TabViewDelegateObject) HasTabViewDidSelectTabViewItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TabViewShouldSelectTabViewItem implements the PTabViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TabViewDelegateObject) TabViewShouldSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tabView:shouldSelectTabViewItem:"), tabView, tabViewItem)
+}
+
+// HasTabViewShouldSelectTabViewItem returns true; this is a placeholder for optional method checks.
+func (o *TabViewDelegateObject) HasTabViewShouldSelectTabViewItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TabViewWillSelectTabViewItem implements the PTabViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TabViewDelegateObject) TabViewWillSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tabView:willSelectTabViewItem:"), tabView, tabViewItem)
+}
+
+// HasTabViewWillSelectTabViewItem returns true; this is a placeholder for optional method checks.
+func (o *TabViewDelegateObject) HasTabViewWillSelectTabViewItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TabViewDidChangeNumberOfTabViewItems implements the PTabViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TabViewDelegateObject) TabViewDidChangeNumberOfTabViewItems(tabView ITabView) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tabViewDidChangeNumberOfTabViewItems:"), tabView)
+}
+
+// HasTabViewDidChangeNumberOfTabViewItems returns true; this is a placeholder for optional method checks.
+func (o *TabViewDelegateObject) HasTabViewDidChangeNumberOfTabViewItems() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

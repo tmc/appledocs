@@ -9,13 +9,6 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewTableView
 
-// ExampleNewTableViewWithFrame demonstrates how to create a TableView instance using NewTableViewWithFrame.
-func ExampleNewTableViewWithFrame() {
-	_ = appkit.NewTableViewWithFrame(
-		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
-	)
-	// Output:
-}
 // ExampleTableView_BeginUpdates demonstrates using BeginUpdates on a TableView instance.
 // Begins a group of updates for the table view.
 func ExampleTableView_BeginUpdates() {

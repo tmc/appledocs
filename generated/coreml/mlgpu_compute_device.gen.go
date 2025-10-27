@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLGPUComputeDevice */
 
 
-/* debug [class_header]: Header for MLGPUComputeDevice */
+
+
 // The class instance for the [GPUComputeDevice] class.
 var (
 	GPUComputeDeviceClass     _GPUComputeDeviceClass
@@ -30,31 +30,31 @@ func getGPUComputeDeviceClass() _GPUComputeDeviceClass {
 type _GPUComputeDeviceClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GPUComputeDevice */
+
+
 // An interface definition for the [GPUComputeDevice] class.
 type IGPUComputeDevice interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for GPUComputeDevice */
+
 	// properties:
 	MetalDevice() unsafe.Pointer
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GPUComputeDevice */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GPUComputeDevice */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GPUComputeDeviceClass) Alloc() GPUComputeDevice {
 	rv := objc.Send[GPUComputeDevice](objc.ID(gc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (g_ GPUComputeDevice) Autorelease() GPUComputeDevice {
 func NewGPUComputeDevice() GPUComputeDevice {
 	return getGPUComputeDeviceClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GPUComputeDevice */
+
+
 // An object that represents a GPU compute device.
 
 
@@ -106,30 +106,30 @@ type GPUComputeDevice struct {
 func GPUComputeDeviceFrom(ptr unsafe.Pointer) GPUComputeDevice {
 	return GPUComputeDevice{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GPUComputeDevice *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for GPUComputeDevice */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for GPUComputeDevice */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GPUComputeDevice */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for GPUComputeDevice */
+
+
+
+
+
+
+
+
+
 
 // The device that represents the underlying metal device.
 //
@@ -138,12 +138,12 @@ func GPUComputeDeviceFrom(ptr unsafe.Pointer) GPUComputeDevice {
 func (g_ GPUComputeDevice) MetalDevice() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("metalDevice"))
 	return rv
-}/* debug [instance_properties/getter]: metalDevice */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLGPUComputeDevice */
+
+
+
 
 
 

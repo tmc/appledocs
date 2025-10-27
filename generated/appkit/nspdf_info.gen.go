@@ -7,14 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSPDFInfo */
 
 
-/* debug [class_header]: Header for NSPDFInfo */
+
+
 // The class instance for the [PDFInfo] class.
 var (
 	PDFInfoClass     _PDFInfoClass
@@ -31,43 +31,43 @@ func getPDFInfoClass() _PDFInfoClass {
 type _PDFInfoClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PDFInfo */
+
+
 // An interface definition for the [PDFInfo] class.
 type IPDFInfo interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PDFInfo */
+
 	// properties:
 	Attributes() unsafe.Pointer
 	FileExtensionHidden() bool
 	SetFileExtensionHidden(value bool)
 	Orientation() PaperOrientation
 	SetOrientation(value PaperOrientation)
-	PaperSize() Size /* not a class type */
-	SetPaperSize(value Size /* not a class type */)
+	PaperSize() corefoundation.CGSize
+	SetPaperSize(value corefoundation.CGSize)
 	TagNames() []string
 	SetTagNames(value []string)
-	URL() objc.IObject /* cross-framework: NSURL */
-	SetURL(value objc.IObject /* cross-framework: NSURL */)
+	URL() foundation.foundation.INSURL
+	SetURL(value foundation.foundation.INSURL)
 	IsFileExtensionHidden() bool
 	SetIsFileExtensionHidden(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PDFInfo */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PDFInfo */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PDFInfoClass) Alloc() PDFInfo {
 	rv := objc.Send[PDFInfo](objc.ID(pc.class), objc.Sel("alloc"))
@@ -97,11 +97,11 @@ func (p_ PDFInfo) Autorelease() PDFInfo {
 func NewPDFInfo() PDFInfo {
 	return getPDFInfoClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PDFInfo */
+
+
 // An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size.
 //
 // Typically, a PDF panel—that is, a panel created by an object—displays the information supplied by an object when the user wants to export content as a PDF file. A PDF panel can also update a PDF info object with information it receives from the user.
@@ -121,30 +121,30 @@ type PDFInfo struct {
 func PDFInfoFrom(ptr unsafe.Pointer) PDFInfo {
 	return PDFInfo{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PDFInfo *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for PDFInfo */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PDFInfo */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PDFInfo */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for PDFInfo */
+
+
+
+
+
+
+
+
+
 
 // A dictionary of additional attributes that describe how to export content as a PDF file.
 //
@@ -153,7 +153,7 @@ func PDFInfoFrom(ptr unsafe.Pointer) PDFInfo {
 func (p_ PDFInfo) Attributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attributes"))
 	return rv
-}/* debug [instance_properties/getter]: attributes */
+}
 
 
 // A Boolean value that indicates whether the file extension should appear after the filename.
@@ -163,7 +163,7 @@ func (p_ PDFInfo) Attributes() unsafe.Pointer {
 func (p_ PDFInfo) FileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("fileExtensionHidden"))
 	return rv
-}/* debug [instance_properties/getter]: fileExtensionHidden */
+}
 
 
 // A Boolean value that indicates whether the file extension should appear after the filename.
@@ -172,7 +172,7 @@ func (p_ PDFInfo) FileExtensionHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
 func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileExtensionHidden:"), value)
-}/* debug [instance_properties/setter]: fileExtensionHidden */
+}
 
 
 // The paper orientation to use when exporting content as a PDF file.
@@ -182,7 +182,7 @@ func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
 func (p_ PDFInfo) Orientation() PaperOrientation {
 	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
 	return rv
-}/* debug [instance_properties/getter]: orientation */
+}
 
 
 // The paper orientation to use when exporting content as a PDF file.
@@ -191,26 +191,26 @@ func (p_ PDFInfo) Orientation() PaperOrientation {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
 func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
-}/* debug [instance_properties/setter]: orientation */
+}
 
 
 // The paper size to use when exporting content as a PDF file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/paperSize
-func (p_ PDFInfo) PaperSize() Size /* not a class type */ {
-	rv := objc.Send[Size](p_.ID, objc.Sel("paperSize"))
+func (p_ PDFInfo) PaperSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](p_.ID, objc.Sel("paperSize"))
 	return rv
-}/* debug [instance_properties/getter]: paperSize */
+}
 
 
 // The paper size to use when exporting content as a PDF file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/paperSize
-func (p_ PDFInfo) SetPaperSize(value Size /* not a class type */) {
+func (p_ PDFInfo) SetPaperSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperSize:"), value)
-}/* debug [instance_properties/setter]: paperSize */
+}
 
 
 // An array of tag names that should be applied to the PDF file after it’s created.
@@ -220,7 +220,7 @@ func (p_ PDFInfo) SetPaperSize(value Size /* not a class type */) {
 func (p_ PDFInfo) TagNames() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("tagNames"))
 	return rv
-}/* debug [instance_properties/getter]: tagNames */
+}
 
 
 // An array of tag names that should be applied to the PDF file after it’s created.
@@ -238,26 +238,26 @@ func (p_ PDFInfo) SetTagNames(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), nsArray)
-}/* debug [instance_properties/setter]: tagNames */
+}
 
 
 // The URL identifying the location at which the PDF file will be created.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/url
-func (p_ PDFInfo) URL() objc.IObject /* cross-framework: NSURL */ {
+func (p_ PDFInfo) URL() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("URL"))
 	return rv
-}/* debug [instance_properties/getter]: URL */
+}
 
 
 // The URL identifying the location at which the PDF file will be created.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/url
-func (p_ PDFInfo) SetURL(value objc.IObject /* cross-framework: NSURL */) {
+func (p_ PDFInfo) SetURL(value foundation.foundation.INSURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
-}/* debug [instance_properties/setter]: URL */
+}
 
 
 // A Boolean value that indicates whether the file extension should appear after the filename.
@@ -267,7 +267,7 @@ func (p_ PDFInfo) SetURL(value objc.IObject /* cross-framework: NSURL */) {
 func (p_ PDFInfo) IsFileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFileExtensionHidden"))
 	return rv
-}/* debug [instance_properties/getter]: isFileExtensionHidden */
+}
 
 
 // A Boolean value that indicates whether the file extension should appear after the filename.
@@ -276,12 +276,12 @@ func (p_ PDFInfo) IsFileExtensionHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
 func (p_ PDFInfo) SetIsFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFileExtensionHidden:"), value)
-}/* debug [instance_properties/setter]: isFileExtensionHidden */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSPDFInfo */
+
+
+
 
 
 

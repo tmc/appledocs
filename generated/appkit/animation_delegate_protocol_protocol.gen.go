@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PAnimationDelegate is the NSAnimationDelegate protocol interface.
@@ -17,9 +19,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAnimationDelegate
 type PAnimationDelegate interface {
 	// Optional methods
-	AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress /* typedef */)
+	AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress)
 	HasAnimationDidReachProgressMark() bool
-	AnimationValueForProgress(animation IAnimation, progress AnimationProgress /* typedef */) float32
+	AnimationValueForProgress(animation IAnimation, progress AnimationProgress) float32
 	HasAnimationValueForProgress() bool
 	AnimationDidEnd(animation IAnimation)
 	HasAnimationDidEnd() bool
@@ -33,8 +35,8 @@ type PAnimationDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type AnimationDelegate struct {
-	_AnimationDidReachProgressMark func(animation IAnimation, progress AnimationProgress /* typedef */)
-	_AnimationValueForProgress func(animation IAnimation, progress AnimationProgress /* typedef */) float32
+	_AnimationDidReachProgressMark func(animation IAnimation, progress AnimationProgress)
+	_AnimationValueForProgress func(animation IAnimation, progress AnimationProgress) float32
 	_AnimationDidEnd func(animation IAnimation)
 	_AnimationDidStop func(animation IAnimation)
 	_AnimationShouldStart func(animation IAnimation) bool
@@ -43,14 +45,14 @@ type AnimationDelegate struct {
 // SetAnimationDidReachProgressMark sets the handler for the AnimationDidReachProgressMark delegate method.
 //
 // Sent to the delegate when an animation reaches a specific progress mark.
-func (d *AnimationDelegate) SetAnimationDidReachProgressMark(f func(animation IAnimation, progress AnimationProgress /* typedef */)) {
+func (d *AnimationDelegate) SetAnimationDidReachProgressMark(f func(animation IAnimation, progress AnimationProgress)) {
 	d._AnimationDidReachProgressMark = f
 }
 
 // SetAnimationValueForProgress sets the handler for the AnimationValueForProgress delegate method.
 //
 // Requests a custom curve value for the current progress value.
-func (d *AnimationDelegate) SetAnimationValueForProgress(f func(animation IAnimation, progress AnimationProgress /* typedef */) float32) {
+func (d *AnimationDelegate) SetAnimationValueForProgress(f func(animation IAnimation, progress AnimationProgress) float32) {
 	d._AnimationValueForProgress = f
 }
 
@@ -76,7 +78,7 @@ func (d *AnimationDelegate) SetAnimationShouldStart(f func(animation IAnimation)
 }
 
 // AnimationDidReachProgressMark implements the PAnimationDelegate interface.
-func (d *AnimationDelegate) AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress /* typedef */) {
+func (d *AnimationDelegate) AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress) {
 	if d._AnimationDidReachProgressMark != nil {
 		d._AnimationDidReachProgressMark(animation, progress)
 	}
@@ -88,7 +90,7 @@ func (d *AnimationDelegate) HasAnimationDidReachProgressMark() bool {
 }
 
 // AnimationValueForProgress implements the PAnimationDelegate interface.
-func (d *AnimationDelegate) AnimationValueForProgress(animation IAnimation, progress AnimationProgress /* typedef */) float32 {
+func (d *AnimationDelegate) AnimationValueForProgress(animation IAnimation, progress AnimationProgress) float32 {
 	if d._AnimationValueForProgress != nil {
 		return d._AnimationValueForProgress(animation, progress)
 	}
@@ -137,4 +139,75 @@ func (d *AnimationDelegate) AnimationShouldStart(animation IAnimation) bool {
 // HasAnimationShouldStart returns true if a handler for AnimationShouldStart has been set.
 func (d *AnimationDelegate) HasAnimationShouldStart() bool {
 	return d._AnimationShouldStart != nil
+}
+
+// AnimationDelegateObject wraps an existing Objective-C object that conforms to the PAnimationDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type AnimationDelegateObject struct {
+	objectivec.Object
+}
+
+// NewAnimationDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSAnimationDelegate protocol.
+func NewAnimationDelegateObject(obj objectivec.Object) *AnimationDelegateObject {
+	return &AnimationDelegateObject{obj}
+}
+
+// Make sure AnimationDelegateObject implements PAnimationDelegate.
+var _ PAnimationDelegate = (*AnimationDelegateObject)(nil)
+
+// AnimationDidReachProgressMark implements the PAnimationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *AnimationDelegateObject) AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress) {
+	objc.Send[objc.ID](o.ID, objc.Sel("animation:didReachProgressMark:"), animation, progress)
+}
+
+// HasAnimationDidReachProgressMark returns true; this is a placeholder for optional method checks.
+func (o *AnimationDelegateObject) HasAnimationDidReachProgressMark() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// AnimationValueForProgress implements the PAnimationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *AnimationDelegateObject) AnimationValueForProgress(animation IAnimation, progress AnimationProgress) float32 {
+	return objc.Send[float32](o.ID, objc.Sel("animation:valueForProgress:"), animation, progress)
+}
+
+// HasAnimationValueForProgress returns true; this is a placeholder for optional method checks.
+func (o *AnimationDelegateObject) HasAnimationValueForProgress() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// AnimationDidEnd implements the PAnimationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *AnimationDelegateObject) AnimationDidEnd(animation IAnimation) {
+	objc.Send[objc.ID](o.ID, objc.Sel("animationDidEnd:"), animation)
+}
+
+// HasAnimationDidEnd returns true; this is a placeholder for optional method checks.
+func (o *AnimationDelegateObject) HasAnimationDidEnd() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// AnimationDidStop implements the PAnimationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *AnimationDelegateObject) AnimationDidStop(animation IAnimation) {
+	objc.Send[objc.ID](o.ID, objc.Sel("animationDidStop:"), animation)
+}
+
+// HasAnimationDidStop returns true; this is a placeholder for optional method checks.
+func (o *AnimationDelegateObject) HasAnimationDidStop() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// AnimationShouldStart implements the PAnimationDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *AnimationDelegateObject) AnimationShouldStart(animation IAnimation) bool {
+	return objc.Send[bool](o.ID, objc.Sel("animationShouldStart:"), animation)
+}
+
+// HasAnimationShouldStart returns true; this is a placeholder for optional method checks.
+func (o *AnimationDelegateObject) HasAnimationShouldStart() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVMutableComposition */
 
 
-/* debug [class_header]: Header for AVMutableComposition */
+
+
 // The class instance for the [MutableComposition] class.
 var (
 	MutableCompositionClass     _MutableCompositionClass
@@ -31,46 +31,46 @@ func getMutableCompositionClass() _MutableCompositionClass {
 type _MutableCompositionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MutableComposition */
+
+
 // An interface definition for the [MutableComposition] class.
 type IMutableComposition interface {
 	IComposition
 	
-/* debug [class_interface_properties]: Properties for MutableComposition */
+
 	// properties:
 	NaturalSize() corefoundation.CGSize
 	SetNaturalSize(value corefoundation.CGSize)
 	Tracks() []MutableCompositionTrack
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MutableComposition */
+
 	// methods:
-	AddTracksForCinematicAssetInfoPreferredStartingTrackID(assetInfo objc.IObject, preferredStartingTrackID PersistentTrackID /* not a class type */) objc.IObject
-	AddMutableTrackWithMediaTypePreferredTrackID(mediaType MediaType /* typedef */, preferredTrackID PersistentTrackID /* not a class type */) IMutableCompositionTrack
-	InsertEmptyTimeRange(timeRange TimeRange /* not a class type */)
+	AddTracksForCinematicAssetInfoPreferredStartingTrackID(assetInfo objectivec.IObject, preferredStartingTrackID PersistentTrackID /* not a class type */) objectivec.IObject
+	AddMutableTrackWithMediaTypePreferredTrackID(mediaType MediaType, preferredTrackID PersistentTrackID /* not a class type */) IMutableCompositionTrack
+	InsertEmptyTimeRange(timeRange objectivec.IObject)
 	LoadTrackWithTrackIDCompletionHandler(trackID PersistentTrackID /* not a class type */, completionHandler unsafe.Pointer)
-	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic /* typedef */, completionHandler unsafe.Pointer)
-	LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType /* typedef */, completionHandler unsafe.Pointer)
+	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic, completionHandler unsafe.Pointer)
+	LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer)
 	MutableTrackCompatibleWithTrack(track IAVAssetTrack) IMutableCompositionTrack
-	RemoveTimeRange(timeRange TimeRange /* not a class type */)
+	RemoveTimeRange(timeRange objectivec.IObject)
 	RemoveTrack(track IAVCompositionTrack)
-	ScaleTimeRangeToDuration(timeRange TimeRange /* not a class type */, duration objc.IObject /* cross-framework: Time */)
+	ScaleTimeRangeToDuration(timeRange objectivec.IObject, duration objectivec.IObject)
 	TrackWithTrackID(trackID PersistentTrackID /* not a class type */) IMutableCompositionTrack
-	TracksWithMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* typedef */) []MutableCompositionTrack
-	TracksWithMediaType(mediaType MediaType /* typedef */) []MutableCompositionTrack
-/* debug [class_interface_methods]: End methods */
+	TracksWithMediaCharacteristic(mediaCharacteristic MediaCharacteristic) []MutableCompositionTrack
+	TracksWithMediaType(mediaType MediaType) []MutableCompositionTrack
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MutableComposition */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableCompositionClass) Alloc() MutableComposition {
 	rv := objc.Send[MutableComposition](objc.ID(mc.class), objc.Sel("alloc"))
@@ -100,11 +100,11 @@ func (m_ MutableComposition) Autorelease() MutableComposition {
 func NewMutableComposition() MutableComposition {
 	return getMutableCompositionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MutableComposition */
+
+
 // An object that you use to create a new composition from existing assets.
 //
 // Use this object to add and remove composition tracks, and add, remove, and scale their time ranges. You can make an immutable snapshot of a mutable composition for playback and inspection as follows:
@@ -126,11 +126,11 @@ func MutableCompositionFrom(ptr unsafe.Pointer) MutableComposition {
 		Composition: CompositionFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MutableComposition */
+
+
 
 // Creates a mutable composition that uses the specified initialization options.
 //
@@ -139,13 +139,13 @@ func MutableCompositionFrom(ptr unsafe.Pointer) MutableComposition {
 func NewMutableCompositionWithURLAssetInitializationOptions(URLAssetInitializationOptions foundation.IDictionary) MutableComposition {
 	rv := objc.Send[MutableComposition](objc.ID(getMutableCompositionClass().class), objc.Sel("compositionWithURLAssetInitializationOptions:"), URLAssetInitializationOptions)
 	return rv
-}/* debug [class_init_methods/constructor]: NewMutableCompositionWithURLAssetInitializationOptions */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for MutableComposition */
+
+
+
 
 // Returns a new mutable composition.
 //
@@ -154,7 +154,7 @@ func NewMutableCompositionWithURLAssetInitializationOptions(URLAssetInitializati
 func (mc _MutableCompositionClass) Composition() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(mc.class), objc.Sel("composition"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Composition) */
+}
 
 
 // Creates a mutable composition that uses the specified initialization options.
@@ -164,46 +164,46 @@ func (mc _MutableCompositionClass) Composition() objectivec.IObject {
 func (mc _MutableCompositionClass) CompositionWithURLAssetInitializationOptions(URLAssetInitializationOptions foundation.IDictionary) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(mc.class), objc.Sel("compositionWithURLAssetInitializationOptions:"), URLAssetInitializationOptions)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CompositionWithURLAssetInitializationOptions) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for MutableComposition */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MutableComposition */
+
+
+
+
+
 
 // Adds a group of empty tracks associated with a cinematic asset to a mutable composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/addTracksForCinematicAssetInfo:preferredStartingTrackID:
-func (m_ MutableComposition) AddTracksForCinematicAssetInfoPreferredStartingTrackID(assetInfo objc.IObject, preferredStartingTrackID PersistentTrackID /* not a class type */) objc.IObject {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("addTracksForCinematicAssetInfo:preferredStartingTrackID:"), assetInfo, preferredStartingTrackID)
+func (m_ MutableComposition) AddTracksForCinematicAssetInfoPreferredStartingTrackID(assetInfo objectivec.IObject, preferredStartingTrackID PersistentTrackID /* not a class type */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("addTracksForCinematicAssetInfo:preferredStartingTrackID:"), assetInfo, preferredStartingTrackID)
 	return rv
-}/* debug [instance_methods/method]: AddTracksForCinematicAssetInfoPreferredStartingTrackID */
+}
 
 
 // Adds an empty track to a composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/addMutableTrack(withMediaType:preferredTrackID:)
-func (m_ MutableComposition) AddMutableTrackWithMediaTypePreferredTrackID(mediaType MediaType /* typedef */, preferredTrackID PersistentTrackID /* not a class type */) IMutableCompositionTrack {
+func (m_ MutableComposition) AddMutableTrackWithMediaTypePreferredTrackID(mediaType MediaType, preferredTrackID PersistentTrackID /* not a class type */) IMutableCompositionTrack {
 	rv := objc.Send[MutableCompositionTrack](m_.ID, objc.Sel("addMutableTrackWithMediaType:preferredTrackID:"), mediaType, preferredTrackID)
 	return rv
-}/* debug [instance_methods/method]: AddMutableTrackWithMediaTypePreferredTrackID */
+}
 
 
 // Adds or extends an empty time range within all tracks of the composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/insertEmptyTimeRange(_:)
-func (m_ MutableComposition) InsertEmptyTimeRange(timeRange TimeRange /* not a class type */) {
+func (m_ MutableComposition) InsertEmptyTimeRange(timeRange objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertEmptyTimeRange:"), timeRange)
-}/* debug [instance_methods/method]: InsertEmptyTimeRange */
+}
 
 
 // Loads a track that contains the specified identifier.
@@ -212,25 +212,25 @@ func (m_ MutableComposition) InsertEmptyTimeRange(timeRange TimeRange /* not a c
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/loadTrack(withTrackID:completionHandler:)
 func (m_ MutableComposition) LoadTrackWithTrackIDCompletionHandler(trackID PersistentTrackID /* not a class type */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("loadTrackWithTrackID:completionHandler:"), trackID, completionHandler)
-}/* debug [instance_methods/method]: LoadTrackWithTrackIDCompletionHandler */
+}
 
 
 // Loads tracks that contain media of a specified characteristic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaCharacteristic:completionHandler:)
-func (m_ MutableComposition) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic /* typedef */, completionHandler unsafe.Pointer) {
+func (m_ MutableComposition) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("loadTracksWithMediaCharacteristic:completionHandler:"), mediaCharacteristic, completionHandler)
-}/* debug [instance_methods/method]: LoadTracksWithMediaCharacteristicCompletionHandler */
+}
 
 
 // Loads tracks that contain media of a specified type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaType:completionHandler:)
-func (m_ MutableComposition) LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType /* typedef */, completionHandler unsafe.Pointer) {
+func (m_ MutableComposition) LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("loadTracksWithMediaType:completionHandler:"), mediaType, completionHandler)
-}/* debug [instance_methods/method]: LoadTracksWithMediaTypeCompletionHandler */
+}
 
 
 // Returns a composition track into which you can insert any time range of the specified asset track.
@@ -240,16 +240,16 @@ func (m_ MutableComposition) LoadTracksWithMediaTypeCompletionHandler(mediaType 
 func (m_ MutableComposition) MutableTrackCompatibleWithTrack(track IAVAssetTrack) IMutableCompositionTrack {
 	rv := objc.Send[MutableCompositionTrack](m_.ID, objc.Sel("mutableTrackCompatibleWithTrack:"), track)
 	return rv
-}/* debug [instance_methods/method]: MutableTrackCompatibleWithTrack */
+}
 
 
 // Removes a specified time range from all tracks of the composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/removeTimeRange(_:)
-func (m_ MutableComposition) RemoveTimeRange(timeRange TimeRange /* not a class type */) {
+func (m_ MutableComposition) RemoveTimeRange(timeRange objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeTimeRange:"), timeRange)
-}/* debug [instance_methods/method]: RemoveTimeRange */
+}
 
 
 // Removes a specified track from the composition.
@@ -258,16 +258,16 @@ func (m_ MutableComposition) RemoveTimeRange(timeRange TimeRange /* not a class 
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/removeTrack(_:)
 func (m_ MutableComposition) RemoveTrack(track IAVCompositionTrack) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeTrack:"), track)
-}/* debug [instance_methods/method]: RemoveTrack */
+}
 
 
 // Changes the duration of all tracks in a given time range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/scaleTimeRange(_:toDuration:)
-func (m_ MutableComposition) ScaleTimeRangeToDuration(timeRange TimeRange /* not a class type */, duration objc.IObject /* cross-framework: Time */) {
+func (m_ MutableComposition) ScaleTimeRangeToDuration(timeRange objectivec.IObject, duration objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("scaleTimeRange:toDuration:"), timeRange, duration)
-}/* debug [instance_methods/method]: ScaleTimeRangeToDuration */
+}
 
 
 // Returns a track that contains the specified identifier.
@@ -277,33 +277,33 @@ func (m_ MutableComposition) ScaleTimeRangeToDuration(timeRange TimeRange /* not
 func (m_ MutableComposition) TrackWithTrackID(trackID PersistentTrackID /* not a class type */) IMutableCompositionTrack {
 	rv := objc.Send[MutableCompositionTrack](m_.ID, objc.Sel("trackWithTrackID:"), trackID)
 	return rv
-}/* debug [instance_methods/method]: TrackWithTrackID */
+}
 
 
 // Returns tracks that contain media of a specified characteristic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/tracks(withMediaCharacteristic:)
-func (m_ MutableComposition) TracksWithMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* typedef */) []MutableCompositionTrack {
+func (m_ MutableComposition) TracksWithMediaCharacteristic(mediaCharacteristic MediaCharacteristic) []MutableCompositionTrack {
 	rv := objc.Send[[]MutableCompositionTrack](m_.ID, objc.Sel("tracksWithMediaCharacteristic:"), mediaCharacteristic)
 	return rv
-}/* debug [instance_methods/method]: TracksWithMediaCharacteristic */
+}
 
 
 // Returns tracks that contain media of a specified type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/tracks(withMediaType:)
-func (m_ MutableComposition) TracksWithMediaType(mediaType MediaType /* typedef */) []MutableCompositionTrack {
+func (m_ MutableComposition) TracksWithMediaType(mediaType MediaType) []MutableCompositionTrack {
 	rv := objc.Send[[]MutableCompositionTrack](m_.ID, objc.Sel("tracksWithMediaType:"), mediaType)
 	return rv
-}/* debug [instance_methods/method]: TracksWithMediaType */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for MutableComposition */
+
+
+
 
 // The encoded or authored size of the visual portion of the asset.
 //
@@ -312,7 +312,7 @@ func (m_ MutableComposition) TracksWithMediaType(mediaType MediaType /* typedef 
 func (m_ MutableComposition) NaturalSize() corefoundation.CGSize {
 	rv := objc.Send[corefoundation.CGSize](m_.ID, objc.Sel("naturalSize"))
 	return rv
-}/* debug [instance_properties/getter]: naturalSize */
+}
 
 
 // The encoded or authored size of the visual portion of the asset.
@@ -321,7 +321,7 @@ func (m_ MutableComposition) NaturalSize() corefoundation.CGSize {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/naturalSize
 func (m_ MutableComposition) SetNaturalSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
-}/* debug [instance_properties/setter]: naturalSize */
+}
 
 
 // The tracks that a composition contains.
@@ -331,11 +331,11 @@ func (m_ MutableComposition) SetNaturalSize(value corefoundation.CGSize) {
 func (m_ MutableComposition) Tracks() []MutableCompositionTrack {
 	rv := objc.Send[[]MutableCompositionTrack](m_.ID, objc.Sel("tracks"))
 	return rv
-}/* debug [instance_properties/getter]: tracks */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMutableComposition */
+
+
+
 
 

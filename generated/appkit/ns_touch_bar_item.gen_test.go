@@ -13,7 +13,7 @@ var _ = appkit.NewTouchBarItem
 // Creates a new item with the specified identifier.
 func ExampleNewTouchBarItemWithIdentifier() {
 	_ = appkit.NewTouchBarItemWithIdentifier(
-		appkit.TouchBarItemIdentifier /* typedef */{}, // identifier TouchBarItemIdentifier /* typedef */
+		appkit.TouchBarItemIdentifier{}, // identifier TouchBarItemIdentifier
 	)
 	// Output:
 }

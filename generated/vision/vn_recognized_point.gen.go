@@ -40,7 +40,7 @@ type IRecognizedPoint interface {
 	
 
 	// properties:
-	Identifier() RecognizedPointKey /* typedef */
+	Identifier() RecognizedPointKey
 
 
 	
@@ -136,8 +136,8 @@ func RecognizedPointFrom(ptr unsafe.Pointer) RecognizedPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint/identifier
-func (r_ RecognizedPoint) Identifier() RecognizedPointKey /* typedef */ {
-	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("identifier"))
+func (r_ RecognizedPoint) Identifier() RecognizedPointKey {
+	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 

@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class MTL4LibraryFunctionDescriptor */
 
 
-/* debug [class_header]: Header for MTL4LibraryFunctionDescriptor */
+
+
 // The class instance for the [MTL4LibraryFunctionDescriptor] class.
 var (
 	MTL4LibraryFunctionDescriptorClass     _MTL4LibraryFunctionDescriptorClass
@@ -30,34 +29,34 @@ func getMTL4LibraryFunctionDescriptorClass() _MTL4LibraryFunctionDescriptorClass
 type _MTL4LibraryFunctionDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MTL4LibraryFunctionDescriptor */
+
+
 // An interface definition for the [MTL4LibraryFunctionDescriptor] class.
 type IMTL4LibraryFunctionDescriptor interface {
 	IMTL4FunctionDescriptor
 	
-/* debug [class_interface_properties]: Properties for MTL4LibraryFunctionDescriptor */
+
 	// properties:
 	Library() unsafe.Pointer
 	SetLibrary(value unsafe.Pointer)
-	Name() objc.IObject /* cross-framework: NSString */
-	SetName(value objc.IObject /* cross-framework: NSString */)
-/* debug [class_interface_properties]: End properties */
+	Name() foundation.foundation.INSString
+	SetName(value foundation.foundation.INSString)
+
 
 	
-/* debug [class_interface_methods]: Methods for MTL4LibraryFunctionDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MTL4LibraryFunctionDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4LibraryFunctionDescriptorClass) Alloc() MTL4LibraryFunctionDescriptor {
 	rv := objc.Send[MTL4LibraryFunctionDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (m_ MTL4LibraryFunctionDescriptor) Autorelease() MTL4LibraryFunctionDescrip
 func NewMTL4LibraryFunctionDescriptor() MTL4LibraryFunctionDescriptor {
 	return getMTL4LibraryFunctionDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MTL4LibraryFunctionDescriptor */
+
+
 // Describes a shader function from a Metal library.
 
 
@@ -111,30 +110,30 @@ func MTL4LibraryFunctionDescriptorFrom(ptr unsafe.Pointer) MTL4LibraryFunctionDe
 		MTL4FunctionDescriptor: MTL4FunctionDescriptorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MTL4LibraryFunctionDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MTL4LibraryFunctionDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MTL4LibraryFunctionDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MTL4LibraryFunctionDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MTL4LibraryFunctionDescriptor */
+
+
+
+
+
+
+
+
+
 
 // Returns a reference to the library containing the function.
 //
@@ -143,7 +142,7 @@ func MTL4LibraryFunctionDescriptorFrom(ptr unsafe.Pointer) MTL4LibraryFunctionDe
 func (m_ MTL4LibraryFunctionDescriptor) Library() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("library"))
 	return rv
-}/* debug [instance_properties/getter]: library */
+}
 
 
 // Returns a reference to the library containing the function.
@@ -152,31 +151,31 @@ func (m_ MTL4LibraryFunctionDescriptor) Library() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4LibraryFunctionDescriptor/library
 func (m_ MTL4LibraryFunctionDescriptor) SetLibrary(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLibrary:"), value)
-}/* debug [instance_properties/setter]: library */
+}
 
 
 // Assigns a name to the function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4LibraryFunctionDescriptor/name
-func (m_ MTL4LibraryFunctionDescriptor) Name() objc.IObject /* cross-framework: NSString */ {
+func (m_ MTL4LibraryFunctionDescriptor) Name() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
+}
 
 
 // Assigns a name to the function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4LibraryFunctionDescriptor/name
-func (m_ MTL4LibraryFunctionDescriptor) SetName(value objc.IObject /* cross-framework: NSString */) {
+func (m_ MTL4LibraryFunctionDescriptor) SetName(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
-}/* debug [instance_properties/setter]: name */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTL4LibraryFunctionDescriptor */
+
+
+
 
 
 

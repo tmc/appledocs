@@ -30,7 +30,7 @@ func ExampleNewImageSymbolConfigurationWithPaletteColors() {
 func ExampleNewImageSymbolConfigurationWithPointSizeWeight() {
 	_ = appkit.NewImageSymbolConfigurationWithPointSizeWeight(
 		0.0, // pointSize float64
-		appkit.FontWeight /* typedef */{}, // weight FontWeight /* typedef */
+		appkit.FontWeight{}, // weight FontWeight
 	)
 	// Output:
 }
@@ -39,7 +39,7 @@ func ExampleNewImageSymbolConfigurationWithPointSizeWeight() {
 func ExampleNewImageSymbolConfigurationWithPointSizeWeightScale() {
 	_ = appkit.NewImageSymbolConfigurationWithPointSizeWeightScale(
 		0.0, // pointSize float64
-		appkit.FontWeight /* typedef */{}, // weight FontWeight /* typedef */
+		appkit.FontWeight{}, // weight FontWeight
 		appkit.ImageSymbolScale{}, // scale ImageSymbolScale
 	)
 	// Output:
@@ -56,7 +56,7 @@ func ExampleNewImageSymbolConfigurationWithScale() {
 // Creates a symbol configuration with the specified text style.
 func ExampleNewImageSymbolConfigurationWithTextStyle() {
 	_ = appkit.NewImageSymbolConfigurationWithTextStyle(
-		appkit.FontTextStyle /* typedef */{}, // style FontTextStyle /* typedef */
+		appkit.FontTextStyle{}, // style FontTextStyle
 	)
 	// Output:
 }
@@ -64,7 +64,7 @@ func ExampleNewImageSymbolConfigurationWithTextStyle() {
 // Creates a symbol configuration with the specified text style and symbol scale.
 func ExampleNewImageSymbolConfigurationWithTextStyleScale() {
 	_ = appkit.NewImageSymbolConfigurationWithTextStyleScale(
-		appkit.FontTextStyle /* typedef */{}, // style FontTextStyle /* typedef */
+		appkit.FontTextStyle{}, // style FontTextStyle
 		appkit.ImageSymbolScale{}, // scale ImageSymbolScale
 	)
 	// Output:

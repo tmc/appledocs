@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLSequence */
 
 
-/* debug [class_header]: Header for MLSequence */
+
+
 // The class instance for the [Sequence] class.
 var (
 	SequenceClass     _SequenceClass
@@ -30,33 +30,33 @@ func getSequenceClass() _SequenceClass {
 type _SequenceClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Sequence */
+
+
 // An interface definition for the [Sequence] class.
 type ISequence interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Sequence */
+
 	// properties:
 	Int64Values() []foundation.Number
 	StringValues() []string
 	Type() FeatureType
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Sequence */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Sequence */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SequenceClass) Alloc() Sequence {
 	rv := objc.Send[Sequence](objc.ID(sc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (s_ Sequence) Autorelease() Sequence {
 func NewSequence() Sequence {
 	return getSequenceClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Sequence */
+
+
 // A machine learning collection type that stores a series of strings or integers.
 //
 // A sequence stores a series of integers or strings of any length as the underlying type of an . Some classifier models — typically natural language models, such as an — produce an feature value from their output features.
@@ -110,11 +110,11 @@ type Sequence struct {
 func SequenceFrom(ptr unsafe.Pointer) Sequence {
 	return Sequence{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Sequence */
+
+
 
 // Creates an empty sequence of strings or integers.
 //
@@ -123,7 +123,7 @@ func SequenceFrom(ptr unsafe.Pointer) Sequence {
 func NewSequenceEmptySequenceWithType(type_ FeatureType) Sequence {
 	rv := objc.Send[Sequence](objc.ID(getSequenceClass().class), objc.Sel("emptySequenceWithType:"), type_)
 	return rv
-}/* debug [class_init_methods/constructor]: NewSequenceEmptySequenceWithType */
+}
 
 
 // Creates a sequence of integers from an array of numbers.
@@ -133,7 +133,7 @@ func NewSequenceEmptySequenceWithType(type_ FeatureType) Sequence {
 func NewSequenceWithInt64Array(int64Values []foundation.Number) Sequence {
 	rv := objc.Send[Sequence](objc.ID(getSequenceClass().class), objc.Sel("sequenceWithInt64Array:"), int64Values)
 	return rv
-}/* debug [class_init_methods/constructor]: NewSequenceWithInt64Array */
+}
 
 
 // Creates a sequence of strings from a string array.
@@ -143,13 +143,13 @@ func NewSequenceWithInt64Array(int64Values []foundation.Number) Sequence {
 func NewSequenceWithStringArray(stringValues []string) Sequence {
 	rv := objc.Send[Sequence](objc.ID(getSequenceClass().class), objc.Sel("sequenceWithStringArray:"), stringValues)
 	return rv
-}/* debug [class_init_methods/constructor]: NewSequenceWithStringArray */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Sequence */
+
+
+
 
 // Creates an empty sequence of strings or integers.
 //
@@ -158,7 +158,7 @@ func NewSequenceWithStringArray(stringValues []string) Sequence {
 func (sc _SequenceClass) EmptySequenceWithType(type_ FeatureType) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("emptySequenceWithType:"), type_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EmptySequenceWithType) */
+}
 
 
 // Creates a sequence of integers from an array of numbers.
@@ -168,7 +168,7 @@ func (sc _SequenceClass) EmptySequenceWithType(type_ FeatureType) objectivec.IOb
 func (sc _SequenceClass) SequenceWithInt64Array(int64Values []foundation.Number) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("sequenceWithInt64Array:"), int64Values)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SequenceWithInt64Array) */
+}
 
 
 // Creates a sequence of strings from a string array.
@@ -178,23 +178,23 @@ func (sc _SequenceClass) SequenceWithInt64Array(int64Values []foundation.Number)
 func (sc _SequenceClass) SequenceWithStringArray(stringValues []string) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("sequenceWithStringArray:"), stringValues)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SequenceWithStringArray) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Sequence */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Sequence */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for Sequence */
+
+
+
+
+
+
+
 
 // An array of 64-bit integers in the sequence.
 //
@@ -203,7 +203,7 @@ func (sc _SequenceClass) SequenceWithStringArray(stringValues []string) objectiv
 func (s_ Sequence) Int64Values() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("int64Values"))
 	return rv
-}/* debug [instance_properties/getter]: int64Values */
+}
 
 
 // An array of strings in the sequence.
@@ -213,7 +213,7 @@ func (s_ Sequence) Int64Values() []foundation.Number {
 func (s_ Sequence) StringValues() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("stringValues"))
 	return rv
-}/* debug [instance_properties/getter]: stringValues */
+}
 
 
 // The underlying type of the sequence’s elements.
@@ -223,11 +223,11 @@ func (s_ Sequence) StringValues() []string {
 func (s_ Sequence) Type() FeatureType {
 	rv := objc.Send[FeatureType](s_.ID, objc.Sel("type"))
 	return rv
-}/* debug [instance_properties/getter]: type */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLSequence */
+
+
+
 
 

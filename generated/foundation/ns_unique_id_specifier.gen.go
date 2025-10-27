@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSUniqueIDSpecifier */
 
 
-/* debug [class_header]: Header for NSUniqueIDSpecifier */
+
+
 // The class instance for the [UniqueIDSpecifier] class.
 var (
 	UniqueIDSpecifierClass     _UniqueIDSpecifierClass
@@ -30,30 +30,30 @@ func getUniqueIDSpecifierClass() _UniqueIDSpecifierClass {
 type _UniqueIDSpecifierClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for UniqueIDSpecifier */
+
+
 // An interface definition for the [UniqueIDSpecifier] class.
 type IUniqueIDSpecifier interface {
 	IScriptObjectSpecifier
 	
-/* debug [class_interface_properties]: Properties for UniqueIDSpecifier */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for UniqueIDSpecifier */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for UniqueIDSpecifier */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UniqueIDSpecifierClass) Alloc() UniqueIDSpecifier {
 	rv := objc.Send[UniqueIDSpecifier](objc.ID(uc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (u_ UniqueIDSpecifier) Autorelease() UniqueIDSpecifier {
 func NewUniqueIDSpecifier() UniqueIDSpecifier {
 	return getUniqueIDSpecifierClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for UniqueIDSpecifier */
+
+
 // A specifier for an object in a collection (or container) by unique ID.
 //
 // This specifier works only for objects that have an ID property. The unique ID object passed to an instance of must be either an object or an object. The exact type should match the scripting dictionary declaration of the ID attribute for the relevant scripting class. You can expect that the ID property will be for any object that supports it. Therefore a scripter can obtain the unique ID for an object and refer to the object by the ID, but cannot set the unique ID. You don’t normally subclass . The evaluation of objects follows these steps until the specified object is found: If the container implements a method whose selector matches the relevant pattern established by scripting key-value coding, the method is invoked. This method can potentially be very fast, and it may be relatively easy to implement. As is the case when evaluating any script object specifier, the container of the specified object is given a chance to evaluate the object specifier. If the container class implements the method, the method is invoked. This method can potentially be very fast, but it is relatively difficult to implement. An object that specifies the first object whose relevant attribute matches the ID is synthesized and evaluated. The object must search through all of the keyed elements in the container, looking for a match. The search is potentially very slow.
@@ -109,46 +109,46 @@ func UniqueIDSpecifierFrom(ptr unsafe.Pointer) UniqueIDSpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for UniqueIDSpecifier */
+
+
 
 // Returns an object, initialized with the given arguments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(containerClassDescription:containerSpecifier:key:uniqueID:)
-func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString, uniqueID objc.IObject) UniqueIDSpecifier {
+func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString, uniqueID objectivec.IObject) UniqueIDSpecifier {
 	instance := getUniqueIDSpecifierClass().Alloc()
 	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:uniqueID:"), classDesc, container, property, uniqueID)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for UniqueIDSpecifier */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for UniqueIDSpecifier */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for UniqueIDSpecifier */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for UniqueIDSpecifier */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NSUniqueIDSpecifier */
+
+
+
+
+
+
+
+
+
+
+
 
 

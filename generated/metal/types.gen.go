@@ -3,7 +3,7 @@
 package metal
 import (
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 
@@ -15,7 +15,7 @@ import (
 type MTL4BufferRange struct {
 	BufferAddress GPUAddress
 	Length uint64
-}/* debug [types.gen.go/struct]: MTL4BufferRange */
+}
 
 // MTL4CopySparseBufferMappingOperation - Groups together arguments for an operation to copy a sparse buffer mapping.
 //
@@ -23,8 +23,8 @@ type MTL4BufferRange struct {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4CopySparseBufferMappingOperation
 type MTL4CopySparseBufferMappingOperation struct {
 	DestinationOffset uint // The origin in the destination buffer, in tiles.
-	SourceRange corefoundation.Range // The range in the source buffer, in tiles.
-}/* debug [types.gen.go/struct]: MTL4CopySparseBufferMappingOperation */
+	SourceRange foundation.Range // The range in the source buffer, in tiles.
+}
 
 // MTL4CopySparseTextureMappingOperation - Groups together arguments for an operation to copy a sparse texture mapping.
 //
@@ -37,7 +37,7 @@ type MTL4CopySparseTextureMappingOperation struct {
 	SourceLevel uint // The index of the mipmap level in the source texture.
 	SourceRegion Region // The region in the source texture, in tiles.
 	SourceSlice uint // The index of the array slice in the texture source of the copy operation.
-}/* debug [types.gen.go/struct]: MTL4CopySparseTextureMappingOperation */
+}
 
 // MTL4TimestampHeapEntry - Represents a timestamp data entry in a counter heap of type 
 //
@@ -45,17 +45,17 @@ type MTL4CopySparseTextureMappingOperation struct {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TimestampHeapEntry
 type MTL4TimestampHeapEntry struct {
 	Timestamp uint64
-}/* debug [types.gen.go/struct]: MTL4TimestampHeapEntry */
+}
 
 // MTL4UpdateSparseBufferMappingOperation - Groups together arguments for an operation to update a sparse buffer mapping.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4UpdateSparseBufferMappingOperation
 type MTL4UpdateSparseBufferMappingOperation struct {
-	BufferRange corefoundation.Range // The range in the buffer, in tiles.
+	BufferRange foundation.Range // The range in the buffer, in tiles.
 	HeapOffset uint // The starting offset in the heap, in tiles.
 	Mode SparseTextureMappingMode // The mode of the mapping operation to perform.
-}/* debug [types.gen.go/struct]: MTL4UpdateSparseBufferMappingOperation */
+}
 
 // MTL4UpdateSparseTextureMappingOperation - Groups together arguments for an operation to update a sparse texture mapping.
 //
@@ -67,7 +67,7 @@ type MTL4UpdateSparseTextureMappingOperation struct {
 	TextureLevel uint // The index of the mipmap level in the texture to update.
 	TextureRegion Region // The region in the texture to update, in tiles.
 	TextureSlice uint // The index of the array slice in the texture to update.
-}/* debug [types.gen.go/struct]: MTL4UpdateSparseTextureMappingOperation */
+}
 
 // MTLAccelerationStructureInstanceDescriptor - A description of an instance in an instanced geometry acceleration structure.
 //
@@ -79,7 +79,7 @@ type MTLAccelerationStructureInstanceDescriptor struct {
 	Mask uint32 // A mask to use for the instance when testing a ray against the geometry.
 	Options AccelerationStructureInstanceOptions // The options for the instance.
 	TransformationMatrix PackedFloat4x3 // The transform for placing and orienting the instance in the scene.
-}/* debug [types.gen.go/struct]: MTLAccelerationStructureInstanceDescriptor */
+}
 
 // MTLAccelerationStructureMotionInstanceDescriptor - A description of an instance in an instanced geometry acceleration structure, with the instance including a user identifier and motion data for the instance.
 //
@@ -97,7 +97,7 @@ type MTLAccelerationStructureMotionInstanceDescriptor struct {
 	MotionTransformsStartIndex uint32 // The index of motion data that represents the first key-frame motion data, which applies to   the next acceleration-structure motion instance you create with the descriptor.
 	Options AccelerationStructureInstanceOptions // An option set which applies to the next acceleration structure motion-instance   you create with the descriptor.
 	UserID uint32 // An unique identifier, which applies to the next acceleration-structure motion instance   you create with the descriptor.
-}/* debug [types.gen.go/struct]: MTLAccelerationStructureMotionInstanceDescriptor */
+}
 
 // MTLAccelerationStructureSizes - The expected sizes for a ray-tracing acceleration structure.
 //
@@ -107,7 +107,7 @@ type MTLAccelerationStructureSizes struct {
 	AccelerationStructureSize uint // The size of the acceleration structure, in bytes.
 	BuildScratchBufferSize uint // The amount of scratch memory, in bytes, the GPU devices needs to build the acceleration structure.
 	RefitScratchBufferSize uint // The amount of scratch memory, in bytes, the GPU device needs to refit the acceleration structure.
-}/* debug [types.gen.go/struct]: MTLAccelerationStructureSizes */
+}
 
 // MTLAccelerationStructureUserIDInstanceDescriptor - A description of an instance in an instanced geometry acceleration structure, with the instance including a user identifier for the instance.
 //
@@ -120,14 +120,16 @@ type MTLAccelerationStructureUserIDInstanceDescriptor struct {
 	Options AccelerationStructureInstanceOptions // The options for the instance.
 	TransformationMatrix PackedFloat4x3 // The transform for placing and orienting the instance in the scene.
 	UserID uint32 // The user identifier for the instance.
-}/* debug [types.gen.go/struct]: MTLAccelerationStructureUserIDInstanceDescriptor */
+}
 
 // MTLAxisAlignedBoundingBox - The bounds for an axis-aligned bounding box.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAxisAlignedBoundingBox-c.struct
 type MTLAxisAlignedBoundingBox struct {
-}/* debug [types.gen.go/struct]: MTLAxisAlignedBoundingBox */
+	Max PackedFloat3
+	Min PackedFloat3
+}
 
 // MTLClearColor - An RGBA value used for a color pixel.
 //
@@ -138,7 +140,7 @@ type MTLClearColor struct {
 	Blue float64 // The blue color channel.
 	Green float64 // The green color channel.
 	Red float64 // The red color channel.
-}/* debug [types.gen.go/struct]: MTLClearColor */
+}
 
 // MTLComponentTransform
 //
@@ -150,7 +152,7 @@ type MTLComponentTransform struct {
 	Scale PackedFloat3
 	Shear PackedFloat3
 	Translation PackedFloat3
-}/* debug [types.gen.go/struct]: MTLComponentTransform */
+}
 
 // MTLCounterResultStageUtilization - The data structure for storing the data you resolve from a stage-utilization counter set.
 //
@@ -163,7 +165,7 @@ type MTLCounterResultStageUtilization struct {
 	TessellationCycles uint64 // The number of cycles the GPU uses to run the tessellation stage during a pass.
 	TotalCycles uint64 // The total number of cycles the GPU uses to run a pass.
 	VertexCycles uint64 // The number of cycles the GPU uses to run vertex shaders during a pass.
-}/* debug [types.gen.go/struct]: MTLCounterResultStageUtilization */
+}
 
 // MTLCounterResultStatistic - The data structure for storing the data you resolve from a statistic counter set.
 //
@@ -178,7 +180,7 @@ type MTLCounterResultStatistic struct {
 	PostTessellationVertexInvocations uint64 // The number of vertices a render pass sends to a post-tessellation vertex shader.
 	TessellationInputPatches uint64 // The number of tessellation patches a render pass sends to the tessellation stage.
 	VertexInvocations uint64 // The number of times a render pass calls any vertex shader.
-}/* debug [types.gen.go/struct]: MTLCounterResultStatistic */
+}
 
 // MTLCounterResultTimestamp - The data structure for storing the data you resolve from a timestamp counter set.
 //
@@ -186,7 +188,7 @@ type MTLCounterResultStatistic struct {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCounterResultTimestamp
 type MTLCounterResultTimestamp struct {
 	Timestamp uint64 // A timestamp value from a GPU at a particular point in time during an operation, typically at the beginning or ending of a render stage.
-}/* debug [types.gen.go/struct]: MTLCounterResultTimestamp */
+}
 
 // MTLDispatchThreadgroupsIndirectArguments - The data layout required for arguments needed to specify the size of threadgroups.
 //
@@ -194,7 +196,7 @@ type MTLCounterResultTimestamp struct {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDispatchThreadgroupsIndirectArguments
 type MTLDispatchThreadgroupsIndirectArguments struct {
 	ThreadgroupsPerGrid uint32 // The number of threadgroups for the grid, in each dimension.
-}/* debug [types.gen.go/struct]: MTLDispatchThreadgroupsIndirectArguments */
+}
 
 // MTLDispatchThreadsIndirectArguments
 //
@@ -203,7 +205,7 @@ type MTLDispatchThreadgroupsIndirectArguments struct {
 type MTLDispatchThreadsIndirectArguments struct {
 	ThreadsPerGrid uint32
 	ThreadsPerThreadgroup uint32
-}/* debug [types.gen.go/struct]: MTLDispatchThreadsIndirectArguments */
+}
 
 // MTLDrawIndexedPrimitivesIndirectArguments - The data layout required for drawing indexed primitives via indirect buffer calls.
 //
@@ -215,7 +217,7 @@ type MTLDrawIndexedPrimitivesIndirectArguments struct {
 	IndexCount uint32 // For each instance, the number of indices to read from the index buffer.
 	IndexStart uint32 // The first index to draw.
 	InstanceCount uint32 // The number of instances to draw.
-}/* debug [types.gen.go/struct]: MTLDrawIndexedPrimitivesIndirectArguments */
+}
 
 // MTLDrawPatchIndirectArguments - The data layout required for drawing patches via indirect buffer calls.
 //
@@ -226,7 +228,7 @@ type MTLDrawPatchIndirectArguments struct {
 	InstanceCount uint32 // The number of instances to draw.
 	PatchCount uint32 // The number of patches in each instance.
 	PatchStart uint32 // The patch start index.
-}/* debug [types.gen.go/struct]: MTLDrawPatchIndirectArguments */
+}
 
 // MTLDrawPrimitivesIndirectArguments - The data layout required for drawing primitives via indirect buffer calls.
 //
@@ -237,7 +239,7 @@ type MTLDrawPrimitivesIndirectArguments struct {
 	InstanceCount uint32 // The number of instances to draw.
 	VertexCount uint32 // The number of vertices to draw.
 	VertexStart uint32 // The first vertex to draw.
-}/* debug [types.gen.go/struct]: MTLDrawPrimitivesIndirectArguments */
+}
 
 // MTLIndirectAccelerationStructureInstanceDescriptor - A description of an instance in an instanced geometry acceleration structure that the GPU can populate.
 //
@@ -250,7 +252,7 @@ type MTLIndirectAccelerationStructureInstanceDescriptor struct {
 	Options AccelerationStructureInstanceOptions
 	TransformationMatrix PackedFloat4x3
 	UserID uint32
-}/* debug [types.gen.go/struct]: MTLIndirectAccelerationStructureInstanceDescriptor */
+}
 
 // MTLIndirectAccelerationStructureMotionInstanceDescriptor - A description of an instance in an acceleration structure that the GPU can populate, with motion data for the instance.
 //
@@ -268,7 +270,7 @@ type MTLIndirectAccelerationStructureMotionInstanceDescriptor struct {
 	MotionTransformsStartIndex uint32 // The index of the first set of transforms describing one keyframe of the animation.
 	Options AccelerationStructureInstanceOptions // The options for this instance.
 	UserID uint32 // A user-assigned ID to help identify the instance.
-}/* debug [types.gen.go/struct]: MTLIndirectAccelerationStructureMotionInstanceDescriptor */
+}
 
 // MTLIndirectCommandBufferExecutionRange - A range of commands in an indirect command buffer.
 //
@@ -277,7 +279,7 @@ type MTLIndirectAccelerationStructureMotionInstanceDescriptor struct {
 type MTLIndirectCommandBufferExecutionRange struct {
 	Length uint32 // The number of items in the command execution range.
 	Location uint32 // The first index in the command execution range.
-}/* debug [types.gen.go/struct]: MTLIndirectCommandBufferExecutionRange */
+}
 
 // MTLIntersectionFunctionBufferArguments
 //
@@ -287,7 +289,7 @@ type MTLIntersectionFunctionBufferArguments struct {
 	IntersectionFunctionBuffer uint64
 	IntersectionFunctionBufferSize uint64
 	IntersectionFunctionStride uint64
-}/* debug [types.gen.go/struct]: MTLIntersectionFunctionBufferArguments */
+}
 
 // MTLMapIndirectArguments - The data layout for mapping sparse texture regions when using indirect commands.
 //
@@ -302,7 +304,7 @@ type MTLMapIndirectArguments struct {
 	RegionSizeHeight uint32 // The height of the region, measured in tile coordinates.
 	RegionSizeWidth uint32 // The width of the region, measured in tile coordinates.
 	SliceId uint32 // The texture slice to change.
-}/* debug [types.gen.go/struct]: MTLMapIndirectArguments */
+}
 
 // MTLOrigin - The coordinates for the front upper-left corner of a region.
 //
@@ -312,21 +314,26 @@ type MTLOrigin struct {
 	X uint // The x coordinate of the origin.
 	Y uint // The y coordinate of the origin.
 	Z uint // The z coordinate of the origin.
-}/* debug [types.gen.go/struct]: MTLOrigin */
+}
 
 // MTLPackedFloat3 - A structure that contains three 32-bit floating-point values with no additional padding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPackedFloat3-c.struct
 type MTLPackedFloat3 struct {
-}/* debug [types.gen.go/struct]: MTLPackedFloat3 */
+	Elements float32
+	X float32
+	Y float32
+	Z float32
+}
 
 // MTLPackedFloat4x3 - A structure that contains the top three rows of a 4x4 matrix of 32-bit floating-point values, in column-major order.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPackedFloat4x3-c.struct
 type MTLPackedFloat4x3 struct {
-}/* debug [types.gen.go/struct]: MTLPackedFloat4x3 */
+	Columns PackedFloat3
+}
 
 // MTLPackedFloatQuaternion
 //
@@ -337,7 +344,7 @@ type MTLPackedFloatQuaternion struct {
 	X float32
 	Y float32
 	Z float32
-}/* debug [types.gen.go/struct]: MTLPackedFloatQuaternion */
+}
 
 // MTLQuadTessellationFactorsHalf - The per-patch tessellation factors for a quad patch.
 //
@@ -346,7 +353,7 @@ type MTLPackedFloatQuaternion struct {
 type MTLQuadTessellationFactorsHalf struct {
 	EdgeTessellationFactor uint16 // The edge tessellation factors, with each index value providing the tessellation factor for a particular edge.
 	InsideTessellationFactor uint16 // The inside tessellation factors, with the value in index 0 providing the horizontal tessellation factor and the value in index 1 providing the vertical tessellation factor.
-}/* debug [types.gen.go/struct]: MTLQuadTessellationFactorsHalf */
+}
 
 // MTLRegion - The bounds for a subset of an instance’s elements.
 //
@@ -355,14 +362,14 @@ type MTLQuadTessellationFactorsHalf struct {
 type MTLRegion struct {
 	Origin Origin // The coordinates of the front upper-left corner of the region.
 	Size Size // The dimensions of the region.
-}/* debug [types.gen.go/struct]: MTLRegion */
+}
 
 // MTLResourceID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceID
 type MTLResourceID struct {
-}/* debug [types.gen.go/struct]: MTLResourceID */
+}
 
 // MTLSamplePosition - A subpixel sample position for use in multisample antialiasing (MSAA).
 //
@@ -371,7 +378,7 @@ type MTLResourceID struct {
 type MTLSamplePosition struct {
 	X float32 // The x position of the sample on the subpixel grid.
 	Y float32 // The y position of the sample on the subpixel grid.
-}/* debug [types.gen.go/struct]: MTLSamplePosition */
+}
 
 // MTLScissorRect - A rectangle for the scissor fragment test.
 //
@@ -382,7 +389,7 @@ type MTLScissorRect struct {
 	Width uint // The width of the scissor rectangle, in pixels.
 	X uint // The x window coordinate of the upper-left corner of the scissor rectangle.
 	Y uint // The y window coordinate of the upper-left corner of the scissor rectangle.
-}/* debug [types.gen.go/struct]: MTLScissorRect */
+}
 
 // MTLSize - A type that represents one, two, or three dimensions of a type instance, such as an array or texture.
 //
@@ -392,7 +399,7 @@ type MTLSize struct {
 	Depth uint // A value for the z-axis dimension.
 	Height uint // A value for the y-axis dimension.
 	Width uint // A value for the x-axis dimension.
-}/* debug [types.gen.go/struct]: MTLSize */
+}
 
 // MTLSizeAndAlign - The size and alignment of a resource, in bytes.
 //
@@ -401,7 +408,7 @@ type MTLSize struct {
 type MTLSizeAndAlign struct {
 	Align uint // The alignment of a resource, in bytes.
 	Size uint // The size of a resource, in bytes.
-}/* debug [types.gen.go/struct]: MTLSizeAndAlign */
+}
 
 // MTLStageInRegionIndirectArguments - The data layout required for the arguments needed to specify the stage-in region.
 //
@@ -410,7 +417,7 @@ type MTLSizeAndAlign struct {
 type MTLStageInRegionIndirectArguments struct {
 	StageInOrigin uint32 // The location of the upper-left corner of the block.
 	StageInSize uint32 // The size of the block.
-}/* debug [types.gen.go/struct]: MTLStageInRegionIndirectArguments */
+}
 
 // MTLTextureSwizzleChannels - A pattern that modifies the data read or sampled from a texture by rearranging or duplicating the elements of a vector.
 //
@@ -421,7 +428,7 @@ type MTLTextureSwizzleChannels struct {
 	Blue TextureSwizzle // The data copied to the third output channel.
 	Green TextureSwizzle // The data copied to the second output channel.
 	Red TextureSwizzle // The data copied to the first output channel.
-}/* debug [types.gen.go/struct]: MTLTextureSwizzleChannels */
+}
 
 // MTLTriangleTessellationFactorsHalf - The per-patch tessellation factors for a triangle patch.
 //
@@ -430,7 +437,7 @@ type MTLTextureSwizzleChannels struct {
 type MTLTriangleTessellationFactorsHalf struct {
 	EdgeTessellationFactor uint16 // The edge tessellation factors, with each index value providing the tessellation factor for a particular edge.
 	InsideTessellationFactor uint16 // The inside tessellation factor.
-}/* debug [types.gen.go/struct]: MTLTriangleTessellationFactorsHalf */
+}
 
 // MTLVertexAmplificationViewMapping - An offset applied to a render target index and viewport index.
 //
@@ -439,7 +446,7 @@ type MTLTriangleTessellationFactorsHalf struct {
 type MTLVertexAmplificationViewMapping struct {
 	RenderTargetArrayIndexOffset uint32 // An offset into the list of render targets.
 	ViewportArrayIndexOffset uint32 // An offset into the list of viewports.
-}/* debug [types.gen.go/struct]: MTLVertexAmplificationViewMapping */
+}
 
 // MTLViewport - A 3D rectangular region for the viewport clipping.
 //
@@ -452,7 +459,7 @@ type MTLViewport struct {
 	Width float64 // The width of the viewport, in pixels.
 	Zfar float64 // The z coordinate of the far clipping plane of the viewport.
 	Znear float64 // The z coordinate of the near clipping plane of the viewport.
-}/* debug [types.gen.go/struct]: MTLViewport */
+}
 
 
 

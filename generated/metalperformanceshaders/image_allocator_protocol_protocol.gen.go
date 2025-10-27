@@ -20,8 +20,8 @@ import (
 type PImageAllocator interface {
 	// Required methods
 	Image()
-	ImageForCommandBufferImageDescriptorKernel(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel) Image
-	ImageBatchForCommandBufferImageDescriptorKernelCount(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel, count uint) ImageBatch
+	ImageForCommandBufferImageDescriptorKernel(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel) IImage
+	ImageBatchForCommandBufferImageDescriptorKernelCount(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel, count uint) ImageBatch /* not a class type */
 	// Optional methods
 	ImageBatch()
 	HasImageBatch() bool

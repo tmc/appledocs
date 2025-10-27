@@ -60,7 +60,7 @@ type IMatrixNeuronGradient interface {
 	NeuronParameterC()
 	NeuronType()
 	SetNeuronType()
-	SetNeuronToPReLUWithParametersA(A objc.IObject /* cross-framework: NSData */)
+	SetNeuronToPReLUWithParametersA(A foundation.foundation.INSData)
 	SetNeuronTypeParameterAParameterBParameterC(neuronType CNNNeuronType, parameterA float32, parameterB float32, parameterC float32)
 
 
@@ -223,7 +223,7 @@ func (m_ MatrixNeuronGradient) SetNeuronType() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixNeuronGradient/setNeuronToPReLUWithParametersA(_:)
-func (m_ MatrixNeuronGradient) SetNeuronToPReLUWithParametersA(A objc.IObject /* cross-framework: NSData */) {
+func (m_ MatrixNeuronGradient) SetNeuronToPReLUWithParametersA(A foundation.foundation.INSData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeuronToPReLUWithParametersA:"), A)
 }
 

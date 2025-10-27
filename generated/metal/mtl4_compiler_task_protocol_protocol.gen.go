@@ -17,5 +17,5 @@ package metal
 // See: doc://com.apple.metal/documentation/Metal/MTL4CompilerTask
 type PMTL4CompilerTask interface {
 	// Required methods
-	WaitUntilCompleted()/* debug [protocol_interface/required_method]: WaitUntilCompleted */
+	WaitUntilCompleted()
 }

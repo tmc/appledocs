@@ -25,18 +25,18 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer
 type PIOCommandBuffer interface {
 	// Required methods
-	AddBarrier()/* debug [protocol_interface/required_method]: AddBarrier */
-	AddCompletedHandler(block CommandBufferHandler)/* debug [protocol_interface/required_method]: AddCompletedHandler */
-	Commit()/* debug [protocol_interface/required_method]: Commit */
-	CopyStatusToBufferOffset(buffer unsafe.Pointer, offset uint)/* debug [protocol_interface/required_method]: CopyStatusToBufferOffset */
-	Enqueue()/* debug [protocol_interface/required_method]: Enqueue */
-	LoadBufferOffsetSizeSourceHandleSourceHandleOffset(buffer unsafe.Pointer, offset uint, size uint, sourceHandle unsafe.Pointer, sourceHandleOffset uint)/* debug [protocol_interface/required_method]: LoadBufferOffsetSizeSourceHandleSourceHandleOffset */
-	LoadTextureSliceLevelSizeSourceBytesPerRowSourceBytesPerImageDestinationOriginSourceHandleSourceHandleOffset(texture unsafe.Pointer, slice uint, level uint, size objc.IObject /* cross-framework: MTLSize */, sourceBytesPerRow uint, sourceBytesPerImage uint, destinationOrigin objc.IObject /* cross-framework: MTLOrigin */, sourceHandle unsafe.Pointer, sourceHandleOffset uint)/* debug [protocol_interface/required_method]: LoadTextureSliceLevelSizeSourceBytesPerRowSourceBytesPerImageDestinationOriginSourceHandleSourceHandleOffset */
-	LoadBytesSizeSourceHandleSourceHandleOffset(pointer objectivec.IObject, size uint, sourceHandle unsafe.Pointer, sourceHandleOffset uint)/* debug [protocol_interface/required_method]: LoadBytesSizeSourceHandleSourceHandleOffset */
-	PopDebugGroup()/* debug [protocol_interface/required_method]: PopDebugGroup */
-	PushDebugGroup(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: PushDebugGroup */
-	SignalEventValue(event unsafe.Pointer, value uint64)/* debug [protocol_interface/required_method]: SignalEventValue */
-	TryCancel()/* debug [protocol_interface/required_method]: TryCancel */
-	WaitForEventValue(event unsafe.Pointer, value uint64)/* debug [protocol_interface/required_method]: WaitForEventValue */
-	WaitUntilCompleted()/* debug [protocol_interface/required_method]: WaitUntilCompleted */
+	AddBarrier()
+	AddCompletedHandler(block CommandBufferHandler)
+	Commit()
+	CopyStatusToBufferOffset(buffer unsafe.Pointer, offset uint)
+	Enqueue()
+	LoadBufferOffsetSizeSourceHandleSourceHandleOffset(buffer unsafe.Pointer, offset uint, size uint, sourceHandle unsafe.Pointer, sourceHandleOffset uint)
+	LoadTextureSliceLevelSizeSourceBytesPerRowSourceBytesPerImageDestinationOriginSourceHandleSourceHandleOffset(texture unsafe.Pointer, slice uint, level uint, size Size, sourceBytesPerRow uint, sourceBytesPerImage uint, destinationOrigin Origin, sourceHandle unsafe.Pointer, sourceHandleOffset uint)
+	LoadBytesSizeSourceHandleSourceHandleOffset(pointer objectivec.IObject, size uint, sourceHandle unsafe.Pointer, sourceHandleOffset uint)
+	PopDebugGroup()
+	PushDebugGroup(string_ foundation.foundation.INSString)
+	SignalEventValue(event unsafe.Pointer, value uint64)
+	TryCancel()
+	WaitForEventValue(event unsafe.Pointer, value uint64)
+	WaitUntilCompleted()
 }

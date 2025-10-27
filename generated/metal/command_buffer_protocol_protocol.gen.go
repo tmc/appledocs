@@ -23,30 +23,30 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLCommandBuffer
 type PCommandBuffer interface {
 	// Required methods
-	AddCompletedHandler(block CommandBufferHandler /* not a class type */)/* debug [protocol_interface/required_method]: AddCompletedHandler */
-	AddScheduledHandler(block CommandBufferHandler /* not a class type */)/* debug [protocol_interface/required_method]: AddScheduledHandler */
-	Commit()/* debug [protocol_interface/required_method]: Commit */
-	EncodeSignalEventValue(event unsafe.Pointer, value uint64)/* debug [protocol_interface/required_method]: EncodeSignalEventValue */
-	EncodeWaitForEventValue(event unsafe.Pointer, value uint64)/* debug [protocol_interface/required_method]: EncodeWaitForEventValue */
-	Enqueue()/* debug [protocol_interface/required_method]: Enqueue */
-	AccelerationStructureCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: AccelerationStructureCommandEncoder */
-	AccelerationStructureCommandEncoderWithDescriptor(descriptor IMTLAccelerationStructurePassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: AccelerationStructureCommandEncoderWithDescriptor */
-	BlitCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: BlitCommandEncoder */
-	BlitCommandEncoderWithDescriptor(blitPassDescriptor IMTLBlitPassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: BlitCommandEncoderWithDescriptor */
-	ComputeCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: ComputeCommandEncoder */
-	ComputeCommandEncoderWithDescriptor(computePassDescriptor IMTLComputePassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: ComputeCommandEncoderWithDescriptor */
-	ComputeCommandEncoderWithDispatchType(dispatchType DispatchType) unsafe.Pointer/* debug [protocol_interface/required_method]: ComputeCommandEncoderWithDispatchType */
-	ParallelRenderCommandEncoderWithDescriptor(renderPassDescriptor IMTLRenderPassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: ParallelRenderCommandEncoderWithDescriptor */
-	RenderCommandEncoderWithDescriptor(renderPassDescriptor IMTLRenderPassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: RenderCommandEncoderWithDescriptor */
-	ResourceStateCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: ResourceStateCommandEncoder */
-	PopDebugGroup()/* debug [protocol_interface/required_method]: PopDebugGroup */
-	PresentDrawable(drawable unsafe.Pointer)/* debug [protocol_interface/required_method]: PresentDrawable */
-	PresentDrawableAfterMinimumDuration(drawable unsafe.Pointer, duration float64)/* debug [protocol_interface/required_method]: PresentDrawableAfterMinimumDuration */
-	PresentDrawableAtTime(drawable unsafe.Pointer, presentationTime float64)/* debug [protocol_interface/required_method]: PresentDrawableAtTime */
-	PushDebugGroup(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: PushDebugGroup */
-	ResourceStateCommandEncoderWithDescriptor(resourceStatePassDescriptor IMTLResourceStatePassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: ResourceStateCommandEncoderWithDescriptor */
-	UseResidencySet(residencySet unsafe.Pointer)/* debug [protocol_interface/required_method]: UseResidencySet */
-	UseResidencySetsCount(residencySets []objc.ID, count uint)/* debug [protocol_interface/required_method]: UseResidencySetsCount */
-	WaitUntilCompleted()/* debug [protocol_interface/required_method]: WaitUntilCompleted */
-	WaitUntilScheduled()/* debug [protocol_interface/required_method]: WaitUntilScheduled */
+	AddCompletedHandler(block CommandBufferHandler /* not a class type */)
+	AddScheduledHandler(block CommandBufferHandler /* not a class type */)
+	Commit()
+	EncodeSignalEventValue(event unsafe.Pointer, value uint64)
+	EncodeWaitForEventValue(event unsafe.Pointer, value uint64)
+	Enqueue()
+	AccelerationStructureCommandEncoder() unsafe.Pointer
+	AccelerationStructureCommandEncoderWithDescriptor(descriptor IMTLAccelerationStructurePassDescriptor) unsafe.Pointer
+	BlitCommandEncoder() unsafe.Pointer
+	BlitCommandEncoderWithDescriptor(blitPassDescriptor IMTLBlitPassDescriptor) unsafe.Pointer
+	ComputeCommandEncoder() unsafe.Pointer
+	ComputeCommandEncoderWithDescriptor(computePassDescriptor IMTLComputePassDescriptor) unsafe.Pointer
+	ComputeCommandEncoderWithDispatchType(dispatchType DispatchType) unsafe.Pointer
+	ParallelRenderCommandEncoderWithDescriptor(renderPassDescriptor IMTLRenderPassDescriptor) unsafe.Pointer
+	RenderCommandEncoderWithDescriptor(renderPassDescriptor IMTLRenderPassDescriptor) unsafe.Pointer
+	ResourceStateCommandEncoder() unsafe.Pointer
+	PopDebugGroup()
+	PresentDrawable(drawable unsafe.Pointer)
+	PresentDrawableAfterMinimumDuration(drawable unsafe.Pointer, duration float64)
+	PresentDrawableAtTime(drawable unsafe.Pointer, presentationTime float64)
+	PushDebugGroup(string_ foundation.foundation.INSString)
+	ResourceStateCommandEncoderWithDescriptor(resourceStatePassDescriptor IMTLResourceStatePassDescriptor) unsafe.Pointer
+	UseResidencySet(residencySet unsafe.Pointer)
+	UseResidencySetsCount(residencySets []objc.ID, count uint)
+	WaitUntilCompleted()
+	WaitUntilScheduled()
 }

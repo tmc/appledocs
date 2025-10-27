@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSOrderedSet */
 
 
-/* debug [class_header]: Header for NSOrderedSet */
+
+
 // The class instance for the [OrderedSet] class.
 var (
 	OrderedSetClass     _OrderedSetClass
@@ -30,16 +30,16 @@ func getOrderedSetClass() _OrderedSetClass {
 type _OrderedSetClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for OrderedSet */
+
+
 // An interface definition for the [OrderedSet] class.
 type IOrderedSet interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for OrderedSet */
+
 	// properties:
 	Array() []objc.ID
 	Description() IString
@@ -49,14 +49,14 @@ type IOrderedSet interface {
 	Set() unsafe.Pointer
 	Reversed() IOrderedSet
 	SetReversed(value IOrderedSet)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for OrderedSet */
+
 	// methods:
 	ContainsObject(object objectivec.IObject) bool
-	DescriptionWithLocale(locale objc.IObject) IString
-	DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString
+	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
 	DifferenceFromOrderedSet(other unsafe.Pointer) unsafe.Pointer
 	DifferenceFromOrderedSetWithOptions(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
 	DifferenceFromOrderedSetWithOptionsUsingEquivalenceTest(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer
@@ -64,10 +64,10 @@ type IOrderedSet interface {
 	EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	FilteredOrderedSetUsingPredicate(p IPredicate) unsafe.Pointer
-	GetObjectsRange(objects []objc.ID, range_ objc.IObject /* cross-framework: Range */)
+	GetObjectsRange(objects []objc.ID, range_ Range)
 	IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint
 	IndexOfObject(object objectivec.IObject) uint
-	IndexOfObjectInSortedRangeOptionsUsingComparator(object objectivec.IObject, range_ objc.IObject /* cross-framework: Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint
+	IndexOfObjectInSortedRangeOptionsUsingComparator(object objectivec.IObject, range_ Range, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint
 	IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
 	IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
@@ -87,14 +87,14 @@ type IOrderedSet interface {
 	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID
 	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
 	ObjectAtIndexedSubscript(idx uint) objectivec.IObject
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for OrderedSet */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _OrderedSetClass) Alloc() OrderedSet {
 	rv := objc.Send[OrderedSet](objc.ID(oc.class), objc.Sel("alloc"))
@@ -124,11 +124,11 @@ func (o_ OrderedSet) Autorelease() OrderedSet {
 func NewOrderedSet() OrderedSet {
 	return getOrderedSetClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for OrderedSet */
+
+
 // A static, ordered collection of unique objects.
 //
 // declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and thereafter the entries can’t be modified. , on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic—or mutable—set allows the addition and deletion of entries at any time, automatically allocating memory as needed. You can use ordered sets as an alternative to arrays when the order of elements is important and performance in testing whether an object is contained in the set is a consideration—testing for membership of an array is slower than testing for membership of a set.
@@ -148,11 +148,11 @@ type OrderedSet struct {
 func OrderedSetFrom(ptr unsafe.Pointer) OrderedSet {
 	return OrderedSet{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for OrderedSet */
+
+
 
 // Initializes a newly allocated set with the objects that are contained in a given array.
 //
@@ -163,7 +163,7 @@ func NewOrderedSetWithArray(array []objc.ID) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithArray:"), array)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithArray */
+}
 
 
 // Initializes a newly allocated set with the objects that are contained in a given array, optionally copying the items.
@@ -175,19 +175,19 @@ func NewOrderedSetWithArrayCopyItems(set []objc.ID, flag bool) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithArray:copyItems:"), set, flag)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithArrayCopyItems */
+}
 
 
 // Initializes a newly allocated set with the objects that are contained in the specified range of an array, optionally copying the items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(array:range:copyItems:)
-func NewOrderedSetWithArrayRangeCopyItems(set []objc.ID, range_ objc.IObject /* cross-framework: Range */, flag bool) OrderedSet {
+func NewOrderedSetWithArrayRangeCopyItems(set []objc.ID, range_ Range, flag bool) OrderedSet {
 	instance := getOrderedSetClass().Alloc()
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithArray:range:copyItems:"), set, range_, flag)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithArrayRangeCopyItems */
+}
 
 
 // [Full Topic]
@@ -197,7 +197,7 @@ func NewOrderedSetWithCoder(coder ICoder) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithCoder */
+}
 
 
 // Initializes a new ordered set with the object.
@@ -209,7 +209,7 @@ func NewOrderedSetWithObject(object objectivec.IObject) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithObject:"), object)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithObject */
+}
 
 
 // Initializes a newly allocated set with members taken from the specified list of objects.
@@ -221,7 +221,7 @@ func NewOrderedSetWithObjects(firstObj objectivec.IObject) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithObjects */
+}
 
 
 // Initializes a newly allocated set with a specified number of objects from a given C array of objects.
@@ -233,7 +233,7 @@ func NewOrderedSetWithObjectsCount(objects []objc.ID, cnt uint) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithObjectsCount */
+}
 
 
 // Initializes a new ordered set with the contents of a set.
@@ -245,7 +245,7 @@ func NewOrderedSetWithOrderedSet(set unsafe.Pointer) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithOrderedSet:"), set)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithOrderedSet */
+}
 
 
 // Initializes a new ordered set with the contents of a set, optionally copying the items.
@@ -257,19 +257,19 @@ func NewOrderedSetWithOrderedSetCopyItems(set unsafe.Pointer, flag bool) Ordered
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithOrderedSet:copyItems:"), set, flag)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithOrderedSetCopyItems */
+}
 
 
 // Initializes a new ordered set with the contents of an ordered set, optionally copying the items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(orderedSet:range:copyItems:)
-func NewOrderedSetWithOrderedSetRangeCopyItems(set unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */, flag bool) OrderedSet {
+func NewOrderedSetWithOrderedSetRangeCopyItems(set unsafe.Pointer, range_ Range, flag bool) OrderedSet {
 	instance := getOrderedSetClass().Alloc()
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithOrderedSet:range:copyItems:"), set, range_, flag)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithOrderedSetRangeCopyItems */
+}
 
 
 // Initializes a new ordered set with the contents of a set.
@@ -281,7 +281,7 @@ func NewOrderedSetWithSet(set unsafe.Pointer) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithSet:"), set)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithSet */
+}
 
 
 // Initializes a new ordered set with the contents of a set, optionally copying the objects in the set.
@@ -293,13 +293,13 @@ func NewOrderedSetWithSetCopyItems(set unsafe.Pointer, flag bool) OrderedSet {
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithSet:copyItems:"), set, flag)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewOrderedSetWithSetCopyItems */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for OrderedSet */
+
+
+
 
 // Creates and returns a set containing a specified number of objects from a given C array of objects.
 //
@@ -308,7 +308,7 @@ func NewOrderedSetWithSetCopyItems(set unsafe.Pointer, flag bool) OrderedSet {
 func (oc _OrderedSetClass) OrderedSetWithObjectsCount(objects []objc.ID, cnt uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithObjects:count:"), objects, cnt)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithObjectsCount) */
+}
 
 
 // Creates and returns an empty ordered set
@@ -318,7 +318,7 @@ func (oc _OrderedSetClass) OrderedSetWithObjectsCount(objects []objc.ID, cnt uin
 func (oc _OrderedSetClass) OrderedSet() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSet"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSet) */
+}
 
 
 // Creates and returns a set containing a uniqued collection of the objects contained in a given array.
@@ -328,17 +328,17 @@ func (oc _OrderedSetClass) OrderedSet() objectivec.IObject {
 func (oc _OrderedSetClass) OrderedSetWithArray(array []objc.ID) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithArray:"), array)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithArray) */
+}
 
 
 // Creates and returns a new ordered set for a specified range of objects in an array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/orderedSetWithArray:range:copyItems:
-func (oc _OrderedSetClass) OrderedSetWithArrayRangeCopyItems(array []objc.ID, range_ objc.IObject /* cross-framework: Range */, flag bool) objectivec.IObject {
+func (oc _OrderedSetClass) OrderedSetWithArrayRangeCopyItems(array []objc.ID, range_ Range, flag bool) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithArray:range:copyItems:"), array, range_, flag)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithArrayRangeCopyItems) */
+}
 
 
 // Creates and returns a ordered set that contains a single given object.
@@ -348,7 +348,7 @@ func (oc _OrderedSetClass) OrderedSetWithArrayRangeCopyItems(array []objc.ID, ra
 func (oc _OrderedSetClass) OrderedSetWithObject(object objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithObject:"), object)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithObject) */
+}
 
 
 // Creates and returns a ordered set containing the objects in a given argument list.
@@ -358,7 +358,7 @@ func (oc _OrderedSetClass) OrderedSetWithObject(object objectivec.IObject) objec
 func (oc _OrderedSetClass) OrderedSetWithObjects(firstObj objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithObjects:"), firstObj)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithObjects) */
+}
 
 
 // Creates and returns an ordered set containing the objects from another ordered set.
@@ -368,17 +368,17 @@ func (oc _OrderedSetClass) OrderedSetWithObjects(firstObj objectivec.IObject) ob
 func (oc _OrderedSetClass) OrderedSetWithOrderedSet(set unsafe.Pointer) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithOrderedSet:"), set)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithOrderedSet) */
+}
 
 
 // Creates and returns a new ordered set for a specified range of objects in an ordered set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/orderedSetWithOrderedSet:range:copyItems:
-func (oc _OrderedSetClass) OrderedSetWithOrderedSetRangeCopyItems(set unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */, flag bool) objectivec.IObject {
+func (oc _OrderedSetClass) OrderedSetWithOrderedSetRangeCopyItems(set unsafe.Pointer, range_ Range, flag bool) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithOrderedSet:range:copyItems:"), set, range_, flag)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithOrderedSetRangeCopyItems) */
+}
 
 
 // Creates and returns an ordered set with the contents of a set.
@@ -388,7 +388,7 @@ func (oc _OrderedSetClass) OrderedSetWithOrderedSetRangeCopyItems(set unsafe.Poi
 func (oc _OrderedSetClass) OrderedSetWithSet(set unsafe.Pointer) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithSet:"), set)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithSet) */
+}
 
 
 // Creates and returns an ordered set with the contents of a set, optionally copying the items.
@@ -398,26 +398,26 @@ func (oc _OrderedSetClass) OrderedSetWithSet(set unsafe.Pointer) objectivec.IObj
 func (oc _OrderedSetClass) OrderedSetWithSetCopyItems(set unsafe.Pointer, flag bool) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(oc.class), objc.Sel("orderedSetWithSet:copyItems:"), set, flag)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrderedSetWithSetCopyItems) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for OrderedSet */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for OrderedSet */
+
+
+
+
+
 
 // Raises an exception.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/addObserver(_:forKeyPath:options:context:)
-func (o_ OrderedSet) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, options uint, context objectivec.IObject) {
+func (o_ OrderedSet) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath IString, options uint, context objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
-}/* debug [instance_methods/method]: AddObserverForKeyPathOptionsContext */
+}
 
 
 // Returns a Boolean value that indicates whether a given object is present in the ordered set.
@@ -427,27 +427,27 @@ func (o_ OrderedSet) AddObserverForKeyPathOptionsContext(observer objc.IObject /
 func (o_ OrderedSet) ContainsObject(object objectivec.IObject) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("containsObject:"), object)
 	return rv
-}/* debug [instance_methods/method]: ContainsObject */
+}
 
 
 // Returns a string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:)
-func (o_ OrderedSet) DescriptionWithLocale(locale objc.IObject) IString {
+func (o_ OrderedSet) DescriptionWithLocale(locale objectivec.IObject) IString {
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
-}/* debug [instance_methods/method]: DescriptionWithLocale */
+}
 
 
 // Returns a string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
-func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString {
+func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
-}/* debug [instance_methods/method]: DescriptionWithLocaleIndent */
+}
 
 
 // Compares two ordered sets to create a difference object that represents the changes between them.
@@ -457,7 +457,7 @@ func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objc.IObject, level uint
 func (o_ OrderedSet) DifferenceFromOrderedSet(other unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("differenceFromOrderedSet:"), other)
 	return rv
-}/* debug [instance_methods/method]: DifferenceFromOrderedSet */
+}
 
 
 // Compares two ordered sets, with options, to create a difference object that represents the changes between them.
@@ -467,7 +467,7 @@ func (o_ OrderedSet) DifferenceFromOrderedSet(other unsafe.Pointer) unsafe.Point
 func (o_ OrderedSet) DifferenceFromOrderedSetWithOptions(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("differenceFromOrderedSet:withOptions:"), other, options)
 	return rv
-}/* debug [instance_methods/method]: DifferenceFromOrderedSetWithOptions */
+}
 
 
 // Compares two ordered sets, using the provided block and with options, to create a difference object that represents the changes between them.
@@ -477,7 +477,7 @@ func (o_ OrderedSet) DifferenceFromOrderedSetWithOptions(other unsafe.Pointer, o
 func (o_ OrderedSet) DifferenceFromOrderedSetWithOptionsUsingEquivalenceTest(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("differenceFromOrderedSet:withOptions:usingEquivalenceTest:"), other, options, block)
 	return rv
-}/* debug [instance_methods/method]: DifferenceFromOrderedSetWithOptionsUsingEquivalenceTest */
+}
 
 
 // Executes a given block using each object in the ordered set.
@@ -486,7 +486,7 @@ func (o_ OrderedSet) DifferenceFromOrderedSetWithOptionsUsingEquivalenceTest(oth
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/enumerateObjects(_:)
 func (o_ OrderedSet) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("enumerateObjectsUsingBlock:"), block)
-}/* debug [instance_methods/method]: EnumerateObjectsUsingBlock */
+}
 
 
 // Executes a given block using the objects in the ordered set at the specified indexes.
@@ -495,7 +495,7 @@ func (o_ OrderedSet) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/enumerateObjects(at:options:using:)
 func (o_ OrderedSet) EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("enumerateObjectsAtIndexes:options:usingBlock:"), s, opts, block)
-}/* debug [instance_methods/method]: EnumerateObjectsAtIndexesOptionsUsingBlock */
+}
 
 
 // Executes a given block using each object in the set, using the specified enumeration options.
@@ -504,7 +504,7 @@ func (o_ OrderedSet) EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opt
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/enumerateObjects(options:using:)
 func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
-}/* debug [instance_methods/method]: EnumerateObjectsWithOptionsUsingBlock */
+}
 
 
 // Evaluates a given predicate against each object in the receiving ordered set and returns a new ordered set containing the objects for which the predicate returns true.
@@ -514,16 +514,16 @@ func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptio
 func (o_ OrderedSet) FilteredOrderedSetUsingPredicate(p IPredicate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("filteredOrderedSetUsingPredicate:"), p)
 	return rv
-}/* debug [instance_methods/method]: FilteredOrderedSetUsingPredicate */
+}
 
 
 // Copies the objects contained in the ordered set that fall within the specified range to .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/getObjects:range:
-func (o_ OrderedSet) GetObjectsRange(objects []objc.ID, range_ objc.IObject /* cross-framework: Range */) {
+func (o_ OrderedSet) GetObjectsRange(objects []objc.ID, range_ Range) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("getObjects:range:"), objects, range_)
-}/* debug [instance_methods/method]: GetObjectsRange */
+}
 
 
 // Returns the index of an object in the ordered set that passes a test in a given block for a given set of enumeration options.
@@ -533,7 +533,7 @@ func (o_ OrderedSet) GetObjectsRange(objects []objc.ID, range_ objc.IObject /* c
 func (o_ OrderedSet) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObjectWithOptions:passingTest:"), opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectWithOptionsPassingTest */
+}
 
 
 // Returns the index of the specified object.
@@ -543,17 +543,17 @@ func (o_ OrderedSet) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions
 func (o_ OrderedSet) IndexOfObject(object objectivec.IObject) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObject:"), object)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObject */
+}
 
 
 // Returns the index, within a specified range, of an object compared with elements in the ordered set using a given NSComparator block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/index(of:inSortedRange:options:usingComparator:)
-func (o_ OrderedSet) IndexOfObjectInSortedRangeOptionsUsingComparator(object objectivec.IObject, range_ objc.IObject /* cross-framework: Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint {
+func (o_ OrderedSet) IndexOfObjectInSortedRangeOptionsUsingComparator(object objectivec.IObject, range_ Range, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), object, range_, opts, cmp)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectInSortedRangeOptionsUsingComparator */
+}
 
 
 // Returns the index, from a given set of indexes, of the object in the ordered set that passes a test in a given block for a given set of enumeration options.
@@ -563,7 +563,7 @@ func (o_ OrderedSet) IndexOfObjectInSortedRangeOptionsUsingComparator(object obj
 func (o_ OrderedSet) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObjectAtIndexes:options:passingTest:"), s, opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectAtIndexesOptionsPassingTest */
+}
 
 
 // Returns the index of the object in the ordered set that passes a test in a given block.
@@ -573,7 +573,7 @@ func (o_ OrderedSet) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts 
 func (o_ OrderedSet) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObjectPassingTest:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectPassingTest */
+}
 
 
 // Returns the index, from a given set of indexes, of the object in the ordered set that passes a test in a given block for a given set of enumeration options.
@@ -583,7 +583,7 @@ func (o_ OrderedSet) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
 func (o_ OrderedSet) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](o_.ID, objc.Sel("indexesOfObjectsAtIndexes:options:passingTest:"), s, opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexesOfObjectsAtIndexesOptionsPassingTest */
+}
 
 
 // Returns the index of the object in the ordered set that passes a test in a given block.
@@ -593,7 +593,7 @@ func (o_ OrderedSet) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, op
 func (o_ OrderedSet) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](o_.ID, objc.Sel("indexesOfObjectsPassingTest:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexesOfObjectsPassingTest */
+}
 
 
 // Returns the index of an object in the ordered set that passes a test in a given block for a given set of enumeration options.
@@ -603,7 +603,7 @@ func (o_ OrderedSet) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IInde
 func (o_ OrderedSet) IndexesOfObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](o_.ID, objc.Sel("indexesOfObjectsWithOptions:passingTest:"), opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexesOfObjectsWithOptionsPassingTest */
+}
 
 
 // Returns a Boolean value that indicates whether at least one object in the receiving ordered set is also present in another given ordered set.
@@ -613,7 +613,7 @@ func (o_ OrderedSet) IndexesOfObjectsWithOptionsPassingTest(opts EnumerationOpti
 func (o_ OrderedSet) IntersectsOrderedSet(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("intersectsOrderedSet:"), other)
 	return rv
-}/* debug [instance_methods/method]: IntersectsOrderedSet */
+}
 
 
 // Returns a Boolean value that indicates whether at least one object in the receiving ordered set is also present in another given set.
@@ -623,7 +623,7 @@ func (o_ OrderedSet) IntersectsOrderedSet(other unsafe.Pointer) bool {
 func (o_ OrderedSet) IntersectsSet(set unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("intersectsSet:"), set)
 	return rv
-}/* debug [instance_methods/method]: IntersectsSet */
+}
 
 
 // Compares the receiving ordered set to another ordered set.
@@ -633,7 +633,7 @@ func (o_ OrderedSet) IntersectsSet(set unsafe.Pointer) bool {
 func (o_ OrderedSet) IsEqualToOrderedSet(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEqualToOrderedSet:"), other)
 	return rv
-}/* debug [instance_methods/method]: IsEqualToOrderedSet */
+}
 
 
 // Returns a Boolean value that indicates whether every object in the receiving ordered set is also present in another given ordered set.
@@ -643,7 +643,7 @@ func (o_ OrderedSet) IsEqualToOrderedSet(other unsafe.Pointer) bool {
 func (o_ OrderedSet) IsSubsetOfOrderedSet(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isSubsetOfOrderedSet:"), other)
 	return rv
-}/* debug [instance_methods/method]: IsSubsetOfOrderedSet */
+}
 
 
 // Returns a Boolean value that indicates whether every object in the receiving ordered set is also present in another given set.
@@ -653,7 +653,7 @@ func (o_ OrderedSet) IsSubsetOfOrderedSet(other unsafe.Pointer) bool {
 func (o_ OrderedSet) IsSubsetOfSet(set unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isSubsetOfSet:"), set)
 	return rv
-}/* debug [instance_methods/method]: IsSubsetOfSet */
+}
 
 
 // Returns the object at the specified index of the set.
@@ -663,7 +663,7 @@ func (o_ OrderedSet) IsSubsetOfSet(set unsafe.Pointer) bool {
 func (o_ OrderedSet) ObjectAtIndex(idx uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](o_.ID, objc.Sel("objectAtIndex:"), idx)
 	return rv
-}/* debug [instance_methods/method]: ObjectAtIndex */
+}
 
 
 // Returns an enumerator object that lets you access each object in the ordered set.
@@ -673,7 +673,7 @@ func (o_ OrderedSet) ObjectAtIndex(idx uint) objectivec.IObject {
 func (o_ OrderedSet) ObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("objectEnumerator"))
 	return rv
-}/* debug [instance_methods/method]: ObjectEnumerator */
+}
 
 
 // Returns the objects in the ordered set at the specified indexes.
@@ -683,7 +683,7 @@ func (o_ OrderedSet) ObjectEnumerator() unsafe.Pointer {
 func (o_ OrderedSet) ObjectsAtIndexes(indexes IIndexSet) []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("objectsAtIndexes:"), indexes)
 	return rv
-}/* debug [instance_methods/method]: ObjectsAtIndexes */
+}
 
 
 // Creates a new ordered set by applying a difference object to an existing ordered set.
@@ -693,25 +693,25 @@ func (o_ OrderedSet) ObjectsAtIndexes(indexes IIndexSet) []objc.ID {
 func (o_ OrderedSet) OrderedSetByApplyingDifference(difference unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("orderedSetByApplyingDifference:"), difference)
 	return rv
-}/* debug [instance_methods/method]: OrderedSetByApplyingDifference */
+}
 
 
 // Raises an exception.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/removeObserver(_:forKeyPath:)
-func (o_ OrderedSet) RemoveObserverForKeyPath(observer objc.IObject /* cross-framework: NSObject */, keyPath IString) {
+func (o_ OrderedSet) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath IString) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
-}/* debug [instance_methods/method]: RemoveObserverForKeyPath */
+}
 
 
 // Raises an exception.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/removeObserver(_:forKeyPath:context:)
-func (o_ OrderedSet) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, context objectivec.IObject) {
+func (o_ OrderedSet) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath IString, context objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
-}/* debug [instance_methods/method]: RemoveObserverForKeyPathContext */
+}
 
 
 // Returns an enumerator object that lets you access each object in the ordered set.
@@ -721,16 +721,16 @@ func (o_ OrderedSet) RemoveObserverForKeyPathContext(observer objc.IObject /* cr
 func (o_ OrderedSet) ReverseObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("reverseObjectEnumerator"))
 	return rv
-}/* debug [instance_methods/method]: ReverseObjectEnumerator */
+}
 
 
 // Invokes on each of the receiver’s members using the specified value and key
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/setValue(_:forKey:)
-func (o_ OrderedSet) SetValueForKey(value objc.IObject, key IString) {
+func (o_ OrderedSet) SetValueForKey(value objectivec.IObject, key IString) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, key)
-}/* debug [instance_methods/method]: SetValueForKey */
+}
 
 
 // Returns an array that lists the receiving ordered set’s elements in ascending order, as determined by the comparison method specified by a given block
@@ -740,7 +740,7 @@ func (o_ OrderedSet) SetValueForKey(value objc.IObject, key IString) {
 func (o_ OrderedSet) SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("sortedArrayUsingComparator:"), cmptr)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingComparator */
+}
 
 
 // Returns an array that lists the receiving ordered set’s elements in ascending order, as determined by the comparison method specified by a given block.
@@ -750,7 +750,7 @@ func (o_ OrderedSet) SortedArrayUsingComparator(cmptr Comparator /* not a class 
 func (o_ OrderedSet) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("sortedArrayWithOptions:usingComparator:"), opts, cmptr)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayWithOptionsUsingComparator */
+}
 
 
 // Returns an array of the ordered set’s elements sorted as specified by a given array of sort descriptors.
@@ -760,7 +760,7 @@ func (o_ OrderedSet) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmp
 func (o_ OrderedSet) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingDescriptors */
+}
 
 
 // Returns the object at the specified index of the set.
@@ -770,7 +770,7 @@ func (o_ OrderedSet) SortedArrayUsingDescriptors(sortDescriptors []SortDescripto
 func (o_ OrderedSet) ObjectAtIndexedSubscript(idx uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](o_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
-}/* debug [instance_methods/method]: ObjectAtIndexedSubscript */
+}
 
 
 // Returns an ordered set containing the results of invoking using key on each of the ordered set’s objects.
@@ -780,13 +780,13 @@ func (o_ OrderedSet) ObjectAtIndexedSubscript(idx uint) objectivec.IObject {
 func (o_ OrderedSet) ValueForKey(key IString) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: ValueForKey */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for OrderedSet */
+
+
+
 
 // A representation of the ordered set as an array.
 //
@@ -795,7 +795,7 @@ func (o_ OrderedSet) ValueForKey(key IString) objc.ID {
 func (o_ OrderedSet) Array() []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("array"))
 	return rv
-}/* debug [instance_properties/getter]: array */
+}
 
 
 // A string that represents the contents of the ordered set, formatted as a property list.
@@ -805,7 +805,7 @@ func (o_ OrderedSet) Array() []objc.ID {
 func (o_ OrderedSet) Description() IString {
 	rv := objc.Send[String](o_.ID, objc.Sel("description"))
 	return rv
-}/* debug [instance_properties/getter]: description */
+}
 
 
 // The first object in the ordered set.
@@ -815,7 +815,7 @@ func (o_ OrderedSet) Description() IString {
 func (o_ OrderedSet) FirstObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](o_.ID, objc.Sel("firstObject"))
 	return rv
-}/* debug [instance_properties/getter]: firstObject */
+}
 
 
 // The last object in the ordered set.
@@ -825,7 +825,7 @@ func (o_ OrderedSet) FirstObject() objectivec.IObject {
 func (o_ OrderedSet) LastObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](o_.ID, objc.Sel("lastObject"))
 	return rv
-}/* debug [instance_properties/getter]: lastObject */
+}
 
 
 // An ordered set in the reverse order.
@@ -835,7 +835,7 @@ func (o_ OrderedSet) LastObject() objectivec.IObject {
 func (o_ OrderedSet) ReversedOrderedSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("reversedOrderedSet"))
 	return rv
-}/* debug [instance_properties/getter]: reversedOrderedSet */
+}
 
 
 // A representation of the set containing the contents of the ordered set.
@@ -845,7 +845,7 @@ func (o_ OrderedSet) ReversedOrderedSet() unsafe.Pointer {
 func (o_ OrderedSet) Set() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("set"))
 	return rv
-}/* debug [instance_properties/getter]: set */
+}
 
 
 // An ordered set in the reverse order.
@@ -855,7 +855,7 @@ func (o_ OrderedSet) Set() unsafe.Pointer {
 func (o_ OrderedSet) Reversed() IOrderedSet {
 	rv := objc.Send[OrderedSet](o_.ID, objc.Sel("reversed"))
 	return rv
-}/* debug [instance_properties/getter]: reversed */
+}
 
 
 // An ordered set in the reverse order.
@@ -864,11 +864,11 @@ func (o_ OrderedSet) Reversed() IOrderedSet {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/reversed
 func (o_ OrderedSet) SetReversed(value IOrderedSet) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setReversed:"), value)
-}/* debug [instance_properties/setter]: reversed */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSOrderedSet */
+
+
+
 
 

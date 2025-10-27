@@ -23,13 +23,13 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTL4CommandEncoder
 type PMTL4CommandEncoder interface {
 	// Required methods
-	BarrierAfterEncoderStagesBeforeEncoderStagesVisibilityOptions(afterEncoderStages Stages, beforeEncoderStages Stages, visibilityOptions MTL4VisibilityOptions)/* debug [protocol_interface/required_method]: BarrierAfterEncoderStagesBeforeEncoderStagesVisibilityOptions */
-	BarrierAfterQueueStagesBeforeStagesVisibilityOptions(afterQueueStages Stages, beforeStages Stages, visibilityOptions MTL4VisibilityOptions)/* debug [protocol_interface/required_method]: BarrierAfterQueueStagesBeforeStagesVisibilityOptions */
-	BarrierAfterStagesBeforeQueueStagesVisibilityOptions(afterStages Stages, beforeQueueStages Stages, visibilityOptions MTL4VisibilityOptions)/* debug [protocol_interface/required_method]: BarrierAfterStagesBeforeQueueStagesVisibilityOptions */
-	EndEncoding()/* debug [protocol_interface/required_method]: EndEncoding */
-	InsertDebugSignpost(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: InsertDebugSignpost */
-	PopDebugGroup()/* debug [protocol_interface/required_method]: PopDebugGroup */
-	PushDebugGroup(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: PushDebugGroup */
-	UpdateFenceAfterEncoderStages(fence unsafe.Pointer, afterEncoderStages Stages)/* debug [protocol_interface/required_method]: UpdateFenceAfterEncoderStages */
-	WaitForFenceBeforeEncoderStages(fence unsafe.Pointer, beforeEncoderStages Stages)/* debug [protocol_interface/required_method]: WaitForFenceBeforeEncoderStages */
+	BarrierAfterEncoderStagesBeforeEncoderStagesVisibilityOptions(afterEncoderStages Stages, beforeEncoderStages Stages, visibilityOptions MTL4VisibilityOptions)
+	BarrierAfterQueueStagesBeforeStagesVisibilityOptions(afterQueueStages Stages, beforeStages Stages, visibilityOptions MTL4VisibilityOptions)
+	BarrierAfterStagesBeforeQueueStagesVisibilityOptions(afterStages Stages, beforeQueueStages Stages, visibilityOptions MTL4VisibilityOptions)
+	EndEncoding()
+	InsertDebugSignpost(string_ foundation.foundation.INSString)
+	PopDebugGroup()
+	PushDebugGroup(string_ foundation.foundation.INSString)
+	UpdateFenceAfterEncoderStages(fence unsafe.Pointer, afterEncoderStages Stages)
+	WaitForFenceBeforeEncoderStages(fence unsafe.Pointer, beforeEncoderStages Stages)
 }

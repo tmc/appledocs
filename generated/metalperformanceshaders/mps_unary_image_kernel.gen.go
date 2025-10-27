@@ -55,7 +55,7 @@ type IUnaryImageKernel interface {
 	Encode()
 	EncodeToCommandBufferSourceTextureDestinationTexture(commandBuffer unsafe.Pointer, sourceTexture unsafe.Pointer, destinationTexture unsafe.Pointer)
 	SourceRegion()
-	SourceRegionForDestinationSize(destinationSize objc.IObject /* cross-framework: MTLSize */) objc.IObject /* cross-framework: MPSRegion */
+	SourceRegionForDestinationSize(destinationSize metal.IMTLSize) MPSRegion
 	EncodeToCommandBufferSourceImageDestinationImage(commandBuffer unsafe.Pointer, sourceImage IImage, destinationImage IImage)
 	EncodeToCommandBufferInPlaceTextureFallbackCopyAllocator(commandBuffer unsafe.Pointer, texture unsafe.Pointer, copyAllocator CopyAllocator /* not a class type */) bool
 
@@ -193,7 +193,7 @@ func (u_ UnaryImageKernel) SourceRegion() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregionfordestinationsize
-func (u_ UnaryImageKernel) SourceRegionForDestinationSize(destinationSize objc.IObject /* cross-framework: MTLSize */) objc.IObject /* cross-framework: MPSRegion */ {
+func (u_ UnaryImageKernel) SourceRegionForDestinationSize(destinationSize metal.IMTLSize) MPSRegion {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("sourceRegionForDestinationSize:"), destinationSize)
 	return rv
 }

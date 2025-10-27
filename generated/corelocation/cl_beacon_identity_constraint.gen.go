@@ -6,9 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 )
+
+
+
+
 
 // The class instance for the [BeaconIdentityConstraint] class.
 var (
@@ -27,39 +30,34 @@ type _BeaconIdentityConstraintClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [BeaconIdentityConstraint] class.
 type IBeaconIdentityConstraint interface {
 	IBeaconIdentityCondition
+	
+
 	// properties:
-	Major() objc.IObject /* cross-framework: NSNumber */
-	SetMajor(value objc.IObject /* cross-framework: NSNumber */)
-	Minor() objc.IObject /* cross-framework: NSNumber */
-	SetMinor(value objc.IObject /* cross-framework: NSNumber */)
-	Uuid() objc.IObject /* cross-framework: UUID */
-	SetUuid(value objc.IObject /* cross-framework: UUID */)
+	Major() foundation.foundation.INSNumber
+	SetMajor(value foundation.foundation.INSNumber)
+	Minor() foundation.foundation.INSNumber
+	SetMinor(value foundation.foundation.INSNumber)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.UUID)
+
+
+	
+
 	// methods:
+
+
 }
 
-// Identity characteristics that can match one or more beacons.
-//
-// A constraint specifies beacon identity characteristics. Use constraints to check for matching beacons by comparing the beacon’s identity characteristics ( , , and ) to those in the constraint. Constraints always specify a UUID value, but the major and minor values are optional. A beacon satisfies the constraint if all three identity characteristics of the beacon match the same characteristic of the constraint. Major and minor characteristics are wildcards if they have no value. A major or minor wildcard value matches any value in the beacon’s corresponding characteristic.
 
-// Identity characteristics that can match one or more beacons.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityConstraint
-type BeaconIdentityConstraint struct {
-	BeaconIdentityCondition
-}
 
-// BeaconIdentityConstraintFrom constructs a [BeaconIdentityConstraint] from an unsafe.Pointer.
-//
-// Identity characteristics that can match one or more beacons.
-func BeaconIdentityConstraintFrom(ptr unsafe.Pointer) BeaconIdentityConstraint {
-	return BeaconIdentityConstraint{
-		BeaconIdentityCondition: BeaconIdentityConditionFrom(ptr),
-	}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (bc _BeaconIdentityConstraintClass) Alloc() BeaconIdentityConstraint {
@@ -68,7 +66,6 @@ func (bc _BeaconIdentityConstraintClass) Alloc() BeaconIdentityConstraint {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BeaconIdentityConstraintClass) New() BeaconIdentityConstraint {
 	rv := objc.Send[BeaconIdentityConstraint](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,53 +89,116 @@ func NewBeaconIdentityConstraint() BeaconIdentityConstraint {
 	return getBeaconIdentityConstraintClass().New()
 }
 
+
+
+
+
+// Identity characteristics that can match one or more beacons.
+//
+// A constraint specifies beacon identity characteristics. Use constraints to check for matching beacons by comparing the beacon’s identity characteristics ( , , and ) to those in the constraint. Constraints always specify a UUID value, but the major and minor values are optional. A beacon satisfies the constraint if all three identity characteristics of the beacon match the same characteristic of the constraint. Major and minor characteristics are wildcards if they have no value. A major or minor wildcard value matches any value in the beacon’s corresponding characteristic.
+
+
+// Identity characteristics that can match one or more beacons.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityConstraint
+type BeaconIdentityConstraint struct {
+	BeaconIdentityCondition
+}
+
+// BeaconIdentityConstraintFrom constructs a [BeaconIdentityConstraint] from an unsafe.Pointer.
+//
+// Identity characteristics that can match one or more beacons.
+func BeaconIdentityConstraintFrom(ptr unsafe.Pointer) BeaconIdentityConstraint {
+	return BeaconIdentityConstraint{
+		BeaconIdentityCondition: BeaconIdentityConditionFrom(ptr),
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-func (b_ BeaconIdentityConstraint) Major() objc.IObject /* cross-framework: NSNumber */ {
+func (b_ BeaconIdentityConstraint) Major() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
 
+
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-func (b_ BeaconIdentityConstraint) SetMajor(value objc.IObject /* cross-framework: NSNumber */) {
+func (b_ BeaconIdentityConstraint) SetMajor(value foundation.foundation.INSNumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
+
 
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-func (b_ BeaconIdentityConstraint) Minor() objc.IObject /* cross-framework: NSNumber */ {
+func (b_ BeaconIdentityConstraint) Minor() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
+
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-func (b_ BeaconIdentityConstraint) SetMinor(value objc.IObject /* cross-framework: NSNumber */) {
+func (b_ BeaconIdentityConstraint) SetMinor(value foundation.foundation.INSNumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
+
 
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) Uuid() objc.IObject /* cross-framework: UUID */ {
+func (b_ BeaconIdentityConstraint) Uuid() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
 
+
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) SetUuid(value objc.IObject /* cross-framework: UUID */) {
+func (b_ BeaconIdentityConstraint) SetUuid(value foundation.UUID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
+
+
+
+
+
+
+
+

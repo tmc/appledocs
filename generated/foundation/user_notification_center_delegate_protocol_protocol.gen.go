@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PUserNotificationCenterDelegate is the NSUserNotificationCenterDelegate protocol interface.
@@ -48,4 +50,31 @@ func (d *UserNotificationCenterDelegate) UserNotificationCenterShouldPresentNoti
 // HasUserNotificationCenterShouldPresentNotification returns true if a handler for UserNotificationCenterShouldPresentNotification has been set.
 func (d *UserNotificationCenterDelegate) HasUserNotificationCenterShouldPresentNotification() bool {
 	return d._UserNotificationCenterShouldPresentNotification != nil
+}
+
+// UserNotificationCenterDelegateObject wraps an existing Objective-C object that conforms to the PUserNotificationCenterDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type UserNotificationCenterDelegateObject struct {
+	objectivec.Object
+}
+
+// NewUserNotificationCenterDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSUserNotificationCenterDelegate protocol.
+func NewUserNotificationCenterDelegateObject(obj objectivec.Object) *UserNotificationCenterDelegateObject {
+	return &UserNotificationCenterDelegateObject{obj}
+}
+
+// Make sure UserNotificationCenterDelegateObject implements PUserNotificationCenterDelegate.
+var _ PUserNotificationCenterDelegate = (*UserNotificationCenterDelegateObject)(nil)
+
+// UserNotificationCenterShouldPresentNotification implements the PUserNotificationCenterDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *UserNotificationCenterDelegateObject) UserNotificationCenterShouldPresentNotification(center IUserNotificationCenter, notification IUserNotification) bool {
+	return objc.Send[bool](o.ID, objc.Sel("userNotificationCenter:shouldPresentNotification:"), center, notification)
+}
+
+// HasUserNotificationCenterShouldPresentNotification returns true; this is a placeholder for optional method checks.
+func (o *UserNotificationCenterDelegateObject) HasUserNotificationCenterShouldPresentNotification() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

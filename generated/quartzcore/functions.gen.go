@@ -2,7 +2,7 @@
 
 package quartzcore
 
-/* debug [functions.gen.go]: Generating 16 functions for QuartzCore */
+
 import (
 	"unsafe"
 
@@ -81,7 +81,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACurrentMediaTime()
 func CACurrentMediaTime() TimeInterval {
 	return _CACurrentMediaTime()
-}/* debug [functions.gen.go/function]: CACurrentMediaTime */
+}
 
 // CAFrameRateRangeIsEqualToRange is a QuartzCore function.
 //
@@ -90,7 +90,7 @@ func CACurrentMediaTime() TimeInterval {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAFrameRateRangeIsEqualToRange
 func CAFrameRateRangeIsEqualToRange(range_ FrameRateRange, other FrameRateRange) bool {
 	return _CAFrameRateRangeIsEqualToRange(range_, other)
-}/* debug [functions.gen.go/function]: CAFrameRateRangeIsEqualToRange */
+}
 
 // CAFrameRateRangeMake is a QuartzCore function.
 //
@@ -99,7 +99,7 @@ func CAFrameRateRangeIsEqualToRange(range_ FrameRateRange, other FrameRateRange)
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAFrameRateRangeMake
 func CAFrameRateRangeMake(minimum float32, maximum float32, preferred float32) FrameRateRange {
 	return _CAFrameRateRangeMake(minimum, maximum, preferred)
-}/* debug [functions.gen.go/function]: CAFrameRateRangeMake */
+}
 
 // Concatenates to and returns the result: .
 //
@@ -110,7 +110,7 @@ func CAFrameRateRangeMake(minimum float32, maximum float32, preferred float32) F
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DConcat(_:_:)
 func CATransform3DConcat(a Transform3D, b Transform3D) Transform3D {
 	return _CATransform3DConcat(a, b)
-}/* debug [functions.gen.go/function]: CATransform3DConcat */
+}
 
 // Returns a Boolean value that indicates whether the two transforms are exactly equal.
 //
@@ -121,7 +121,7 @@ func CATransform3DConcat(a Transform3D, b Transform3D) Transform3D {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DEqualToTransform(_:_:)
 func CATransform3DEqualToTransform(a Transform3D, b Transform3D) bool {
 	return _CATransform3DEqualToTransform(a, b)
-}/* debug [functions.gen.go/function]: CATransform3DEqualToTransform */
+}
 
 // Returns the affine transform represented by .
 //
@@ -132,7 +132,7 @@ func CATransform3DEqualToTransform(a Transform3D, b Transform3D) bool {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DGetAffineTransform(_:)
 func CATransform3DGetAffineTransform(t Transform3D) corefoundation.CGAffineTransform {
 	return _CATransform3DGetAffineTransform(t)
-}/* debug [functions.gen.go/function]: CATransform3DGetAffineTransform */
+}
 
 // Inverts and returns the result.
 //
@@ -143,7 +143,7 @@ func CATransform3DGetAffineTransform(t Transform3D) corefoundation.CGAffineTrans
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DInvert(_:)
 func CATransform3DInvert(t Transform3D) Transform3D {
 	return _CATransform3DInvert(t)
-}/* debug [functions.gen.go/function]: CATransform3DInvert */
+}
 
 // Returns a Boolean value that indicates whether a transform can be exactly represented by an affine transform.
 //
@@ -154,7 +154,7 @@ func CATransform3DInvert(t Transform3D) Transform3D {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DIsAffine(_:)
 func CATransform3DIsAffine(t Transform3D) bool {
 	return _CATransform3DIsAffine(t)
-}/* debug [functions.gen.go/function]: CATransform3DIsAffine */
+}
 
 // Returns a Boolean value that indicates whether the transform is the identity transform.
 //
@@ -165,7 +165,7 @@ func CATransform3DIsAffine(t Transform3D) bool {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DIsIdentity(_:)
 func CATransform3DIsIdentity(t Transform3D) bool {
 	return _CATransform3DIsIdentity(t)
-}/* debug [functions.gen.go/function]: CATransform3DIsIdentity */
+}
 
 // Returns a transform with the same effect as affine transform .
 //
@@ -176,7 +176,7 @@ func CATransform3DIsIdentity(t Transform3D) bool {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeAffineTransform(_:)
 func CATransform3DMakeAffineTransform(m corefoundation.CGAffineTransform) Transform3D {
 	return _CATransform3DMakeAffineTransform(m)
-}/* debug [functions.gen.go/function]: CATransform3DMakeAffineTransform */
+}
 
 // Returns a transform that rotates by radians about the vector .
 //
@@ -187,7 +187,7 @@ func CATransform3DMakeAffineTransform(m corefoundation.CGAffineTransform) Transf
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeRotation(_:_:_:_:)
 func CATransform3DMakeRotation(angle float64, x float64, y float64, z float64) Transform3D {
 	return _CATransform3DMakeRotation(angle, x, y, z)
-}/* debug [functions.gen.go/function]: CATransform3DMakeRotation */
+}
 
 // Returns a transform that scales by .
 //
@@ -198,7 +198,7 @@ func CATransform3DMakeRotation(angle float64, x float64, y float64, z float64) T
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeScale(_:_:_:)
 func CATransform3DMakeScale(sx float64, sy float64, sz float64) Transform3D {
 	return _CATransform3DMakeScale(sx, sy, sz)
-}/* debug [functions.gen.go/function]: CATransform3DMakeScale */
+}
 
 // Returns a transform that translates by .
 //
@@ -209,7 +209,7 @@ func CATransform3DMakeScale(sx float64, sy float64, sz float64) Transform3D {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DMakeTranslation(_:_:_:)
 func CATransform3DMakeTranslation(tx float64, ty float64, tz float64) Transform3D {
 	return _CATransform3DMakeTranslation(tx, ty, tz)
-}/* debug [functions.gen.go/function]: CATransform3DMakeTranslation */
+}
 
 // Rotates by radians about the vector and returns the result.
 //
@@ -220,7 +220,7 @@ func CATransform3DMakeTranslation(tx float64, ty float64, tz float64) Transform3
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DRotate(_:_:_:_:_:)
 func CATransform3DRotate(t Transform3D, angle float64, x float64, y float64, z float64) Transform3D {
 	return _CATransform3DRotate(t, angle, x, y, z)
-}/* debug [functions.gen.go/function]: CATransform3DRotate */
+}
 
 // Scales by and returns the result: .
 //
@@ -231,7 +231,7 @@ func CATransform3DRotate(t Transform3D, angle float64, x float64, y float64, z f
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DScale(_:_:_:_:)
 func CATransform3DScale(t Transform3D, sx float64, sy float64, sz float64) Transform3D {
 	return _CATransform3DScale(t, sx, sy, sz)
-}/* debug [functions.gen.go/function]: CATransform3DScale */
+}
 
 // Translates by and returns the result: .
 //
@@ -242,7 +242,7 @@ func CATransform3DScale(t Transform3D, sx float64, sy float64, sz float64) Trans
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DTranslate(_:_:_:_:)
 func CATransform3DTranslate(t Transform3D, tx float64, ty float64, tz float64) Transform3D {
 	return _CATransform3DTranslate(t, tx, ty, tz)
-}/* debug [functions.gen.go/function]: CATransform3DTranslate */
+}
 
 
 

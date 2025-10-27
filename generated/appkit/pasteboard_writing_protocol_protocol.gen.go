@@ -17,9 +17,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting
 type PPasteboardWriting interface {
 	// Required methods
-	PasteboardPropertyListForType(type_ PasteboardType /* typedef */) objc.ID/* debug [protocol_interface/required_method]: PasteboardPropertyListForType */
-	WritableTypesForPasteboard(pasteboard IPasteboard) []string/* debug [protocol_interface/required_method]: WritableTypesForPasteboard */
+	PasteboardPropertyListForType(type_ PasteboardType) objc.ID
+	WritableTypesForPasteboard(pasteboard IPasteboard) []string
 	// Optional methods
-	WritingOptionsForTypePasteboard(type_ PasteboardType /* typedef */, pasteboard IPasteboard) PasteboardWritingOptions
+	WritingOptionsForTypePasteboard(type_ PasteboardType, pasteboard IPasteboard) PasteboardWritingOptions
 	HasWritingOptionsForTypePasteboard() bool
 }

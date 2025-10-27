@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSInputManager */
 
 
-/* debug [class_header]: Header for NSInputManager */
+
+
 // The class instance for the [InputManager] class.
 var (
 	InputManagerClass     _InputManagerClass
@@ -32,30 +30,30 @@ func getInputManagerClass() _InputManagerClass {
 type _InputManagerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for InputManager */
+
+
 // An interface definition for the [InputManager] class.
 type IInputManager interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for InputManager */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for InputManager */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for InputManager */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _InputManagerClass) Alloc() InputManager {
 	rv := objc.Send[InputManager](objc.ID(ic.class), objc.Sel("alloc"))
@@ -85,11 +83,11 @@ func (i_ InputManager) Autorelease() InputManager {
 func NewInputManager() InputManager {
 	return getInputManagerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for InputManager */
+
+
 
 
 // [Full Topic]
@@ -102,66 +100,66 @@ type InputManager struct {
 func InputManagerFrom(ptr unsafe.Pointer) InputManager {
 	return InputManager{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for InputManager */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/initWithName:host:
-func NewInputManagerWithNameHost(inputServerName objc.IObject /* cross-framework: NSString */, hostName objc.IObject /* cross-framework: NSString */) InputManager {
+func NewInputManagerWithNameHost(inputServerName foundation.foundation.INSString, hostName foundation.foundation.INSString) InputManager {
 	instance := getInputManagerClass().Alloc()
 	rv := objc.Send[InputManager](instance.ID, objc.Sel("initWithName:host:"), inputServerName, hostName)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewInputManagerWithNameHost */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for InputManager */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/currentInputManager
 func (ic _InputManagerClass) CurrentInputManager() IInputManager {
 	rv := objc.Send[InputManager](objc.ID(ic.class), objc.Sel("currentInputManager"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CurrentInputManager) */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/cycleToNextInputLanguage:
-func (ic _InputManagerClass) CycleToNextInputLanguage(sender objc.IObject) {
+func (ic _InputManagerClass) CycleToNextInputLanguage(sender objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("cycleToNextInputLanguage:"), sender)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CycleToNextInputLanguage) */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/cycleToNextInputServerInLanguage:
-func (ic _InputManagerClass) CycleToNextInputServerInLanguage(sender objc.IObject) {
+func (ic _InputManagerClass) CycleToNextInputServerInLanguage(sender objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("cycleToNextInputServerInLanguage:"), sender)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CycleToNextInputServerInLanguage) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for InputManager */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for InputManager */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for InputManager */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NSInputManager */
+
+
+
+
+
+
+
+
+
 
 

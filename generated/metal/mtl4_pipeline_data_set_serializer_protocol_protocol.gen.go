@@ -5,8 +5,6 @@ package metal
 import (
 
 	"github.com/tmc/appledocs/generated/foundation"
-
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PMTL4PipelineDataSetSerializer is the MTL4PipelineDataSetSerializer protocol interface.
@@ -24,6 +22,6 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTL4PipelineDataSetSerializer
 type PMTL4PipelineDataSetSerializer interface {
 	// Required methods
-	SerializeAsArchiveAndFlushToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: SerializeAsArchiveAndFlushToURLError */
-	SerializeAsPipelinesScriptWithError(error_ objectivec.IObject) foundation.Data/* debug [protocol_interface/required_method]: SerializeAsPipelinesScriptWithError */
+	SerializeAsArchiveAndFlushToURLError(url foundation.foundation.INSURL, error_ foundation.foundation.INSError) bool
+	SerializeAsPipelinesScriptWithError(error_ foundation.foundation.INSError) foundation.Data
 }

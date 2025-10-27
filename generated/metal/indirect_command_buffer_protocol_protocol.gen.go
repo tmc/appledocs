@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PIndirectCommandBuffer is the MTLIndirectCommandBuffer protocol interface.
@@ -23,7 +23,7 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer
 type PIndirectCommandBuffer interface {
 	// Required methods
-	IndirectComputeCommandAtIndex(commandIndex uint) unsafe.Pointer/* debug [protocol_interface/required_method]: IndirectComputeCommandAtIndex */
-	IndirectRenderCommandAtIndex(commandIndex uint) unsafe.Pointer/* debug [protocol_interface/required_method]: IndirectRenderCommandAtIndex */
-	ResetWithRange(range_ corefoundation.Range)/* debug [protocol_interface/required_method]: ResetWithRange */
+	IndirectComputeCommandAtIndex(commandIndex uint) unsafe.Pointer
+	IndirectRenderCommandAtIndex(commandIndex uint) unsafe.Pointer
+	ResetWithRange(range_ foundation.Range)
 }

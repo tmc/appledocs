@@ -141,7 +141,7 @@ func NewImageHistogramWithCoderDevice(aDecoder foundation.Coder, device unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram/1618910-initwithdevice
-func NewImageHistogramWithDeviceHistogramInfo(device unsafe.Pointer, histogramInfo objc.IObject /* cross-framework: MPSImageHistogramInfo */) ImageHistogram {
+func NewImageHistogramWithDeviceHistogramInfo(device unsafe.Pointer, histogramInfo ImageHistogramInfo) ImageHistogram {
 	instance := getImageHistogramClass().Alloc()
 	rv := objc.Send[ImageHistogram](instance.ID, objc.Sel("initWithDevice:histogramInfo:"), device, histogramInfo)
 	rv.Autorelease()

@@ -119,7 +119,7 @@ func GeometryUtilsFrom(ptr unsafe.Pointer) GeometryUtils {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/boundingCircle(for:)-423ll
-func (gc _GeometryUtilsClass) BoundingCircleForContourError(contour IVNContour, error_ objectivec.IObject) ICircle {
+func (gc _GeometryUtilsClass) BoundingCircleForContourError(contour IVNContour, error_ foundation.foundation.INSError) ICircle {
 	rv := objc.Send[Circle](objc.ID(gc.class), objc.Sel("boundingCircleForContour:error:"), contour, error_)
 	return rv
 }
@@ -129,7 +129,7 @@ func (gc _GeometryUtilsClass) BoundingCircleForContourError(contour IVNContour, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/boundingCircle(for:)-9dggv
-func (gc _GeometryUtilsClass) BoundingCircleForPointsError(points []Point, error_ objectivec.IObject) ICircle {
+func (gc _GeometryUtilsClass) BoundingCircleForPointsError(points []Point, error_ foundation.foundation.INSError) ICircle {
 	rv := objc.Send[Circle](objc.ID(gc.class), objc.Sel("boundingCircleForPoints:error:"), points, error_)
 	return rv
 }
@@ -139,7 +139,7 @@ func (gc _GeometryUtilsClass) BoundingCircleForPointsError(points []Point, error
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/boundingCircle(forSIMDPoints:pointCount:)
-func (gc _GeometryUtilsClass) BoundingCircleForSIMDPointsPointCountError(points objectivec.IObject, pointCount int, error_ objectivec.IObject) ICircle {
+func (gc _GeometryUtilsClass) BoundingCircleForSIMDPointsPointCountError(points objectivec.IObject, pointCount int, error_ foundation.foundation.INSError) ICircle {
 	rv := objc.Send[Circle](objc.ID(gc.class), objc.Sel("boundingCircleForSIMDPoints:pointCount:error:"), points, pointCount, error_)
 	return rv
 }
@@ -149,7 +149,7 @@ func (gc _GeometryUtilsClass) BoundingCircleForSIMDPointsPointCountError(points 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/calculateArea(_:for:orientedArea:)
-func (gc _GeometryUtilsClass) CalculateAreaForContourOrientedAreaError(area objectivec.IObject, contour IVNContour, orientedArea bool, error_ objectivec.IObject) bool {
+func (gc _GeometryUtilsClass) CalculateAreaForContourOrientedAreaError(area objectivec.IObject, contour IVNContour, orientedArea bool, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("calculateArea:forContour:orientedArea:error:"), area, contour, orientedArea, error_)
 	return rv
 }
@@ -159,7 +159,7 @@ func (gc _GeometryUtilsClass) CalculateAreaForContourOrientedAreaError(area obje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/calculatePerimeter(_:for:)
-func (gc _GeometryUtilsClass) CalculatePerimeterForContourError(perimeter objectivec.IObject, contour IVNContour, error_ objectivec.IObject) bool {
+func (gc _GeometryUtilsClass) CalculatePerimeterForContourError(perimeter objectivec.IObject, contour IVNContour, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("calculatePerimeter:forContour:error:"), perimeter, contour, error_)
 	return rv
 }

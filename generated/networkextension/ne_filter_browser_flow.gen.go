@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class NEFilterBrowserFlow */
 
 
-/* debug [class_header]: Header for NEFilterBrowserFlow */
+
+
 // The class instance for the [NEFilterBrowserFlow] class.
 var (
 	NEFilterBrowserFlowClass     _NEFilterBrowserFlowClass
@@ -30,30 +29,30 @@ func getNEFilterBrowserFlowClass() _NEFilterBrowserFlowClass {
 type _NEFilterBrowserFlowClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEFilterBrowserFlow */
+
+
 // An interface definition for the [NEFilterBrowserFlow] class.
 type INEFilterBrowserFlow interface {
 	INEFilterFlow
 	
-/* debug [class_interface_properties]: Properties for NEFilterBrowserFlow */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEFilterBrowserFlow */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEFilterBrowserFlow */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterBrowserFlowClass) Alloc() NEFilterBrowserFlow {
 	rv := objc.Send[NEFilterBrowserFlow](objc.ID(nc.class), objc.Sel("alloc"))
@@ -83,11 +82,11 @@ func (n_ NEFilterBrowserFlow) Autorelease() NEFilterBrowserFlow {
 func NewNEFilterBrowserFlow() NEFilterBrowserFlow {
 	return getNEFilterBrowserFlowClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEFilterBrowserFlow */
+
+
 // A flow of network data, originating from a WebKit-based browser, that the filter examines.
 
 
@@ -107,33 +106,33 @@ func NEFilterBrowserFlowFrom(ptr unsafe.Pointer) NEFilterBrowserFlow {
 		NEFilterFlow: NEFilterFlowFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEFilterBrowserFlow *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEFilterBrowserFlow */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEFilterBrowserFlow */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEFilterBrowserFlow */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEFilterBrowserFlow */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NEFilterBrowserFlow */
+
+
+
+
+
+
+
+
+
+
+
 
 

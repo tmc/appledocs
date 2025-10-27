@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSGraphPooling4DOpDescriptor */
 
 
-/* debug [class_header]: Header for MPSGraphPooling4DOpDescriptor */
+
+
 // The class instance for the [GraphPooling4DOpDescriptor] class.
 var (
 	GraphPooling4DOpDescriptorClass     _GraphPooling4DOpDescriptorClass
@@ -29,16 +29,16 @@ func getGraphPooling4DOpDescriptorClass() _GraphPooling4DOpDescriptorClass {
 type _GraphPooling4DOpDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GraphPooling4DOpDescriptor */
+
+
 // An interface definition for the [GraphPooling4DOpDescriptor] class.
 type IGraphPooling4DOpDescriptor interface {
 	IGraphObject
 	
-/* debug [class_interface_properties]: Properties for GraphPooling4DOpDescriptor */
+
 	// properties:
 	CeilMode() bool
 	SetCeilMode(value bool)
@@ -52,25 +52,25 @@ type IGraphPooling4DOpDescriptor interface {
 	SetPaddingStyle(value GraphPaddingStyle)
 	PaddingValues() []foundation.Number
 	SetPaddingValues(value []foundation.Number)
-	ReturnIndicesDataType() objc.IObject /* cross-framework: DataType */
-	SetReturnIndicesDataType(value objc.IObject /* cross-framework: DataType */)
+	ReturnIndicesDataType() DataType /* not a class type */
+	SetReturnIndicesDataType(value DataType /* not a class type */)
 	ReturnIndicesMode() GraphPoolingReturnIndicesMode
 	SetReturnIndicesMode(value GraphPoolingReturnIndicesMode)
 	Strides() []foundation.Number
 	SetStrides(value []foundation.Number)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GraphPooling4DOpDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GraphPooling4DOpDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GraphPooling4DOpDescriptorClass) Alloc() GraphPooling4DOpDescriptor {
 	rv := objc.Send[GraphPooling4DOpDescriptor](objc.ID(gc.class), objc.Sel("alloc"))
@@ -100,11 +100,11 @@ func (g_ GraphPooling4DOpDescriptor) Autorelease() GraphPooling4DOpDescriptor {
 func NewGraphPooling4DOpDescriptor() GraphPooling4DOpDescriptor {
 	return getGraphPooling4DOpDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GraphPooling4DOpDescriptor */
+
+
 // The class that defines the parameters for a 4D pooling operation.
 //
 // Use this descriptor with the following methods:
@@ -126,11 +126,11 @@ func GraphPooling4DOpDescriptorFrom(ptr unsafe.Pointer) GraphPooling4DOpDescript
 		GraphObject: GraphObjectFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GraphPooling4DOpDescriptor */
+
+
 
 // Creates a 4D pooling descriptor with default values.
 //
@@ -139,7 +139,7 @@ func GraphPooling4DOpDescriptorFrom(ptr unsafe.Pointer) GraphPooling4DOpDescript
 func NewGraphPooling4DOpDescriptorWithKernelSizesPaddingStyle(kernelSizes []foundation.Number, paddingStyle GraphPaddingStyle) GraphPooling4DOpDescriptor {
 	rv := objc.Send[GraphPooling4DOpDescriptor](objc.ID(getGraphPooling4DOpDescriptorClass().class), objc.Sel("descriptorWithKernelSizes:paddingStyle:"), kernelSizes, paddingStyle)
 	return rv
-}/* debug [class_init_methods/constructor]: NewGraphPooling4DOpDescriptorWithKernelSizesPaddingStyle */
+}
 
 
 // Creates a 4D pooling descriptor with given values.
@@ -149,13 +149,13 @@ func NewGraphPooling4DOpDescriptorWithKernelSizesPaddingStyle(kernelSizes []foun
 func NewGraphPooling4DOpDescriptorWithKernelSizesStridesDilationRatesPaddingValuesPaddingStyle(kernelSizes []foundation.Number, strides []foundation.Number, dilationRates []foundation.Number, paddingValues []foundation.Number, paddingStyle GraphPaddingStyle) GraphPooling4DOpDescriptor {
 	rv := objc.Send[GraphPooling4DOpDescriptor](objc.ID(getGraphPooling4DOpDescriptorClass().class), objc.Sel("descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:"), kernelSizes, strides, dilationRates, paddingValues, paddingStyle)
 	return rv
-}/* debug [class_init_methods/constructor]: NewGraphPooling4DOpDescriptorWithKernelSizesStridesDilationRatesPaddingValuesPaddingStyle */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for GraphPooling4DOpDescriptor */
+
+
+
 
 // Creates a 4D pooling descriptor with default values.
 //
@@ -164,7 +164,7 @@ func NewGraphPooling4DOpDescriptorWithKernelSizesStridesDilationRatesPaddingValu
 func (gc _GraphPooling4DOpDescriptorClass) DescriptorWithKernelSizesPaddingStyle(kernelSizes []foundation.Number, paddingStyle GraphPaddingStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithKernelSizes:paddingStyle:"), kernelSizes, paddingStyle)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithKernelSizesPaddingStyle) */
+}
 
 
 // Creates a 4D pooling descriptor with given values.
@@ -174,23 +174,23 @@ func (gc _GraphPooling4DOpDescriptorClass) DescriptorWithKernelSizesPaddingStyle
 func (gc _GraphPooling4DOpDescriptorClass) DescriptorWithKernelSizesStridesDilationRatesPaddingValuesPaddingStyle(kernelSizes []foundation.Number, strides []foundation.Number, dilationRates []foundation.Number, paddingValues []foundation.Number, paddingStyle GraphPaddingStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:"), kernelSizes, strides, dilationRates, paddingValues, paddingStyle)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithKernelSizesStridesDilationRatesPaddingValuesPaddingStyle) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for GraphPooling4DOpDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GraphPooling4DOpDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for GraphPooling4DOpDescriptor */
+
+
+
+
+
+
+
 
 // Affects how MPSGraph computes the output size: if set to then output size is computed by rounding up instead of down when dividing input size by stride.
 //
@@ -199,7 +199,7 @@ func (gc _GraphPooling4DOpDescriptorClass) DescriptorWithKernelSizesStridesDilat
 func (g_ GraphPooling4DOpDescriptor) CeilMode() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("ceilMode"))
 	return rv
-}/* debug [instance_properties/getter]: ceilMode */
+}
 
 
 // Affects how MPSGraph computes the output size: if set to then output size is computed by rounding up instead of down when dividing input size by stride.
@@ -208,7 +208,7 @@ func (g_ GraphPooling4DOpDescriptor) CeilMode() bool {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/ceilMode
 func (g_ GraphPooling4DOpDescriptor) SetCeilMode(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCeilMode:"), value)
-}/* debug [instance_properties/setter]: ceilMode */
+}
 
 
 // Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
@@ -218,7 +218,7 @@ func (g_ GraphPooling4DOpDescriptor) SetCeilMode(value bool) {
 func (g_ GraphPooling4DOpDescriptor) DilationRates() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](g_.ID, objc.Sel("dilationRates"))
 	return rv
-}/* debug [instance_properties/getter]: dilationRates */
+}
 
 
 // Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
@@ -236,7 +236,7 @@ func (g_ GraphPooling4DOpDescriptor) SetDilationRates(value []foundation.Number)
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), nsArray)
-}/* debug [instance_properties/setter]: dilationRates */
+}
 
 
 // Defines a mode for average pooling, where samples outside the input tensor count as zeroes in the average computation.
@@ -246,7 +246,7 @@ func (g_ GraphPooling4DOpDescriptor) SetDilationRates(value []foundation.Number)
 func (g_ GraphPooling4DOpDescriptor) IncludeZeroPadToAverage() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("includeZeroPadToAverage"))
 	return rv
-}/* debug [instance_properties/getter]: includeZeroPadToAverage */
+}
 
 
 // Defines a mode for average pooling, where samples outside the input tensor count as zeroes in the average computation.
@@ -255,7 +255,7 @@ func (g_ GraphPooling4DOpDescriptor) IncludeZeroPadToAverage() bool {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/includeZeroPadToAverage
 func (g_ GraphPooling4DOpDescriptor) SetIncludeZeroPadToAverage(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIncludeZeroPadToAverage:"), value)
-}/* debug [instance_properties/setter]: includeZeroPadToAverage */
+}
 
 
 // Defines the pooling window size.
@@ -265,7 +265,7 @@ func (g_ GraphPooling4DOpDescriptor) SetIncludeZeroPadToAverage(value bool) {
 func (g_ GraphPooling4DOpDescriptor) KernelSizes() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](g_.ID, objc.Sel("kernelSizes"))
 	return rv
-}/* debug [instance_properties/getter]: kernelSizes */
+}
 
 
 // Defines the pooling window size.
@@ -283,7 +283,7 @@ func (g_ GraphPooling4DOpDescriptor) SetKernelSizes(value []foundation.Number) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelSizes:"), nsArray)
-}/* debug [instance_properties/setter]: kernelSizes */
+}
 
 
 // Defines what kind of padding graph applies to the operation.
@@ -293,7 +293,7 @@ func (g_ GraphPooling4DOpDescriptor) SetKernelSizes(value []foundation.Number) {
 func (g_ GraphPooling4DOpDescriptor) PaddingStyle() GraphPaddingStyle {
 	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
-}/* debug [instance_properties/getter]: paddingStyle */
+}
 
 
 // Defines what kind of padding graph applies to the operation.
@@ -302,7 +302,7 @@ func (g_ GraphPooling4DOpDescriptor) PaddingStyle() GraphPaddingStyle {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/paddingStyle
 func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
-}/* debug [instance_properties/setter]: paddingStyle */
+}
 
 
 // Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
@@ -312,7 +312,7 @@ func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 func (g_ GraphPooling4DOpDescriptor) PaddingValues() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](g_.ID, objc.Sel("paddingValues"))
 	return rv
-}/* debug [instance_properties/getter]: paddingValues */
+}
 
 
 // Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
@@ -330,26 +330,26 @@ func (g_ GraphPooling4DOpDescriptor) SetPaddingValues(value []foundation.Number)
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingValues:"), nsArray)
-}/* debug [instance_properties/setter]: paddingValues */
+}
 
 
 // Defines the data type for returned indices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/returnIndicesDataType
-func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() objc.IObject /* cross-framework: DataType */ {
-	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("returnIndicesDataType"))
+func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("returnIndicesDataType"))
 	return rv
-}/* debug [instance_properties/getter]: returnIndicesDataType */
+}
 
 
 // Defines the data type for returned indices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/returnIndicesDataType
-func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value objc.IObject /* cross-framework: DataType */) {
+func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesDataType:"), value)
-}/* debug [instance_properties/setter]: returnIndicesDataType */
+}
 
 
 // Defines the mode for returned indices of maximum values within each pooling window.
@@ -359,7 +359,7 @@ func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value objc.IObject
 func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() GraphPoolingReturnIndicesMode {
 	rv := objc.Send[GraphPoolingReturnIndicesMode](g_.ID, objc.Sel("returnIndicesMode"))
 	return rv
-}/* debug [instance_properties/getter]: returnIndicesMode */
+}
 
 
 // Defines the mode for returned indices of maximum values within each pooling window.
@@ -368,7 +368,7 @@ func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() GraphPoolingReturnIndic
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/returnIndicesMode
 func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesMode(value GraphPoolingReturnIndicesMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesMode:"), value)
-}/* debug [instance_properties/setter]: returnIndicesMode */
+}
 
 
 // Defines strides for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
@@ -378,7 +378,7 @@ func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesMode(value GraphPoolingRetu
 func (g_ GraphPooling4DOpDescriptor) Strides() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](g_.ID, objc.Sel("strides"))
 	return rv
-}/* debug [instance_properties/getter]: strides */
+}
 
 
 // Defines strides for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
@@ -396,11 +396,11 @@ func (g_ GraphPooling4DOpDescriptor) SetStrides(value []foundation.Number) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), nsArray)
-}/* debug [instance_properties/setter]: strides */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSGraphPooling4DOpDescriptor */
+
+
+
 
 

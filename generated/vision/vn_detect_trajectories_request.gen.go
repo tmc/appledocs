@@ -50,8 +50,8 @@ type IDetectTrajectoriesRequest interface {
 	ObjectMinimumNormalizedRadius() float32
 	SetObjectMinimumNormalizedRadius(value float32)
 	Results() []TrajectoryObservation
-	TargetFrameTime() objc.IObject /* cross-framework: Time */
-	SetTargetFrameTime(value objc.IObject /* cross-framework: Time */)
+	TargetFrameTime() objectivec.IObject
+	SetTargetFrameTime(value objectivec.IObject)
 	TrajectoryLength() int
 	VNDetectTrajectoriesRequestRevision1() int
 
@@ -132,7 +132,7 @@ func DetectTrajectoriesRequestFrom(ptr unsafe.Pointer) DetectTrajectoriesRequest
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectTrajectoriesRequest/init(frameAnalysisSpacing:trajectoryLength:completionHandler:)
-func NewDetectTrajectoriesRequestWithFrameAnalysisSpacingTrajectoryLengthCompletionHandler(frameAnalysisSpacing objc.IObject /* cross-framework: Time */, trajectoryLength int, completionHandler RequestCompletionHandler /* not a class type */) DetectTrajectoriesRequest {
+func NewDetectTrajectoriesRequestWithFrameAnalysisSpacingTrajectoryLengthCompletionHandler(frameAnalysisSpacing objectivec.IObject, trajectoryLength int, completionHandler RequestCompletionHandler /* not a class type */) DetectTrajectoriesRequest {
 	instance := getDetectTrajectoriesRequestClass().Alloc()
 	rv := objc.Send[DetectTrajectoriesRequest](instance.ID, objc.Sel("initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:"), frameAnalysisSpacing, trajectoryLength, completionHandler)
 	rv.Autorelease()
@@ -250,8 +250,8 @@ func (d_ DetectTrajectoriesRequest) Results() []TrajectoryObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectTrajectoriesRequest/targetFrameTime
-func (d_ DetectTrajectoriesRequest) TargetFrameTime() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](d_.ID, objc.Sel("targetFrameTime"))
+func (d_ DetectTrajectoriesRequest) TargetFrameTime() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("targetFrameTime"))
 	return rv
 }
 
@@ -260,7 +260,7 @@ func (d_ DetectTrajectoriesRequest) TargetFrameTime() objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectTrajectoriesRequest/targetFrameTime
-func (d_ DetectTrajectoriesRequest) SetTargetFrameTime(value objc.IObject /* cross-framework: Time */) {
+func (d_ DetectTrajectoriesRequest) SetTargetFrameTime(value objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTargetFrameTime:"), value)
 }
 

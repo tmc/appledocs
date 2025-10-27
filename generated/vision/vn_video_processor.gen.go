@@ -46,10 +46,10 @@ type IVideoProcessor interface {
 	
 
 	// methods:
-	AddRequestProcessingOptionsError(request IVNRequest, processingOptions IVNVideoProcessorRequestProcessingOptions, error_ objectivec.IObject) bool
-	AnalyzeTimeRangeError(timeRange TimeRange /* not a class type */, error_ objectivec.IObject) bool
+	AddRequestProcessingOptionsError(request IVNRequest, processingOptions IVNVideoProcessorRequestProcessingOptions, error_ foundation.foundation.INSError) bool
+	AnalyzeTimeRangeError(timeRange objectivec.IObject, error_ foundation.foundation.INSError) bool
 	Cancel()
-	RemoveRequestError(request IVNRequest, error_ objectivec.IObject) bool
+	RemoveRequestError(request IVNRequest, error_ foundation.foundation.INSError) bool
 
 
 }
@@ -119,7 +119,7 @@ func VideoProcessorFrom(ptr unsafe.Pointer) VideoProcessor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNVideoProcessor/init(url:)
-func NewVideoProcessorWithURL(videoURL objc.IObject /* cross-framework: NSURL */) VideoProcessor {
+func NewVideoProcessorWithURL(videoURL foundation.foundation.INSURL) VideoProcessor {
 	instance := getVideoProcessorClass().Alloc()
 	rv := objc.Send[VideoProcessor](instance.ID, objc.Sel("initWithURL:"), videoURL)
 	rv.Autorelease()
@@ -146,7 +146,7 @@ func NewVideoProcessorWithURL(videoURL objc.IObject /* cross-framework: NSURL */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNVideoProcessor/addRequest(_:processingOptions:)
-func (v_ VideoProcessor) AddRequestProcessingOptionsError(request IVNRequest, processingOptions IVNVideoProcessorRequestProcessingOptions, error_ objectivec.IObject) bool {
+func (v_ VideoProcessor) AddRequestProcessingOptionsError(request IVNRequest, processingOptions IVNVideoProcessorRequestProcessingOptions, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("addRequest:processingOptions:error:"), request, processingOptions, error_)
 	return rv
 }
@@ -156,7 +156,7 @@ func (v_ VideoProcessor) AddRequestProcessingOptionsError(request IVNRequest, pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNVideoProcessor/analyze(_:)
-func (v_ VideoProcessor) AnalyzeTimeRangeError(timeRange TimeRange /* not a class type */, error_ objectivec.IObject) bool {
+func (v_ VideoProcessor) AnalyzeTimeRangeError(timeRange objectivec.IObject, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("analyzeTimeRange:error:"), timeRange, error_)
 	return rv
 }
@@ -175,7 +175,7 @@ func (v_ VideoProcessor) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNVideoProcessor/removeRequest(_:)
-func (v_ VideoProcessor) RemoveRequestError(request IVNRequest, error_ objectivec.IObject) bool {
+func (v_ VideoProcessor) RemoveRequestError(request IVNRequest, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("removeRequest:error:"), request, error_)
 	return rv
 }

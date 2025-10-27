@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -48,7 +47,7 @@ type IClassifyImageRequest interface {
 	
 
 	// methods:
-	SupportedIdentifiersAndReturnError(error_ objectivec.IObject) []string
+	SupportedIdentifiersAndReturnError(error_ foundation.foundation.INSError) []string
 
 
 }
@@ -126,7 +125,7 @@ func ClassifyImageRequestFrom(ptr unsafe.Pointer) ClassifyImageRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest/knownClassifications(forRevision:)
-func (cc _ClassifyImageRequestClass) KnownClassificationsForRevisionError(requestRevision uint, error_ objectivec.IObject) []ClassificationObservation {
+func (cc _ClassifyImageRequestClass) KnownClassificationsForRevisionError(requestRevision uint, error_ foundation.foundation.INSError) []ClassificationObservation {
 	rv := objc.Send[[]ClassificationObservation](objc.ID(cc.class), objc.Sel("knownClassificationsForRevision:error:"), requestRevision, error_)
 	return rv
 }
@@ -146,7 +145,7 @@ func (cc _ClassifyImageRequestClass) KnownClassificationsForRevisionError(reques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest/supportedIdentifiers()
-func (c_ ClassifyImageRequest) SupportedIdentifiersAndReturnError(error_ objectivec.IObject) []string {
+func (c_ ClassifyImageRequest) SupportedIdentifiersAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedIdentifiersAndReturnError:"), error_)
 	return rv
 }

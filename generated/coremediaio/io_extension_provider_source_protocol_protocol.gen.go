@@ -4,6 +4,8 @@ package coremediaio
 
 import (
 	"unsafe"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PIOExtensionProviderSource is the CMIOExtensionProviderSource protocol interface.
@@ -17,8 +19,8 @@ import (
 // See: doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource
 type PIOExtensionProviderSource interface {
 	// Required methods
-	ConnectClientError(client ExtensionClient, outError unsafe.Pointer) bool/* debug [protocol_interface/required_method]: ConnectClientError */
-	DisconnectClient(client ExtensionClient)/* debug [protocol_interface/required_method]: DisconnectClient */
-	ProviderPropertiesForPropertiesError(properties unsafe.Pointer, outError unsafe.Pointer) IOExtensionProviderProperties/* debug [protocol_interface/required_method]: ProviderPropertiesForPropertiesError */
-	SetProviderPropertiesError(providerProperties ExtensionProviderProperties, outError unsafe.Pointer) bool/* debug [protocol_interface/required_method]: SetProviderPropertiesError */
+	ConnectClientError(client ExtensionClient, outError foundation.foundation.INSError) bool
+	DisconnectClient(client ExtensionClient)
+	ProviderPropertiesForPropertiesError(properties unsafe.Pointer, outError foundation.foundation.INSError) IOExtensionProviderProperties
+	SetProviderPropertiesError(providerProperties ExtensionProviderProperties, outError foundation.foundation.INSError) bool
 }

@@ -22,6 +22,6 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer
 type PAnimatablePropertyContainer interface {
 	// Required methods
-	AnimationForKey(key AnimatablePropertyKey /* typedef */) objc.ID/* debug [protocol_interface/required_method]: AnimationForKey */
-	Animator() objectivec.IObject/* debug [protocol_interface/required_method]: Animator */
+	AnimationForKey(key AnimatablePropertyKey) objc.ID
+	Animator() objectivec.IObject
 }

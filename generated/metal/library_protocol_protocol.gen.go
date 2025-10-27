@@ -6,8 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/foundation"
-
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PLibrary is the MTLLibrary protocol interface.
@@ -25,12 +23,12 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLLibrary
 type PLibrary interface {
 	// Required methods
-	NewFunctionWithDescriptorError(descriptor IMTLFunctionDescriptor, error_ objectivec.IObject) unsafe.Pointer/* debug [protocol_interface/required_method]: NewFunctionWithDescriptorError */
-	NewFunctionWithDescriptorCompletionHandler(descriptor IMTLFunctionDescriptor, completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: NewFunctionWithDescriptorCompletionHandler */
-	NewFunctionWithName(functionName objc.IObject /* cross-framework: NSString */) unsafe.Pointer/* debug [protocol_interface/required_method]: NewFunctionWithName */
-	NewFunctionWithNameConstantValuesError(name objc.IObject /* cross-framework: NSString */, constantValues IMTLFunctionConstantValues, error_ objectivec.IObject) unsafe.Pointer/* debug [protocol_interface/required_method]: NewFunctionWithNameConstantValuesError */
-	NewFunctionWithNameConstantValuesCompletionHandler(name objc.IObject /* cross-framework: NSString */, constantValues IMTLFunctionConstantValues, completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: NewFunctionWithNameConstantValuesCompletionHandler */
-	NewIntersectionFunctionWithDescriptorError(descriptor IMTLIntersectionFunctionDescriptor, error_ objectivec.IObject) unsafe.Pointer/* debug [protocol_interface/required_method]: NewIntersectionFunctionWithDescriptorError */
-	NewIntersectionFunctionWithDescriptorCompletionHandler(descriptor IMTLIntersectionFunctionDescriptor, completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: NewIntersectionFunctionWithDescriptorCompletionHandler */
-	ReflectionForFunctionWithName(functionName objc.IObject /* cross-framework: NSString */) FunctionReflection/* debug [protocol_interface/required_method]: ReflectionForFunctionWithName */
+	NewFunctionWithDescriptorError(descriptor IMTLFunctionDescriptor, error_ foundation.foundation.INSError) unsafe.Pointer
+	NewFunctionWithDescriptorCompletionHandler(descriptor IMTLFunctionDescriptor, completionHandler unsafe.Pointer)
+	NewFunctionWithName(functionName foundation.foundation.INSString) unsafe.Pointer
+	NewFunctionWithNameConstantValuesError(name foundation.foundation.INSString, constantValues IMTLFunctionConstantValues, error_ foundation.foundation.INSError) unsafe.Pointer
+	NewFunctionWithNameConstantValuesCompletionHandler(name foundation.foundation.INSString, constantValues IMTLFunctionConstantValues, completionHandler unsafe.Pointer)
+	NewIntersectionFunctionWithDescriptorError(descriptor IMTLIntersectionFunctionDescriptor, error_ foundation.foundation.INSError) unsafe.Pointer
+	NewIntersectionFunctionWithDescriptorCompletionHandler(descriptor IMTLIntersectionFunctionDescriptor, completionHandler unsafe.Pointer)
+	ReflectionForFunctionWithName(functionName foundation.foundation.INSString) IFunctionReflection
 }

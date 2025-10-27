@@ -41,7 +41,7 @@ type IFeaturePrintObservation interface {
 	
 
 	// properties:
-	Data() objc.IObject /* cross-framework: NSData */
+	Data() foundation.foundation.INSData
 	ElementCount() uint
 	ElementType() ElementType
 
@@ -49,7 +49,7 @@ type IFeaturePrintObservation interface {
 	
 
 	// methods:
-	ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ objectivec.IObject) bool
+	ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ foundation.foundation.INSError) bool
 
 
 }
@@ -135,7 +135,7 @@ func FeaturePrintObservationFrom(ptr unsafe.Pointer) FeaturePrintObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation/computeDistance(_:to:)
-func (f_ FeaturePrintObservation) ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ objectivec.IObject) bool {
+func (f_ FeaturePrintObservation) ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("computeDistance:toFeaturePrintObservation:error:"), outDistance, featurePrint, error_)
 	return rv
 }
@@ -150,7 +150,7 @@ func (f_ FeaturePrintObservation) ComputeDistanceToFeaturePrintObservationError(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation/data
-func (f_ FeaturePrintObservation) Data() objc.IObject /* cross-framework: NSData */ {
+func (f_ FeaturePrintObservation) Data() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("data"))
 	return rv
 }

@@ -12,9 +12,13 @@ type (
 	Array = _undefined // referenced in MetalPerformanceShaders
 	Buffer = _undefined // referenced in MetalPerformanceShaders
 	CNNArithmeticGradientStateBatch = _undefined // referenced in MetalPerformanceShaders
+	CNNBatchNormalizationDataSource = _undefined // referenced in MetalPerformanceShaders
+	CNNConvolutionDataSource = _undefined // referenced in MetalPerformanceShaders
 	CNNConvolutionGradientStateBatch = _undefined // referenced in MetalPerformanceShaders
 	CNNConvolutionTransposeGradientStateBatch = _undefined // referenced in MetalPerformanceShaders
 	CNNDropoutGradientStateBatch = _undefined // referenced in MetalPerformanceShaders
+	CNNGroupNormalizationDataSource = _undefined // referenced in MetalPerformanceShaders
+	CNNInstanceNormalizationDataSource = _undefined // referenced in MetalPerformanceShaders
 	CNNLossLabelsBatch = _undefined // referenced in MetalPerformanceShaders
 	CPUCacheMode = _undefined // referenced in MetalPerformanceShaders
 	ColorConversionInfoRef = _undefined // referenced in MetalPerformanceShaders

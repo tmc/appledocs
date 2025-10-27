@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MTLTextureReferenceType */
 
 
-/* debug [class_header]: Header for MTLTextureReferenceType */
+
+
 // The class instance for the [TextureReferenceType] class.
 var (
 	TextureReferenceTypeClass     _TextureReferenceTypeClass
@@ -29,34 +29,34 @@ func getTextureReferenceTypeClass() _TextureReferenceTypeClass {
 type _TextureReferenceTypeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TextureReferenceType */
+
+
 // An interface definition for the [TextureReferenceType] class.
 type ITextureReferenceType interface {
 	IType
 	
-/* debug [class_interface_properties]: Properties for TextureReferenceType */
+
 	// properties:
 	Access() BindingAccess
 	IsDepthTexture() bool
 	TextureDataType() DataType
 	TextureType() TextureType
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TextureReferenceType */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TextureReferenceType */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextureReferenceTypeClass) Alloc() TextureReferenceType {
 	rv := objc.Send[TextureReferenceType](objc.ID(tc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (t_ TextureReferenceType) Autorelease() TextureReferenceType {
 func NewTextureReferenceType() TextureReferenceType {
 	return getTextureReferenceTypeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TextureReferenceType */
+
+
 // A description of a texture.
 
 
@@ -110,30 +110,30 @@ func TextureReferenceTypeFrom(ptr unsafe.Pointer) TextureReferenceType {
 		Type: TypeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TextureReferenceType *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for TextureReferenceType */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TextureReferenceType */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TextureReferenceType */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TextureReferenceType */
+
+
+
+
+
+
+
+
+
 
 // The texture’s read/write access to the argument.
 //
@@ -142,7 +142,7 @@ func TextureReferenceTypeFrom(ptr unsafe.Pointer) TextureReferenceType {
 func (t_ TextureReferenceType) Access() BindingAccess {
 	rv := objc.Send[BindingAccess](t_.ID, objc.Sel("access"))
 	return rv
-}/* debug [instance_properties/getter]: access */
+}
 
 
 // A Boolean value that indicates whether the texture is a depth texture.
@@ -152,7 +152,7 @@ func (t_ TextureReferenceType) Access() BindingAccess {
 func (t_ TextureReferenceType) IsDepthTexture() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isDepthTexture"))
 	return rv
-}/* debug [instance_properties/getter]: isDepthTexture */
+}
 
 
 // The data type of the texture.
@@ -162,7 +162,7 @@ func (t_ TextureReferenceType) IsDepthTexture() bool {
 func (t_ TextureReferenceType) TextureDataType() DataType {
 	rv := objc.Send[DataType](t_.ID, objc.Sel("textureDataType"))
 	return rv
-}/* debug [instance_properties/getter]: textureDataType */
+}
 
 
 // The texture type of the texture.
@@ -172,12 +172,12 @@ func (t_ TextureReferenceType) TextureDataType() DataType {
 func (t_ TextureReferenceType) TextureType() TextureType {
 	rv := objc.Send[TextureType](t_.ID, objc.Sel("textureType"))
 	return rv
-}/* debug [instance_properties/getter]: textureType */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLTextureReferenceType */
+
+
+
 
 
 

@@ -14,7 +14,7 @@ var _ = avfoundation.NewCaptureDeviceDiscoverySession
 func ExampleNewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition() {
 	_ = avfoundation.NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(
 		[]avfoundation.string{}, // deviceTypes []string
-		avfoundation.MediaType /* typedef */{}, // mediaType MediaType /* typedef */
+		avfoundation.MediaType{}, // mediaType MediaType
 		avfoundation.CaptureDevicePosition{}, // position CaptureDevicePosition
 	)
 	// Output:

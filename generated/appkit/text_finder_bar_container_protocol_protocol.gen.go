@@ -12,8 +12,8 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextFinderBarContainer
 type PTextFinderBarContainer interface {
 	// Required methods
-	FindBarViewDidChangeHeight()/* debug [protocol_interface/required_method]: FindBarViewDidChangeHeight */
+	FindBarViewDidChangeHeight()
 	// Optional methods
-	ContentView() View
+	ContentView() IView
 	HasContentView() bool
 }

@@ -17,8 +17,8 @@ package avfoundation
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositing
 type PVideoCompositing interface {
 	// Required methods
-	RenderContextChanged(newRenderContext IAVVideoCompositionRenderContext)/* debug [protocol_interface/required_method]: RenderContextChanged */
-	StartVideoCompositionRequest(asyncVideoCompositionRequest IAVAsynchronousVideoCompositionRequest)/* debug [protocol_interface/required_method]: StartVideoCompositionRequest */
+	RenderContextChanged(newRenderContext IAVVideoCompositionRenderContext)
+	StartVideoCompositionRequest(asyncVideoCompositionRequest IAVAsynchronousVideoCompositionRequest)
 	// Optional methods
 	AnticipateRenderingUsingHint(renderHint IAVVideoCompositionRenderHint)
 	HasAnticipateRenderingUsingHint() bool

@@ -72,8 +72,8 @@ type INDArray interface {
 	ExportDataWithCommandBufferToBufferDestinationDataTypeOffsetRowStrides(cmdBuf unsafe.Pointer, buffer unsafe.Pointer, destinationDataType DataType, offset uint, rowStrides int)
 	ImportData()
 	ImportDataWithCommandBufferFromBufferSourceDataTypeOffsetRowStrides(cmdBuf unsafe.Pointer, buffer unsafe.Pointer, sourceDataType DataType, offset uint, rowStrides int)
-	ExportDataWithCommandBufferToImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset objc.IObject /* cross-framework: MPSImageCoordinate */)
-	ImportDataWithCommandBufferFromImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset objc.IObject /* cross-framework: MPSImageCoordinate */)
+	ExportDataWithCommandBufferToImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset ImageCoordinate)
+	ImportDataWithCommandBufferFromImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset ImageCoordinate)
 	ArrayViewWithDimensionCountDimensionSizesStrides(numberOfDimensions uint, dimensionSizes uint, dimStrides uint) INDArray
 	ArrayViewWithShapeStrides(shape Shape /* not a class type */, strides Shape /* not a class type */) INDArray
 	UserBuffer()
@@ -292,14 +292,14 @@ func (n_ NDArray) ImportDataWithCommandBufferFromBufferSourceDataTypeOffsetRowSt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/3152526-exportdatawithcommandbuffer
-func (n_ NDArray) ExportDataWithCommandBufferToImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset objc.IObject /* cross-framework: MPSImageCoordinate */) {
+func (n_ NDArray) ExportDataWithCommandBufferToImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset ImageCoordinate) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("exportDataWithCommandBuffer:toImages:offset:"), cmdBuf, images, offset)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/3152527-importdatawithcommandbuffer
-func (n_ NDArray) ImportDataWithCommandBufferFromImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset objc.IObject /* cross-framework: MPSImageCoordinate */) {
+func (n_ NDArray) ImportDataWithCommandBufferFromImagesOffset(cmdBuf unsafe.Pointer, images ImageBatch /* not a class type */, offset ImageCoordinate) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("importDataWithCommandBuffer:fromImages:offset:"), cmdBuf, images, offset)
 }
 

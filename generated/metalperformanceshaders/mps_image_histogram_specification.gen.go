@@ -133,7 +133,7 @@ func NewImageHistogramSpecificationWithCoderDevice(aDecoder foundation.Coder, de
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification/1618907-initwithdevice
-func NewImageHistogramSpecificationWithDeviceHistogramInfo(device unsafe.Pointer, histogramInfo objc.IObject /* cross-framework: MPSImageHistogramInfo */) ImageHistogramSpecification {
+func NewImageHistogramSpecificationWithDeviceHistogramInfo(device unsafe.Pointer, histogramInfo ImageHistogramInfo) ImageHistogramSpecification {
 	instance := getImageHistogramSpecificationClass().Alloc()
 	rv := objc.Send[ImageHistogramSpecification](instance.ID, objc.Sel("initWithDevice:histogramInfo:"), device, histogramInfo)
 	rv.Autorelease()

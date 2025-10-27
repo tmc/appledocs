@@ -4,8 +4,6 @@ package metal
 
 import (
 
-	"github.com/tmc/appledocs/generated/corefoundation"
-
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -24,5 +22,5 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer
 type PCounterSampleBuffer interface {
 	// Required methods
-	ResolveCounterRange(range_ corefoundation.Range) foundation.Data/* debug [protocol_interface/required_method]: ResolveCounterRange */
+	ResolveCounterRange(range_ foundation.Range) foundation.Data
 }

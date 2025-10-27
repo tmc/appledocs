@@ -6,10 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
+
+
+
+
 
 // The class instance for the [Beacon] class.
 var (
@@ -28,39 +31,36 @@ type _BeaconClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Beacon] class.
 type IBeacon interface {
 	objectivec.IObject
+	
+
 	// properties:
 	Accuracy() LocationAccuracy /* not a class type */
-	Major() objc.IObject        /* cross-framework: NSNumber */
-	Minor() objc.IObject        /* cross-framework: NSNumber */
+	Major() foundation.foundation.INSNumber
+	Minor() foundation.foundation.INSNumber
 	Proximity() Proximity
-	ProximityUUID() objc.IObject /* cross-framework: UUID */
+	ProximityUUID() foundation.UUID
 	Rssi() int
-	Timestamp() objc.IObject /* cross-framework: NSDate */
-	UUID() objc.IObject      /* cross-framework: UUID */
+	Timestamp() foundation.foundation.INSDate
+	UUID() foundation.UUID
+
+
+	
+
 	// methods:
+
+
 }
 
-// Information about an observed iBeacon device and its relative distance to a person’s device.
-//
-// The class represents a beacon that was observed during beacon ranging. You do not create instances of this class directly. The location manager ( ) object reports observed beacons to its associated delegate object. The identity of a beacon is defined by its , , and properties. These values are coded into the beacon itself. For a more thorough description of the meaning of those values, see .
 
-// Information about an observed iBeacon device and its relative distance to a person’s device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon
-type Beacon struct {
-	objectivec.Object
-}
 
-// BeaconFrom constructs a [Beacon] from an unsafe.Pointer.
-//
-// Information about an observed iBeacon device and its relative distance to a person’s device.
-func BeaconFrom(ptr unsafe.Pointer) Beacon {
-	return Beacon{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (bc _BeaconClass) Alloc() Beacon {
@@ -69,7 +69,6 @@ func (bc _BeaconClass) Alloc() Beacon {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BeaconClass) New() Beacon {
 	rv := objc.Send[Beacon](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,6 +92,54 @@ func NewBeacon() Beacon {
 	return getBeaconClass().New()
 }
 
+
+
+
+
+// Information about an observed iBeacon device and its relative distance to a person’s device.
+//
+// The class represents a beacon that was observed during beacon ranging. You do not create instances of this class directly. The location manager ( ) object reports observed beacons to its associated delegate object. The identity of a beacon is defined by its , , and properties. These values are coded into the beacon itself. For a more thorough description of the meaning of those values, see .
+
+
+// Information about an observed iBeacon device and its relative distance to a person’s device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon
+type Beacon struct {
+	objectivec.Object
+}
+
+// BeaconFrom constructs a [Beacon] from an unsafe.Pointer.
+//
+// Information about an observed iBeacon device and its relative distance to a person’s device.
+func BeaconFrom(ptr unsafe.Pointer) Beacon {
+	return Beacon{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // The accuracy of the proximity value, measured in meters from the beacon.
 //
 // [Full Topic]
@@ -102,23 +149,26 @@ func (b_ Beacon) Accuracy() LocationAccuracy /* not a class type */ {
 	return rv
 }
 
+
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/major
-func (b_ Beacon) Major() objc.IObject /* cross-framework: NSNumber */ {
+func (b_ Beacon) Major() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
+
 
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/minor
-func (b_ Beacon) Minor() objc.IObject /* cross-framework: NSNumber */ {
+func (b_ Beacon) Minor() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
+
 
 // The relative distance to the beacon.
 //
@@ -129,14 +179,16 @@ func (b_ Beacon) Proximity() Proximity {
 	return rv
 }
 
+
 // The proximity ID of the beacon.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximityUUID
-func (b_ Beacon) ProximityUUID() objc.IObject /* cross-framework: UUID */ {
+func (b_ Beacon) ProximityUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
+
 
 // The received signal strength of the beacon, measured in decibels.
 //
@@ -147,20 +199,30 @@ func (b_ Beacon) Rssi() int {
 	return rv
 }
 
+
 // A timestamp representing when the beacon was observed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/timestamp
-func (b_ Beacon) Timestamp() objc.IObject /* cross-framework: NSDate */ {
+func (b_ Beacon) Timestamp() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](b_.ID, objc.Sel("timestamp"))
 	return rv
 }
+
 
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/uuid
-func (b_ Beacon) UUID() objc.IObject /* cross-framework: UUID */ {
+func (b_ Beacon) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
+
+
+
+
+
+
+
+

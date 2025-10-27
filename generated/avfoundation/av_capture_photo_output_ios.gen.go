@@ -26,14 +26,14 @@ func (c_ CapturePhotoOutput) SetPreparedPhotoSettingsArrayCompletionHandler(prep
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/supportedRawPhotoPixelFormatTypesForFileType:
-func (c_ CapturePhotoOutput) SupportedRawPhotoPixelFormatTypesForFileType(fileType FileType /* typedef */) []foundation.Number {
+func (c_ CapturePhotoOutput) SupportedRawPhotoPixelFormatTypesForFileType(fileType FileType) []foundation.Number {
 	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("supportedRawPhotoPixelFormatTypesForFileType:"), fileType)
 	return rv
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/supportedRawPhotoCodecTypes(forRawPhotoPixelFormatType:fileType:)
-func (c_ CapturePhotoOutput) SupportedRawPhotoCodecTypesForRawPhotoPixelFormatTypeFileType(pixelFormatType uint32 /* not a class type */, fileType FileType /* typedef */) []string {
+func (c_ CapturePhotoOutput) SupportedRawPhotoCodecTypesForRawPhotoPixelFormatTypeFileType(pixelFormatType uint32 /* not a class type */, fileType FileType) []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:"), pixelFormatType, fileType)
 	return rv
 }

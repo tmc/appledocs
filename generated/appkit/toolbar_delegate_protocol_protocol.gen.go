@@ -8,6 +8,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PToolbarDelegate is the NSToolbarDelegate protocol interface.
@@ -23,21 +25,21 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate
 type PToolbarDelegate interface {
 	// Optional methods
-	ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem
+	ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, flag bool) IToolbarItem
 	HasToolbarItemForItemIdentifierWillBeInsertedIntoToolbar() bool
-	ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool
+	ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, index int) bool
 	HasToolbarItemIdentifierCanBeInsertedAtIndex() bool
 	ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string
 	HasToolbarAllowedItemIdentifiers() bool
 	ToolbarDefaultItemIdentifiers(toolbar IToolbar) []string
 	HasToolbarDefaultItemIdentifiers() bool
-	ToolbarDidRemoveItem(notification foundation.Notification)
+	ToolbarDidRemoveItem(notification foundation.foundation.INSNotification)
 	HasToolbarDidRemoveItem() bool
 	ToolbarImmovableItemIdentifiers(toolbar IToolbar) unsafe.Pointer
 	HasToolbarImmovableItemIdentifiers() bool
 	ToolbarSelectableItemIdentifiers(toolbar IToolbar) []string
 	HasToolbarSelectableItemIdentifiers() bool
-	ToolbarWillAddItem(notification foundation.Notification)
+	ToolbarWillAddItem(notification foundation.foundation.INSNotification)
 	HasToolbarWillAddItem() bool
 }
 
@@ -45,27 +47,27 @@ type PToolbarDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ToolbarDelegate struct {
-	_ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem
-	_ToolbarItemIdentifierCanBeInsertedAtIndex func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool
+	_ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, flag bool) IToolbarItem
+	_ToolbarItemIdentifierCanBeInsertedAtIndex func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, index int) bool
 	_ToolbarAllowedItemIdentifiers func(toolbar IToolbar) []string
 	_ToolbarDefaultItemIdentifiers func(toolbar IToolbar) []string
-	_ToolbarDidRemoveItem func(notification foundation.Notification)
+	_ToolbarDidRemoveItem func(notification foundation.foundation.INSNotification)
 	_ToolbarImmovableItemIdentifiers func(toolbar IToolbar) unsafe.Pointer
 	_ToolbarSelectableItemIdentifiers func(toolbar IToolbar) []string
-	_ToolbarWillAddItem func(notification foundation.Notification)
+	_ToolbarWillAddItem func(notification foundation.foundation.INSNotification)
 }
 
 // SetToolbarItemForItemIdentifierWillBeInsertedIntoToolbar sets the handler for the ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar delegate method.
 //
 // Asks the delegate for the toolbar item associated with the specified identifier.
-func (d *ToolbarDelegate) SetToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(f func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem) {
+func (d *ToolbarDelegate) SetToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(f func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, flag bool) IToolbarItem) {
 	d._ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar = f
 }
 
 // SetToolbarItemIdentifierCanBeInsertedAtIndex sets the handler for the ToolbarItemIdentifierCanBeInsertedAtIndex delegate method.
 //
 // Asks the delegate for a Boolean value that indicates whether the toolbar can place the item at the specified position.
-func (d *ToolbarDelegate) SetToolbarItemIdentifierCanBeInsertedAtIndex(f func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool) {
+func (d *ToolbarDelegate) SetToolbarItemIdentifierCanBeInsertedAtIndex(f func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, index int) bool) {
 	d._ToolbarItemIdentifierCanBeInsertedAtIndex = f
 }
 
@@ -86,7 +88,7 @@ func (d *ToolbarDelegate) SetToolbarDefaultItemIdentifiers(f func(toolbar IToolb
 // SetToolbarDidRemoveItem sets the handler for the ToolbarDidRemoveItem delegate method.
 //
 // Tells the delegate that the toolbar removed the specified item.
-func (d *ToolbarDelegate) SetToolbarDidRemoveItem(f func(notification foundation.Notification)) {
+func (d *ToolbarDelegate) SetToolbarDidRemoveItem(f func(notification foundation.foundation.INSNotification)) {
 	d._ToolbarDidRemoveItem = f
 }
 
@@ -107,16 +109,16 @@ func (d *ToolbarDelegate) SetToolbarSelectableItemIdentifiers(f func(toolbar ITo
 // SetToolbarWillAddItem sets the handler for the ToolbarWillAddItem delegate method.
 //
 // Tells the delegate that the toolbar is about to add the specified item.
-func (d *ToolbarDelegate) SetToolbarWillAddItem(f func(notification foundation.Notification)) {
+func (d *ToolbarDelegate) SetToolbarWillAddItem(f func(notification foundation.foundation.INSNotification)) {
 	d._ToolbarWillAddItem = f
 }
 
 // ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar implements the PToolbarDelegate interface.
-func (d *ToolbarDelegate) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem {
+func (d *ToolbarDelegate) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, flag bool) IToolbarItem {
 	if d._ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar != nil {
 		return d._ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar, itemIdentifier, flag)
 	}
-	var zero ToolbarItem
+	var zero IToolbarItem
 	return zero
 }
 
@@ -126,7 +128,7 @@ func (d *ToolbarDelegate) HasToolbarItemForItemIdentifierWillBeInsertedIntoToolb
 }
 
 // ToolbarItemIdentifierCanBeInsertedAtIndex implements the PToolbarDelegate interface.
-func (d *ToolbarDelegate) ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool {
+func (d *ToolbarDelegate) ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, index int) bool {
 	if d._ToolbarItemIdentifierCanBeInsertedAtIndex != nil {
 		return d._ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar, itemIdentifier, index)
 	}
@@ -168,7 +170,7 @@ func (d *ToolbarDelegate) HasToolbarDefaultItemIdentifiers() bool {
 }
 
 // ToolbarDidRemoveItem implements the PToolbarDelegate interface.
-func (d *ToolbarDelegate) ToolbarDidRemoveItem(notification foundation.Notification) {
+func (d *ToolbarDelegate) ToolbarDidRemoveItem(notification foundation.foundation.INSNotification) {
 	if d._ToolbarDidRemoveItem != nil {
 		d._ToolbarDidRemoveItem(notification)
 	}
@@ -208,7 +210,7 @@ func (d *ToolbarDelegate) HasToolbarSelectableItemIdentifiers() bool {
 }
 
 // ToolbarWillAddItem implements the PToolbarDelegate interface.
-func (d *ToolbarDelegate) ToolbarWillAddItem(notification foundation.Notification) {
+func (d *ToolbarDelegate) ToolbarWillAddItem(notification foundation.foundation.INSNotification) {
 	if d._ToolbarWillAddItem != nil {
 		d._ToolbarWillAddItem(notification)
 	}
@@ -217,4 +219,108 @@ func (d *ToolbarDelegate) ToolbarWillAddItem(notification foundation.Notificatio
 // HasToolbarWillAddItem returns true if a handler for ToolbarWillAddItem has been set.
 func (d *ToolbarDelegate) HasToolbarWillAddItem() bool {
 	return d._ToolbarWillAddItem != nil
+}
+
+// ToolbarDelegateObject wraps an existing Objective-C object that conforms to the PToolbarDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ToolbarDelegateObject struct {
+	objectivec.Object
+}
+
+// NewToolbarDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSToolbarDelegate protocol.
+func NewToolbarDelegateObject(obj objectivec.Object) *ToolbarDelegateObject {
+	return &ToolbarDelegateObject{obj}
+}
+
+// Make sure ToolbarDelegateObject implements PToolbarDelegate.
+var _ PToolbarDelegate = (*ToolbarDelegateObject)(nil)
+
+// ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, flag bool) IToolbarItem {
+	return objc.Send[IToolbarItem](o.ID, objc.Sel("toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:"), toolbar, itemIdentifier, flag)
+}
+
+// HasToolbarItemForItemIdentifierWillBeInsertedIntoToolbar returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarItemForItemIdentifierWillBeInsertedIntoToolbar() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarItemIdentifierCanBeInsertedAtIndex implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier, index int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("toolbar:itemIdentifier:canBeInsertedAtIndex:"), toolbar, itemIdentifier, index)
+}
+
+// HasToolbarItemIdentifierCanBeInsertedAtIndex returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarItemIdentifierCanBeInsertedAtIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarAllowedItemIdentifiers implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("toolbarAllowedItemIdentifiers:"), toolbar)
+}
+
+// HasToolbarAllowedItemIdentifiers returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarAllowedItemIdentifiers() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarDefaultItemIdentifiers implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarDefaultItemIdentifiers(toolbar IToolbar) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("toolbarDefaultItemIdentifiers:"), toolbar)
+}
+
+// HasToolbarDefaultItemIdentifiers returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarDefaultItemIdentifiers() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarDidRemoveItem implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarDidRemoveItem(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("toolbarDidRemoveItem:"), notification)
+}
+
+// HasToolbarDidRemoveItem returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarDidRemoveItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarImmovableItemIdentifiers implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarImmovableItemIdentifiers(toolbar IToolbar) unsafe.Pointer {
+	return objc.Send[unsafe.Pointer](o.ID, objc.Sel("toolbarImmovableItemIdentifiers:"), toolbar)
+}
+
+// HasToolbarImmovableItemIdentifiers returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarImmovableItemIdentifiers() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarSelectableItemIdentifiers implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarSelectableItemIdentifiers(toolbar IToolbar) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("toolbarSelectableItemIdentifiers:"), toolbar)
+}
+
+// HasToolbarSelectableItemIdentifiers returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarSelectableItemIdentifiers() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ToolbarWillAddItem implements the PToolbarDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ToolbarDelegateObject) ToolbarWillAddItem(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("toolbarWillAddItem:"), notification)
+}
+
+// HasToolbarWillAddItem returns true; this is a placeholder for optional method checks.
+func (o *ToolbarDelegateObject) HasToolbarWillAddItem() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

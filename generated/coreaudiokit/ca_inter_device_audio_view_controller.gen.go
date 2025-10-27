@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class CAInterDeviceAudioViewController */
 
 
-/* debug [class_header]: Header for CAInterDeviceAudioViewController */
+
+
 // The class instance for the [InterDeviceAudioViewController] class.
 var (
 	InterDeviceAudioViewControllerClass     _InterDeviceAudioViewControllerClass
@@ -29,30 +29,30 @@ func getInterDeviceAudioViewControllerClass() _InterDeviceAudioViewControllerCla
 type _InterDeviceAudioViewControllerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for InterDeviceAudioViewController */
+
+
 // An interface definition for the [InterDeviceAudioViewController] class.
 type IInterDeviceAudioViewController interface {
 	IViewController
 	
-/* debug [class_interface_properties]: Properties for InterDeviceAudioViewController */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for InterDeviceAudioViewController */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for InterDeviceAudioViewController */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _InterDeviceAudioViewControllerClass) Alloc() InterDeviceAudioViewController {
 	rv := objc.Send[InterDeviceAudioViewController](objc.ID(ic.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (i_ InterDeviceAudioViewController) Autorelease() InterDeviceAudioViewContr
 func NewInterDeviceAudioViewController() InterDeviceAudioViewController {
 	return getInterDeviceAudioViewControllerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for InterDeviceAudioViewController */
+
+
 // A view controller object that displays iOS devices that support inter-device audio.
 
 
@@ -106,34 +106,34 @@ func InterDeviceAudioViewControllerFrom(ptr unsafe.Pointer) InterDeviceAudioView
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for InterDeviceAudioViewController *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for InterDeviceAudioViewController */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for InterDeviceAudioViewController */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for InterDeviceAudioViewController */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for InterDeviceAudioViewController */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class CAInterDeviceAudioViewController */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -12,5 +12,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSColorPickingDefault
 type PColorPickingDefault interface {
 	// Required methods
-	InsertNewButtonImageIn(newButtonImage IImage, buttonCell IButtonCell)/* debug [protocol_interface/required_method]: InsertNewButtonImageIn */
+	InsertNewButtonImageIn(newButtonImage IImage, buttonCell IButtonCell)
 }

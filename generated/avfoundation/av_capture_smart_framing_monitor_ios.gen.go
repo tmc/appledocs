@@ -18,7 +18,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSmartFramingMonitor/startMonitoring()
-func (c_ CaptureSmartFramingMonitor) StartMonitoringWithError(outError objectivec.IObject) bool {
+func (c_ CaptureSmartFramingMonitor) StartMonitoringWithError(outError foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startMonitoringWithError:"), outError)
 	return rv
 }

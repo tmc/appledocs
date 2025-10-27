@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PConnectionDelegate is the NSConnectionDelegate protocol interface.
@@ -18,12 +20,12 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSConnectionDelegate
 type PConnectionDelegate interface {
 	// Required methods
-	AuthenticateComponentsWithData(components IArray, signature IData) bool/* debug [protocol_interface/required_method]: AuthenticateComponentsWithData */
-	AuthenticationDataForComponents(components IArray) Data/* debug [protocol_interface/required_method]: AuthenticationDataForComponents */
-	ConnectionHandleRequest(connection IConnection, doreq IDistantObjectRequest) bool/* debug [protocol_interface/required_method]: ConnectionHandleRequest */
-	ConnectionShouldMakeNewConnection(ancestor IConnection, conn IConnection) bool/* debug [protocol_interface/required_method]: ConnectionShouldMakeNewConnection */
-	CreateConversationForConnection(conn IConnection) objc.ID/* debug [protocol_interface/required_method]: CreateConversationForConnection */
-	MakeNewConnectionSender(conn IConnection, ancestor IConnection) bool/* debug [protocol_interface/required_method]: MakeNewConnectionSender */
+	AuthenticateComponentsWithData(components IArray, signature IData) bool
+	AuthenticationDataForComponents(components IArray) IData
+	ConnectionHandleRequest(connection IConnection, doreq IDistantObjectRequest) bool
+	ConnectionShouldMakeNewConnection(ancestor IConnection, conn IConnection) bool
+	CreateConversationForConnection(conn IConnection) objc.ID
+	MakeNewConnectionSender(conn IConnection, ancestor IConnection) bool
 }
 
 // ConnectionDelegate is a delegate implementation builder for the PConnectionDelegate protocol.
@@ -31,7 +33,7 @@ type PConnectionDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ConnectionDelegate struct {
 	_AuthenticateComponentsWithData func(components IArray, signature IData) bool
-	_AuthenticationDataForComponents func(components IArray) Data
+	_AuthenticationDataForComponents func(components IArray) IData
 	_ConnectionHandleRequest func(connection IConnection, doreq IDistantObjectRequest) bool
 	_ConnectionShouldMakeNewConnection func(ancestor IConnection, conn IConnection) bool
 	_CreateConversationForConnection func(conn IConnection) objc.ID
@@ -48,7 +50,7 @@ func (d *ConnectionDelegate) SetAuthenticateComponentsWithData(f func(components
 // SetAuthenticationDataForComponents sets the handler for the AuthenticationDataForComponents delegate method.
 //
 // Returns an   object to be used as an authentication stamp for an outgoing message.
-func (d *ConnectionDelegate) SetAuthenticationDataForComponents(f func(components IArray) Data) {
+func (d *ConnectionDelegate) SetAuthenticationDataForComponents(f func(components IArray) IData) {
 	d._AuthenticationDataForComponents = f
 }
 
@@ -95,11 +97,11 @@ func (d *ConnectionDelegate) HasAuthenticateComponentsWithData() bool {
 }
 
 // AuthenticationDataForComponents implements the PConnectionDelegate interface.
-func (d *ConnectionDelegate) AuthenticationDataForComponents(components IArray) Data {
+func (d *ConnectionDelegate) AuthenticationDataForComponents(components IArray) IData {
 	if d._AuthenticationDataForComponents != nil {
 		return d._AuthenticationDataForComponents(components)
 	}
-	var zero Data
+	var zero IData
 	return zero
 }
 
@@ -162,4 +164,56 @@ func (d *ConnectionDelegate) MakeNewConnectionSender(conn IConnection, ancestor 
 // HasMakeNewConnectionSender returns true if a handler for MakeNewConnectionSender has been set.
 func (d *ConnectionDelegate) HasMakeNewConnectionSender() bool {
 	return d._MakeNewConnectionSender != nil
+}
+
+// ConnectionDelegateObject wraps an existing Objective-C object that conforms to the PConnectionDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ConnectionDelegateObject struct {
+	objectivec.Object
+}
+
+// NewConnectionDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSConnectionDelegate protocol.
+func NewConnectionDelegateObject(obj objectivec.Object) *ConnectionDelegateObject {
+	return &ConnectionDelegateObject{obj}
+}
+
+// Make sure ConnectionDelegateObject implements PConnectionDelegate.
+var _ PConnectionDelegate = (*ConnectionDelegateObject)(nil)
+
+// AuthenticateComponentsWithData implements the PConnectionDelegate interface.
+// This required method is always available on objects conforming to AuthenticateComponentsWithData.
+func (o *ConnectionDelegateObject) AuthenticateComponentsWithData(components IArray, signature IData) bool {
+	return objc.Send[bool](o.ID, objc.Sel("authenticateComponents:withData:"), components, signature)
+}
+
+// AuthenticationDataForComponents implements the PConnectionDelegate interface.
+// This required method is always available on objects conforming to AuthenticationDataForComponents.
+func (o *ConnectionDelegateObject) AuthenticationDataForComponents(components IArray) IData {
+	return objc.Send[IData](o.ID, objc.Sel("authenticationDataForComponents:"), components)
+}
+
+// ConnectionHandleRequest implements the PConnectionDelegate interface.
+// This required method is always available on objects conforming to ConnectionHandleRequest.
+func (o *ConnectionDelegateObject) ConnectionHandleRequest(connection IConnection, doreq IDistantObjectRequest) bool {
+	return objc.Send[bool](o.ID, objc.Sel("connection:handleRequest:"), connection, doreq)
+}
+
+// ConnectionShouldMakeNewConnection implements the PConnectionDelegate interface.
+// This required method is always available on objects conforming to ConnectionShouldMakeNewConnection.
+func (o *ConnectionDelegateObject) ConnectionShouldMakeNewConnection(ancestor IConnection, conn IConnection) bool {
+	return objc.Send[bool](o.ID, objc.Sel("connection:shouldMakeNewConnection:"), ancestor, conn)
+}
+
+// CreateConversationForConnection implements the PConnectionDelegate interface.
+// This required method is always available on objects conforming to CreateConversationForConnection.
+func (o *ConnectionDelegateObject) CreateConversationForConnection(conn IConnection) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("createConversationForConnection:"), conn)
+}
+
+// MakeNewConnectionSender implements the PConnectionDelegate interface.
+// This required method is always available on objects conforming to MakeNewConnectionSender.
+func (o *ConnectionDelegateObject) MakeNewConnectionSender(conn IConnection, ancestor IConnection) bool {
+	return objc.Send[bool](o.ID, objc.Sel("makeNewConnection:sender:"), conn, ancestor)
 }

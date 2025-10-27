@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVVideoComposition */
 
 
-/* debug [class_header]: Header for AVVideoComposition */
+
+
 // The class instance for the [VideoComposition] class.
 var (
 	VideoCompositionClass     _VideoCompositionClass
@@ -31,45 +31,45 @@ func getVideoCompositionClass() _VideoCompositionClass {
 type _VideoCompositionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for VideoComposition */
+
+
 // An interface definition for the [VideoComposition] class.
 type IVideoComposition interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for VideoComposition */
+
 	// properties:
 	AnimationTool() IAVVideoCompositionCoreAnimationTool
-	ColorPrimaries() objc.IObject /* cross-framework: NSString */
-	ColorTransferFunction() objc.IObject /* cross-framework: NSString */
-	ColorYCbCrMatrix() objc.IObject /* cross-framework: NSString */
+	ColorPrimaries() foundation.foundation.INSString
+	ColorTransferFunction() foundation.foundation.INSString
+	ColorYCbCrMatrix() foundation.foundation.INSString
 	CustomVideoCompositorClass() unsafe.Pointer
-	FrameDuration() objc.IObject /* cross-framework: Time */
+	FrameDuration() objectivec.IObject
 	Instructions() []objc.ID
-	OutputBufferDescription() objc.IObject /* cross-framework: NSArray */
-	PerFrameHDRDisplayMetadataPolicy() VideoCompositionPerFrameHDRDisplayMetadataPolicy /* typedef */
+	OutputBufferDescription() foundation.foundation.INSArray
+	PerFrameHDRDisplayMetadataPolicy() VideoCompositionPerFrameHDRDisplayMetadataPolicy
 	RenderScale() float32
 	RenderSize() corefoundation.CGSize
 	SourceSampleDataTrackIDs() []foundation.Number
 	SourceTrackIDForFrameTiming() PersistentTrackID /* not a class type */
 	SpatialVideoConfigurations() []SpatialVideoConfiguration
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for VideoComposition */
+
 	// methods:
-	IsValidForTracksAssetDurationTimeRangeValidationDelegate(tracks []AssetTrack, duration objc.IObject /* cross-framework: Time */, timeRange TimeRange /* not a class type */, validationDelegate unsafe.Pointer) bool
-/* debug [class_interface_methods]: End methods */
+	IsValidForTracksAssetDurationTimeRangeValidationDelegate(tracks []AssetTrack, duration objectivec.IObject, timeRange objectivec.IObject, validationDelegate unsafe.Pointer) bool
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for VideoComposition */
+
+
 // Alloc allocates a new instance without initialization.
 func (vc _VideoCompositionClass) Alloc() VideoComposition {
 	rv := objc.Send[VideoComposition](objc.ID(vc.class), objc.Sel("alloc"))
@@ -99,11 +99,11 @@ func (v_ VideoComposition) Autorelease() VideoComposition {
 func NewVideoComposition() VideoComposition {
 	return getVideoCompositionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for VideoComposition */
+
+
 // An object that describes how to compose video frames at particular points in time.
 //
 // If you use the built-in video compositor, the instructions a video composition contain can specify a spatial transformation, an opacity value, and a cropping rectangle for each video source. This values can vary over time by applying linear ramping functions. You can create a custom video compositor by implementing the protocol. The system provides the custom video compositor with pixel buffers for each of its video sources during playback, and can perform arbitrary graphical operations on them to produce visual output.
@@ -123,11 +123,11 @@ type VideoComposition struct {
 func VideoCompositionFrom(ptr unsafe.Pointer) VideoComposition {
 	return VideoComposition{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for VideoComposition */
+
+
 
 // Creates a video composition configured to apply Core Image filters to each video frame of the specified asset.
 //
@@ -136,7 +136,7 @@ func VideoCompositionFrom(ptr unsafe.Pointer) VideoComposition {
 func NewVideoCompositionWithAssetApplyingCIFiltersWithHandler(asset IAVAsset, applier unsafe.Pointer) VideoComposition {
 	rv := objc.Send[VideoComposition](objc.ID(getVideoCompositionClass().class), objc.Sel("videoCompositionWithAsset:applyingCIFiltersWithHandler:"), asset, applier)
 	return rv
-}/* debug [class_init_methods/constructor]: NewVideoCompositionWithAssetApplyingCIFiltersWithHandler */
+}
 
 
 // Creates a video composition object configured to present the video tracks of the specified asset.
@@ -146,13 +146,13 @@ func NewVideoCompositionWithAssetApplyingCIFiltersWithHandler(asset IAVAsset, ap
 func NewVideoCompositionWithPropertiesOfAsset(asset IAVAsset) VideoComposition {
 	rv := objc.Send[VideoComposition](objc.ID(getVideoCompositionClass().class), objc.Sel("videoCompositionWithPropertiesOfAsset:"), asset)
 	return rv
-}/* debug [class_init_methods/constructor]: NewVideoCompositionWithPropertiesOfAsset */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for VideoComposition */
+
+
+
 
 // Creates a video composition configured to apply Core Image filters to each video frame of the specified asset.
 //
@@ -161,7 +161,7 @@ func NewVideoCompositionWithPropertiesOfAsset(asset IAVAsset) VideoComposition {
 func (vc _VideoCompositionClass) VideoCompositionWithAssetApplyingCIFiltersWithHandler(asset IAVAsset, applier unsafe.Pointer) IVideoComposition {
 	rv := objc.Send[VideoComposition](objc.ID(vc.class), objc.Sel("videoCompositionWithAsset:applyingCIFiltersWithHandler:"), asset, applier)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionWithAssetApplyingCIFiltersWithHandler) */
+}
 
 
 // Creates a video composition object configured to present the video tracks of the specified asset.
@@ -171,7 +171,7 @@ func (vc _VideoCompositionClass) VideoCompositionWithAssetApplyingCIFiltersWithH
 func (vc _VideoCompositionClass) VideoCompositionWithPropertiesOfAsset(asset IAVAsset) IVideoComposition {
 	rv := objc.Send[VideoComposition](objc.ID(vc.class), objc.Sel("videoCompositionWithPropertiesOfAsset:"), asset)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionWithPropertiesOfAsset) */
+}
 
 
 // Pass-through initializer, for internal use in AVFoundation only
@@ -181,7 +181,7 @@ func (vc _VideoCompositionClass) VideoCompositionWithPropertiesOfAsset(asset IAV
 func (vc _VideoCompositionClass) VideoCompositionWithVideoComposition(videoComposition IAVVideoComposition) IVideoComposition {
 	rv := objc.Send[VideoComposition](objc.ID(vc.class), objc.Sel("videoCompositionWithVideoComposition:"), videoComposition)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionWithVideoComposition) */
+}
 
 
 // Returns a new video composition that’s configured to apply Core Image filters to each video frame of the specified asset.
@@ -190,7 +190,7 @@ func (vc _VideoCompositionClass) VideoCompositionWithVideoComposition(videoCompo
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)
 func (vc _VideoCompositionClass) VideoCompositionWithAssetApplyingCIFiltersWithHandlerCompletionHandler(asset IAVAsset, applier unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:"), asset, applier, completionHandler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionWithAssetApplyingCIFiltersWithHandlerCompletionHandler) */
+}
 
 
 // Returns a new video composition that’s configured to present the video tracks of the specified asset.
@@ -199,33 +199,33 @@ func (vc _VideoCompositionClass) VideoCompositionWithAssetApplyingCIFiltersWithH
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/videoComposition(withPropertiesOf:completionHandler:)
 func (vc _VideoCompositionClass) VideoCompositionWithPropertiesOfAssetCompletionHandler(asset IAVAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("videoCompositionWithPropertiesOfAsset:completionHandler:"), asset, completionHandler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionWithPropertiesOfAssetCompletionHandler) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for VideoComposition */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for VideoComposition */
+
+
+
+
+
 
 // Indicates whether the time ranges of the composition’s instructions conform to validation requirements.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/isValid(for:assetDuration:timeRange:validationDelegate:)
-func (v_ VideoComposition) IsValidForTracksAssetDurationTimeRangeValidationDelegate(tracks []AssetTrack, duration objc.IObject /* cross-framework: Time */, timeRange TimeRange /* not a class type */, validationDelegate unsafe.Pointer) bool {
+func (v_ VideoComposition) IsValidForTracksAssetDurationTimeRangeValidationDelegate(tracks []AssetTrack, duration objectivec.IObject, timeRange objectivec.IObject, validationDelegate unsafe.Pointer) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isValidForTracks:assetDuration:timeRange:validationDelegate:"), tracks, duration, timeRange, validationDelegate)
 	return rv
-}/* debug [instance_methods/method]: IsValidForTracksAssetDurationTimeRangeValidationDelegate */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for VideoComposition */
+
+
+
 
 // A video composition tool to use with Core Animation in offline rendering.
 //
@@ -234,37 +234,37 @@ func (v_ VideoComposition) IsValidForTracksAssetDurationTimeRangeValidationDeleg
 func (v_ VideoComposition) AnimationTool() IAVVideoCompositionCoreAnimationTool {
 	rv := objc.Send[VideoCompositionCoreAnimationTool](v_.ID, objc.Sel("animationTool"))
 	return rv
-}/* debug [instance_properties/getter]: animationTool */
+}
 
 
 // The color primaries used for video composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/colorPrimaries
-func (v_ VideoComposition) ColorPrimaries() objc.IObject /* cross-framework: NSString */ {
+func (v_ VideoComposition) ColorPrimaries() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("colorPrimaries"))
 	return rv
-}/* debug [instance_properties/getter]: colorPrimaries */
+}
 
 
 // The transfer function used for video composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/colorTransferFunction
-func (v_ VideoComposition) ColorTransferFunction() objc.IObject /* cross-framework: NSString */ {
+func (v_ VideoComposition) ColorTransferFunction() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("colorTransferFunction"))
 	return rv
-}/* debug [instance_properties/getter]: colorTransferFunction */
+}
 
 
 // The YCbCr matrix used for video composition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/colorYCbCrMatrix
-func (v_ VideoComposition) ColorYCbCrMatrix() objc.IObject /* cross-framework: NSString */ {
+func (v_ VideoComposition) ColorYCbCrMatrix() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("colorYCbCrMatrix"))
 	return rv
-}/* debug [instance_properties/getter]: colorYCbCrMatrix */
+}
 
 
 // A custom compositor class to use.
@@ -274,17 +274,17 @@ func (v_ VideoComposition) ColorYCbCrMatrix() objc.IObject /* cross-framework: N
 func (v_ VideoComposition) CustomVideoCompositorClass() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("customVideoCompositorClass"))
 	return rv
-}/* debug [instance_properties/getter]: customVideoCompositorClass */
+}
 
 
 // A time interval for which the video composition should render composed video frames.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/frameDuration
-func (v_ VideoComposition) FrameDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](v_.ID, objc.Sel("frameDuration"))
+func (v_ VideoComposition) FrameDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("frameDuration"))
 	return rv
-}/* debug [instance_properties/getter]: frameDuration */
+}
 
 
 // The video composition instructions.
@@ -294,27 +294,27 @@ func (v_ VideoComposition) FrameDuration() objc.IObject /* cross-framework: Time
 func (v_ VideoComposition) Instructions() []objc.ID {
 	rv := objc.Send[[]objc.ID](v_.ID, objc.Sel("instructions"))
 	return rv
-}/* debug [instance_properties/getter]: instructions */
+}
 
 
 // The output buffers of the video composition can be specified with the outputBufferDescription. The value is an array of CMTagCollectionRef objects that describes the output buffers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/outputBufferDescription-3wsar
-func (v_ VideoComposition) OutputBufferDescription() objc.IObject /* cross-framework: NSArray */ {
+func (v_ VideoComposition) OutputBufferDescription() foundation.foundation.INSArray {
 	rv := objc.Send[foundation.NSArray](v_.ID, objc.Sel("outputBufferDescription"))
 	return rv
-}/* debug [instance_properties/getter]: outputBufferDescription */
+}
 
 
 // The policy for display of HDR display metadata on the rendered frame.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/perFrameHDRDisplayMetadataPolicy-swift.property
-func (v_ VideoComposition) PerFrameHDRDisplayMetadataPolicy() VideoCompositionPerFrameHDRDisplayMetadataPolicy /* typedef */ {
-	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("perFrameHDRDisplayMetadataPolicy"))
+func (v_ VideoComposition) PerFrameHDRDisplayMetadataPolicy() VideoCompositionPerFrameHDRDisplayMetadataPolicy {
+	rv := objc.Send[VideoCompositionPerFrameHDRDisplayMetadataPolicy](v_.ID, objc.Sel("perFrameHDRDisplayMetadataPolicy"))
 	return rv
-}/* debug [instance_properties/getter]: perFrameHDRDisplayMetadataPolicy */
+}
 
 
 // The scale at which the video composition should render.
@@ -324,7 +324,7 @@ func (v_ VideoComposition) PerFrameHDRDisplayMetadataPolicy() VideoCompositionPe
 func (v_ VideoComposition) RenderScale() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("renderScale"))
 	return rv
-}/* debug [instance_properties/getter]: renderScale */
+}
 
 
 // The size at which the video composition should render.
@@ -334,7 +334,7 @@ func (v_ VideoComposition) RenderScale() float32 {
 func (v_ VideoComposition) RenderSize() corefoundation.CGSize {
 	rv := objc.Send[corefoundation.CGSize](v_.ID, objc.Sel("renderSize"))
 	return rv
-}/* debug [instance_properties/getter]: renderSize */
+}
 
 
 // The identifiers of source sample data tracks in the composition that the compositor requires to compose frames.
@@ -344,7 +344,7 @@ func (v_ VideoComposition) RenderSize() corefoundation.CGSize {
 func (v_ VideoComposition) SourceSampleDataTrackIDs() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](v_.ID, objc.Sel("sourceSampleDataTrackIDs"))
 	return rv
-}/* debug [instance_properties/getter]: sourceSampleDataTrackIDs */
+}
 
 
 // An identifier of the source track from which the video composition derives frame timing.
@@ -354,7 +354,7 @@ func (v_ VideoComposition) SourceSampleDataTrackIDs() []foundation.Number {
 func (v_ VideoComposition) SourceTrackIDForFrameTiming() PersistentTrackID /* not a class type */ {
 	rv := objc.Send[PersistentTrackID](v_.ID, objc.Sel("sourceTrackIDForFrameTiming"))
 	return rv
-}/* debug [instance_properties/getter]: sourceTrackIDForFrameTiming */
+}
 
 
 // Indicates the spatial configurations that are available to associate with the output of the video composition.
@@ -364,11 +364,11 @@ func (v_ VideoComposition) SourceTrackIDForFrameTiming() PersistentTrackID /* no
 func (v_ VideoComposition) SpatialVideoConfigurations() []SpatialVideoConfiguration {
 	rv := objc.Send[[]SpatialVideoConfiguration](v_.ID, objc.Sel("spatialVideoConfigurations"))
 	return rv
-}/* debug [instance_properties/getter]: spatialVideoConfigurations */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVVideoComposition */
+
+
+
 
 

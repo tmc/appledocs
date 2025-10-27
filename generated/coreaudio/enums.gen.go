@@ -2,9 +2,9 @@
 
 package coreaudio
 
-/* debug [enums.gen.go]: Generating 5 enums for CoreAudio */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum AudioDeviceClockAlgorithmSelector (3 cases) */
+
 // AudioDeviceClockAlgorithmSelector enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceClockAlgorithmSelector
@@ -22,7 +22,7 @@ const (
 	kAudioDeviceClockAlgorithmSimpleIIR AudioDeviceClockAlgorithmSelector = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioHardwarePowerHint (2 cases) */
+
 // AudioHardwarePowerHint enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwarePowerHint
@@ -37,7 +37,7 @@ const (
 	kAudioHardwarePowerHintNone AudioHardwarePowerHint = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioLevelControlTransferFunction (16 cases) */
+
 // AudioLevelControlTransferFunction enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioLevelControlTransferFunction
@@ -94,7 +94,7 @@ const (
 	kAudioLevelControlTranferFunctionLinear AudioLevelControlTransferFunction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioServerPlugInIOOperation (10 cases) */
+
 // AudioServerPlugInIOOperation enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioServerPlugInIOOperation
@@ -133,7 +133,7 @@ const (
 	kAudioServerPlugInIOOperationWriteMix AudioServerPlugInIOOperation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CATapMuteBehavior (3 cases) */
+
 // TapMuteBehavior enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapMuteBehavior

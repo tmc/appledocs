@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLArrayBatchProvider */
 
 
-/* debug [class_header]: Header for MLArrayBatchProvider */
+
+
 // The class instance for the [ArrayBatchProvider] class.
 var (
 	ArrayBatchProviderClass     _ArrayBatchProviderClass
@@ -31,31 +30,31 @@ func getArrayBatchProviderClass() _ArrayBatchProviderClass {
 type _ArrayBatchProviderClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ArrayBatchProvider */
+
+
 // An interface definition for the [ArrayBatchProvider] class.
 type IArrayBatchProvider interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ArrayBatchProvider */
+
 	// properties:
 	Array() []objc.ID
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ArrayBatchProvider */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ArrayBatchProvider */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _ArrayBatchProviderClass) Alloc() ArrayBatchProvider {
 	rv := objc.Send[ArrayBatchProvider](objc.ID(ac.class), objc.Sel("alloc"))
@@ -85,11 +84,11 @@ func (a_ ArrayBatchProvider) Autorelease() ArrayBatchProvider {
 func NewArrayBatchProvider() ArrayBatchProvider {
 	return getArrayBatchProviderClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ArrayBatchProvider */
+
+
 // A convenience wrapper for batches of feature providers.
 //
 // This batch provider supports an array of feature providers or a dictionary of arrays of feature values.
@@ -109,22 +108,22 @@ type ArrayBatchProvider struct {
 func ArrayBatchProviderFrom(ptr unsafe.Pointer) ArrayBatchProvider {
 	return ArrayBatchProvider{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ArrayBatchProvider */
+
+
 
 // Creates a batch provider based on feature names and their associated arrays of data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)
-func NewArrayBatchProviderWithDictionaryError(dictionary foundation.IDictionary, error_ objectivec.IObject) ArrayBatchProvider {
+func NewArrayBatchProviderWithDictionaryError(dictionary foundation.IDictionary, error_ foundation.foundation.INSError) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayBatchProviderWithDictionaryError */
+}
 
 
 // Creates the batch provider based on the array of feature providers.
@@ -136,28 +135,28 @@ func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchPr
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithFeatureProviderArray:"), array)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayBatchProviderWithFeatureProviderArray */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ArrayBatchProvider */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ArrayBatchProvider */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ArrayBatchProvider */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ArrayBatchProvider */
+
+
+
+
+
+
+
+
+
 
 // The array of feature providers.
 //
@@ -166,11 +165,11 @@ func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchPr
 func (a_ ArrayBatchProvider) Array() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("array"))
 	return rv
-}/* debug [instance_properties/getter]: array */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLArrayBatchProvider */
+
+
+
 
 

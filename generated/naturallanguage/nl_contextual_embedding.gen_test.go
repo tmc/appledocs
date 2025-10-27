@@ -13,7 +13,7 @@ var _ = naturallanguage.NewContextualEmbedding
 // Creates a contextual embedding from a language.
 func ExampleNewContextualEmbeddingWithLanguage() {
 	_ = naturallanguage.NewContextualEmbeddingWithLanguage(
-		naturallanguage.Language /* typedef */{}, // language Language /* typedef */
+		naturallanguage.Language{}, // language Language
 	)
 	// Output:
 }
@@ -21,7 +21,7 @@ func ExampleNewContextualEmbeddingWithLanguage() {
 // Creates a contextual embedding from a script.
 func ExampleNewContextualEmbeddingWithScript() {
 	_ = naturallanguage.NewContextualEmbeddingWithScript(
-		naturallanguage.Script /* typedef */{}, // script Script /* typedef */
+		naturallanguage.Script{}, // script Script
 	)
 	// Output:
 }

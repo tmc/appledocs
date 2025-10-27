@@ -40,8 +40,8 @@ type IGradientStateNode interface {
 	
 
 	// properties:
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	PaddingPolicy() Padding /* not a class type */
 	SetPaddingPolicy(value Padding /* not a class type */)
 	ResultImage() IMPSNNImageNode
@@ -143,7 +143,7 @@ func GradientStateNodeFrom(ptr unsafe.Pointer) GradientStateNode {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (g_ GradientStateNode) Label() objc.IObject /* cross-framework: NSString */ {
+func (g_ GradientStateNode) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("label"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (g_ GradientStateNode) Label() objc.IObject /* cross-framework: NSString */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (g_ GradientStateNode) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (g_ GradientStateNode) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
 }
 

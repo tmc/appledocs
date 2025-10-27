@@ -2,9 +2,9 @@
 
 package fskit
 
-/* debug [enums.gen.go]: Generating 17 enums for FSKit */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum FSBlockmapFlags (2 cases) */
+
 // FSBlockmapFlags - Flags that describe the behavior of a blockmap operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockmapFlags
@@ -21,7 +21,7 @@ const (
 	FSBlockmapFlagsWrite FSBlockmapFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSCompleteIOFlags (3 cases) */
+
 // FSCompleteIOFlags - Flags that describe the behavior of an I/O completion operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSCompleteIOFlags
@@ -42,7 +42,7 @@ const (
 	FSCompleteIOFlagsWrite FSCompleteIOFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSErrorCode (7 cases) */
+
 // FSErrorCode - A code that indicates a specific FSKit error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSError/Code
@@ -79,7 +79,7 @@ const (
 	FSErrorStatusOperationPaused FSErrorCode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSExtentType (2 cases) */
+
 // FSExtentType - An enumeration of types of extents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSExtentType
@@ -96,7 +96,7 @@ const (
 	FSExtentTypeZeroFill FSExtentType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSItemAttribute (18 cases) */
+
 // FSItemAttribute - A value that indicates a set of item attributes to get or set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attribute
@@ -177,7 +177,7 @@ const (
 	FSItemAttributeUID FSItemAttribute = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSItemID (3 cases) */
+
 // FSItemID - The unique identifier for an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Identifier
@@ -198,7 +198,7 @@ const (
 	FSItemIDRootDirectory FSItemID = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSItemType (8 cases) */
+
 // FSItemType - An enumeration of item types, such as file, directory, or symbolic link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/ItemType
@@ -239,7 +239,7 @@ const (
 	FSItemTypeUnknown FSItemType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSMatchResult (4 cases) */
+
 // FSMatchResult - A type that represents the recognition and usability of a probed resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMatchResult
@@ -264,7 +264,7 @@ const (
 	FSMatchResultUsableButLimited FSMatchResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSAccessMask (17 cases) */
+
 // FSAccessMask - A bitmask of access rights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/AccessMask
@@ -341,7 +341,7 @@ const (
 	FSAccessWriteXattr FSAccessMask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSVolumeCaseFormat (3 cases) */
+
 // FSVolumeCaseFormat - An enumeration of case-sensitivity support types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/CaseFormat
@@ -362,7 +362,7 @@ const (
 	FSVolumeCaseFormatSensitive FSVolumeCaseFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSItemDeactivationOptions (4 cases) */
+
 // FSItemDeactivationOptions - Options to specify the item deactivation policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/ItemDeactivationOptions
@@ -387,7 +387,7 @@ const (
 	FSItemDeactivationNever FSItemDeactivationOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSVolumeOpenModes (2 cases) */
+
 // FSVolumeOpenModes - Defined modes for opening a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/OpenModes
@@ -404,7 +404,7 @@ const (
 	FSVolumeOpenModesWrite FSVolumeOpenModes = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSPreallocateFlags (4 cases) */
+
 // FSPreallocateFlags - Behavior flags for preallocation operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/PreallocateFlags
@@ -429,7 +429,7 @@ const (
 	FSPreallocateFlagsPersist FSPreallocateFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSSetXattrPolicy (4 cases) */
+
 // FSSetXattrPolicy - Flags to specify the policy when setting extended file attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/SetXattrPolicy
@@ -454,7 +454,7 @@ const (
 	FSSetXattrPolicyMustReplace FSSetXattrPolicy = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSContainerState (4 cases) */
+
 // FSContainerState - An enumeration of container state values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerState
@@ -479,7 +479,7 @@ const (
 	FSContainerStateReady FSContainerState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSDeactivateOptions (1 cases) */
+
 // FSDeactivateOptions - Options that affect the behavior of deactivate methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSDeactivateOptions
@@ -492,7 +492,7 @@ const (
 	FSDeactivateOptionsForce FSDeactivateOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum FSSyncFlags (3 cases) */
+
 // FSSyncFlags - Behavior flags for use with synchronization calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSSyncFlags

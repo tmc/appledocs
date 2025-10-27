@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class UITableViewController */
 
 
-/* debug [class_header]: Header for UITableViewController */
+
+
 // The class instance for the [TableViewController] class.
 var (
 	TableViewControllerClass     _TableViewControllerClass
@@ -30,30 +30,30 @@ func getTableViewControllerClass() _TableViewControllerClass {
 type _TableViewControllerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TableViewController */
+
+
 // An interface definition for the [TableViewController] class.
 type ITableViewController interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for TableViewController */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TableViewController */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TableViewController */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TableViewControllerClass) Alloc() TableViewController {
 	rv := objc.Send[TableViewController](objc.ID(tc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (t_ TableViewController) Autorelease() TableViewController {
 func NewTableViewController() TableViewController {
 	return getTableViewControllerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TableViewController */
+
+
 // A parent class referenced by other CoreAudioKit classes.
 
 
@@ -102,34 +102,34 @@ type TableViewController struct {
 func TableViewControllerFrom(ptr unsafe.Pointer) TableViewController {
 	return TableViewController{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TableViewController *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for TableViewController */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TableViewController */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TableViewController */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TableViewController */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class UITableViewController */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

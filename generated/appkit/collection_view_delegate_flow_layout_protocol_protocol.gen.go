@@ -4,6 +4,8 @@ package appkit
 
 import (
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -17,16 +19,16 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegateFlowLayout
 type PCollectionViewDelegateFlowLayout interface {
 	// Optional methods
-	CollectionViewLayoutInsetForSectionAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, collectionViewLayout ICollectionViewLayout, section int) foundation.EdgeInsets
+	CollectionViewLayoutInsetForSectionAtIndex(collectionView CollectionView /* not a class type */, collectionViewLayout ICollectionViewLayout, section int) foundation.EdgeInsets
 	HasCollectionViewLayoutInsetForSectionAtIndex() bool
-	CollectionViewLayoutMinimumInteritemSpacingForSectionAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, collectionViewLayout ICollectionViewLayout, section int) float64
+	CollectionViewLayoutMinimumInteritemSpacingForSectionAtIndex(collectionView CollectionView /* not a class type */, collectionViewLayout ICollectionViewLayout, section int) float64
 	HasCollectionViewLayoutMinimumInteritemSpacingForSectionAtIndex() bool
-	CollectionViewLayoutMinimumLineSpacingForSectionAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, collectionViewLayout ICollectionViewLayout, section int) float64
+	CollectionViewLayoutMinimumLineSpacingForSectionAtIndex(collectionView CollectionView /* not a class type */, collectionViewLayout ICollectionViewLayout, section int) float64
 	HasCollectionViewLayoutMinimumLineSpacingForSectionAtIndex() bool
-	CollectionViewLayoutReferenceSizeForFooterInSection(collectionView objc.IObject /* cross-framework: CollectionView */, collectionViewLayout ICollectionViewLayout, section int) Size
+	CollectionViewLayoutReferenceSizeForFooterInSection(collectionView CollectionView /* not a class type */, collectionViewLayout ICollectionViewLayout, section int) corefoundation.CGSize
 	HasCollectionViewLayoutReferenceSizeForFooterInSection() bool
-	CollectionViewLayoutReferenceSizeForHeaderInSection(collectionView objc.IObject /* cross-framework: CollectionView */, collectionViewLayout ICollectionViewLayout, section int) Size
+	CollectionViewLayoutReferenceSizeForHeaderInSection(collectionView CollectionView /* not a class type */, collectionViewLayout ICollectionViewLayout, section int) corefoundation.CGSize
 	HasCollectionViewLayoutReferenceSizeForHeaderInSection() bool
-	CollectionViewLayoutSizeForItemAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, collectionViewLayout ICollectionViewLayout, indexPath foundation.IndexPath) Size
+	CollectionViewLayoutSizeForItemAtIndexPath(collectionView CollectionView /* not a class type */, collectionViewLayout ICollectionViewLayout, indexPath foundation.foundation.INSIndexPath) corefoundation.CGSize
 	HasCollectionViewLayoutSizeForItemAtIndexPath() bool
 }

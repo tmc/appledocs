@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -27,7 +26,7 @@ func (n_ NEHotspotNetwork) SetConfidence(confidence NEHotspotHelperConfidence) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetwork/setPassword(_:)
-func (n_ NEHotspotNetwork) SetPassword(password objc.IObject /* cross-framework: NSString */) {
+func (n_ NEHotspotNetwork) SetPassword(password foundation.foundation.INSString) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPassword:"), password)
 }
 
@@ -37,7 +36,7 @@ func (n_ NEHotspotNetwork) SetPassword(password objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetwork/bssid
-func (n_ NEHotspotNetwork) BSSID() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotNetwork) BSSID() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("BSSID"))
 	return rv
 }
@@ -100,7 +99,7 @@ func (n_ NEHotspotNetwork) SignalStrength() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetwork/ssid
-func (n_ NEHotspotNetwork) SSID() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotNetwork) SSID() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("SSID"))
 	return rv
 }

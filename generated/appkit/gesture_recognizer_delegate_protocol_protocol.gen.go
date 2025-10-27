@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PGestureRecognizerDelegate is the NSGestureRecognizerDelegate protocol interface.
@@ -17,17 +19,17 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate
 type PGestureRecognizerDelegate interface {
 	// Optional methods
-	GestureRecognizerShouldAttemptToRecognizeWithEvent(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, event IEvent) bool
+	GestureRecognizerShouldAttemptToRecognizeWithEvent(gestureRecognizer GestureRecognizer, event IEvent) bool
 	HasGestureRecognizerShouldAttemptToRecognizeWithEvent() bool
-	GestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
+	GestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool
 	HasGestureRecognizerShouldBeRequiredToFailByGestureRecognizer() bool
-	GestureRecognizerShouldReceiveTouch(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, touch ITouch) bool
+	GestureRecognizerShouldReceiveTouch(gestureRecognizer GestureRecognizer, touch ITouch) bool
 	HasGestureRecognizerShouldReceiveTouch() bool
-	GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
+	GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool
 	HasGestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer() bool
-	GestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
+	GestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool
 	HasGestureRecognizerShouldRequireFailureOfGestureRecognizer() bool
-	GestureRecognizerShouldBegin(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
+	GestureRecognizerShouldBegin(gestureRecognizer GestureRecognizer) bool
 	HasGestureRecognizerShouldBegin() bool
 }
 
@@ -35,58 +37,58 @@ type PGestureRecognizerDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type GestureRecognizerDelegate struct {
-	_GestureRecognizerShouldAttemptToRecognizeWithEvent func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, event IEvent) bool
-	_GestureRecognizerShouldBeRequiredToFailByGestureRecognizer func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
-	_GestureRecognizerShouldReceiveTouch func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, touch ITouch) bool
-	_GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
-	_GestureRecognizerShouldRequireFailureOfGestureRecognizer func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
-	_GestureRecognizerShouldBegin func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool
+	_GestureRecognizerShouldAttemptToRecognizeWithEvent func(gestureRecognizer GestureRecognizer, event IEvent) bool
+	_GestureRecognizerShouldBeRequiredToFailByGestureRecognizer func(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool
+	_GestureRecognizerShouldReceiveTouch func(gestureRecognizer GestureRecognizer, touch ITouch) bool
+	_GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer func(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool
+	_GestureRecognizerShouldRequireFailureOfGestureRecognizer func(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool
+	_GestureRecognizerShouldBegin func(gestureRecognizer GestureRecognizer) bool
 }
 
 // SetGestureRecognizerShouldAttemptToRecognizeWithEvent sets the handler for the GestureRecognizerShouldAttemptToRecognizeWithEvent delegate method.
 //
 // Asks the delegate if a gesture recognizer should attempt to recognize gestures for a particular event.
-func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldAttemptToRecognizeWithEvent(f func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, event IEvent) bool) {
+func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldAttemptToRecognizeWithEvent(f func(gestureRecognizer GestureRecognizer, event IEvent) bool) {
 	d._GestureRecognizerShouldAttemptToRecognizeWithEvent = f
 }
 
 // SetGestureRecognizerShouldBeRequiredToFailByGestureRecognizer sets the handler for the GestureRecognizerShouldBeRequiredToFailByGestureRecognizer delegate method.
 //
 // Asks the delegate if the current gesture recognizer must fail before another gesture recognizer is allowed to recognize its gesture.
-func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldBeRequiredToFailByGestureRecognizer(f func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool) {
+func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldBeRequiredToFailByGestureRecognizer(f func(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool) {
 	d._GestureRecognizerShouldBeRequiredToFailByGestureRecognizer = f
 }
 
 // SetGestureRecognizerShouldReceiveTouch sets the handler for the GestureRecognizerShouldReceiveTouch delegate method.
 //
 // Called, for a new touch, before the system calls the   method on the gesture recognizer. Return   to prevent the gesture recognizer from seeing this touch.
-func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldReceiveTouch(f func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, touch ITouch) bool) {
+func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldReceiveTouch(f func(gestureRecognizer GestureRecognizer, touch ITouch) bool) {
 	d._GestureRecognizerShouldReceiveTouch = f
 }
 
 // SetGestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer sets the handler for the GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer delegate method.
 //
 // Asks the delegate if two gesture recognizers should be allowed to recognize their gestures simultaneously.
-func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(f func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool) {
+func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(f func(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool) {
 	d._GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer = f
 }
 
 // SetGestureRecognizerShouldRequireFailureOfGestureRecognizer sets the handler for the GestureRecognizerShouldRequireFailureOfGestureRecognizer delegate method.
 //
 // Asks the delegate if the current gesture recognizer must wait to recognize its gesture until the specified gesture recognizer fails.
-func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldRequireFailureOfGestureRecognizer(f func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool) {
+func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldRequireFailureOfGestureRecognizer(f func(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool) {
 	d._GestureRecognizerShouldRequireFailureOfGestureRecognizer = f
 }
 
 // SetGestureRecognizerShouldBegin sets the handler for the GestureRecognizerShouldBegin delegate method.
 //
 // Asks the delegate if a gesture recognizer should transition out of the Possible ( ) state.
-func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldBegin(f func(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool) {
+func (d *GestureRecognizerDelegate) SetGestureRecognizerShouldBegin(f func(gestureRecognizer GestureRecognizer) bool) {
 	d._GestureRecognizerShouldBegin = f
 }
 
 // GestureRecognizerShouldAttemptToRecognizeWithEvent implements the PGestureRecognizerDelegate interface.
-func (d *GestureRecognizerDelegate) GestureRecognizerShouldAttemptToRecognizeWithEvent(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, event IEvent) bool {
+func (d *GestureRecognizerDelegate) GestureRecognizerShouldAttemptToRecognizeWithEvent(gestureRecognizer GestureRecognizer, event IEvent) bool {
 	if d._GestureRecognizerShouldAttemptToRecognizeWithEvent != nil {
 		return d._GestureRecognizerShouldAttemptToRecognizeWithEvent(gestureRecognizer, event)
 	}
@@ -100,7 +102,7 @@ func (d *GestureRecognizerDelegate) HasGestureRecognizerShouldAttemptToRecognize
 }
 
 // GestureRecognizerShouldBeRequiredToFailByGestureRecognizer implements the PGestureRecognizerDelegate interface.
-func (d *GestureRecognizerDelegate) GestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool {
+func (d *GestureRecognizerDelegate) GestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool {
 	if d._GestureRecognizerShouldBeRequiredToFailByGestureRecognizer != nil {
 		return d._GestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer, otherGestureRecognizer)
 	}
@@ -114,7 +116,7 @@ func (d *GestureRecognizerDelegate) HasGestureRecognizerShouldBeRequiredToFailBy
 }
 
 // GestureRecognizerShouldReceiveTouch implements the PGestureRecognizerDelegate interface.
-func (d *GestureRecognizerDelegate) GestureRecognizerShouldReceiveTouch(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, touch ITouch) bool {
+func (d *GestureRecognizerDelegate) GestureRecognizerShouldReceiveTouch(gestureRecognizer GestureRecognizer, touch ITouch) bool {
 	if d._GestureRecognizerShouldReceiveTouch != nil {
 		return d._GestureRecognizerShouldReceiveTouch(gestureRecognizer, touch)
 	}
@@ -128,7 +130,7 @@ func (d *GestureRecognizerDelegate) HasGestureRecognizerShouldReceiveTouch() boo
 }
 
 // GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer implements the PGestureRecognizerDelegate interface.
-func (d *GestureRecognizerDelegate) GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool {
+func (d *GestureRecognizerDelegate) GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool {
 	if d._GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer != nil {
 		return d._GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer, otherGestureRecognizer)
 	}
@@ -142,7 +144,7 @@ func (d *GestureRecognizerDelegate) HasGestureRecognizerShouldRecognizeSimultane
 }
 
 // GestureRecognizerShouldRequireFailureOfGestureRecognizer implements the PGestureRecognizerDelegate interface.
-func (d *GestureRecognizerDelegate) GestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */, otherGestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool {
+func (d *GestureRecognizerDelegate) GestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool {
 	if d._GestureRecognizerShouldRequireFailureOfGestureRecognizer != nil {
 		return d._GestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer, otherGestureRecognizer)
 	}
@@ -156,7 +158,7 @@ func (d *GestureRecognizerDelegate) HasGestureRecognizerShouldRequireFailureOfGe
 }
 
 // GestureRecognizerShouldBegin implements the PGestureRecognizerDelegate interface.
-func (d *GestureRecognizerDelegate) GestureRecognizerShouldBegin(gestureRecognizer objc.IObject /* cross-framework: GestureRecognizer */) bool {
+func (d *GestureRecognizerDelegate) GestureRecognizerShouldBegin(gestureRecognizer GestureRecognizer) bool {
 	if d._GestureRecognizerShouldBegin != nil {
 		return d._GestureRecognizerShouldBegin(gestureRecognizer)
 	}
@@ -167,4 +169,86 @@ func (d *GestureRecognizerDelegate) GestureRecognizerShouldBegin(gestureRecogniz
 // HasGestureRecognizerShouldBegin returns true if a handler for GestureRecognizerShouldBegin has been set.
 func (d *GestureRecognizerDelegate) HasGestureRecognizerShouldBegin() bool {
 	return d._GestureRecognizerShouldBegin != nil
+}
+
+// GestureRecognizerDelegateObject wraps an existing Objective-C object that conforms to the PGestureRecognizerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type GestureRecognizerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewGestureRecognizerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSGestureRecognizerDelegate protocol.
+func NewGestureRecognizerDelegateObject(obj objectivec.Object) *GestureRecognizerDelegateObject {
+	return &GestureRecognizerDelegateObject{obj}
+}
+
+// Make sure GestureRecognizerDelegateObject implements PGestureRecognizerDelegate.
+var _ PGestureRecognizerDelegate = (*GestureRecognizerDelegateObject)(nil)
+
+// GestureRecognizerShouldAttemptToRecognizeWithEvent implements the PGestureRecognizerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *GestureRecognizerDelegateObject) GestureRecognizerShouldAttemptToRecognizeWithEvent(gestureRecognizer GestureRecognizer, event IEvent) bool {
+	return objc.Send[bool](o.ID, objc.Sel("gestureRecognizer:shouldAttemptToRecognizeWithEvent:"), gestureRecognizer, event)
+}
+
+// HasGestureRecognizerShouldAttemptToRecognizeWithEvent returns true; this is a placeholder for optional method checks.
+func (o *GestureRecognizerDelegateObject) HasGestureRecognizerShouldAttemptToRecognizeWithEvent() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// GestureRecognizerShouldBeRequiredToFailByGestureRecognizer implements the PGestureRecognizerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *GestureRecognizerDelegateObject) GestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool {
+	return objc.Send[bool](o.ID, objc.Sel("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:"), gestureRecognizer, otherGestureRecognizer)
+}
+
+// HasGestureRecognizerShouldBeRequiredToFailByGestureRecognizer returns true; this is a placeholder for optional method checks.
+func (o *GestureRecognizerDelegateObject) HasGestureRecognizerShouldBeRequiredToFailByGestureRecognizer() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// GestureRecognizerShouldReceiveTouch implements the PGestureRecognizerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *GestureRecognizerDelegateObject) GestureRecognizerShouldReceiveTouch(gestureRecognizer GestureRecognizer, touch ITouch) bool {
+	return objc.Send[bool](o.ID, objc.Sel("gestureRecognizer:shouldReceiveTouch:"), gestureRecognizer, touch)
+}
+
+// HasGestureRecognizerShouldReceiveTouch returns true; this is a placeholder for optional method checks.
+func (o *GestureRecognizerDelegateObject) HasGestureRecognizerShouldReceiveTouch() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer implements the PGestureRecognizerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *GestureRecognizerDelegateObject) GestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool {
+	return objc.Send[bool](o.ID, objc.Sel("gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:"), gestureRecognizer, otherGestureRecognizer)
+}
+
+// HasGestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer returns true; this is a placeholder for optional method checks.
+func (o *GestureRecognizerDelegateObject) HasGestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// GestureRecognizerShouldRequireFailureOfGestureRecognizer implements the PGestureRecognizerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *GestureRecognizerDelegateObject) GestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer GestureRecognizer, otherGestureRecognizer GestureRecognizer) bool {
+	return objc.Send[bool](o.ID, objc.Sel("gestureRecognizer:shouldRequireFailureOfGestureRecognizer:"), gestureRecognizer, otherGestureRecognizer)
+}
+
+// HasGestureRecognizerShouldRequireFailureOfGestureRecognizer returns true; this is a placeholder for optional method checks.
+func (o *GestureRecognizerDelegateObject) HasGestureRecognizerShouldRequireFailureOfGestureRecognizer() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// GestureRecognizerShouldBegin implements the PGestureRecognizerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *GestureRecognizerDelegateObject) GestureRecognizerShouldBegin(gestureRecognizer GestureRecognizer) bool {
+	return objc.Send[bool](o.ID, objc.Sel("gestureRecognizerShouldBegin:"), gestureRecognizer)
+}
+
+// HasGestureRecognizerShouldBegin returns true; this is a placeholder for optional method checks.
+func (o *GestureRecognizerDelegateObject) HasGestureRecognizerShouldBegin() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

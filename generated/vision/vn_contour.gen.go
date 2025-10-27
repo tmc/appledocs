@@ -44,7 +44,7 @@ type IContour interface {
 	AspectRatio() float32
 	ChildContourCount() int
 	ChildContours() []Contour
-	IndexPath() foundation.IndexPath
+	IndexPath() foundation.foundation.INSIndexPath
 	NormalizedPath() PathRef /* not a class type */
 	NormalizedPoints() objectivec.IObject
 	PointCount() int
@@ -59,8 +59,8 @@ type IContour interface {
 	
 
 	// methods:
-	ChildContourAtIndexError(childContourIndex uint, error_ objectivec.IObject) IContour
-	PolygonApproximationWithEpsilonError(epsilon float32, error_ objectivec.IObject) IContour
+	ChildContourAtIndexError(childContourIndex uint, error_ foundation.foundation.INSError) IContour
+	PolygonApproximationWithEpsilonError(epsilon float32, error_ foundation.foundation.INSError) IContour
 
 
 }
@@ -144,7 +144,7 @@ func ContourFrom(ptr unsafe.Pointer) Contour {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNContour/childContour(at:)
-func (c_ Contour) ChildContourAtIndexError(childContourIndex uint, error_ objectivec.IObject) IContour {
+func (c_ Contour) ChildContourAtIndexError(childContourIndex uint, error_ foundation.foundation.INSError) IContour {
 	rv := objc.Send[Contour](c_.ID, objc.Sel("childContourAtIndex:error:"), childContourIndex, error_)
 	return rv
 }
@@ -154,7 +154,7 @@ func (c_ Contour) ChildContourAtIndexError(childContourIndex uint, error_ object
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNContour/polygonApproximation(epsilon:)
-func (c_ Contour) PolygonApproximationWithEpsilonError(epsilon float32, error_ objectivec.IObject) IContour {
+func (c_ Contour) PolygonApproximationWithEpsilonError(epsilon float32, error_ foundation.foundation.INSError) IContour {
 	rv := objc.Send[Contour](c_.ID, objc.Sel("polygonApproximationWithEpsilon:error:"), epsilon, error_)
 	return rv
 }
@@ -199,8 +199,8 @@ func (c_ Contour) ChildContours() []Contour {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNContour/indexPath
-func (c_ Contour) IndexPath() foundation.IndexPath {
-	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPath"))
+func (c_ Contour) IndexPath() foundation.foundation.INSIndexPath {
+	rv := objc.Send[foundation.NSIndexPath](c_.ID, objc.Sel("indexPath"))
 	return rv
 }
 

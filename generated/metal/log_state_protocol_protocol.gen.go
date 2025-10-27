@@ -21,5 +21,5 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLLogState
 type PLogState interface {
 	// Required methods
-	AddLogHandler(block unsafe.Pointer)/* debug [protocol_interface/required_method]: AddLogHandler */
+	AddLogHandler(block unsafe.Pointer)
 }

@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLSessionDownloadDelegate is the NSURLSessionDownloadDelegate protocol interface.
@@ -23,7 +25,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/URLSessionDownloadDelegate
 type PURLSessionDownloadDelegate interface {
 	// Required methods
-	URLSessionDownloadTaskDidFinishDownloadingToURL(session IURLSession, downloadTask IURLSessionDownloadTask, location IURL)/* debug [protocol_interface/required_method]: URLSessionDownloadTaskDidFinishDownloadingToURL */
+	URLSessionDownloadTaskDidFinishDownloadingToURL(session IURLSession, downloadTask IURLSessionDownloadTask, location IURL)
 	// Optional methods
 	URLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes(session IURLSession, downloadTask IURLSessionDownloadTask, fileOffset int64, expectedTotalBytes int64)
 	HasURLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes() bool
@@ -95,4 +97,48 @@ func (d *URLSessionDownloadDelegate) URLSessionDownloadTaskDidFinishDownloadingT
 // HasURLSessionDownloadTaskDidFinishDownloadingToURL returns true if a handler for URLSessionDownloadTaskDidFinishDownloadingToURL has been set.
 func (d *URLSessionDownloadDelegate) HasURLSessionDownloadTaskDidFinishDownloadingToURL() bool {
 	return d._URLSessionDownloadTaskDidFinishDownloadingToURL != nil
+}
+
+// URLSessionDownloadDelegateObject wraps an existing Objective-C object that conforms to the PURLSessionDownloadDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLSessionDownloadDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLSessionDownloadDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLSessionDownloadDelegate protocol.
+func NewURLSessionDownloadDelegateObject(obj objectivec.Object) *URLSessionDownloadDelegateObject {
+	return &URLSessionDownloadDelegateObject{obj}
+}
+
+// Make sure URLSessionDownloadDelegateObject implements PURLSessionDownloadDelegate.
+var _ PURLSessionDownloadDelegate = (*URLSessionDownloadDelegateObject)(nil)
+
+// URLSessionDownloadTaskDidFinishDownloadingToURL implements the PURLSessionDownloadDelegate interface.
+// This required method is always available on objects conforming to URLSessionDownloadTaskDidFinishDownloadingToURL.
+func (o *URLSessionDownloadDelegateObject) URLSessionDownloadTaskDidFinishDownloadingToURL(session IURLSession, downloadTask IURLSessionDownloadTask, location IURL) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:downloadTask:didFinishDownloadingToURL:"), session, downloadTask, location)
+}
+
+// URLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes implements the PURLSessionDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDownloadDelegateObject) URLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes(session IURLSession, downloadTask IURLSessionDownloadTask, fileOffset int64, expectedTotalBytes int64) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:"), session, downloadTask, fileOffset, expectedTotalBytes)
+}
+
+// HasURLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDownloadDelegateObject) HasURLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionDownloadTaskDidWriteDataTotalBytesWrittenTotalBytesExpectedToWrite implements the PURLSessionDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDownloadDelegateObject) URLSessionDownloadTaskDidWriteDataTotalBytesWrittenTotalBytesExpectedToWrite(session IURLSession, downloadTask IURLSessionDownloadTask, bytesWritten int64, totalBytesWritten int64, totalBytesExpectedToWrite int64) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:"), session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite)
+}
+
+// HasURLSessionDownloadTaskDidWriteDataTotalBytesWrittenTotalBytesExpectedToWrite returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDownloadDelegateObject) HasURLSessionDownloadTaskDidWriteDataTotalBytesWrittenTotalBytesExpectedToWrite() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

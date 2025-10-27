@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLType */
 
 
-/* debug [class_header]: Header for MTLType */
+
+
 // The class instance for the [Type] class.
 var (
 	TypeClass     _TypeClass
@@ -30,31 +30,31 @@ func getTypeClass() _TypeClass {
 type _TypeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Type */
+
+
 // An interface definition for the [Type] class.
 type IType interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Type */
+
 	// properties:
 	DataType() DataType
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Type */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Type */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TypeClass) Alloc() Type {
 	rv := objc.Send[Type](objc.ID(tc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (t_ Type) Autorelease() Type {
 func NewType() Type {
 	return getTypeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Type */
+
+
 // A description of a data type.
 
 
@@ -106,30 +106,30 @@ type Type struct {
 func TypeFrom(ptr unsafe.Pointer) Type {
 	return Type{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Type *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for Type */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Type */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Type */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for Type */
+
+
+
+
+
+
+
+
+
 
 // The data type of the function argument.
 //
@@ -138,12 +138,12 @@ func TypeFrom(ptr unsafe.Pointer) Type {
 func (t_ Type) DataType() DataType {
 	rv := objc.Send[DataType](t_.ID, objc.Sel("dataType"))
 	return rv
-}/* debug [instance_properties/getter]: dataType */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLType */
+
+
+
 
 
 

@@ -13,7 +13,7 @@ var _ = avfoundation.NewContentKeySession
 // Creates a content key session to manage a collection of content decryption keys.
 func ExampleNewContentKeySessionWithKeySystem() {
 	_ = avfoundation.NewContentKeySessionWithKeySystem(
-		avfoundation.ContentKeySystem /* typedef */{}, // keySystem ContentKeySystem /* typedef */
+		avfoundation.ContentKeySystem{}, // keySystem ContentKeySystem
 	)
 	// Output:
 }

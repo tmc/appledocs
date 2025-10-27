@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSAttributedStringMarkdownSourcePosition */
 
 
-/* debug [class_header]: Header for NSAttributedStringMarkdownSourcePosition */
+
+
 // The class instance for the [AttributedStringMarkdownSourcePosition] class.
 var (
 	AttributedStringMarkdownSourcePositionClass     _AttributedStringMarkdownSourcePositionClass
@@ -30,35 +30,35 @@ func getAttributedStringMarkdownSourcePositionClass() _AttributedStringMarkdownS
 type _AttributedStringMarkdownSourcePositionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AttributedStringMarkdownSourcePosition */
+
+
 // An interface definition for the [AttributedStringMarkdownSourcePosition] class.
 type IAttributedStringMarkdownSourcePosition interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AttributedStringMarkdownSourcePosition */
+
 	// properties:
 	EndColumn() int
 	EndLine() int
 	StartColumn() int
 	StartLine() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AttributedStringMarkdownSourcePosition */
+
 	// methods:
-	RangeInString(string_ IString) objc.IObject /* cross-framework: Range */
-/* debug [class_interface_methods]: End methods */
+	RangeInString(string_ IString) Range
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AttributedStringMarkdownSourcePosition */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AttributedStringMarkdownSourcePositionClass) Alloc() AttributedStringMarkdownSourcePosition {
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](objc.ID(ac.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (a_ AttributedStringMarkdownSourcePosition) Autorelease() AttributedStringM
 func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourcePosition {
 	return getAttributedStringMarkdownSourcePositionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AttributedStringMarkdownSourcePosition */
+
+
 // The position of attributed string text in its original Markdown source string.
 
 
@@ -110,11 +110,11 @@ type AttributedStringMarkdownSourcePosition struct {
 func AttributedStringMarkdownSourcePositionFrom(ptr unsafe.Pointer) AttributedStringMarkdownSourcePosition {
 	return AttributedStringMarkdownSourcePosition{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AttributedStringMarkdownSourcePosition */
+
+
 
 // Creates a Markdown source position instance from its start and end line and column.
 //
@@ -125,38 +125,38 @@ func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEnd
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](instance.ID, objc.Sel("initWithStartLine:startColumn:endLine:endColumn:"), startLine, startColumn, endLine, endColumn)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AttributedStringMarkdownSourcePosition */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AttributedStringMarkdownSourcePosition */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AttributedStringMarkdownSourcePosition */
+
+
+
+
+
+
+
 
 // Returns a range indicating the source portion within a Markdown string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/rangeInString:
-func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ IString) objc.IObject /* cross-framework: Range */ {
+func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ IString) Range {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("rangeInString:"), string_)
 	return rv
-}/* debug [instance_methods/method]: RangeInString */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for AttributedStringMarkdownSourcePosition */
+
+
+
 
 // The column where the text ends in the Markdown source.
 //
@@ -165,7 +165,7 @@ func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ IString) 
 func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("endColumn"))
 	return rv
-}/* debug [instance_properties/getter]: endColumn */
+}
 
 
 // The line where the text ends in the Markdown source.
@@ -175,7 +175,7 @@ func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int {
 func (a_ AttributedStringMarkdownSourcePosition) EndLine() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("endLine"))
 	return rv
-}/* debug [instance_properties/getter]: endLine */
+}
 
 
 // The column where the text begins in the Markdown source.
@@ -185,7 +185,7 @@ func (a_ AttributedStringMarkdownSourcePosition) EndLine() int {
 func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("startColumn"))
 	return rv
-}/* debug [instance_properties/getter]: startColumn */
+}
 
 
 // The line where the text begins in the Markdown source.
@@ -195,11 +195,11 @@ func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int {
 func (a_ AttributedStringMarkdownSourcePosition) StartLine() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("startLine"))
 	return rv
-}/* debug [instance_properties/getter]: startLine */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSAttributedStringMarkdownSourcePosition */
+
+
+
 
 

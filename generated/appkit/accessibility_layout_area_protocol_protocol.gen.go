@@ -17,7 +17,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutArea
 type PAccessibilityLayoutArea interface {
 	// Required methods
-	AccessibilityChildren() foundation.Array/* debug [protocol_interface/required_method]: AccessibilityChildren */
-	AccessibilityLabel() foundation.String/* debug [protocol_interface/required_method]: AccessibilityLabel */
-	AccessibilitySelectedChildren() foundation.Array/* debug [protocol_interface/required_method]: AccessibilitySelectedChildren */
+	AccessibilityChildren() foundation.Array
+	AccessibilityLabel() foundation.String
+	AccessibilitySelectedChildren() foundation.Array
 }

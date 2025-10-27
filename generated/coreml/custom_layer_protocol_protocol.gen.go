@@ -28,11 +28,11 @@ import (
 // See: doc://com.apple.coreml/documentation/CoreML/MLCustomLayer
 type PCustomLayer interface {
 	// Required methods
-	EvaluateOnCPUWithInputsOutputsError(inputs []MultiArray, outputs []MultiArray, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: EvaluateOnCPUWithInputsOutputsError */
-	InitWithParameterDictionaryError(parameters foundation.IDictionary, error_ objectivec.IObject) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithParameterDictionaryError */
-	OutputShapesForInputShapesError(inputShapes []foundation.Array, error_ objectivec.IObject) []foundation.Array/* debug [protocol_interface/required_method]: OutputShapesForInputShapesError */
-	SetWeightDataError(weights []foundation.Data, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: SetWeightDataError */
+	EvaluateOnCPUWithInputsOutputsError(inputs []MultiArray, outputs []MultiArray, error_ foundation.foundation.INSError) bool
+	InitWithParameterDictionaryError(parameters foundation.IDictionary, error_ foundation.foundation.INSError) objectivec.IObject
+	OutputShapesForInputShapesError(inputShapes []foundation.Array, error_ foundation.foundation.INSError) []foundation.Array
+	SetWeightDataError(weights []foundation.Data, error_ foundation.foundation.INSError) bool
 	// Optional methods
-	EncodeToCommandBufferInputsOutputsError(commandBuffer unsafe.Pointer, inputs []objc.ID, outputs []objc.ID, error_ objectivec.IObject) bool
+	EncodeToCommandBufferInputsOutputsError(commandBuffer unsafe.Pointer, inputs []objc.ID, outputs []objc.ID, error_ foundation.foundation.INSError) bool
 	HasEncodeToCommandBufferInputsOutputsError() bool
 }

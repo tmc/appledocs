@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLModelStructurePipeline */
 
 
-/* debug [class_header]: Header for MLModelStructurePipeline */
+
+
 // The class instance for the [ModelStructurePipeline] class.
 var (
 	ModelStructurePipelineClass     _ModelStructurePipelineClass
@@ -30,32 +30,32 @@ func getModelStructurePipelineClass() _ModelStructurePipelineClass {
 type _ModelStructurePipelineClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ModelStructurePipeline */
+
+
 // An interface definition for the [ModelStructurePipeline] class.
 type IModelStructurePipeline interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ModelStructurePipeline */
+
 	// properties:
 	SubModelNames() []string
 	SubModels() []ModelStructure
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ModelStructurePipeline */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ModelStructurePipeline */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _ModelStructurePipelineClass) Alloc() ModelStructurePipeline {
 	rv := objc.Send[ModelStructurePipeline](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (m_ ModelStructurePipeline) Autorelease() ModelStructurePipeline {
 func NewModelStructurePipeline() ModelStructurePipeline {
 	return getModelStructurePipelineClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ModelStructurePipeline */
+
+
 // A class representing the structure of a Pipeline model.
 
 
@@ -107,30 +107,30 @@ type ModelStructurePipeline struct {
 func ModelStructurePipelineFrom(ptr unsafe.Pointer) ModelStructurePipeline {
 	return ModelStructurePipeline{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ModelStructurePipeline *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ModelStructurePipeline */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ModelStructurePipeline */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ModelStructurePipeline */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ModelStructurePipeline */
+
+
+
+
+
+
+
+
+
 
 // The names of the sub models in the pipeline.
 //
@@ -139,7 +139,7 @@ func ModelStructurePipelineFrom(ptr unsafe.Pointer) ModelStructurePipeline {
 func (m_ ModelStructurePipeline) SubModelNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("subModelNames"))
 	return rv
-}/* debug [instance_properties/getter]: subModelNames */
+}
 
 
 // The structure of the sub models in the pipeline.
@@ -149,12 +149,12 @@ func (m_ ModelStructurePipeline) SubModelNames() []string {
 func (m_ ModelStructurePipeline) SubModels() []ModelStructure {
 	rv := objc.Send[[]ModelStructure](m_.ID, objc.Sel("subModels"))
 	return rv
-}/* debug [instance_properties/getter]: subModels */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLModelStructurePipeline */
+
+
+
 
 
 

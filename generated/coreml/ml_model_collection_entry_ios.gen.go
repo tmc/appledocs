@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -21,7 +20,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() objc.IObject /* cross-framework: NSString */ {
+func (m_ ModelCollectionEntry) ModelIdentifier() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
@@ -30,7 +29,7 @@ func (m_ ModelCollectionEntry) ModelIdentifier() objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelURL
-func (m_ ModelCollectionEntry) ModelURL() objc.IObject /* cross-framework: NSURL */ {
+func (m_ ModelCollectionEntry) ModelURL() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](m_.ID, objc.Sel("modelURL"))
 	return rv
 }

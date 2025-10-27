@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLFunctionStitchingGraph */
 
 
-/* debug [class_header]: Header for MTLFunctionStitchingGraph */
+
+
 // The class instance for the [FunctionStitchingGraph] class.
 var (
 	FunctionStitchingGraphClass     _FunctionStitchingGraphClass
@@ -31,38 +30,38 @@ func getFunctionStitchingGraphClass() _FunctionStitchingGraphClass {
 type _FunctionStitchingGraphClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FunctionStitchingGraph */
+
+
 // An interface definition for the [FunctionStitchingGraph] class.
 type IFunctionStitchingGraph interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for FunctionStitchingGraph */
+
 	// properties:
 	Attributes() []objc.ID
 	SetAttributes(value []objc.ID)
-	FunctionName() objc.IObject /* cross-framework: NSString */
-	SetFunctionName(value objc.IObject /* cross-framework: NSString */)
+	FunctionName() foundation.foundation.INSString
+	SetFunctionName(value foundation.foundation.INSString)
 	Nodes() []FunctionStitchingFunctionNode
 	SetNodes(value []FunctionStitchingFunctionNode)
 	OutputNode() IMTLFunctionStitchingFunctionNode
 	SetOutputNode(value IMTLFunctionStitchingFunctionNode)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FunctionStitchingGraph */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FunctionStitchingGraph */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FunctionStitchingGraphClass) Alloc() FunctionStitchingGraph {
 	rv := objc.Send[FunctionStitchingGraph](objc.ID(fc.class), objc.Sel("alloc"))
@@ -92,11 +91,11 @@ func (f_ FunctionStitchingGraph) Autorelease() FunctionStitchingGraph {
 func NewFunctionStitchingGraph() FunctionStitchingGraph {
 	return getFunctionStitchingGraphClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FunctionStitchingGraph */
+
+
 // A description of a new stitched function.
 //
 // An instance describes the function graph for a stitched function. A is a visible function you create by composing other Metal shader functions together in a function graph. A function stitching graph contains nodes for the function’s arguments and any functions it calls in the implementation. Data flows from the arguments to the end of the graph until the stitched function evaluates all of the graph’s nodes. The graph in the figure below constructs a new function that adds numbers from two source arrays, storing the result in a third array. The function’s parameters are pointers to the source and destination arrays, and an index for performing the array lookup. The graph uses three separate MSL functions to construct the stitched function: a function to look up a value from an array, a function that adds two numbers together, and a function that stores a value to an array. Create an instance for each stitched function you want to create. Configure its properties to describe the new function and the nodes that define its behavior, as described below. To create a new library with these stitched functions, see .
@@ -116,43 +115,43 @@ type FunctionStitchingGraph struct {
 func FunctionStitchingGraphFrom(ptr unsafe.Pointer) FunctionStitchingGraph {
 	return FunctionStitchingGraph{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FunctionStitchingGraph */
+
+
 
 // Creates a description of a new function call graph.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionStitchingGraph/init(functionName:nodes:outputNode:attributes:)
-func NewFunctionStitchingGraphWithFunctionNameNodesOutputNodeAttributes(functionName objc.IObject /* cross-framework: NSString */, nodes []FunctionStitchingFunctionNode, outputNode IMTLFunctionStitchingFunctionNode, attributes []objc.ID) FunctionStitchingGraph {
+func NewFunctionStitchingGraphWithFunctionNameNodesOutputNodeAttributes(functionName foundation.foundation.INSString, nodes []FunctionStitchingFunctionNode, outputNode IMTLFunctionStitchingFunctionNode, attributes []objc.ID) FunctionStitchingGraph {
 	instance := getFunctionStitchingGraphClass().Alloc()
 	rv := objc.Send[FunctionStitchingGraph](instance.ID, objc.Sel("initWithFunctionName:nodes:outputNode:attributes:"), functionName, nodes, outputNode, attributes)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewFunctionStitchingGraphWithFunctionNameNodesOutputNodeAttributes */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for FunctionStitchingGraph */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FunctionStitchingGraph */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FunctionStitchingGraph */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FunctionStitchingGraph */
+
+
+
+
+
+
+
+
+
 
 // A list of attributes to configure how the Metal device object generates the new stitched function.
 //
@@ -161,7 +160,7 @@ func NewFunctionStitchingGraphWithFunctionNameNodesOutputNodeAttributes(function
 func (f_ FunctionStitchingGraph) Attributes() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("attributes"))
 	return rv
-}/* debug [instance_properties/getter]: attributes */
+}
 
 
 // A list of attributes to configure how the Metal device object generates the new stitched function.
@@ -179,26 +178,26 @@ func (f_ FunctionStitchingGraph) SetAttributes(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:"), nsArray)
-}/* debug [instance_properties/setter]: attributes */
+}
 
 
 // The name of the new stitched function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionStitchingGraph/functionName
-func (f_ FunctionStitchingGraph) FunctionName() objc.IObject /* cross-framework: NSString */ {
+func (f_ FunctionStitchingGraph) FunctionName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("functionName"))
 	return rv
-}/* debug [instance_properties/getter]: functionName */
+}
 
 
 // The name of the new stitched function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionStitchingGraph/functionName
-func (f_ FunctionStitchingGraph) SetFunctionName(value objc.IObject /* cross-framework: NSString */) {
+func (f_ FunctionStitchingGraph) SetFunctionName(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFunctionName:"), value)
-}/* debug [instance_properties/setter]: functionName */
+}
 
 
 // The nodes in the function’s call graph.
@@ -208,7 +207,7 @@ func (f_ FunctionStitchingGraph) SetFunctionName(value objc.IObject /* cross-fra
 func (f_ FunctionStitchingGraph) Nodes() []FunctionStitchingFunctionNode {
 	rv := objc.Send[[]FunctionStitchingFunctionNode](f_.ID, objc.Sel("nodes"))
 	return rv
-}/* debug [instance_properties/getter]: nodes */
+}
 
 
 // The nodes in the function’s call graph.
@@ -226,7 +225,7 @@ func (f_ FunctionStitchingGraph) SetNodes(value []FunctionStitchingFunctionNode)
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNodes:"), nsArray)
-}/* debug [instance_properties/setter]: nodes */
+}
 
 
 // The node with the output that’s the output of the new stitched function.
@@ -236,7 +235,7 @@ func (f_ FunctionStitchingGraph) SetNodes(value []FunctionStitchingFunctionNode)
 func (f_ FunctionStitchingGraph) OutputNode() IMTLFunctionStitchingFunctionNode {
 	rv := objc.Send[FunctionStitchingFunctionNode](f_.ID, objc.Sel("outputNode"))
 	return rv
-}/* debug [instance_properties/getter]: outputNode */
+}
 
 
 // The node with the output that’s the output of the new stitched function.
@@ -245,11 +244,11 @@ func (f_ FunctionStitchingGraph) OutputNode() IMTLFunctionStitchingFunctionNode 
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionStitchingGraph/outputNode
 func (f_ FunctionStitchingGraph) SetOutputNode(value IMTLFunctionStitchingFunctionNode) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputNode:"), value)
-}/* debug [instance_properties/setter]: outputNode */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLFunctionStitchingGraph */
+
+
+
 
 

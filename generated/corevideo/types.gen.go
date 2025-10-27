@@ -15,7 +15,7 @@ type CVFillExtendedPixelsCallBackData struct {
 	FillCallBack FillExtendedPixelsCallBack
 	RefCon unsafe.Pointer // A pointer to application-defined data that is passed to your custom pixel fill function.
 	Version Index // The version of this fill algorithm.
-}/* debug [types.gen.go/struct]: CVFillExtendedPixelsCallBackData */
+}
 
 // CVPlanarComponentInfo - A structure for describing planar components.
 //
@@ -24,7 +24,7 @@ type CVFillExtendedPixelsCallBackData struct {
 type CVPlanarComponentInfo struct {
 	Offset int32 // The offset from the main base address to the base address of this plane. (big-endian)
 	RowBytes uint32 // The number of bytes per row of this plane. (big-endian)
-}/* debug [types.gen.go/struct]: CVPlanarComponentInfo */
+}
 
 // CVPlanarPixelBufferInfo - A structure for describing planar buffers.
 //
@@ -32,7 +32,7 @@ type CVPlanarComponentInfo struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPlanarPixelBufferInfo
 type CVPlanarPixelBufferInfo struct {
 	ComponentInfo PlanarComponentInfo // An array containing a   structure for each plane of the buffer.
-}/* debug [types.gen.go/struct]: CVPlanarPixelBufferInfo */
+}
 
 // CVPlanarPixelBufferInfo_YCbCrBiPlanar - A structure for describing YCbCr biplanar buffers.
 //
@@ -41,7 +41,7 @@ type CVPlanarPixelBufferInfo struct {
 type CVPlanarPixelBufferInfo_YCbCrBiPlanar struct {
 	ComponentInfoCbCr PlanarComponentInfo // A   structure containing information on the Cb/Cr component of the buffer.
 	ComponentInfoY PlanarComponentInfo // A   structure containing information on the Y component of the buffer.
-}/* debug [types.gen.go/struct]: CVPlanarPixelBufferInfo_YCbCrBiPlanar */
+}
 
 // CVPlanarPixelBufferInfo_YCbCrPlanar - A structure for describing YCbCr planar buffers.
 //
@@ -51,7 +51,7 @@ type CVPlanarPixelBufferInfo_YCbCrPlanar struct {
 	ComponentInfoCb PlanarComponentInfo // A   structure containing information on the Cb component of the buffer.
 	ComponentInfoCr PlanarComponentInfo // A   structure containing information on the Cr component of the buffer.
 	ComponentInfoY PlanarComponentInfo // A   structure containing information on the Y component of the buffer.
-}/* debug [types.gen.go/struct]: CVPlanarPixelBufferInfo_YCbCrPlanar */
+}
 
 // CVSMPTETime - A structure for holding an SMPTE time.
 //
@@ -67,7 +67,7 @@ type CVSMPTETime struct {
 	SubframeDivisor unsafe.Pointer // The number of subframes per frame (typically, 80).
 	Subframes unsafe.Pointer // The number of subframes in the full message.
 	Type unsafe.Pointer // The kind of SMPTE time type.
-}/* debug [types.gen.go/struct]: CVSMPTETime */
+}
 
 // CVTime - A structure for reporting Core Video time values.
 //
@@ -77,7 +77,7 @@ type CVTime struct {
 	Flags int32 // The flags associated with the   value. See   for possible values. If   is set, you should not use any of the other fields in this structure.
 	TimeScale int32 // The time scale for this value.
 	TimeValue int64 // The time value.
-}/* debug [types.gen.go/struct]: CVTime */
+}
 
 // CVTimeStamp - A structure for defining a display timestamp.
 //
@@ -93,7 +93,7 @@ type CVTimeStamp struct {
 	VideoRefreshPeriod int64
 	VideoTime int64 // The start of a frame (or field for interlaced video).
 	VideoTimeScale int32 // The scale (in units per second) of the   and   fields.
-}/* debug [types.gen.go/struct]: CVTimeStamp */
+}
 
 
 

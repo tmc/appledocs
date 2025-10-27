@@ -21,26 +21,26 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLIndirectRenderCommand
 type PIndirectRenderCommand interface {
 	// Required methods
-	ClearBarrier()/* debug [protocol_interface/required_method]: ClearBarrier */
-	DrawIndexedPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(numberOfPatchControlPoints uint, patchStart uint, patchCount uint, patchIndexBuffer unsafe.Pointer, patchIndexBufferOffset uint, controlPointIndexBuffer unsafe.Pointer, controlPointIndexBufferOffset uint, instanceCount uint, baseInstance uint, buffer unsafe.Pointer, offset uint, instanceStride uint)/* debug [protocol_interface/required_method]: DrawIndexedPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride */
-	DrawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance(primitiveType PrimitiveType, indexCount uint, indexType IndexType, indexBuffer unsafe.Pointer, indexBufferOffset uint, instanceCount uint, baseVertex int, baseInstance uint)/* debug [protocol_interface/required_method]: DrawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance */
-	DrawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(threadgroupsPerGrid objc.IObject /* cross-framework: MTLSize */, threadsPerObjectThreadgroup objc.IObject /* cross-framework: MTLSize */, threadsPerMeshThreadgroup objc.IObject /* cross-framework: MTLSize */)/* debug [protocol_interface/required_method]: DrawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup */
-	DrawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(threadsPerGrid objc.IObject /* cross-framework: MTLSize */, threadsPerObjectThreadgroup objc.IObject /* cross-framework: MTLSize */, threadsPerMeshThreadgroup objc.IObject /* cross-framework: MTLSize */)/* debug [protocol_interface/required_method]: DrawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup */
-	DrawPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(numberOfPatchControlPoints uint, patchStart uint, patchCount uint, patchIndexBuffer unsafe.Pointer, patchIndexBufferOffset uint, instanceCount uint, baseInstance uint, buffer unsafe.Pointer, offset uint, instanceStride uint)/* debug [protocol_interface/required_method]: DrawPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride */
-	DrawPrimitivesVertexStartVertexCountInstanceCountBaseInstance(primitiveType PrimitiveType, vertexStart uint, vertexCount uint, instanceCount uint, baseInstance uint)/* debug [protocol_interface/required_method]: DrawPrimitivesVertexStartVertexCountInstanceCountBaseInstance */
-	Reset()/* debug [protocol_interface/required_method]: Reset */
-	SetBarrier()/* debug [protocol_interface/required_method]: SetBarrier */
-	SetCullMode(cullMode CullMode)/* debug [protocol_interface/required_method]: SetCullMode */
-	SetDepthBiasSlopeScaleClamp(depthBias float32, slopeScale float32, clamp float32)/* debug [protocol_interface/required_method]: SetDepthBiasSlopeScaleClamp */
-	SetDepthClipMode(depthClipMode DepthClipMode)/* debug [protocol_interface/required_method]: SetDepthClipMode */
-	SetDepthStencilState(depthStencilState unsafe.Pointer)/* debug [protocol_interface/required_method]: SetDepthStencilState */
-	SetFragmentBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetFragmentBufferOffsetAtIndex */
-	SetFrontFacingWinding(frontFacingWindning Winding)/* debug [protocol_interface/required_method]: SetFrontFacingWinding */
-	SetMeshBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetMeshBufferOffsetAtIndex */
-	SetObjectBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetObjectBufferOffsetAtIndex */
-	SetObjectThreadgroupMemoryLengthAtIndex(length uint, index uint)/* debug [protocol_interface/required_method]: SetObjectThreadgroupMemoryLengthAtIndex */
-	SetRenderPipelineState(pipelineState unsafe.Pointer)/* debug [protocol_interface/required_method]: SetRenderPipelineState */
-	SetTriangleFillMode(fillMode TriangleFillMode)/* debug [protocol_interface/required_method]: SetTriangleFillMode */
-	SetVertexBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetVertexBufferOffsetAtIndex */
-	SetVertexBufferOffsetAttributeStrideAtIndex(buffer unsafe.Pointer, offset uint, stride uint, index uint)/* debug [protocol_interface/required_method]: SetVertexBufferOffsetAttributeStrideAtIndex */
+	ClearBarrier()
+	DrawIndexedPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(numberOfPatchControlPoints uint, patchStart uint, patchCount uint, patchIndexBuffer unsafe.Pointer, patchIndexBufferOffset uint, controlPointIndexBuffer unsafe.Pointer, controlPointIndexBufferOffset uint, instanceCount uint, baseInstance uint, buffer unsafe.Pointer, offset uint, instanceStride uint)
+	DrawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance(primitiveType PrimitiveType, indexCount uint, indexType IndexType, indexBuffer unsafe.Pointer, indexBufferOffset uint, instanceCount uint, baseVertex int, baseInstance uint)
+	DrawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(threadgroupsPerGrid Size, threadsPerObjectThreadgroup Size, threadsPerMeshThreadgroup Size)
+	DrawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(threadsPerGrid Size, threadsPerObjectThreadgroup Size, threadsPerMeshThreadgroup Size)
+	DrawPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(numberOfPatchControlPoints uint, patchStart uint, patchCount uint, patchIndexBuffer unsafe.Pointer, patchIndexBufferOffset uint, instanceCount uint, baseInstance uint, buffer unsafe.Pointer, offset uint, instanceStride uint)
+	DrawPrimitivesVertexStartVertexCountInstanceCountBaseInstance(primitiveType PrimitiveType, vertexStart uint, vertexCount uint, instanceCount uint, baseInstance uint)
+	Reset()
+	SetBarrier()
+	SetCullMode(cullMode CullMode)
+	SetDepthBiasSlopeScaleClamp(depthBias float32, slopeScale float32, clamp float32)
+	SetDepthClipMode(depthClipMode DepthClipMode)
+	SetDepthStencilState(depthStencilState unsafe.Pointer)
+	SetFragmentBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetFrontFacingWinding(frontFacingWindning Winding)
+	SetMeshBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetObjectBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetObjectThreadgroupMemoryLengthAtIndex(length uint, index uint)
+	SetRenderPipelineState(pipelineState unsafe.Pointer)
+	SetTriangleFillMode(fillMode TriangleFillMode)
+	SetVertexBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetVertexBufferOffsetAttributeStrideAtIndex(buffer unsafe.Pointer, offset uint, stride uint, index uint)
 }

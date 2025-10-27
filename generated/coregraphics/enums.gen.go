@@ -2,9 +2,9 @@
 
 package coregraphics
 
-/* debug [enums.gen.go]: Generating 56 enums for CoreGraphics */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CGBitmapInfo (12 cases) */
+
 // BitmapInfo - Component information for a bitmap image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapInfo
@@ -55,7 +55,7 @@ const (
 	kCGBitmapPixelFormatInfoMask BitmapInfo = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGBitmapLayout (12 cases) */
+
 // BitmapLayout enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout
@@ -100,7 +100,7 @@ const (
 	kCGBitmapLayoutXRGB BitmapLayout = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGBlendMode (28 cases) */
+
 // BlendMode - Compositing operations for images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBlendMode
@@ -210,7 +210,7 @@ const (
 	kCGBlendModeXOR BlendMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGCaptureOptions (2 cases) */
+
 // CaptureOptions - Configuration parameters that are used when capturing displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCaptureOptions
@@ -227,7 +227,7 @@ const (
 	kCGCaptureNoFill CaptureOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGColorConversionInfoTransformType (3 cases) */
+
 // ColorConversionInfoTransformType - Constants describing how a color conversion uses color spaces.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfoTransformType
@@ -248,7 +248,7 @@ const (
 	kCGColorConversionTransformToSpace ColorConversionInfoTransformType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGColorModel (6 cases) */
+
 // ColorModel enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel
@@ -275,7 +275,7 @@ const (
 	kCGColorModelRGB ColorModel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGColorRenderingIntent (5 cases) */
+
 // ColorRenderingIntent - Handling options for colors that are not located within the destination color space of a graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorRenderingIntent
@@ -304,7 +304,7 @@ const (
 	kCGRenderingIntentSaturation ColorRenderingIntent = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGColorSpaceModel (9 cases) */
+
 // ColorSpaceModel - Models for color spaces.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceModel
@@ -349,7 +349,7 @@ const (
 	kCGColorSpaceModelUnknown ColorSpaceModel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGComponent (7 cases) */
+
 // Component enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent
@@ -379,7 +379,7 @@ const (
 	kCGComponentUnknown Component = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGConfigureOption (3 cases) */
+
 // ConfigureOption - The scope of the changes in a display configuration transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureOption
@@ -400,7 +400,7 @@ const (
 	kCGConfigurePermanently ConfigureOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGDisplayChangeSummaryFlags (11 cases) */
+
 // DisplayChangeSummaryFlags - The configuration parameters that are passed to a display reconfiguration callback function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayChangeSummaryFlags
@@ -453,7 +453,7 @@ const (
 	kCGDisplayUnMirrorFlag DisplayChangeSummaryFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGDisplayStreamFrameStatus (4 cases) */
+
 // DisplayStreamFrameStatus - Describes a frame update event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamFrameStatus
@@ -478,7 +478,7 @@ const (
 	kCGDisplayStreamFrameStatusStopped DisplayStreamFrameStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGDisplayStreamUpdateRectType (4 cases) */
+
 // DisplayStreamUpdateRectType - Use these constants to determine which rectangles your app is interested in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdateRectType
@@ -503,7 +503,7 @@ const (
 	kCGDisplayStreamUpdateRefreshedRects DisplayStreamUpdateRectType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGError (11 cases) */
+
 // Error - A uniform type for result codes returned by functions in Core Graphics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGError
@@ -556,7 +556,7 @@ const (
 	kCGErrorTypeCheck Error = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventField (65 cases) */
+
 // EventField - Constants used as keys to access specialized fields in low-level events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventField
@@ -813,7 +813,7 @@ const (
 	kCGTabletProximityEventVendorUniqueID EventField = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventFilterMask (3 cases) */
+
 // EventFilterMask - Specify masks for classes of low-level events that can be filtered during event suppression states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventFilterMask
@@ -831,7 +831,7 @@ const (
 	kCGEventFilterMaskPermitSystemDefinedEvents EventFilterMask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventFlags (9 cases) */
+
 // EventFlags - Constants that indicate the modifier key state at the time an event is created, as well as other event-related states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventFlags
@@ -876,7 +876,7 @@ const (
 	kCGEventFlagMaskShift EventFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventMouseSubtype (3 cases) */
+
 // EventMouseSubtype - Constants used with the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventMouseSubtype
@@ -897,7 +897,7 @@ const (
 	kCGEventMouseSubtypeTabletProximity EventMouseSubtype = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventSourceStateID (3 cases) */
+
 // EventSourceStateID - Constants that specify the possible source states of an event source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceStateID
@@ -918,7 +918,7 @@ const (
 	kCGEventSourceStatePrivate EventSourceStateID = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventSuppressionState (3 cases) */
+
 // EventSuppressionState - Specify the event suppression states that can occur after posting an event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSuppressionState
@@ -938,7 +938,7 @@ const (
 	kCGNumberOfEventSuppressionStates EventSuppressionState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventTapLocation (3 cases) */
+
 // EventTapLocation - Constants that specify possible tapping points for events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapLocation
@@ -959,7 +959,7 @@ const (
 	kCGHIDEventTap EventTapLocation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventTapOptions (2 cases) */
+
 // EventTapOptions - Constants that specify whether a new event tap is an active filter or a passive listener.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapOptions
@@ -976,7 +976,7 @@ const (
 	kCGEventTapOptionListenOnly EventTapOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventTapPlacement (2 cases) */
+
 // EventTapPlacement - Constants that specify where a new event tap is inserted into the list of active event taps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapPlacement
@@ -993,7 +993,7 @@ const (
 	kCGTailAppendEventTap EventTapPlacement = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGEventType (19 cases) */
+
 // EventType - Constants that specify the different types of input events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventType
@@ -1078,7 +1078,7 @@ const (
 	kCGEventTapDisabledByUserInput EventType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGFontPostScriptFormat (3 cases) */
+
 // FontPostScriptFormat - Possible formats for a PostScript font subset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontPostScriptFormat
@@ -1099,7 +1099,7 @@ const (
 	kCGFontPostScriptFormatType42 FontPostScriptFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGGesturePhase (6 cases) */
+
 // GesturePhase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGesturePhase
@@ -1126,7 +1126,7 @@ const (
 	kCGGesturePhaseNone GesturePhase = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGGlyphDeprecatedEnum (2 cases) */
+
 // GlyphDeprecatedEnum enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGlyphDeprecatedEnum
@@ -1143,7 +1143,7 @@ const (
 	GlyphMin GlyphDeprecatedEnum = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGGradientDrawingOptions (2 cases) */
+
 // GradientDrawingOptions - Drawing locations for gradients.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradientDrawingOptions
@@ -1160,7 +1160,7 @@ const (
 	kCGGradientDrawsBeforeStartLocation GradientDrawingOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImageAlphaInfo (8 cases) */
+
 // ImageAlphaInfo - Storage options for alpha component data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageAlphaInfo
@@ -1201,7 +1201,7 @@ const (
 	kCGImageAlphaPremultipliedLast ImageAlphaInfo = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImageByteOrderInfo (8 cases) */
+
 // ImageByteOrderInfo enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageByteOrderInfo
@@ -1234,7 +1234,7 @@ const (
 	kCGImageByteOrderMask ImageByteOrderInfo = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImageComponentInfo (2 cases) */
+
 // ImageComponentInfo enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo
@@ -1249,7 +1249,7 @@ const (
 	kCGImageComponentInteger ImageComponentInfo = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGImagePixelFormatInfo (6 cases) */
+
 // ImagePixelFormatInfo enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo
@@ -1276,7 +1276,7 @@ const (
 	kCGImagePixelFormatPacked ImagePixelFormatInfo = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGInterpolationQuality (5 cases) */
+
 // InterpolationQuality - Levels of interpolation quality for rendering an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGInterpolationQuality
@@ -1305,7 +1305,7 @@ const (
 	kCGInterpolationNone InterpolationQuality = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGLineCap (3 cases) */
+
 // LineCap - Styles for rendering the endpoint of a stroked line.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLineCap
@@ -1326,7 +1326,7 @@ const (
 	kCGLineCapSquare LineCap = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGLineJoin (3 cases) */
+
 // LineJoin - Junction types for stroked lines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLineJoin
@@ -1347,7 +1347,7 @@ const (
 	kCGLineJoinRound LineJoin = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGMomentumScrollPhase (4 cases) */
+
 // MomentumScrollPhase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMomentumScrollPhase
@@ -1368,7 +1368,7 @@ const (
 	kCGMomentumScrollPhaseNone MomentumScrollPhase = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGMouseButton (3 cases) */
+
 // MouseButton - Constants that specify buttons on a one, two, or three-button mouse.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMouseButton
@@ -1389,7 +1389,7 @@ const (
 	kCGMouseButtonRight MouseButton = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPDFAccessPermissions (8 cases) */
+
 // PDFAccessPermissions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFAccessPermissions
@@ -1422,7 +1422,7 @@ const (
 	kCGPDFAllowsLowQualityPrinting PDFAccessPermissions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPDFBox (5 cases) */
+
 // PDFBox - Box types for a PDF page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFBox
@@ -1451,7 +1451,7 @@ const (
 	kCGPDFTrimBox PDFBox = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPDFDataFormat (3 cases) */
+
 // PDFDataFormat - The encoding format of PDF data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDataFormat
@@ -1472,7 +1472,7 @@ const (
 	PDFDataFormatRaw PDFDataFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPDFObjectType (9 cases) */
+
 // PDFObjectType - Types of PDF object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFObjectType
@@ -1517,7 +1517,7 @@ const (
 	kCGPDFObjectTypeString PDFObjectType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPDFTagType (50 cases) */
+
 // PDFTagType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType
@@ -1676,7 +1676,7 @@ const (
 	PDFTagTypeWarichuText PDFTagType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPathDrawingMode (5 cases) */
+
 // PathDrawingMode - Options for rendering a path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode
@@ -1705,7 +1705,7 @@ const (
 	kCGPathStroke PathDrawingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPathElementType (5 cases) */
+
 // PathElementType - The type of element found in a path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType
@@ -1734,7 +1734,7 @@ const (
 	kCGPathElementMoveToPoint PathElementType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGPatternTiling (3 cases) */
+
 // PatternTiling - Different methods for rendering a tiled pattern.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling
@@ -1755,7 +1755,7 @@ const (
 	kCGPatternTilingNoDistortion PatternTiling = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGScreenUpdateOperation (3 cases) */
+
 // ScreenUpdateOperation - Types of screen-update operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScreenUpdateOperation
@@ -1776,7 +1776,7 @@ const (
 	kCGScreenUpdateOperationRefresh ScreenUpdateOperation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGScrollEventUnit (2 cases) */
+
 // ScrollEventUnit - Constants that specify the unit of measurement for a scrolling event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScrollEventUnit
@@ -1793,7 +1793,7 @@ const (
 	kCGScrollEventUnitPixel ScrollEventUnit = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGScrollPhase (5 cases) */
+
 // ScrollPhase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScrollPhase
@@ -1817,7 +1817,7 @@ const (
 	kCGScrollPhaseMayBegin ScrollPhase = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGTextDrawingMode (8 cases) */
+
 // TextDrawingMode - Modes for rendering text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGTextDrawingMode
@@ -1858,7 +1858,7 @@ const (
 	kCGTextStrokeClip TextDrawingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGTextEncoding (2 cases) */
+
 // TextEncoding - Text encodings for fonts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGTextEncoding
@@ -1875,7 +1875,7 @@ const (
 	kCGEncodingMacRoman TextEncoding = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGToneMapping (6 cases) */
+
 // ToneMapping enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGToneMapping
@@ -1902,7 +1902,7 @@ const (
 	kCGToneMappingReferenceWhiteBased ToneMapping = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGWindowBackingType (3 cases) */
+
 // WindowBackingType - The data type used to specify the backing option for a given window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowBackingType
@@ -1923,7 +1923,7 @@ const (
 	kCGBackingStoreRetained WindowBackingType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGWindowImageOption (6 cases) */
+
 // WindowImageOption - The data type to use to specify the type of image to be generated for a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowImageOption
@@ -1956,7 +1956,7 @@ const (
 	kCGWindowImageShouldBeOpaque WindowImageOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGWindowLevelKey (22 cases) */
+
 // WindowLevelKey - Keys that represent the standard window levels in macOS. Quartz includes these keys to support application frameworks like Cocoa. Applications do not need to use them directly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowLevelKey
@@ -2053,7 +2053,7 @@ const (
 	kCGUtilityWindowLevelKey WindowLevelKey = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGWindowListOption (6 cases) */
+
 // WindowListOption - The data type used to specify the options for gathering a list of windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListOption
@@ -2086,7 +2086,7 @@ const (
 	kCGWindowListOptionOnScreenOnly WindowListOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CGWindowSharingType (3 cases) */
+
 // WindowSharingType - The data type used to specify the sharing mode used by a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowSharingType

@@ -16,7 +16,7 @@ type PCollectionViewElement interface {
 	HasApplyLayoutAttributes() bool
 	DidTransitionFromLayoutToLayout(oldLayout ICollectionViewLayout, newLayout ICollectionViewLayout)
 	HasDidTransitionFromLayoutToLayout() bool
-	PreferredLayoutAttributesFittingAttributes(layoutAttributes ICollectionViewLayoutAttributes) CollectionViewLayoutAttributes
+	PreferredLayoutAttributesFittingAttributes(layoutAttributes ICollectionViewLayoutAttributes) ICollectionViewLayoutAttributes
 	HasPreferredLayoutAttributesFittingAttributes() bool
 	PrepareForReuse()
 	HasPrepareForReuse() bool

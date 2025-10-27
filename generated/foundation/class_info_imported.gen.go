@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class classInfoImported */
 
 
-/* debug [class_header]: Header for classInfoImported */
+
+
 // The class instance for the [classInfoImported] class.
 var (
 	ClassInfoImportedClass     _classInfoImportedClass
@@ -30,30 +30,30 @@ func getclassInfoImportedClass() _classInfoImportedClass {
 type _classInfoImportedClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for classInfoImported */
+
+
 // An interface definition for the [classInfoImported] class.
 type IclassInfoImported interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for classInfoImported */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for classInfoImported */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for classInfoImported */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _classInfoImportedClass) Alloc() classInfoImported {
 	rv := objc.Send[classInfoImported](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ classInfoImported) Autorelease() classInfoImported {
 func NewclassInfoImported() classInfoImported {
 	return getclassInfoImportedClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for classInfoImported */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type classInfoImported struct {
 func classInfoImportedFrom(ptr unsafe.Pointer) classInfoImported {
 	return classInfoImported{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for classInfoImported *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for classInfoImported */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for classInfoImported */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for classInfoImported */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for classInfoImported */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class classInfoImported */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

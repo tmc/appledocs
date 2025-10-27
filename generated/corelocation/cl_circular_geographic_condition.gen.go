@@ -7,7 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
+
+
+
+
 
 // The class instance for the [CircularGeographicCondition] class.
 var (
@@ -26,35 +31,30 @@ type _CircularGeographicConditionClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [CircularGeographicCondition] class.
 type ICircularGeographicCondition interface {
 	ICondition
+	
+
 	// properties:
-	Center() CLLocationCoordinate2D /* not a class type */
-	Radius() LocationDistance       /* not a class type */
+	Center() CLLocationCoordinate2D
+	Radius() LocationDistance /* not a class type */
+
+
+	
+
 	// methods:
+
+
 }
 
-// A circular geographic condition that a center point and radius define.
-//
-// Use to monitor events that occur in a circular geographic condition that you describe.
 
-// A circular geographic condition that a center point and radius define.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition
-type CircularGeographicCondition struct {
-	Condition
-}
 
-// CircularGeographicConditionFrom constructs a [CircularGeographicCondition] from an unsafe.Pointer.
-//
-// A circular geographic condition that a center point and radius define.
-func CircularGeographicConditionFrom(ptr unsafe.Pointer) CircularGeographicCondition {
-	return CircularGeographicCondition{
-		Condition: ConditionFrom(ptr),
-	}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (cc _CircularGeographicConditionClass) Alloc() CircularGeographicCondition {
@@ -63,7 +63,6 @@ func (cc _CircularGeographicConditionClass) Alloc() CircularGeographicCondition 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CircularGeographicConditionClass) New() CircularGeographicCondition {
 	rv := objc.Send[CircularGeographicCondition](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,25 +86,78 @@ func NewCircularGeographicCondition() CircularGeographicCondition {
 	return getCircularGeographicConditionClass().New()
 }
 
+
+
+
+
+// A circular geographic condition that a center point and radius define.
+//
+// Use to monitor events that occur in a circular geographic condition that you describe.
+
+
+// A circular geographic condition that a center point and radius define.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition
+type CircularGeographicCondition struct {
+	Condition
+}
+
+// CircularGeographicConditionFrom constructs a [CircularGeographicCondition] from an unsafe.Pointer.
+//
+// A circular geographic condition that a center point and radius define.
+func CircularGeographicConditionFrom(ptr unsafe.Pointer) CircularGeographicCondition {
+	return CircularGeographicCondition{
+		Condition: ConditionFrom(ptr),
+	}
+}
+
+
+
+
+
+
 // Creates a new circular geographic condition with the center point and radius you provide.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/initWithCenter:radius:
-func NewCircularGeographicConditionWithCenterRadius(center LocationCoordinate2D /* not a class type */, radius LocationDistance /* not a class type */) CircularGeographicCondition {
+func NewCircularGeographicConditionWithCenterRadius(center LocationCoordinate2D, radius LocationDistance /* not a class type */) CircularGeographicCondition {
 	instance := getCircularGeographicConditionClass().Alloc()
 	rv := objc.Send[CircularGeographicCondition](instance.ID, objc.Sel("initWithCenter:radius:"), center, radius)
 	rv.Autorelease()
 	return rv
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // The center of the circular geographic condition.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/center
-func (c_ CircularGeographicCondition) Center() CLLocationCoordinate2D /* not a class type */ {
-	rv := objc.Send[LocationCoordinate2D](c_.ID, objc.Sel("center"))
+func (c_ CircularGeographicCondition) Center() CLLocationCoordinate2D {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("center"))
 	return rv
 }
+
 
 // The radius of the circular geographic condition.
 //
@@ -115,3 +167,10 @@ func (c_ CircularGeographicCondition) Radius() LocationDistance /* not a class t
 	rv := objc.Send[LocationDistance](c_.ID, objc.Sel("radius"))
 	return rv
 }
+
+
+
+
+
+
+

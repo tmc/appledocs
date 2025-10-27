@@ -62,7 +62,7 @@ type IState interface {
 	SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer)
 	ResourceSize()
 	TextureInfo()
-	TextureInfoAtIndex(index uint) objc.IObject /* cross-framework: MPSStateTextureInfo */
+	TextureInfoAtIndex(index uint) MPSStateTextureInfo
 	ResourceType()
 	ResourceTypeAtIndex(index uint) StateResourceType
 	BufferSize()
@@ -284,7 +284,7 @@ func (s_ State) TextureInfo() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/2947899-textureinfoatindex
-func (s_ State) TextureInfoAtIndex(index uint) objc.IObject /* cross-framework: MPSStateTextureInfo */ {
+func (s_ State) TextureInfoAtIndex(index uint) MPSStateTextureInfo {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("textureInfoAtIndex:"), index)
 	return rv
 }

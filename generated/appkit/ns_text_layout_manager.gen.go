@@ -8,14 +8,13 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSTextLayoutManager */
 
 
-/* debug [class_header]: Header for NSTextLayoutManager */
+
+
 // The class instance for the [TextLayoutManager] class.
 var (
 	TextLayoutManagerClass     _TextLayoutManagerClass
@@ -32,19 +31,17 @@ func getTextLayoutManagerClass() _TextLayoutManagerClass {
 type _TextLayoutManagerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TextLayoutManager */
+
+
 // An interface definition for the [TextLayoutManager] class.
 type ITextLayoutManager interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for TextLayoutManager */
+
 	// properties:
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	LayoutQueue() foundation.OperationQueue
 	SetLayoutQueue(value foundation.OperationQueue)
 	LimitsLayoutForSuspiciousContents() bool
@@ -66,12 +63,12 @@ type ITextLayoutManager interface {
 	SetUsesFontLeading(value bool)
 	UsesHyphenation() bool
 	SetUsesHyphenation(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TextLayoutManager */
+
 	// methods:
-	AddRenderingAttributeValueForTextRange(renderingAttribute AttributedStringKey /* not a class type */, value objc.IObject, textRange ITextRange)
+	AddRenderingAttributeValueForTextRange(renderingAttribute AttributedStringKey /* not a class type */, value objectivec.IObject, textRange ITextRange)
 	EnsureLayoutForRange(range_ ITextRange)
 	EnsureLayoutForBounds(bounds corefoundation.CGRect)
 	EnumerateRenderingAttributesFromLocationReverseUsingBlock(location unsafe.Pointer, reverse bool, block unsafe.Pointer)
@@ -80,21 +77,21 @@ type ITextLayoutManager interface {
 	InvalidateLayoutForRange(range_ ITextRange)
 	InvalidateRenderingAttributesForTextRange(textRange ITextRange)
 	RemoveRenderingAttributeForTextRange(renderingAttribute AttributedStringKey /* not a class type */, textRange ITextRange)
-	RenderingAttributesForLinkAtLocation(link objc.IObject, location unsafe.Pointer) foundation.IDictionary
+	RenderingAttributesForLinkAtLocation(link objectivec.IObject, location unsafe.Pointer) foundation.IDictionary
 	ReplaceTextContentManager(textContentManager ITextContentManager)
-	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.AttributedString)
+	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.foundation.INSAttributedString)
 	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
 	SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange)
 	TextLayoutFragmentForPosition(position corefoundation.CGPoint) ITextLayoutFragment
 	TextLayoutFragmentForLocation(location unsafe.Pointer) ITextLayoutFragment
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TextLayoutManager */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextLayoutManagerClass) Alloc() TextLayoutManager {
 	rv := objc.Send[TextLayoutManager](objc.ID(tc.class), objc.Sel("alloc"))
@@ -124,11 +121,11 @@ func (t_ TextLayoutManager) Autorelease() TextLayoutManager {
 func NewTextLayoutManager() TextLayoutManager {
 	return getTextLayoutManagerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TextLayoutManager */
+
+
 // The primary class that you use to manage text layout and presentation for custom text displays.
 //
 // is the centerpiece of the TextKit object network that maintains the layout geometry through an array of objects. It lays out results using and objects vended from a that participates in the content layout process.
@@ -148,33 +145,33 @@ type TextLayoutManager struct {
 func TextLayoutManagerFrom(ptr unsafe.Pointer) TextLayoutManager {
 	return TextLayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TextLayoutManager */
+
+
 
 // Creates a new text layout manager with the coder you provide.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/init(coder:)
-func NewTextLayoutManagerWithCoder(coder foundation.Coder) TextLayoutManager {
+func NewTextLayoutManagerWithCoder(coder foundation.foundation.INSCoder) TextLayoutManager {
 	instance := getTextLayoutManagerClass().Alloc()
 	rv := objc.Send[TextLayoutManager](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTextLayoutManagerWithCoder */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for TextLayoutManager */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TextLayoutManager */
+
+
+
+
+
 
 // Returns the default set of attributes for rendering a link.
 //
@@ -183,20 +180,20 @@ func NewTextLayoutManagerWithCoder(coder foundation.Coder) TextLayoutManager {
 func (tc _TextLayoutManagerClass) LinkRenderingAttributes() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](objc.ID(tc.class), objc.Sel("linkRenderingAttributes"))
 	return rv
-}/* debug [class_properties_class/property]: linkRenderingAttributes */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for TextLayoutManager */
+
+
 
 // Sets the rendering attribute for the value and range you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/addRenderingAttribute(_:value:for:)
-func (t_ TextLayoutManager) AddRenderingAttributeValueForTextRange(renderingAttribute AttributedStringKey /* not a class type */, value objc.IObject, textRange ITextRange) {
+func (t_ TextLayoutManager) AddRenderingAttributeValueForTextRange(renderingAttribute AttributedStringKey /* not a class type */, value objectivec.IObject, textRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("addRenderingAttribute:value:forTextRange:"), renderingAttribute, value, textRange)
-}/* debug [instance_methods/method]: AddRenderingAttributeValueForTextRange */
+}
 
 
 // Performs the layout for specified text range.
@@ -205,7 +202,7 @@ func (t_ TextLayoutManager) AddRenderingAttributeValueForTextRange(renderingAttr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/ensureLayout(for:)-3duae
 func (t_ TextLayoutManager) EnsureLayoutForRange(range_ ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("ensureLayoutForRange:"), range_)
-}/* debug [instance_methods/method]: EnsureLayoutForRange */
+}
 
 
 // Performs the layout for filling the bounds you specify inside the last text container.
@@ -214,7 +211,7 @@ func (t_ TextLayoutManager) EnsureLayoutForRange(range_ ITextRange) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/ensureLayout(for:)-6ptsj
 func (t_ TextLayoutManager) EnsureLayoutForBounds(bounds corefoundation.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("ensureLayoutForBounds:"), bounds)
-}/* debug [instance_methods/method]: EnsureLayoutForBounds */
+}
 
 
 // Enumerates the rendering attributes from a location you specify.
@@ -223,7 +220,7 @@ func (t_ TextLayoutManager) EnsureLayoutForBounds(bounds corefoundation.CGRect) 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/enumerateRenderingAttributes(from:reverse:using:)
 func (t_ TextLayoutManager) EnumerateRenderingAttributesFromLocationReverseUsingBlock(location unsafe.Pointer, reverse bool, block unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("enumerateRenderingAttributesFromLocation:reverse:usingBlock:"), location, reverse, block)
-}/* debug [instance_methods/method]: EnumerateRenderingAttributesFromLocationReverseUsingBlock */
+}
 
 
 // Enumerates the text layout fragments starting at the specified location.
@@ -233,7 +230,7 @@ func (t_ TextLayoutManager) EnumerateRenderingAttributesFromLocationReverseUsing
 func (t_ TextLayoutManager) EnumerateTextLayoutFragmentsFromLocationOptionsUsingBlock(location unsafe.Pointer, options TextLayoutFragmentEnumerationOptions, block unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("enumerateTextLayoutFragmentsFromLocation:options:usingBlock:"), location, options, block)
 	return rv
-}/* debug [instance_methods/method]: EnumerateTextLayoutFragmentsFromLocationOptionsUsingBlock */
+}
 
 
 // Enumerates text segments of a specific type and in the text range you provide.
@@ -242,7 +239,7 @@ func (t_ TextLayoutManager) EnumerateTextLayoutFragmentsFromLocationOptionsUsing
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/enumerateTextSegments(in:type:options:using:)
 func (t_ TextLayoutManager) EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange ITextRange, type_ TextLayoutManagerSegmentType, options TextLayoutManagerSegmentOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("enumerateTextSegmentsInRange:type:options:usingBlock:"), textRange, type_, options, block)
-}/* debug [instance_methods/method]: EnumerateTextSegmentsInRangeTypeOptionsUsingBlock */
+}
 
 
 // Invalidates the layout information for specified text range.
@@ -251,7 +248,7 @@ func (t_ TextLayoutManager) EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(te
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/invalidateLayout(for:)
 func (t_ TextLayoutManager) InvalidateLayoutForRange(range_ ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("invalidateLayoutForRange:"), range_)
-}/* debug [instance_methods/method]: InvalidateLayoutForRange */
+}
 
 
 // Invalidates the rendering attributes of the specified text range.
@@ -260,7 +257,7 @@ func (t_ TextLayoutManager) InvalidateLayoutForRange(range_ ITextRange) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/invalidateRenderingAttributes(for:)
 func (t_ TextLayoutManager) InvalidateRenderingAttributesForTextRange(textRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("invalidateRenderingAttributesForTextRange:"), textRange)
-}/* debug [instance_methods/method]: InvalidateRenderingAttributesForTextRange */
+}
 
 
 // Removes the rendering attribute from the specified text range.
@@ -269,17 +266,17 @@ func (t_ TextLayoutManager) InvalidateRenderingAttributesForTextRange(textRange 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/removeRenderingAttribute(_:for:)
 func (t_ TextLayoutManager) RemoveRenderingAttributeForTextRange(renderingAttribute AttributedStringKey /* not a class type */, textRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeRenderingAttribute:forTextRange:"), renderingAttribute, textRange)
-}/* debug [instance_methods/method]: RemoveRenderingAttributeForTextRange */
+}
 
 
 // Returns a dictionary of rendering attributes for rendering a link.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/renderingAttributes(forLink:at:)
-func (t_ TextLayoutManager) RenderingAttributesForLinkAtLocation(link objc.IObject, location unsafe.Pointer) foundation.IDictionary {
+func (t_ TextLayoutManager) RenderingAttributesForLinkAtLocation(link objectivec.IObject, location unsafe.Pointer) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("renderingAttributesForLink:atLocation:"), link, location)
 	return rv
-}/* debug [instance_methods/method]: RenderingAttributesForLinkAtLocation */
+}
 
 
 // Replaces the current text content manager with a new one you provide.
@@ -288,16 +285,16 @@ func (t_ TextLayoutManager) RenderingAttributesForLinkAtLocation(link objc.IObje
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replace(_:)
 func (t_ TextLayoutManager) ReplaceTextContentManager(textContentManager ITextContentManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceTextContentManager:"), textContentManager)
-}/* debug [instance_methods/method]: ReplaceTextContentManager */
+}
 
 
 // Replaces content at the location you specify with an attributed string you provide.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-2elb
-func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.AttributedString) {
+func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.foundation.INSAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withAttributedString:"), range_, attributedString)
-}/* debug [instance_methods/method]: ReplaceContentsInRangeWithAttributedString */
+}
 
 
 // Replaces content at the location you specify with the text elements string you provide.
@@ -306,7 +303,7 @@ func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ IT
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-80j0b
 func (t_ TextLayoutManager) ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withTextElements:"), range_, textElements)
-}/* debug [instance_methods/method]: ReplaceContentsInRangeWithTextElements */
+}
 
 
 // Sets the rendering attributes for the range you specify.
@@ -315,7 +312,7 @@ func (t_ TextLayoutManager) ReplaceContentsInRangeWithTextElements(range_ ITextR
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/setRenderingAttributes(_:for:)
 func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingAttributes:forTextRange:"), renderingAttributes, textRange)
-}/* debug [instance_methods/method]: SetRenderingAttributesForTextRange */
+}
 
 
 // Returns the text layout fragment at the position you specify in the text container.
@@ -325,7 +322,7 @@ func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttribut
 func (t_ TextLayoutManager) TextLayoutFragmentForPosition(position corefoundation.CGPoint) ITextLayoutFragment {
 	rv := objc.Send[TextLayoutFragment](t_.ID, objc.Sel("textLayoutFragmentForPosition:"), position)
 	return rv
-}/* debug [instance_methods/method]: TextLayoutFragmentForPosition */
+}
 
 
 // Returns the text layout fragment from the document at the specified location.
@@ -335,31 +332,12 @@ func (t_ TextLayoutManager) TextLayoutFragmentForPosition(position corefoundatio
 func (t_ TextLayoutManager) TextLayoutFragmentForLocation(location unsafe.Pointer) ITextLayoutFragment {
 	rv := objc.Send[TextLayoutFragment](t_.ID, objc.Sel("textLayoutFragmentForLocation:"), location)
 	return rv
-}/* debug [instance_methods/method]: TextLayoutFragmentForLocation */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for TextLayoutManager */
-
-// The delegate for the text layout manager object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/delegate
-func (t_ TextLayoutManager) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
-	return rv
-}/* debug [instance_properties/getter]: delegate */
 
 
-// The delegate for the text layout manager object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/delegate
-func (t_ TextLayoutManager) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}/* debug [instance_properties/setter]: delegate */
 
 
 // The queue that the framework dispatches layout operations on.
@@ -369,7 +347,7 @@ func (t_ TextLayoutManager) SetDelegate(value unsafe.Pointer) {
 func (t_ TextLayoutManager) LayoutQueue() foundation.OperationQueue {
 	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
-}/* debug [instance_properties/getter]: layoutQueue */
+}
 
 
 // The queue that the framework dispatches layout operations on.
@@ -378,7 +356,7 @@ func (t_ TextLayoutManager) LayoutQueue() foundation.OperationQueue {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/layoutQueue
 func (t_ TextLayoutManager) SetLayoutQueue(value foundation.OperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
-}/* debug [instance_properties/setter]: layoutQueue */
+}
 
 
 // A Boolean value that controls internal security analysis for malicious inputs and activates defensive behaviors.
@@ -388,7 +366,7 @@ func (t_ TextLayoutManager) SetLayoutQueue(value foundation.OperationQueue) {
 func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("limitsLayoutForSuspiciousContents"))
 	return rv
-}/* debug [instance_properties/getter]: limitsLayoutForSuspiciousContents */
+}
 
 
 // A Boolean value that controls internal security analysis for malicious inputs and activates defensive behaviors.
@@ -397,7 +375,7 @@ func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/limitsLayoutForSuspiciousContents
 func (t_ TextLayoutManager) SetLimitsLayoutForSuspiciousContents(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLimitsLayoutForSuspiciousContents:"), value)
-}/* debug [instance_properties/setter]: limitsLayoutForSuspiciousContents */
+}
 
 
 // Returns the default set of attributes for rendering a link.
@@ -407,7 +385,7 @@ func (t_ TextLayoutManager) SetLimitsLayoutForSuspiciousContents(value bool) {
 func (t_ TextLayoutManager) LinkRenderingAttributes() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("linkRenderingAttributes"))
 	return rv
-}/* debug [instance_properties/getter]: linkRenderingAttributes */
+}
 
 
 // A callback block that the framework invokes whenever the text layout manager needs to validate the rendering attributes for the range.
@@ -417,7 +395,7 @@ func (t_ TextLayoutManager) LinkRenderingAttributes() foundation.IDictionary {
 func (t_ TextLayoutManager) RenderingAttributesValidator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("renderingAttributesValidator"))
 	return rv
-}/* debug [instance_properties/getter]: renderingAttributesValidator */
+}
 
 
 // A callback block that the framework invokes whenever the text layout manager needs to validate the rendering attributes for the range.
@@ -426,7 +404,7 @@ func (t_ TextLayoutManager) RenderingAttributesValidator() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/renderingAttributesValidator
 func (t_ TextLayoutManager) SetRenderingAttributesValidator(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingAttributesValidator:"), value)
-}/* debug [instance_properties/setter]: renderingAttributesValidator */
+}
 
 
 // Specifies the behavior for resolving to the visual alignment.
@@ -436,7 +414,7 @@ func (t_ TextLayoutManager) SetRenderingAttributesValidator(value unsafe.Pointer
 func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resolvesNaturalAlignmentWithBaseWritingDirection"))
 	return rv
-}/* debug [instance_properties/getter]: resolvesNaturalAlignmentWithBaseWritingDirection */
+}
 
 
 // Specifies the behavior for resolving to the visual alignment.
@@ -445,7 +423,7 @@ func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() b
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/resolvesNaturalAlignmentWithBaseWritingDirection
 func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResolvesNaturalAlignmentWithBaseWritingDirection:"), value)
-}/* debug [instance_properties/setter]: resolvesNaturalAlignmentWithBaseWritingDirection */
+}
 
 
 // The text container object that provides geometric information for the layout destination.
@@ -455,7 +433,7 @@ func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(
 func (t_ TextLayoutManager) TextContainer() ITextContainer {
 	rv := objc.Send[TextContainer](t_.ID, objc.Sel("textContainer"))
 	return rv
-}/* debug [instance_properties/getter]: textContainer */
+}
 
 
 // The text container object that provides geometric information for the layout destination.
@@ -464,7 +442,7 @@ func (t_ TextLayoutManager) TextContainer() ITextContainer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContainer
 func (t_ TextLayoutManager) SetTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
-}/* debug [instance_properties/setter]: textContainer */
+}
 
 
 // Returns the text content manager associated with this text layout manager.
@@ -474,7 +452,7 @@ func (t_ TextLayoutManager) SetTextContainer(value ITextContainer) {
 func (t_ TextLayoutManager) TextContentManager() ITextContentManager {
 	rv := objc.Send[TextContentManager](t_.ID, objc.Sel("textContentManager"))
 	return rv
-}/* debug [instance_properties/getter]: textContentManager */
+}
 
 
 // Returns a text selection manager configured to have the text layout manager as its data source.
@@ -484,7 +462,7 @@ func (t_ TextLayoutManager) TextContentManager() ITextContentManager {
 func (t_ TextLayoutManager) TextSelectionNavigation() ITextSelectionNavigation {
 	rv := objc.Send[TextSelectionNavigation](t_.ID, objc.Sel("textSelectionNavigation"))
 	return rv
-}/* debug [instance_properties/getter]: textSelectionNavigation */
+}
 
 
 // Returns a text selection manager configured to have the text layout manager as its data source.
@@ -493,7 +471,7 @@ func (t_ TextLayoutManager) TextSelectionNavigation() ITextSelectionNavigation {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelectionNavigation
 func (t_ TextLayoutManager) SetTextSelectionNavigation(value ITextSelectionNavigation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionNavigation:"), value)
-}/* debug [instance_properties/setter]: textSelectionNavigation */
+}
 
 
 // An array of text selections associated by the text layout manager.
@@ -503,7 +481,7 @@ func (t_ TextLayoutManager) SetTextSelectionNavigation(value ITextSelectionNavig
 func (t_ TextLayoutManager) TextSelections() []TextSelection {
 	rv := objc.Send[[]TextSelection](t_.ID, objc.Sel("textSelections"))
 	return rv
-}/* debug [instance_properties/getter]: textSelections */
+}
 
 
 // An array of text selections associated by the text layout manager.
@@ -521,7 +499,7 @@ func (t_ TextLayoutManager) SetTextSelections(value []TextSelection) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), nsArray)
-}/* debug [instance_properties/setter]: textSelections */
+}
 
 
 // The text viewport layout controller associated with the layout manager’s text container.
@@ -531,7 +509,7 @@ func (t_ TextLayoutManager) SetTextSelections(value []TextSelection) {
 func (t_ TextLayoutManager) TextViewportLayoutController() ITextViewportLayoutController {
 	rv := objc.Send[TextViewportLayoutController](t_.ID, objc.Sel("textViewportLayoutController"))
 	return rv
-}/* debug [instance_properties/getter]: textViewportLayoutController */
+}
 
 
 // Returns the usage bounds for the text container.
@@ -541,7 +519,7 @@ func (t_ TextLayoutManager) TextViewportLayoutController() ITextViewportLayoutCo
 func (t_ TextLayoutManager) UsageBoundsForTextContainer() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
 	return rv
-}/* debug [instance_properties/getter]: usageBoundsForTextContainer */
+}
 
 
 // A Boolean value that controls whether the framework uses the leading information specified by the font when laying out text.
@@ -551,7 +529,7 @@ func (t_ TextLayoutManager) UsageBoundsForTextContainer() corefoundation.CGRect 
 func (t_ TextLayoutManager) UsesFontLeading() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontLeading"))
 	return rv
-}/* debug [instance_properties/getter]: usesFontLeading */
+}
 
 
 // A Boolean value that controls whether the framework uses the leading information specified by the font when laying out text.
@@ -560,7 +538,7 @@ func (t_ TextLayoutManager) UsesFontLeading() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/usesFontLeading
 func (t_ TextLayoutManager) SetUsesFontLeading(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontLeading:"), value)
-}/* debug [instance_properties/setter]: usesFontLeading */
+}
 
 
 // A Boolean values that controls whether the text layout manager attempts to hyphenate when wrapping lines.
@@ -570,7 +548,7 @@ func (t_ TextLayoutManager) SetUsesFontLeading(value bool) {
 func (t_ TextLayoutManager) UsesHyphenation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesHyphenation"))
 	return rv
-}/* debug [instance_properties/getter]: usesHyphenation */
+}
 
 
 // A Boolean values that controls whether the text layout manager attempts to hyphenate when wrapping lines.
@@ -579,11 +557,11 @@ func (t_ TextLayoutManager) UsesHyphenation() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/usesHyphenation
 func (t_ TextLayoutManager) SetUsesHyphenation(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesHyphenation:"), value)
-}/* debug [instance_properties/setter]: usesHyphenation */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSTextLayoutManager */
+
+
+
 
 

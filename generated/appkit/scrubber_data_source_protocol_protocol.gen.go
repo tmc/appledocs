@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PScrubberDataSource is the NSScrubberDataSource protocol interface.
@@ -17,8 +19,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSScrubberDataSource
 type PScrubberDataSource interface {
 	// Required methods
-	NumberOfItemsForScrubber(scrubber IScrubber) int/* debug [protocol_interface/required_method]: NumberOfItemsForScrubber */
-	ScrubberViewForItemAtIndex(scrubber IScrubber, index int) ScrubberItemView/* debug [protocol_interface/required_method]: ScrubberViewForItemAtIndex */
+	NumberOfItemsForScrubber(scrubber IScrubber) int
+	ScrubberViewForItemAtIndex(scrubber IScrubber, index int) IScrubberItemView
 }
 
 // ScrubberDataSource is a delegate implementation builder for the PScrubberDataSource protocol.
@@ -26,7 +28,7 @@ type PScrubberDataSource interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ScrubberDataSource struct {
 	_NumberOfItemsForScrubber func(scrubber IScrubber) int
-	_ScrubberViewForItemAtIndex func(scrubber IScrubber, index int) ScrubberItemView
+	_ScrubberViewForItemAtIndex func(scrubber IScrubber, index int) IScrubberItemView
 }
 
 // SetNumberOfItemsForScrubber sets the handler for the NumberOfItemsForScrubber delegate method.
@@ -39,7 +41,7 @@ func (d *ScrubberDataSource) SetNumberOfItemsForScrubber(f func(scrubber IScrubb
 // SetScrubberViewForItemAtIndex sets the handler for the ScrubberViewForItemAtIndex delegate method.
 //
 // Asks the data source object for the view the corresponds to the specified item in the scrubber.
-func (d *ScrubberDataSource) SetScrubberViewForItemAtIndex(f func(scrubber IScrubber, index int) ScrubberItemView) {
+func (d *ScrubberDataSource) SetScrubberViewForItemAtIndex(f func(scrubber IScrubber, index int) IScrubberItemView) {
 	d._ScrubberViewForItemAtIndex = f
 }
 
@@ -58,15 +60,43 @@ func (d *ScrubberDataSource) HasNumberOfItemsForScrubber() bool {
 }
 
 // ScrubberViewForItemAtIndex implements the PScrubberDataSource interface.
-func (d *ScrubberDataSource) ScrubberViewForItemAtIndex(scrubber IScrubber, index int) ScrubberItemView {
+func (d *ScrubberDataSource) ScrubberViewForItemAtIndex(scrubber IScrubber, index int) IScrubberItemView {
 	if d._ScrubberViewForItemAtIndex != nil {
 		return d._ScrubberViewForItemAtIndex(scrubber, index)
 	}
-	var zero ScrubberItemView
+	var zero IScrubberItemView
 	return zero
 }
 
 // HasScrubberViewForItemAtIndex returns true if a handler for ScrubberViewForItemAtIndex has been set.
 func (d *ScrubberDataSource) HasScrubberViewForItemAtIndex() bool {
 	return d._ScrubberViewForItemAtIndex != nil
+}
+
+// ScrubberDataSourceObject wraps an existing Objective-C object that conforms to the PScrubberDataSource protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ScrubberDataSourceObject struct {
+	objectivec.Object
+}
+
+// NewScrubberDataSourceObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSScrubberDataSource protocol.
+func NewScrubberDataSourceObject(obj objectivec.Object) *ScrubberDataSourceObject {
+	return &ScrubberDataSourceObject{obj}
+}
+
+// Make sure ScrubberDataSourceObject implements PScrubberDataSource.
+var _ PScrubberDataSource = (*ScrubberDataSourceObject)(nil)
+
+// NumberOfItemsForScrubber implements the PScrubberDataSource interface.
+// This required method is always available on objects conforming to NumberOfItemsForScrubber.
+func (o *ScrubberDataSourceObject) NumberOfItemsForScrubber(scrubber IScrubber) int {
+	return objc.Send[int](o.ID, objc.Sel("numberOfItemsForScrubber:"), scrubber)
+}
+
+// ScrubberViewForItemAtIndex implements the PScrubberDataSource interface.
+// This required method is always available on objects conforming to ScrubberViewForItemAtIndex.
+func (o *ScrubberDataSourceObject) ScrubberViewForItemAtIndex(scrubber IScrubber, index int) IScrubberItemView {
+	return objc.Send[IScrubberItemView](o.ID, objc.Sel("scrubber:viewForItemAtIndex:"), scrubber, index)
 }

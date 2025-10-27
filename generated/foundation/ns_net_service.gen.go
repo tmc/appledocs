@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSNetService */
 
 
-/* debug [class_header]: Header for NSNetService */
+
+
 // The class instance for the [NetService] class.
 var (
 	NetServiceClass     _NetServiceClass
@@ -30,16 +30,16 @@ func getNetServiceClass() _NetServiceClass {
 type _NetServiceClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NetService */
+
+
 // An interface definition for the [NetService] class.
 type INetService interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NetService */
+
 	// properties:
 	Addresses() []Data
 	Domain() IString
@@ -49,19 +49,19 @@ type INetService interface {
 	Name() IString
 	Port() int
 	Type() IString
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NetService */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NetService */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NetServiceClass) Alloc() NetService {
 	rv := objc.Send[NetService](objc.ID(nc.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (n_ NetService) Autorelease() NetService {
 func NewNetService() NetService {
 	return getNetServiceClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NetService */
+
+
 // A network service that broadcasts its availability using multicast DNS.
 //
 // The class represents a network service, either one your application publishes or is a client of. This class and the class use multicast DNS to convey information about network services to and from your application. The API of provides a convenient way to publish the services offered by your application and to resolve the socket address for a service. The types of services you access using are the same types that you access directly using BSD sockets. HTTP and FTP are two services commonly provided by systems. (For a list of common services and the ports used by those services, see the file .) Applications can also define their own custom services to provide specific data to clients. You can use the class as either a publisher of a service or a client of a service. If your application publishes a service, your code must acquire a port and prepare a socket to communicate with clients. Once your socket is ready, you use the class to notify clients that your service is ready. If your application is the client of a network service, you can either create an object directly (if you know the exact host and port information) or use an object to browse for services. To publish a service, initialize your object with the service name, domain, type, and port information. All of this information must be valid for the socket created by your application. Once initialized, call the method to broadcast your service information to the network. When connecting to a service, use the class to locate the service on the network and obtain the corresponding object. Once you have the object, call the method to verify that the service is available and ready for your application. If it is, the property provides the socket information you can use to connect to the service. The methods of operate asynchronously so your application is not impacted by the speed of the network. All information about a service is returned to your application through the object’s delegate. You must provide a delegate object to respond to messages and to handle errors appropriately.
@@ -115,11 +115,11 @@ type NetService struct {
 func NetServiceFrom(ptr unsafe.Pointer) NetService {
 	return NetService{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NetService */
+
+
 
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
@@ -130,7 +130,7 @@ func NewNetServiceWithDomainTypeName(domain IString, type_ IString, name IString
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), domain, type_, name)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNetServiceWithDomainTypeName */
+}
 
 
 // Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
@@ -142,13 +142,13 @@ func NewNetServiceWithDomainTypeNamePort(domain IString, type_ IString, name ISt
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), domain, type_, name, port)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNetServiceWithDomainTypeNamePort */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NetService */
+
+
+
 
 // Returns an object representing a TXT record formed from a given dictionary.
 //
@@ -157,7 +157,7 @@ func NewNetServiceWithDomainTypeNamePort(domain IString, type_ IString, name ISt
 func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary) IData {
 	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DataFromTXTRecordDictionary) */
+}
 
 
 // Returns a dictionary representing a TXT record given as an object.
@@ -167,23 +167,23 @@ func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary
 func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary {
 	rv := objc.Send[Dictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DictionaryFromTXTRecordData) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for NetService */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NetService */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NetService */
+
+
+
+
+
+
+
 
 // A read-only array containing objects, each of which contains a socket address for the service.
 //
@@ -192,7 +192,7 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionar
 func (n_ NetService) Addresses() []Data {
 	rv := objc.Send[[]Data](n_.ID, objc.Sel("addresses"))
 	return rv
-}/* debug [instance_properties/getter]: addresses */
+}
 
 
 // A string containing the domain for this service.
@@ -202,7 +202,7 @@ func (n_ NetService) Addresses() []Data {
 func (n_ NetService) Domain() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("domain"))
 	return rv
-}/* debug [instance_properties/getter]: domain */
+}
 
 
 // A string containing the DNS hostname for this service.
@@ -212,7 +212,7 @@ func (n_ NetService) Domain() IString {
 func (n_ NetService) HostName() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("hostName"))
 	return rv
-}/* debug [instance_properties/getter]: hostName */
+}
 
 
 // Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available.
@@ -222,7 +222,7 @@ func (n_ NetService) HostName() IString {
 func (n_ NetService) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
-}/* debug [instance_properties/getter]: includesPeerToPeer */
+}
 
 
 // Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available.
@@ -231,7 +231,7 @@ func (n_ NetService) IncludesPeerToPeer() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
 func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
-}/* debug [instance_properties/setter]: includesPeerToPeer */
+}
 
 
 // A string containing the name of this service.
@@ -241,7 +241,7 @@ func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 func (n_ NetService) Name() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
+}
 
 
 // The port on which the service is listening for connections.
@@ -251,7 +251,7 @@ func (n_ NetService) Name() IString {
 func (n_ NetService) Port() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("port"))
 	return rv
-}/* debug [instance_properties/getter]: port */
+}
 
 
 // The type of the published service.
@@ -261,11 +261,11 @@ func (n_ NetService) Port() int {
 func (n_ NetService) Type() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("type"))
 	return rv
-}/* debug [instance_properties/getter]: type */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSNetService */
+
+
+
 
 

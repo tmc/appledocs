@@ -29,8 +29,8 @@ func (c_ CaptureInputPort) SourceDevicePosition() CaptureDevicePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/sourceDeviceType
-func (c_ CaptureInputPort) SourceDeviceType() CaptureDeviceType /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("sourceDeviceType"))
+func (c_ CaptureInputPort) SourceDeviceType() CaptureDeviceType {
+	rv := objc.Send[CaptureDeviceType](c_.ID, objc.Sel("sourceDeviceType"))
 	return rv
 }
 

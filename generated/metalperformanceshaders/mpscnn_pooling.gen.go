@@ -119,7 +119,7 @@ func CNNPoolingFrom(ptr unsafe.Pointer) CNNPooling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNPooling/init(coder:device:)
-func NewCNNPoolingWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNPooling {
+func NewCNNPoolingWithCoderDevice(aDecoder foundation.foundation.INSCoder, device unsafe.Pointer) CNNPooling {
 	instance := getCNNPoolingClass().Alloc()
 	rv := objc.Send[CNNPooling](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

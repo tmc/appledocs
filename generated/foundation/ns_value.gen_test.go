@@ -9,34 +9,18 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewValue
 
-// ExampleNewValueWithCMTimeMapping demonstrates how to create a Value instance using NewValueWithCMTimeMapping.
-// Creates a new value object containing the specified CoreMedia time mapping structure.
-func ExampleNewValueWithCMTimeMapping() {
-	_ = foundation.NewValueWithCMTimeMapping(
-		foundation.TimeMapping /* not a class type */{}, // timeMapping TimeMapping /* not a class type */
+// ExampleNewValueWithEdgeInsets demonstrates how to create a Value instance using NewValueWithEdgeInsets.
+func ExampleNewValueWithEdgeInsets() {
+	_ = foundation.NewValueWithEdgeInsets(
+		foundation.EdgeInsets{}, // insets EdgeInsets
 	)
 	// Output:
 }
-// ExampleNewValueWithCMTimeRange demonstrates how to create a Value instance using NewValueWithCMTimeRange.
-// Creates a new value object containing the specified CoreMedia time range structure.
-func ExampleNewValueWithCMTimeRange() {
-	_ = foundation.NewValueWithCMTimeRange(
-		foundation.TimeRange /* not a class type */{}, // timeRange TimeRange /* not a class type */
-	)
-	// Output:
-}
-// ExampleNewValueWithCMVideoDimensions demonstrates how to create a Value instance using NewValueWithCMVideoDimensions.
-func ExampleNewValueWithCMVideoDimensions() {
-	_ = foundation.NewValueWithCMVideoDimensions(
-		foundation.VideoDimensions /* not a class type */{}, // dimensions VideoDimensions /* not a class type */
-	)
-	// Output:
-}
-// ExampleNewValueWithMKCoordinate demonstrates how to create a Value instance using NewValueWithMKCoordinate.
-// Creates a new value object containing the specified CoreLocation geographic coordinate structure.
-func ExampleNewValueWithMKCoordinate() {
-	_ = foundation.NewValueWithMKCoordinate(
-		foundation.LocationCoordinate2D /* not a class type */{}, // coordinate LocationCoordinate2D /* not a class type */
+// ExampleNewValueWithRange demonstrates how to create a Value instance using NewValueWithRange.
+// Creates a new value object containing the specified Foundation range structure.
+func ExampleNewValueWithRange() {
+	_ = foundation.NewValueWithRange(
+		foundation.Range{}, // range Range
 	)
 	// Output:
 }

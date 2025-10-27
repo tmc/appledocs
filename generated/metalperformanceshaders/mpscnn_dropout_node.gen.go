@@ -141,7 +141,7 @@ func NewCNNDropoutNodeWithSourceKeepProbability(source IImageNode, keepProbabili
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutnode/2947990-initwithsource
-func NewCNNDropoutNodeWithSourceKeepProbabilitySeedMaskStrideInPixels(source IImageNode, keepProbability float32, seed uint, maskStrideInPixels objc.IObject /* cross-framework: MTLSize */) CNNDropoutNode {
+func NewCNNDropoutNodeWithSourceKeepProbabilitySeedMaskStrideInPixels(source IImageNode, keepProbability float32, seed uint, maskStrideInPixels metal.IMTLSize) CNNDropoutNode {
 	instance := getCNNDropoutNodeClass().Alloc()
 	rv := objc.Send[CNNDropoutNode](instance.ID, objc.Sel("initWithSource:keepProbability:seed:maskStrideInPixels:"), source, keepProbability, seed, maskStrideInPixels)
 	rv.Autorelease()
@@ -164,7 +164,7 @@ func (cc _CNNDropoutNodeClass) NodeWithSourceKeepProbability(source IImageNode, 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutnode/2947989-nodewithsource
-func (cc _CNNDropoutNodeClass) NodeWithSourceKeepProbabilitySeedMaskStrideInPixels(source IImageNode, keepProbability float32, seed uint, maskStrideInPixels objc.IObject /* cross-framework: MTLSize */) objectivec.IObject {
+func (cc _CNNDropoutNodeClass) NodeWithSourceKeepProbabilitySeedMaskStrideInPixels(source IImageNode, keepProbability float32, seed uint, maskStrideInPixels metal.IMTLSize) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:keepProbability:seed:maskStrideInPixels:"), source, keepProbability, seed, maskStrideInPixels)
 	return rv
 }

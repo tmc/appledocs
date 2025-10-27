@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class OSLogEntryBoundary */
 
 
-/* debug [class_header]: Header for OSLogEntryBoundary */
+
+
 // The class instance for the [OSLogEntryBoundary] class.
 var (
 	OSLogEntryBoundaryClass     _OSLogEntryBoundaryClass
@@ -29,30 +29,30 @@ func getOSLogEntryBoundaryClass() _OSLogEntryBoundaryClass {
 type _OSLogEntryBoundaryClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for OSLogEntryBoundary */
+
+
 // An interface definition for the [OSLogEntryBoundary] class.
 type IOSLogEntryBoundary interface {
 	IOSLogEntry
 	
-/* debug [class_interface_properties]: Properties for OSLogEntryBoundary */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for OSLogEntryBoundary */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for OSLogEntryBoundary */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEntryBoundaryClass) Alloc() OSLogEntryBoundary {
 	rv := objc.Send[OSLogEntryBoundary](objc.ID(oc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (o_ OSLogEntryBoundary) Autorelease() OSLogEntryBoundary {
 func NewOSLogEntryBoundary() OSLogEntryBoundary {
 	return getOSLogEntryBoundaryClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for OSLogEntryBoundary */
+
+
 // The metadata that partitions sequences of other entries.
 
 
@@ -106,34 +106,34 @@ func OSLogEntryBoundaryFrom(ptr unsafe.Pointer) OSLogEntryBoundary {
 		OSLogEntry: OSLogEntryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for OSLogEntryBoundary *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for OSLogEntryBoundary */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for OSLogEntryBoundary */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for OSLogEntryBoundary */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for OSLogEntryBoundary */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class OSLogEntryBoundary */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

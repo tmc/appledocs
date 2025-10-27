@@ -40,18 +40,18 @@ type IDetectRectanglesRequest interface {
 	
 
 	// properties:
-	MaximumAspectRatio() AspectRatio /* typedef */
-	SetMaximumAspectRatio(value AspectRatio /* typedef */)
+	MaximumAspectRatio() AspectRatio
+	SetMaximumAspectRatio(value AspectRatio)
 	MaximumObservations() uint
 	SetMaximumObservations(value uint)
-	MinimumAspectRatio() AspectRatio /* typedef */
-	SetMinimumAspectRatio(value AspectRatio /* typedef */)
-	MinimumConfidence() Confidence /* typedef */
-	SetMinimumConfidence(value Confidence /* typedef */)
+	MinimumAspectRatio() AspectRatio
+	SetMinimumAspectRatio(value AspectRatio)
+	MinimumConfidence() Confidence
+	SetMinimumConfidence(value Confidence)
 	MinimumSize() float32
 	SetMinimumSize(value float32)
-	QuadratureTolerance() Degrees /* typedef */
-	SetQuadratureTolerance(value Degrees /* typedef */)
+	QuadratureTolerance() Degrees
+	SetQuadratureTolerance(value Degrees)
 	Results() []RectangleObservation
 	VNDetectRectanglesRequestRevision1() int
 
@@ -151,8 +151,8 @@ func DetectRectanglesRequestFrom(ptr unsafe.Pointer) DetectRectanglesRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
-func (d_ DetectRectanglesRequest) MaximumAspectRatio() AspectRatio /* typedef */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("maximumAspectRatio"))
+func (d_ DetectRectanglesRequest) MaximumAspectRatio() AspectRatio {
+	rv := objc.Send[AspectRatio](d_.ID, objc.Sel("maximumAspectRatio"))
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (d_ DetectRectanglesRequest) MaximumAspectRatio() AspectRatio /* typedef */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
-func (d_ DetectRectanglesRequest) SetMaximumAspectRatio(value AspectRatio /* typedef */) {
+func (d_ DetectRectanglesRequest) SetMaximumAspectRatio(value AspectRatio) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumAspectRatio:"), value)
 }
 
@@ -189,8 +189,8 @@ func (d_ DetectRectanglesRequest) SetMaximumObservations(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
-func (d_ DetectRectanglesRequest) MinimumAspectRatio() AspectRatio /* typedef */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("minimumAspectRatio"))
+func (d_ DetectRectanglesRequest) MinimumAspectRatio() AspectRatio {
+	rv := objc.Send[AspectRatio](d_.ID, objc.Sel("minimumAspectRatio"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (d_ DetectRectanglesRequest) MinimumAspectRatio() AspectRatio /* typedef */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
-func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value AspectRatio /* typedef */) {
+func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value AspectRatio) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumAspectRatio:"), value)
 }
 
@@ -208,8 +208,8 @@ func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value AspectRatio /* typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
-func (d_ DetectRectanglesRequest) MinimumConfidence() Confidence /* typedef */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("minimumConfidence"))
+func (d_ DetectRectanglesRequest) MinimumConfidence() Confidence {
+	rv := objc.Send[Confidence](d_.ID, objc.Sel("minimumConfidence"))
 	return rv
 }
 
@@ -218,7 +218,7 @@ func (d_ DetectRectanglesRequest) MinimumConfidence() Confidence /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
-func (d_ DetectRectanglesRequest) SetMinimumConfidence(value Confidence /* typedef */) {
+func (d_ DetectRectanglesRequest) SetMinimumConfidence(value Confidence) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumConfidence:"), value)
 }
 
@@ -246,8 +246,8 @@ func (d_ DetectRectanglesRequest) SetMinimumSize(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/quadratureTolerance
-func (d_ DetectRectanglesRequest) QuadratureTolerance() Degrees /* typedef */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("quadratureTolerance"))
+func (d_ DetectRectanglesRequest) QuadratureTolerance() Degrees {
+	rv := objc.Send[Degrees](d_.ID, objc.Sel("quadratureTolerance"))
 	return rv
 }
 
@@ -256,7 +256,7 @@ func (d_ DetectRectanglesRequest) QuadratureTolerance() Degrees /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/quadratureTolerance
-func (d_ DetectRectanglesRequest) SetQuadratureTolerance(value Degrees /* typedef */) {
+func (d_ DetectRectanglesRequest) SetQuadratureTolerance(value Degrees) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setQuadratureTolerance:"), value)
 }
 

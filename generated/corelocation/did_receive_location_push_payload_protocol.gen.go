@@ -16,3 +16,4 @@ var didReceiveLocationPushPayloadProtocol *objc.Protocol
 func init() {
 	didReceiveLocationPushPayloadProtocol = objc.GetProtocol("didReceiveLocationPushPayload:")
 }
+

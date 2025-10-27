@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptureSynchronizedMetadataObjectData */
 
 
-/* debug [class_header]: Header for AVCaptureSynchronizedMetadataObjectData */
+
+
 // The class instance for the [CaptureSynchronizedMetadataObjectData] class.
 var (
 	CaptureSynchronizedMetadataObjectDataClass     _CaptureSynchronizedMetadataObjectDataClass
@@ -29,30 +29,30 @@ func getCaptureSynchronizedMetadataObjectDataClass() _CaptureSynchronizedMetadat
 type _CaptureSynchronizedMetadataObjectDataClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptureSynchronizedMetadataObjectData */
+
+
 // An interface definition for the [CaptureSynchronizedMetadataObjectData] class.
 type ICaptureSynchronizedMetadataObjectData interface {
 	ICaptureSynchronizedData
 	
-/* debug [class_interface_properties]: Properties for CaptureSynchronizedMetadataObjectData */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptureSynchronizedMetadataObjectData */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptureSynchronizedMetadataObjectData */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureSynchronizedMetadataObjectDataClass) Alloc() CaptureSynchronizedMetadataObjectData {
 	rv := objc.Send[CaptureSynchronizedMetadataObjectData](objc.ID(cc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (c_ CaptureSynchronizedMetadataObjectData) Autorelease() CaptureSynchronize
 func NewCaptureSynchronizedMetadataObjectData() CaptureSynchronizedMetadataObjectData {
 	return getCaptureSynchronizedMetadataObjectDataClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptureSynchronizedMetadataObjectData */
+
+
 // A container for metadata objects collected using synchronized capture.
 
 
@@ -106,33 +106,33 @@ func CaptureSynchronizedMetadataObjectDataFrom(ptr unsafe.Pointer) CaptureSynchr
 		CaptureSynchronizedData: CaptureSynchronizedDataFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptureSynchronizedMetadataObjectData *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CaptureSynchronizedMetadataObjectData */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptureSynchronizedMetadataObjectData */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptureSynchronizedMetadataObjectData */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CaptureSynchronizedMetadataObjectData */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVCaptureSynchronizedMetadataObjectData */
+
+
+
+
+
+
+
+
+
+
+
 
 

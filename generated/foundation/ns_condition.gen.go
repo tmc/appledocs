@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSCondition */
 
 
-/* debug [class_header]: Header for NSCondition */
+
+
 // The class instance for the [Condition] class.
 var (
 	ConditionClass     _ConditionClass
@@ -30,36 +30,36 @@ func getConditionClass() _ConditionClass {
 type _ConditionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Condition */
+
+
 // An interface definition for the [Condition] class.
 type ICondition interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Condition */
+
 	// properties:
 	Name() IString
 	SetName(value IString)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Condition */
+
 	// methods:
 	Broadcast()
 	Signal()
 	Wait()
 	WaitUntilDate(limit IDate) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Condition */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConditionClass) Alloc() Condition {
 	rv := objc.Send[Condition](objc.ID(cc.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (c_ Condition) Autorelease() Condition {
 func NewCondition() Condition {
 	return getConditionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Condition */
+
+
 // A condition variable whose semantics follow those used for POSIX-style conditions.
 //
 // A condition object acts as both a lock and a checkpoint in a given thread. The lock protects your code while it tests the condition and performs the task triggered by the condition. The checkpoint behavior requires that the condition be true before the thread proceeds with its task. While the condition is not true, the thread blocks. It remains blocked until another thread signals the condition object. The semantics for using an object are as follows: Lock the condition object. Test a boolean predicate. (This predicate is a boolean flag or other variable in your code that indicates whether it is safe to perform the task protected by the condition.) If the boolean predicate is false, call the condition object’s or method to block the thread. Upon returning from these methods, go to step 2 to retest your boolean predicate. (Continue waiting and retesting the predicate until it is true.) If the boolean predicate is true, perform the task. Optionally update any predicates (or signal any conditions) affected by your task. When your task is done, unlock the condition object. The pseudocode for performing the preceding steps would therefore look something like the following: Whenever you use a condition object, the first step is to lock the condition. Locking the condition ensures that your predicate and task code are protected from interference by other threads using the same condition. Once you have completed your task, you can set other predicates or signal other conditions based on the needs of your code. You should always set predicates and signal conditions while holding the condition object’s lock. When a thread waits on a condition, the condition object unlocks its lock and blocks the thread. When the condition is signaled, the system wakes up the thread. The condition object then reacquires its lock before returning from the or method. Thus, from the point of view of the thread, it is as if it always held the lock. A boolean predicate is an important part of the semantics of using conditions because of the way signaling works. Signaling a condition does not guarantee that the condition itself is true. There are timing issues involved in signaling that may cause false signals to appear. Using a predicate ensures that these spurious signals do not cause you to perform work before it is safe to do so. The predicate itself is simply a flag or other variable in your code that you test in order to acquire a Boolean result. For more information on how to use conditions, see Using POSIX Thread Locks in .
@@ -113,25 +113,25 @@ type Condition struct {
 func ConditionFrom(ptr unsafe.Pointer) Condition {
 	return Condition{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Condition *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for Condition */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Condition */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Condition */
+
+
+
+
+
+
+
 
 // Signals the condition, waking up all threads waiting on it.
 //
@@ -139,7 +139,7 @@ func ConditionFrom(ptr unsafe.Pointer) Condition {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/broadcast()
 func (c_ Condition) Broadcast() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("broadcast"))
-}/* debug [instance_methods/method]: Broadcast */
+}
 
 
 // Signals the condition, waking up one thread waiting on it.
@@ -148,7 +148,7 @@ func (c_ Condition) Broadcast() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/signal()
 func (c_ Condition) Signal() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("signal"))
-}/* debug [instance_methods/method]: Signal */
+}
 
 
 // Blocks the current thread until the condition is signaled.
@@ -157,7 +157,7 @@ func (c_ Condition) Signal() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/wait()
 func (c_ Condition) Wait() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("wait"))
-}/* debug [instance_methods/method]: Wait */
+}
 
 
 // Blocks the current thread until the condition is signaled or the specified time limit is reached.
@@ -167,13 +167,13 @@ func (c_ Condition) Wait() {
 func (c_ Condition) WaitUntilDate(limit IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("waitUntilDate:"), limit)
 	return rv
-}/* debug [instance_methods/method]: WaitUntilDate */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Condition */
+
+
+
 
 // The name of the condition.
 //
@@ -182,7 +182,7 @@ func (c_ Condition) WaitUntilDate(limit IDate) bool {
 func (c_ Condition) Name() IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
+}
 
 
 // The name of the condition.
@@ -191,12 +191,12 @@ func (c_ Condition) Name() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
 func (c_ Condition) SetName(value IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
-}/* debug [instance_properties/setter]: name */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSCondition */
+
+
+
 
 
 

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSGridRow */
 
 
-/* debug [class_header]: Header for NSGridRow */
+
+
 // The class instance for the [GridRow] class.
 var (
 	GridRowClass     _GridRowClass
@@ -31,16 +30,16 @@ func getGridRowClass() _GridRowClass {
 type _GridRowClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GridRow */
+
+
 // An interface definition for the [GridRow] class.
 type IGridRow interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for GridRow */
+
 	// properties:
 	BottomPadding() float64
 	SetBottomPadding(value float64)
@@ -58,21 +57,21 @@ type IGridRow interface {
 	SetYPlacement(value GridCellPlacement)
 	IsHidden() bool
 	SetIsHidden(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GridRow */
+
 	// methods:
 	CellAtIndex(index int) IGridCell
-	MergeCellsInRange(range_ corefoundation.Range)
-/* debug [class_interface_methods]: End methods */
+	MergeCellsInRange(range_ foundation.Range)
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GridRow */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GridRowClass) Alloc() GridRow {
 	rv := objc.Send[GridRow](objc.ID(gc.class), objc.Sel("alloc"))
@@ -102,11 +101,11 @@ func (g_ GridRow) Autorelease() GridRow {
 func NewGridRow() GridRow {
 	return getGridRowClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GridRow */
+
+
 // A row within a grid view.
 
 
@@ -124,59 +123,59 @@ type GridRow struct {
 func GridRowFrom(ptr unsafe.Pointer) GridRow {
 	return GridRow{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GridRow *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for GridRow */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for GridRow */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GridRow */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/cell(at:)
 func (g_ GridRow) CellAtIndex(index int) IGridCell {
 	rv := objc.Send[GridCell](g_.ID, objc.Sel("cellAtIndex:"), index)
 	return rv
-}/* debug [instance_methods/method]: CellAtIndex */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/mergeCells(in:)
-func (g_ GridRow) MergeCellsInRange(range_ corefoundation.Range) {
+func (g_ GridRow) MergeCellsInRange(range_ foundation.Range) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("mergeCellsInRange:"), range_)
-}/* debug [instance_methods/method]: MergeCellsInRange */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for GridRow */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/bottomPadding
 func (g_ GridRow) BottomPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("bottomPadding"))
 	return rv
-}/* debug [instance_properties/getter]: bottomPadding */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/bottomPadding
 func (g_ GridRow) SetBottomPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBottomPadding:"), value)
-}/* debug [instance_properties/setter]: bottomPadding */
+}
 
 
 // [Full Topic]
@@ -184,7 +183,7 @@ func (g_ GridRow) SetBottomPadding(value float64) {
 func (g_ GridRow) GridView() IGridView {
 	rv := objc.Send[GridView](g_.ID, objc.Sel("gridView"))
 	return rv
-}/* debug [instance_properties/getter]: gridView */
+}
 
 
 // [Full Topic]
@@ -192,14 +191,14 @@ func (g_ GridRow) GridView() IGridView {
 func (g_ GridRow) Height() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("height"))
 	return rv
-}/* debug [instance_properties/getter]: height */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/height
 func (g_ GridRow) SetHeight(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHeight:"), value)
-}/* debug [instance_properties/setter]: height */
+}
 
 
 // [Full Topic]
@@ -207,14 +206,14 @@ func (g_ GridRow) SetHeight(value float64) {
 func (g_ GridRow) Hidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
 	return rv
-}/* debug [instance_properties/getter]: hidden */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/isHidden
 func (g_ GridRow) SetHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
-}/* debug [instance_properties/setter]: hidden */
+}
 
 
 // [Full Topic]
@@ -222,7 +221,7 @@ func (g_ GridRow) SetHidden(value bool) {
 func (g_ GridRow) NumberOfCells() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfCells"))
 	return rv
-}/* debug [instance_properties/getter]: numberOfCells */
+}
 
 
 // [Full Topic]
@@ -230,14 +229,14 @@ func (g_ GridRow) NumberOfCells() int {
 func (g_ GridRow) RowAlignment() GridRowAlignment {
 	rv := objc.Send[GridRowAlignment](g_.ID, objc.Sel("rowAlignment"))
 	return rv
-}/* debug [instance_properties/getter]: rowAlignment */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/rowAlignment
 func (g_ GridRow) SetRowAlignment(value GridRowAlignment) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRowAlignment:"), value)
-}/* debug [instance_properties/setter]: rowAlignment */
+}
 
 
 // [Full Topic]
@@ -245,14 +244,14 @@ func (g_ GridRow) SetRowAlignment(value GridRowAlignment) {
 func (g_ GridRow) TopPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("topPadding"))
 	return rv
-}/* debug [instance_properties/getter]: topPadding */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/topPadding
 func (g_ GridRow) SetTopPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTopPadding:"), value)
-}/* debug [instance_properties/setter]: topPadding */
+}
 
 
 // [Full Topic]
@@ -260,14 +259,14 @@ func (g_ GridRow) SetTopPadding(value float64) {
 func (g_ GridRow) YPlacement() GridCellPlacement {
 	rv := objc.Send[GridCellPlacement](g_.ID, objc.Sel("yPlacement"))
 	return rv
-}/* debug [instance_properties/getter]: yPlacement */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/yPlacement
 func (g_ GridRow) SetYPlacement(value GridCellPlacement) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYPlacement:"), value)
-}/* debug [instance_properties/setter]: yPlacement */
+}
 
 
 // [Full Topic]
@@ -275,19 +274,19 @@ func (g_ GridRow) SetYPlacement(value GridCellPlacement) {
 func (g_ GridRow) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
-}/* debug [instance_properties/getter]: isHidden */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridrow/ishidden
 func (g_ GridRow) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
-}/* debug [instance_properties/setter]: isHidden */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSGridRow */
+
+
+
 
 
 

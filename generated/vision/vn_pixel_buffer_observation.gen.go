@@ -40,7 +40,7 @@ type IPixelBufferObservation interface {
 	
 
 	// properties:
-	FeatureName() objc.IObject /* cross-framework: NSString */
+	FeatureName() foundation.foundation.INSString
 	PixelBuffer() PixelBufferRef /* not a class type */
 	ModelDescription() coreml.ModelDescription
 	SetModelDescription(value coreml.ModelDescription)
@@ -143,7 +143,7 @@ func PixelBufferObservationFrom(ptr unsafe.Pointer) PixelBufferObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPixelBufferObservation/featureName
-func (p_ PixelBufferObservation) FeatureName() objc.IObject /* cross-framework: NSString */ {
+func (p_ PixelBufferObservation) FeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("featureName"))
 	return rv
 }

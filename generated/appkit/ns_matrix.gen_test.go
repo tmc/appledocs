@@ -9,14 +9,6 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewMatrix
 
-// ExampleNewMatrixWithFrame demonstrates how to create a Matrix instance using NewMatrixWithFrame.
-// Initializes a newly allocated matrix with the specified frame.
-func ExampleNewMatrixWithFrame() {
-	_ = appkit.NewMatrixWithFrame(
-		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
-	)
-	// Output:
-}
 // ExampleMatrix_AddColumn demonstrates using AddColumn on a Matrix instance.
 // Adds a new column of cells to the right of the last column.
 func ExampleMatrix_AddColumn() {

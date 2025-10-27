@@ -92,6 +92,7 @@ var templateFuncs = template.FuncMap{
 	"formatMethodParamNamesWithFramework": formatMethodParamNamesWithFramework,
 	"isConstructor":                       isConstructor,
 	"stripNSPrefix":                       stripNSPrefix,
+	"objectType":                          objectType,
 	"needsFoundationImport":               needsFoundationImport,
 	"needsQuartzCoreImport":               needsQuartzCoreImport,
 	"needsCustomImports":                  needsCustomImports,
@@ -347,7 +348,8 @@ func getProtocolCrossFrameworkImports(protocol *occ2go.ParsedProtocol, framework
 	imports := make(map[string]string)
 
 	// Delegate/DataSource protocols generate wrapper objects that use objectivec.Object
-	if protocol.IsDelegate || protocol.IsDataSource {
+	// Don't import objectivec if we're already in the objectivec package
+	if (protocol.IsDelegate || protocol.IsDataSource) && strings.ToLower(framework) != "objectivec" {
 		imports["objectivec"] = outputModule + "/objectivec"
 	}
 
@@ -369,7 +371,8 @@ func getProtocolCrossFrameworkImports(protocol *occ2go.ParsedProtocol, framework
 
 			// Special case: if mapped type is "IObject" (unqualified), it will become
 			// "objectivec.IObject" in the template via typeToInterfaceType with Generator context
-			if interfaceType == "IObject" {
+			// Don't import objectivec if we're already in the objectivec package
+			if interfaceType == "IObject" && strings.ToLower(framework) != "objectivec" {
 				imports["objectivec"] = outputModule + "/objectivec"
 			}
 		}
@@ -387,7 +390,8 @@ func getProtocolCrossFrameworkImports(protocol *occ2go.ParsedProtocol, framework
 
 			// Special case: if mapped type is "IObject" (unqualified), it will become
 			// "objectivec.IObject" in the template via typeToInterfaceType with Generator context
-			if interfaceType == "IObject" {
+			// Don't import objectivec if we're already in the objectivec package
+			if interfaceType == "IObject" && strings.ToLower(framework) != "objectivec" {
 				imports["objectivec"] = outputModule + "/objectivec"
 			}
 
@@ -508,4 +512,13 @@ func formatEnumValue(value int, underlyingType string) string {
 
 	// Normal case: emit the value directly
 	return fmt.Sprintf("%d", value)
+}
+
+// objectType returns the correct Object type name for the current framework.
+// In objectivec package, returns "Object". In other packages, returns "objectivec.Object".
+func objectType(framework string) string {
+	if strings.ToLower(framework) == "objectivec" {
+		return "Object"
+	}
+	return "objectivec.Object"
 }

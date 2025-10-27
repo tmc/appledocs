@@ -4,7 +4,7 @@ package appkit
 
 import (
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // PDraggingSource is the NSDraggingSource protocol interface.
@@ -17,13 +17,13 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSDraggingSource
 type PDraggingSource interface {
 	// Required methods
-	DraggingSessionSourceOperationMaskForDraggingContext(session IDraggingSession, context DraggingContext) DragOperation/* debug [protocol_interface/required_method]: DraggingSessionSourceOperationMaskForDraggingContext */
+	DraggingSessionSourceOperationMaskForDraggingContext(session IDraggingSession, context DraggingContext) DragOperation
 	// Optional methods
-	DraggingSessionEndedAtPointOperation(session IDraggingSession, screenPoint vision.Point, operation DragOperation)
+	DraggingSessionEndedAtPointOperation(session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)
 	HasDraggingSessionEndedAtPointOperation() bool
-	DraggingSessionMovedToPoint(session IDraggingSession, screenPoint vision.Point)
+	DraggingSessionMovedToPoint(session IDraggingSession, screenPoint corefoundation.CGPoint)
 	HasDraggingSessionMovedToPoint() bool
-	DraggingSessionWillBeginAtPoint(session IDraggingSession, screenPoint vision.Point)
+	DraggingSessionWillBeginAtPoint(session IDraggingSession, screenPoint corefoundation.CGPoint)
 	HasDraggingSessionWillBeginAtPoint() bool
 	IgnoreModifierKeysForDraggingSession(session IDraggingSession) bool
 	HasIgnoreModifierKeysForDraggingSession() bool

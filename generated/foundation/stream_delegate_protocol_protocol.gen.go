@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PStreamDelegate is the NSStreamDelegate protocol interface.
@@ -29,3 +31,19 @@ type PStreamDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type StreamDelegate struct {
 }
+
+// StreamDelegateObject wraps an existing Objective-C object that conforms to the PStreamDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type StreamDelegateObject struct {
+	objectivec.Object
+}
+
+// NewStreamDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSStreamDelegate protocol.
+func NewStreamDelegateObject(obj objectivec.Object) *StreamDelegateObject {
+	return &StreamDelegateObject{obj}
+}
+
+// Make sure StreamDelegateObject implements PStreamDelegate.
+var _ PStreamDelegate = (*StreamDelegateObject)(nil)

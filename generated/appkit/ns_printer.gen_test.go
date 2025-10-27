@@ -13,7 +13,7 @@ var _ = appkit.NewPrinter
 // Creates and returns a printer object initialized to the first available printer with the specified make and model information.
 func ExampleNewPrinterWithType() {
 	_ = appkit.NewPrinterWithType(
-		appkit.PrinterTypeName /* typedef */{}, // type PrinterTypeName /* typedef */
+		appkit.PrinterTypeName{}, // type PrinterTypeName
 	)
 	// Output:
 }

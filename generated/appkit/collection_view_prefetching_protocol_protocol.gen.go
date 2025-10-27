@@ -10,8 +10,8 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSCollectionViewPrefetching
 type PCollectionViewPrefetching interface {
 	// Required methods
-	CollectionViewPrefetchItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths []foundation.IndexPath)/* debug [protocol_interface/required_method]: CollectionViewPrefetchItemsAtIndexPaths */
+	CollectionViewPrefetchItemsAtIndexPaths(collectionView CollectionView /* not a class type */, indexPaths []foundation.IndexPath)
 	// Optional methods
-	CollectionViewCancelPrefetchingForItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths []foundation.IndexPath)
+	CollectionViewCancelPrefetchingForItemsAtIndexPaths(collectionView CollectionView /* not a class type */, indexPaths []foundation.IndexPath)
 	HasCollectionViewCancelPrefetchingForItemsAtIndexPaths() bool
 }

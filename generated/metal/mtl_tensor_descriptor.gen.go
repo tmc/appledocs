@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLTensorDescriptor */
 
 
-/* debug [class_header]: Header for MTLTensorDescriptor */
+
+
 // The class instance for the [TensorDescriptor] class.
 var (
 	TensorDescriptorClass     _TensorDescriptorClass
@@ -31,16 +30,16 @@ func getTensorDescriptorClass() _TensorDescriptorClass {
 type _TensorDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TensorDescriptor */
+
+
 // An interface definition for the [TensorDescriptor] class.
 type ITensorDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for TensorDescriptor */
+
 	// properties:
 	CpuCacheMode() CPUCacheMode
 	SetCpuCacheMode(value CPUCacheMode)
@@ -58,22 +57,22 @@ type ITensorDescriptor interface {
 	SetStrides(value IMTLTensorExtents)
 	Usage() TensorUsage
 	SetUsage(value TensorUsage)
-	MTLTensorDomain() objc.IObject /* cross-framework: NSString */
+	MTLTensorDomain() foundation.foundation.INSString
 	MTL_TENSOR_MAX_RANK() objectivec.IObject
 	SetMTL_TENSOR_MAX_RANK(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TensorDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TensorDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TensorDescriptorClass) Alloc() TensorDescriptor {
 	rv := objc.Send[TensorDescriptor](objc.ID(tc.class), objc.Sel("alloc"))
@@ -103,11 +102,11 @@ func (t_ TensorDescriptor) Autorelease() TensorDescriptor {
 func NewTensorDescriptor() TensorDescriptor {
 	return getTensorDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TensorDescriptor */
+
+
 // A configuration type for creating new tensor instances.
 
 
@@ -125,30 +124,30 @@ type TensorDescriptor struct {
 func TensorDescriptorFrom(ptr unsafe.Pointer) TensorDescriptor {
 	return TensorDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TensorDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for TensorDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TensorDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TensorDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TensorDescriptor */
+
+
+
+
+
+
+
+
+
 
 // A value that configures the cache mode of CPU mapping of tensors you create with this descriptor.
 //
@@ -157,7 +156,7 @@ func TensorDescriptorFrom(ptr unsafe.Pointer) TensorDescriptor {
 func (t_ TensorDescriptor) CpuCacheMode() CPUCacheMode {
 	rv := objc.Send[CPUCacheMode](t_.ID, objc.Sel("cpuCacheMode"))
 	return rv
-}/* debug [instance_properties/getter]: cpuCacheMode */
+}
 
 
 // A value that configures the cache mode of CPU mapping of tensors you create with this descriptor.
@@ -166,7 +165,7 @@ func (t_ TensorDescriptor) CpuCacheMode() CPUCacheMode {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/cpuCacheMode
 func (t_ TensorDescriptor) SetCpuCacheMode(value CPUCacheMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCpuCacheMode:"), value)
-}/* debug [instance_properties/setter]: cpuCacheMode */
+}
 
 
 // A data format for the tensors you create with this descriptor.
@@ -176,7 +175,7 @@ func (t_ TensorDescriptor) SetCpuCacheMode(value CPUCacheMode) {
 func (t_ TensorDescriptor) DataType() TensorDataType {
 	rv := objc.Send[TensorDataType](t_.ID, objc.Sel("dataType"))
 	return rv
-}/* debug [instance_properties/getter]: dataType */
+}
 
 
 // A data format for the tensors you create with this descriptor.
@@ -185,7 +184,7 @@ func (t_ TensorDescriptor) DataType() TensorDataType {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dataType
 func (t_ TensorDescriptor) SetDataType(value TensorDataType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDataType:"), value)
-}/* debug [instance_properties/setter]: dataType */
+}
 
 
 // An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
@@ -195,7 +194,7 @@ func (t_ TensorDescriptor) SetDataType(value TensorDataType) {
 func (t_ TensorDescriptor) Dimensions() IMTLTensorExtents {
 	rv := objc.Send[TensorExtents](t_.ID, objc.Sel("dimensions"))
 	return rv
-}/* debug [instance_properties/getter]: dimensions */
+}
 
 
 // An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
@@ -204,7 +203,7 @@ func (t_ TensorDescriptor) Dimensions() IMTLTensorExtents {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
 func (t_ TensorDescriptor) SetDimensions(value IMTLTensorExtents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
-}/* debug [instance_properties/setter]: dimensions */
+}
 
 
 // A value that configures the hazard tracking of tensors you create with this descriptor.
@@ -214,7 +213,7 @@ func (t_ TensorDescriptor) SetDimensions(value IMTLTensorExtents) {
 func (t_ TensorDescriptor) HazardTrackingMode() HazardTrackingMode {
 	rv := objc.Send[HazardTrackingMode](t_.ID, objc.Sel("hazardTrackingMode"))
 	return rv
-}/* debug [instance_properties/getter]: hazardTrackingMode */
+}
 
 
 // A value that configures the hazard tracking of tensors you create with this descriptor.
@@ -223,7 +222,7 @@ func (t_ TensorDescriptor) HazardTrackingMode() HazardTrackingMode {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/hazardTrackingMode
 func (t_ TensorDescriptor) SetHazardTrackingMode(value HazardTrackingMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHazardTrackingMode:"), value)
-}/* debug [instance_properties/setter]: hazardTrackingMode */
+}
 
 
 // A packed set of the , and properties.
@@ -233,7 +232,7 @@ func (t_ TensorDescriptor) SetHazardTrackingMode(value HazardTrackingMode) {
 func (t_ TensorDescriptor) ResourceOptions() ResourceOptions {
 	rv := objc.Send[ResourceOptions](t_.ID, objc.Sel("resourceOptions"))
 	return rv
-}/* debug [instance_properties/getter]: resourceOptions */
+}
 
 
 // A packed set of the , and properties.
@@ -242,7 +241,7 @@ func (t_ TensorDescriptor) ResourceOptions() ResourceOptions {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/resourceOptions
 func (t_ TensorDescriptor) SetResourceOptions(value ResourceOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResourceOptions:"), value)
-}/* debug [instance_properties/setter]: resourceOptions */
+}
 
 
 // A value that configures the memory location and access permissions of tensors you create with this descriptor.
@@ -252,7 +251,7 @@ func (t_ TensorDescriptor) SetResourceOptions(value ResourceOptions) {
 func (t_ TensorDescriptor) StorageMode() StorageMode {
 	rv := objc.Send[StorageMode](t_.ID, objc.Sel("storageMode"))
 	return rv
-}/* debug [instance_properties/getter]: storageMode */
+}
 
 
 // A value that configures the memory location and access permissions of tensors you create with this descriptor.
@@ -261,7 +260,7 @@ func (t_ TensorDescriptor) StorageMode() StorageMode {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/storageMode
 func (t_ TensorDescriptor) SetStorageMode(value StorageMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStorageMode:"), value)
-}/* debug [instance_properties/setter]: storageMode */
+}
 
 
 // An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
@@ -271,7 +270,7 @@ func (t_ TensorDescriptor) SetStorageMode(value StorageMode) {
 func (t_ TensorDescriptor) Strides() IMTLTensorExtents {
 	rv := objc.Send[TensorExtents](t_.ID, objc.Sel("strides"))
 	return rv
-}/* debug [instance_properties/getter]: strides */
+}
 
 
 // An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
@@ -280,7 +279,7 @@ func (t_ TensorDescriptor) Strides() IMTLTensorExtents {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/strides
 func (t_ TensorDescriptor) SetStrides(value IMTLTensorExtents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStrides:"), value)
-}/* debug [instance_properties/setter]: strides */
+}
 
 
 // A set of contexts in which you can use tensors you create with this descriptor.
@@ -290,7 +289,7 @@ func (t_ TensorDescriptor) SetStrides(value IMTLTensorExtents) {
 func (t_ TensorDescriptor) Usage() TensorUsage {
 	rv := objc.Send[TensorUsage](t_.ID, objc.Sel("usage"))
 	return rv
-}/* debug [instance_properties/getter]: usage */
+}
 
 
 // A set of contexts in which you can use tensors you create with this descriptor.
@@ -299,17 +298,17 @@ func (t_ TensorDescriptor) Usage() TensorUsage {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/usage
 func (t_ TensorDescriptor) SetUsage(value TensorUsage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsage:"), value)
-}/* debug [instance_properties/setter]: usage */
+}
 
 
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorDescriptor) MTLTensorDomain() objc.IObject /* cross-framework: NSString */ {
+func (t_ TensorDescriptor) MTLTensorDomain() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
-}/* debug [instance_properties/getter]: MTLTensorDomain */
+}
 
 
 // [Full Topic]
@@ -317,19 +316,19 @@ func (t_ TensorDescriptor) MTLTensorDomain() objc.IObject /* cross-framework: NS
 func (t_ TensorDescriptor) MTL_TENSOR_MAX_RANK() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
 	return rv
-}/* debug [instance_properties/getter]: MTL_TENSOR_MAX_RANK */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
 func (t_ TensorDescriptor) SetMTL_TENSOR_MAX_RANK(value objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
-}/* debug [instance_properties/setter]: MTL_TENSOR_MAX_RANK */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLTensorDescriptor */
+
+
+
 
 
 

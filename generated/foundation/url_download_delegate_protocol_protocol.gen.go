@@ -39,7 +39,7 @@ type PURLDownloadDelegate interface {
 	HasDownloadShouldDecodeSourceDataOfMIMEType() bool
 	DownloadWillResumeWithResponseFromByte(download IURLDownload, response IURLResponse, startingByte objectivec.IObject)
 	HasDownloadWillResumeWithResponseFromByte() bool
-	DownloadWillSendRequestRedirectResponse(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) URLRequest
+	DownloadWillSendRequestRedirectResponse(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) IURLRequest
 	HasDownloadWillSendRequestRedirectResponse() bool
 	DownloadDidBegin(download IURLDownload)
 	HasDownloadDidBegin() bool
@@ -63,7 +63,7 @@ type URLDownloadDelegate struct {
 	_DownloadDidReceiveDataOfLength func(download IURLDownload, length uint)
 	_DownloadShouldDecodeSourceDataOfMIMEType func(download IURLDownload, encodingType IString) bool
 	_DownloadWillResumeWithResponseFromByte func(download IURLDownload, response IURLResponse, startingByte objectivec.IObject)
-	_DownloadWillSendRequestRedirectResponse func(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) URLRequest
+	_DownloadWillSendRequestRedirectResponse func(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) IURLRequest
 	_DownloadDidBegin func(download IURLDownload)
 	_DownloadDidFinish func(download IURLDownload)
 	_DownloadShouldUseCredentialStorage func(download IURLDownload) bool
@@ -142,7 +142,7 @@ func (d *URLDownloadDelegate) SetDownloadWillResumeWithResponseFromByte(f func(d
 // SetDownloadWillSendRequestRedirectResponse sets the handler for the DownloadWillSendRequestRedirectResponse delegate method.
 //
 // Sent when the download object determines that it must change URLs in order to continue loading a request.
-func (d *URLDownloadDelegate) SetDownloadWillSendRequestRedirectResponse(f func(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) URLRequest) {
+func (d *URLDownloadDelegate) SetDownloadWillSendRequestRedirectResponse(f func(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) IURLRequest) {
 	d._DownloadWillSendRequestRedirectResponse = f
 }
 
@@ -292,11 +292,11 @@ func (d *URLDownloadDelegate) HasDownloadWillResumeWithResponseFromByte() bool {
 }
 
 // DownloadWillSendRequestRedirectResponse implements the PURLDownloadDelegate interface.
-func (d *URLDownloadDelegate) DownloadWillSendRequestRedirectResponse(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) URLRequest {
+func (d *URLDownloadDelegate) DownloadWillSendRequestRedirectResponse(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) IURLRequest {
 	if d._DownloadWillSendRequestRedirectResponse != nil {
 		return d._DownloadWillSendRequestRedirectResponse(download, request, redirectResponse)
 	}
-	var zero URLRequest
+	var zero IURLRequest
 	return zero
 }
 
@@ -341,4 +341,174 @@ func (d *URLDownloadDelegate) DownloadShouldUseCredentialStorage(download IURLDo
 // HasDownloadShouldUseCredentialStorage returns true if a handler for DownloadShouldUseCredentialStorage has been set.
 func (d *URLDownloadDelegate) HasDownloadShouldUseCredentialStorage() bool {
 	return d._DownloadShouldUseCredentialStorage != nil
+}
+
+// URLDownloadDelegateObject wraps an existing Objective-C object that conforms to the PURLDownloadDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLDownloadDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLDownloadDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLDownloadDelegate protocol.
+func NewURLDownloadDelegateObject(obj objectivec.Object) *URLDownloadDelegateObject {
+	return &URLDownloadDelegateObject{obj}
+}
+
+// Make sure URLDownloadDelegateObject implements PURLDownloadDelegate.
+var _ PURLDownloadDelegate = (*URLDownloadDelegateObject)(nil)
+
+// DownloadCanAuthenticateAgainstProtectionSpace implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadCanAuthenticateAgainstProtectionSpace(connection IURLDownload, protectionSpace IURLProtectionSpace) bool {
+	return objc.Send[bool](o.ID, objc.Sel("download:canAuthenticateAgainstProtectionSpace:"), connection, protectionSpace)
+}
+
+// HasDownloadCanAuthenticateAgainstProtectionSpace returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadCanAuthenticateAgainstProtectionSpace() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDecideDestinationWithSuggestedFilename implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDecideDestinationWithSuggestedFilename(download IURLDownload, filename IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:decideDestinationWithSuggestedFilename:"), download, filename)
+}
+
+// HasDownloadDecideDestinationWithSuggestedFilename returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDecideDestinationWithSuggestedFilename() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidCancelAuthenticationChallenge implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidCancelAuthenticationChallenge(download IURLDownload, challenge IURLAuthenticationChallenge) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:didCancelAuthenticationChallenge:"), download, challenge)
+}
+
+// HasDownloadDidCancelAuthenticationChallenge returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidCancelAuthenticationChallenge() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidCreateDestination implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidCreateDestination(download IURLDownload, path IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:didCreateDestination:"), download, path)
+}
+
+// HasDownloadDidCreateDestination returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidCreateDestination() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidFailWithError implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidFailWithError(download IURLDownload, error_ IError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:didFailWithError:"), download, error_)
+}
+
+// HasDownloadDidFailWithError returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidFailWithError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidReceiveAuthenticationChallenge implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidReceiveAuthenticationChallenge(download IURLDownload, challenge IURLAuthenticationChallenge) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:didReceiveAuthenticationChallenge:"), download, challenge)
+}
+
+// HasDownloadDidReceiveAuthenticationChallenge returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidReceiveAuthenticationChallenge() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidReceiveResponse implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidReceiveResponse(download IURLDownload, response IURLResponse) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:didReceiveResponse:"), download, response)
+}
+
+// HasDownloadDidReceiveResponse returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidReceiveResponse() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidReceiveDataOfLength implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidReceiveDataOfLength(download IURLDownload, length uint) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:didReceiveDataOfLength:"), download, length)
+}
+
+// HasDownloadDidReceiveDataOfLength returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidReceiveDataOfLength() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadShouldDecodeSourceDataOfMIMEType implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadShouldDecodeSourceDataOfMIMEType(download IURLDownload, encodingType IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("download:shouldDecodeSourceDataOfMIMEType:"), download, encodingType)
+}
+
+// HasDownloadShouldDecodeSourceDataOfMIMEType returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadShouldDecodeSourceDataOfMIMEType() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadWillResumeWithResponseFromByte implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadWillResumeWithResponseFromByte(download IURLDownload, response IURLResponse, startingByte objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("download:willResumeWithResponse:fromByte:"), download, response, startingByte)
+}
+
+// HasDownloadWillResumeWithResponseFromByte returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadWillResumeWithResponseFromByte() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadWillSendRequestRedirectResponse implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadWillSendRequestRedirectResponse(download IURLDownload, request IURLRequest, redirectResponse IURLResponse) IURLRequest {
+	return objc.Send[IURLRequest](o.ID, objc.Sel("download:willSendRequest:redirectResponse:"), download, request, redirectResponse)
+}
+
+// HasDownloadWillSendRequestRedirectResponse returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadWillSendRequestRedirectResponse() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidBegin implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidBegin(download IURLDownload) {
+	objc.Send[objc.ID](o.ID, objc.Sel("downloadDidBegin:"), download)
+}
+
+// HasDownloadDidBegin returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidBegin() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadDidFinish implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadDidFinish(download IURLDownload) {
+	objc.Send[objc.ID](o.ID, objc.Sel("downloadDidFinish:"), download)
+}
+
+// HasDownloadDidFinish returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadDidFinish() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// DownloadShouldUseCredentialStorage implements the PURLDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLDownloadDelegateObject) DownloadShouldUseCredentialStorage(download IURLDownload) bool {
+	return objc.Send[bool](o.ID, objc.Sel("downloadShouldUseCredentialStorage:"), download)
+}
+
+// HasDownloadShouldUseCredentialStorage returns true; this is a placeholder for optional method checks.
+func (o *URLDownloadDelegateObject) HasDownloadShouldUseCredentialStorage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

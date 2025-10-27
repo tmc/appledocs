@@ -8,6 +8,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PSharingServicePickerDelegate is the NSSharingServicePickerDelegate protocol interface.
@@ -24,7 +26,7 @@ type PSharingServicePickerDelegate interface {
 	HasSharingServicePickerDelegateForSharingService() bool
 	SharingServicePickerDidChooseSharingService(sharingServicePicker ISharingServicePicker, service ISharingService)
 	HasSharingServicePickerDidChooseSharingService() bool
-	SharingServicePickerSharingServicesForItemsProposedSharingServices(sharingServicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */, proposedServices []SharingService) []SharingService
+	SharingServicePickerSharingServicesForItemsProposedSharingServices(sharingServicePicker ISharingServicePicker, items foundation.foundation.INSArray, proposedServices []SharingService) []SharingService
 	HasSharingServicePickerSharingServicesForItemsProposedSharingServices() bool
 	SharingServicePickerCollaborationModeRestrictions(sharingServicePicker ISharingServicePicker) []SharingCollaborationModeRestriction
 	HasSharingServicePickerCollaborationModeRestrictions() bool
@@ -36,7 +38,7 @@ type PSharingServicePickerDelegate interface {
 type SharingServicePickerDelegate struct {
 	_SharingServicePickerDelegateForSharingService func(sharingServicePicker ISharingServicePicker, sharingService ISharingService) unsafe.Pointer
 	_SharingServicePickerDidChooseSharingService func(sharingServicePicker ISharingServicePicker, service ISharingService)
-	_SharingServicePickerSharingServicesForItemsProposedSharingServices func(sharingServicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */, proposedServices []SharingService) []SharingService
+	_SharingServicePickerSharingServicesForItemsProposedSharingServices func(sharingServicePicker ISharingServicePicker, items foundation.foundation.INSArray, proposedServices []SharingService) []SharingService
 	_SharingServicePickerCollaborationModeRestrictions func(sharingServicePicker ISharingServicePicker) []SharingCollaborationModeRestriction
 }
 
@@ -57,7 +59,7 @@ func (d *SharingServicePickerDelegate) SetSharingServicePickerDidChooseSharingSe
 // SetSharingServicePickerSharingServicesForItemsProposedSharingServices sets the handler for the SharingServicePickerSharingServicesForItemsProposedSharingServices delegate method.
 //
 // Asks the delegate to specify which services to make available from the sharing service picker.
-func (d *SharingServicePickerDelegate) SetSharingServicePickerSharingServicesForItemsProposedSharingServices(f func(sharingServicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */, proposedServices []SharingService) []SharingService) {
+func (d *SharingServicePickerDelegate) SetSharingServicePickerSharingServicesForItemsProposedSharingServices(f func(sharingServicePicker ISharingServicePicker, items foundation.foundation.INSArray, proposedServices []SharingService) []SharingService) {
 	d._SharingServicePickerSharingServicesForItemsProposedSharingServices = f
 }
 
@@ -95,7 +97,7 @@ func (d *SharingServicePickerDelegate) HasSharingServicePickerDidChooseSharingSe
 }
 
 // SharingServicePickerSharingServicesForItemsProposedSharingServices implements the PSharingServicePickerDelegate interface.
-func (d *SharingServicePickerDelegate) SharingServicePickerSharingServicesForItemsProposedSharingServices(sharingServicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */, proposedServices []SharingService) []SharingService {
+func (d *SharingServicePickerDelegate) SharingServicePickerSharingServicesForItemsProposedSharingServices(sharingServicePicker ISharingServicePicker, items foundation.foundation.INSArray, proposedServices []SharingService) []SharingService {
 	if d._SharingServicePickerSharingServicesForItemsProposedSharingServices != nil {
 		return d._SharingServicePickerSharingServicesForItemsProposedSharingServices(sharingServicePicker, items, proposedServices)
 	}
@@ -120,4 +122,64 @@ func (d *SharingServicePickerDelegate) SharingServicePickerCollaborationModeRest
 // HasSharingServicePickerCollaborationModeRestrictions returns true if a handler for SharingServicePickerCollaborationModeRestrictions has been set.
 func (d *SharingServicePickerDelegate) HasSharingServicePickerCollaborationModeRestrictions() bool {
 	return d._SharingServicePickerCollaborationModeRestrictions != nil
+}
+
+// SharingServicePickerDelegateObject wraps an existing Objective-C object that conforms to the PSharingServicePickerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type SharingServicePickerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewSharingServicePickerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSSharingServicePickerDelegate protocol.
+func NewSharingServicePickerDelegateObject(obj objectivec.Object) *SharingServicePickerDelegateObject {
+	return &SharingServicePickerDelegateObject{obj}
+}
+
+// Make sure SharingServicePickerDelegateObject implements PSharingServicePickerDelegate.
+var _ PSharingServicePickerDelegate = (*SharingServicePickerDelegateObject)(nil)
+
+// SharingServicePickerDelegateForSharingService implements the PSharingServicePickerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SharingServicePickerDelegateObject) SharingServicePickerDelegateForSharingService(sharingServicePicker ISharingServicePicker, sharingService ISharingService) unsafe.Pointer {
+	return objc.Send[unsafe.Pointer](o.ID, objc.Sel("sharingServicePicker:delegateForSharingService:"), sharingServicePicker, sharingService)
+}
+
+// HasSharingServicePickerDelegateForSharingService returns true; this is a placeholder for optional method checks.
+func (o *SharingServicePickerDelegateObject) HasSharingServicePickerDelegateForSharingService() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SharingServicePickerDidChooseSharingService implements the PSharingServicePickerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SharingServicePickerDelegateObject) SharingServicePickerDidChooseSharingService(sharingServicePicker ISharingServicePicker, service ISharingService) {
+	objc.Send[objc.ID](o.ID, objc.Sel("sharingServicePicker:didChooseSharingService:"), sharingServicePicker, service)
+}
+
+// HasSharingServicePickerDidChooseSharingService returns true; this is a placeholder for optional method checks.
+func (o *SharingServicePickerDelegateObject) HasSharingServicePickerDidChooseSharingService() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SharingServicePickerSharingServicesForItemsProposedSharingServices implements the PSharingServicePickerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SharingServicePickerDelegateObject) SharingServicePickerSharingServicesForItemsProposedSharingServices(sharingServicePicker ISharingServicePicker, items foundation.foundation.INSArray, proposedServices []SharingService) []SharingService {
+	return objc.Send[[]SharingService](o.ID, objc.Sel("sharingServicePicker:sharingServicesForItems:proposedSharingServices:"), sharingServicePicker, items, proposedServices)
+}
+
+// HasSharingServicePickerSharingServicesForItemsProposedSharingServices returns true; this is a placeholder for optional method checks.
+func (o *SharingServicePickerDelegateObject) HasSharingServicePickerSharingServicesForItemsProposedSharingServices() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SharingServicePickerCollaborationModeRestrictions implements the PSharingServicePickerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SharingServicePickerDelegateObject) SharingServicePickerCollaborationModeRestrictions(sharingServicePicker ISharingServicePicker) []SharingCollaborationModeRestriction {
+	return objc.Send[[]SharingCollaborationModeRestriction](o.ID, objc.Sel("sharingServicePickerCollaborationModeRestrictions:"), sharingServicePicker)
+}
+
+// HasSharingServicePickerCollaborationModeRestrictions returns true; this is a placeholder for optional method checks.
+func (o *SharingServicePickerDelegateObject) HasSharingServicePickerCollaborationModeRestrictions() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

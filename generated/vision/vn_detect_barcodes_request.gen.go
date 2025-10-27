@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -54,7 +53,7 @@ type IDetectBarcodesRequest interface {
 	
 
 	// methods:
-	SupportedSymbologiesAndReturnError(error_ objectivec.IObject) []string
+	SupportedSymbologiesAndReturnError(error_ foundation.foundation.INSError) []string
 
 
 }
@@ -151,7 +150,7 @@ func (dc _DetectBarcodesRequestClass) SupportedSymbologies() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectBarcodesRequest/supportedSymbologies()
-func (d_ DetectBarcodesRequest) SupportedSymbologiesAndReturnError(error_ objectivec.IObject) []string {
+func (d_ DetectBarcodesRequest) SupportedSymbologiesAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedSymbologiesAndReturnError:"), error_)
 	return rv
 }

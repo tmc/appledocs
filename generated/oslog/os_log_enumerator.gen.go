@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class OSLogEnumerator */
 
 
-/* debug [class_header]: Header for OSLogEnumerator */
+
+
 // The class instance for the [OSLogEnumerator] class.
 var (
 	OSLogEnumeratorClass     _OSLogEnumeratorClass
@@ -30,30 +30,30 @@ func getOSLogEnumeratorClass() _OSLogEnumeratorClass {
 type _OSLogEnumeratorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for OSLogEnumerator */
+
+
 // An interface definition for the [OSLogEnumerator] class.
 type IOSLogEnumerator interface {
 	foundation.IEnumerator
 	
-/* debug [class_interface_properties]: Properties for OSLogEnumerator */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for OSLogEnumerator */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for OSLogEnumerator */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEnumeratorClass) Alloc() OSLogEnumerator {
 	rv := objc.Send[OSLogEnumerator](objc.ID(oc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (o_ OSLogEnumerator) Autorelease() OSLogEnumerator {
 func NewOSLogEnumerator() OSLogEnumerator {
 	return getOSLogEnumeratorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for OSLogEnumerator */
+
+
 // An enumerator that can access and list log entries.
 
 
@@ -107,34 +107,34 @@ func OSLogEnumeratorFrom(ptr unsafe.Pointer) OSLogEnumerator {
 		Enumerator: foundation.EnumeratorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for OSLogEnumerator *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for OSLogEnumerator */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for OSLogEnumerator */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for OSLogEnumerator */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for OSLogEnumerator */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class OSLogEnumerator */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

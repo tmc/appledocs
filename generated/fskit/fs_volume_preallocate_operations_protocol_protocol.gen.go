@@ -16,5 +16,5 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSVolume/PreallocateOperations
 type PFSVolumePreallocateOperations interface {
 	// Required methods
-	PreallocateSpaceForItemAtOffsetLengthFlagsReplyHandler(item IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, flags FSPreallocateFlags, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: PreallocateSpaceForItemAtOffsetLengthFlagsReplyHandler */
+	PreallocateSpaceForItemAtOffsetLengthFlagsReplyHandler(item IFSItem, offset unsafe.Pointer, length uintptr /* not a class type */, flags FSPreallocateFlags, reply unsafe.Pointer)
 }

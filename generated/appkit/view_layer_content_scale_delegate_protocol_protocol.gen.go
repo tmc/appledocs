@@ -50,3 +50,30 @@ func (d *ViewLayerContentScaleDelegate) LayerShouldInheritContentsScaleFromWindo
 func (d *ViewLayerContentScaleDelegate) HasLayerShouldInheritContentsScaleFromWindow() bool {
 	return d._LayerShouldInheritContentsScaleFromWindow != nil
 }
+
+// ViewLayerContentScaleDelegateObject wraps an existing Objective-C object that conforms to the PViewLayerContentScaleDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ViewLayerContentScaleDelegateObject struct {
+	objectivec.Object
+}
+
+// NewViewLayerContentScaleDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSViewLayerContentScaleDelegate protocol.
+func NewViewLayerContentScaleDelegateObject(obj objectivec.Object) *ViewLayerContentScaleDelegateObject {
+	return &ViewLayerContentScaleDelegateObject{obj}
+}
+
+// Make sure ViewLayerContentScaleDelegateObject implements PViewLayerContentScaleDelegate.
+var _ PViewLayerContentScaleDelegate = (*ViewLayerContentScaleDelegateObject)(nil)
+
+// LayerShouldInheritContentsScaleFromWindow implements the PViewLayerContentScaleDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ViewLayerContentScaleDelegateObject) LayerShouldInheritContentsScaleFromWindow(layer objectivec.IObject, newScale float64, window IWindow) bool {
+	return objc.Send[bool](o.ID, objc.Sel("layer:shouldInheritContentsScale:fromWindow:"), layer, newScale, window)
+}
+
+// HasLayerShouldInheritContentsScaleFromWindow returns true; this is a placeholder for optional method checks.
+func (o *ViewLayerContentScaleDelegateObject) HasLayerShouldInheritContentsScaleFromWindow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}

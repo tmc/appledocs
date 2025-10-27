@@ -13,7 +13,7 @@ var _ = appkit.NewSound
 // Returns the   instance associated with a given name.
 func ExampleNewSoundNamed() {
 	_ = appkit.NewSoundNamed(
-		appkit.SoundName /* typedef */{}, // name SoundName /* typedef */
+		appkit.SoundName{}, // name SoundName
 	)
 	// Output:
 }

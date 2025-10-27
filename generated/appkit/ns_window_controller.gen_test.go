@@ -13,7 +13,7 @@ var _ = appkit.NewWindowController
 // Returns a window controller initialized with a nib file.
 func ExampleNewWindowControllerWithWindowNibName() {
 	_ = appkit.NewWindowControllerWithWindowNibName(
-		appkit.NibName /* typedef */{}, // windowNibName NibName /* typedef */
+		appkit.NibName{}, // windowNibName NibName
 	)
 	// Output:
 }

@@ -18,7 +18,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataInput/append(_:)
-func (c_ CaptureMetadataInput) AppendTimedMetadataGroupError(metadata IAVTimedMetadataGroup, outError objectivec.IObject) bool {
+func (c_ CaptureMetadataInput) AppendTimedMetadataGroupError(metadata IAVTimedMetadataGroup, outError foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("appendTimedMetadataGroup:error:"), metadata, outError)
 	return rv
 }

@@ -21,7 +21,7 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue
 type PIOCommandQueue interface {
 	// Required methods
-	EnqueueBarrier()/* debug [protocol_interface/required_method]: EnqueueBarrier */
-	CommandBuffer() unsafe.Pointer/* debug [protocol_interface/required_method]: CommandBuffer */
-	CommandBufferWithUnretainedReferences() unsafe.Pointer/* debug [protocol_interface/required_method]: CommandBufferWithUnretainedReferences */
+	EnqueueBarrier()
+	CommandBuffer() unsafe.Pointer
+	CommandBufferWithUnretainedReferences() unsafe.Pointer
 }

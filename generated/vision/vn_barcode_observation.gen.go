@@ -40,15 +40,15 @@ type IBarcodeObservation interface {
 	
 
 	// properties:
-	BarcodeDescriptor() coreimage.BarcodeDescriptor
+	BarcodeDescriptor() BarcodeDescriptor /* not a class type */
 	IsColorInverted() bool
 	IsGS1DataCarrier() bool
-	PayloadData() objc.IObject /* cross-framework: NSData */
-	PayloadStringValue() objc.IObject /* cross-framework: NSString */
+	PayloadData() foundation.foundation.INSData
+	PayloadStringValue() foundation.foundation.INSString
 	SupplementalCompositeType() BarcodeCompositeType
-	SupplementalPayloadData() objc.IObject /* cross-framework: NSData */
-	SupplementalPayloadString() objc.IObject /* cross-framework: NSString */
-	Symbology() BarcodeSymbology /* typedef */
+	SupplementalPayloadData() foundation.foundation.INSData
+	SupplementalPayloadString() foundation.foundation.INSString
+	Symbology() BarcodeSymbology
 	Results() IVNBarcodeObservation
 	SetResults(value IVNBarcodeObservation)
 
@@ -148,8 +148,8 @@ func BarcodeObservationFrom(ptr unsafe.Pointer) BarcodeObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/barcodeDescriptor
-func (b_ BarcodeObservation) BarcodeDescriptor() coreimage.BarcodeDescriptor {
-	rv := objc.Send[coreimage.BarcodeDescriptor](b_.ID, objc.Sel("barcodeDescriptor"))
+func (b_ BarcodeObservation) BarcodeDescriptor() BarcodeDescriptor /* not a class type */ {
+	rv := objc.Send[BarcodeDescriptor](b_.ID, objc.Sel("barcodeDescriptor"))
 	return rv
 }
 
@@ -178,7 +178,7 @@ func (b_ BarcodeObservation) IsGS1DataCarrier() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/payloadData
-func (b_ BarcodeObservation) PayloadData() objc.IObject /* cross-framework: NSData */ {
+func (b_ BarcodeObservation) PayloadData() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("payloadData"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (b_ BarcodeObservation) PayloadData() objc.IObject /* cross-framework: NSDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/payloadStringValue
-func (b_ BarcodeObservation) PayloadStringValue() objc.IObject /* cross-framework: NSString */ {
+func (b_ BarcodeObservation) PayloadStringValue() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("payloadStringValue"))
 	return rv
 }
@@ -206,7 +206,7 @@ func (b_ BarcodeObservation) SupplementalCompositeType() BarcodeCompositeType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalPayloadData
-func (b_ BarcodeObservation) SupplementalPayloadData() objc.IObject /* cross-framework: NSData */ {
+func (b_ BarcodeObservation) SupplementalPayloadData() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("supplementalPayloadData"))
 	return rv
 }
@@ -216,7 +216,7 @@ func (b_ BarcodeObservation) SupplementalPayloadData() objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalPayloadString
-func (b_ BarcodeObservation) SupplementalPayloadString() objc.IObject /* cross-framework: NSString */ {
+func (b_ BarcodeObservation) SupplementalPayloadString() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("supplementalPayloadString"))
 	return rv
 }
@@ -226,8 +226,8 @@ func (b_ BarcodeObservation) SupplementalPayloadString() objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/symbology
-func (b_ BarcodeObservation) Symbology() BarcodeSymbology /* typedef */ {
-	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("symbology"))
+func (b_ BarcodeObservation) Symbology() BarcodeSymbology {
+	rv := objc.Send[BarcodeSymbology](b_.ID, objc.Sel("symbology"))
 	return rv
 }
 

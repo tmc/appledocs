@@ -6,8 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/foundation"
-
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PBinaryArchive is the MTLBinaryArchive protocol interface.
@@ -25,11 +23,11 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLBinaryArchive
 type PBinaryArchive interface {
 	// Required methods
-	AddComputePipelineFunctionsWithDescriptorError(descriptor IMTLComputePipelineDescriptor, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: AddComputePipelineFunctionsWithDescriptorError */
-	AddFunctionWithDescriptorLibraryError(descriptor IMTLFunctionDescriptor, library unsafe.Pointer, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: AddFunctionWithDescriptorLibraryError */
-	AddLibraryWithDescriptorError(descriptor IMTLStitchedLibraryDescriptor, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: AddLibraryWithDescriptorError */
-	AddMeshRenderPipelineFunctionsWithDescriptorError(descriptor IMTLMeshRenderPipelineDescriptor, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: AddMeshRenderPipelineFunctionsWithDescriptorError */
-	AddRenderPipelineFunctionsWithDescriptorError(descriptor IMTLRenderPipelineDescriptor, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: AddRenderPipelineFunctionsWithDescriptorError */
-	AddTileRenderPipelineFunctionsWithDescriptorError(descriptor IMTLTileRenderPipelineDescriptor, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: AddTileRenderPipelineFunctionsWithDescriptorError */
-	SerializeToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: SerializeToURLError */
+	AddComputePipelineFunctionsWithDescriptorError(descriptor IMTLComputePipelineDescriptor, error_ foundation.foundation.INSError) bool
+	AddFunctionWithDescriptorLibraryError(descriptor IMTLFunctionDescriptor, library unsafe.Pointer, error_ foundation.foundation.INSError) bool
+	AddLibraryWithDescriptorError(descriptor IMTLStitchedLibraryDescriptor, error_ foundation.foundation.INSError) bool
+	AddMeshRenderPipelineFunctionsWithDescriptorError(descriptor IMTLMeshRenderPipelineDescriptor, error_ foundation.foundation.INSError) bool
+	AddRenderPipelineFunctionsWithDescriptorError(descriptor IMTLRenderPipelineDescriptor, error_ foundation.foundation.INSError) bool
+	AddTileRenderPipelineFunctionsWithDescriptorError(descriptor IMTLTileRenderPipelineDescriptor, error_ foundation.foundation.INSError) bool
+	SerializeToURLError(url foundation.foundation.INSURL, error_ foundation.foundation.INSError) bool
 }

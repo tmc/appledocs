@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSTextParagraph */
 
 
-/* debug [class_header]: Header for NSTextParagraph */
+
+
 // The class instance for the [TextParagraph] class.
 var (
 	TextParagraphClass     _TextParagraphClass
@@ -31,33 +30,33 @@ func getTextParagraphClass() _TextParagraphClass {
 type _TextParagraphClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TextParagraph */
+
+
 // An interface definition for the [TextParagraph] class.
 type ITextParagraph interface {
 	ITextElement
 	
-/* debug [class_interface_properties]: Properties for TextParagraph */
+
 	// properties:
-	AttributedString() foundation.AttributedString
+	AttributedString() foundation.foundation.INSAttributedString
 	ParagraphContentRange() ITextRange
 	ParagraphSeparatorRange() ITextRange
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TextParagraph */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TextParagraph */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextParagraphClass) Alloc() TextParagraph {
 	rv := objc.Send[TextParagraph](objc.ID(tc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (t_ TextParagraph) Autorelease() TextParagraph {
 func NewTextParagraph() TextParagraph {
 	return getTextParagraphClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TextParagraph */
+
+
 // A class that represents a single paragraph backed by an attributed string as the contents.
 
 
@@ -111,52 +110,52 @@ func TextParagraphFrom(ptr unsafe.Pointer) TextParagraph {
 		TextElement: TextElementFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TextParagraph */
+
+
 
 // Creates a new paragraph with the attributed string you provide.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph/init(attributedString:)
-func NewTextParagraphWithAttributedString(attributedString foundation.AttributedString) TextParagraph {
+func NewTextParagraphWithAttributedString(attributedString foundation.foundation.INSAttributedString) TextParagraph {
 	instance := getTextParagraphClass().Alloc()
 	rv := objc.Send[TextParagraph](instance.ID, objc.Sel("initWithAttributedString:"), attributedString)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTextParagraphWithAttributedString */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for TextParagraph */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TextParagraph */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TextParagraph */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TextParagraph */
+
+
+
+
+
+
+
+
+
 
 // Returns the source attributed string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph/attributedString
-func (t_ TextParagraph) AttributedString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ TextParagraph) AttributedString() foundation.foundation.INSAttributedString {
+	rv := objc.Send[foundation.NSAttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
-}/* debug [instance_properties/getter]: attributedString */
+}
 
 
 // Returns the range of the paragraph in the containing text’s attributed string.
@@ -166,7 +165,7 @@ func (t_ TextParagraph) AttributedString() foundation.AttributedString {
 func (t_ TextParagraph) ParagraphContentRange() ITextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("paragraphContentRange"))
 	return rv
-}/* debug [instance_properties/getter]: paragraphContentRange */
+}
 
 
 // Returns the range of the paragraph separator in the containing text’s attributed string.
@@ -176,11 +175,11 @@ func (t_ TextParagraph) ParagraphContentRange() ITextRange {
 func (t_ TextParagraph) ParagraphSeparatorRange() ITextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
 	return rv
-}/* debug [instance_properties/getter]: paragraphSeparatorRange */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSTextParagraph */
+
+
+
 
 

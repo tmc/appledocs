@@ -2,9 +2,9 @@
 
 package systemconfiguration
 
-/* debug [enums.gen.go]: Generating 4 enums for SystemConfiguration */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum SCNetworkConnectionPPPStatus (14 cases) */
+
 // SCNetworkConnectionPPPStatus - The PPP-specific status of the network connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionPPPStatus
@@ -69,7 +69,7 @@ const (
 	kSCNetworkConnectionPPPWaitingForRedial SCNetworkConnectionPPPStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SCNetworkConnectionStatus (5 cases) */
+
 // SCNetworkConnectionStatus - The current status of the network connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionStatus
@@ -98,7 +98,7 @@ const (
 	kSCNetworkConnectionInvalid SCNetworkConnectionStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SCNetworkReachabilityFlags (10 cases) */
+
 // SCNetworkReachabilityFlags - Flags that indicate the reachability of a network node name or address, including whether a connection is required, and whether some user intervention might be required when establishing a connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityFlags
@@ -147,7 +147,7 @@ const (
 	kSCNetworkReachabilityFlagsTransientConnection SCNetworkReachabilityFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SCPreferencesNotification (2 cases) */
+
 // SCPreferencesNotification - The type of notification (used with the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesNotification

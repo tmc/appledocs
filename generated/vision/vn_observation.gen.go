@@ -41,8 +41,8 @@ type IObservation interface {
 	
 
 	// properties:
-	Confidence() Confidence /* typedef */
-	TimeRange() TimeRange /* not a class type */
+	Confidence() Confidence
+	TimeRange() objectivec.IObject
 	Uuid() foundation.UUID
 
 
@@ -139,8 +139,8 @@ func ObservationFrom(ptr unsafe.Pointer) Observation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/confidence
-func (o_ Observation) Confidence() Confidence /* typedef */ {
-	rv := objc.Send[float32](o_.ID, objc.Sel("confidence"))
+func (o_ Observation) Confidence() Confidence {
+	rv := objc.Send[Confidence](o_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (o_ Observation) Confidence() Confidence /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/timeRange
-func (o_ Observation) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](o_.ID, objc.Sel("timeRange"))
+func (o_ Observation) TimeRange() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](o_.ID, objc.Sel("timeRange"))
 	return rv
 }
 

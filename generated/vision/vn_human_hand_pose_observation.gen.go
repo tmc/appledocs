@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -49,8 +48,8 @@ type IHumanHandPoseObservation interface {
 	
 
 	// methods:
-	RecognizedPointForJointNameError(jointName HumanHandPoseObservationJointName /* typedef */, error_ objectivec.IObject) IRecognizedPoint
-	RecognizedPointsForJointsGroupNameError(jointsGroupName HumanHandPoseObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary
+	RecognizedPointForJointNameError(jointName HumanHandPoseObservationJointName, error_ foundation.foundation.INSError) IRecognizedPoint
+	RecognizedPointsForJointsGroupNameError(jointsGroupName HumanHandPoseObservationJointsGroupName, error_ foundation.foundation.INSError) foundation.IDictionary
 
 
 }
@@ -136,7 +135,7 @@ func HumanHandPoseObservationFrom(ptr unsafe.Pointer) HumanHandPoseObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanHandPoseObservation/recognizedPoint(_:)
-func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName HumanHandPoseObservationJointName /* typedef */, error_ objectivec.IObject) IRecognizedPoint {
+func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName HumanHandPoseObservationJointName, error_ foundation.foundation.INSError) IRecognizedPoint {
 	rv := objc.Send[RecognizedPoint](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
 }
@@ -146,7 +145,7 @@ func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName Hu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanHandPoseObservation/recognizedPoints(_:)
-func (h_ HumanHandPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName HumanHandPoseObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
+func (h_ HumanHandPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName HumanHandPoseObservationJointsGroupName, error_ foundation.foundation.INSError) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](h_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
 }

@@ -17,8 +17,8 @@ package metal
 // See: doc://com.apple.metal/documentation/Metal/MTLDrawable
 type PDrawable interface {
 	// Required methods
-	AddPresentedHandler(block DrawablePresentedHandler /* not a class type */)/* debug [protocol_interface/required_method]: AddPresentedHandler */
-	Present()/* debug [protocol_interface/required_method]: Present */
-	PresentAfterMinimumDuration(duration float64)/* debug [protocol_interface/required_method]: PresentAfterMinimumDuration */
-	PresentAtTime(presentationTime float64)/* debug [protocol_interface/required_method]: PresentAtTime */
+	AddPresentedHandler(block DrawablePresentedHandler /* not a class type */)
+	Present()
+	PresentAfterMinimumDuration(duration float64)
+	PresentAtTime(presentationTime float64)
 }

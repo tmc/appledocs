@@ -19,8 +19,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText
 type PAccessibilityNavigableStaticText interface {
 	// Required methods
-	AccessibilityFrameForRange(range_ corefoundation.Range) Rect/* debug [protocol_interface/required_method]: AccessibilityFrameForRange */
-	AccessibilityLineForIndex(index int) int/* debug [protocol_interface/required_method]: AccessibilityLineForIndex */
-	AccessibilityRangeForLine(lineNumber int) corefoundation.Range/* debug [protocol_interface/required_method]: AccessibilityRangeForLine */
-	AccessibilityStringForRange(range_ corefoundation.Range) foundation.String/* debug [protocol_interface/required_method]: AccessibilityStringForRange */
+	AccessibilityFrameForRange(range_ foundation.Range) corefoundation.CGRect
+	AccessibilityLineForIndex(index int) int
+	AccessibilityRangeForLine(lineNumber int) foundation.Range
+	AccessibilityStringForRange(range_ foundation.Range) foundation.String
 }

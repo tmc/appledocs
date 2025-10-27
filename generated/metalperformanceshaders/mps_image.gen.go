@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,19 +77,19 @@ type IImage interface {
 	WriteBytes()
 	ReadBytes()
 	SubImage()
-	SubImageWithFeatureChannelRange(range_ corefoundation.Range) IImage
+	SubImageWithFeatureChannelRange(range_ foundation.Range) IImage
 	Synchronize()
 	SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer)
 	BatchRepresentation()
-	BatchRepresentationWithSubRange(subRange corefoundation.Range) ImageBatch /* not a class type */
+	BatchRepresentationWithSubRange(subRange foundation.Range) ImageBatch /* not a class type */
 	ResourceSize()
-	ReadBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint)
-	ReadBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint)
+	ReadBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint)
+	ReadBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint)
 	ReadBytesDataLayoutImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, imageIndex uint)
 	SetPurgeableState(state PurgeableState) PurgeableState
-	WriteBytesDataLayoutBytesPerColumnBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerColumn uint, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint)
-	WriteBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint)
-	WriteBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint)
+	WriteBytesDataLayoutBytesPerColumnBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerColumn uint, bytesPerRow uint, bytesPerImage uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint)
+	WriteBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint)
+	WriteBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint)
 	WriteBytesDataLayoutImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, imageIndex uint)
 
 
@@ -173,7 +172,7 @@ func NewImageWithDeviceImageDescriptor(device unsafe.Pointer, imageDescriptor II
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/2942493-initwithparentimage
-func NewImageWithParentImageSliceRangeFeatureChannels(parent IImage, sliceRange corefoundation.Range, featureChannels uint) Image {
+func NewImageWithParentImageSliceRangeFeatureChannels(parent IImage, sliceRange foundation.Range, featureChannels uint) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithParentImage:sliceRange:featureChannels:"), parent, sliceRange, featureChannels)
 	rv.Autorelease()
@@ -238,7 +237,7 @@ func (i_ Image) SubImage() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/2942488-subimagewithfeaturechannelrange
-func (i_ Image) SubImageWithFeatureChannelRange(range_ corefoundation.Range) IImage {
+func (i_ Image) SubImageWithFeatureChannelRange(range_ foundation.Range) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("subImageWithFeatureChannelRange:"), range_)
 	return rv
 }
@@ -267,7 +266,7 @@ func (i_ Image) BatchRepresentation() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/2942492-batchrepresentationwithsubrange
-func (i_ Image) BatchRepresentationWithSubRange(subRange corefoundation.Range) ImageBatch /* not a class type */ {
+func (i_ Image) BatchRepresentationWithSubRange(subRange foundation.Range) ImageBatch /* not a class type */ {
 	rv := objc.Send[ImageBatch](i_.ID, objc.Sel("batchRepresentationWithSubRange:"), subRange)
 	return rv
 }
@@ -282,14 +281,14 @@ func (i_ Image) ResourceSize() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/readBytes(_:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)
-func (i_ Image) ReadBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint) {
+func (i_ Image) ReadBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("readBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:"), dataBytes, dataLayout, bytesPerRow, bytesPerImage, region, featureChannelInfo, imageIndex)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/readBytes(_:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:)
-func (i_ Image) ReadBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint) {
+func (i_ Image) ReadBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("readBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:"), dataBytes, dataLayout, bytesPerRow, region, featureChannelInfo, imageIndex)
 }
 
@@ -313,21 +312,21 @@ func (i_ Image) SetPurgeableState(state PurgeableState) PurgeableState {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/writeBytes(_:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)
-func (i_ Image) WriteBytesDataLayoutBytesPerColumnBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerColumn uint, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint) {
+func (i_ Image) WriteBytesDataLayoutBytesPerColumnBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerColumn uint, bytesPerRow uint, bytesPerImage uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("writeBytes:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:"), dataBytes, dataLayout, bytesPerColumn, bytesPerRow, bytesPerImage, region, featureChannelInfo, imageIndex)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/writeBytes(_:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)
-func (i_ Image) WriteBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint) {
+func (i_ Image) WriteBytesDataLayoutBytesPerRowBytesPerImageRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, bytesPerImage uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("writeBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:"), dataBytes, dataLayout, bytesPerRow, bytesPerImage, region, featureChannelInfo, imageIndex)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImage/writeBytes(_:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:)
-func (i_ Image) WriteBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region objc.IObject /* cross-framework: MTLRegion */, featureChannelInfo objc.IObject /* cross-framework: MPSImageReadWriteParams */, imageIndex uint) {
+func (i_ Image) WriteBytesDataLayoutBytesPerRowRegionFeatureChannelInfoImageIndex(dataBytes objectivec.IObject, dataLayout DataLayout, bytesPerRow uint, region metal.IMTLRegion, featureChannelInfo ImageReadWriteParams, imageIndex uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("writeBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:"), dataBytes, dataLayout, bytesPerRow, region, featureChannelInfo, imageIndex)
 }
 

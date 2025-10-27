@@ -17,7 +17,7 @@ type CFHostClientContext struct {
 	Release AllocatorReleaseCallBack // The callback used to remove a retain previously added for the host on the info pointer.
 	Retain AllocatorRetainCallBack // The callback used to add a retain for the host on the info pointer for the life of the host, and may be used for temporary references the host needs to take. This callback returns the actual info pointer to store in the host, almost always just the pointer passed as the parameter.
 	Version Index // The version number of the structure type passed as a parameter to the host client function. The only valid version number is  .
-}/* debug [types.gen.go/struct]: CFHostClientContext */
+}
 
 // CFNetServiceClientContext - A structure provided when a CFNetService is associated with a callback function or when a CFNetServiceBrowser is created.
 //
@@ -29,7 +29,7 @@ type CFNetServiceClientContext struct {
 	Release AllocatorReleaseCallBack // Callback that removes a retain previously added for the service or browser on the   pointer. This field can be  , but setting this field to   may result in memory leaks.
 	Retain AllocatorRetainCallBack // The callback used to add a retain for the service or browser using   for the life of the service or browser. This callback may be used for temporary references the service or browser needs to take. This callback returns the actual   pointer so it can be stored in the service or browser. This field can be  .
 	Version Index // Version number for this structure. Currently the only valid value is zero.
-}/* debug [types.gen.go/struct]: CFNetServiceClientContext */
+}
 
 
 

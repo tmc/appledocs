@@ -5,8 +5,6 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
-
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -25,17 +23,17 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTL4CommandBuffer
 type PMTL4CommandBuffer interface {
 	// Required methods
-	BeginCommandBufferWithAllocator(allocator unsafe.Pointer)/* debug [protocol_interface/required_method]: BeginCommandBufferWithAllocator */
-	BeginCommandBufferWithAllocatorOptions(allocator unsafe.Pointer, options IMTL4CommandBufferOptions)/* debug [protocol_interface/required_method]: BeginCommandBufferWithAllocatorOptions */
-	EndCommandBuffer()/* debug [protocol_interface/required_method]: EndCommandBuffer */
-	ComputeCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: ComputeCommandEncoder */
-	MachineLearningCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: MachineLearningCommandEncoder */
-	RenderCommandEncoderWithDescriptorOptions(descriptor IMTL4RenderPassDescriptor, options MTL4RenderEncoderOptions) unsafe.Pointer/* debug [protocol_interface/required_method]: RenderCommandEncoderWithDescriptorOptions */
-	PopDebugGroup()/* debug [protocol_interface/required_method]: PopDebugGroup */
-	PushDebugGroup(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: PushDebugGroup */
-	RenderCommandEncoderWithDescriptor(descriptor IMTL4RenderPassDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: RenderCommandEncoderWithDescriptor */
-	ResolveCounterHeapWithRangeIntoBufferWaitFenceUpdateFence(counterHeap unsafe.Pointer, range_ corefoundation.Range, bufferRange objc.IObject /* cross-framework: MTL4BufferRange */, fenceToWait unsafe.Pointer, fenceToUpdate unsafe.Pointer)/* debug [protocol_interface/required_method]: ResolveCounterHeapWithRangeIntoBufferWaitFenceUpdateFence */
-	UseResidencySet(residencySet unsafe.Pointer)/* debug [protocol_interface/required_method]: UseResidencySet */
-	UseResidencySetsCount(residencySets []objc.ID, count uint)/* debug [protocol_interface/required_method]: UseResidencySetsCount */
-	WriteTimestampIntoHeapAtIndex(counterHeap unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: WriteTimestampIntoHeapAtIndex */
+	BeginCommandBufferWithAllocator(allocator unsafe.Pointer)
+	BeginCommandBufferWithAllocatorOptions(allocator unsafe.Pointer, options IMTL4CommandBufferOptions)
+	EndCommandBuffer()
+	ComputeCommandEncoder() unsafe.Pointer
+	MachineLearningCommandEncoder() unsafe.Pointer
+	RenderCommandEncoderWithDescriptorOptions(descriptor IMTL4RenderPassDescriptor, options MTL4RenderEncoderOptions) unsafe.Pointer
+	PopDebugGroup()
+	PushDebugGroup(string_ foundation.foundation.INSString)
+	RenderCommandEncoderWithDescriptor(descriptor IMTL4RenderPassDescriptor) unsafe.Pointer
+	ResolveCounterHeapWithRangeIntoBufferWaitFenceUpdateFence(counterHeap unsafe.Pointer, range_ foundation.Range, bufferRange MTL4BufferRange, fenceToWait unsafe.Pointer, fenceToUpdate unsafe.Pointer)
+	UseResidencySet(residencySet unsafe.Pointer)
+	UseResidencySetsCount(residencySets []objc.ID, count uint)
+	WriteTimestampIntoHeapAtIndex(counterHeap unsafe.Pointer, index uint)
 }

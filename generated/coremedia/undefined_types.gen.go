@@ -9,7 +9,31 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	CMBlockBuffer  = _undefined // referenced in CoreMedia
-	CMClock        = _undefined // referenced in CoreMedia
-	CMSampleBuffer = _undefined // referenced in CoreMedia
+	AllocatorRef = _undefined // referenced in CoreMedia
+	ArrayRef = _undefined // referenced in CoreMedia
+	BufferQueueTriggerHandler = _undefined // referenced in CoreMedia
+	BufferValidationHandler = _undefined // referenced in CoreMedia
+	ComparisonResult = _undefined // referenced in CoreMedia
+	DataRef = _undefined // referenced in CoreMedia
+	DictionaryRef = _undefined // referenced in CoreMedia
+	HashCode = _undefined // referenced in CoreMedia
+	ImageBufferRef = _undefined // referenced in CoreMedia
+	Index = _undefined // referenced in CoreMedia
+	MutableTagCollectionRef = _undefined // referenced in CoreMedia
+	PixelBufferRef = _undefined // referenced in CoreMedia
+	PropertyListRef = _undefined // referenced in CoreMedia
+	RunLoopRef = _undefined // referenced in CoreMedia
+	RunLoopTimerRef = _undefined // referenced in CoreMedia
+	SampleBufferInvalidateHandler = _undefined // referenced in CoreMedia
+	SampleBufferMakeDataReadyHandler = _undefined // referenced in CoreMedia
+	StringEncoding = _undefined // referenced in CoreMedia
+	StringRef = _undefined // referenced in CoreMedia
+	TagCollectionApplierFunction = _undefined // referenced in CoreMedia
+	TagCollectionRef = _undefined // referenced in CoreMedia
+	TagCollectionTagFilterFunction = _undefined // referenced in CoreMedia
+	TaggedBufferGroupRef = _undefined // referenced in CoreMedia
+	TypeID = _undefined // referenced in CoreMedia
+	TypeRef = _undefined // referenced in CoreMedia
 )
+
+

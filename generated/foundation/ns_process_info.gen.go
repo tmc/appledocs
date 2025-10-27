@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSProcessInfo */
 
 
-/* debug [class_header]: Header for NSProcessInfo */
+
+
 // The class instance for the [ProcessInfo] class.
 var (
 	ProcessInfoClass     _ProcessInfoClass
@@ -30,16 +30,16 @@ func getProcessInfoClass() _ProcessInfoClass {
 type _ProcessInfoClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ProcessInfo */
+
+
 // An interface definition for the [ProcessInfo] class.
 type IProcessInfo interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ProcessInfo */
+
 	// properties:
 	ActiveProcessorCount() uint
 	Arguments() []string
@@ -53,7 +53,7 @@ type IProcessInfo interface {
 	MacCatalystApp() bool
 	IOSAppOnMac() bool
 	IOSAppOnVision() bool
-	OperatingSystemVersion() objc.IObject /* cross-framework: OperatingSystemVersion */
+	OperatingSystemVersion() OperatingSystemVersion
 	OperatingSystemVersionString() IString
 	PhysicalMemory() uint64
 	ProcessIdentifier() int
@@ -71,10 +71,10 @@ type IProcessInfo interface {
 	SetIsiOSAppOnMac(value bool)
 	IsiOSAppOnVision() bool
 	SetIsiOSAppOnVision(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ProcessInfo */
+
 	// methods:
 	BeginActivityWithOptionsReason(options ActivityOptions, reason IString) unsafe.Pointer
 	DisableAutomaticTermination(reason IString)
@@ -84,16 +84,16 @@ type IProcessInfo interface {
 	EndActivity(activity unsafe.Pointer)
 	HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool
 	IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool
-	IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework: OperatingSystemVersion */) bool
+	IsOperatingSystemAtLeastVersion(version OperatingSystemVersion) bool
 	PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason IString, block unsafe.Pointer)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ProcessInfo */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _ProcessInfoClass) Alloc() ProcessInfo {
 	rv := objc.Send[ProcessInfo](objc.ID(pc.class), objc.Sel("alloc"))
@@ -123,11 +123,11 @@ func (p_ ProcessInfo) Autorelease() ProcessInfo {
 func NewProcessInfo() ProcessInfo {
 	return getProcessInfoClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ProcessInfo */
+
+
 // A collection of information about the current process.
 //
 // Each process has a single, shared object known as a that can return information such as arguments, environment variables, host name, and process name. The class method returns the shared agent for the current process. For example, the following line returns the object, which then provides the name of the current process: The class also includes the property, which returns an structure identifying the operating system version on which the process is executing. objects attempt to interpret environment variables and command-line arguments in the user’s default C string encoding if they can’t convert to Unicode as UTF-8 strings. If neither the Unicode nor C string conversion works, the object ignores these values.
@@ -147,20 +147,20 @@ type ProcessInfo struct {
 func ProcessInfoFrom(ptr unsafe.Pointer) ProcessInfo {
 	return ProcessInfo{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ProcessInfo *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ProcessInfo */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ProcessInfo */
+
+
+
+
+
 
 // Returns the process information agent for the process.
 //
@@ -169,12 +169,12 @@ func ProcessInfoFrom(ptr unsafe.Pointer) ProcessInfo {
 func (pc _ProcessInfoClass) ProcessInfo() ProcessInfo {
 	rv := objc.Send[ProcessInfo](objc.ID(pc.class), objc.Sel("processInfo"))
 	return rv
-}/* debug [class_properties_class/property]: processInfo */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for ProcessInfo */
+
+
 
 // Begin an activity using the given options and reason.
 //
@@ -183,7 +183,7 @@ func (pc _ProcessInfoClass) ProcessInfo() ProcessInfo {
 func (p_ ProcessInfo) BeginActivityWithOptionsReason(options ActivityOptions, reason IString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("beginActivityWithOptions:reason:"), options, reason)
 	return rv
-}/* debug [instance_methods/method]: BeginActivityWithOptionsReason */
+}
 
 
 // Disables automatic termination for the application.
@@ -192,7 +192,7 @@ func (p_ ProcessInfo) BeginActivityWithOptionsReason(options ActivityOptions, re
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/disableAutomaticTermination(_:)
 func (p_ ProcessInfo) DisableAutomaticTermination(reason IString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("disableAutomaticTermination:"), reason)
-}/* debug [instance_methods/method]: DisableAutomaticTermination */
+}
 
 
 // Disables the application for quickly killing using sudden termination.
@@ -201,7 +201,7 @@ func (p_ ProcessInfo) DisableAutomaticTermination(reason IString) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/disableSuddenTermination()
 func (p_ ProcessInfo) DisableSuddenTermination() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("disableSuddenTermination"))
-}/* debug [instance_methods/method]: DisableSuddenTermination */
+}
 
 
 // Enables automatic termination for the application.
@@ -210,7 +210,7 @@ func (p_ ProcessInfo) DisableSuddenTermination() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/enableAutomaticTermination(_:)
 func (p_ ProcessInfo) EnableAutomaticTermination(reason IString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("enableAutomaticTermination:"), reason)
-}/* debug [instance_methods/method]: EnableAutomaticTermination */
+}
 
 
 // Enables the application for quick killing using sudden termination.
@@ -219,7 +219,7 @@ func (p_ ProcessInfo) EnableAutomaticTermination(reason IString) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/enableSuddenTermination()
 func (p_ ProcessInfo) EnableSuddenTermination() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("enableSuddenTermination"))
-}/* debug [instance_methods/method]: EnableSuddenTermination */
+}
 
 
 // Ends the given activity.
@@ -228,7 +228,7 @@ func (p_ ProcessInfo) EnableSuddenTermination() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/endActivity(_:)
 func (p_ ProcessInfo) EndActivity(activity unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("endActivity:"), activity)
-}/* debug [instance_methods/method]: EndActivity */
+}
 
 
 // Indicates whether an app is running under a known performance profile.
@@ -238,7 +238,7 @@ func (p_ ProcessInfo) EndActivity(activity unsafe.Pointer) {
 func (p_ ProcessInfo) HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasPerformanceProfile:"), performanceProfile)
 	return rv
-}/* debug [instance_methods/method]: HasPerformanceProfile */
+}
 
 
 // Indicates whether the device supports the requested performance tier.
@@ -248,17 +248,17 @@ func (p_ ProcessInfo) HasPerformanceProfile(performanceProfile ProcessPerformanc
 func (p_ ProcessInfo) IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isDeviceCertifiedFor:"), performanceTier)
 	return rv
-}/* debug [instance_methods/method]: IsDeviceCertifiedFor */
+}
 
 
 // Returns a Boolean value indicating whether the version of the operating system on which the process is executing is the same or later than the given version.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isOperatingSystemAtLeast(_:)
-func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework: OperatingSystemVersion */) bool {
+func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version OperatingSystemVersion) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOperatingSystemAtLeastVersion:"), version)
 	return rv
-}/* debug [instance_methods/method]: IsOperatingSystemAtLeastVersion */
+}
 
 
 // Synchronously perform an activity defined by a given block using the given options.
@@ -267,13 +267,13 @@ func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version objc.IObject /* cr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performActivity(options:reason:using:)
 func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason IString, block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performActivityWithOptions:reason:usingBlock:"), options, reason, block)
-}/* debug [instance_methods/method]: PerformActivityWithOptionsReasonUsingBlock */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ProcessInfo */
+
+
+
 
 // The number of active processing cores available on the computer.
 //
@@ -282,7 +282,7 @@ func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options Activit
 func (p_ ProcessInfo) ActiveProcessorCount() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("activeProcessorCount"))
 	return rv
-}/* debug [instance_properties/getter]: activeProcessorCount */
+}
 
 
 // Array of strings with the command-line arguments for the process.
@@ -292,7 +292,7 @@ func (p_ ProcessInfo) ActiveProcessorCount() uint {
 func (p_ ProcessInfo) Arguments() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("arguments"))
 	return rv
-}/* debug [instance_properties/getter]: arguments */
+}
 
 
 // A Boolean value indicating whether the app supports automatic termination.
@@ -302,7 +302,7 @@ func (p_ ProcessInfo) Arguments() []string {
 func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticTerminationSupportEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: automaticTerminationSupportEnabled */
+}
 
 
 // A Boolean value indicating whether the app supports automatic termination.
@@ -311,7 +311,7 @@ func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/automaticTerminationSupportEnabled
 func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticTerminationSupportEnabled:"), value)
-}/* debug [instance_properties/setter]: automaticTerminationSupportEnabled */
+}
 
 
 // The variable names (keys) and their values in the environment from which the process was launched.
@@ -321,7 +321,7 @@ func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
 func (p_ ProcessInfo) Environment() IDictionary {
 	rv := objc.Send[Dictionary](p_.ID, objc.Sel("environment"))
 	return rv
-}/* debug [instance_properties/getter]: environment */
+}
 
 
 // Returns the full name of the current user.
@@ -331,7 +331,7 @@ func (p_ ProcessInfo) Environment() IDictionary {
 func (p_ ProcessInfo) FullUserName() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("fullUserName"))
 	return rv
-}/* debug [instance_properties/getter]: fullUserName */
+}
 
 
 // Global unique identifier for the process.
@@ -341,7 +341,7 @@ func (p_ ProcessInfo) FullUserName() IString {
 func (p_ ProcessInfo) GloballyUniqueString() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("globallyUniqueString"))
 	return rv
-}/* debug [instance_properties/getter]: globallyUniqueString */
+}
 
 
 // The name of the host computer on which the process is executing.
@@ -351,7 +351,7 @@ func (p_ ProcessInfo) GloballyUniqueString() IString {
 func (p_ ProcessInfo) HostName() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("hostName"))
 	return rv
-}/* debug [instance_properties/getter]: hostName */
+}
 
 
 // A Boolean value that indicates the current state of Low Power Mode.
@@ -361,7 +361,7 @@ func (p_ ProcessInfo) HostName() IString {
 func (p_ ProcessInfo) LowPowerModeEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("lowPowerModeEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: lowPowerModeEnabled */
+}
 
 
 // A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
@@ -371,7 +371,7 @@ func (p_ ProcessInfo) LowPowerModeEnabled() bool {
 func (p_ ProcessInfo) MacCatalystApp() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("macCatalystApp"))
 	return rv
-}/* debug [instance_properties/getter]: macCatalystApp */
+}
 
 
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
@@ -381,7 +381,7 @@ func (p_ ProcessInfo) MacCatalystApp() bool {
 func (p_ ProcessInfo) IOSAppOnMac() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnMac"))
 	return rv
-}/* debug [instance_properties/getter]: iOSAppOnMac */
+}
 
 
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on visionOS.
@@ -391,17 +391,17 @@ func (p_ ProcessInfo) IOSAppOnMac() bool {
 func (p_ ProcessInfo) IOSAppOnVision() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnVision"))
 	return rv
-}/* debug [instance_properties/getter]: iOSAppOnVision */
+}
 
 
 // The version of the operating system on which the process is executing.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemVersion
-func (p_ ProcessInfo) OperatingSystemVersion() objc.IObject /* cross-framework: OperatingSystemVersion */ {
+func (p_ ProcessInfo) OperatingSystemVersion() OperatingSystemVersion {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("operatingSystemVersion"))
 	return rv
-}/* debug [instance_properties/getter]: operatingSystemVersion */
+}
 
 
 // A string containing the version of the operating system on which the process is executing.
@@ -411,7 +411,7 @@ func (p_ ProcessInfo) OperatingSystemVersion() objc.IObject /* cross-framework: 
 func (p_ ProcessInfo) OperatingSystemVersionString() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("operatingSystemVersionString"))
 	return rv
-}/* debug [instance_properties/getter]: operatingSystemVersionString */
+}
 
 
 // The amount of physical memory on the computer in bytes.
@@ -421,7 +421,7 @@ func (p_ ProcessInfo) OperatingSystemVersionString() IString {
 func (p_ ProcessInfo) PhysicalMemory() uint64 {
 	rv := objc.Send[uint64](p_.ID, objc.Sel("physicalMemory"))
 	return rv
-}/* debug [instance_properties/getter]: physicalMemory */
+}
 
 
 // The identifier of the process (often called process ID).
@@ -431,7 +431,7 @@ func (p_ ProcessInfo) PhysicalMemory() uint64 {
 func (p_ ProcessInfo) ProcessIdentifier() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("processIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: processIdentifier */
+}
 
 
 // Returns the process information agent for the process.
@@ -441,7 +441,7 @@ func (p_ ProcessInfo) ProcessIdentifier() int {
 func (p_ ProcessInfo) ProcessInfo() IProcessInfo {
 	rv := objc.Send[ProcessInfo](p_.ID, objc.Sel("processInfo"))
 	return rv
-}/* debug [instance_properties/getter]: processInfo */
+}
 
 
 // The name of the process.
@@ -451,7 +451,7 @@ func (p_ ProcessInfo) ProcessInfo() IProcessInfo {
 func (p_ ProcessInfo) ProcessName() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("processName"))
 	return rv
-}/* debug [instance_properties/getter]: processName */
+}
 
 
 // The name of the process.
@@ -460,7 +460,7 @@ func (p_ ProcessInfo) ProcessName() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
 func (p_ ProcessInfo) SetProcessName(value IString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), value)
-}/* debug [instance_properties/setter]: processName */
+}
 
 
 // The number of processing cores available on the computer.
@@ -470,7 +470,7 @@ func (p_ ProcessInfo) SetProcessName(value IString) {
 func (p_ ProcessInfo) ProcessorCount() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("processorCount"))
 	return rv
-}/* debug [instance_properties/getter]: processorCount */
+}
 
 
 // The amount of time the system has been awake since the last time it was restarted.
@@ -480,7 +480,7 @@ func (p_ ProcessInfo) ProcessorCount() uint {
 func (p_ ProcessInfo) SystemUptime() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("systemUptime"))
 	return rv
-}/* debug [instance_properties/getter]: systemUptime */
+}
 
 
 // The current thermal state of the system.
@@ -490,7 +490,7 @@ func (p_ ProcessInfo) SystemUptime() float64 {
 func (p_ ProcessInfo) ThermalState() ProcessInfoThermalState {
 	rv := objc.Send[ProcessInfoThermalState](p_.ID, objc.Sel("thermalState"))
 	return rv
-}/* debug [instance_properties/getter]: thermalState */
+}
 
 
 // Returns the account name of the current user.
@@ -500,7 +500,7 @@ func (p_ ProcessInfo) ThermalState() ProcessInfoThermalState {
 func (p_ ProcessInfo) UserName() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("userName"))
 	return rv
-}/* debug [instance_properties/getter]: userName */
+}
 
 
 // A Boolean value that indicates the current state of Low Power Mode.
@@ -510,7 +510,7 @@ func (p_ ProcessInfo) UserName() IString {
 func (p_ ProcessInfo) IsLowPowerModeEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isLowPowerModeEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: isLowPowerModeEnabled */
+}
 
 
 // A Boolean value that indicates the current state of Low Power Mode.
@@ -519,7 +519,7 @@ func (p_ ProcessInfo) IsLowPowerModeEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/islowpowermodeenabled
 func (p_ ProcessInfo) SetIsLowPowerModeEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsLowPowerModeEnabled:"), value)
-}/* debug [instance_properties/setter]: isLowPowerModeEnabled */
+}
 
 
 // A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
@@ -529,7 +529,7 @@ func (p_ ProcessInfo) SetIsLowPowerModeEnabled(value bool) {
 func (p_ ProcessInfo) IsMacCatalystApp() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isMacCatalystApp"))
 	return rv
-}/* debug [instance_properties/getter]: isMacCatalystApp */
+}
 
 
 // A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
@@ -538,7 +538,7 @@ func (p_ ProcessInfo) IsMacCatalystApp() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
 func (p_ ProcessInfo) SetIsMacCatalystApp(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMacCatalystApp:"), value)
-}/* debug [instance_properties/setter]: isMacCatalystApp */
+}
 
 
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
@@ -548,7 +548,7 @@ func (p_ ProcessInfo) SetIsMacCatalystApp(value bool) {
 func (p_ ProcessInfo) IsiOSAppOnMac() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isiOSAppOnMac"))
 	return rv
-}/* debug [instance_properties/getter]: isiOSAppOnMac */
+}
 
 
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
@@ -557,7 +557,7 @@ func (p_ ProcessInfo) IsiOSAppOnMac() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponmac
 func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnMac:"), value)
-}/* debug [instance_properties/setter]: isiOSAppOnMac */
+}
 
 
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on visionOS.
@@ -567,7 +567,7 @@ func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool) {
 func (p_ ProcessInfo) IsiOSAppOnVision() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isiOSAppOnVision"))
 	return rv
-}/* debug [instance_properties/getter]: isiOSAppOnVision */
+}
 
 
 // A Boolean value that indicates whether the process is an iPhone or iPad app running on visionOS.
@@ -576,11 +576,11 @@ func (p_ ProcessInfo) IsiOSAppOnVision() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
 func (p_ ProcessInfo) SetIsiOSAppOnVision(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnVision:"), value)
-}/* debug [instance_properties/setter]: isiOSAppOnVision */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSProcessInfo */
+
+
+
 
 

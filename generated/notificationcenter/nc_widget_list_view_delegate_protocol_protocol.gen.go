@@ -7,6 +7,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/appkit"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PNCWidgetListViewDelegate is the NCWidgetListViewDelegate protocol interface.
@@ -19,7 +21,7 @@ import (
 // See: doc://com.apple.notificationcenter/documentation/NotificationCenter/NCWidgetListViewDelegate
 type PNCWidgetListViewDelegate interface {
 	// Required methods
-	WidgetListViewControllerForRow(list INCWidgetListViewController, row uint) appkit.ViewController/* debug [protocol_interface/required_method]: WidgetListViewControllerForRow */
+	WidgetListViewControllerForRow(list INCWidgetListViewController, row uint) appkit.ViewController
 	// Optional methods
 	WidgetListDidRemoveRow(list INCWidgetListViewController, row uint)
 	HasWidgetListDidRemoveRow() bool
@@ -163,4 +165,81 @@ func (d *NCWidgetListViewDelegate) WidgetListViewControllerForRow(list INCWidget
 // HasWidgetListViewControllerForRow returns true if a handler for WidgetListViewControllerForRow has been set.
 func (d *NCWidgetListViewDelegate) HasWidgetListViewControllerForRow() bool {
 	return d._WidgetListViewControllerForRow != nil
+}
+
+// NCWidgetListViewDelegateObject wraps an existing Objective-C object that conforms to the PNCWidgetListViewDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type NCWidgetListViewDelegateObject struct {
+	objectivec.Object
+}
+
+// NewNCWidgetListViewDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NCWidgetListViewDelegate protocol.
+func NewNCWidgetListViewDelegateObject(obj objectivec.Object) *NCWidgetListViewDelegateObject {
+	return &NCWidgetListViewDelegateObject{obj}
+}
+
+// Make sure NCWidgetListViewDelegateObject implements PNCWidgetListViewDelegate.
+var _ PNCWidgetListViewDelegate = (*NCWidgetListViewDelegateObject)(nil)
+
+// WidgetListViewControllerForRow implements the PNCWidgetListViewDelegate interface.
+// This required method is always available on objects conforming to WidgetListViewControllerForRow.
+func (o *NCWidgetListViewDelegateObject) WidgetListViewControllerForRow(list INCWidgetListViewController, row uint) appkit.ViewController {
+	return objc.Send[appkit.ViewController](o.ID, objc.Sel("widgetList:viewControllerForRow:"), list, row)
+}
+
+// WidgetListDidRemoveRow implements the PNCWidgetListViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NCWidgetListViewDelegateObject) WidgetListDidRemoveRow(list INCWidgetListViewController, row uint) {
+	objc.Send[objc.ID](o.ID, objc.Sel("widgetList:didRemoveRow:"), list, row)
+}
+
+// HasWidgetListDidRemoveRow returns true; this is a placeholder for optional method checks.
+func (o *NCWidgetListViewDelegateObject) HasWidgetListDidRemoveRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WidgetListDidReorderRowToRow implements the PNCWidgetListViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NCWidgetListViewDelegateObject) WidgetListDidReorderRowToRow(list INCWidgetListViewController, row uint, newIndex uint) {
+	objc.Send[objc.ID](o.ID, objc.Sel("widgetList:didReorderRow:toRow:"), list, row, newIndex)
+}
+
+// HasWidgetListDidReorderRowToRow returns true; this is a placeholder for optional method checks.
+func (o *NCWidgetListViewDelegateObject) HasWidgetListDidReorderRowToRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WidgetListShouldRemoveRow implements the PNCWidgetListViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NCWidgetListViewDelegateObject) WidgetListShouldRemoveRow(list INCWidgetListViewController, row uint) bool {
+	return objc.Send[bool](o.ID, objc.Sel("widgetList:shouldRemoveRow:"), list, row)
+}
+
+// HasWidgetListShouldRemoveRow returns true; this is a placeholder for optional method checks.
+func (o *NCWidgetListViewDelegateObject) HasWidgetListShouldRemoveRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WidgetListShouldReorderRow implements the PNCWidgetListViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NCWidgetListViewDelegateObject) WidgetListShouldReorderRow(list INCWidgetListViewController, row uint) bool {
+	return objc.Send[bool](o.ID, objc.Sel("widgetList:shouldReorderRow:"), list, row)
+}
+
+// HasWidgetListShouldReorderRow returns true; this is a placeholder for optional method checks.
+func (o *NCWidgetListViewDelegateObject) HasWidgetListShouldReorderRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WidgetListPerformAddAction implements the PNCWidgetListViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NCWidgetListViewDelegateObject) WidgetListPerformAddAction(list INCWidgetListViewController) {
+	objc.Send[objc.ID](o.ID, objc.Sel("widgetListPerformAddAction:"), list)
+}
+
+// HasWidgetListPerformAddAction returns true; this is a placeholder for optional method checks.
+func (o *NCWidgetListViewDelegateObject) HasWidgetListPerformAddAction() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

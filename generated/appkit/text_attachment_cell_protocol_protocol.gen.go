@@ -4,7 +4,7 @@ package appkit
 
 import (
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // PTextAttachmentCell is the NSTextAttachmentCell protocol interface.
@@ -17,15 +17,15 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextAttachmentCellProtocol
 type PTextAttachmentCell interface {
 	// Required methods
-	CellBaselineOffset() vision.Point/* debug [protocol_interface/required_method]: CellBaselineOffset */
-	CellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(textContainer ITextContainer, lineFrag Rect /* not a class type */, position vision.Point, charIndex uint) Rect/* debug [protocol_interface/required_method]: CellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex */
-	CellSize() Size/* debug [protocol_interface/required_method]: CellSize */
-	DrawWithFrameInView(cellFrame Rect /* not a class type */, controlView IView)/* debug [protocol_interface/required_method]: DrawWithFrameInView */
-	DrawWithFrameInViewCharacterIndex(cellFrame Rect /* not a class type */, controlView IView, charIndex uint)/* debug [protocol_interface/required_method]: DrawWithFrameInViewCharacterIndex */
-	DrawWithFrameInViewCharacterIndexLayoutManager(cellFrame Rect /* not a class type */, controlView IView, charIndex uint, layoutManager ILayoutManager)/* debug [protocol_interface/required_method]: DrawWithFrameInViewCharacterIndexLayoutManager */
-	HighlightWithFrameInView(flag bool, cellFrame Rect /* not a class type */, controlView IView)/* debug [protocol_interface/required_method]: HighlightWithFrameInView */
-	TrackMouseInRectOfViewAtCharacterIndexUntilMouseUp(theEvent IEvent, cellFrame Rect /* not a class type */, controlView IView, charIndex uint, flag bool) bool/* debug [protocol_interface/required_method]: TrackMouseInRectOfViewAtCharacterIndexUntilMouseUp */
-	TrackMouseInRectOfViewUntilMouseUp(theEvent IEvent, cellFrame Rect /* not a class type */, controlView IView, flag bool) bool/* debug [protocol_interface/required_method]: TrackMouseInRectOfViewUntilMouseUp */
-	WantsToTrackMouse() bool/* debug [protocol_interface/required_method]: WantsToTrackMouse */
-	WantsToTrackMouseForEventInRectOfViewAtCharacterIndex(theEvent IEvent, cellFrame Rect /* not a class type */, controlView IView, charIndex uint) bool/* debug [protocol_interface/required_method]: WantsToTrackMouseForEventInRectOfViewAtCharacterIndex */
+	CellBaselineOffset() corefoundation.CGPoint
+	CellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(textContainer ITextContainer, lineFrag corefoundation.CGRect, position corefoundation.CGPoint, charIndex uint) corefoundation.CGRect
+	CellSize() corefoundation.CGSize
+	DrawWithFrameInView(cellFrame corefoundation.CGRect, controlView IView)
+	DrawWithFrameInViewCharacterIndex(cellFrame corefoundation.CGRect, controlView IView, charIndex uint)
+	DrawWithFrameInViewCharacterIndexLayoutManager(cellFrame corefoundation.CGRect, controlView IView, charIndex uint, layoutManager ILayoutManager)
+	HighlightWithFrameInView(flag bool, cellFrame corefoundation.CGRect, controlView IView)
+	TrackMouseInRectOfViewAtCharacterIndexUntilMouseUp(theEvent IEvent, cellFrame corefoundation.CGRect, controlView IView, charIndex uint, flag bool) bool
+	TrackMouseInRectOfViewUntilMouseUp(theEvent IEvent, cellFrame corefoundation.CGRect, controlView IView, flag bool) bool
+	WantsToTrackMouse() bool
+	WantsToTrackMouseForEventInRectOfViewAtCharacterIndex(theEvent IEvent, cellFrame corefoundation.CGRect, controlView IView, charIndex uint) bool
 }

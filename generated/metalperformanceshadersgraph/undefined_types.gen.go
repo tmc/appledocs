@@ -9,6 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
+	DataType = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCallableMap = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCompilationCompletionHandler = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCompletionHandler = _undefined // referenced in MetalPerformanceShadersGraph

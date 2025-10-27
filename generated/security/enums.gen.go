@@ -2,9 +2,9 @@
 
 package security
 
-/* debug [enums.gen.go]: Generating 48 enums for Security */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum __CE_DataType (21 cases) */
+
 // __CE_DataType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CE_DataType-c.enum
@@ -76,7 +76,7 @@ const (
 	DT_SubjectKeyID __CE_DataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum __CE_GeneralNameType (9 cases) */
+
 // __CE_GeneralNameType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CE_GeneralNameType-c.enum
@@ -112,7 +112,7 @@ const (
 	GNT_X400Address __CE_GeneralNameType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AuthorizationFlags (8 cases) */
+
 // AuthorizationFlags - The flags used to specify authorization options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationFlags
@@ -152,7 +152,7 @@ const (
 	kAuthorizationFlagSkipInternalAuth AuthorizationFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CMSCertificateChainMode (5 cases) */
+
 // CMSCertificateChainMode - Constants that can be set to specify what certificates to include in a signed message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSCertificateChainMode
@@ -180,7 +180,7 @@ const (
 	kCMSCertificateSignerOnly CMSCertificateChainMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CMSSignedAttributes (8 cases) */
+
 // CMSSignedAttributes - Optional attributes you can add to a signed message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSSignedAttributes
@@ -221,7 +221,7 @@ const (
 	kCMSAttrNone CMSSignedAttributes = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CMSSignerStatus (6 cases) */
+
 // CMSSignerStatus - The constants that indicate the status of the signature and signer information in a signed message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSSignerStatus
@@ -254,7 +254,7 @@ const (
 	kCMSSignerValid CMSSignerStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum cssm_appledl_open_parameters_mask (1 cases) */
+
 // cssm_appledl_open_parameters_mask enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssm_appledl_open_parameters_mask
@@ -266,7 +266,7 @@ const (
 	kCSSM_APPLEDL_MASK_MODE cssm_appledl_open_parameters_mask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecAccessControlCreateFlags (12 cases) */
+
 // SecAccessControlCreateFlags - Access control constants that dictate how a keychain item may be used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessControlCreateFlags
@@ -322,7 +322,7 @@ const (
 	kSecAccessControlWatch SecAccessControlCreateFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecAuthenticationType (9 cases) */
+
 // SecAuthenticationType - The authentication type to use for an Internet password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAuthenticationType
@@ -367,7 +367,7 @@ const (
 	kSecAuthenticationTypeRPA SecAuthenticationType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecCodeSignatureFlags (10 cases) */
+
 // SecCodeSignatureFlags - Specify option flags that can be embedded in a code signature during signing and that govern the use of the signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeSignatureFlags
@@ -415,7 +415,7 @@ const (
 	kSecCodeSignatureRuntime SecCodeSignatureFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecCodeStatus (5 cases) */
+
 // SecCodeStatus - Operational flags attached by code signing services to running code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeStatus
@@ -444,7 +444,7 @@ const (
 	kSecCodeStatusValid SecCodeStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecCredentialType (3 cases) */
+
 // SecCredentialType - The credential type to be returned by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCredentialType
@@ -465,7 +465,7 @@ const (
 	kSecCredentialTypeWithUI SecCredentialType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecCSDigestAlgorithm (6 cases) */
+
 // SecCSDigestAlgorithm - The list of digest algorithms available for code signatures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCSDigestAlgorithm
@@ -492,7 +492,7 @@ const (
 	kSecCodeSignatureNoHash SecCSDigestAlgorithm = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecCSFlags (10 cases) */
+
 // SecCSFlags - Values that can be used in the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCSFlags
@@ -534,7 +534,7 @@ const (
 	kSecCSStripDisallowedXattrs SecCSFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecExternalFormat (15 cases) */
+
 // SecExternalFormat - The external format of a keychain item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecExternalFormat
@@ -603,7 +603,7 @@ const (
 	kSecFormatX509Cert SecExternalFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecExternalItemType (6 cases) */
+
 // SecExternalItemType - The import item type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecExternalItemType
@@ -636,7 +636,7 @@ const (
 	kSecItemTypeUnknown SecExternalItemType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecItemAttr (28 cases) */
+
 // SecItemAttr - Specifies a keychain item’s attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemAttr
@@ -757,7 +757,7 @@ const (
 	kSecVolumeItemAttr SecItemAttr = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecItemClass (7 cases) */
+
 // SecItemClass - Specifies a keychain item’s class code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemClass
@@ -794,7 +794,7 @@ const (
 	kSecSymmetricKeyItemClass SecItemClass = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecItemImportExportFlags (1 cases) */
+
 // SecItemImportExportFlags - The import and export function flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecItemImportExportFlags
@@ -807,7 +807,7 @@ const (
 	kSecItemPemArmour SecItemImportExportFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeychainEvent (10 cases) */
+
 // SecKeychainEvent - The list of keychain events that can trigger a callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainEvent
@@ -856,7 +856,7 @@ const (
 	kSecUpdateEvent SecKeychainEvent = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeychainEventMask (11 cases) */
+
 // SecKeychainEventMask - Bit masks corresponding to the events that can trigger a keychain callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainEventMask
@@ -909,7 +909,7 @@ const (
 	kSecUpdateEventMask SecKeychainEventMask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeychainPromptSelector (5 cases) */
+
 // SecKeychainPromptSelector - Bits that define when a keychain should require a passphrase.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainPromptSelector
@@ -938,7 +938,7 @@ const (
 	kSecKeychainPromptUnsignedAct SecKeychainPromptSelector = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeyImportExportFlags (3 cases) */
+
 // SecKeyImportExportFlags - The import/export parameter structure flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyImportExportFlags
@@ -959,7 +959,7 @@ const (
 	kSecKeySecurePassphrase SecKeyImportExportFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeyOperationType (5 cases) */
+
 // SecKeyOperationType - The types of operations that you can use a cryptographic key to perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyOperationType
@@ -983,7 +983,7 @@ const (
 	kSecKeyOperationTypeVerify SecKeyOperationType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeySizes (11 cases) */
+
 // SecKeySizes - The supported sizes for keys of various common types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeySizes
@@ -1036,7 +1036,7 @@ const (
 	kSecRSAMin SecKeySizes = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecKeyUsage (13 cases) */
+
 // SecKeyUsage - The flags that indicate key usage in the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyUsage
@@ -1096,7 +1096,7 @@ const (
 	kSecKeyUsageNonRepudiation SecKeyUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecPadding (11 cases) */
+
 // SecPadding - The types of padding to use when you create or verify a digital signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPadding
@@ -1147,7 +1147,7 @@ const (
 	kSecPaddingSigRaw SecPadding = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecPreferencesDomain (4 cases) */
+
 // SecPreferencesDomain - The keychain preference domains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPreferencesDomain
@@ -1172,7 +1172,7 @@ const (
 	kSecPreferencesDomainUser SecPreferencesDomain = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecProtocolType (35 cases) */
+
 // SecProtocolType - The protocol type associated with an Internet password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecProtocolType
@@ -1321,7 +1321,7 @@ const (
 	kSecProtocolTypeTelnetS SecProtocolType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecRequirementType (7 cases) */
+
 // SecRequirementType - An enumeration indicating different types of internal requirements for code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRequirementType
@@ -1358,7 +1358,7 @@ const (
 	kSecRequirementTypeCount SecRequirementType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecTransformMetaAttributeType (11 cases) */
+
 // SecTransformMetaAttributeType - The keys that describe the metadata attributes of transform attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformMetaAttributeType
@@ -1411,7 +1411,7 @@ const (
 	kSecTransformMetaAttributeValue SecTransformMetaAttributeType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecTrustOptionFlags (7 cases) */
+
 // SecTrustOptionFlags - The option flags used to condition a trust evaluation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustOptionFlags
@@ -1448,7 +1448,7 @@ const (
 	kSecTrustOptionUseTrustSettings SecTrustOptionFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecTrustResultType (8 cases) */
+
 // SecTrustResultType - Trust evaluation result codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustResultType
@@ -1489,7 +1489,7 @@ const (
 	kSecTrustResultUnspecified SecTrustResultType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecTrustSettingsDomain (3 cases) */
+
 // SecTrustSettingsDomain - The trust settings domains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsDomain
@@ -1510,7 +1510,7 @@ const (
 	kSecTrustSettingsDomainUser SecTrustSettingsDomain = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecTrustSettingsKeyUsage (7 cases) */
+
 // SecTrustSettingsKeyUsage - Allowed uses for the encryption key in a certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsKeyUsage
@@ -1547,7 +1547,7 @@ const (
 	kSecTrustSettingsKeyUseSignRevocation SecTrustSettingsKeyUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SecTrustSettingsResult (5 cases) */
+
 // SecTrustSettingsResult - Trust settings returned in usage constraints dictionaries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustSettingsResult
@@ -1576,7 +1576,7 @@ const (
 	kSecTrustSettingsResultUnspecified SecTrustSettingsResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SessionAttributeBits (4 cases) */
+
 // SessionAttributeBits - The attributes of a security session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SessionAttributeBits
@@ -1601,7 +1601,7 @@ const (
 	sessionIsRoot SessionAttributeBits = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SessionCreationFlags (1 cases) */
+
 // SessionCreationFlags - The flags that affect the creation of a security session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SessionCreationFlags
@@ -1614,7 +1614,7 @@ const (
 	sessionKeepCurrentBootstrap SessionCreationFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLAuthenticate (3 cases) */
+
 // SSLAuthenticate - The flags that represent the requirements for client-side authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLAuthenticate
@@ -1635,7 +1635,7 @@ const (
 	kTryAuthenticate SSLAuthenticate = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLCiphersuiteGroup (5 cases) */
+
 // SSLCiphersuiteGroup - A mechanism for grouping related cipher suites.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLCiphersuiteGroup
@@ -1659,7 +1659,7 @@ const (
 	kSSLCiphersuiteGroupLegacy SSLCiphersuiteGroup = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLClientCertificateState (4 cases) */
+
 // SSLClientCertificateState - An enumeration of the states of client certificate exchange.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLClientCertificateState
@@ -1684,7 +1684,7 @@ const (
 	kSSLClientCertSent SSLClientCertificateState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLConnectionType (2 cases) */
+
 // SSLConnectionType - The flags that indicate whether a context is to be used for streaming or datagram-based communication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLConnectionType
@@ -1701,7 +1701,7 @@ const (
 	kSSLStreamType SSLConnectionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLProtocol (13 cases) */
+
 // SSLProtocol - An enumeration of valid SSL protocol versions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLProtocol
@@ -1762,7 +1762,7 @@ const (
 	kTLSProtocolMaxSupported SSLProtocol = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLProtocolSide (2 cases) */
+
 // SSLProtocolSide - The flags that indicate whether a context is for the server or client side of a connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLProtocolSide
@@ -1779,7 +1779,7 @@ const (
 	kSSLServerSide SSLProtocolSide = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLSessionOption (10 cases) */
+
 // SSLSessionOption - The options that can be set for an SSL session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSessionOption
@@ -1828,7 +1828,7 @@ const (
 	kSSLSessionOptionSendOneByteRecord SSLSessionOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SSLSessionState (5 cases) */
+
 // SSLSessionState - The flags that represent the state of an SSL session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSessionState
@@ -1857,7 +1857,7 @@ const (
 	kSSLIdle SSLSessionState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum tls_ciphersuite_group_t (5 cases) */
+
 // tls_ciphersuite_group_t - Groups that collect ciphersuites of comparable security properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/tls_ciphersuite_group_t
@@ -1881,7 +1881,7 @@ const (
 	tls_ciphersuite_group_legacy tls_ciphersuite_group_t = 0
 )
 
-/* debug [enums.gen.go]: Processing enum tls_ciphersuite_t (26 cases) */
+
 // tls_ciphersuite_t - The collection of valid ciphersuites.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/tls_ciphersuite_t

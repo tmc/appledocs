@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AUAudioUnitViewConfiguration */
 
 
-/* debug [class_header]: Header for AUAudioUnitViewConfiguration */
+
+
 // The class instance for the [AudioUnitViewConfiguration] class.
 var (
 	AudioUnitViewConfigurationClass     _AudioUnitViewConfigurationClass
@@ -30,33 +30,33 @@ func getAudioUnitViewConfigurationClass() _AudioUnitViewConfigurationClass {
 type _AudioUnitViewConfigurationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioUnitViewConfiguration */
+
+
 // An interface definition for the [AudioUnitViewConfiguration] class.
 type IAudioUnitViewConfiguration interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioUnitViewConfiguration */
+
 	// properties:
 	Height() float64
 	HostHasController() bool
 	Width() float64
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioUnitViewConfiguration */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioUnitViewConfiguration */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioUnitViewConfigurationClass) Alloc() AudioUnitViewConfiguration {
 	rv := objc.Send[AudioUnitViewConfiguration](objc.ID(ac.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (a_ AudioUnitViewConfiguration) Autorelease() AudioUnitViewConfiguration {
 func NewAudioUnitViewConfiguration() AudioUnitViewConfiguration {
 	return getAudioUnitViewConfigurationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioUnitViewConfiguration */
+
+
 // A configuration object that describes how to present the audio unit’s user interface.
 
 
@@ -108,11 +108,11 @@ type AudioUnitViewConfiguration struct {
 func AudioUnitViewConfigurationFrom(ptr unsafe.Pointer) AudioUnitViewConfiguration {
 	return AudioUnitViewConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioUnitViewConfiguration */
+
+
 
 // Creates a new configuration object.
 //
@@ -123,28 +123,28 @@ func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64
 	rv := objc.Send[AudioUnitViewConfiguration](instance.ID, objc.Sel("initWithWidth:height:hostHasController:"), width, height, hostHasController)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioUnitViewConfigurationWithWidthHeightHostHasController */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AudioUnitViewConfiguration */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioUnitViewConfiguration */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioUnitViewConfiguration */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioUnitViewConfiguration */
+
+
+
+
+
+
+
+
+
 
 // The configured height.
 //
@@ -153,7 +153,7 @@ func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64
 func (a_ AudioUnitViewConfiguration) Height() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("height"))
 	return rv
-}/* debug [instance_properties/getter]: height */
+}
 
 
 // A Boolean value that indicates whether the host shows its own control surface in this view configuration.
@@ -163,7 +163,7 @@ func (a_ AudioUnitViewConfiguration) Height() float64 {
 func (a_ AudioUnitViewConfiguration) HostHasController() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hostHasController"))
 	return rv
-}/* debug [instance_properties/getter]: hostHasController */
+}
 
 
 // The configured width.
@@ -173,11 +173,11 @@ func (a_ AudioUnitViewConfiguration) HostHasController() bool {
 func (a_ AudioUnitViewConfiguration) Width() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("width"))
 	return rv
-}/* debug [instance_properties/getter]: width */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AUAudioUnitViewConfiguration */
+
+
+
 
 

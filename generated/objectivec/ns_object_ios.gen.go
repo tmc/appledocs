@@ -168,16 +168,6 @@ func (o_ Object) SetAccessibilityActivationPointBlock(value IObject) {
 }
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHint
-func (o_ Object) AccessibilityAttributedHint() IObject {
-	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedHint"))
-	return rv
-}
-func (o_ Object) SetAccessibilityAttributedHint(value IObject) {
-	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedHint:"), value)
-}
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHintBlock
 func (o_ Object) AccessibilityAttributedHintBlock() IObject {
 	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedHintBlock"))
@@ -185,16 +175,6 @@ func (o_ Object) AccessibilityAttributedHintBlock() IObject {
 }
 func (o_ Object) SetAccessibilityAttributedHintBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedHintBlock:"), value)
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabel
-func (o_ Object) AccessibilityAttributedLabel() IObject {
-	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedLabel"))
-	return rv
-}
-func (o_ Object) SetAccessibilityAttributedLabel(value IObject) {
-	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedLabel:"), value)
 }
 
 // [Full Topic]
@@ -225,16 +205,6 @@ func (o_ Object) AccessibilityAttributedUserInputLabelsBlock() IObject {
 }
 func (o_ Object) SetAccessibilityAttributedUserInputLabelsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedUserInputLabelsBlock:"), value)
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValue
-func (o_ Object) AccessibilityAttributedValue() IObject {
-	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedValue"))
-	return rv
-}
-func (o_ Object) SetAccessibilityAttributedValue(value IObject) {
-	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedValue:"), value)
 }
 
 // [Full Topic]

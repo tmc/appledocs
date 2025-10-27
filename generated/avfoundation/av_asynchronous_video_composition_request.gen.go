@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAsynchronousVideoCompositionRequest */
 
 
-/* debug [class_header]: Header for AVAsynchronousVideoCompositionRequest */
+
+
 // The class instance for the [AsynchronousVideoCompositionRequest] class.
 var (
 	AsynchronousVideoCompositionRequestClass     _AsynchronousVideoCompositionRequestClass
@@ -30,41 +30,41 @@ func getAsynchronousVideoCompositionRequestClass() _AsynchronousVideoComposition
 type _AsynchronousVideoCompositionRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AsynchronousVideoCompositionRequest */
+
+
 // An interface definition for the [AsynchronousVideoCompositionRequest] class.
 type IAsynchronousVideoCompositionRequest interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AsynchronousVideoCompositionRequest */
+
 	// properties:
-	CompositionTime() objc.IObject /* cross-framework: Time */
+	CompositionTime() objectivec.IObject
 	RenderContext() IAVVideoCompositionRenderContext
 	SourceSampleDataTrackIDs() []foundation.Number
 	SourceTrackIDs() []foundation.Number
 	VideoCompositionInstruction() unsafe.Pointer
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AsynchronousVideoCompositionRequest */
+
 	// methods:
 	AttachSpatialVideoConfigurationToPixelBuffer(spatialVideoConfiguration IAVSpatialVideoConfiguration, pixelBuffer PixelBufferRef /* not a class type */)
-	FinishWithError(error_ Error)
+	FinishWithError(error_ foundation.foundation.INSError)
 	FinishWithComposedTaggedBufferGroup(taggedBufferGroup TaggedBufferGroupRef /* not a class type */)
 	FinishCancelledRequest()
 	SourceTaggedBufferGroupByTrackID(trackID PersistentTrackID /* not a class type */) TaggedBufferGroupRef /* not a class type */
 	SourceTimedMetadataByTrackID(trackID PersistentTrackID /* not a class type */) ITimedMetadataGroup
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AsynchronousVideoCompositionRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AsynchronousVideoCompositionRequestClass) Alloc() AsynchronousVideoCompositionRequest {
 	rv := objc.Send[AsynchronousVideoCompositionRequest](objc.ID(ac.class), objc.Sel("alloc"))
@@ -94,11 +94,11 @@ func (a_ AsynchronousVideoCompositionRequest) Autorelease() AsynchronousVideoCom
 func NewAsynchronousVideoCompositionRequest() AsynchronousVideoCompositionRequest {
 	return getAsynchronousVideoCompositionRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AsynchronousVideoCompositionRequest */
+
+
 // An object that contains information a video compositor needs to render an output pixel buffer.
 //
 // The video compositor must adopt the protocol.
@@ -118,25 +118,25 @@ type AsynchronousVideoCompositionRequest struct {
 func AsynchronousVideoCompositionRequestFrom(ptr unsafe.Pointer) AsynchronousVideoCompositionRequest {
 	return AsynchronousVideoCompositionRequest{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AsynchronousVideoCompositionRequest *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AsynchronousVideoCompositionRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AsynchronousVideoCompositionRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AsynchronousVideoCompositionRequest */
+
+
+
+
+
+
+
 
 // Associates the pixel buffer with the specified spatial configuration.
 //
@@ -144,16 +144,16 @@ func AsynchronousVideoCompositionRequestFrom(ptr unsafe.Pointer) AsynchronousVid
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsynchronousVideoCompositionRequest/attachSpatialVideoConfiguration:toPixelBuffer:
 func (a_ AsynchronousVideoCompositionRequest) AttachSpatialVideoConfigurationToPixelBuffer(spatialVideoConfiguration IAVSpatialVideoConfiguration, pixelBuffer PixelBufferRef /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("attachSpatialVideoConfiguration:toPixelBuffer:"), spatialVideoConfiguration, pixelBuffer)
-}/* debug [instance_methods/method]: AttachSpatialVideoConfigurationToPixelBuffer */
+}
 
 
 // Finishes the request with an error.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsynchronousVideoCompositionRequest/finish(with:)
-func (a_ AsynchronousVideoCompositionRequest) FinishWithError(error_ Error) {
+func (a_ AsynchronousVideoCompositionRequest) FinishWithError(error_ foundation.foundation.INSError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("finishWithError:"), error_)
-}/* debug [instance_methods/method]: FinishWithError */
+}
 
 
 // The method that the custom compositor calls when composition succeeds.
@@ -162,7 +162,7 @@ func (a_ AsynchronousVideoCompositionRequest) FinishWithError(error_ Error) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsynchronousVideoCompositionRequest/finishWithComposedTaggedBufferGroup:
 func (a_ AsynchronousVideoCompositionRequest) FinishWithComposedTaggedBufferGroup(taggedBufferGroup TaggedBufferGroupRef /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("finishWithComposedTaggedBufferGroup:"), taggedBufferGroup)
-}/* debug [instance_methods/method]: FinishWithComposedTaggedBufferGroup */
+}
 
 
 // Cancels the request to compose a video frame.
@@ -171,7 +171,7 @@ func (a_ AsynchronousVideoCompositionRequest) FinishWithComposedTaggedBufferGrou
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsynchronousVideoCompositionRequest/finishCancelledRequest()
 func (a_ AsynchronousVideoCompositionRequest) FinishCancelledRequest() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("finishCancelledRequest"))
-}/* debug [instance_methods/method]: FinishCancelledRequest */
+}
 
 
 // Returns the source CMTaggedBufferGroupRef for the given track ID.
@@ -181,7 +181,7 @@ func (a_ AsynchronousVideoCompositionRequest) FinishCancelledRequest() {
 func (a_ AsynchronousVideoCompositionRequest) SourceTaggedBufferGroupByTrackID(trackID PersistentTrackID /* not a class type */) TaggedBufferGroupRef /* not a class type */ {
 	rv := objc.Send[TaggedBufferGroupRef](a_.ID, objc.Sel("sourceTaggedBufferGroupByTrackID:"), trackID)
 	return rv
-}/* debug [instance_methods/method]: SourceTaggedBufferGroupByTrackID */
+}
 
 
 // Returns a source timed metadata group for the track that contains the specified identifier.
@@ -191,22 +191,22 @@ func (a_ AsynchronousVideoCompositionRequest) SourceTaggedBufferGroupByTrackID(t
 func (a_ AsynchronousVideoCompositionRequest) SourceTimedMetadataByTrackID(trackID PersistentTrackID /* not a class type */) ITimedMetadataGroup {
 	rv := objc.Send[TimedMetadataGroup](a_.ID, objc.Sel("sourceTimedMetadataByTrackID:"), trackID)
 	return rv
-}/* debug [instance_methods/method]: SourceTimedMetadataByTrackID */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for AsynchronousVideoCompositionRequest */
+
+
+
 
 // A time for which to compose the frame.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsynchronousVideoCompositionRequest/compositionTime
-func (a_ AsynchronousVideoCompositionRequest) CompositionTime() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](a_.ID, objc.Sel("compositionTime"))
+func (a_ AsynchronousVideoCompositionRequest) CompositionTime() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("compositionTime"))
 	return rv
-}/* debug [instance_properties/getter]: compositionTime */
+}
 
 
 // The rendering context of the video composition.
@@ -216,7 +216,7 @@ func (a_ AsynchronousVideoCompositionRequest) CompositionTime() objc.IObject /* 
 func (a_ AsynchronousVideoCompositionRequest) RenderContext() IAVVideoCompositionRenderContext {
 	rv := objc.Send[VideoCompositionRenderContext](a_.ID, objc.Sel("renderContext"))
 	return rv
-}/* debug [instance_properties/getter]: renderContext */
+}
 
 
 // The identifiers of tracks that contain source metadata.
@@ -226,7 +226,7 @@ func (a_ AsynchronousVideoCompositionRequest) RenderContext() IAVVideoCompositio
 func (a_ AsynchronousVideoCompositionRequest) SourceSampleDataTrackIDs() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("sourceSampleDataTrackIDs"))
 	return rv
-}/* debug [instance_properties/getter]: sourceSampleDataTrackIDs */
+}
 
 
 // The identifiers of tracks that contain source video.
@@ -236,7 +236,7 @@ func (a_ AsynchronousVideoCompositionRequest) SourceSampleDataTrackIDs() []found
 func (a_ AsynchronousVideoCompositionRequest) SourceTrackIDs() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("sourceTrackIDs"))
 	return rv
-}/* debug [instance_properties/getter]: sourceTrackIDs */
+}
 
 
 // A video composition instruction that indicates how to compose the frame.
@@ -246,12 +246,12 @@ func (a_ AsynchronousVideoCompositionRequest) SourceTrackIDs() []foundation.Numb
 func (a_ AsynchronousVideoCompositionRequest) VideoCompositionInstruction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("videoCompositionInstruction"))
 	return rv
-}/* debug [instance_properties/getter]: videoCompositionInstruction */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAsynchronousVideoCompositionRequest */
+
+
+
 
 
 

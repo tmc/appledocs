@@ -4,8 +4,6 @@ package appkit
 
 import (
 
-	"github.com/tmc/appledocs/generated/corefoundation"
-
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -19,10 +17,10 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText
 type PAccessibilityStaticText interface {
 	// Required methods
-	AccessibilityValue() foundation.String/* debug [protocol_interface/required_method]: AccessibilityValue */
+	AccessibilityValue() foundation.String
 	// Optional methods
-	AccessibilityAttributedStringForRange(range_ corefoundation.Range) foundation.AttributedString
+	AccessibilityAttributedStringForRange(range_ foundation.Range) foundation.AttributedString
 	HasAccessibilityAttributedStringForRange() bool
-	AccessibilityVisibleCharacterRange() corefoundation.Range
+	AccessibilityVisibleCharacterRange() foundation.Range
 	HasAccessibilityVisibleCharacterRange() bool
 }

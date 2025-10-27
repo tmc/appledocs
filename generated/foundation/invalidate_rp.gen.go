@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class invalidateRP */
 
 
-/* debug [class_header]: Header for invalidateRP */
+
+
 // The class instance for the [invalidateRP] class.
 var (
 	InvalidateRPClass     _invalidateRPClass
@@ -30,30 +30,30 @@ func getinvalidateRPClass() _invalidateRPClass {
 type _invalidateRPClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for invalidateRP */
+
+
 // An interface definition for the [invalidateRP] class.
 type IinvalidateRP interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for invalidateRP */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for invalidateRP */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for invalidateRP */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _invalidateRPClass) Alloc() invalidateRP {
 	rv := objc.Send[invalidateRP](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ invalidateRP) Autorelease() invalidateRP {
 func NewinvalidateRP() invalidateRP {
 	return getinvalidateRPClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for invalidateRP */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type invalidateRP struct {
 func invalidateRPFrom(ptr unsafe.Pointer) invalidateRP {
 	return invalidateRP{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for invalidateRP *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for invalidateRP */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for invalidateRP */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for invalidateRP */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for invalidateRP */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class invalidateRP */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

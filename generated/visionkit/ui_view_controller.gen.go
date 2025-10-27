@@ -10,10 +10,6 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-
-
-
-
 // The class instance for the [ViewController] class.
 var (
 	ViewControllerClass     _ViewControllerClass
@@ -31,28 +27,27 @@ type _ViewControllerClass struct {
 	class objc.Class
 }
 
-
-
-
-
 // An interface definition for the [ViewController] class.
 type IViewController interface {
 	objectivec.IObject
-	
-
 	// properties:
-
-
-	
-
 	// methods:
-
-
 }
 
+// A parent class referenced by other VisionKit classes.
 
 
+// A parent class referenced by other VisionKit classes. [Full Topic]
+type ViewController struct {
+	objectivec.Object
+}
 
+// ViewControllerFrom constructs a [ViewController] from an unsafe.Pointer.
+//
+// A parent class referenced by other VisionKit classes.
+func ViewControllerFrom(ptr unsafe.Pointer) ViewController {
+	return ViewController{objectivec.Object{objc.ID(ptr)}}
+}
 
 // Alloc allocates a new instance without initialization.
 func (vc _ViewControllerClass) Alloc() ViewController {
@@ -61,6 +56,7 @@ func (vc _ViewControllerClass) Alloc() ViewController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _ViewControllerClass) New() ViewController {
 	rv := objc.Send[ViewController](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -83,52 +79,6 @@ func (v_ ViewController) Autorelease() ViewController {
 func NewViewController() ViewController {
 	return getViewControllerClass().New()
 }
-
-
-
-
-
-// A parent class referenced by other VisionKit classes.
-
-
-// A parent class referenced by other VisionKit classes. [Full Topic]
-type ViewController struct {
-	objectivec.Object
-}
-
-// ViewControllerFrom constructs a [ViewController] from an unsafe.Pointer.
-//
-// A parent class referenced by other VisionKit classes.
-func ViewControllerFrom(ptr unsafe.Pointer) ViewController {
-	return ViewController{objectivec.Object{objc.ID(ptr)}}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -21,14 +21,14 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder
 type PResourceStateCommandEncoder interface {
 	// Required methods
-	MoveTextureMappingsFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin(sourceTexture unsafe.Pointer, sourceSlice uint, sourceLevel uint, sourceOrigin objc.IObject /* cross-framework: MTLOrigin */, sourceSize objc.IObject /* cross-framework: MTLSize */, destinationTexture unsafe.Pointer, destinationSlice uint, destinationLevel uint, destinationOrigin objc.IObject /* cross-framework: MTLOrigin */)/* debug [protocol_interface/required_method]: MoveTextureMappingsFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin */
-	UpdateFence(fence unsafe.Pointer)/* debug [protocol_interface/required_method]: UpdateFence */
-	WaitForFence(fence unsafe.Pointer)/* debug [protocol_interface/required_method]: WaitForFence */
+	MoveTextureMappingsFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin(sourceTexture unsafe.Pointer, sourceSlice uint, sourceLevel uint, sourceOrigin Origin, sourceSize Size, destinationTexture unsafe.Pointer, destinationSlice uint, destinationLevel uint, destinationOrigin Origin)
+	UpdateFence(fence unsafe.Pointer)
+	WaitForFence(fence unsafe.Pointer)
 	// Optional methods
 	UpdateTextureMappingModeIndirectBufferIndirectBufferOffset(texture unsafe.Pointer, mode SparseTextureMappingMode, indirectBuffer unsafe.Pointer, indirectBufferOffset uint)
 	HasUpdateTextureMappingModeIndirectBufferIndirectBufferOffset() bool
-	UpdateTextureMappingModeRegionMipLevelSlice(texture unsafe.Pointer, mode SparseTextureMappingMode, region objc.IObject /* cross-framework: MTLRegion */, mipLevel uint, slice uint)
+	UpdateTextureMappingModeRegionMipLevelSlice(texture unsafe.Pointer, mode SparseTextureMappingMode, region Region, mipLevel uint, slice uint)
 	HasUpdateTextureMappingModeRegionMipLevelSlice() bool
-	UpdateTextureMappingsModeRegionsMipLevelsSlicesNumRegions(texture unsafe.Pointer, mode SparseTextureMappingMode, regions []objc.IObject /* cross-framework: MTLRegion */, mipLevels []uint, slices []uint, numRegions uint)
+	UpdateTextureMappingsModeRegionsMipLevelsSlicesNumRegions(texture unsafe.Pointer, mode SparseTextureMappingMode, regions []MTLRegion, mipLevels []uint, slices []uint, numRegions uint)
 	HasUpdateTextureMappingsModeRegionsMipLevelsSlicesNumRegions() bool
 }

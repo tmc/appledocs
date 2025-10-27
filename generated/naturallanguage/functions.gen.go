@@ -2,7 +2,7 @@
 
 package naturallanguage
 
-/* debug [functions.gen.go]: Generating 0 functions for NaturalLanguage */
+
 import (
 	"github.com/ebitengine/purego"
 )

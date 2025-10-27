@@ -40,7 +40,7 @@ type IDetectedPoint interface {
 	
 
 	// properties:
-	Confidence() Confidence /* typedef */
+	Confidence() Confidence
 
 
 	
@@ -136,8 +136,8 @@ func DetectedPointFrom(ptr unsafe.Pointer) DetectedPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectedPoint/confidence
-func (d_ DetectedPoint) Confidence() Confidence /* typedef */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("confidence"))
+func (d_ DetectedPoint) Confidence() Confidence {
+	rv := objc.Send[Confidence](d_.ID, objc.Sel("confidence"))
 	return rv
 }
 

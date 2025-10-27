@@ -7,6 +7,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTextViewportLayoutControllerDelegate is the NSTextViewportLayoutControllerDelegate protocol interface.
@@ -19,8 +21,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextViewportLayoutControllerDelegate
 type PTextViewportLayoutControllerDelegate interface {
 	// Required methods
-	TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController ITextViewportLayoutController, textLayoutFragment ITextLayoutFragment)/* debug [protocol_interface/required_method]: TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment */
-	ViewportBoundsForTextViewportLayoutController(textViewportLayoutController ITextViewportLayoutController) corefoundation.CGRect/* debug [protocol_interface/required_method]: ViewportBoundsForTextViewportLayoutController */
+	TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController ITextViewportLayoutController, textLayoutFragment ITextLayoutFragment)
+	ViewportBoundsForTextViewportLayoutController(textViewportLayoutController ITextViewportLayoutController) corefoundation.CGRect
 	// Optional methods
 	TextViewportLayoutControllerDidLayout(textViewportLayoutController ITextViewportLayoutController)
 	HasTextViewportLayoutControllerDidLayout() bool
@@ -114,4 +116,54 @@ func (d *TextViewportLayoutControllerDelegate) ViewportBoundsForTextViewportLayo
 // HasViewportBoundsForTextViewportLayoutController returns true if a handler for ViewportBoundsForTextViewportLayoutController has been set.
 func (d *TextViewportLayoutControllerDelegate) HasViewportBoundsForTextViewportLayoutController() bool {
 	return d._ViewportBoundsForTextViewportLayoutController != nil
+}
+
+// TextViewportLayoutControllerDelegateObject wraps an existing Objective-C object that conforms to the PTextViewportLayoutControllerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type TextViewportLayoutControllerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewTextViewportLayoutControllerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSTextViewportLayoutControllerDelegate protocol.
+func NewTextViewportLayoutControllerDelegateObject(obj objectivec.Object) *TextViewportLayoutControllerDelegateObject {
+	return &TextViewportLayoutControllerDelegateObject{obj}
+}
+
+// Make sure TextViewportLayoutControllerDelegateObject implements PTextViewportLayoutControllerDelegate.
+var _ PTextViewportLayoutControllerDelegate = (*TextViewportLayoutControllerDelegateObject)(nil)
+
+// TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment implements the PTextViewportLayoutControllerDelegate interface.
+// This required method is always available on objects conforming to TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment.
+func (o *TextViewportLayoutControllerDelegateObject) TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController ITextViewportLayoutController, textLayoutFragment ITextLayoutFragment) {
+	objc.Send[objc.ID](o.ID, objc.Sel("textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:"), textViewportLayoutController, textLayoutFragment)
+}
+
+// ViewportBoundsForTextViewportLayoutController implements the PTextViewportLayoutControllerDelegate interface.
+// This required method is always available on objects conforming to ViewportBoundsForTextViewportLayoutController.
+func (o *TextViewportLayoutControllerDelegateObject) ViewportBoundsForTextViewportLayoutController(textViewportLayoutController ITextViewportLayoutController) corefoundation.CGRect {
+	return objc.Send[corefoundation.CGRect](o.ID, objc.Sel("viewportBoundsForTextViewportLayoutController:"), textViewportLayoutController)
+}
+
+// TextViewportLayoutControllerDidLayout implements the PTextViewportLayoutControllerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TextViewportLayoutControllerDelegateObject) TextViewportLayoutControllerDidLayout(textViewportLayoutController ITextViewportLayoutController) {
+	objc.Send[objc.ID](o.ID, objc.Sel("textViewportLayoutControllerDidLayout:"), textViewportLayoutController)
+}
+
+// HasTextViewportLayoutControllerDidLayout returns true; this is a placeholder for optional method checks.
+func (o *TextViewportLayoutControllerDelegateObject) HasTextViewportLayoutControllerDidLayout() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TextViewportLayoutControllerWillLayout implements the PTextViewportLayoutControllerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TextViewportLayoutControllerDelegateObject) TextViewportLayoutControllerWillLayout(textViewportLayoutController ITextViewportLayoutController) {
+	objc.Send[objc.ID](o.ID, objc.Sel("textViewportLayoutControllerWillLayout:"), textViewportLayoutController)
+}
+
+// HasTextViewportLayoutControllerWillLayout returns true; this is a placeholder for optional method checks.
+func (o *TextViewportLayoutControllerDelegateObject) HasTextViewportLayoutControllerWillLayout() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

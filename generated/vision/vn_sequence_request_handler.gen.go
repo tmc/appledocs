@@ -46,18 +46,18 @@ type ISequenceRequestHandler interface {
 	
 
 	// methods:
-	PerformRequestsOnCVPixelBufferError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnCGImageError(requests []Request, image ImageRef /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnCMSampleBufferError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnCIImageError(requests []Request, image objectivec.IObject, error_ objectivec.IObject) bool
-	PerformRequestsOnCIImageOrientationError(requests []Request, image objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnCVPixelBufferOrientationError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnCGImageOrientationError(requests []Request, image ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnCMSampleBufferOrientationError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnImageDataError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, error_ objectivec.IObject) bool
-	PerformRequestsOnImageDataOrientationError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
-	PerformRequestsOnImageURLError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool
-	PerformRequestsOnImageURLOrientationError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
+	PerformRequestsOnCVPixelBufferError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCGImageError(requests []Request, image ImageRef /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCMSampleBufferError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCIImageError(requests []Request, image objectivec.IObject, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCIImageOrientationError(requests []Request, image objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCVPixelBufferOrientationError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCGImageOrientationError(requests []Request, image ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnCMSampleBufferOrientationError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnImageDataError(requests []Request, imageData foundation.foundation.INSData, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnImageDataOrientationError(requests []Request, imageData foundation.foundation.INSData, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnImageURLError(requests []Request, imageURL foundation.foundation.INSURL, error_ foundation.foundation.INSError) bool
+	PerformRequestsOnImageURLOrientationError(requests []Request, imageURL foundation.foundation.INSURL, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool
 
 
 }
@@ -144,7 +144,7 @@ func SequenceRequestHandlerFrom(ptr unsafe.Pointer) SequenceRequestHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:)-3d7nt
-func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCVPixelBuffer:error:"), requests, pixelBuffer, error_)
 	return rv
 }
@@ -154,7 +154,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferError(requests []
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:)-3zt7l
-func (s_ SequenceRequestHandler) PerformRequestsOnCGImageError(requests []Request, image ImageRef /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCGImageError(requests []Request, image ImageRef /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCGImage:error:"), requests, image, error_)
 	return rv
 }
@@ -164,7 +164,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCGImageError(requests []Reques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:)-45e73
-func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCMSampleBuffer:error:"), requests, sampleBuffer, error_)
 	return rv
 }
@@ -174,7 +174,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferError(requests [
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:)-9jtgj
-func (s_ SequenceRequestHandler) PerformRequestsOnCIImageError(requests []Request, image objectivec.IObject, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCIImageError(requests []Request, image objectivec.IObject, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCIImage:error:"), requests, image, error_)
 	return rv
 }
@@ -184,7 +184,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCIImageError(requests []Reques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:orientation:)-1bkm1
-func (s_ SequenceRequestHandler) PerformRequestsOnCIImageOrientationError(requests []Request, image objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCIImageOrientationError(requests []Request, image objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCIImage:orientation:error:"), requests, image, orientation, error_)
 	return rv
 }
@@ -194,7 +194,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCIImageOrientationError(reques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:orientation:)-2wvt8
-func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferOrientationError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferOrientationError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCVPixelBuffer:orientation:error:"), requests, pixelBuffer, orientation, error_)
 	return rv
 }
@@ -204,7 +204,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferOrientationError(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:orientation:)-3gcmv
-func (s_ SequenceRequestHandler) PerformRequestsOnCGImageOrientationError(requests []Request, image ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCGImageOrientationError(requests []Request, image ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCGImage:orientation:error:"), requests, image, orientation, error_)
 	return rv
 }
@@ -214,7 +214,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCGImageOrientationError(reques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:on:orientation:)-6b7rk
-func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferOrientationError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferOrientationError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCMSampleBuffer:orientation:error:"), requests, sampleBuffer, orientation, error_)
 	return rv
 }
@@ -224,7 +224,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferOrientationError
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:onImageData:)
-func (s_ SequenceRequestHandler) PerformRequestsOnImageDataError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnImageDataError(requests []Request, imageData foundation.foundation.INSData, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageData:error:"), requests, imageData, error_)
 	return rv
 }
@@ -234,7 +234,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnImageDataError(requests []Requ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:onImageData:orientation:)
-func (s_ SequenceRequestHandler) PerformRequestsOnImageDataOrientationError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnImageDataOrientationError(requests []Request, imageData foundation.foundation.INSData, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageData:orientation:error:"), requests, imageData, orientation, error_)
 	return rv
 }
@@ -244,7 +244,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnImageDataOrientationError(requ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:onImageURL:)
-func (s_ SequenceRequestHandler) PerformRequestsOnImageURLError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnImageURLError(requests []Request, imageURL foundation.foundation.INSURL, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageURL:error:"), requests, imageURL, error_)
 	return rv
 }
@@ -254,7 +254,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnImageURLError(requests []Reque
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler/perform(_:onImageURL:orientation:)
-func (s_ SequenceRequestHandler) PerformRequestsOnImageURLOrientationError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
+func (s_ SequenceRequestHandler) PerformRequestsOnImageURLOrientationError(requests []Request, imageURL foundation.foundation.INSURL, orientation ImagePropertyOrientation /* not a class type */, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageURL:orientation:error:"), requests, imageURL, orientation, error_)
 	return rv
 }

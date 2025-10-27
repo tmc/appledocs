@@ -10,7 +10,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/foundation"
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTextInput is the NSTextInput protocol interface.
@@ -23,13 +23,13 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextInput
 type PTextInput interface {
 	// Required methods
-	AttributedSubstringFromRange(range_ corefoundation.Range) foundation.AttributedString/* debug [protocol_interface/required_method]: AttributedSubstringFromRange */
-	CharacterIndexForPoint(point vision.Point) uint/* debug [protocol_interface/required_method]: CharacterIndexForPoint */
-	FirstRectForCharacterRange(range_ corefoundation.Range) Rect/* debug [protocol_interface/required_method]: FirstRectForCharacterRange */
-	HasMarkedText() bool/* debug [protocol_interface/required_method]: HasMarkedText */
-	MarkedRange() corefoundation.Range/* debug [protocol_interface/required_method]: MarkedRange */
-	SelectedRange() corefoundation.Range/* debug [protocol_interface/required_method]: SelectedRange */
-	SetMarkedTextSelectedRange(string_ objc.IObject, selRange corefoundation.Range)/* debug [protocol_interface/required_method]: SetMarkedTextSelectedRange */
-	UnmarkText()/* debug [protocol_interface/required_method]: UnmarkText */
-	ValidAttributesForMarkedText() foundation.Array/* debug [protocol_interface/required_method]: ValidAttributesForMarkedText */
+	AttributedSubstringFromRange(range_ foundation.Range) foundation.AttributedString
+	CharacterIndexForPoint(point corefoundation.CGPoint) uint
+	FirstRectForCharacterRange(range_ foundation.Range) corefoundation.CGRect
+	HasMarkedText() bool
+	MarkedRange() foundation.Range
+	SelectedRange() foundation.Range
+	SetMarkedTextSelectedRange(string_ objectivec.IObject, selRange foundation.Range)
+	UnmarkText()
+	ValidAttributesForMarkedText() foundation.Array
 }

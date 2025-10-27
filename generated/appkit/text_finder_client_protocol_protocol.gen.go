@@ -4,8 +4,6 @@ package appkit
 
 import (
 
-	"github.com/tmc/appledocs/generated/corefoundation"
-
 	"github.com/tmc/appledocs/generated/foundation"
 
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -21,17 +19,17 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextFinderClient
 type PTextFinderClient interface {
 	// Optional methods
-	ContentViewAtIndexEffectiveCharacterRange(index uint, outRange RangePointer /* not a class type */) View
+	ContentViewAtIndexEffectiveCharacterRange(index uint, outRange RangePointer /* not a class type */) IView
 	HasContentViewAtIndexEffectiveCharacterRange() bool
 	DidReplaceCharacters()
 	HasDidReplaceCharacters() bool
-	DrawCharactersInRangeForContentView(range_ corefoundation.Range, view IView)
+	DrawCharactersInRangeForContentView(range_ foundation.Range, view IView)
 	HasDrawCharactersInRangeForContentView() bool
-	RectsForCharacterRange(range_ corefoundation.Range) []foundation.Value
+	RectsForCharacterRange(range_ foundation.Range) []foundation.Value
 	HasRectsForCharacterRange() bool
-	ReplaceCharactersInRangeWithString(range_ corefoundation.Range, string_ objc.IObject /* cross-framework: NSString */)
+	ReplaceCharactersInRangeWithString(range_ foundation.Range, string_ foundation.foundation.INSString)
 	HasReplaceCharactersInRangeWithString() bool
-	ScrollRangeToVisible(range_ corefoundation.Range)
+	ScrollRangeToVisible(range_ foundation.Range)
 	HasScrollRangeToVisible() bool
 	ShouldReplaceCharactersInRangesWithStrings(ranges []foundation.Value, strings []string) bool
 	HasShouldReplaceCharactersInRangesWithStrings() bool

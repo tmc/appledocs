@@ -17,5 +17,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProgressIndicator
 type PAccessibilityProgressIndicator interface {
 	// Required methods
-	AccessibilityValue() foundation.Number/* debug [protocol_interface/required_method]: AccessibilityValue */
+	AccessibilityValue() foundation.Number
 }

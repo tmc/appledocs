@@ -5,7 +5,7 @@ package appkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/cloudkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PCloudSharingValidation is the NSCloudSharingValidation protocol interface.
@@ -18,5 +18,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSCloudSharingValidation
 type PCloudSharingValidation interface {
 	// Required methods
-	CloudShareForUserInterfaceItem(item unsafe.Pointer) cloudkit.CKShare/* debug [protocol_interface/required_method]: CloudShareForUserInterfaceItem */
+	CloudShareForUserInterfaceItem(item unsafe.Pointer) objectivec.IObject
 }

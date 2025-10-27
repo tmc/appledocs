@@ -2,9 +2,9 @@
 
 package coreaudiokit
 
-/* debug [enums.gen.go]: Generating 1 enums for CoreAudioKit */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum AUGenericViewDisplayFlags (3 cases) */
+
 // AUGenericViewDisplayFlags - Flags that describe the display of a generic view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewDisplayFlags

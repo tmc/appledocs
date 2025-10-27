@@ -20,8 +20,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureManualExposureBracketedStillImageSettings/exposureDuration
-func (c_ CaptureManualExposureBracketedStillImageSettings) ExposureDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("exposureDuration"))
+func (c_ CaptureManualExposureBracketedStillImageSettings) ExposureDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("exposureDuration"))
 	return rv
 }
 

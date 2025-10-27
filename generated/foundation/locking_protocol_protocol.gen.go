@@ -18,6 +18,6 @@ package foundation
 // See: doc://com.apple.foundation/documentation/Foundation/NSLocking
 type PLocking interface {
 	// Required methods
-	Lock()/* debug [protocol_interface/required_method]: Lock */
-	Unlock()/* debug [protocol_interface/required_method]: Unlock */
+	Lock()
+	Unlock()
 }

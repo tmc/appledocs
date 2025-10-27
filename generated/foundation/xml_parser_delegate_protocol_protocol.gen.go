@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PXMLParserDelegate is the NSXMLParserDelegate protocol interface.
@@ -55,7 +57,7 @@ type PXMLParserDelegate interface {
 	HasParserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName() bool
 	ParserParseErrorOccurred(parser IXMLParser, parseError IError)
 	HasParserParseErrorOccurred() bool
-	ParserResolveExternalEntityNameSystemID(parser IXMLParser, name IString, systemID IString) Data
+	ParserResolveExternalEntityNameSystemID(parser IXMLParser, name IString, systemID IString) IData
 	HasParserResolveExternalEntityNameSystemID() bool
 	ParserValidationErrorOccurred(parser IXMLParser, validationError IError)
 	HasParserValidationErrorOccurred() bool
@@ -85,7 +87,7 @@ type XMLParserDelegate struct {
 	_ParserFoundProcessingInstructionWithTargetData func(parser IXMLParser, target IString, data IString)
 	_ParserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName func(parser IXMLParser, name IString, publicID IString, systemID IString, notationName IString)
 	_ParserParseErrorOccurred func(parser IXMLParser, parseError IError)
-	_ParserResolveExternalEntityNameSystemID func(parser IXMLParser, name IString, systemID IString) Data
+	_ParserResolveExternalEntityNameSystemID func(parser IXMLParser, name IString, systemID IString) IData
 	_ParserValidationErrorOccurred func(parser IXMLParser, validationError IError)
 	_ParserDidEndDocument func(parser IXMLParser)
 	_ParserDidStartDocument func(parser IXMLParser)
@@ -206,7 +208,7 @@ func (d *XMLParserDelegate) SetParserParseErrorOccurred(f func(parser IXMLParser
 // SetParserResolveExternalEntityNameSystemID sets the handler for the ParserResolveExternalEntityNameSystemID delegate method.
 //
 // Sent by a parser object to its delegate when it encounters a given external entity with a specific system ID.
-func (d *XMLParserDelegate) SetParserResolveExternalEntityNameSystemID(f func(parser IXMLParser, name IString, systemID IString) Data) {
+func (d *XMLParserDelegate) SetParserResolveExternalEntityNameSystemID(f func(parser IXMLParser, name IString, systemID IString) IData) {
 	d._ParserResolveExternalEntityNameSystemID = f
 }
 
@@ -424,11 +426,11 @@ func (d *XMLParserDelegate) HasParserParseErrorOccurred() bool {
 }
 
 // ParserResolveExternalEntityNameSystemID implements the PXMLParserDelegate interface.
-func (d *XMLParserDelegate) ParserResolveExternalEntityNameSystemID(parser IXMLParser, name IString, systemID IString) Data {
+func (d *XMLParserDelegate) ParserResolveExternalEntityNameSystemID(parser IXMLParser, name IString, systemID IString) IData {
 	if d._ParserResolveExternalEntityNameSystemID != nil {
 		return d._ParserResolveExternalEntityNameSystemID(parser, name, systemID)
 	}
-	var zero Data
+	var zero IData
 	return zero
 }
 
@@ -471,4 +473,240 @@ func (d *XMLParserDelegate) ParserDidStartDocument(parser IXMLParser) {
 // HasParserDidStartDocument returns true if a handler for ParserDidStartDocument has been set.
 func (d *XMLParserDelegate) HasParserDidStartDocument() bool {
 	return d._ParserDidStartDocument != nil
+}
+
+// XMLParserDelegateObject wraps an existing Objective-C object that conforms to the PXMLParserDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type XMLParserDelegateObject struct {
+	objectivec.Object
+}
+
+// NewXMLParserDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSXMLParserDelegate protocol.
+func NewXMLParserDelegateObject(obj objectivec.Object) *XMLParserDelegateObject {
+	return &XMLParserDelegateObject{obj}
+}
+
+// Make sure XMLParserDelegateObject implements PXMLParserDelegate.
+var _ PXMLParserDelegate = (*XMLParserDelegateObject)(nil)
+
+// ParserDidEndElementNamespaceURIQualifiedName implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserDidEndElementNamespaceURIQualifiedName(parser IXMLParser, elementName IString, namespaceURI IString, qName IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:didEndElement:namespaceURI:qualifiedName:"), parser, elementName, namespaceURI, qName)
+}
+
+// HasParserDidEndElementNamespaceURIQualifiedName returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserDidEndElementNamespaceURIQualifiedName() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserDidEndMappingPrefix implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserDidEndMappingPrefix(parser IXMLParser, prefix IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:didEndMappingPrefix:"), parser, prefix)
+}
+
+// HasParserDidEndMappingPrefix returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserDidEndMappingPrefix() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserDidStartElementNamespaceURIQualifiedNameAttributes implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserDidStartElementNamespaceURIQualifiedNameAttributes(parser IXMLParser, elementName IString, namespaceURI IString, qName IString, attributeDict IDictionary) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:didStartElement:namespaceURI:qualifiedName:attributes:"), parser, elementName, namespaceURI, qName, attributeDict)
+}
+
+// HasParserDidStartElementNamespaceURIQualifiedNameAttributes returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserDidStartElementNamespaceURIQualifiedNameAttributes() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserDidStartMappingPrefixToURI implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserDidStartMappingPrefixToURI(parser IXMLParser, prefix IString, namespaceURI IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:didStartMappingPrefix:toURI:"), parser, prefix, namespaceURI)
+}
+
+// HasParserDidStartMappingPrefixToURI returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserDidStartMappingPrefixToURI() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundAttributeDeclarationWithNameForElementTypeDefaultValue implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundAttributeDeclarationWithNameForElementTypeDefaultValue(parser IXMLParser, attributeName IString, elementName IString, type_ IString, defaultValue IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:"), parser, attributeName, elementName, type_, defaultValue)
+}
+
+// HasParserFoundAttributeDeclarationWithNameForElementTypeDefaultValue returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundAttributeDeclarationWithNameForElementTypeDefaultValue() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundCDATA implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundCDATA(parser IXMLParser, CDATABlock IData) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundCDATA:"), parser, CDATABlock)
+}
+
+// HasParserFoundCDATA returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundCDATA() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundCharacters implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundCharacters(parser IXMLParser, string_ IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundCharacters:"), parser, string_)
+}
+
+// HasParserFoundCharacters returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundCharacters() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundComment implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundComment(parser IXMLParser, comment IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundComment:"), parser, comment)
+}
+
+// HasParserFoundComment returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundComment() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundElementDeclarationWithNameModel implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundElementDeclarationWithNameModel(parser IXMLParser, elementName IString, model IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundElementDeclarationWithName:model:"), parser, elementName, model)
+}
+
+// HasParserFoundElementDeclarationWithNameModel returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundElementDeclarationWithNameModel() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundExternalEntityDeclarationWithNamePublicIDSystemID implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundExternalEntityDeclarationWithNamePublicIDSystemID(parser IXMLParser, name IString, publicID IString, systemID IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundExternalEntityDeclarationWithName:publicID:systemID:"), parser, name, publicID, systemID)
+}
+
+// HasParserFoundExternalEntityDeclarationWithNamePublicIDSystemID returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundExternalEntityDeclarationWithNamePublicIDSystemID() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundIgnorableWhitespace implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundIgnorableWhitespace(parser IXMLParser, whitespaceString IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundIgnorableWhitespace:"), parser, whitespaceString)
+}
+
+// HasParserFoundIgnorableWhitespace returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundIgnorableWhitespace() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundInternalEntityDeclarationWithNameValue implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundInternalEntityDeclarationWithNameValue(parser IXMLParser, name IString, value IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundInternalEntityDeclarationWithName:value:"), parser, name, value)
+}
+
+// HasParserFoundInternalEntityDeclarationWithNameValue returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundInternalEntityDeclarationWithNameValue() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundNotationDeclarationWithNamePublicIDSystemID implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundNotationDeclarationWithNamePublicIDSystemID(parser IXMLParser, name IString, publicID IString, systemID IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundNotationDeclarationWithName:publicID:systemID:"), parser, name, publicID, systemID)
+}
+
+// HasParserFoundNotationDeclarationWithNamePublicIDSystemID returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundNotationDeclarationWithNamePublicIDSystemID() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundProcessingInstructionWithTargetData implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundProcessingInstructionWithTargetData(parser IXMLParser, target IString, data IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundProcessingInstructionWithTarget:data:"), parser, target, data)
+}
+
+// HasParserFoundProcessingInstructionWithTargetData returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundProcessingInstructionWithTargetData() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName(parser IXMLParser, name IString, publicID IString, systemID IString, notationName IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:"), parser, name, publicID, systemID, notationName)
+}
+
+// HasParserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserParseErrorOccurred implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserParseErrorOccurred(parser IXMLParser, parseError IError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:parseErrorOccurred:"), parser, parseError)
+}
+
+// HasParserParseErrorOccurred returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserParseErrorOccurred() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserResolveExternalEntityNameSystemID implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserResolveExternalEntityNameSystemID(parser IXMLParser, name IString, systemID IString) IData {
+	return objc.Send[IData](o.ID, objc.Sel("parser:resolveExternalEntityName:systemID:"), parser, name, systemID)
+}
+
+// HasParserResolveExternalEntityNameSystemID returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserResolveExternalEntityNameSystemID() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserValidationErrorOccurred implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserValidationErrorOccurred(parser IXMLParser, validationError IError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parser:validationErrorOccurred:"), parser, validationError)
+}
+
+// HasParserValidationErrorOccurred returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserValidationErrorOccurred() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserDidEndDocument implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserDidEndDocument(parser IXMLParser) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parserDidEndDocument:"), parser)
+}
+
+// HasParserDidEndDocument returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserDidEndDocument() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ParserDidStartDocument implements the PXMLParserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XMLParserDelegateObject) ParserDidStartDocument(parser IXMLParser) {
+	objc.Send[objc.ID](o.ID, objc.Sel("parserDidStartDocument:"), parser)
+}
+
+// HasParserDidStartDocument returns true; this is a placeholder for optional method checks.
+func (o *XMLParserDelegateObject) HasParserDidStartDocument() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

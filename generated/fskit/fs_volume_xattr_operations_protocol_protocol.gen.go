@@ -18,9 +18,9 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSVolume/XattrOperations
 type PFSVolumeXattrOperations interface {
 	// Required methods
-	GetXattrNamedOfItemReplyHandler(name IFSFileName, item IFSItem, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: GetXattrNamedOfItemReplyHandler */
-	ListXattrsOfItemReplyHandler(item IFSItem, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: ListXattrsOfItemReplyHandler */
-	SetXattrNamedToDataOnItemPolicyReplyHandler(name IFSFileName, value objc.IObject /* cross-framework: NSData */, item IFSItem, policy FSSetXattrPolicy, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: SetXattrNamedToDataOnItemPolicyReplyHandler */
+	GetXattrNamedOfItemReplyHandler(name IFSFileName, item IFSItem, reply unsafe.Pointer)
+	ListXattrsOfItemReplyHandler(item IFSItem, reply unsafe.Pointer)
+	SetXattrNamedToDataOnItemPolicyReplyHandler(name IFSFileName, value foundation.foundation.INSData, item IFSItem, policy FSSetXattrPolicy, reply unsafe.Pointer)
 	// Optional methods
 	SupportedXattrNamesForItem(item IFSItem) []FSFileName
 	HasSupportedXattrNamesForItem() bool

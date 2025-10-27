@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLModelStructure */
 
 
-/* debug [class_header]: Header for MLModelStructure */
+
+
 // The class instance for the [ModelStructure] class.
 var (
 	ModelStructureClass     _ModelStructureClass
@@ -31,33 +30,33 @@ func getModelStructureClass() _ModelStructureClass {
 type _ModelStructureClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ModelStructure */
+
+
 // An interface definition for the [ModelStructure] class.
 type IModelStructure interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ModelStructure */
+
 	// properties:
 	NeuralNetwork() IMLModelStructureNeuralNetwork
 	Pipeline() IMLModelStructurePipeline
 	Program() IMLModelStructureProgram
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ModelStructure */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ModelStructure */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _ModelStructureClass) Alloc() ModelStructure {
 	rv := objc.Send[ModelStructure](objc.ID(mc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (m_ ModelStructure) Autorelease() ModelStructure {
 func NewModelStructure() ModelStructure {
 	return getModelStructureClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ModelStructure */
+
+
 // A class representing the structure of a model.
 
 
@@ -109,23 +108,23 @@ type ModelStructure struct {
 func ModelStructureFrom(ptr unsafe.Pointer) ModelStructure {
 	return ModelStructure{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ModelStructure *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ModelStructure */
+
+
+
 
 // Construct the model structure asynchronously given the location of its on-disk representation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
-func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url objc.IObject /* cross-framework: NSURL */, handler unsafe.Pointer) {
+func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.foundation.INSURL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LoadContentsOfURLCompletionHandler) */
+}
 
 
 // Construct the model structure asynchronously given the model asset.
@@ -134,23 +133,23 @@ func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url objc.IObje
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadModelAsset:completionHandler:
 func (mc _ModelStructureClass) LoadModelAssetCompletionHandler(asset IMLModelAsset, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadModelAsset:completionHandler:"), asset, handler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LoadModelAssetCompletionHandler) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ModelStructure */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ModelStructure */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ModelStructure */
+
+
+
+
+
+
+
 
 // If the model is of NeuralNetwork type then it is the structure of the NeuralNetwork otherwise .
 //
@@ -159,7 +158,7 @@ func (mc _ModelStructureClass) LoadModelAssetCompletionHandler(asset IMLModelAss
 func (m_ ModelStructure) NeuralNetwork() IMLModelStructureNeuralNetwork {
 	rv := objc.Send[ModelStructureNeuralNetwork](m_.ID, objc.Sel("neuralNetwork"))
 	return rv
-}/* debug [instance_properties/getter]: neuralNetwork */
+}
 
 
 // If the model is of Pipeline type then it is the structure of the Pipeline otherwise .
@@ -169,7 +168,7 @@ func (m_ ModelStructure) NeuralNetwork() IMLModelStructureNeuralNetwork {
 func (m_ ModelStructure) Pipeline() IMLModelStructurePipeline {
 	rv := objc.Send[ModelStructurePipeline](m_.ID, objc.Sel("pipeline"))
 	return rv
-}/* debug [instance_properties/getter]: pipeline */
+}
 
 
 // If the model is of ML Program type then it is the structure of the ML Program otherwise .
@@ -179,12 +178,12 @@ func (m_ ModelStructure) Pipeline() IMLModelStructurePipeline {
 func (m_ ModelStructure) Program() IMLModelStructureProgram {
 	rv := objc.Send[ModelStructureProgram](m_.ID, objc.Sel("program"))
 	return rv
-}/* debug [instance_properties/getter]: program */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLModelStructure */
+
+
+
 
 
 

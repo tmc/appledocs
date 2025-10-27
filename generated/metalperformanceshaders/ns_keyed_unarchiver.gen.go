@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [KeyedUnarchiver] class.
 var (
 	KeyedUnarchiverClass     _KeyedUnarchiverClass
@@ -27,22 +31,28 @@ type _KeyedUnarchiverClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [KeyedUnarchiver] class.
 type IKeyedUnarchiver interface {
 	objectivec.IObject
+	
+
+	// properties:
+
+
+	
+
+	// methods:
+
+
 }
 
-// A parent class referenced by other MetalPerformanceShaders classes.
-type KeyedUnarchiver struct {
-	objectivec.Object
-}
 
-// KeyedUnarchiverFrom constructs a [KeyedUnarchiver] from an unsafe.Pointer.
-//
-// A parent class referenced by other MetalPerformanceShaders classes.
-func KeyedUnarchiverFrom(ptr unsafe.Pointer) KeyedUnarchiver {
-	return KeyedUnarchiver{objectivec.Object{objc.ID(ptr)}}
-}
+
+
 
 // Alloc allocates a new instance without initialization.
 func (kc _KeyedUnarchiverClass) Alloc() KeyedUnarchiver {
@@ -51,7 +61,6 @@ func (kc _KeyedUnarchiverClass) Alloc() KeyedUnarchiver {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KeyedUnarchiverClass) New() KeyedUnarchiver {
 	rv := objc.Send[KeyedUnarchiver](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -74,3 +83,53 @@ func (k_ KeyedUnarchiver) Autorelease() KeyedUnarchiver {
 func NewKeyedUnarchiver() KeyedUnarchiver {
 	return getKeyedUnarchiverClass().New()
 }
+
+
+
+
+
+// A parent class referenced by other MetalPerformanceShaders classes.
+
+
+// A parent class referenced by other MetalPerformanceShaders classes. [Full Topic]
+type KeyedUnarchiver struct {
+	objectivec.Object
+}
+
+// KeyedUnarchiverFrom constructs a [KeyedUnarchiver] from an unsafe.Pointer.
+//
+// A parent class referenced by other MetalPerformanceShaders classes.
+func KeyedUnarchiverFrom(ptr unsafe.Pointer) KeyedUnarchiver {
+	return KeyedUnarchiver{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

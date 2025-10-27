@@ -41,11 +41,11 @@ type IClassificationObservation interface {
 
 	// properties:
 	HasPrecisionRecallCurve() bool
-	Identifier() objc.IObject /* cross-framework: NSString */
+	Identifier() foundation.foundation.INSString
 	ModelDescription() coreml.ModelDescription
 	SetModelDescription(value coreml.ModelDescription)
-	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
-	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
+	PredictedFeatureName() foundation.foundation.INSString
+	SetPredictedFeatureName(value foundation.foundation.INSString)
 
 
 	
@@ -175,7 +175,7 @@ func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/identifier
-func (c_ ClassificationObservation) Identifier() objc.IObject /* cross-framework: NSString */ {
+func (c_ ClassificationObservation) Identifier() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -204,7 +204,7 @@ func (c_ ClassificationObservation) SetModelDescription(value coreml.ModelDescri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+func (c_ ClassificationObservation) PredictedFeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (c_ ClassificationObservation) PredictedFeatureName() objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
+func (c_ ClassificationObservation) SetPredictedFeatureName(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 

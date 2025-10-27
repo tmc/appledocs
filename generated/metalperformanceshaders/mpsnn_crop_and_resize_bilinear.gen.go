@@ -133,7 +133,7 @@ func NewCropAndResizeBilinearWithCoderDevice(aDecoder foundation.Coder, device u
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013789-initwithdevice
-func NewCropAndResizeBilinearWithDeviceResizeWidthResizeHeightNumberOfRegionsRegions(device unsafe.Pointer, resizeWidth uint, resizeHeight uint, numberOfRegions uint, regions objc.IObject /* cross-framework: MPSRegion */) CropAndResizeBilinear {
+func NewCropAndResizeBilinearWithDeviceResizeWidthResizeHeightNumberOfRegionsRegions(device unsafe.Pointer, resizeWidth uint, resizeHeight uint, numberOfRegions uint, regions Region) CropAndResizeBilinear {
 	instance := getCropAndResizeBilinearClass().Alloc()
 	rv := objc.Send[CropAndResizeBilinear](instance.ID, objc.Sel("initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:"), device, resizeWidth, resizeHeight, numberOfRegions, regions)
 	rv.Autorelease()

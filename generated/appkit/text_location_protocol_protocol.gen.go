@@ -16,5 +16,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextLocation
 type PTextLocation interface {
 	// Required methods
-	Compare(location unsafe.Pointer) ComparisonResult/* debug [protocol_interface/required_method]: Compare */
+	Compare(location unsafe.Pointer) ComparisonResult /* not a class type */
 }

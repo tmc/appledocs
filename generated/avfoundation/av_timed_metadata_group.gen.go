@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVTimedMetadataGroup */
 
 
-/* debug [class_header]: Header for AVTimedMetadataGroup */
+
+
 // The class instance for the [TimedMetadataGroup] class.
 var (
 	TimedMetadataGroupClass     _TimedMetadataGroupClass
@@ -30,33 +30,33 @@ func getTimedMetadataGroupClass() _TimedMetadataGroupClass {
 type _TimedMetadataGroupClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TimedMetadataGroup */
+
+
 // An interface definition for the [TimedMetadataGroup] class.
 type ITimedMetadataGroup interface {
 	IMetadataGroup
 	
-/* debug [class_interface_properties]: Properties for TimedMetadataGroup */
+
 	// properties:
 	Items() []MetadataItem
-	TimeRange() TimeRange /* not a class type */
-/* debug [class_interface_properties]: End properties */
+	TimeRange() objectivec.IObject
+
 
 	
-/* debug [class_interface_methods]: Methods for TimedMetadataGroup */
+
 	// methods:
 	CopyFormatDescription() MetadataFormatDescriptionRef /* not a class type */
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TimedMetadataGroup */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TimedMetadataGroupClass) Alloc() TimedMetadataGroup {
 	rv := objc.Send[TimedMetadataGroup](objc.ID(tc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (t_ TimedMetadataGroup) Autorelease() TimedMetadataGroup {
 func NewTimedMetadataGroup() TimedMetadataGroup {
 	return getTimedMetadataGroupClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TimedMetadataGroup */
+
+
 // A collection of metadata items that are valid for use during a specific time range.
 //
 // For example, are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
@@ -112,22 +112,22 @@ func TimedMetadataGroupFrom(ptr unsafe.Pointer) TimedMetadataGroup {
 		MetadataGroup: MetadataGroupFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TimedMetadataGroup */
+
+
 
 // Creates a timed metadata group initialized with the given metadata items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/init(items:timeRange:)
-func NewTimedMetadataGroupWithItemsTimeRange(items []MetadataItem, timeRange TimeRange /* not a class type */) TimedMetadataGroup {
+func NewTimedMetadataGroupWithItemsTimeRange(items []MetadataItem, timeRange objectivec.IObject) TimedMetadataGroup {
 	instance := getTimedMetadataGroupClass().Alloc()
 	rv := objc.Send[TimedMetadataGroup](instance.ID, objc.Sel("initWithItems:timeRange:"), items, timeRange)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTimedMetadataGroupWithItemsTimeRange */
+}
 
 
 // [Full Topic]
@@ -137,23 +137,23 @@ func NewTimedMetadataGroupWithSampleBuffer(sampleBuffer SampleBufferRef /* not a
 	rv := objc.Send[TimedMetadataGroup](instance.ID, objc.Sel("initWithSampleBuffer:"), sampleBuffer)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTimedMetadataGroupWithSampleBuffer */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for TimedMetadataGroup */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TimedMetadataGroup */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TimedMetadataGroup */
+
+
+
+
+
+
+
 
 // Creates a format description based on the receiver’s items.
 //
@@ -162,13 +162,13 @@ func NewTimedMetadataGroupWithSampleBuffer(sampleBuffer SampleBufferRef /* not a
 func (t_ TimedMetadataGroup) CopyFormatDescription() MetadataFormatDescriptionRef /* not a class type */ {
 	rv := objc.Send[MetadataFormatDescriptionRef](t_.ID, objc.Sel("copyFormatDescription"))
 	return rv
-}/* debug [instance_methods/method]: CopyFormatDescription */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for TimedMetadataGroup */
+
+
+
 
 // An array of metadata items in the timed metadata group.
 //
@@ -177,21 +177,21 @@ func (t_ TimedMetadataGroup) CopyFormatDescription() MetadataFormatDescriptionRe
 func (t_ TimedMetadataGroup) Items() []MetadataItem {
 	rv := objc.Send[[]MetadataItem](t_.ID, objc.Sel("items"))
 	return rv
-}/* debug [instance_properties/getter]: items */
+}
 
 
 // The time range for the timed metadata.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/timeRange
-func (t_ TimedMetadataGroup) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](t_.ID, objc.Sel("timeRange"))
+func (t_ TimedMetadataGroup) TimeRange() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](t_.ID, objc.Sel("timeRange"))
 	return rv
-}/* debug [instance_properties/getter]: timeRange */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVTimedMetadataGroup */
+
+
+
 
 

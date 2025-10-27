@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLModelDescription */
 
 
-/* debug [class_header]: Header for MLModelDescription */
+
+
 // The class instance for the [ModelDescription] class.
 var (
 	ModelDescriptionClass     _ModelDescriptionClass
@@ -31,16 +30,16 @@ func getModelDescriptionClass() _ModelDescriptionClass {
 type _ModelDescriptionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ModelDescription */
+
+
 // An interface definition for the [ModelDescription] class.
 type IModelDescription interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ModelDescription */
+
 	// properties:
 	ClassLabels() []objc.ID
 	InputDescriptionsByName() foundation.IDictionary
@@ -48,27 +47,27 @@ type IModelDescription interface {
 	Metadata() foundation.IDictionary
 	OutputDescriptionsByName() foundation.IDictionary
 	ParameterDescriptionsByKey() foundation.IDictionary
-	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
-	PredictedProbabilitiesName() objc.IObject /* cross-framework: NSString */
+	PredictedFeatureName() foundation.foundation.INSString
+	PredictedProbabilitiesName() foundation.foundation.INSString
 	StateDescriptionsByName() foundation.IDictionary
 	TrainingInputDescriptionsByName() foundation.IDictionary
 	Configuration() IMLModelConfiguration
 	SetConfiguration(value IMLModelConfiguration)
 	ModelDescription() IMLModelDescription
 	SetModelDescription(value IMLModelDescription)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ModelDescription */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ModelDescription */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _ModelDescriptionClass) Alloc() ModelDescription {
 	rv := objc.Send[ModelDescription](objc.ID(mc.class), objc.Sel("alloc"))
@@ -98,11 +97,11 @@ func (m_ ModelDescription) Autorelease() ModelDescription {
 func NewModelDescription() ModelDescription {
 	return getModelDescriptionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ModelDescription */
+
+
 // Information about a model, primarily the input and output format for each feature the model expects, and optional metadata.
 
 
@@ -120,30 +119,30 @@ type ModelDescription struct {
 func ModelDescriptionFrom(ptr unsafe.Pointer) ModelDescription {
 	return ModelDescription{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ModelDescription *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ModelDescription */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ModelDescription */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ModelDescription */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ModelDescription */
+
+
+
+
+
+
+
+
+
 
 // An array of labels, which can be either strings or a numbers, for classifier models.
 //
@@ -152,7 +151,7 @@ func ModelDescriptionFrom(ptr unsafe.Pointer) ModelDescription {
 func (m_ ModelDescription) ClassLabels() []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("classLabels"))
 	return rv
-}/* debug [instance_properties/getter]: classLabels */
+}
 
 
 // A dictionary of input feature descriptions, which the model keys by the input’s name.
@@ -162,7 +161,7 @@ func (m_ ModelDescription) ClassLabels() []objc.ID {
 func (m_ ModelDescription) InputDescriptionsByName() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("inputDescriptionsByName"))
 	return rv
-}/* debug [instance_properties/getter]: inputDescriptionsByName */
+}
 
 
 // A Boolean value that indicates whether you can update the model with additional training.
@@ -172,7 +171,7 @@ func (m_ ModelDescription) InputDescriptionsByName() foundation.IDictionary {
 func (m_ ModelDescription) IsUpdatable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdatable"))
 	return rv
-}/* debug [instance_properties/getter]: isUpdatable */
+}
 
 
 // A dictionary of the model’s creation information, such as its description, author, version, and license.
@@ -182,7 +181,7 @@ func (m_ ModelDescription) IsUpdatable() bool {
 func (m_ ModelDescription) Metadata() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("metadata"))
 	return rv
-}/* debug [instance_properties/getter]: metadata */
+}
 
 
 // A dictionary of output feature descriptions, which the model keys by the output’s name.
@@ -192,7 +191,7 @@ func (m_ ModelDescription) Metadata() foundation.IDictionary {
 func (m_ ModelDescription) OutputDescriptionsByName() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
-}/* debug [instance_properties/getter]: outputDescriptionsByName */
+}
 
 
 // A dictionary of the descriptions for the model’s parameters.
@@ -202,27 +201,27 @@ func (m_ ModelDescription) OutputDescriptionsByName() foundation.IDictionary {
 func (m_ ModelDescription) ParameterDescriptionsByKey() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("parameterDescriptionsByKey"))
 	return rv
-}/* debug [instance_properties/getter]: parameterDescriptionsByKey */
+}
 
 
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (m_ ModelDescription) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+func (m_ ModelDescription) PredictedFeatureName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("predictedFeatureName"))
 	return rv
-}/* debug [instance_properties/getter]: predictedFeatureName */
+}
 
 
 // The name of the feature output description for all probabilities of a prediction.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedProbabilitiesName
-func (m_ ModelDescription) PredictedProbabilitiesName() objc.IObject /* cross-framework: NSString */ {
+func (m_ ModelDescription) PredictedProbabilitiesName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("predictedProbabilitiesName"))
 	return rv
-}/* debug [instance_properties/getter]: predictedProbabilitiesName */
+}
 
 
 // Description of the state features.
@@ -232,7 +231,7 @@ func (m_ ModelDescription) PredictedProbabilitiesName() objc.IObject /* cross-fr
 func (m_ ModelDescription) StateDescriptionsByName() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("stateDescriptionsByName"))
 	return rv
-}/* debug [instance_properties/getter]: stateDescriptionsByName */
+}
 
 
 // A dictionary of the training input feature descriptions, which the model keys by the input’s name.
@@ -242,7 +241,7 @@ func (m_ ModelDescription) StateDescriptionsByName() foundation.IDictionary {
 func (m_ ModelDescription) TrainingInputDescriptionsByName() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("trainingInputDescriptionsByName"))
 	return rv
-}/* debug [instance_properties/getter]: trainingInputDescriptionsByName */
+}
 
 
 // The configuration of the model set during initialization.
@@ -252,7 +251,7 @@ func (m_ ModelDescription) TrainingInputDescriptionsByName() foundation.IDiction
 func (m_ ModelDescription) Configuration() IMLModelConfiguration {
 	rv := objc.Send[ModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
-}/* debug [instance_properties/getter]: configuration */
+}
 
 
 // The configuration of the model set during initialization.
@@ -261,7 +260,7 @@ func (m_ ModelDescription) Configuration() IMLModelConfiguration {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
 func (m_ ModelDescription) SetConfiguration(value IMLModelConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConfiguration:"), value)
-}/* debug [instance_properties/setter]: configuration */
+}
 
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
@@ -271,7 +270,7 @@ func (m_ ModelDescription) SetConfiguration(value IMLModelConfiguration) {
 func (m_ ModelDescription) ModelDescription() IMLModelDescription {
 	rv := objc.Send[ModelDescription](m_.ID, objc.Sel("modelDescription"))
 	return rv
-}/* debug [instance_properties/getter]: modelDescription */
+}
 
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
@@ -280,12 +279,12 @@ func (m_ ModelDescription) ModelDescription() IMLModelDescription {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
 func (m_ ModelDescription) SetModelDescription(value IMLModelDescription) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDescription:"), value)
-}/* debug [instance_properties/setter]: modelDescription */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLModelDescription */
+
+
+
 
 
 

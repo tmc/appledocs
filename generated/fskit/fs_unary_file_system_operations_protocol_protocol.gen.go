@@ -16,9 +16,9 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSUnaryFileSystemOperations
 type PFSUnaryFileSystemOperations interface {
 	// Required methods
-	LoadResourceOptionsReplyHandler(resource IFSResource, options IFSTaskOptions, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: LoadResourceOptionsReplyHandler */
-	ProbeResourceReplyHandler(resource IFSResource, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: ProbeResourceReplyHandler */
-	UnloadResourceOptionsReplyHandler(resource IFSResource, options IFSTaskOptions, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: UnloadResourceOptionsReplyHandler */
+	LoadResourceOptionsReplyHandler(resource IFSResource, options IFSTaskOptions, reply unsafe.Pointer)
+	ProbeResourceReplyHandler(resource IFSResource, reply unsafe.Pointer)
+	UnloadResourceOptionsReplyHandler(resource IFSResource, options IFSTaskOptions, reply unsafe.Pointer)
 	// Optional methods
 	DidFinishLoading()
 	HasDidFinishLoading() bool

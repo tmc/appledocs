@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSHapticFeedbackManager */
 
 
-/* debug [class_header]: Header for NSHapticFeedbackManager */
+
+
 // The class instance for the [HapticFeedbackManager] class.
 var (
 	HapticFeedbackManagerClass     _HapticFeedbackManagerClass
@@ -30,30 +30,30 @@ func getHapticFeedbackManagerClass() _HapticFeedbackManagerClass {
 type _HapticFeedbackManagerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for HapticFeedbackManager */
+
+
 // An interface definition for the [HapticFeedbackManager] class.
 type IHapticFeedbackManager interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for HapticFeedbackManager */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for HapticFeedbackManager */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for HapticFeedbackManager */
+
+
 // Alloc allocates a new instance without initialization.
 func (hc _HapticFeedbackManagerClass) Alloc() HapticFeedbackManager {
 	rv := objc.Send[HapticFeedbackManager](objc.ID(hc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (h_ HapticFeedbackManager) Autorelease() HapticFeedbackManager {
 func NewHapticFeedbackManager() HapticFeedbackManager {
 	return getHapticFeedbackManagerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for HapticFeedbackManager */
+
+
 // An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad.
 
 
@@ -105,20 +105,20 @@ type HapticFeedbackManager struct {
 func HapticFeedbackManagerFrom(ptr unsafe.Pointer) HapticFeedbackManager {
 	return HapticFeedbackManager{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for HapticFeedbackManager *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for HapticFeedbackManager */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for HapticFeedbackManager */
+
+
+
+
+
 
 // Requests a haptic feedback performer object that is based on the current input device, accessibility settings, and user preferences.
 //
@@ -127,17 +127,17 @@ func HapticFeedbackManagerFrom(ptr unsafe.Pointer) HapticFeedbackManager {
 func (hc _HapticFeedbackManagerClass) DefaultPerformer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("defaultPerformer"))
 	return rv
-}/* debug [class_properties_class/property]: defaultPerformer */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for HapticFeedbackManager */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for HapticFeedbackManager */
+
+
+
+
 
 // Requests a haptic feedback performer object that is based on the current input device, accessibility settings, and user preferences.
 //
@@ -146,12 +146,12 @@ func (hc _HapticFeedbackManagerClass) DefaultPerformer() unsafe.Pointer {
 func (h_ HapticFeedbackManager) DefaultPerformer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("defaultPerformer"))
 	return rv
-}/* debug [instance_properties/getter]: defaultPerformer */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSHapticFeedbackManager */
+
+
+
 
 
 

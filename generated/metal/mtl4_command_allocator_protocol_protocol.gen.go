@@ -17,6 +17,6 @@ package metal
 // See: doc://com.apple.metal/documentation/Metal/MTL4CommandAllocator
 type PMTL4CommandAllocator interface {
 	// Required methods
-	AllocatedSize() uint64/* debug [protocol_interface/required_method]: AllocatedSize */
-	Reset()/* debug [protocol_interface/required_method]: Reset */
+	AllocatedSize() uint64
+	Reset()
 }

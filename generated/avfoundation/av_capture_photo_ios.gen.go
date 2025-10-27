@@ -36,7 +36,7 @@ func (c_ CapturePhoto) PreviewCGImageRepresentation() ImageRef /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhoto/semanticSegmentationMatte(for:)
-func (c_ CapturePhoto) SemanticSegmentationMatteForType(semanticSegmentationMatteType SemanticSegmentationMatteType /* typedef */) ISemanticSegmentationMatte {
+func (c_ CapturePhoto) SemanticSegmentationMatteForType(semanticSegmentationMatteType SemanticSegmentationMatteType) ISemanticSegmentationMatte {
 	rv := objc.Send[SemanticSegmentationMatte](c_.ID, objc.Sel("semanticSegmentationMatteForType:"), semanticSegmentationMatteType)
 	return rv
 }
@@ -137,8 +137,8 @@ func (c_ CapturePhoto) SequenceCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhoto/sourceDeviceType
-func (c_ CapturePhoto) SourceDeviceType() CaptureDeviceType /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("sourceDeviceType"))
+func (c_ CapturePhoto) SourceDeviceType() CaptureDeviceType {
+	rv := objc.Send[CaptureDeviceType](c_.ID, objc.Sel("sourceDeviceType"))
 	return rv
 }
 

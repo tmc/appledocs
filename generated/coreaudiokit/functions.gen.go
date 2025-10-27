@@ -2,7 +2,7 @@
 
 package coreaudiokit
 
-/* debug [functions.gen.go]: Generating 0 functions for CoreAudioKit */
+
 import (
 	"github.com/ebitengine/purego"
 )

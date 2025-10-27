@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSXMLParser */
 
 
-/* debug [class_header]: Header for NSXMLParser */
+
+
 // The class instance for the [XMLParser] class.
 var (
 	XMLParserClass     _XMLParserClass
@@ -30,16 +30,16 @@ func getXMLParserClass() _XMLParserClass {
 type _XMLParserClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for XMLParser */
+
+
 // An interface definition for the [XMLParser] class.
 type IXMLParser interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for XMLParser */
+
 	// properties:
 	AllowedExternalEntityURLs() unsafe.Pointer
 	SetAllowedExternalEntityURLs(value unsafe.Pointer)
@@ -56,21 +56,21 @@ type IXMLParser interface {
 	ShouldResolveExternalEntities() bool
 	SetShouldResolveExternalEntities(value bool)
 	SystemID() IString
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for XMLParser */
+
 	// methods:
 	AbortParsing()
 	Parse() bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for XMLParser */
+
+
 // Alloc allocates a new instance without initialization.
 func (xc _XMLParserClass) Alloc() XMLParser {
 	rv := objc.Send[XMLParser](objc.ID(xc.class), objc.Sel("alloc"))
@@ -100,11 +100,11 @@ func (x_ XMLParser) Autorelease() XMLParser {
 func NewXMLParser() XMLParser {
 	return getXMLParserClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for XMLParser */
+
+
 // An event driven parser of XML documents (including DTD declarations).
 //
 // An notifies its delegate about the items (elements, attributes, CDATA blocks, comments, and so on) that it encounters as it processes an XML document. It does not itself do anything with those parsed items except report them. It also reports parsing errors. For convenience, an object in the following descriptions is sometimes referred to as a parser object. Unless used in a callback, the is a thread-safe class as long as any given instance is only used in one thread.
@@ -124,11 +124,11 @@ type XMLParser struct {
 func XMLParserFrom(ptr unsafe.Pointer) XMLParser {
 	return XMLParser{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for XMLParser */
+
+
 
 // Initializes a parser with the XML content referenced by the given URL.
 //
@@ -139,7 +139,7 @@ func NewXMLParserWithContentsOfURL(url IURL) XMLParser {
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewXMLParserWithContentsOfURL */
+}
 
 
 // Initializes a parser with the XML contents encapsulated in a given data object.
@@ -151,7 +151,7 @@ func NewXMLParserWithData(data IData) XMLParser {
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewXMLParserWithData */
+}
 
 
 // Initializes a parser with the XML contents from the specified stream and parses it.
@@ -163,23 +163,23 @@ func NewXMLParserWithStream(stream IInputStream) XMLParser {
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithStream:"), stream)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewXMLParserWithStream */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for XMLParser */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for XMLParser */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for XMLParser */
+
+
+
+
+
+
+
 
 // Stops the parser object.
 //
@@ -187,7 +187,7 @@ func NewXMLParserWithStream(stream IInputStream) XMLParser {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/abortParsing()
 func (x_ XMLParser) AbortParsing() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("abortParsing"))
-}/* debug [instance_methods/method]: AbortParsing */
+}
 
 
 // Starts the event-driven parsing operation.
@@ -197,27 +197,27 @@ func (x_ XMLParser) AbortParsing() {
 func (x_ XMLParser) Parse() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("parse"))
 	return rv
-}/* debug [instance_methods/method]: Parse */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for XMLParser */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
 func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("allowedExternalEntityURLs"))
 	return rv
-}/* debug [instance_properties/getter]: allowedExternalEntityURLs */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
 func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAllowedExternalEntityURLs:"), value)
-}/* debug [instance_properties/setter]: allowedExternalEntityURLs */
+}
 
 
 // The column number of the XML document being processed by the parser.
@@ -227,7 +227,7 @@ func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
 func (x_ XMLParser) ColumnNumber() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
 	return rv
-}/* debug [instance_properties/getter]: columnNumber */
+}
 
 
 // [Full Topic]
@@ -235,14 +235,14 @@ func (x_ XMLParser) ColumnNumber() int {
 func (x_ XMLParser) ExternalEntityResolvingPolicy() XMLParserExternalEntityResolvingPolicy {
 	rv := objc.Send[XMLParserExternalEntityResolvingPolicy](x_.ID, objc.Sel("externalEntityResolvingPolicy"))
 	return rv
-}/* debug [instance_properties/getter]: externalEntityResolvingPolicy */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/externalEntityResolvingPolicy-swift.property
 func (x_ XMLParser) SetExternalEntityResolvingPolicy(value XMLParserExternalEntityResolvingPolicy) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExternalEntityResolvingPolicy:"), value)
-}/* debug [instance_properties/setter]: externalEntityResolvingPolicy */
+}
 
 
 // The line number of the XML document being processed by the parser.
@@ -252,7 +252,7 @@ func (x_ XMLParser) SetExternalEntityResolvingPolicy(value XMLParserExternalEnti
 func (x_ XMLParser) LineNumber() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("lineNumber"))
 	return rv
-}/* debug [instance_properties/getter]: lineNumber */
+}
 
 
 // An object from which you can obtain information about a parsing error.
@@ -262,7 +262,7 @@ func (x_ XMLParser) LineNumber() int {
 func (x_ XMLParser) ParserError() IError {
 	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
 	return rv
-}/* debug [instance_properties/getter]: parserError */
+}
 
 
 // The public identifier of the external entity referenced in the XML document.
@@ -272,7 +272,7 @@ func (x_ XMLParser) ParserError() IError {
 func (x_ XMLParser) PublicID() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("publicID"))
 	return rv
-}/* debug [instance_properties/getter]: publicID */
+}
 
 
 // A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
@@ -282,7 +282,7 @@ func (x_ XMLParser) PublicID() IString {
 func (x_ XMLParser) ShouldProcessNamespaces() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldProcessNamespaces"))
 	return rv
-}/* debug [instance_properties/getter]: shouldProcessNamespaces */
+}
 
 
 // A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
@@ -291,7 +291,7 @@ func (x_ XMLParser) ShouldProcessNamespaces() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldProcessNamespaces
 func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldProcessNamespaces:"), value)
-}/* debug [instance_properties/setter]: shouldProcessNamespaces */
+}
 
 
 // A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
@@ -301,7 +301,7 @@ func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
 func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldReportNamespacePrefixes"))
 	return rv
-}/* debug [instance_properties/getter]: shouldReportNamespacePrefixes */
+}
 
 
 // A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
@@ -310,7 +310,7 @@ func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
 func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
-}/* debug [instance_properties/setter]: shouldReportNamespacePrefixes */
+}
 
 
 // A Boolean value that determines whether the parser reports declarations of external entities.
@@ -320,7 +320,7 @@ func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
 func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldResolveExternalEntities"))
 	return rv
-}/* debug [instance_properties/getter]: shouldResolveExternalEntities */
+}
 
 
 // A Boolean value that determines whether the parser reports declarations of external entities.
@@ -329,7 +329,7 @@ func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldResolveExternalEntities
 func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldResolveExternalEntities:"), value)
-}/* debug [instance_properties/setter]: shouldResolveExternalEntities */
+}
 
 
 // The system identifier of the external entity referenced in the XML document.
@@ -339,11 +339,11 @@ func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 func (x_ XMLParser) SystemID() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("systemID"))
 	return rv
-}/* debug [instance_properties/getter]: systemID */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSXMLParser */
+
+
+
 
 

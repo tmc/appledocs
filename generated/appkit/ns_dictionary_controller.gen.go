@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class NSDictionaryController */
 
 
-/* debug [class_header]: Header for NSDictionaryController */
+
+
 // The class instance for the [DictionaryController] class.
 var (
 	DictionaryControllerClass     _DictionaryControllerClass
@@ -30,16 +29,16 @@ func getDictionaryControllerClass() _DictionaryControllerClass {
 type _DictionaryControllerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DictionaryController */
+
+
 // An interface definition for the [DictionaryController] class.
 type IDictionaryController interface {
 	IArrayController
 	
-/* debug [class_interface_properties]: Properties for DictionaryController */
+
 	// properties:
 	ExcludedKeys() []string
 	SetExcludedKeys(value []string)
@@ -47,26 +46,26 @@ type IDictionaryController interface {
 	SetIncludedKeys(value []string)
 	InitialValue() objc.ID
 	SetInitialValue(value objc.ID)
-	InitialKey() objc.IObject /* cross-framework: NSString */
-	SetInitialKey(value objc.IObject /* cross-framework: NSString */)
+	InitialKey() foundation.foundation.INSString
+	SetInitialKey(value foundation.foundation.INSString)
 	LocalizedKeyDictionary() foundation.IDictionary
 	SetLocalizedKeyDictionary(value foundation.IDictionary)
-	LocalizedKeyTable() objc.IObject /* cross-framework: NSString */
-	SetLocalizedKeyTable(value objc.IObject /* cross-framework: NSString */)
-/* debug [class_interface_properties]: End properties */
+	LocalizedKeyTable() foundation.foundation.INSString
+	SetLocalizedKeyTable(value foundation.foundation.INSString)
+
 
 	
-/* debug [class_interface_methods]: Methods for DictionaryController */
+
 	// methods:
 	NewObject() IDictionaryControllerKeyValuePair
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DictionaryController */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DictionaryControllerClass) Alloc() DictionaryController {
 	rv := objc.Send[DictionaryController](objc.ID(dc.class), objc.Sel("alloc"))
@@ -96,11 +95,11 @@ func (d_ DictionaryController) Autorelease() DictionaryController {
 func NewDictionaryController() DictionaryController {
 	return getDictionaryControllerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DictionaryController */
+
+
 // A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.
 //
 // transforms the contents of a dictionary into an array of key-value pairs that can be bound to user interface items such as the columns of an . The content of an instance is specified using the inherited method or by binding an instance to the binding. New key/value pairs inserted into the dictionary are created using the method. The initial key name is set to the string returned by . The initial key name is copied to the newly inserted object, while the object returned by is simply retained. As new items are inserted the controller enumerates the initial key name, resulting in key names such as “key”, “key1”, “key2”, and so on. This behavior can be customized by overriding . An instance can be configured to exclude specified keys in a dictionary from being returned by using the property. Similarly, you can specify an array of key names that are always included in the arranged objects, even if they are not present in the content dictionary, using the property. supports providing localized key names for the keys in the dictionary, allowing a user-friendly representation of the key name to be displayed. The localized key names are specified by a dictionary (using ) or by providing a strings table (using ). The method returns an array of objects that implement the informal protocol. User interface controls are bound to the arranged objects array using key paths such as: (displays the key name), (displays the value for the key), or (displays the localized key name). See for more information. overrides to return an array of objects that implement the informal protocol. See and for more information. The constants listed below are used to specify a binding to , , , and . See the for more information.
@@ -122,25 +121,25 @@ func DictionaryControllerFrom(ptr unsafe.Pointer) DictionaryController {
 		ArrayController: ArrayControllerFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DictionaryController *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DictionaryController */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DictionaryController */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DictionaryController */
+
+
+
+
+
+
+
 
 // Creates and returns a new key-value pair to represent an entry in the content dictionary.
 //
@@ -149,13 +148,13 @@ func DictionaryControllerFrom(ptr unsafe.Pointer) DictionaryController {
 func (d_ DictionaryController) NewObject() IDictionaryControllerKeyValuePair {
 	rv := objc.Send[DictionaryControllerKeyValuePair](d_.ID, objc.Sel("newObject"))
 	return rv
-}/* debug [instance_methods/method]: NewObject */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for DictionaryController */
+
+
+
 
 // The key names that are never displayed in the user interface items bound to the receiver.
 //
@@ -164,7 +163,7 @@ func (d_ DictionaryController) NewObject() IDictionaryControllerKeyValuePair {
 func (d_ DictionaryController) ExcludedKeys() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("excludedKeys"))
 	return rv
-}/* debug [instance_properties/getter]: excludedKeys */
+}
 
 
 // The key names that are never displayed in the user interface items bound to the receiver.
@@ -182,7 +181,7 @@ func (d_ DictionaryController) SetExcludedKeys(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setExcludedKeys:"), nsArray)
-}/* debug [instance_properties/setter]: excludedKeys */
+}
 
 
 // The key names that are represented by a key-value pair, even if they are not present in the receiver’s content dictionary.
@@ -192,7 +191,7 @@ func (d_ DictionaryController) SetExcludedKeys(value []string) {
 func (d_ DictionaryController) IncludedKeys() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("includedKeys"))
 	return rv
-}/* debug [instance_properties/getter]: includedKeys */
+}
 
 
 // The key names that are represented by a key-value pair, even if they are not present in the receiver’s content dictionary.
@@ -210,7 +209,7 @@ func (d_ DictionaryController) SetIncludedKeys(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludedKeys:"), nsArray)
-}/* debug [instance_properties/setter]: includedKeys */
+}
 
 
 // The string used as the initial value for a newly inserted item.
@@ -220,7 +219,7 @@ func (d_ DictionaryController) SetIncludedKeys(value []string) {
 func (d_ DictionaryController) InitialValue() objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("initialValue"))
 	return rv
-}/* debug [instance_properties/getter]: initialValue */
+}
 
 
 // The string used as the initial value for a newly inserted item.
@@ -229,26 +228,26 @@ func (d_ DictionaryController) InitialValue() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialValue
 func (d_ DictionaryController) SetInitialValue(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialValue:"), value)
-}/* debug [instance_properties/setter]: initialValue */
+}
 
 
 // The string used as the initial key name for a newly inserted item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialKey
-func (d_ DictionaryController) InitialKey() objc.IObject /* cross-framework: NSString */ {
+func (d_ DictionaryController) InitialKey() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("initialKey"))
 	return rv
-}/* debug [instance_properties/getter]: initialKey */
+}
 
 
 // The string used as the initial key name for a newly inserted item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialKey
-func (d_ DictionaryController) SetInitialKey(value objc.IObject /* cross-framework: NSString */) {
+func (d_ DictionaryController) SetInitialKey(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialKey:"), value)
-}/* debug [instance_properties/setter]: initialKey */
+}
 
 
 // The localized key names that are displayed by the receiver in place of the key names.
@@ -258,7 +257,7 @@ func (d_ DictionaryController) SetInitialKey(value objc.IObject /* cross-framewo
 func (d_ DictionaryController) LocalizedKeyDictionary() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](d_.ID, objc.Sel("localizedKeyDictionary"))
 	return rv
-}/* debug [instance_properties/getter]: localizedKeyDictionary */
+}
 
 
 // The localized key names that are displayed by the receiver in place of the key names.
@@ -267,31 +266,31 @@ func (d_ DictionaryController) LocalizedKeyDictionary() foundation.IDictionary {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyDictionary
 func (d_ DictionaryController) SetLocalizedKeyDictionary(value foundation.IDictionary) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyDictionary:"), value)
-}/* debug [instance_properties/setter]: localizedKeyDictionary */
+}
 
 
 // the strings file used to localize key names.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyTable
-func (d_ DictionaryController) LocalizedKeyTable() objc.IObject /* cross-framework: NSString */ {
+func (d_ DictionaryController) LocalizedKeyTable() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("localizedKeyTable"))
 	return rv
-}/* debug [instance_properties/getter]: localizedKeyTable */
+}
 
 
 // the strings file used to localize key names.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyTable
-func (d_ DictionaryController) SetLocalizedKeyTable(value objc.IObject /* cross-framework: NSString */) {
+func (d_ DictionaryController) SetLocalizedKeyTable(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyTable:"), value)
-}/* debug [instance_properties/setter]: localizedKeyTable */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSDictionaryController */
+
+
+
 
 
 

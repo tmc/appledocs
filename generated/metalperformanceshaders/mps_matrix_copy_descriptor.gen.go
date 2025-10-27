@@ -47,7 +47,7 @@ type IMatrixCopyDescriptor interface {
 
 	// methods:
 	SetCopyOperationAt()
-	SetCopyOperationAtIndexSourceMatrixDestinationMatrixOffsets(index uint, sourceMatrix IMatrix, destinationMatrix IMatrix, offsets objc.IObject /* cross-framework: MPSMatrixCopyOffsets */)
+	SetCopyOperationAtIndexSourceMatrixDestinationMatrixOffsets(index uint, sourceMatrix IMatrix, destinationMatrix IMatrix, offsets MatrixCopyOffsets)
 
 
 }
@@ -140,7 +140,7 @@ func NewMatrixCopyDescriptorWithSourceMatricesDestinationMatricesOffsetVectorOff
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopydescriptor/2915333-descriptorwithsourcematrix
-func (mc _MatrixCopyDescriptorClass) DescriptorWithSourceMatrixDestinationMatrixOffsets(sourceMatrix IMatrix, destinationMatrix IMatrix, offsets objc.IObject /* cross-framework: MPSMatrixCopyOffsets */) objectivec.IObject {
+func (mc _MatrixCopyDescriptorClass) DescriptorWithSourceMatrixDestinationMatrixOffsets(sourceMatrix IMatrix, destinationMatrix IMatrix, offsets MatrixCopyOffsets) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(mc.class), objc.Sel("descriptorWithSourceMatrix:destinationMatrix:offsets:"), sourceMatrix, destinationMatrix, offsets)
 	return rv
 }
@@ -165,7 +165,7 @@ func (m_ MatrixCopyDescriptor) SetCopyOperationAt() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopydescriptor/2915331-setcopyoperationatindex
-func (m_ MatrixCopyDescriptor) SetCopyOperationAtIndexSourceMatrixDestinationMatrixOffsets(index uint, sourceMatrix IMatrix, destinationMatrix IMatrix, offsets objc.IObject /* cross-framework: MPSMatrixCopyOffsets */) {
+func (m_ MatrixCopyDescriptor) SetCopyOperationAtIndexSourceMatrixDestinationMatrixOffsets(index uint, sourceMatrix IMatrix, destinationMatrix IMatrix, offsets MatrixCopyOffsets) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCopyOperationAtIndex:sourceMatrix:destinationMatrix:offsets:"), index, sourceMatrix, destinationMatrix, offsets)
 }
 

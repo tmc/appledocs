@@ -21,5 +21,5 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLIOScratchBufferAllocator
 type PIOScratchBufferAllocator interface {
 	// Required methods
-	NewScratchBufferWithMinimumSize(minimumSize uint) unsafe.Pointer/* debug [protocol_interface/required_method]: NewScratchBufferWithMinimumSize */
+	NewScratchBufferWithMinimumSize(minimumSize uint) unsafe.Pointer
 }

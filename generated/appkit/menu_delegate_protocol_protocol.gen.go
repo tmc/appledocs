@@ -50,3 +50,30 @@ func (d *MenuDelegate) MenuHasKeyEquivalentForEventTargetAction(menu IMenu, even
 func (d *MenuDelegate) HasMenuHasKeyEquivalentForEventTargetAction() bool {
 	return d._MenuHasKeyEquivalentForEventTargetAction != nil
 }
+
+// MenuDelegateObject wraps an existing Objective-C object that conforms to the PMenuDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type MenuDelegateObject struct {
+	objectivec.Object
+}
+
+// NewMenuDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSMenuDelegate protocol.
+func NewMenuDelegateObject(obj objectivec.Object) *MenuDelegateObject {
+	return &MenuDelegateObject{obj}
+}
+
+// Make sure MenuDelegateObject implements PMenuDelegate.
+var _ PMenuDelegate = (*MenuDelegateObject)(nil)
+
+// MenuHasKeyEquivalentForEventTargetAction implements the PMenuDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *MenuDelegateObject) MenuHasKeyEquivalentForEventTargetAction(menu IMenu, event IEvent, target objectivec.IObject, action objectivec.IObject) bool {
+	return objc.Send[bool](o.ID, objc.Sel("menuHasKeyEquivalent:forEvent:target:action:"), menu, event, target, action)
+}
+
+// HasMenuHasKeyEquivalentForEventTargetAction returns true; this is a placeholder for optional method checks.
+func (o *MenuDelegateObject) HasMenuHasKeyEquivalentForEventTargetAction() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}

@@ -2,10 +2,10 @@
 
 package createmlcomponents
 
-/* debug [functions.gen.go]: Generating 0 functions for CreateMLComponents */
 import (
 	"github.com/ebitengine/purego"
 )
+
 
 // CreateMLComponents Functions (0 total)
 //
@@ -20,3 +20,10 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
+
+
+
+
+
+
+

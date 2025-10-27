@@ -17,7 +17,7 @@ package metal
 // See: doc://com.apple.metal/documentation/Metal/MTLSharedEvent
 type PSharedEvent interface {
 	// Required methods
-	NewSharedEventHandle() SharedEventHandle/* debug [protocol_interface/required_method]: NewSharedEventHandle */
-	NotifyListenerAtValueBlock(listener IMTLSharedEventListener, value uint64, block SharedEventNotificationBlock /* not a class type */)/* debug [protocol_interface/required_method]: NotifyListenerAtValueBlock */
-	WaitUntilSignaledValueTimeoutMS(value uint64, milliseconds uint64) bool/* debug [protocol_interface/required_method]: WaitUntilSignaledValueTimeoutMS */
+	NewSharedEventHandle() ISharedEventHandle
+	NotifyListenerAtValueBlock(listener IMTLSharedEventListener, value uint64, block SharedEventNotificationBlock /* not a class type */)
+	WaitUntilSignaledValueTimeoutMS(value uint64, milliseconds uint64) bool
 }

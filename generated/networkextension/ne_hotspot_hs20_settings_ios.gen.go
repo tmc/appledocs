@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -21,7 +20,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHS20Settings/domainName
-func (n_ NEHotspotHS20Settings) DomainName() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotHS20Settings) DomainName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("domainName"))
 	return rv
 }

@@ -8,6 +8,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PUserInterfaceItemSearching is the NSUserInterfaceItemSearching protocol interface.
@@ -20,11 +22,11 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemSearching
 type PUserInterfaceItemSearching interface {
 	// Required methods
-	LocalizedTitlesForItem(item objc.IObject) []string/* debug [protocol_interface/required_method]: LocalizedTitlesForItem */
-	SearchForItemsWithSearchStringResultLimitMatchedItemHandler(searchString objc.IObject /* cross-framework: NSString */, resultLimit int, handleMatchedItems unsafe.Pointer)/* debug [protocol_interface/required_method]: SearchForItemsWithSearchStringResultLimitMatchedItemHandler */
+	LocalizedTitlesForItem(item objectivec.IObject) []string
+	SearchForItemsWithSearchStringResultLimitMatchedItemHandler(searchString foundation.foundation.INSString, resultLimit int, handleMatchedItems unsafe.Pointer)
 	// Optional methods
-	PerformActionForItem(item objc.IObject)
+	PerformActionForItem(item objectivec.IObject)
 	HasPerformActionForItem() bool
-	ShowAllHelpTopicsForSearchString(searchString objc.IObject /* cross-framework: NSString */)
+	ShowAllHelpTopicsForSearchString(searchString foundation.foundation.INSString)
 	HasShowAllHelpTopicsForSearchString() bool
 }

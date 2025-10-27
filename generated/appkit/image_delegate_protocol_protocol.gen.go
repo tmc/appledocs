@@ -5,6 +5,10 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PImageDelegate is the NSImageDelegate protocol interface.
@@ -17,12 +21,12 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSImageDelegate
 type PImageDelegate interface {
 	// Required methods
-	ImageDidLoadPartOfRepresentationWithValidRows(image IImage, rep IImageRep, rows int)/* debug [protocol_interface/required_method]: ImageDidLoadPartOfRepresentationWithValidRows */
-	ImageDidLoadRepresentationWithStatus(image IImage, rep IImageRep, status ImageLoadStatus)/* debug [protocol_interface/required_method]: ImageDidLoadRepresentationWithStatus */
-	ImageDidLoadRepresentationHeader(image IImage, rep IImageRep)/* debug [protocol_interface/required_method]: ImageDidLoadRepresentationHeader */
-	ImageWillLoadRepresentation(image IImage, rep IImageRep)/* debug [protocol_interface/required_method]: ImageWillLoadRepresentation */
+	ImageDidLoadPartOfRepresentationWithValidRows(image IImage, rep IImageRep, rows int)
+	ImageDidLoadRepresentationWithStatus(image IImage, rep IImageRep, status ImageLoadStatus)
+	ImageDidLoadRepresentationHeader(image IImage, rep IImageRep)
+	ImageWillLoadRepresentation(image IImage, rep IImageRep)
 	// Optional methods
-	ImageDidNotDrawInRect(sender IImage, rect Rect /* not a class type */) Image
+	ImageDidNotDrawInRect(sender IImage, rect corefoundation.CGRect) IImage
 	HasImageDidNotDrawInRect() bool
 }
 
@@ -30,7 +34,7 @@ type PImageDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ImageDelegate struct {
-	_ImageDidNotDrawInRect func(sender IImage, rect Rect /* not a class type */) Image
+	_ImageDidNotDrawInRect func(sender IImage, rect corefoundation.CGRect) IImage
 	_ImageDidLoadPartOfRepresentationWithValidRows func(image IImage, rep IImageRep, rows int)
 	_ImageDidLoadRepresentationWithStatus func(image IImage, rep IImageRep, status ImageLoadStatus)
 	_ImageDidLoadRepresentationHeader func(image IImage, rep IImageRep)
@@ -40,7 +44,7 @@ type ImageDelegate struct {
 // SetImageDidNotDrawInRect sets the handler for the ImageDidNotDrawInRect delegate method.
 //
 // Tells the delegate that the image object is unable, for whatever reason, to lock focus on its image or draw in the specified rectangle.
-func (d *ImageDelegate) SetImageDidNotDrawInRect(f func(sender IImage, rect Rect /* not a class type */) Image) {
+func (d *ImageDelegate) SetImageDidNotDrawInRect(f func(sender IImage, rect corefoundation.CGRect) IImage) {
 	d._ImageDidNotDrawInRect = f
 }
 
@@ -73,11 +77,11 @@ func (d *ImageDelegate) SetImageWillLoadRepresentation(f func(image IImage, rep 
 }
 
 // ImageDidNotDrawInRect implements the PImageDelegate interface.
-func (d *ImageDelegate) ImageDidNotDrawInRect(sender IImage, rect Rect /* not a class type */) Image {
+func (d *ImageDelegate) ImageDidNotDrawInRect(sender IImage, rect corefoundation.CGRect) IImage {
 	if d._ImageDidNotDrawInRect != nil {
 		return d._ImageDidNotDrawInRect(sender, rect)
 	}
-	var zero Image
+	var zero IImage
 	return zero
 }
 
@@ -132,4 +136,55 @@ func (d *ImageDelegate) ImageWillLoadRepresentation(image IImage, rep IImageRep)
 // HasImageWillLoadRepresentation returns true if a handler for ImageWillLoadRepresentation has been set.
 func (d *ImageDelegate) HasImageWillLoadRepresentation() bool {
 	return d._ImageWillLoadRepresentation != nil
+}
+
+// ImageDelegateObject wraps an existing Objective-C object that conforms to the PImageDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ImageDelegateObject struct {
+	objectivec.Object
+}
+
+// NewImageDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSImageDelegate protocol.
+func NewImageDelegateObject(obj objectivec.Object) *ImageDelegateObject {
+	return &ImageDelegateObject{obj}
+}
+
+// Make sure ImageDelegateObject implements PImageDelegate.
+var _ PImageDelegate = (*ImageDelegateObject)(nil)
+
+// ImageDidLoadPartOfRepresentationWithValidRows implements the PImageDelegate interface.
+// This required method is always available on objects conforming to ImageDidLoadPartOfRepresentationWithValidRows.
+func (o *ImageDelegateObject) ImageDidLoadPartOfRepresentationWithValidRows(image IImage, rep IImageRep, rows int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("image:didLoadPartOfRepresentation:withValidRows:"), image, rep, rows)
+}
+
+// ImageDidLoadRepresentationWithStatus implements the PImageDelegate interface.
+// This required method is always available on objects conforming to ImageDidLoadRepresentationWithStatus.
+func (o *ImageDelegateObject) ImageDidLoadRepresentationWithStatus(image IImage, rep IImageRep, status ImageLoadStatus) {
+	objc.Send[objc.ID](o.ID, objc.Sel("image:didLoadRepresentation:withStatus:"), image, rep, status)
+}
+
+// ImageDidLoadRepresentationHeader implements the PImageDelegate interface.
+// This required method is always available on objects conforming to ImageDidLoadRepresentationHeader.
+func (o *ImageDelegateObject) ImageDidLoadRepresentationHeader(image IImage, rep IImageRep) {
+	objc.Send[objc.ID](o.ID, objc.Sel("image:didLoadRepresentationHeader:"), image, rep)
+}
+
+// ImageWillLoadRepresentation implements the PImageDelegate interface.
+// This required method is always available on objects conforming to ImageWillLoadRepresentation.
+func (o *ImageDelegateObject) ImageWillLoadRepresentation(image IImage, rep IImageRep) {
+	objc.Send[objc.ID](o.ID, objc.Sel("image:willLoadRepresentation:"), image, rep)
+}
+
+// ImageDidNotDrawInRect implements the PImageDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ImageDelegateObject) ImageDidNotDrawInRect(sender IImage, rect corefoundation.CGRect) IImage {
+	return objc.Send[IImage](o.ID, objc.Sel("imageDidNotDraw:inRect:"), sender, rect)
+}
+
+// HasImageDidNotDrawInRect returns true; this is a placeholder for optional method checks.
+func (o *ImageDelegateObject) HasImageDidNotDrawInRect() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

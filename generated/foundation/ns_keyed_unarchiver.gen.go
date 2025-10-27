@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSKeyedUnarchiver */
 
 
-/* debug [class_header]: Header for NSKeyedUnarchiver */
+
+
 // The class instance for the [KeyedUnarchiver] class.
 var (
 	KeyedUnarchiverClass     _KeyedUnarchiverClass
@@ -30,25 +30,25 @@ func getKeyedUnarchiverClass() _KeyedUnarchiverClass {
 type _KeyedUnarchiverClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for KeyedUnarchiver */
+
+
 // An interface definition for the [KeyedUnarchiver] class.
 type IKeyedUnarchiver interface {
 	ICoder
 	
-/* debug [class_interface_properties]: Properties for KeyedUnarchiver */
+
 	// properties:
 	DecodingFailurePolicy() DecodingFailurePolicy
 	SetDecodingFailurePolicy(value DecodingFailurePolicy)
 	RequiresSecureCoding() bool
 	SetRequiresSecureCoding(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for KeyedUnarchiver */
+
 	// methods:
 	ClassForClassName(codedName IString) objc.Class
 	ContainsValueForKey(key IString) bool
@@ -62,14 +62,14 @@ type IKeyedUnarchiver interface {
 	DecodeObjectForKey(key IString) objc.ID
 	FinishDecoding()
 	SetClassForClassName(cls objc.Class, codedName IString)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for KeyedUnarchiver */
+
+
 // Alloc allocates a new instance without initialization.
 func (kc _KeyedUnarchiverClass) Alloc() KeyedUnarchiver {
 	rv := objc.Send[KeyedUnarchiver](objc.ID(kc.class), objc.Sel("alloc"))
@@ -99,11 +99,11 @@ func (k_ KeyedUnarchiver) Autorelease() KeyedUnarchiver {
 func NewKeyedUnarchiver() KeyedUnarchiver {
 	return getKeyedUnarchiverClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for KeyedUnarchiver */
+
+
 // A decoder that restores data from an archive referenced by keys.
 //
 // is a concrete subclass of that defines methods for decoding a set of named objects (and scalar values) from a keyed archive. The class produces archives that this class can decode. The archiver creates keyed archive as a hierarchy of objects. The archiver treats each object as a namespace into which it can encode other objects. This means that an unarchiver can only decode objects encoded within the immediate scope of their parent object. Objects encoded elsewhere in the hierarchy — whether higher than, lower than, or parallel to this particular object — aren’t accessible. In this way, the keys used by a particular object to encode its instance variables need to be unique only within the scope of that object. If you invoke one of the -prefixed methods of this class using a key that does not exist in the archive, the return value indicates failure. This value varies by decoded type. For example, if a key does not exist in an archive, returns , returns , and returns . supports limited type coercion for numeric types. You can use any of the integer decode methods to decode a value encoded as any type of integer, whether a standard or an explicit 32-bit or 64-bit integer. Likewise, you can use the - or -returning decode methods to handle value encoded as a or . If an encoded value is too large to fit within the coerced type, the decoding method throws a . Further, when trying to coerce a value to an incompatible type — for example decoding an as a — the decoding method throws an .
@@ -125,11 +125,11 @@ func KeyedUnarchiverFrom(ptr unsafe.Pointer) KeyedUnarchiver {
 		Coder: CoderFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for KeyedUnarchiver */
+
+
 
 // Initializes an archiver to decode data from the specified location.
 //
@@ -140,7 +140,7 @@ func NewKeyedUnarchiverForReadingFromDataError(data IData, error_ IError) KeyedU
 	rv := objc.Send[KeyedUnarchiver](instance.ID, objc.Sel("initForReadingFromData:error:"), data, error_)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewKeyedUnarchiverForReadingFromDataError */
+}
 
 
 // Initializes an archiver to decode data from the specified location.
@@ -152,13 +152,13 @@ func NewKeyedUnarchiverForReadingWithData(data IData) KeyedUnarchiver {
 	rv := objc.Send[KeyedUnarchiver](instance.ID, objc.Sel("initForReadingWithData:"), data)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewKeyedUnarchiverForReadingWithData */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for KeyedUnarchiver */
+
+
+
 
 // Returns the class from which this unarchiver instantiates an encoded object with a given class name.
 //
@@ -167,7 +167,7 @@ func NewKeyedUnarchiverForReadingWithData(data IData) KeyedUnarchiver {
 func (kc _KeyedUnarchiverClass) ClassForClassName(codedName IString) objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(kc.class), objc.Sel("classForClassName:"), codedName)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ClassForClassName) */
+}
 
 
 // Sets a global translation mapping to decode objects encoded with a given class name as instances of a given class instead.
@@ -176,7 +176,7 @@ func (kc _KeyedUnarchiverClass) ClassForClassName(codedName IString) objc.Class 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/setClass(_:forClassName:)-swift.type.method
 func (kc _KeyedUnarchiverClass) SetClassForClassName(cls objc.Class, codedName IString) {
 	objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("setClass:forClassName:"), cls, codedName)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SetClassForClassName) */
+}
 
 
 // Decodes and returns the object graph previously encoded by and stored in a given object.
@@ -186,7 +186,7 @@ func (kc _KeyedUnarchiverClass) SetClassForClassName(cls objc.Class, codedName I
 func (kc _KeyedUnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchiveObjectWithData:"), data)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchiveObjectWithData) */
+}
 
 
 // Decodes and returns the object graph previously encoded by written to the file at a given path.
@@ -196,7 +196,7 @@ func (kc _KeyedUnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 func (kc _KeyedUnarchiverClass) UnarchiveObjectWithFile(path IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchiveObjectWithFile:"), path)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchiveObjectWithFile) */
+}
 
 
 // Decodes a previously-archived object graph, returning the root object.
@@ -206,7 +206,7 @@ func (kc _KeyedUnarchiverClass) UnarchiveObjectWithFile(path IString) objc.ID {
 func (kc _KeyedUnarchiverClass) UnarchiveTopLevelObjectWithDataError(data IData, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchiveTopLevelObjectWithData:error:"), data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchiveTopLevelObjectWithDataError) */
+}
 
 
 // [Full Topic]
@@ -214,7 +214,7 @@ func (kc _KeyedUnarchiverClass) UnarchiveTopLevelObjectWithDataError(data IData,
 func (kc _KeyedUnarchiverClass) UnarchivedArrayOfObjectsOfClassFromDataError(cls objc.Class, data IData, error_ IError) IArray {
 	rv := objc.Send[Array](objc.ID(kc.class), objc.Sel("unarchivedArrayOfObjectsOfClass:fromData:error:"), cls, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchivedArrayOfObjectsOfClassFromDataError) */
+}
 
 
 // [Full Topic]
@@ -222,7 +222,7 @@ func (kc _KeyedUnarchiverClass) UnarchivedArrayOfObjectsOfClassFromDataError(cls
 func (kc _KeyedUnarchiverClass) UnarchivedArrayOfObjectsOfClassesFromDataError(classes unsafe.Pointer, data IData, error_ IError) IArray {
 	rv := objc.Send[Array](objc.ID(kc.class), objc.Sel("unarchivedArrayOfObjectsOfClasses:fromData:error:"), classes, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchivedArrayOfObjectsOfClassesFromDataError) */
+}
 
 
 // [Full Topic]
@@ -230,7 +230,7 @@ func (kc _KeyedUnarchiverClass) UnarchivedArrayOfObjectsOfClassesFromDataError(c
 func (kc _KeyedUnarchiverClass) UnarchivedDictionaryWithKeysOfClassObjectsOfClassFromDataError(keyCls objc.Class, valueCls objc.Class, data IData, error_ IError) IDictionary {
 	rv := objc.Send[Dictionary](objc.ID(kc.class), objc.Sel("unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:"), keyCls, valueCls, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchivedDictionaryWithKeysOfClassObjectsOfClassFromDataError) */
+}
 
 
 // [Full Topic]
@@ -238,7 +238,7 @@ func (kc _KeyedUnarchiverClass) UnarchivedDictionaryWithKeysOfClassObjectsOfClas
 func (kc _KeyedUnarchiverClass) UnarchivedDictionaryWithKeysOfClassesObjectsOfClassesFromDataError(keyClasses unsafe.Pointer, valueClasses unsafe.Pointer, data IData, error_ IError) IDictionary {
 	rv := objc.Send[Dictionary](objc.ID(kc.class), objc.Sel("unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:"), keyClasses, valueClasses, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchivedDictionaryWithKeysOfClassesObjectsOfClassesFromDataError) */
+}
 
 
 // Decodes a previously-archived object graph, returning the root object as one of the specified classes.
@@ -248,7 +248,7 @@ func (kc _KeyedUnarchiverClass) UnarchivedDictionaryWithKeysOfClassesObjectsOfCl
 func (kc _KeyedUnarchiverClass) UnarchivedObjectOfClassesFromDataError(classes unsafe.Pointer, data IData, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchivedObjectOfClasses:fromData:error:"), classes, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchivedObjectOfClassesFromDataError) */
+}
 
 
 // Decodes a previously-archived object graph, that returns the root object as the specified type.
@@ -258,18 +258,18 @@ func (kc _KeyedUnarchiverClass) UnarchivedObjectOfClassesFromDataError(classes u
 func (kc _KeyedUnarchiverClass) UnarchivedObjectOfClassFromDataError(cls objc.Class, data IData, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchivedObjectOfClass:fromData:error:"), cls, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchivedObjectOfClassFromDataError) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for KeyedUnarchiver */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for KeyedUnarchiver */
+
+
+
+
+
 
 // Returns the class from which this unarchiver instantiates an encoded object with a given class name.
 //
@@ -278,7 +278,7 @@ func (kc _KeyedUnarchiverClass) UnarchivedObjectOfClassFromDataError(cls objc.Cl
 func (k_ KeyedUnarchiver) ClassForClassName(codedName IString) objc.Class {
 	rv := objc.Send[objc.Class](k_.ID, objc.Sel("classForClassName:"), codedName)
 	return rv
-}/* debug [instance_methods/method]: ClassForClassName */
+}
 
 
 // Returns a Boolean value that indicates whether the archive contains a value for a given key within the current decoding scope.
@@ -288,7 +288,7 @@ func (k_ KeyedUnarchiver) ClassForClassName(codedName IString) objc.Class {
 func (k_ KeyedUnarchiver) ContainsValueForKey(key IString) bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("containsValueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: ContainsValueForKey */
+}
 
 
 // Decodes a Boolean value associated with a given key.
@@ -298,7 +298,7 @@ func (k_ KeyedUnarchiver) ContainsValueForKey(key IString) bool {
 func (k_ KeyedUnarchiver) DecodeBoolForKey(key IString) bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("decodeBoolForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeBoolForKey */
+}
 
 
 // Decodes a stream of bytes associated with a given key.
@@ -308,7 +308,7 @@ func (k_ KeyedUnarchiver) DecodeBoolForKey(key IString) bool {
 func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp uint) uint8 /* not a class type */ {
 	rv := objc.Send[uint8](k_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), key, lengthp)
 	return rv
-}/* debug [instance_methods/method]: DecodeBytesForKeyReturnedLength */
+}
 
 
 // Decodes a double-precision floating-point value associated with a given key.
@@ -318,7 +318,7 @@ func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp u
 func (k_ KeyedUnarchiver) DecodeDoubleForKey(key IString) float64 {
 	rv := objc.Send[float64](k_.ID, objc.Sel("decodeDoubleForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeDoubleForKey */
+}
 
 
 // Decodes a single-precision floating-point value associated with a given key.
@@ -328,7 +328,7 @@ func (k_ KeyedUnarchiver) DecodeDoubleForKey(key IString) float64 {
 func (k_ KeyedUnarchiver) DecodeFloatForKey(key IString) float32 {
 	rv := objc.Send[float32](k_.ID, objc.Sel("decodeFloatForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeFloatForKey */
+}
 
 
 // Decodes a 32-bit integer value associated with a given key.
@@ -338,7 +338,7 @@ func (k_ KeyedUnarchiver) DecodeFloatForKey(key IString) float32 {
 func (k_ KeyedUnarchiver) DecodeInt32ForKey(key IString) int32 /* not a class type */ {
 	rv := objc.Send[int32](k_.ID, objc.Sel("decodeInt32ForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeInt32ForKey */
+}
 
 
 // Decodes a 64-bit integer value associated with a given key.
@@ -348,7 +348,7 @@ func (k_ KeyedUnarchiver) DecodeInt32ForKey(key IString) int32 /* not a class ty
 func (k_ KeyedUnarchiver) DecodeInt64ForKey(key IString) int64 {
 	rv := objc.Send[int64](k_.ID, objc.Sel("decodeInt64ForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeInt64ForKey */
+}
 
 
 // Decodes an integer value associated with a given key.
@@ -358,7 +358,7 @@ func (k_ KeyedUnarchiver) DecodeInt64ForKey(key IString) int64 {
 func (k_ KeyedUnarchiver) DecodeIntForKey(key IString) int {
 	rv := objc.Send[int](k_.ID, objc.Sel("decodeIntForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeIntForKey */
+}
 
 
 // Decodes and returns an object associated with a given key.
@@ -368,7 +368,7 @@ func (k_ KeyedUnarchiver) DecodeIntForKey(key IString) int {
 func (k_ KeyedUnarchiver) DecodeObjectForKey(key IString) objc.ID {
 	rv := objc.Send[objc.ID](k_.ID, objc.Sel("decodeObjectForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: DecodeObjectForKey */
+}
 
 
 // Tells the receiver that you are finished decoding objects.
@@ -377,7 +377,7 @@ func (k_ KeyedUnarchiver) DecodeObjectForKey(key IString) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/finishDecoding()
 func (k_ KeyedUnarchiver) FinishDecoding() {
 	objc.Send[objc.ID](k_.ID, objc.Sel("finishDecoding"))
-}/* debug [instance_methods/method]: FinishDecoding */
+}
 
 
 // Sets a translation mapping on this unarchiver to decode objects encoded with a given class name as instances of a given class instead.
@@ -386,13 +386,13 @@ func (k_ KeyedUnarchiver) FinishDecoding() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/setClass(_:forClassName:)-swift.method
 func (k_ KeyedUnarchiver) SetClassForClassName(cls objc.Class, codedName IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setClass:forClassName:"), cls, codedName)
-}/* debug [instance_methods/method]: SetClassForClassName */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for KeyedUnarchiver */
+
+
+
 
 // The action to take when this unarchiver fails to decode an entry.
 //
@@ -401,7 +401,7 @@ func (k_ KeyedUnarchiver) SetClassForClassName(cls objc.Class, codedName IString
 func (k_ KeyedUnarchiver) DecodingFailurePolicy() DecodingFailurePolicy {
 	rv := objc.Send[DecodingFailurePolicy](k_.ID, objc.Sel("decodingFailurePolicy"))
 	return rv
-}/* debug [instance_properties/getter]: decodingFailurePolicy */
+}
 
 
 // The action to take when this unarchiver fails to decode an entry.
@@ -410,7 +410,7 @@ func (k_ KeyedUnarchiver) DecodingFailurePolicy() DecodingFailurePolicy {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
 func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value DecodingFailurePolicy) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
-}/* debug [instance_properties/setter]: decodingFailurePolicy */
+}
 
 
 // Indicates whether the receiver requires all unarchived classes to conform to .
@@ -420,7 +420,7 @@ func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value DecodingFailurePolicy) 
 func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
-}/* debug [instance_properties/getter]: requiresSecureCoding */
+}
 
 
 // Indicates whether the receiver requires all unarchived classes to conform to .
@@ -429,11 +429,11 @@ func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/requiresSecureCoding
 func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
-}/* debug [instance_properties/setter]: requiresSecureCoding */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSKeyedUnarchiver */
+
+
+
 
 

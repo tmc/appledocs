@@ -6,10 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
+
+
+
+
 
 // The class instance for the [Heading] class.
 var (
@@ -28,38 +31,35 @@ type _HeadingClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Heading] class.
 type IHeading interface {
 	objectivec.IObject
+	
+
 	// properties:
 	HeadingAccuracy() LocationDirection /* not a class type */
 	MagneticHeading() LocationDirection /* not a class type */
-	Timestamp() objc.IObject            /* cross-framework: NSDate */
-	TrueHeading() LocationDirection     /* not a class type */
-	X() objc.IObject                    /* cross-framework: HeadingComponentValue */
-	Y() objc.IObject                    /* cross-framework: HeadingComponentValue */
-	Z() objc.IObject                    /* cross-framework: HeadingComponentValue */
+	Timestamp() foundation.foundation.INSDate
+	TrueHeading() LocationDirection /* not a class type */
+	X() HeadingComponentValue
+	Y() HeadingComponentValue
+	Z() HeadingComponentValue
+
+
+	
+
 	// methods:
+
+
 }
 
-// The orientation of the user’s device, relative to true or magnetic north.
-//
-// A object contains computed values for the device’s azimuth (orientation) relative to true or magnetic north. It also includes the raw data for the three-dimensional vector used to compute those values. A navigation app might use the information to rotate a map so that it reflects the direction that the user is facing. Typically, you don’t create instances of this class yourself, nor do you subclass it. Instead, you receive instances of this class through the delegate assigned to the object whose method you called.
 
-// The orientation of the user’s device, relative to true or magnetic north.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading
-type Heading struct {
-	objectivec.Object
-}
 
-// HeadingFrom constructs a [Heading] from an unsafe.Pointer.
-//
-// The orientation of the user’s device, relative to true or magnetic north.
-func HeadingFrom(ptr unsafe.Pointer) Heading {
-	return Heading{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (hc _HeadingClass) Alloc() Heading {
@@ -68,7 +68,6 @@ func (hc _HeadingClass) Alloc() Heading {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HeadingClass) New() Heading {
 	rv := objc.Send[Heading](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,6 +91,54 @@ func NewHeading() Heading {
 	return getHeadingClass().New()
 }
 
+
+
+
+
+// The orientation of the user’s device, relative to true or magnetic north.
+//
+// A object contains computed values for the device’s azimuth (orientation) relative to true or magnetic north. It also includes the raw data for the three-dimensional vector used to compute those values. A navigation app might use the information to rotate a map so that it reflects the direction that the user is facing. Typically, you don’t create instances of this class yourself, nor do you subclass it. Instead, you receive instances of this class through the delegate assigned to the object whose method you called.
+
+
+// The orientation of the user’s device, relative to true or magnetic north.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading
+type Heading struct {
+	objectivec.Object
+}
+
+// HeadingFrom constructs a [Heading] from an unsafe.Pointer.
+//
+// The orientation of the user’s device, relative to true or magnetic north.
+func HeadingFrom(ptr unsafe.Pointer) Heading {
+	return Heading{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // The maximum deviation (measured in degrees) between the reported heading and the true geomagnetic heading.
 //
 // [Full Topic]
@@ -100,6 +147,7 @@ func (h_ Heading) HeadingAccuracy() LocationDirection /* not a class type */ {
 	rv := objc.Send[LocationDirection](h_.ID, objc.Sel("headingAccuracy"))
 	return rv
 }
+
 
 // The heading (measured in degrees) relative to magnetic north.
 //
@@ -110,14 +158,16 @@ func (h_ Heading) MagneticHeading() LocationDirection /* not a class type */ {
 	return rv
 }
 
+
 // The time at which this heading was determined.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
-func (h_ Heading) Timestamp() objc.IObject /* cross-framework: NSDate */ {
+func (h_ Heading) Timestamp() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("timestamp"))
 	return rv
 }
+
 
 // The heading (measured in degrees) relative to true north.
 //
@@ -128,29 +178,40 @@ func (h_ Heading) TrueHeading() LocationDirection /* not a class type */ {
 	return rv
 }
 
+
 // The geomagnetic data (measured in microteslas) for the x-axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/x
-func (h_ Heading) X() objc.IObject /* cross-framework: HeadingComponentValue */ {
+func (h_ Heading) X() HeadingComponentValue {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("x"))
 	return rv
 }
+
 
 // The geomagnetic data (measured in microteslas) for the y-axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/y
-func (h_ Heading) Y() objc.IObject /* cross-framework: HeadingComponentValue */ {
+func (h_ Heading) Y() HeadingComponentValue {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("y"))
 	return rv
 }
+
 
 // The geomagnetic data (measured in microteslas) for the z-axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/z
-func (h_ Heading) Z() objc.IObject /* cross-framework: HeadingComponentValue */ {
+func (h_ Heading) Z() HeadingComponentValue {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("z"))
 	return rv
 }
+
+
+
+
+
+
+
+

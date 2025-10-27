@@ -45,10 +45,10 @@ type ICNNFullyConnected interface {
 	SetGroups(value int)
 	StrideInPixelsY() int
 	SetStrideInPixelsY(value int)
-	ClipRect() objc.IObject /* cross-framework: MTLRegion */
-	SetClipRect(value objc.IObject /* cross-framework: MTLRegion */)
-	Offset() objc.IObject /* cross-framework: MPSOffset */
-	SetOffset(value objc.IObject /* cross-framework: MPSOffset */)
+	ClipRect() metal.IMTLRegion
+	SetClipRect(value metal.IMTLRegion)
+	Offset() MPSOffset
+	SetOffset(value MPSOffset)
 
 
 	
@@ -127,7 +127,7 @@ func CNNFullyConnectedFrom(ptr unsafe.Pointer) CNNFullyConnected {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNFullyConnected/init(coder:device:)
-func NewCNNFullyConnectedWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNFullyConnected {
+func NewCNNFullyConnectedWithCoderDevice(aDecoder foundation.foundation.INSCoder, device unsafe.Pointer) CNNFullyConnected {
 	instance := getCNNFullyConnectedClass().Alloc()
 	rv := objc.Send[CNNFullyConnected](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -221,7 +221,7 @@ func (c_ CNNFullyConnected) SetStrideInPixelsY(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect
-func (c_ CNNFullyConnected) ClipRect() objc.IObject /* cross-framework: MTLRegion */ {
+func (c_ CNNFullyConnected) ClipRect() metal.IMTLRegion {
 	rv := objc.Send[Region](c_.ID, objc.Sel("clipRect"))
 	return rv
 }
@@ -231,7 +231,7 @@ func (c_ CNNFullyConnected) ClipRect() objc.IObject /* cross-framework: MTLRegio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect
-func (c_ CNNFullyConnected) SetClipRect(value objc.IObject /* cross-framework: MTLRegion */) {
+func (c_ CNNFullyConnected) SetClipRect(value metal.IMTLRegion) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClipRect:"), value)
 }
 
@@ -240,7 +240,7 @@ func (c_ CNNFullyConnected) SetClipRect(value objc.IObject /* cross-framework: M
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
-func (c_ CNNFullyConnected) Offset() objc.IObject /* cross-framework: MPSOffset */ {
+func (c_ CNNFullyConnected) Offset() MPSOffset {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("offset"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (c_ CNNFullyConnected) Offset() objc.IObject /* cross-framework: MPSOffset 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
-func (c_ CNNFullyConnected) SetOffset(value objc.IObject /* cross-framework: MPSOffset */) {
+func (c_ CNNFullyConnected) SetOffset(value MPSOffset) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOffset:"), value)
 }
 

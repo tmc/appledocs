@@ -57,9 +57,9 @@ type IRequest interface {
 
 	// methods:
 	Cancel()
-	ComputeDeviceForComputeStage(computeStage ComputeStage /* typedef */) unsafe.Pointer
-	SetComputeDeviceForComputeStage(computeDevice unsafe.Pointer, computeStage ComputeStage /* typedef */)
-	SupportedComputeStageDevicesAndReturnError(error_ objectivec.IObject) foundation.IDictionary
+	ComputeDeviceForComputeStage(computeStage ComputeStage) unsafe.Pointer
+	SetComputeDeviceForComputeStage(computeDevice unsafe.Pointer, computeStage ComputeStage)
+	SupportedComputeStageDevicesAndReturnError(error_ foundation.foundation.INSError) foundation.IDictionary
 
 
 }
@@ -194,7 +194,7 @@ func (r_ Request) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/computeDeviceForComputeStage:
-func (r_ Request) ComputeDeviceForComputeStage(computeStage ComputeStage /* typedef */) unsafe.Pointer {
+func (r_ Request) ComputeDeviceForComputeStage(computeStage ComputeStage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("computeDeviceForComputeStage:"), computeStage)
 	return rv
 }
@@ -204,7 +204,7 @@ func (r_ Request) ComputeDeviceForComputeStage(computeStage ComputeStage /* type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/setComputeDevice:forComputeStage:
-func (r_ Request) SetComputeDeviceForComputeStage(computeDevice unsafe.Pointer, computeStage ComputeStage /* typedef */) {
+func (r_ Request) SetComputeDeviceForComputeStage(computeDevice unsafe.Pointer, computeStage ComputeStage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setComputeDevice:forComputeStage:"), computeDevice, computeStage)
 }
 
@@ -213,7 +213,7 @@ func (r_ Request) SetComputeDeviceForComputeStage(computeDevice unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedComputeStageDevicesAndReturnError:
-func (r_ Request) SupportedComputeStageDevicesAndReturnError(error_ objectivec.IObject) foundation.IDictionary {
+func (r_ Request) SupportedComputeStageDevicesAndReturnError(error_ foundation.foundation.INSError) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](r_.ID, objc.Sel("supportedComputeStageDevicesAndReturnError:"), error_)
 	return rv
 }

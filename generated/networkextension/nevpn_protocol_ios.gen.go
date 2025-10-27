@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -19,11 +18,11 @@ import (
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/sliceUUID
-func (n_ NEVPNProtocol) SliceUUID() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEVPNProtocol) SliceUUID() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("sliceUUID"))
 	return rv
 }
-func (n_ NEVPNProtocol) SetSliceUUID(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEVPNProtocol) SetSliceUUID(value foundation.foundation.INSString) {
 	n_.ID.Send(objc.RegisterName("setSliceUUID:"), value)
 }
 

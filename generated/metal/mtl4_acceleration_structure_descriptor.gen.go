@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MTL4AccelerationStructureDescriptor */
 
 
-/* debug [class_header]: Header for MTL4AccelerationStructureDescriptor */
+
+
 // The class instance for the [MTL4AccelerationStructureDescriptor] class.
 var (
 	MTL4AccelerationStructureDescriptorClass     _MTL4AccelerationStructureDescriptorClass
@@ -29,30 +29,30 @@ func getMTL4AccelerationStructureDescriptorClass() _MTL4AccelerationStructureDes
 type _MTL4AccelerationStructureDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MTL4AccelerationStructureDescriptor */
+
+
 // An interface definition for the [MTL4AccelerationStructureDescriptor] class.
 type IMTL4AccelerationStructureDescriptor interface {
 	IAccelerationStructureDescriptor
 	
-/* debug [class_interface_properties]: Properties for MTL4AccelerationStructureDescriptor */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MTL4AccelerationStructureDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MTL4AccelerationStructureDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4AccelerationStructureDescriptorClass) Alloc() MTL4AccelerationStructureDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (m_ MTL4AccelerationStructureDescriptor) Autorelease() MTL4AccelerationStru
 func NewMTL4AccelerationStructureDescriptor() MTL4AccelerationStructureDescriptor {
 	return getMTL4AccelerationStructureDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MTL4AccelerationStructureDescriptor */
+
+
 // Base class for Metal 4 acceleration structure descriptors.
 //
 // Don’t use this class directly. Use one of its subclasses instead.
@@ -108,34 +108,34 @@ func MTL4AccelerationStructureDescriptorFrom(ptr unsafe.Pointer) MTL4Acceleratio
 		AccelerationStructureDescriptor: AccelerationStructureDescriptorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MTL4AccelerationStructureDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MTL4AccelerationStructureDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MTL4AccelerationStructureDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MTL4AccelerationStructureDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MTL4AccelerationStructureDescriptor */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MTL4AccelerationStructureDescriptor */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,7 +14,7 @@ import (
 type _CE_ExtendedKeyUsage struct {
 	NumPurposes unsafe.Pointer
 	Purposes unsafe.Pointer
-}/* debug [types.gen.go/struct]: _CE_ExtendedKeyUsage */
+}
 
 // SecCEBasicConstraints
 //
@@ -26,7 +26,7 @@ type SecCEBasicConstraints struct {
 	PathLenConstraint uint32
 	PathLenConstraintPresent bool
 	Present bool
-}/* debug [types.gen.go/struct]: SecCEBasicConstraints */
+}
 
 // AuthorizationExternalForm - The external representation of an authorization reference.
 //
@@ -34,7 +34,7 @@ type SecCEBasicConstraints struct {
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationExternalForm
 type AuthorizationExternalForm struct {
 	Bytes unsafe.Pointer // An array of characters representing the external form of an authorization reference.
-}/* debug [types.gen.go/struct]: AuthorizationExternalForm */
+}
 
 // AuthorizationItem - A structure containing information about an authorization right or the authorization environment.
 //
@@ -45,7 +45,7 @@ type AuthorizationItem struct {
 	Name AuthorizationString // The required name of the authorization right or environment data.
 	Value unsafe.Pointer // A pointer to information pertaining to the name field.
 	ValueLength uintptr // The number of bytes in the value field.
-}/* debug [types.gen.go/struct]: AuthorizationItem */
+}
 
 // AuthorizationItemSet - A structure containing a set of authorization items.
 //
@@ -54,7 +54,7 @@ type AuthorizationItem struct {
 type AuthorizationItemSet struct {
 	Count unsafe.Pointer // The number of elements in the   array.
 	Items AuthorizationItem // A pointer to an array of authorization items.
-}/* debug [types.gen.go/struct]: AuthorizationItemSet */
+}
 
 // cssm_acl_keychain_prompt_selector
 //
@@ -63,7 +63,7 @@ type AuthorizationItemSet struct {
 type cssm_acl_keychain_prompt_selector struct {
 	Flags unsafe.Pointer
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_acl_keychain_prompt_selector */
+}
 
 // cssm_acl_process_subject_selector
 //
@@ -74,7 +74,7 @@ type cssm_acl_process_subject_selector struct {
 	Mask unsafe.Pointer
 	Uid unsafe.Pointer
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_acl_process_subject_selector */
+}
 
 // CSSM_APPLE_CL_CSR_REQUEST
 //
@@ -88,7 +88,7 @@ type CSSM_APPLE_CL_CSR_REQUEST struct {
 	SubjectNameX509 unsafe.Pointer
 	SubjectPrivateKey unsafe.Pointer
 	SubjectPublicKey unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_APPLE_CL_CSR_REQUEST */
+}
 
 // CSSM_APPLE_TP_ACTION_DATA
 //
@@ -97,7 +97,7 @@ type CSSM_APPLE_CL_CSR_REQUEST struct {
 type CSSM_APPLE_TP_ACTION_DATA struct {
 	ActionFlags CSSM_APPLE_TP_ACTION_FLAGS
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_APPLE_TP_ACTION_DATA */
+}
 
 // CSSM_APPLE_TP_CERT_REQUEST
 //
@@ -121,7 +121,7 @@ type CSSM_APPLE_TP_CERT_REQUEST struct {
 	SignatureAlg CSSM_ALGORITHMS
 	SignatureOid SecAsn1Oid
 	SubjectNames CSSM_APPLE_TP_NAME_OID
-}/* debug [types.gen.go/struct]: CSSM_APPLE_TP_CERT_REQUEST */
+}
 
 // CSSM_APPLE_TP_CRL_OPTIONS
 //
@@ -131,7 +131,7 @@ type CSSM_APPLE_TP_CRL_OPTIONS struct {
 	CrlFlags CSSM_APPLE_TP_CRL_OPT_FLAGS
 	CrlStore unsafe.Pointer
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_APPLE_TP_CRL_OPTIONS */
+}
 
 // CSSM_APPLE_TP_NAME_OID
 //
@@ -140,7 +140,7 @@ type CSSM_APPLE_TP_CRL_OPTIONS struct {
 type CSSM_APPLE_TP_NAME_OID struct {
 	Oid SecAsn1Oid
 	String unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_APPLE_TP_NAME_OID */
+}
 
 // CSSM_APPLE_TP_SMIME_OPTIONS
 //
@@ -151,7 +151,7 @@ type CSSM_APPLE_TP_SMIME_OPTIONS struct {
 	SenderEmail unsafe.Pointer
 	SenderEmailLen unsafe.Pointer
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_APPLE_TP_SMIME_OPTIONS */
+}
 
 // CSSM_APPLE_TP_SSL_OPTIONS
 //
@@ -162,7 +162,7 @@ type CSSM_APPLE_TP_SSL_OPTIONS struct {
 	ServerName unsafe.Pointer
 	ServerNameLen unsafe.Pointer
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_APPLE_TP_SSL_OPTIONS */
+}
 
 // cssm_applecspdl_db_change_password_parameters
 //
@@ -170,7 +170,7 @@ type CSSM_APPLE_TP_SSL_OPTIONS struct {
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssm_applecspdl_db_change_password_parameters-swift.struct
 type cssm_applecspdl_db_change_password_parameters struct {
 	AccessCredentials unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_applecspdl_db_change_password_parameters */
+}
 
 // cssm_applecspdl_db_is_locked_parameters
 //
@@ -178,7 +178,7 @@ type cssm_applecspdl_db_change_password_parameters struct {
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssm_applecspdl_db_is_locked_parameters-swift.struct
 type cssm_applecspdl_db_is_locked_parameters struct {
 	IsLocked unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_applecspdl_db_is_locked_parameters */
+}
 
 // cssm_applecspdl_db_settings_parameters
 //
@@ -187,7 +187,7 @@ type cssm_applecspdl_db_is_locked_parameters struct {
 type cssm_applecspdl_db_settings_parameters struct {
 	IdleTimeout unsafe.Pointer
 	LockOnSleep unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_applecspdl_db_settings_parameters */
+}
 
 // cssm_appledl_open_parameters
 //
@@ -199,7 +199,7 @@ type cssm_appledl_open_parameters struct {
 	Mask unsafe.Pointer
 	Mode unsafe.Pointer
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_appledl_open_parameters */
+}
 
 // cssm_authorizationgroup
 //
@@ -208,7 +208,7 @@ type cssm_appledl_open_parameters struct {
 type cssm_authorizationgroup struct {
 	AuthTags CSSM_ACL_AUTHORIZATION_TAG
 	NumberOfAuthTags unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_authorizationgroup */
+}
 
 // cssm_csp_operational_statistics
 //
@@ -225,7 +225,7 @@ type cssm_csp_operational_statistics struct {
 	TokenTotalPrivateMem unsafe.Pointer
 	TokenTotalPublicMem unsafe.Pointer
 	UserAuthenticated CSSM_BOOL
-}/* debug [types.gen.go/struct]: cssm_csp_operational_statistics */
+}
 
 // cssm_data
 //
@@ -234,7 +234,7 @@ type cssm_csp_operational_statistics struct {
 type cssm_data struct {
 	Data unsafe.Pointer
 	Length uintptr
-}/* debug [types.gen.go/struct]: cssm_data */
+}
 
 // cssm_date
 //
@@ -244,7 +244,7 @@ type cssm_date struct {
 	Day unsafe.Pointer
 	Month unsafe.Pointer
 	Year unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_date */
+}
 
 // cssm_db_schema_index_info
 //
@@ -255,7 +255,7 @@ type cssm_db_schema_index_info struct {
 	IndexedDataLocation CSSM_DB_INDEXED_DATA_LOCATION
 	IndexId unsafe.Pointer
 	IndexType CSSM_DB_INDEX_TYPE
-}/* debug [types.gen.go/struct]: cssm_db_schema_index_info */
+}
 
 // cssm_dl_db_handle
 //
@@ -264,7 +264,7 @@ type cssm_db_schema_index_info struct {
 type cssm_dl_db_handle struct {
 	DBHandle CSSM_DB_HANDLE
 	DLHandle CSSM_DL_HANDLE
-}/* debug [types.gen.go/struct]: cssm_dl_db_handle */
+}
 
 // cssm_dl_pkcs11_attributes
 //
@@ -272,7 +272,7 @@ type cssm_dl_db_handle struct {
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssm_dl_pkcs11_attributes
 type cssm_dl_pkcs11_attributes struct {
 	DeviceAccessFlags unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_dl_pkcs11_attributes */
+}
 
 // cssm_func_name_addr
 //
@@ -281,7 +281,7 @@ type cssm_dl_pkcs11_attributes struct {
 type cssm_func_name_addr struct {
 	Address CSSM_PROC_ADDR
 	Name CSSM_STRING
-}/* debug [types.gen.go/struct]: cssm_func_name_addr */
+}
 
 // cssm_guid
 //
@@ -292,7 +292,7 @@ type cssm_guid struct {
 	Data2 unsafe.Pointer
 	Data3 unsafe.Pointer
 	Data4 unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_guid */
+}
 
 // cssm_key_size
 //
@@ -301,7 +301,7 @@ type cssm_guid struct {
 type cssm_key_size struct {
 	EffectiveKeySizeInBits unsafe.Pointer
 	LogicalKeySizeInBits unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_key_size */
+}
 
 // cssm_kr_name
 //
@@ -311,7 +311,7 @@ type cssm_kr_name struct {
 	Length unsafe.Pointer
 	Name unsafe.Pointer
 	Type unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_kr_name */
+}
 
 // cssm_list
 //
@@ -321,7 +321,7 @@ type cssm_list struct {
 	Head CSSM_LIST_ELEMENT_PTR
 	ListType CSSM_LIST_TYPE
 	Tail CSSM_LIST_ELEMENT_PTR
-}/* debug [types.gen.go/struct]: cssm_list */
+}
 
 // cssm_memory_funcs
 //
@@ -333,7 +333,7 @@ type cssm_memory_funcs struct {
 	Free_func CSSM_FREE
 	Malloc_func CSSM_MALLOC
 	Realloc_func CSSM_REALLOC
-}/* debug [types.gen.go/struct]: cssm_memory_funcs */
+}
 
 // cssm_name_list
 //
@@ -342,7 +342,7 @@ type cssm_memory_funcs struct {
 type cssm_name_list struct {
 	NumStrings unsafe.Pointer
 	String unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_name_list */
+}
 
 // cssm_parsed_cert
 //
@@ -352,7 +352,7 @@ type cssm_parsed_cert struct {
 	CertType CSSM_CERT_TYPE
 	ParsedCert unsafe.Pointer
 	ParsedCertFormat CSSM_CERT_PARSE_FORMAT
-}/* debug [types.gen.go/struct]: cssm_parsed_cert */
+}
 
 // cssm_parsed_crl
 //
@@ -362,7 +362,7 @@ type cssm_parsed_crl struct {
 	CrlType CSSM_CRL_TYPE
 	ParsedCrl unsafe.Pointer
 	ParsedCrlFormat CSSM_CRL_PARSE_FORMAT
-}/* debug [types.gen.go/struct]: cssm_parsed_crl */
+}
 
 // cssm_query_size_data
 //
@@ -371,7 +371,7 @@ type cssm_parsed_crl struct {
 type cssm_query_size_data struct {
 	SizeInputBlock unsafe.Pointer
 	SizeOutputBlock unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_query_size_data */
+}
 
 // cssm_range
 //
@@ -380,7 +380,7 @@ type cssm_query_size_data struct {
 type cssm_range struct {
 	Max unsafe.Pointer
 	Min unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_range */
+}
 
 // CSSM_TP_APPLE_EVIDENCE_HEADER
 //
@@ -388,7 +388,7 @@ type cssm_range struct {
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_APPLE_EVIDENCE_HEADER
 type CSSM_TP_APPLE_EVIDENCE_HEADER struct {
 	Version unsafe.Pointer
-}/* debug [types.gen.go/struct]: CSSM_TP_APPLE_EVIDENCE_HEADER */
+}
 
 // cssm_tp_result_set
 //
@@ -397,7 +397,7 @@ type CSSM_TP_APPLE_EVIDENCE_HEADER struct {
 type cssm_tp_result_set struct {
 	NumberOfResults unsafe.Pointer
 	Results unsafe.Pointer
-}/* debug [types.gen.go/struct]: cssm_tp_result_set */
+}
 
 // SecAsn1AlgId - A structure identifying an ASN.1 algorithm by its OID, and its corresponding parameters.
 //
@@ -406,7 +406,7 @@ type cssm_tp_result_set struct {
 type SecAsn1AlgId struct {
 	Algorithm SecAsn1Oid
 	Parameters SecAsn1Item
-}/* debug [types.gen.go/struct]: SecAsn1AlgId */
+}
 
 // SecAsn1PubKeyInfo - A structure containing a public key and its associated algorithm.
 //
@@ -415,7 +415,7 @@ type SecAsn1AlgId struct {
 type SecAsn1PubKeyInfo struct {
 	Algorithm SecAsn1AlgId
 	SubjectPublicKey SecAsn1Item
-}/* debug [types.gen.go/struct]: SecAsn1PubKeyInfo */
+}
 
 // SecAsn1Template_struct - A structure that defines one element of a BER or DER encoding.
 //
@@ -426,7 +426,7 @@ type SecAsn1Template_struct struct {
 	Offset uint32
 	Size uint32
 	Sub unsafe.Pointer
-}/* debug [types.gen.go/struct]: SecAsn1Template_struct */
+}
 
 // SecItemImportExportKeyParameters - The import/export parameter structure.
 //
@@ -441,7 +441,7 @@ type SecItemImportExportKeyParameters struct {
 	KeyUsage ArrayRef // An array containing usage attributes applied to a key on import.
 	Passphrase TypeRef // The password to use during key import or export.
 	Version uint32 // The version of this structure.
-}/* debug [types.gen.go/struct]: SecItemImportExportKeyParameters */
+}
 
 // SecKeychainAttribute - A structure that holds a single keychain attribute.
 //
@@ -451,7 +451,7 @@ type SecKeychainAttribute struct {
 	Data unsafe.Pointer // A pointer to the attribute data.
 	Length unsafe.Pointer // The length of the buffer pointed to by data.
 	Tag SecKeychainAttrType // A 4-byte attribute tag.
-}/* debug [types.gen.go/struct]: SecKeychainAttribute */
+}
 
 // SecKeychainAttributeInfo - A structure that represents an attribute.
 //
@@ -461,7 +461,7 @@ type SecKeychainAttributeInfo struct {
 	Count unsafe.Pointer // The number of tag-format pairs in the respective arrays.
 	Format unsafe.Pointer // A pointer to the first attribute format in the array.
 	Tag unsafe.Pointer // A pointer to the first attribute tag in the array.
-}/* debug [types.gen.go/struct]: SecKeychainAttributeInfo */
+}
 
 // SecKeychainAttributeList - A list of keychain attributes.
 //
@@ -470,7 +470,7 @@ type SecKeychainAttributeInfo struct {
 type SecKeychainAttributeList struct {
 	Attr SecKeychainAttribute // A pointer to the first keychain attribute in the array.
 	Count unsafe.Pointer // The number of keychain attributes in the array.
-}/* debug [types.gen.go/struct]: SecKeychainAttributeList */
+}
 
 // SecKeychainCallbackInfo - Information about a keychain event that keychain services deliver to your app via a callback function.
 //
@@ -481,7 +481,7 @@ type SecKeychainCallbackInfo struct {
 	Keychain SecKeychainRef // A reference to the keychain in which the event occurred. If the event did not involve a keychain, this field is not valid.
 	Pid unsafe.Pointer // The ID of the process that generated this event.
 	Version unsafe.Pointer // The version of this structure.
-}/* debug [types.gen.go/struct]: SecKeychainCallbackInfo */
+}
 
 // SecKeychainSettings - A structure that contains information about keychain settings.
 //
@@ -492,7 +492,7 @@ type SecKeychainSettings struct {
 	LockOnSleep unsafe.Pointer // A Boolean value indicating whether the keychain locks when the system sleeps.
 	UseLockInterval unsafe.Pointer // A Boolean value indicating whether the keychain automatically locks after a certain period of time.
 	Version unsafe.Pointer // The keychain version.
-}/* debug [types.gen.go/struct]: SecKeychainSettings */
+}
 
 // SecKeyImportExportParameters - The legacy import/export parameter structure.
 //
@@ -507,7 +507,7 @@ type SecKeyImportExportParameters struct {
 	KeyUsage CSSM_KEYUSE // A word of bits constituting the low-level use flags for imported keys.
 	Passphrase TypeRef // The password to use during key import or export.
 	Version uint32 // The version of this structure.
-}/* debug [types.gen.go/struct]: SecKeyImportExportParameters */
+}
 
 
 

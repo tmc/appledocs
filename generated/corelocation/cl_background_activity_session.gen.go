@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [BackgroundActivitySession] class.
 var (
 	BackgroundActivitySessionClass     _BackgroundActivitySessionClass
@@ -27,31 +31,28 @@ type _BackgroundActivitySessionClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [BackgroundActivitySession] class.
 type IBackgroundActivitySession interface {
 	objectivec.IObject
+	
+
 	// properties:
+
+
+	
+
 	// methods:
+
+
 }
 
-// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
-//
-// Use to start a background activity session that allows a when-in-use authorized app to receive location updates or monitoring events.
 
-// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y
-type BackgroundActivitySession struct {
-	objectivec.Object
-}
 
-// BackgroundActivitySessionFrom constructs a [BackgroundActivitySession] from an unsafe.Pointer.
-//
-// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
-func BackgroundActivitySessionFrom(ptr unsafe.Pointer) BackgroundActivitySession {
-	return BackgroundActivitySession{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (bc _BackgroundActivitySessionClass) Alloc() BackgroundActivitySession {
@@ -60,7 +61,6 @@ func (bc _BackgroundActivitySessionClass) Alloc() BackgroundActivitySession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BackgroundActivitySessionClass) New() BackgroundActivitySession {
 	rv := objc.Send[BackgroundActivitySession](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,18 +84,74 @@ func NewBackgroundActivitySession() BackgroundActivitySession {
 	return getBackgroundActivitySessionClass().New()
 }
 
+
+
+
+
+// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
+//
+// Use to start a background activity session that allows a when-in-use authorized app to receive location updates or monitoring events.
+
+
+// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y
+type BackgroundActivitySession struct {
+	objectivec.Object
+}
+
+// BackgroundActivitySessionFrom constructs a [BackgroundActivitySession] from an unsafe.Pointer.
+//
+// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
+func BackgroundActivitySessionFrom(ptr unsafe.Pointer) BackgroundActivitySession {
+	return BackgroundActivitySession{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
 // Creates a new background activity session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y/backgroundActivitySession
-func (bc _BackgroundActivitySessionClass) BackgroundActivitySession() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("backgroundActivitySession"))
+func (bc _BackgroundActivitySessionClass) BackgroundActivitySession() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(bc.class), objc.Sel("backgroundActivitySession"))
 	return rv
 }
 
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y/backgroundActivitySessionWithQueue:handler:
-func (bc _BackgroundActivitySessionClass) BackgroundActivitySessionWithQueueHandler(queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("backgroundActivitySessionWithQueue:handler:"), queue, handler)
+func (bc _BackgroundActivitySessionClass) BackgroundActivitySessionWithQueueHandler(queue objectivec.IObject, handler unsafe.Pointer) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(bc.class), objc.Sel("backgroundActivitySessionWithQueue:handler:"), queue, handler)
 	return rv
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

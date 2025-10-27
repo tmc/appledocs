@@ -2,9 +2,9 @@
 
 package foundation
 
-/* debug [enums.gen.go]: Generating 132 enums for Foundation */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum NSAlignmentOptions (22 cases) */
+
 // AlignmentOptions - Values representing alignment operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions
@@ -101,7 +101,7 @@ const (
 	AlignWidthOutward AlignmentOptions = 4096
 )
 
-/* debug [enums.gen.go]: Processing enum NSByteCountFormatterCountStyle (4 cases) */
+
 // ByteCountFormatterCountStyle - Specifies display of file or storage byte counts. The display style is platform specific.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/CountStyle-swift.enum
@@ -126,7 +126,7 @@ const (
 	ByteCountFormatterCountStyleMemory ByteCountFormatterCountStyle = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSByteCountFormatterUnits (11 cases) */
+
 // ByteCountFormatterUnits - Specifies the units appropriate for the formatter to display. Specifying any units explicitly causes just those units to be used in showing the number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/Units
@@ -179,7 +179,7 @@ const (
 	ByteCountFormatterUseDefault ByteCountFormatterUnits = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSComparisonResult (3 cases) */
+
 // ComparisonResult - Constants that indicate sort order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult
@@ -200,7 +200,7 @@ const (
 	OrderedSame ComparisonResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSDateComponentsFormatterUnitsStyle (6 cases) */
+
 // DateComponentsFormatterUnitsStyle - Constants for specifying how to represent quantities of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum
@@ -233,7 +233,7 @@ const (
 	DateComponentsFormatterUnitsStyleSpellOut DateComponentsFormatterUnitsStyle = 4
 )
 
-/* debug [enums.gen.go]: Processing enum NSDateComponentsFormatterZeroFormattingBehavior (7 cases) */
+
 // DateComponentsFormatterZeroFormattingBehavior - Formatting constants for when values contain zeroes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/ZeroFormattingBehavior-swift.struct
@@ -270,7 +270,7 @@ const (
 	DateComponentsFormatterZeroFormattingBehaviorNone DateComponentsFormatterZeroFormattingBehavior = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSDateFormatterBehavior (3 cases) */
+
 // DateFormatterBehavior - Constants that specify the behavior 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Behavior
@@ -291,7 +291,7 @@ const (
 	DateFormatterBehaviorDefault DateFormatterBehavior = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSDateFormatterStyle (5 cases) */
+
 // DateFormatterStyle - The following constants specify predefined format styles for dates and times.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style
@@ -320,7 +320,7 @@ const (
 	DateFormatterShortStyle DateFormatterStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSDateIntervalFormatterStyle (5 cases) */
+
 // DateIntervalFormatterStyle - Formatting styles for individual date and time values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/Style
@@ -349,7 +349,7 @@ const (
 	DateIntervalFormatterShortStyle DateIntervalFormatterStyle = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSDistributedNotificationOptions (2 cases) */
+
 // DistributedNotificationOptions - These constants specify the behavior of notifications posted using the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/Options
@@ -364,7 +364,7 @@ const (
 	DistributedNotificationPostToAllSessions DistributedNotificationOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSNotificationSuspensionBehavior (4 cases) */
+
 // NotificationSuspensionBehavior - These constants specify the types of notification delivery suspension behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior
@@ -389,7 +389,7 @@ const (
 	NotificationSuspensionBehaviorHold NotificationSuspensionBehavior = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSEnergyFormatterUnit (4 cases) */
+
 // EnergyFormatterUnit - The units supported by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/Unit
@@ -414,7 +414,7 @@ const (
 	EnergyFormatterUnitKilojoule EnergyFormatterUnit = 14
 )
 
-/* debug [enums.gen.go]: Processing enum NSDirectoryEnumerationOptions (5 cases) */
+
 // DirectoryEnumerationOptions - Options for enumerating the contents of directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions
@@ -441,7 +441,7 @@ const (
 	DirectoryEnumerationSkipsSubdirectoryDescendants DirectoryEnumerationOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileManagerItemReplacementOptions (2 cases) */
+
 // FileManagerItemReplacementOptions - Options for specifying the behavior of file replacement operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions
@@ -458,7 +458,7 @@ const (
 	FileManagerItemReplacementWithoutDeletingBackupItem FileManagerItemReplacementOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSSearchPathDirectory (27 cases) */
+
 // SearchPathDirectory - The location of significant directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory
@@ -575,7 +575,7 @@ const (
 	UserDirectory SearchPathDirectory = 7
 )
 
-/* debug [enums.gen.go]: Processing enum NSSearchPathDomainMask (5 cases) */
+
 // SearchPathDomainMask - Domain constants specifying base locations to use when you search for significant directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask
@@ -604,7 +604,7 @@ const (
 	UserDomainMask SearchPathDomainMask = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSVolumeEnumerationOptions (2 cases) */
+
 // VolumeEnumerationOptions - Options for enumerating mounted volumes with the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/VolumeEnumerationOptions
@@ -621,7 +621,7 @@ const (
 	VolumeEnumerationSkipHiddenVolumes VolumeEnumerationOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileWrapperReadingOptions (2 cases) */
+
 // FileWrapperReadingOptions - Reading options that can be set by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/ReadingOptions
@@ -638,7 +638,7 @@ const (
 	FileWrapperReadingWithoutMapping FileWrapperReadingOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileWrapperWritingOptions (2 cases) */
+
 // FileWrapperWritingOptions - Writing options that can be set by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/WritingOptions
@@ -655,7 +655,7 @@ const (
 	FileWrapperWritingWithNameUpdating FileWrapperWritingOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSFormattingContext (6 cases) */
+
 // FormattingContext - The formatting context for a formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context
@@ -688,7 +688,7 @@ const (
 	FormattingContextUnknown FormattingContext = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSFormattingUnitStyle (3 cases) */
+
 // FormattingUnitStyle - Specifies the width of the unit, determining the textual representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/UnitStyle
@@ -709,7 +709,7 @@ const (
 	FormattingUnitStyleShort FormattingUnitStyle = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSISO8601DateFormatOptions (14 cases) */
+
 // ISO8601DateFormatOptions - Options used to generate and parse ISO 8601 date representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/Options
@@ -773,7 +773,7 @@ const (
 	ISO8601DateFormatWithYear ISO8601DateFormatOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSInlinePresentationIntent (8 cases) */
+
 // InlinePresentationIntent - A type that defines presentation intent for runs of characters for traits like emphasis, strikethrough, and code voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent
@@ -814,7 +814,7 @@ const (
 	InlinePresentationIntentStronglyEmphasized InlinePresentationIntent = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSJSONReadingOptions (6 cases) */
+
 // JSONReadingOptions - Options used when creating Foundation objects from JSON data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/ReadingOptions
@@ -847,7 +847,7 @@ const (
 	JSONReadingTopLevelDictionaryAssumed JSONReadingOptions = 6
 )
 
-/* debug [enums.gen.go]: Processing enum NSJSONWritingOptions (4 cases) */
+
 // JSONWritingOptions - Options for writing JSON data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/WritingOptions
@@ -872,7 +872,7 @@ const (
 	JSONWritingWithoutEscapingSlashes JSONWritingOptions = 5
 )
 
-/* debug [enums.gen.go]: Processing enum NSLengthFormatterUnit (8 cases) */
+
 // LengthFormatterUnit - The units supported by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/Unit
@@ -913,7 +913,7 @@ const (
 	LengthFormatterUnitYard LengthFormatterUnit = 1280
 )
 
-/* debug [enums.gen.go]: Processing enum NSMassFormatterUnit (5 cases) */
+
 // MassFormatterUnit - The units supported by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/Unit
@@ -942,7 +942,7 @@ const (
 	MassFormatterUnitStone MassFormatterUnit = 1536
 )
 
-/* debug [enums.gen.go]: Processing enum NSMeasurementFormatterUnitOptions (3 cases) */
+
 // MeasurementFormatterUnitOptions - Measurement formatter options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/UnitOptions-swift.struct
@@ -963,7 +963,7 @@ const (
 	MeasurementFormatterUnitOptionsTemperatureWithoutUnit MeasurementFormatterUnitOptions = 4
 )
 
-/* debug [enums.gen.go]: Processing enum NSAttributedStringEnumerationOptions (2 cases) */
+
 // AttributedStringEnumerationOptions - Options for enumerating attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/EnumerationOptions
@@ -980,13 +980,13 @@ const (
 	AttributedStringEnumerationReverse AttributedStringEnumerationOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSSpellingState (0 cases) */
+
 // SpellingState - Constants for the spelling state attribute key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/SpellingState
 type SpellingState uint
 
-/* debug [enums.gen.go]: Processing enum NSAttributedStringFormattingOptions (2 cases) */
+
 // AttributedStringFormattingOptions - Options to use when creating an attributed string from a format string and variable list of arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringFormattingOptions
@@ -1003,7 +1003,7 @@ const (
 	AttributedStringFormattingInsertArgumentAttributesWithoutMerging AttributedStringFormattingOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSAttributedStringMarkdownInterpretedSyntax (3 cases) */
+
 // AttributedStringMarkdownInterpretedSyntax - A type that represents the syntax for intepreting a Markdown string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax
@@ -1024,7 +1024,7 @@ const (
 	AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace AttributedStringMarkdownInterpretedSyntax = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSAttributedStringMarkdownParsingFailurePolicy (2 cases) */
+
 // AttributedStringMarkdownParsingFailurePolicy - A type that represents policies for handling parsing failures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy
@@ -1041,7 +1041,7 @@ const (
 	AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible AttributedStringMarkdownParsingFailurePolicy = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSBinarySearchingOptions (3 cases) */
+
 // BinarySearchingOptions - Options for searches and insertions using 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions
@@ -1062,7 +1062,7 @@ const (
 	BinarySearchingLastEqual BinarySearchingOptions = 512
 )
 
-/* debug [enums.gen.go]: Processing enum NSCalendarOptions (8 cases) */
+
 // CalendarOptions - The options for arithmetic operations involving calendars.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options
@@ -1103,7 +1103,7 @@ const (
 	CalendarWrapComponents CalendarOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSCalendarUnit (35 cases) */
+
 // CalendarUnit - Calendrical units such as year, month, day and hour.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit
@@ -1249,7 +1249,7 @@ const (
 	CalendarUnitYearForWeekOfYear CalendarUnit = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSDecodingFailurePolicy (2 cases) */
+
 // DecodingFailurePolicy - Policies describing the action the coder should take when encountering decode failures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/DecodingFailurePolicy-swift.enum
@@ -1266,7 +1266,7 @@ const (
 	DecodingFailurePolicySetErrorAndReturn DecodingFailurePolicy = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSCollectionChangeType (2 cases) */
+
 // CollectionChangeType - The type of change represented in computing the difference of an ordered collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCollectionChangeType
@@ -1283,7 +1283,7 @@ const (
 	CollectionChangeRemove CollectionChangeType = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSComparisonPredicateModifier (3 cases) */
+
 // ComparisonPredicateModifier - Constants that describe the possible types of modifier for a comparison predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/Modifier
@@ -1304,7 +1304,7 @@ const (
 	DirectPredicateModifier ComparisonPredicateModifier = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSPredicateOperatorType (14 cases) */
+
 // PredicateOperatorType - Defines the type of comparison for a comparison predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/Operator
@@ -1369,7 +1369,7 @@ const (
 	NotEqualToPredicateOperatorType PredicateOperatorType = 5
 )
 
-/* debug [enums.gen.go]: Processing enum NSComparisonPredicateOptions (3 cases) */
+
 // ComparisonPredicateOptions - Constants that describe the possible types of string comparison for comparison predicates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/Options-swift.struct
@@ -1390,7 +1390,7 @@ const (
 	NormalizedPredicateOption ComparisonPredicateOptions = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSCompoundPredicateType (3 cases) */
+
 // CompoundPredicateType - Constants that describe the possible types of a compound predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/LogicalType
@@ -1411,7 +1411,7 @@ const (
 	OrPredicateType CompoundPredicateType = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSDataBase64DecodingOptions (1 cases) */
+
 // DataBase64DecodingOptions - Options to modify the decoding algorithm used to decode Base64 encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64DecodingOptions
@@ -1424,7 +1424,7 @@ const (
 	DataBase64DecodingIgnoreUnknownCharacters DataBase64DecodingOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSDataBase64EncodingOptions (4 cases) */
+
 // DataBase64EncodingOptions - Options for methods used to Base64 encode data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64EncodingOptions
@@ -1449,7 +1449,7 @@ const (
 	DataBase64Encoding76CharacterLineLength DataBase64EncodingOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSDataCompressionAlgorithm (4 cases) */
+
 // DataCompressionAlgorithm - An algorithm that indicates how to compress or decompress data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/CompressionAlgorithm
@@ -1474,7 +1474,7 @@ const (
 	DataCompressionAlgorithmZlib DataCompressionAlgorithm = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSDataReadingOptions (6 cases) */
+
 // DataReadingOptions - Options for methods used to read data objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions
@@ -1507,7 +1507,7 @@ const (
 	UncachedRead DataReadingOptions = 6
 )
 
-/* debug [enums.gen.go]: Processing enum NSDataSearchOptions (2 cases) */
+
 // DataSearchOptions - Options for method used to search data objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/SearchOptions
@@ -1524,7 +1524,7 @@ const (
 	DataSearchBackwards DataSearchOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSDataWritingOptions (9 cases) */
+
 // DataWritingOptions - Options for methods used to write data objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions
@@ -1568,7 +1568,7 @@ const (
 	DataWritingWithoutOverwriting DataWritingOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSCalculationError (5 cases) */
+
 // CalculationError - Calculation error constants used to describe an error in 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/CalculationError
@@ -1597,7 +1597,7 @@ const (
 	CalculationUnderflow CalculationError = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSRoundingMode (4 cases) */
+
 // RoundingMode - These constants specify rounding behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/RoundingMode
@@ -1622,7 +1622,7 @@ const (
 	RoundUp RoundingMode = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSEnumerationOptions (2 cases) */
+
 // EnumerationOptions - Options for block enumeration operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions
@@ -1639,7 +1639,7 @@ const (
 	EnumerationReverse EnumerationOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSExpressionType (13 cases) */
+
 // ExpressionType - Defines the possible types of an expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum
@@ -1699,7 +1699,7 @@ const (
 	VariableExpressionType ExpressionType = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileCoordinatorReadingOptions (4 cases) */
+
 // FileCoordinatorReadingOptions - Options to use when reading the contents or attributes of a file or directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions
@@ -1724,7 +1724,7 @@ const (
 	FileCoordinatorReadingWithoutChanges FileCoordinatorReadingOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileCoordinatorWritingOptions (5 cases) */
+
 // FileCoordinatorWritingOptions - Options to use when changing the contents or attributes of a file or directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions
@@ -1753,7 +1753,7 @@ const (
 	FileCoordinatorWritingForReplacing FileCoordinatorWritingOptions = 8
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileManagerResumeSyncBehavior (3 cases) */
+
 // FileManagerResumeSyncBehavior - The behaviors the file manager can apply to resolve conflicts when resuming a sync.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerResumeSyncBehavior
@@ -1774,7 +1774,7 @@ const (
 	FileManagerResumeSyncBehaviorPreserveLocalChanges FileManagerResumeSyncBehavior = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileManagerSupportedSyncControls (2 cases) */
+
 // FileManagerSupportedSyncControls - An option set of the sync controls available for an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls
@@ -1791,7 +1791,7 @@ const (
 	FileManagerSupportedSyncControlsPauseSync FileManagerSupportedSyncControls = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileManagerUploadLocalVersionConflictPolicy (2 cases) */
+
 // FileManagerUploadLocalVersionConflictPolicy - The policies the file manager can apply to resolve conflicts when uploading a local version of a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerUploadLocalVersionConflictPolicy
@@ -1808,7 +1808,7 @@ const (
 	FileManagerUploadConflictPolicyFailOnConflict FileManagerUploadLocalVersionConflictPolicy = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileVersionAddingOptions (1 cases) */
+
 // FileVersionAddingOptions - Options for adding a new file version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/AddingOptions
@@ -1821,7 +1821,7 @@ const (
 	FileVersionAddingByMoving FileVersionAddingOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSFileVersionReplacingOptions (1 cases) */
+
 // FileVersionReplacingOptions - Options for replacing a file version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/ReplacingOptions
@@ -1834,7 +1834,7 @@ const (
 	FileVersionReplacingByMoving FileVersionReplacingOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalCase (15 cases) */
+
 // GrammaticalCase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalCase
@@ -1888,7 +1888,7 @@ const (
 	GrammaticalCaseTranslative GrammaticalCase = 14
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalDefiniteness (3 cases) */
+
 // GrammaticalDefiniteness enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness
@@ -1906,7 +1906,7 @@ const (
 	GrammaticalDefinitenessNotSet GrammaticalDefiniteness = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalDetermination (3 cases) */
+
 // GrammaticalDetermination enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDetermination
@@ -1924,7 +1924,7 @@ const (
 	GrammaticalDeterminationNotSet GrammaticalDetermination = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalGender (4 cases) */
+
 // GrammaticalGender - A representation of grammatical gender, used for inflecting strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalGender
@@ -1949,7 +1949,7 @@ const (
 	GrammaticalGenderNotSet GrammaticalGender = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalNumber (7 cases) */
+
 // GrammaticalNumber - A representation of grammatical number, used for inflecting strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalNumber
@@ -1986,7 +1986,7 @@ const (
 	GrammaticalNumberZero GrammaticalNumber = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalPartOfSpeech (15 cases) */
+
 // GrammaticalPartOfSpeech - A representation of grammatical parts of speech, used for inflecting strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPartOfSpeech
@@ -2055,7 +2055,7 @@ const (
 	GrammaticalPartOfSpeechVerb GrammaticalPartOfSpeech = 8
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalPerson (4 cases) */
+
 // GrammaticalPerson enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson
@@ -2076,7 +2076,7 @@ const (
 	GrammaticalPersonThird GrammaticalPerson = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSGrammaticalPronounType (4 cases) */
+
 // GrammaticalPronounType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPronounType
@@ -2097,7 +2097,7 @@ const (
 	GrammaticalPronounTypeReflexive GrammaticalPronounType = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSItemProviderErrorCode (4 cases) */
+
 // ItemProviderErrorCode - The error codes that describe problems with consuming data from an item provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/ErrorCode
@@ -2122,7 +2122,7 @@ const (
 	ItemProviderUnknownError ItemProviderErrorCode = -1
 )
 
-/* debug [enums.gen.go]: Processing enum NSItemProviderFileOptions (1 cases) */
+
 // ItemProviderFileOptions - Data-access specifications that declare how to handle items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderFileOptions
@@ -2135,7 +2135,7 @@ const (
 	ItemProviderFileOptionOpenInPlace ItemProviderFileOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSItemProviderRepresentationVisibility (4 cases) */
+
 // ItemProviderRepresentationVisibility - Specifications that control which categories of processes can see an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderRepresentationVisibility
@@ -2160,7 +2160,7 @@ const (
 	ItemProviderRepresentationVisibilityTeam ItemProviderRepresentationVisibility = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSKeyValueChange (4 cases) */
+
 // KeyValueChange - The kinds of changes that can be observed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChange
@@ -2185,7 +2185,7 @@ const (
 	KeyValueChangeSetting KeyValueChange = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSKeyValueObservingOptions (4 cases) */
+
 // KeyValueObservingOptions - The values that can be returned in a change dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions
@@ -2210,7 +2210,7 @@ const (
 	KeyValueObservingOptionPrior KeyValueObservingOptions = 4
 )
 
-/* debug [enums.gen.go]: Processing enum NSKeyValueSetMutationKind (4 cases) */
+
 // KeyValueSetMutationKind enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind
@@ -2231,7 +2231,7 @@ const (
 	KeyValueUnionSetMutation KeyValueSetMutationKind = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSLinguisticTaggerOptions (5 cases) */
+
 // LinguisticTaggerOptions - Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/Options
@@ -2260,7 +2260,7 @@ const (
 	LinguisticTaggerOmitWords LinguisticTaggerOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSLinguisticTaggerUnit (4 cases) */
+
 // LinguisticTaggerUnit - Constants representing linguistic units.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTaggerUnit
@@ -2285,7 +2285,7 @@ const (
 	LinguisticTaggerUnitWord LinguisticTaggerUnit = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSLocaleLanguageDirection (5 cases) */
+
 // LocaleLanguageDirection - The directions that a language may take across a page of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection
@@ -2314,7 +2314,7 @@ const (
 	LocaleLanguageDirectionUnknown LocaleLanguageDirection = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSMachPortOptions (3 cases) */
+
 // MachPortOptions - Used to remove access rights to a mach port when the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options
@@ -2335,7 +2335,7 @@ const (
 	MachPortDeallocateNone MachPortOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSOrderedCollectionDifferenceCalculationOptions (3 cases) */
+
 // OrderedCollectionDifferenceCalculationOptions - Constants that specify the options to use when creating an ordered collection difference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions
@@ -2356,7 +2356,7 @@ const (
 	OrderedCollectionDifferenceCalculationOmitRemovedObjects OrderedCollectionDifferenceCalculationOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSPointerFunctionsOptions (13 cases) */
+
 // PointerFunctionsOptions - Defines the memory and personality options for an 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options
@@ -2417,7 +2417,7 @@ const (
 	PointerFunctionsZeroingWeakMemory PointerFunctionsOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSPresentationIntentKind (12 cases) */
+
 // PresentationIntentKind - An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind
@@ -2474,7 +2474,7 @@ const (
 	PresentationIntentKindUnorderedList PresentationIntentKind = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSPresentationIntentTableColumnAlignment (3 cases) */
+
 // PresentationIntentTableColumnAlignment - An enumeration of values for aligning the contents of table columns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentTableColumnAlignment
@@ -2495,7 +2495,7 @@ const (
 	PresentationIntentTableColumnAlignmentRight PresentationIntentTableColumnAlignment = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSRectEdge (8 cases) */
+
 // RectEdge enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRectEdge
@@ -2528,7 +2528,7 @@ const (
 	RectEdgeMinY RectEdge = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSMatchingFlags (5 cases) */
+
 // MatchingFlags - Set by the Block as the matching progresses, completes, or fails. Used by the method 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/MatchingFlags
@@ -2557,7 +2557,7 @@ const (
 	MatchingRequiredEnd MatchingFlags = 8
 )
 
-/* debug [enums.gen.go]: Processing enum NSMatchingOptions (5 cases) */
+
 // MatchingOptions - The matching options constants specify the reporting, completion and matching rules to the expression matching methods. These constants are used by all methods that search for, or replace values, using a regular expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/MatchingOptions
@@ -2586,7 +2586,7 @@ const (
 	MatchingWithoutAnchoringBounds MatchingOptions = 16
 )
 
-/* debug [enums.gen.go]: Processing enum NSRegularExpressionOptions (7 cases) */
+
 // RegularExpressionOptions - These constants define the regular expression options. These constants are used by the property 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/Options-swift.struct
@@ -2623,7 +2623,7 @@ const (
 	RegularExpressionUseUnixLineSeparators RegularExpressionOptions = 32
 )
 
-/* debug [enums.gen.go]: Processing enum NSSortOptions (2 cases) */
+
 // SortOptions - Options for block sorting operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions
@@ -2640,7 +2640,7 @@ const (
 	SortStable SortOptions = 16
 )
 
-/* debug [enums.gen.go]: Processing enum NSTestComparisonOperation (8 cases) */
+
 // TestComparisonOperation - These are passed to  
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation
@@ -2681,7 +2681,7 @@ const (
 	LessThanOrEqualToComparison TestComparisonOperation = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSStringCompareOptions (9 cases) */
+
 // StringCompareOptions - These values represent the options available to many of the string classes’ search and comparison methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions
@@ -2726,7 +2726,7 @@ const (
 	WidthInsensitiveSearch StringCompareOptions = 66
 )
 
-/* debug [enums.gen.go]: Processing enum NSStringDrawingOptions (7 cases) */
+
 // StringDrawingOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions
@@ -2756,7 +2756,7 @@ const (
 	usesLineFragmentOrigin StringDrawingOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSStringEncodingConversionOptions (2 cases) */
+
 // StringEncodingConversionOptions - Options for converting string encodings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EncodingConversionOptions
@@ -2773,7 +2773,7 @@ const (
 	StringEncodingConversionExternalRepresentation StringEncodingConversionOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSStringEnumerationOptions (10 cases) */
+
 // StringEnumerationOptions - Constants to specify kinds of substrings and styles of enumeration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions
@@ -2820,7 +2820,7 @@ const (
 	StringEnumerationSubstringNotRequired StringEnumerationOptions = 512
 )
 
-/* debug [enums.gen.go]: Processing enum NSTextCheckingType (13 cases) */
+
 // TextCheckingType - These constants specify the type of checking the methods should do. They are returned by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType
@@ -2881,7 +2881,7 @@ const (
 	TextCheckingTypeTransitInformation TextCheckingType = 515
 )
 
-/* debug [enums.gen.go]: Processing enum NSTimeZoneNameStyle (6 cases) */
+
 // TimeZoneNameStyle - Constants you use to specify a style when presenting time zone names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/NameStyle
@@ -2914,7 +2914,7 @@ const (
 	TimeZoneNameStyleStandard TimeZoneNameStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLBookmarkCreationOptions (6 cases) */
+
 // URLBookmarkCreationOptions - Options used when creating bookmark data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions
@@ -2947,7 +2947,7 @@ const (
 	URLBookmarkCreationWithoutImplicitSecurityScope URLBookmarkCreationOptions = 1027
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLBookmarkResolutionOptions (4 cases) */
+
 // URLBookmarkResolutionOptions - Options used when resolving bookmark data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions
@@ -2972,7 +2972,7 @@ const (
 	URLBookmarkResolutionWithoutUI URLBookmarkResolutionOptions = 256
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLErrorNetworkUnavailableReason (4 cases) */
+
 // URLErrorNetworkUnavailableReason - An enumeration of reasons why a task couldn’t satisfy networking constraints.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLErrorNetworkUnavailableReason
@@ -2996,7 +2996,7 @@ const (
 	URLErrorNetworkUnavailableReasonUltraConstrained URLErrorNetworkUnavailableReason = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLHandleStatus (4 cases) */
+
 // URLHandleStatus - These following constants are defined by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLHandle/Status-swift.enum
@@ -3021,7 +3021,7 @@ const (
 	URLHandleNotLoaded URLHandleStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLRequestNetworkServiceType (9 cases) */
+
 // URLRequestNetworkServiceType - Constants that specify how a request uses network resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum
@@ -3066,7 +3066,7 @@ const (
 	URLNetworkServiceTypeVoIP URLRequestNetworkServiceType = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionWebSocketMessageType (2 cases) */
+
 // URLSessionWebSocketMessageType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessageType
@@ -3081,7 +3081,7 @@ const (
 	URLSessionWebSocketMessageTypeString URLSessionWebSocketMessageType = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSXPCConnectionOptions (1 cases) */
+
 // XPCConnectionOptions - Options that you can pass to a connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/Options
@@ -3094,7 +3094,7 @@ const (
 	XPCConnectionPrivileged XPCConnectionOptions = 4096
 )
 
-/* debug [enums.gen.go]: Processing enum NSNetServicesError (9 cases) */
+
 // NetServicesError - These constants identify errors that can occur when accessing net services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum
@@ -3138,7 +3138,7 @@ const (
 	NetServicesUnknownError NetServicesError = -72000
 )
 
-/* debug [enums.gen.go]: Processing enum NSNetServiceOptions (2 cases) */
+
 // NetServiceOptions - These constants specify options for a network service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options
@@ -3155,7 +3155,7 @@ const (
 	NetServiceNoAutoRename NetServiceOptions = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSNotificationCoalescing (3 cases) */
+
 // NotificationCoalescing - The constants that specify how notifications are coalesced.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing
@@ -3176,7 +3176,7 @@ const (
 	NotificationCoalescingOnSender NotificationCoalescing = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSPostingStyle (3 cases) */
+
 // PostingStyle - The constants that specify when notifications are posted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/PostingStyle
@@ -3197,7 +3197,7 @@ const (
 	PostWhenIdle PostingStyle = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSNumberFormatterBehavior (3 cases) */
+
 // NumberFormatterBehavior - These constants specify the behavior of a number formatter. These constants are returned by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Behavior
@@ -3218,7 +3218,7 @@ const (
 	NumberFormatterBehaviorDefault NumberFormatterBehavior = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSNumberFormatterPadPosition (4 cases) */
+
 // NumberFormatterPadPosition - These constants are used to specify how numbers should be padded. These constants are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/PadPosition
@@ -3243,7 +3243,7 @@ const (
 	NumberFormatterPadBeforeSuffix NumberFormatterPadPosition = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSNumberFormatterRoundingMode (7 cases) */
+
 // NumberFormatterRoundingMode - These constants are used to specify how numbers should be rounded. These constants are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/RoundingMode-swift.enum
@@ -3280,7 +3280,7 @@ const (
 	NumberFormatterRoundUp NumberFormatterRoundingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSNumberFormatterStyle (10 cases) */
+
 // NumberFormatterStyle - The predefined number format styles used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style
@@ -3329,7 +3329,7 @@ const (
 	NumberFormatterSpellOutStyle NumberFormatterStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSOperationQueuePriority (5 cases) */
+
 // OperationQueuePriority - These constants let you prioritize the order in which operations execute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/QueuePriority-swift.enum
@@ -3358,7 +3358,7 @@ const (
 	OperationQueuePriorityVeryLow OperationQueuePriority = -8
 )
 
-/* debug [enums.gen.go]: Processing enum NSPersonNameComponentsFormatterOptions (1 cases) */
+
 // PersonNameComponentsFormatterOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Options
@@ -3371,7 +3371,7 @@ const (
 	PersonNameComponentsFormatterPhonetic PersonNameComponentsFormatterOptions = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSPersonNameComponentsFormatterStyle (5 cases) */
+
 // PersonNameComponentsFormatterStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum
@@ -3400,7 +3400,7 @@ const (
 	PersonNameComponentsFormatterStyleShort PersonNameComponentsFormatterStyle = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSTaskTerminationReason (2 cases) */
+
 // TaskTerminationReason - Constants that specify the termination reason values that the system returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/TerminationReason-swift.enum
@@ -3417,7 +3417,7 @@ const (
 	TaskTerminationReasonUncaughtSignal TaskTerminationReason = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSActivityOptions (11 cases) */
+
 // ActivityOptions - Option flags used with 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions
@@ -3470,7 +3470,7 @@ const (
 	ActivityUserInteractive ActivityOptions = 32771
 )
 
-/* debug [enums.gen.go]: Processing enum NSProcessInfoThermalState (4 cases) */
+
 // ProcessInfoThermalState - Values used to indicate the system’s thermal state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ThermalState-swift.enum
@@ -3495,7 +3495,7 @@ const (
 	ProcessInfoThermalStateSerious ProcessInfoThermalState = 2
 )
 
-/* debug [enums.gen.go]: Processing enum NSPropertyListMutabilityOptions (3 cases) */
+
 // PropertyListMutabilityOptions - These constants specify mutability options in property lists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/MutabilityOptions
@@ -3516,7 +3516,7 @@ const (
 	PropertyListMutableContainersAndLeaves PropertyListMutabilityOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSPropertyListFormat (3 cases) */
+
 // PropertyListFormat - These constants are used to specify a property list serialization format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/PropertyListFormat
@@ -3537,7 +3537,7 @@ const (
 	PropertyListXMLFormat_v1_0 PropertyListFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSQualityOfService (5 cases) */
+
 // QualityOfService - Constants that indicate the nature and importance of work to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService
@@ -3566,7 +3566,7 @@ const (
 	QualityOfServiceUtility QualityOfService = 17
 )
 
-/* debug [enums.gen.go]: Processing enum NSRelativeDateTimeFormatterStyle (2 cases) */
+
 // RelativeDateTimeFormatterStyle - A type that represents the style to use when formatting relative dates, such as “1 week ago” or “last week”.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/DateTimeStyle-swift.enum
@@ -3583,7 +3583,7 @@ const (
 	RelativeDateTimeFormatterStyleNumeric RelativeDateTimeFormatterStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSRelativeDateTimeFormatterUnitsStyle (4 cases) */
+
 // RelativeDateTimeFormatterUnitsStyle - A type that represents the style to use when formatting the units of relative dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/UnitsStyle-swift.enum
@@ -3608,7 +3608,7 @@ const (
 	RelativeDateTimeFormatterUnitsStyleSpellOut RelativeDateTimeFormatterUnitsStyle = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLCredentialPersistence (4 cases) */
+
 // URLCredentialPersistence - Constants that specify how long the credential will be kept.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/Persistence-swift.enum
@@ -3633,7 +3633,7 @@ const (
 	URLCredentialPersistenceSynchronizable URLCredentialPersistence = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionAuthChallengeDisposition (4 cases) */
+
 // URLSessionAuthChallengeDisposition - Constants passed by session or task delegates to the provided continuation block in response to an authentication challenge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/AuthChallengeDisposition
@@ -3658,7 +3658,7 @@ const (
 	URLSessionAuthChallengeUseCredential URLSessionAuthChallengeDisposition = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionDelayedRequestDisposition (3 cases) */
+
 // URLSessionDelayedRequestDisposition - The action to take on a delayed URL session task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/DelayedRequestDisposition
@@ -3679,7 +3679,7 @@ const (
 	URLSessionDelayedRequestUseNewRequest URLSessionDelayedRequestDisposition = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionResponseDisposition (4 cases) */
+
 // URLSessionResponseDisposition - Constants indicating how a data or upload session should proceed after receiving the initial headers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition
@@ -3704,7 +3704,7 @@ const (
 	URLSessionResponseCancel URLSessionResponseDisposition = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionMultipathServiceType (4 cases) */
+
 // URLSessionMultipathServiceType - Constants that specify the type of service that Multipath TCP uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum
@@ -3729,7 +3729,7 @@ const (
 	URLSessionMultipathServiceTypeNone URLSessionMultipathServiceType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionTaskState (4 cases) */
+
 // URLSessionTaskState - Constants for determining the current state of a task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/State-swift.enum
@@ -3754,7 +3754,7 @@ const (
 	URLSessionTaskStateSuspended URLSessionTaskState = 1
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionTaskMetricsDomainResolutionProtocol (5 cases) */
+
 // URLSessionTaskMetricsDomainResolutionProtocol enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol
@@ -3778,7 +3778,7 @@ const (
 	URLSessionTaskMetricsDomainResolutionProtocolUnknown URLSessionTaskMetricsDomainResolutionProtocol = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionTaskMetricsResourceFetchType (4 cases) */
+
 // URLSessionTaskMetricsResourceFetchType - The manner in which a resource is fetched.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/ResourceFetchType
@@ -3803,7 +3803,7 @@ const (
 	URLSessionTaskMetricsResourceFetchTypeUnknown URLSessionTaskMetricsResourceFetchType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NSURLSessionWebSocketCloseCode (13 cases) */
+
 // URLSessionWebSocketCloseCode - A code that indicates why a WebSocket connection closed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum
@@ -3864,7 +3864,7 @@ const (
 	URLSessionWebSocketCloseCodeUnsupportedData URLSessionWebSocketCloseCode = 1003
 )
 
-/* debug [enums.gen.go]: Processing enum NSXMLDTDNodeKind (20 cases) */
+
 // XMLDTDNodeKind - The type defined for the constants that specify the kind and subkind of DTD declaration represented by an 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum
@@ -3953,7 +3953,7 @@ const (
 	XMLEntityUnparsedKind XMLDTDNodeKind = 3
 )
 
-/* debug [enums.gen.go]: Processing enum NSXMLNodeOptions (28 cases) */
+
 // XMLNodeOptions - These constants are input and output options for all 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options
@@ -4074,7 +4074,7 @@ const (
 	XMLNodeUseSingleQuotes XMLNodeOptions = 8
 )
 
-/* debug [enums.gen.go]: Processing enum NSXMLParserError (93 cases) */
+
 // XMLParserError - The following error codes are defined by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode
@@ -4455,7 +4455,7 @@ const (
 	XMLParserXMLDeclNotStartedError XMLParserError = 56
 )
 
-/* debug [enums.gen.go]: Processing enum NSXMLParserExternalEntityResolvingPolicy (4 cases) */
+
 // XMLParserExternalEntityResolvingPolicy enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum

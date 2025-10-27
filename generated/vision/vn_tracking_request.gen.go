@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -54,7 +53,7 @@ type ITrackingRequest interface {
 	
 
 	// methods:
-	SupportedNumberOfTrackersAndReturnError(error_ objectivec.IObject) uint
+	SupportedNumberOfTrackersAndReturnError(error_ foundation.foundation.INSError) uint
 
 
 }
@@ -142,7 +141,7 @@ func TrackingRequestFrom(ptr unsafe.Pointer) TrackingRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackingRequest/supportedNumber(ofTrackersAndReturnError:)
-func (t_ TrackingRequest) SupportedNumberOfTrackersAndReturnError(error_ objectivec.IObject) uint {
+func (t_ TrackingRequest) SupportedNumberOfTrackersAndReturnError(error_ foundation.foundation.INSError) uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("supportedNumberOfTrackersAndReturnError:"), error_)
 	return rv
 }

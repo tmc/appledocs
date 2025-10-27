@@ -9,6 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
+	BarcodeDescriptor = _undefined // referenced in Vision
 	ComputeDevice = _undefined // referenced in Vision
 	ImagePropertyOrientation = _undefined // referenced in Vision
 	ImageRef = _undefined // referenced in Vision
@@ -17,7 +18,6 @@ type (
 	RequestCompletionHandler = _undefined // referenced in Vision
 	SampleBufferRef = _undefined // referenced in Vision
 	String = _undefined // referenced in Vision
-	TimeRange = _undefined // referenced in Vision
 )
 
 

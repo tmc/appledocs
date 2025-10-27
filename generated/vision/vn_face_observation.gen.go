@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,11 +42,11 @@ type IFaceObservation interface {
 	
 
 	// properties:
-	FaceCaptureQuality() objc.IObject /* cross-framework: NSNumber */
+	FaceCaptureQuality() foundation.foundation.INSNumber
 	Landmarks() IVNFaceLandmarks2D
-	Pitch() objc.IObject /* cross-framework: NSNumber */
-	Roll() objc.IObject /* cross-framework: NSNumber */
-	Yaw() objc.IObject /* cross-framework: NSNumber */
+	Pitch() foundation.foundation.INSNumber
+	Roll() foundation.foundation.INSNumber
+	Yaw() foundation.foundation.INSNumber
 	Results() IVNFaceObservation
 	SetResults(value IVNFaceObservation)
 
@@ -126,7 +127,7 @@ func FaceObservationFrom(ptr unsafe.Pointer) FaceObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox corefoundation.CGRect, roll foundation.foundation.INSNumber, yaw foundation.foundation.INSNumber) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
 }
@@ -136,7 +137,7 @@ func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */, pitch objc.IObject /* cross-framework: NSNumber */) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox corefoundation.CGRect, roll foundation.foundation.INSNumber, yaw foundation.foundation.INSNumber, pitch foundation.foundation.INSNumber) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
 }
@@ -151,7 +152,7 @@ func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevisio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */) objectivec.IObject {
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox corefoundation.CGRect, roll foundation.foundation.INSNumber, yaw foundation.foundation.INSNumber) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
 }
@@ -161,7 +162,7 @@ func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRol
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */, pitch objc.IObject /* cross-framework: NSNumber */) objectivec.IObject {
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox corefoundation.CGRect, roll foundation.foundation.INSNumber, yaw foundation.foundation.INSNumber, pitch foundation.foundation.INSNumber) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
 }
@@ -186,7 +187,7 @@ func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRol
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/faceCaptureQuality-2o4xv
-func (f_ FaceObservation) FaceCaptureQuality() objc.IObject /* cross-framework: NSNumber */ {
+func (f_ FaceObservation) FaceCaptureQuality() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("faceCaptureQuality"))
 	return rv
 }
@@ -206,7 +207,7 @@ func (f_ FaceObservation) Landmarks() IVNFaceLandmarks2D {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/pitch
-func (f_ FaceObservation) Pitch() objc.IObject /* cross-framework: NSNumber */ {
+func (f_ FaceObservation) Pitch() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("pitch"))
 	return rv
 }
@@ -216,7 +217,7 @@ func (f_ FaceObservation) Pitch() objc.IObject /* cross-framework: NSNumber */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/roll
-func (f_ FaceObservation) Roll() objc.IObject /* cross-framework: NSNumber */ {
+func (f_ FaceObservation) Roll() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("roll"))
 	return rv
 }
@@ -226,7 +227,7 @@ func (f_ FaceObservation) Roll() objc.IObject /* cross-framework: NSNumber */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/yaw
-func (f_ FaceObservation) Yaw() objc.IObject /* cross-framework: NSNumber */ {
+func (f_ FaceObservation) Yaw() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("yaw"))
 	return rv
 }

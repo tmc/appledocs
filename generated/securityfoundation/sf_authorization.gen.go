@@ -48,8 +48,8 @@ type ISFAuthorization interface {
 	// methods:
 	AuthorizationRef() unsafe.Pointer
 	InvalidateCredentials()
-	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ objc.IObject /* cross-framework: NSError */) bool
-	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ objc.IObject /* cross-framework: NSError */) bool
+	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.foundation.INSError) bool
+	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.foundation.INSError) bool
 
 
 }
@@ -187,7 +187,7 @@ func (s_ SFAuthorization) InvalidateCredentials() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRight:flags:)
-func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ objc.IObject /* cross-framework: NSError */) bool {
+func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRight:flags:error:"), rightName, flags, error_)
 	return rv
 }
@@ -197,7 +197,7 @@ func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRights:flags:environment:authorizedRights:)
-func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ objc.IObject /* cross-framework: NSError */) bool {
+func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRights:flags:environment:authorizedRights:error:"), rights, flags, environment, authorizedRights, error_)
 	return rv
 }

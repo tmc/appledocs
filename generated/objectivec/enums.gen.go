@@ -2,9 +2,9 @@
 
 package objectivec
 
-/* debug [enums.gen.go]: Generating 1 enums for ObjectiveC */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum objc_AssociationPolicy (5 cases) */
+
 // objc_AssociationPolicy - Type to specify the behavior of an association.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_AssociationPolicy

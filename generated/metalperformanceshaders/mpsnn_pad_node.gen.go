@@ -112,7 +112,7 @@ func PadNodeFrom(ptr unsafe.Pointer) PadNode {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode/3037395-initwithsource
-func NewPadNodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IImageNode, paddingSizeBefore objc.IObject /* cross-framework: MPSImageCoordinate */, paddingSizeAfter objc.IObject /* cross-framework: MPSImageCoordinate */, edgeMode ImageEdgeMode) PadNode {
+func NewPadNodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IImageNode, paddingSizeBefore ImageCoordinate, paddingSizeAfter ImageCoordinate, edgeMode ImageEdgeMode) PadNode {
 	instance := getPadNodeClass().Alloc()
 	rv := objc.Send[PadNode](instance.ID, objc.Sel("initWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:"), source, paddingSizeBefore, paddingSizeAfter, edgeMode)
 	rv.Autorelease()
@@ -127,7 +127,7 @@ func NewPadNodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IImage
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode/3037396-nodewithsource
-func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IImageNode, paddingSizeBefore objc.IObject /* cross-framework: MPSImageCoordinate */, paddingSizeAfter objc.IObject /* cross-framework: MPSImageCoordinate */, edgeMode ImageEdgeMode) objectivec.IObject {
+func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IImageNode, paddingSizeBefore ImageCoordinate, paddingSizeAfter ImageCoordinate, edgeMode ImageEdgeMode) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:"), source, paddingSizeBefore, paddingSizeAfter, edgeMode)
 	return rv
 }

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class OSLogEntry */
 
 
-/* debug [class_header]: Header for OSLogEntry */
+
+
 // The class instance for the [OSLogEntry] class.
 var (
 	OSLogEntryClass     _OSLogEntryClass
@@ -31,33 +30,33 @@ func getOSLogEntryClass() _OSLogEntryClass {
 type _OSLogEntryClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for OSLogEntry */
+
+
 // An interface definition for the [OSLogEntry] class.
 type IOSLogEntry interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for OSLogEntry */
+
 	// properties:
-	ComposedMessage() objc.IObject /* cross-framework: NSString */
-	Date() objc.IObject /* cross-framework: NSDate */
+	ComposedMessage() foundation.foundation.INSString
+	Date() foundation.foundation.INSDate
 	StoreCategory() OSLogEntryStoreCategory
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for OSLogEntry */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for OSLogEntry */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogEntryClass) Alloc() OSLogEntry {
 	rv := objc.Send[OSLogEntry](objc.ID(oc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (o_ OSLogEntry) Autorelease() OSLogEntry {
 func NewOSLogEntry() OSLogEntry {
 	return getOSLogEntryClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for OSLogEntry */
+
+
 // A single entry from the unified logging system.
 
 
@@ -109,49 +108,49 @@ type OSLogEntry struct {
 func OSLogEntryFrom(ptr unsafe.Pointer) OSLogEntry {
 	return OSLogEntry{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for OSLogEntry *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for OSLogEntry */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for OSLogEntry */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for OSLogEntry */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for OSLogEntry */
+
+
+
+
+
+
+
+
+
 
 // The fully formatted message for the entry.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/composedMessage
-func (o_ OSLogEntry) ComposedMessage() objc.IObject /* cross-framework: NSString */ {
+func (o_ OSLogEntry) ComposedMessage() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("composedMessage"))
 	return rv
-}/* debug [instance_properties/getter]: composedMessage */
+}
 
 
 // The timestamp of the entry.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/date
-func (o_ OSLogEntry) Date() objc.IObject /* cross-framework: NSDate */ {
+func (o_ OSLogEntry) Date() foundation.foundation.INSDate {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("date"))
 	return rv
-}/* debug [instance_properties/getter]: date */
+}
 
 
 // The current log entry’s storage tag.
@@ -161,12 +160,12 @@ func (o_ OSLogEntry) Date() objc.IObject /* cross-framework: NSDate */ {
 func (o_ OSLogEntry) StoreCategory() OSLogEntryStoreCategory {
 	rv := objc.Send[OSLogEntryStoreCategory](o_.ID, objc.Sel("storeCategory"))
 	return rv
-}/* debug [instance_properties/getter]: storeCategory */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class OSLogEntry */
+
+
+
 
 
 

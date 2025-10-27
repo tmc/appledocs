@@ -13,7 +13,7 @@ var _ = appkit.NewOpenGLPixelFormat
 // Returns an OpenGL pixel format object initialized with specified pixel format attributes.
 func ExampleNewOpenGLPixelFormatWithAttributes() {
 	_ = appkit.NewOpenGLPixelFormatWithAttributes(
-		appkit.NSOpenGLPixelFormatAttribute /* typedef */{}, // attribs NSOpenGLPixelFormatAttribute /* typedef */
+		appkit.OpenGLPixelFormatAttribute{}, // attribs OpenGLPixelFormatAttribute
 	)
 	// Output:
 }

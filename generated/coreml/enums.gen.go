@@ -2,9 +2,9 @@
 
 package coreml
 
-/* debug [enums.gen.go]: Generating 10 enums for CoreML */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum MLModelError (11 cases) */
+
 // MLModelError - Information about a Core ML model error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelError-swift.struct/Code
@@ -57,7 +57,7 @@ const (
 	MLModelErrorUpdate MLModelError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLComputeUnits (4 cases) */
+
 // MLComputeUnits - The set of processing-unit configurations the model can use to make predictions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputeUnits
@@ -82,7 +82,7 @@ const (
 	MLComputeUnitsCPUOnly MLComputeUnits = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLFeatureType (9 cases) */
+
 // MLFeatureType - The possible types for feature values, input features, and output features.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureType
@@ -127,7 +127,7 @@ const (
 	MLFeatureTypeString MLFeatureType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLImageSizeConstraintType (3 cases) */
+
 // MLImageSizeConstraintType - The modes that determine how the model defines a feature’s image size constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraintType
@@ -148,7 +148,7 @@ const (
 	MLImageSizeConstraintTypeUnspecified MLImageSizeConstraintType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLMultiArrayDataType (7 cases) */
+
 // MLMultiArrayDataType - Constants that define the underlying element types a multiarray can store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayDataType
@@ -184,7 +184,7 @@ const (
 	MLMultiArrayDataTypeInt8 MLMultiArrayDataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLMultiArrayShapeConstraintType (3 cases) */
+
 // MLMultiArrayShapeConstraintType - The possible types of shape constraints.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayShapeConstraintType
@@ -205,7 +205,7 @@ const (
 	MLMultiArrayShapeConstraintTypeUnspecified MLMultiArrayShapeConstraintType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLReshapeFrequencyHint (2 cases) */
+
 // MLReshapeFrequencyHint enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLReshapeFrequencyHint
@@ -222,7 +222,7 @@ const (
 	MLReshapeFrequencyHintInfrequent MLReshapeFrequencyHint = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLSpecializationStrategy (2 cases) */
+
 // MLSpecializationStrategy - The optimization strategy for the model specialization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSpecializationStrategy
@@ -239,7 +239,7 @@ const (
 	MLSpecializationStrategyFastPrediction MLSpecializationStrategy = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLTaskState (5 cases) */
+
 // MLTaskState - The state of a machine learning task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTaskState
@@ -268,7 +268,7 @@ const (
 	MLTaskStateSuspended MLTaskState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MLUpdateProgressEvent (3 cases) */
+
 // MLUpdateProgressEvent - A type of event during a model update task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateProgressEvent

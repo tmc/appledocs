@@ -21,5 +21,5 @@ import (
 // See: doc://com.apple.metalfx/documentation/MetalFX/MTL4FXSpatialScaler
 type PMTL4FXSpatialScaler interface {
 	// Required methods
-	EncodeToCommandBuffer(commandBuffer unsafe.Pointer)/* debug [protocol_interface/required_method]: EncodeToCommandBuffer */
+	EncodeToCommandBuffer(commandBuffer unsafe.Pointer)
 }

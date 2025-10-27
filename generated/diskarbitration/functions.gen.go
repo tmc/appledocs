@@ -2,7 +2,7 @@
 
 package diskarbitration
 
-/* debug [functions.gen.go]: Generating 39 functions for DiskArbitration */
+
 import (
 	"unsafe"
 
@@ -124,7 +124,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionCreate
 func DAApprovalSessionCreate(allocator AllocatorRef) unsafe.Pointer {
 	return _DAApprovalSessionCreate(allocator)
-}/* debug [functions.gen.go/function]: DAApprovalSessionCreate */
+}
 
 // DAApprovalSessionGetTypeID is a DiskArbitration function.
 //
@@ -133,7 +133,7 @@ func DAApprovalSessionCreate(allocator AllocatorRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionGetTypeID
 func DAApprovalSessionGetTypeID() TypeID {
 	return _DAApprovalSessionGetTypeID()
-}/* debug [functions.gen.go/function]: DAApprovalSessionGetTypeID */
+}
 
 // DAApprovalSessionScheduleWithRunLoop is a DiskArbitration function.
 //
@@ -142,7 +142,7 @@ func DAApprovalSessionGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionScheduleWithRunLoop
 func DAApprovalSessionScheduleWithRunLoop(session unsafe.Pointer, runLoop RunLoopRef, runLoopMode StringRef) {
 	_DAApprovalSessionScheduleWithRunLoop(session, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: DAApprovalSessionScheduleWithRunLoop */
+}
 
 // DAApprovalSessionUnscheduleFromRunLoop is a DiskArbitration function.
 //
@@ -151,7 +151,7 @@ func DAApprovalSessionScheduleWithRunLoop(session unsafe.Pointer, runLoop RunLoo
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionUnscheduleFromRunLoop
 func DAApprovalSessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop RunLoopRef, runLoopMode StringRef) {
 	_DAApprovalSessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: DAApprovalSessionUnscheduleFromRunLoop */
+}
 
 // Claims the specified disk object for exclusive use.
 //
@@ -162,7 +162,7 @@ func DAApprovalSessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop RunL
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskClaim(_:_:_:_:_:_:)
 func DADiskClaim(disk DADiskRef, options DADiskClaimOptions, release DADiskClaimReleaseCallback, releaseContext unsafe.Pointer, callback DADiskClaimCallback, callbackContext unsafe.Pointer) {
 	_DADiskClaim(disk, options, release, releaseContext, callback, callbackContext)
-}/* debug [functions.gen.go/function]: DADiskClaim */
+}
 
 // Obtains the Disk Arbitration description of the specified disk.
 //
@@ -173,7 +173,7 @@ func DADiskClaim(disk DADiskRef, options DADiskClaimOptions, release DADiskClaim
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyDescription(_:)
 func DADiskCopyDescription(disk DADiskRef) DictionaryRef {
 	return _DADiskCopyDescription(disk)
-}/* debug [functions.gen.go/function]: DADiskCopyDescription */
+}
 
 // Obtains the I/O Kit media object for the specified disk.
 //
@@ -184,7 +184,7 @@ func DADiskCopyDescription(disk DADiskRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyIOMedia(_:)
 func DADiskCopyIOMedia(disk DADiskRef) unsafe.Pointer {
 	return _DADiskCopyIOMedia(disk)
-}/* debug [functions.gen.go/function]: DADiskCopyIOMedia */
+}
 
 // Obtain the associated whole disk object for the specified disk.
 //
@@ -195,7 +195,7 @@ func DADiskCopyIOMedia(disk DADiskRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyWholeDisk(_:)
 func DADiskCopyWholeDisk(disk DADiskRef) DADiskRef {
 	return _DADiskCopyWholeDisk(disk)
-}/* debug [functions.gen.go/function]: DADiskCopyWholeDisk */
+}
 
 // Creates a new disk object.
 //
@@ -206,7 +206,7 @@ func DADiskCopyWholeDisk(disk DADiskRef) DADiskRef {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromBSDName(_:_:_:)
 func DADiskCreateFromBSDName(allocator AllocatorRef, session DASessionRef, name unsafe.Pointer) DADiskRef {
 	return _DADiskCreateFromBSDName(allocator, session, name)
-}/* debug [functions.gen.go/function]: DADiskCreateFromBSDName */
+}
 
 // Creates a new disk object.
 //
@@ -217,7 +217,7 @@ func DADiskCreateFromBSDName(allocator AllocatorRef, session DASessionRef, name 
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromIOMedia(_:_:_:)
 func DADiskCreateFromIOMedia(allocator AllocatorRef, session DASessionRef, media unsafe.Pointer) DADiskRef {
 	return _DADiskCreateFromIOMedia(allocator, session, media)
-}/* debug [functions.gen.go/function]: DADiskCreateFromIOMedia */
+}
 
 // Creates a new disk object.
 //
@@ -228,7 +228,7 @@ func DADiskCreateFromIOMedia(allocator AllocatorRef, session DASessionRef, media
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromVolumePath(_:_:_:)
 func DADiskCreateFromVolumePath(allocator AllocatorRef, session DASessionRef, path URLRef) DADiskRef {
 	return _DADiskCreateFromVolumePath(allocator, session, path)
-}/* debug [functions.gen.go/function]: DADiskCreateFromVolumePath */
+}
 
 // Ejects the specified disk object.
 //
@@ -239,7 +239,7 @@ func DADiskCreateFromVolumePath(allocator AllocatorRef, session DASessionRef, pa
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskEject(_:_:_:_:)
 func DADiskEject(disk DADiskRef, options DADiskEjectOptions, callback DADiskEjectCallback, context unsafe.Pointer) {
 	_DADiskEject(disk, options, callback, context)
-}/* debug [functions.gen.go/function]: DADiskEject */
+}
 
 // Obtains the BSD device name for the specified disk.
 //
@@ -250,7 +250,7 @@ func DADiskEject(disk DADiskRef, options DADiskEjectOptions, callback DADiskEjec
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetBSDName(_:)
 func DADiskGetBSDName(disk DADiskRef) unsafe.Pointer {
 	return _DADiskGetBSDName(disk)
-}/* debug [functions.gen.go/function]: DADiskGetBSDName */
+}
 
 // Obtains the options for the specified disk.
 //
@@ -261,7 +261,7 @@ func DADiskGetBSDName(disk DADiskRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetOptions(_:)
 func DADiskGetOptions(disk DADiskRef) DADiskOptions {
 	return _DADiskGetOptions(disk)
-}/* debug [functions.gen.go/function]: DADiskGetOptions */
+}
 
 // Returns the type identifier of all DADisk instances.
 //
@@ -272,7 +272,7 @@ func DADiskGetOptions(disk DADiskRef) DADiskOptions {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetTypeID()
 func DADiskGetTypeID() TypeID {
 	return _DADiskGetTypeID()
-}/* debug [functions.gen.go/function]: DADiskGetTypeID */
+}
 
 // Reports whether or not the disk is claimed.
 //
@@ -283,7 +283,7 @@ func DADiskGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskIsClaimed(_:)
 func DADiskIsClaimed(disk DADiskRef) unsafe.Pointer {
 	return _DADiskIsClaimed(disk)
-}/* debug [functions.gen.go/function]: DADiskIsClaimed */
+}
 
 // Mounts the volume at the specified disk object.
 //
@@ -294,7 +294,7 @@ func DADiskIsClaimed(disk DADiskRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskMount(_:_:_:_:_:)
 func DADiskMount(disk DADiskRef, path URLRef, options DADiskMountOptions, callback DADiskMountCallback, context unsafe.Pointer) {
 	_DADiskMount(disk, path, options, callback, context)
-}/* debug [functions.gen.go/function]: DADiskMount */
+}
 
 // Mounts the volume at the specified disk object, with the specified mount options.
 //
@@ -305,7 +305,7 @@ func DADiskMount(disk DADiskRef, path URLRef, options DADiskMountOptions, callba
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskMountWithArguments(_:_:_:_:_:_:)
 func DADiskMountWithArguments(disk DADiskRef, path URLRef, options DADiskMountOptions, callback DADiskMountCallback, context unsafe.Pointer, arguments StringRef) {
 	_DADiskMountWithArguments(disk, path, options, callback, context, arguments)
-}/* debug [functions.gen.go/function]: DADiskMountWithArguments */
+}
 
 // Renames the volume at the specified disk object.
 //
@@ -316,7 +316,7 @@ func DADiskMountWithArguments(disk DADiskRef, path URLRef, options DADiskMountOp
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskRename(_:_:_:_:_:)
 func DADiskRename(disk DADiskRef, name StringRef, options DADiskRenameOptions, callback DADiskRenameCallback, context unsafe.Pointer) {
 	_DADiskRename(disk, name, options, callback, context)
-}/* debug [functions.gen.go/function]: DADiskRename */
+}
 
 // Sets the options for the specified disk.
 //
@@ -327,7 +327,7 @@ func DADiskRename(disk DADiskRef, name StringRef, options DADiskRenameOptions, c
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskSetOptions(_:_:_:)
 func DADiskSetOptions(disk DADiskRef, options DADiskOptions, value unsafe.Pointer) DAReturn {
 	return _DADiskSetOptions(disk, options, value)
-}/* debug [functions.gen.go/function]: DADiskSetOptions */
+}
 
 // Unclaims the specified disk object.
 //
@@ -338,7 +338,7 @@ func DADiskSetOptions(disk DADiskRef, options DADiskOptions, value unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskUnclaim(_:)
 func DADiskUnclaim(disk DADiskRef) {
 	_DADiskUnclaim(disk)
-}/* debug [functions.gen.go/function]: DADiskUnclaim */
+}
 
 // Unmounts the volume at the specified disk object.
 //
@@ -349,7 +349,7 @@ func DADiskUnclaim(disk DADiskRef) {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskUnmount(_:_:_:_:)
 func DADiskUnmount(disk DADiskRef, options DADiskUnmountOptions, callback DADiskUnmountCallback, context unsafe.Pointer) {
 	_DADiskUnmount(disk, options, callback, context)
-}/* debug [functions.gen.go/function]: DADiskUnmount */
+}
 
 // Creates a new dissenter object.
 //
@@ -360,7 +360,7 @@ func DADiskUnmount(disk DADiskRef, options DADiskUnmountOptions, callback DADisk
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterCreate(_:_:_:)
 func DADissenterCreate(allocator AllocatorRef, status DAReturn, string_ StringRef) DADissenterRef {
 	return _DADissenterCreate(allocator, status, string_)
-}/* debug [functions.gen.go/function]: DADissenterCreate */
+}
 
 // Obtains the return code.
 //
@@ -371,7 +371,7 @@ func DADissenterCreate(allocator AllocatorRef, status DAReturn, string_ StringRe
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterGetStatus(_:)
 func DADissenterGetStatus(dissenter DADissenterRef) DAReturn {
 	return _DADissenterGetStatus(dissenter)
-}/* debug [functions.gen.go/function]: DADissenterGetStatus */
+}
 
 // Obtains the return code string.
 //
@@ -382,7 +382,7 @@ func DADissenterGetStatus(dissenter DADissenterRef) DAReturn {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterGetStatusString(_:)
 func DADissenterGetStatusString(dissenter DADissenterRef) StringRef {
 	return _DADissenterGetStatusString(dissenter)
-}/* debug [functions.gen.go/function]: DADissenterGetStatusString */
+}
 
 // Registers a callback function to be called whenever a disk has appeared.
 //
@@ -393,7 +393,7 @@ func DADissenterGetStatusString(dissenter DADissenterRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskAppearedCallback(_:_:_:_:)
 func DARegisterDiskAppearedCallback(session DASessionRef, match DictionaryRef, callback DADiskAppearedCallback, context unsafe.Pointer) {
 	_DARegisterDiskAppearedCallback(session, match, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskAppearedCallback */
+}
 
 // Registers a callback function to be called whenever a disk description has changed.
 //
@@ -404,7 +404,7 @@ func DARegisterDiskAppearedCallback(session DASessionRef, match DictionaryRef, c
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskDescriptionChangedCallback(_:_:_:_:_:)
 func DARegisterDiskDescriptionChangedCallback(session DASessionRef, match DictionaryRef, watch ArrayRef, callback DADiskDescriptionChangedCallback, context unsafe.Pointer) {
 	_DARegisterDiskDescriptionChangedCallback(session, match, watch, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskDescriptionChangedCallback */
+}
 
 // Registers a callback function to be called whenever a disk has disappeared.
 //
@@ -415,7 +415,7 @@ func DARegisterDiskDescriptionChangedCallback(session DASessionRef, match Dictio
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskDisappearedCallback(_:_:_:_:)
 func DARegisterDiskDisappearedCallback(session DASessionRef, match DictionaryRef, callback DADiskDisappearedCallback, context unsafe.Pointer) {
 	_DARegisterDiskDisappearedCallback(session, match, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskDisappearedCallback */
+}
 
 // Registers a callback function to be called whenever a volume is to be ejected.
 //
@@ -426,7 +426,7 @@ func DARegisterDiskDisappearedCallback(session DASessionRef, match DictionaryRef
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskEjectApprovalCallback(_:_:_:_:)
 func DARegisterDiskEjectApprovalCallback(session DASessionRef, match DictionaryRef, callback DADiskEjectApprovalCallback, context unsafe.Pointer) {
 	_DARegisterDiskEjectApprovalCallback(session, match, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskEjectApprovalCallback */
+}
 
 // Registers a callback function to be called whenever a volume is to be mounted.
 //
@@ -437,7 +437,7 @@ func DARegisterDiskEjectApprovalCallback(session DASessionRef, match DictionaryR
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskMountApprovalCallback(_:_:_:_:)
 func DARegisterDiskMountApprovalCallback(session DASessionRef, match DictionaryRef, callback DADiskMountApprovalCallback, context unsafe.Pointer) {
 	_DARegisterDiskMountApprovalCallback(session, match, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskMountApprovalCallback */
+}
 
 // Registers a callback function to be called whenever a disk has been probed.
 //
@@ -448,7 +448,7 @@ func DARegisterDiskMountApprovalCallback(session DASessionRef, match DictionaryR
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskPeekCallback(_:_:_:_:_:)
 func DARegisterDiskPeekCallback(session DASessionRef, match DictionaryRef, order Index, callback DADiskPeekCallback, context unsafe.Pointer) {
 	_DARegisterDiskPeekCallback(session, match, order, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskPeekCallback */
+}
 
 // Registers a callback function to be called whenever a volume is to be unmounted.
 //
@@ -459,7 +459,7 @@ func DARegisterDiskPeekCallback(session DASessionRef, match DictionaryRef, order
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskUnmountApprovalCallback(_:_:_:_:)
 func DARegisterDiskUnmountApprovalCallback(session DASessionRef, match DictionaryRef, callback DADiskUnmountApprovalCallback, context unsafe.Pointer) {
 	_DARegisterDiskUnmountApprovalCallback(session, match, callback, context)
-}/* debug [functions.gen.go/function]: DARegisterDiskUnmountApprovalCallback */
+}
 
 // Creates a new session.
 //
@@ -470,7 +470,7 @@ func DARegisterDiskUnmountApprovalCallback(session DASessionRef, match Dictionar
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionCreate(_:)
 func DASessionCreate(allocator AllocatorRef) DASessionRef {
 	return _DASessionCreate(allocator)
-}/* debug [functions.gen.go/function]: DASessionCreate */
+}
 
 // Returns the type identifier of all DASession instances.
 //
@@ -481,7 +481,7 @@ func DASessionCreate(allocator AllocatorRef) DASessionRef {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionGetTypeID()
 func DASessionGetTypeID() TypeID {
 	return _DASessionGetTypeID()
-}/* debug [functions.gen.go/function]: DASessionGetTypeID */
+}
 
 // Schedules the session on a run loop.
 //
@@ -492,7 +492,7 @@ func DASessionGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionScheduleWithRunLoop(_:_:_:)
 func DASessionScheduleWithRunLoop(session DASessionRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_DASessionScheduleWithRunLoop(session, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: DASessionScheduleWithRunLoop */
+}
 
 // Schedules the session on a dispatch queue.
 //
@@ -503,7 +503,7 @@ func DASessionScheduleWithRunLoop(session DASessionRef, runLoop RunLoopRef, runL
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionSetDispatchQueue(_:_:)
 func DASessionSetDispatchQueue(session DASessionRef, queue unsafe.Pointer) {
 	_DASessionSetDispatchQueue(session, queue)
-}/* debug [functions.gen.go/function]: DASessionSetDispatchQueue */
+}
 
 // Unschedules the session from a run loop.
 //
@@ -514,7 +514,7 @@ func DASessionSetDispatchQueue(session DASessionRef, queue unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionUnscheduleFromRunLoop(_:_:_:)
 func DASessionUnscheduleFromRunLoop(session DASessionRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_DASessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: DASessionUnscheduleFromRunLoop */
+}
 
 // Unregisters a registered callback function.
 //
@@ -525,7 +525,7 @@ func DASessionUnscheduleFromRunLoop(session DASessionRef, runLoop RunLoopRef, ru
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAUnregisterApprovalCallback
 func DAUnregisterApprovalCallback(session DASessionRef, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DAUnregisterApprovalCallback(session, callback, context)
-}/* debug [functions.gen.go/function]: DAUnregisterApprovalCallback */
+}
 
 // Unregisters a registered callback function.
 //
@@ -536,7 +536,7 @@ func DAUnregisterApprovalCallback(session DASessionRef, callback unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAUnregisterCallback(_:_:_:)
 func DAUnregisterCallback(session DASessionRef, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DAUnregisterCallback(session, callback, context)
-}/* debug [functions.gen.go/function]: DAUnregisterCallback */
+}
 
 
 

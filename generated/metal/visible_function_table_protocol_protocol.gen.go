@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PVisibleFunctionTable is the MTLVisibleFunctionTable protocol interface.
@@ -23,7 +23,7 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable
 type PVisibleFunctionTable interface {
 	// Required methods
-	SetFunctionAtIndex(function unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetFunctionAtIndex */
-	SetFunctionsWithRange(functions []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetFunctionsWithRange */
+	SetFunctionAtIndex(function unsafe.Pointer, index uint)
+	SetFunctionsWithRange(functions []objc.ID, range_ foundation.Range)
 }
 

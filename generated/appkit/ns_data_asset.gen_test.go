@@ -13,7 +13,7 @@ var _ = appkit.NewDataAsset
 // Initializes and returns an object with a reference to the named data asset in an asset catalog.
 func ExampleNewDataAssetWithName() {
 	_ = appkit.NewDataAssetWithName(
-		appkit.DataAssetName /* typedef */{}, // name DataAssetName /* typedef */
+		appkit.DataAssetName{}, // name DataAssetName
 	)
 	// Output:
 }

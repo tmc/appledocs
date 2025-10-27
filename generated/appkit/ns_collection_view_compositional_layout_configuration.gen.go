@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSCollectionViewCompositionalLayoutConfiguration */
 
 
-/* debug [class_header]: Header for NSCollectionViewCompositionalLayoutConfiguration */
+
+
 // The class instance for the [CollectionViewCompositionalLayoutConfiguration] class.
 var (
 	CollectionViewCompositionalLayoutConfigurationClass     _CollectionViewCompositionalLayoutConfigurationClass
@@ -30,16 +30,16 @@ func getCollectionViewCompositionalLayoutConfigurationClass() _CollectionViewCom
 type _CollectionViewCompositionalLayoutConfigurationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CollectionViewCompositionalLayoutConfiguration */
+
+
 // An interface definition for the [CollectionViewCompositionalLayoutConfiguration] class.
 type ICollectionViewCompositionalLayoutConfiguration interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CollectionViewCompositionalLayoutConfiguration */
+
 	// properties:
 	BoundarySupplementaryItems() []CollectionLayoutBoundarySupplementaryItem
 	SetBoundarySupplementaryItems(value []CollectionLayoutBoundarySupplementaryItem)
@@ -49,19 +49,19 @@ type ICollectionViewCompositionalLayoutConfiguration interface {
 	SetScrollDirection(value CollectionViewScrollDirection)
 	Configuration() ICollectionViewCompositionalLayoutConfiguration
 	SetConfiguration(value ICollectionViewCompositionalLayoutConfiguration)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CollectionViewCompositionalLayoutConfiguration */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CollectionViewCompositionalLayoutConfiguration */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewCompositionalLayoutConfigurationClass) Alloc() CollectionViewCompositionalLayoutConfiguration {
 	rv := objc.Send[CollectionViewCompositionalLayoutConfiguration](objc.ID(cc.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) Autorelease() Collectio
 func NewCollectionViewCompositionalLayoutConfiguration() CollectionViewCompositionalLayoutConfiguration {
 	return getCollectionViewCompositionalLayoutConfigurationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CollectionViewCompositionalLayoutConfiguration */
+
+
 // An object that defines scroll direction, section spacing, and headers or footers for the layout.
 //
 // You use a layout configuration to modify a collection view layout’s default scroll direction, add extra spacing between each section of the layout, and add headers or footers to the entire layout. You can pass in this configuration when creating an , or you can set the property on an existing layout. If you modify the configuration on an existing layout, the system invalidates the layout so that it will be updated with the new configuration.
@@ -115,30 +115,30 @@ type CollectionViewCompositionalLayoutConfiguration struct {
 func CollectionViewCompositionalLayoutConfigurationFrom(ptr unsafe.Pointer) CollectionViewCompositionalLayoutConfiguration {
 	return CollectionViewCompositionalLayoutConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CollectionViewCompositionalLayoutConfiguration *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CollectionViewCompositionalLayoutConfiguration */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CollectionViewCompositionalLayoutConfiguration */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CollectionViewCompositionalLayoutConfiguration */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CollectionViewCompositionalLayoutConfiguration */
+
+
+
+
+
+
+
+
+
 
 // An array of the supplementary items that are associated with the boundary edges of the entire layout, such as global headers and footers.
 //
@@ -147,7 +147,7 @@ func CollectionViewCompositionalLayoutConfigurationFrom(ptr unsafe.Pointer) Coll
 func (c_ CollectionViewCompositionalLayoutConfiguration) BoundarySupplementaryItems() []CollectionLayoutBoundarySupplementaryItem {
 	rv := objc.Send[[]CollectionLayoutBoundarySupplementaryItem](c_.ID, objc.Sel("boundarySupplementaryItems"))
 	return rv
-}/* debug [instance_properties/getter]: boundarySupplementaryItems */
+}
 
 
 // An array of the supplementary items that are associated with the boundary edges of the entire layout, such as global headers and footers.
@@ -165,7 +165,7 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) SetBoundarySupplementar
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBoundarySupplementaryItems:"), nsArray)
-}/* debug [instance_properties/setter]: boundarySupplementaryItems */
+}
 
 
 // The amount of space between the sections in the layout.
@@ -175,7 +175,7 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) SetBoundarySupplementar
 func (c_ CollectionViewCompositionalLayoutConfiguration) InterSectionSpacing() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("interSectionSpacing"))
 	return rv
-}/* debug [instance_properties/getter]: interSectionSpacing */
+}
 
 
 // The amount of space between the sections in the layout.
@@ -184,7 +184,7 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) InterSectionSpacing() f
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewCompositionalLayoutConfiguration/interSectionSpacing
 func (c_ CollectionViewCompositionalLayoutConfiguration) SetInterSectionSpacing(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInterSectionSpacing:"), value)
-}/* debug [instance_properties/setter]: interSectionSpacing */
+}
 
 
 // The axis that the content in the collection view layout scrolls along.
@@ -194,7 +194,7 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) SetInterSectionSpacing(
 func (c_ CollectionViewCompositionalLayoutConfiguration) ScrollDirection() CollectionViewScrollDirection {
 	rv := objc.Send[CollectionViewScrollDirection](c_.ID, objc.Sel("scrollDirection"))
 	return rv
-}/* debug [instance_properties/getter]: scrollDirection */
+}
 
 
 // The axis that the content in the collection view layout scrolls along.
@@ -203,7 +203,7 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) ScrollDirection() Colle
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewCompositionalLayoutConfiguration/scrollDirection
 func (c_ CollectionViewCompositionalLayoutConfiguration) SetScrollDirection(value CollectionViewScrollDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScrollDirection:"), value)
-}/* debug [instance_properties/setter]: scrollDirection */
+}
 
 
 // The layout’s configuration, such as its scroll direction and section spacing.
@@ -213,7 +213,7 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) SetScrollDirection(valu
 func (c_ CollectionViewCompositionalLayoutConfiguration) Configuration() ICollectionViewCompositionalLayoutConfiguration {
 	rv := objc.Send[CollectionViewCompositionalLayoutConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
-}/* debug [instance_properties/getter]: configuration */
+}
 
 
 // The layout’s configuration, such as its scroll direction and section spacing.
@@ -222,12 +222,12 @@ func (c_ CollectionViewCompositionalLayoutConfiguration) Configuration() ICollec
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayout/configuration
 func (c_ CollectionViewCompositionalLayoutConfiguration) SetConfiguration(value ICollectionViewCompositionalLayoutConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
-}/* debug [instance_properties/setter]: configuration */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSCollectionViewCompositionalLayoutConfiguration */
+
+
+
 
 
 

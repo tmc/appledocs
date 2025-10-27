@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLComputePipelineDescriptor */
 
 
-/* debug [class_header]: Header for MTLComputePipelineDescriptor */
+
+
 // The class instance for the [ComputePipelineDescriptor] class.
 var (
 	ComputePipelineDescriptorClass     _ComputePipelineDescriptorClass
@@ -31,16 +30,16 @@ func getComputePipelineDescriptorClass() _ComputePipelineDescriptorClass {
 type _ComputePipelineDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ComputePipelineDescriptor */
+
+
 // An interface definition for the [ComputePipelineDescriptor] class.
 type IComputePipelineDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ComputePipelineDescriptor */
+
 	// properties:
 	BinaryArchives() []objc.ID
 	SetBinaryArchives(value []objc.ID)
@@ -49,8 +48,8 @@ type IComputePipelineDescriptor interface {
 	SetComputeFunction(value unsafe.Pointer)
 	InsertLibraries() []objc.ID
 	SetInsertLibraries(value []objc.ID)
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	LinkedFunctions() IMTLLinkedFunctions
 	SetLinkedFunctions(value IMTLLinkedFunctions)
 	MaxCallStackDepth() uint
@@ -59,8 +58,8 @@ type IComputePipelineDescriptor interface {
 	SetMaxTotalThreadsPerThreadgroup(value uint)
 	PreloadedLibraries() []objc.ID
 	SetPreloadedLibraries(value []objc.ID)
-	RequiredThreadsPerThreadgroup() objc.IObject /* cross-framework: MTLSize */
-	SetRequiredThreadsPerThreadgroup(value objc.IObject /* cross-framework: MTLSize */)
+	RequiredThreadsPerThreadgroup() MTLSize
+	SetRequiredThreadsPerThreadgroup(value MTLSize)
 	ShaderValidation() ShaderValidation
 	SetShaderValidation(value ShaderValidation)
 	StageInputDescriptor() IMTLStageInputOutputDescriptor
@@ -71,20 +70,20 @@ type IComputePipelineDescriptor interface {
 	SetSupportIndirectCommandBuffers(value bool)
 	ThreadGroupSizeIsMultipleOfThreadExecutionWidth() bool
 	SetThreadGroupSizeIsMultipleOfThreadExecutionWidth(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ComputePipelineDescriptor */
+
 	// methods:
 	Reset()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ComputePipelineDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComputePipelineDescriptorClass) Alloc() ComputePipelineDescriptor {
 	rv := objc.Send[ComputePipelineDescriptor](objc.ID(cc.class), objc.Sel("alloc"))
@@ -114,11 +113,11 @@ func (c_ ComputePipelineDescriptor) Autorelease() ComputePipelineDescriptor {
 func NewComputePipelineDescriptor() ComputePipelineDescriptor {
 	return getComputePipelineDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ComputePipelineDescriptor */
+
+
 // An instance describing the desired GPU state for a kernel call in a compute pass.
 //
 // A pipeline descriptor provides information necessary for creating an instance.
@@ -138,25 +137,25 @@ type ComputePipelineDescriptor struct {
 func ComputePipelineDescriptorFrom(ptr unsafe.Pointer) ComputePipelineDescriptor {
 	return ComputePipelineDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ComputePipelineDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ComputePipelineDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ComputePipelineDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ComputePipelineDescriptor */
+
+
+
+
+
+
+
 
 // Resets all compute pipeline descriptor properties to their default values.
 //
@@ -164,13 +163,13 @@ func ComputePipelineDescriptorFrom(ptr unsafe.Pointer) ComputePipelineDescriptor
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/reset()
 func (c_ ComputePipelineDescriptor) Reset() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reset"))
-}/* debug [instance_methods/method]: Reset */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ComputePipelineDescriptor */
+
+
+
 
 // The binary archives that contain any precompiled shader functions to link.
 //
@@ -179,7 +178,7 @@ func (c_ ComputePipelineDescriptor) Reset() {
 func (c_ ComputePipelineDescriptor) BinaryArchives() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("binaryArchives"))
 	return rv
-}/* debug [instance_properties/getter]: binaryArchives */
+}
 
 
 // The binary archives that contain any precompiled shader functions to link.
@@ -197,7 +196,7 @@ func (c_ ComputePipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBinaryArchives:"), nsArray)
-}/* debug [instance_properties/setter]: binaryArchives */
+}
 
 
 // The buffer mutability options to apply to the next kernel call.
@@ -207,7 +206,7 @@ func (c_ ComputePipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 func (c_ ComputePipelineDescriptor) Buffers() IMTLPipelineBufferDescriptorArray {
 	rv := objc.Send[PipelineBufferDescriptorArray](c_.ID, objc.Sel("buffers"))
 	return rv
-}/* debug [instance_properties/getter]: buffers */
+}
 
 
 // The compute kernel the pipeline calls.
@@ -217,7 +216,7 @@ func (c_ ComputePipelineDescriptor) Buffers() IMTLPipelineBufferDescriptorArray 
 func (c_ ComputePipelineDescriptor) ComputeFunction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("computeFunction"))
 	return rv
-}/* debug [instance_properties/getter]: computeFunction */
+}
 
 
 // The compute kernel the pipeline calls.
@@ -226,7 +225,7 @@ func (c_ ComputePipelineDescriptor) ComputeFunction() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/computeFunction
 func (c_ ComputePipelineDescriptor) SetComputeFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComputeFunction:"), value)
-}/* debug [instance_properties/setter]: computeFunction */
+}
 
 
 // The dynamic libraries that contain precompiled shader functions you want to link.
@@ -236,7 +235,7 @@ func (c_ ComputePipelineDescriptor) SetComputeFunction(value unsafe.Pointer) {
 func (c_ ComputePipelineDescriptor) InsertLibraries() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("insertLibraries"))
 	return rv
-}/* debug [instance_properties/getter]: insertLibraries */
+}
 
 
 // The dynamic libraries that contain precompiled shader functions you want to link.
@@ -254,26 +253,26 @@ func (c_ ComputePipelineDescriptor) SetInsertLibraries(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInsertLibraries:"), nsArray)
-}/* debug [instance_properties/setter]: insertLibraries */
+}
 
 
 // A string that identifies the instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+func (c_ ComputePipelineDescriptor) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("label"))
 	return rv
-}/* debug [instance_properties/getter]: label */
+}
 
 
 // A string that identifies the instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (c_ ComputePipelineDescriptor) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
-}/* debug [instance_properties/setter]: label */
+}
 
 
 // The functions with available function pointers for the next kernel call.
@@ -283,7 +282,7 @@ func (c_ ComputePipelineDescriptor) SetLabel(value objc.IObject /* cross-framewo
 func (c_ ComputePipelineDescriptor) LinkedFunctions() IMTLLinkedFunctions {
 	rv := objc.Send[LinkedFunctions](c_.ID, objc.Sel("linkedFunctions"))
 	return rv
-}/* debug [instance_properties/getter]: linkedFunctions */
+}
 
 
 // The functions with available function pointers for the next kernel call.
@@ -292,7 +291,7 @@ func (c_ ComputePipelineDescriptor) LinkedFunctions() IMTLLinkedFunctions {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/linkedFunctions
 func (c_ ComputePipelineDescriptor) SetLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLinkedFunctions:"), value)
-}/* debug [instance_properties/setter]: linkedFunctions */
+}
 
 
 // The maximum recursive call depth for dynamic library, visible, and intersection functions.
@@ -302,7 +301,7 @@ func (c_ ComputePipelineDescriptor) SetLinkedFunctions(value IMTLLinkedFunctions
 func (c_ ComputePipelineDescriptor) MaxCallStackDepth() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxCallStackDepth"))
 	return rv
-}/* debug [instance_properties/getter]: maxCallStackDepth */
+}
 
 
 // The maximum recursive call depth for dynamic library, visible, and intersection functions.
@@ -311,7 +310,7 @@ func (c_ ComputePipelineDescriptor) MaxCallStackDepth() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/maxCallStackDepth
 func (c_ ComputePipelineDescriptor) SetMaxCallStackDepth(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCallStackDepth:"), value)
-}/* debug [instance_properties/setter]: maxCallStackDepth */
+}
 
 
 // The maximum number of threads in a threadgroup that you can dispatch to the compute function.
@@ -321,7 +320,7 @@ func (c_ ComputePipelineDescriptor) SetMaxCallStackDepth(value uint) {
 func (c_ ComputePipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxTotalThreadsPerThreadgroup"))
 	return rv
-}/* debug [instance_properties/getter]: maxTotalThreadsPerThreadgroup */
+}
 
 
 // The maximum number of threads in a threadgroup that you can dispatch to the compute function.
@@ -330,7 +329,7 @@ func (c_ ComputePipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/maxTotalThreadsPerThreadgroup
 func (c_ ComputePipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
-}/* debug [instance_properties/setter]: maxTotalThreadsPerThreadgroup */
+}
 
 
 // The dynamic libraries that contain precompiled shader functions you want to link.
@@ -340,7 +339,7 @@ func (c_ ComputePipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint)
 func (c_ ComputePipelineDescriptor) PreloadedLibraries() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("preloadedLibraries"))
 	return rv
-}/* debug [instance_properties/getter]: preloadedLibraries */
+}
 
 
 // The dynamic libraries that contain precompiled shader functions you want to link.
@@ -358,22 +357,22 @@ func (c_ ComputePipelineDescriptor) SetPreloadedLibraries(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreloadedLibraries:"), nsArray)
-}/* debug [instance_properties/setter]: preloadedLibraries */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/requiredThreadsPerThreadgroup
-func (c_ ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() objc.IObject /* cross-framework: MTLSize */ {
+func (c_ ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() MTLSize {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
-}/* debug [instance_properties/getter]: requiredThreadsPerThreadgroup */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/requiredThreadsPerThreadgroup
-func (c_ ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value objc.IObject /* cross-framework: MTLSize */) {
+func (c_ ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value MTLSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
-}/* debug [instance_properties/setter]: requiredThreadsPerThreadgroup */
+}
 
 
 // A value that enables or disables shader validation for the pipeline.
@@ -383,7 +382,7 @@ func (c_ ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value objc.
 func (c_ ComputePipelineDescriptor) ShaderValidation() ShaderValidation {
 	rv := objc.Send[ShaderValidation](c_.ID, objc.Sel("shaderValidation"))
 	return rv
-}/* debug [instance_properties/getter]: shaderValidation */
+}
 
 
 // A value that enables or disables shader validation for the pipeline.
@@ -392,7 +391,7 @@ func (c_ ComputePipelineDescriptor) ShaderValidation() ShaderValidation {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/shaderValidation
 func (c_ ComputePipelineDescriptor) SetShaderValidation(value ShaderValidation) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShaderValidation:"), value)
-}/* debug [instance_properties/setter]: shaderValidation */
+}
 
 
 // The organization of input and output data for the next kernel call.
@@ -402,7 +401,7 @@ func (c_ ComputePipelineDescriptor) SetShaderValidation(value ShaderValidation) 
 func (c_ ComputePipelineDescriptor) StageInputDescriptor() IMTLStageInputOutputDescriptor {
 	rv := objc.Send[StageInputOutputDescriptor](c_.ID, objc.Sel("stageInputDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: stageInputDescriptor */
+}
 
 
 // The organization of input and output data for the next kernel call.
@@ -411,7 +410,7 @@ func (c_ ComputePipelineDescriptor) StageInputDescriptor() IMTLStageInputOutputD
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/stageInputDescriptor
 func (c_ ComputePipelineDescriptor) SetStageInputDescriptor(value IMTLStageInputOutputDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStageInputDescriptor:"), value)
-}/* debug [instance_properties/setter]: stageInputDescriptor */
+}
 
 
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
@@ -421,7 +420,7 @@ func (c_ ComputePipelineDescriptor) SetStageInputDescriptor(value IMTLStageInput
 func (c_ ComputePipelineDescriptor) SupportAddingBinaryFunctions() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportAddingBinaryFunctions"))
 	return rv
-}/* debug [instance_properties/getter]: supportAddingBinaryFunctions */
+}
 
 
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
@@ -430,7 +429,7 @@ func (c_ ComputePipelineDescriptor) SupportAddingBinaryFunctions() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/supportAddingBinaryFunctions
 func (c_ ComputePipelineDescriptor) SetSupportAddingBinaryFunctions(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportAddingBinaryFunctions:"), value)
-}/* debug [instance_properties/setter]: supportAddingBinaryFunctions */
+}
 
 
 // A Boolean value that indicates whether you can encode commands that reference the pipeline state object into an indirect command buffer.
@@ -440,7 +439,7 @@ func (c_ ComputePipelineDescriptor) SetSupportAddingBinaryFunctions(value bool) 
 func (c_ ComputePipelineDescriptor) SupportIndirectCommandBuffers() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportIndirectCommandBuffers"))
 	return rv
-}/* debug [instance_properties/getter]: supportIndirectCommandBuffers */
+}
 
 
 // A Boolean value that indicates whether you can encode commands that reference the pipeline state object into an indirect command buffer.
@@ -449,7 +448,7 @@ func (c_ ComputePipelineDescriptor) SupportIndirectCommandBuffers() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/supportIndirectCommandBuffers
 func (c_ ComputePipelineDescriptor) SetSupportIndirectCommandBuffers(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportIndirectCommandBuffers:"), value)
-}/* debug [instance_properties/setter]: supportIndirectCommandBuffers */
+}
 
 
 // A Boolean value that indicates whether the threadgroup size is always a multiple of the thread execution width.
@@ -459,7 +458,7 @@ func (c_ ComputePipelineDescriptor) SetSupportIndirectCommandBuffers(value bool)
 func (c_ ComputePipelineDescriptor) ThreadGroupSizeIsMultipleOfThreadExecutionWidth() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("threadGroupSizeIsMultipleOfThreadExecutionWidth"))
 	return rv
-}/* debug [instance_properties/getter]: threadGroupSizeIsMultipleOfThreadExecutionWidth */
+}
 
 
 // A Boolean value that indicates whether the threadgroup size is always a multiple of the thread execution width.
@@ -468,12 +467,12 @@ func (c_ ComputePipelineDescriptor) ThreadGroupSizeIsMultipleOfThreadExecutionWi
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/threadGroupSizeIsMultipleOfThreadExecutionWidth
 func (c_ ComputePipelineDescriptor) SetThreadGroupSizeIsMultipleOfThreadExecutionWidth(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setThreadGroupSizeIsMultipleOfThreadExecutionWidth:"), value)
-}/* debug [instance_properties/setter]: threadGroupSizeIsMultipleOfThreadExecutionWidth */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLComputePipelineDescriptor */
+
+
+
 
 
 

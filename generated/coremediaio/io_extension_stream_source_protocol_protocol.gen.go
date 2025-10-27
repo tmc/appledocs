@@ -4,6 +4,8 @@ package coremediaio
 
 import (
 	"unsafe"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PIOExtensionStreamSource is the CMIOExtensionStreamSource protocol interface.
@@ -17,9 +19,9 @@ import (
 // See: doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionStreamSource
 type PIOExtensionStreamSource interface {
 	// Required methods
-	AuthorizedToStartStreamForClient(client ExtensionClient) bool/* debug [protocol_interface/required_method]: AuthorizedToStartStreamForClient */
-	SetStreamPropertiesError(streamProperties ExtensionStreamProperties, outError unsafe.Pointer) bool/* debug [protocol_interface/required_method]: SetStreamPropertiesError */
-	StartStreamAndReturnError(outError unsafe.Pointer) bool/* debug [protocol_interface/required_method]: StartStreamAndReturnError */
-	StopStreamAndReturnError(outError unsafe.Pointer) bool/* debug [protocol_interface/required_method]: StopStreamAndReturnError */
-	StreamPropertiesForPropertiesError(properties unsafe.Pointer, outError unsafe.Pointer) IOExtensionStreamProperties/* debug [protocol_interface/required_method]: StreamPropertiesForPropertiesError */
+	AuthorizedToStartStreamForClient(client ExtensionClient) bool
+	SetStreamPropertiesError(streamProperties ExtensionStreamProperties, outError foundation.foundation.INSError) bool
+	StartStreamAndReturnError(outError foundation.foundation.INSError) bool
+	StopStreamAndReturnError(outError foundation.foundation.INSError) bool
+	StreamPropertiesForPropertiesError(properties unsafe.Pointer, outError foundation.foundation.INSError) IOExtensionStreamProperties
 }

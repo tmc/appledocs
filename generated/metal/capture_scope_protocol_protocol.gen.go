@@ -17,6 +17,6 @@ package metal
 // See: doc://com.apple.metal/documentation/Metal/MTLCaptureScope
 type PCaptureScope interface {
 	// Required methods
-	BeginScope()/* debug [protocol_interface/required_method]: BeginScope */
-	EndScope()/* debug [protocol_interface/required_method]: EndScope */
+	BeginScope()
+	EndScope()
 }

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NWTLSParameters */
 
 
-/* debug [class_header]: Header for NWTLSParameters */
+
+
 // The class instance for the [NWTLSParameters] class.
 var (
 	NWTLSParametersClass     _NWTLSParametersClass
@@ -31,16 +30,16 @@ func getNWTLSParametersClass() _NWTLSParametersClass {
 type _NWTLSParametersClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NWTLSParameters */
+
+
 // An interface definition for the [NWTLSParameters] class.
 type INWTLSParameters interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NWTLSParameters */
+
 	// properties:
 	MaximumSSLProtocolVersion() uint
 	SetMaximumSSLProtocolVersion(value uint)
@@ -48,21 +47,21 @@ type INWTLSParameters interface {
 	SetMinimumSSLProtocolVersion(value uint)
 	SSLCipherSuites() unsafe.Pointer
 	SetSSLCipherSuites(value unsafe.Pointer)
-	TLSSessionID() objc.IObject /* cross-framework: NSData */
-	SetTLSSessionID(value objc.IObject /* cross-framework: NSData */)
-/* debug [class_interface_properties]: End properties */
+	TLSSessionID() foundation.foundation.INSData
+	SetTLSSessionID(value foundation.foundation.INSData)
+
 
 	
-/* debug [class_interface_methods]: Methods for NWTLSParameters */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NWTLSParameters */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NWTLSParametersClass) Alloc() NWTLSParameters {
 	rv := objc.Send[NWTLSParameters](objc.ID(nc.class), objc.Sel("alloc"))
@@ -92,11 +91,11 @@ func (n_ NWTLSParameters) Autorelease() NWTLSParameters {
 func NewNWTLSParameters() NWTLSParameters {
 	return getNWTLSParametersClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NWTLSParameters */
+
+
 // TLS properties for creating a connection.
 
 
@@ -114,30 +113,30 @@ type NWTLSParameters struct {
 func NWTLSParametersFrom(ptr unsafe.Pointer) NWTLSParameters {
 	return NWTLSParameters{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NWTLSParameters *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NWTLSParameters */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NWTLSParameters */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NWTLSParameters */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NWTLSParameters */
+
+
+
+
+
+
+
+
+
 
 // The maximum allowed value to use when negotiating TLS.
 //
@@ -146,7 +145,7 @@ func NWTLSParametersFrom(ptr unsafe.Pointer) NWTLSParameters {
 func (n_ NWTLSParameters) MaximumSSLProtocolVersion() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumSSLProtocolVersion"))
 	return rv
-}/* debug [instance_properties/getter]: maximumSSLProtocolVersion */
+}
 
 
 // The maximum allowed value to use when negotiating TLS.
@@ -155,7 +154,7 @@ func (n_ NWTLSParameters) MaximumSSLProtocolVersion() uint {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTLSParameters/maximumSSLProtocolVersion
 func (n_ NWTLSParameters) SetMaximumSSLProtocolVersion(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumSSLProtocolVersion:"), value)
-}/* debug [instance_properties/setter]: maximumSSLProtocolVersion */
+}
 
 
 // The minimum allowed value to use when negotiating TLS.
@@ -165,7 +164,7 @@ func (n_ NWTLSParameters) SetMaximumSSLProtocolVersion(value uint) {
 func (n_ NWTLSParameters) MinimumSSLProtocolVersion() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumSSLProtocolVersion"))
 	return rv
-}/* debug [instance_properties/getter]: minimumSSLProtocolVersion */
+}
 
 
 // The minimum allowed value to use when negotiating TLS.
@@ -174,7 +173,7 @@ func (n_ NWTLSParameters) MinimumSSLProtocolVersion() uint {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTLSParameters/minimumSSLProtocolVersion
 func (n_ NWTLSParameters) SetMinimumSSLProtocolVersion(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumSSLProtocolVersion:"), value)
-}/* debug [instance_properties/setter]: minimumSSLProtocolVersion */
+}
 
 
 // The set of allowed cipher suites when negotiating TLS.
@@ -184,7 +183,7 @@ func (n_ NWTLSParameters) SetMinimumSSLProtocolVersion(value uint) {
 func (n_ NWTLSParameters) SSLCipherSuites() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("SSLCipherSuites"))
 	return rv
-}/* debug [instance_properties/getter]: SSLCipherSuites */
+}
 
 
 // The set of allowed cipher suites when negotiating TLS.
@@ -193,31 +192,31 @@ func (n_ NWTLSParameters) SSLCipherSuites() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTLSParameters/sslCipherSuites
 func (n_ NWTLSParameters) SetSSLCipherSuites(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSSLCipherSuites:"), value)
-}/* debug [instance_properties/setter]: SSLCipherSuites */
+}
 
 
 // The Session ID to use for the associated TCP connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTLSParameters/tlsSessionID
-func (n_ NWTLSParameters) TLSSessionID() objc.IObject /* cross-framework: NSData */ {
+func (n_ NWTLSParameters) TLSSessionID() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("TLSSessionID"))
 	return rv
-}/* debug [instance_properties/getter]: TLSSessionID */
+}
 
 
 // The Session ID to use for the associated TCP connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTLSParameters/tlsSessionID
-func (n_ NWTLSParameters) SetTLSSessionID(value objc.IObject /* cross-framework: NSData */) {
+func (n_ NWTLSParameters) SetTLSSessionID(value foundation.foundation.INSData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTLSSessionID:"), value)
-}/* debug [instance_properties/setter]: TLSSessionID */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NWTLSParameters */
+
+
+
 
 
 

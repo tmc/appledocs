@@ -16,5 +16,5 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSVolume/AccessCheckOperations
 type PFSVolumeAccessCheckOperations interface {
 	// Required methods
-	CheckAccessToItemRequestedAccessReplyHandler(theItem IFSItem, access FSAccessMask, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: CheckAccessToItemRequestedAccessReplyHandler */
+	CheckAccessToItemRequestedAccessReplyHandler(theItem IFSItem, access FSAccessMask, reply unsafe.Pointer)
 }

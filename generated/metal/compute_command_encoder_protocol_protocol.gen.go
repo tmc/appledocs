@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -25,40 +25,42 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder
 type PComputeCommandEncoder interface {
 	// Required methods
-	DispatchThreadgroupsThreadsPerThreadgroup(threadgroupsPerGrid objc.IObject /* cross-framework: MTLSize */, threadsPerThreadgroup objc.IObject /* cross-framework: MTLSize */)/* debug [protocol_interface/required_method]: DispatchThreadgroupsThreadsPerThreadgroup */
-	DispatchThreadgroupsWithIndirectBufferIndirectBufferOffsetThreadsPerThreadgroup(indirectBuffer unsafe.Pointer, indirectBufferOffset uint, threadsPerThreadgroup objc.IObject /* cross-framework: MTLSize */)/* debug [protocol_interface/required_method]: DispatchThreadgroupsWithIndirectBufferIndirectBufferOffsetThreadsPerThreadgroup */
-	DispatchThreadsThreadsPerThreadgroup(threadsPerGrid objc.IObject /* cross-framework: MTLSize */, threadsPerThreadgroup objc.IObject /* cross-framework: MTLSize */)/* debug [protocol_interface/required_method]: DispatchThreadsThreadsPerThreadgroup */
-	ExecuteCommandsInBufferIndirectBufferIndirectBufferOffset(indirectCommandbuffer unsafe.Pointer, indirectRangeBuffer unsafe.Pointer, indirectBufferOffset uint)/* debug [protocol_interface/required_method]: ExecuteCommandsInBufferIndirectBufferIndirectBufferOffset */
-	ExecuteCommandsInBufferWithRange(indirectCommandBuffer unsafe.Pointer, executionRange corefoundation.Range)/* debug [protocol_interface/required_method]: ExecuteCommandsInBufferWithRange */
-	MemoryBarrierWithScope(scope BarrierScope)/* debug [protocol_interface/required_method]: MemoryBarrierWithScope */
-	MemoryBarrierWithResourcesCount(resources []objc.ID, count uint)/* debug [protocol_interface/required_method]: MemoryBarrierWithResourcesCount */
-	SampleCountersInBufferAtSampleIndexWithBarrier(sampleBuffer unsafe.Pointer, sampleIndex uint, barrier bool)/* debug [protocol_interface/required_method]: SampleCountersInBufferAtSampleIndexWithBarrier */
-	SetAccelerationStructureAtBufferIndex(accelerationStructure unsafe.Pointer, bufferIndex uint)/* debug [protocol_interface/required_method]: SetAccelerationStructureAtBufferIndex */
-	SetBufferOffsetAttributeStrideAtIndex(buffer unsafe.Pointer, offset uint, stride uint, index uint)/* debug [protocol_interface/required_method]: SetBufferOffsetAttributeStrideAtIndex */
-	SetBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetBufferOffsetAtIndex */
-	SetBuffersOffsetsAttributeStridesWithRange(buffers []objc.ID, offsets uint, strides uint, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetBuffersOffsetsAttributeStridesWithRange */
-	SetBuffersOffsetsWithRange(buffers []objc.ID, offsets uint, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetBuffersOffsetsWithRange */
-	SetBytesLengthAttributeStrideAtIndex(bytes objectivec.IObject, length uint, stride uint, index uint)/* debug [protocol_interface/required_method]: SetBytesLengthAttributeStrideAtIndex */
-	SetBytesLengthAtIndex(bytes objectivec.IObject, length uint, index uint)/* debug [protocol_interface/required_method]: SetBytesLengthAtIndex */
-	SetComputePipelineState(state unsafe.Pointer)/* debug [protocol_interface/required_method]: SetComputePipelineState */
-	SetImageblockWidthHeight(width uint, height uint)/* debug [protocol_interface/required_method]: SetImageblockWidthHeight */
-	SetIntersectionFunctionTableAtBufferIndex(intersectionFunctionTable unsafe.Pointer, bufferIndex uint)/* debug [protocol_interface/required_method]: SetIntersectionFunctionTableAtBufferIndex */
-	SetIntersectionFunctionTablesWithBufferRange(intersectionFunctionTables []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetIntersectionFunctionTablesWithBufferRange */
-	SetSamplerStateAtIndex(sampler unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetSamplerStateAtIndex */
-	SetSamplerStateLodMinClampLodMaxClampAtIndex(sampler unsafe.Pointer, lodMinClamp float32, lodMaxClamp float32, index uint)/* debug [protocol_interface/required_method]: SetSamplerStateLodMinClampLodMaxClampAtIndex */
-	SetSamplerStatesLodMinClampsLodMaxClampsWithRange(samplers []objc.ID, lodMinClamps []float32, lodMaxClamps []float32, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetSamplerStatesLodMinClampsLodMaxClampsWithRange */
-	SetSamplerStatesWithRange(samplers []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetSamplerStatesWithRange */
-	SetStageInRegion(region objc.IObject /* cross-framework: MTLRegion */)/* debug [protocol_interface/required_method]: SetStageInRegion */
-	SetStageInRegionWithIndirectBufferIndirectBufferOffset(indirectBuffer unsafe.Pointer, indirectBufferOffset uint)/* debug [protocol_interface/required_method]: SetStageInRegionWithIndirectBufferIndirectBufferOffset */
-	SetTextureAtIndex(texture unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetTextureAtIndex */
-	SetTexturesWithRange(textures []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetTexturesWithRange */
-	SetThreadgroupMemoryLengthAtIndex(length uint, index uint)/* debug [protocol_interface/required_method]: SetThreadgroupMemoryLengthAtIndex */
-	SetVisibleFunctionTableAtBufferIndex(visibleFunctionTable unsafe.Pointer, bufferIndex uint)/* debug [protocol_interface/required_method]: SetVisibleFunctionTableAtBufferIndex */
-	SetVisibleFunctionTablesWithBufferRange(visibleFunctionTables []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetVisibleFunctionTablesWithBufferRange */
-	UpdateFence(fence unsafe.Pointer)/* debug [protocol_interface/required_method]: UpdateFence */
-	UseHeap(heap unsafe.Pointer)/* debug [protocol_interface/required_method]: UseHeap */
-	UseHeapsCount(heaps []objc.ID, count uint)/* debug [protocol_interface/required_method]: UseHeapsCount */
-	UseResourceUsage(resource unsafe.Pointer, usage ResourceUsage)/* debug [protocol_interface/required_method]: UseResourceUsage */
-	UseResourcesCountUsage(resources []objc.ID, count uint, usage ResourceUsage)/* debug [protocol_interface/required_method]: UseResourcesCountUsage */
-	WaitForFence(fence unsafe.Pointer)/* debug [protocol_interface/required_method]: WaitForFence */
+	DispatchThreadgroupsThreadsPerThreadgroup(threadgroupsPerGrid Size, threadsPerThreadgroup Size)
+	DispatchThreadgroupsWithIndirectBufferIndirectBufferOffsetThreadsPerThreadgroup(indirectBuffer unsafe.Pointer, indirectBufferOffset uint, threadsPerThreadgroup Size)
+	DispatchThreadsThreadsPerThreadgroup(threadsPerGrid Size, threadsPerThreadgroup Size)
+	ExecuteCommandsInBufferIndirectBufferIndirectBufferOffset(indirectCommandbuffer unsafe.Pointer, indirectRangeBuffer unsafe.Pointer, indirectBufferOffset uint)
+	ExecuteCommandsInBufferWithRange(indirectCommandBuffer unsafe.Pointer, executionRange foundation.Range)
+	MemoryBarrierWithScope(scope BarrierScope)
+	MemoryBarrierWithResourcesCount(resources []objc.ID, count uint)
+	SampleCountersInBufferAtSampleIndexWithBarrier(sampleBuffer unsafe.Pointer, sampleIndex uint, barrier bool)
+	SetAccelerationStructureAtBufferIndex(accelerationStructure unsafe.Pointer, bufferIndex uint)
+	SetBufferOffsetAttributeStrideAtIndex(buffer unsafe.Pointer, offset uint, stride uint, index uint)
+	SetBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetBufferOffsetAtIndex(offset uint, index uint)
+	SetBufferOffsetAttributeStrideAtIndex(offset uint, stride uint, index uint)
+	SetBuffersOffsetsAttributeStridesWithRange(buffers []objc.ID, offsets uint, strides uint, range_ foundation.Range)
+	SetBuffersOffsetsWithRange(buffers []objc.ID, offsets uint, range_ foundation.Range)
+	SetBytesLengthAttributeStrideAtIndex(bytes objectivec.IObject, length uint, stride uint, index uint)
+	SetBytesLengthAtIndex(bytes objectivec.IObject, length uint, index uint)
+	SetComputePipelineState(state unsafe.Pointer)
+	SetImageblockWidthHeight(width uint, height uint)
+	SetIntersectionFunctionTableAtBufferIndex(intersectionFunctionTable unsafe.Pointer, bufferIndex uint)
+	SetIntersectionFunctionTablesWithBufferRange(intersectionFunctionTables []objc.ID, range_ foundation.Range)
+	SetSamplerStateAtIndex(sampler unsafe.Pointer, index uint)
+	SetSamplerStateLodMinClampLodMaxClampAtIndex(sampler unsafe.Pointer, lodMinClamp float32, lodMaxClamp float32, index uint)
+	SetSamplerStatesLodMinClampsLodMaxClampsWithRange(samplers []objc.ID, lodMinClamps []float32, lodMaxClamps []float32, range_ foundation.Range)
+	SetSamplerStatesWithRange(samplers []objc.ID, range_ foundation.Range)
+	SetStageInRegion(region Region)
+	SetStageInRegionWithIndirectBufferIndirectBufferOffset(indirectBuffer unsafe.Pointer, indirectBufferOffset uint)
+	SetTextureAtIndex(texture unsafe.Pointer, index uint)
+	SetTexturesWithRange(textures []objc.ID, range_ foundation.Range)
+	SetThreadgroupMemoryLengthAtIndex(length uint, index uint)
+	SetVisibleFunctionTableAtBufferIndex(visibleFunctionTable unsafe.Pointer, bufferIndex uint)
+	SetVisibleFunctionTablesWithBufferRange(visibleFunctionTables []objc.ID, range_ foundation.Range)
+	UpdateFence(fence unsafe.Pointer)
+	UseHeap(heap unsafe.Pointer)
+	UseHeapsCount(heaps []objc.ID, count uint)
+	UseResourceUsage(resource unsafe.Pointer, usage ResourceUsage)
+	UseResourcesCountUsage(resources []objc.ID, count uint, usage ResourceUsage)
+	WaitForFence(fence unsafe.Pointer)
 }

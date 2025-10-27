@@ -17,9 +17,9 @@ package metal
 // See: doc://com.apple.metal/documentation/Metal/MTL4ArgumentTable
 type PMTL4ArgumentTable interface {
 	// Required methods
-	SetAddressAttributeStrideAtIndex(gpuAddress GPUAddress /* typedef */, stride uint, bindingIndex uint)/* debug [protocol_interface/required_method]: SetAddressAttributeStrideAtIndex */
-	SetAddressAtIndex(gpuAddress GPUAddress /* typedef */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetAddressAtIndex */
-	SetResourceAtBufferIndex(resourceID objc.IObject /* cross-framework: MTLResourceID */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetResourceAtBufferIndex */
-	SetSamplerStateAtIndex(resourceID objc.IObject /* cross-framework: MTLResourceID */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetSamplerStateAtIndex */
-	SetTextureAtIndex(resourceID objc.IObject /* cross-framework: MTLResourceID */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetTextureAtIndex */
+	SetAddressAttributeStrideAtIndex(gpuAddress GPUAddress, stride uint, bindingIndex uint)
+	SetAddressAtIndex(gpuAddress GPUAddress, bindingIndex uint)
+	SetResourceAtBufferIndex(resourceID ResourceID, bindingIndex uint)
+	SetSamplerStateAtIndex(resourceID ResourceID, bindingIndex uint)
+	SetTextureAtIndex(resourceID ResourceID, bindingIndex uint)
 }

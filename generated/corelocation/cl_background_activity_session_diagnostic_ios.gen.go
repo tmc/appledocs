@@ -5,10 +5,14 @@
 package corelocation
 
 import (
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for BackgroundActivitySessionDiagnostic
+
 
 // iOS-only properties
 
@@ -53,3 +57,8 @@ func (b_ BackgroundActivitySessionDiagnostic) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
 }
+
+
+
+
+

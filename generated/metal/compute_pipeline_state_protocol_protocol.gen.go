@@ -8,8 +8,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
-
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PComputePipelineState is the MTLComputePipelineState protocol interface.
@@ -27,12 +25,12 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLComputePipelineState
 type PComputePipelineState interface {
 	// Required methods
-	FunctionHandleWithFunction(function unsafe.Pointer) unsafe.Pointer/* debug [protocol_interface/required_method]: FunctionHandleWithFunction */
-	FunctionHandleWithBinaryFunction(function unsafe.Pointer) unsafe.Pointer/* debug [protocol_interface/required_method]: FunctionHandleWithBinaryFunction */
-	FunctionHandleWithName(name objc.IObject /* cross-framework: NSString */) unsafe.Pointer/* debug [protocol_interface/required_method]: FunctionHandleWithName */
-	ImageblockMemoryLengthForDimensions(imageblockDimensions objc.IObject /* cross-framework: MTLSize */) uint/* debug [protocol_interface/required_method]: ImageblockMemoryLengthForDimensions */
-	NewComputePipelineStateWithBinaryFunctionsError(additionalBinaryFunctions []objc.ID, error_ objectivec.IObject) unsafe.Pointer/* debug [protocol_interface/required_method]: NewComputePipelineStateWithBinaryFunctionsError */
-	NewComputePipelineStateWithAdditionalBinaryFunctionsError(functions []objc.ID, error_ objectivec.IObject) unsafe.Pointer/* debug [protocol_interface/required_method]: NewComputePipelineStateWithAdditionalBinaryFunctionsError */
-	NewIntersectionFunctionTableWithDescriptor(descriptor IMTLIntersectionFunctionTableDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: NewIntersectionFunctionTableWithDescriptor */
-	NewVisibleFunctionTableWithDescriptor(descriptor IMTLVisibleFunctionTableDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: NewVisibleFunctionTableWithDescriptor */
+	FunctionHandleWithFunction(function unsafe.Pointer) unsafe.Pointer
+	FunctionHandleWithBinaryFunction(function unsafe.Pointer) unsafe.Pointer
+	FunctionHandleWithName(name foundation.foundation.INSString) unsafe.Pointer
+	ImageblockMemoryLengthForDimensions(imageblockDimensions Size) uint
+	NewComputePipelineStateWithBinaryFunctionsError(additionalBinaryFunctions []objc.ID, error_ foundation.foundation.INSError) unsafe.Pointer
+	NewComputePipelineStateWithAdditionalBinaryFunctionsError(functions []objc.ID, error_ foundation.foundation.INSError) unsafe.Pointer
+	NewIntersectionFunctionTableWithDescriptor(descriptor IMTLIntersectionFunctionTableDescriptor) unsafe.Pointer
+	NewVisibleFunctionTableWithDescriptor(descriptor IMTLVisibleFunctionTableDescriptor) unsafe.Pointer
 }

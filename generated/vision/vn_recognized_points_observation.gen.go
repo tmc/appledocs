@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -48,9 +47,9 @@ type IRecognizedPointsObservation interface {
 	
 
 	// methods:
-	KeypointsMultiArrayAndReturnError(error_ objectivec.IObject) coreml.MultiArray
-	RecognizedPointForKeyError(pointKey RecognizedPointKey /* typedef */, error_ objectivec.IObject) IRecognizedPoint
-	RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey /* typedef */, error_ objectivec.IObject) foundation.IDictionary
+	KeypointsMultiArrayAndReturnError(error_ foundation.foundation.INSError) coreml.MultiArray
+	RecognizedPointForKeyError(pointKey RecognizedPointKey, error_ foundation.foundation.INSError) IRecognizedPoint
+	RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey, error_ foundation.foundation.INSError) foundation.IDictionary
 
 
 }
@@ -136,7 +135,7 @@ func RecognizedPointsObservationFrom(ptr unsafe.Pointer) RecognizedPointsObserva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()
-func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ objectivec.IObject) coreml.MultiArray {
+func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ foundation.foundation.INSError) coreml.MultiArray {
 	rv := objc.Send[coreml.MultiArray](r_.ID, objc.Sel("keypointsMultiArrayAndReturnError:"), error_)
 	return rv
 }
@@ -146,7 +145,7 @@ func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoint(forKey:)
-func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey RecognizedPointKey /* typedef */, error_ objectivec.IObject) IRecognizedPoint {
+func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey RecognizedPointKey, error_ foundation.foundation.INSError) IRecognizedPoint {
 	rv := objc.Send[RecognizedPoint](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
 	return rv
 }
@@ -156,7 +155,7 @@ func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey Recogn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoints(forGroupKey:)
-func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
+func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey, error_ foundation.foundation.INSError) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
 	return rv
 }

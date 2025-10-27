@@ -2,6 +2,11 @@
 
 package appkit
 
+import (
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+)
+
 // PUserInterfaceCompression is the NSUserInterfaceCompression protocol interface.
 //
 // A protocol that describes how a UI control should redisplay when space is restricted.
@@ -12,6 +17,6 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression
 type PUserInterfaceCompression interface {
 	// Required methods
-	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions)/* debug [protocol_interface/required_method]: CompressWithPrioritizedCompressionOptions */
-	MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) Size/* debug [protocol_interface/required_method]: MinimumSizeWithPrioritizedCompressionOptions */
+	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions)
+	MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) corefoundation.CGSize
 }

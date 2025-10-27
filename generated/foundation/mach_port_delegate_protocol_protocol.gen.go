@@ -54,3 +54,30 @@ func (d *MachPortDelegate) HandleMachMessage(msg objectivec.IObject) {
 func (d *MachPortDelegate) HasHandleMachMessage() bool {
 	return d._HandleMachMessage != nil
 }
+
+// MachPortDelegateObject wraps an existing Objective-C object that conforms to the PMachPortDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type MachPortDelegateObject struct {
+	objectivec.Object
+}
+
+// NewMachPortDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSMachPortDelegate protocol.
+func NewMachPortDelegateObject(obj objectivec.Object) *MachPortDelegateObject {
+	return &MachPortDelegateObject{obj}
+}
+
+// Make sure MachPortDelegateObject implements PMachPortDelegate.
+var _ PMachPortDelegate = (*MachPortDelegateObject)(nil)
+
+// HandleMachMessage implements the PMachPortDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *MachPortDelegateObject) HandleMachMessage(msg objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("handleMachMessage:"), msg)
+}
+
+// HasHandleMachMessage returns true; this is a placeholder for optional method checks.
+func (o *MachPortDelegateObject) HasHandleMachMessage() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}

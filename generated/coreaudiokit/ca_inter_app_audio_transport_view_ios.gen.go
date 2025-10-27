@@ -9,7 +9,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // iOS-only methods for InterAppAudioTransportView

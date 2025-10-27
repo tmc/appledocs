@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptionGrouper */
 
 
-/* debug [class_header]: Header for AVCaptionGrouper */
+
+
 // The class instance for the [CaptionGrouper] class.
 var (
 	CaptionGrouperClass     _CaptionGrouperClass
@@ -30,32 +30,32 @@ func getCaptionGrouperClass() _CaptionGrouperClass {
 type _CaptionGrouperClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptionGrouper */
+
+
 // An interface definition for the [CaptionGrouper] class.
 type ICaptionGrouper interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CaptionGrouper */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptionGrouper */
+
 	// methods:
 	AddCaption(input IAVCaption)
-	FlushAddedCaptionsIntoGroupsUpToTime(upToTime objc.IObject /* cross-framework: Time */) []CaptionGroup
-/* debug [class_interface_methods]: End methods */
+	FlushAddedCaptionsIntoGroupsUpToTime(upToTime objectivec.IObject) []CaptionGroup
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptionGrouper */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptionGrouperClass) Alloc() CaptionGrouper {
 	rv := objc.Send[CaptionGrouper](objc.ID(cc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (c_ CaptionGrouper) Autorelease() CaptionGrouper {
 func NewCaptionGrouper() CaptionGrouper {
 	return getCaptionGrouperClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptionGrouper */
+
+
 // An object that analyzes the temporal overlaps of caption objects to create caption groups for each span of concurrent captions.
 
 
@@ -107,25 +107,25 @@ type CaptionGrouper struct {
 func CaptionGrouperFrom(ptr unsafe.Pointer) CaptionGrouper {
 	return CaptionGrouper{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptionGrouper *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CaptionGrouper */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptionGrouper */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptionGrouper */
+
+
+
+
+
+
+
 
 // Adds a caption to the pending group.
 //
@@ -133,27 +133,27 @@ func CaptionGrouperFrom(ptr unsafe.Pointer) CaptionGrouper {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionGrouper/add(_:)
 func (c_ CaptionGrouper) AddCaption(input IAVCaption) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addCaption:"), input)
-}/* debug [instance_methods/method]: AddCaption */
+}
 
 
 // Creates caption groups for the captions you enqueue up to the time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptionGrouper/flushAddedCaptions(upTo:)
-func (c_ CaptionGrouper) FlushAddedCaptionsIntoGroupsUpToTime(upToTime objc.IObject /* cross-framework: Time */) []CaptionGroup {
+func (c_ CaptionGrouper) FlushAddedCaptionsIntoGroupsUpToTime(upToTime objectivec.IObject) []CaptionGroup {
 	rv := objc.Send[[]CaptionGroup](c_.ID, objc.Sel("flushAddedCaptionsIntoGroupsUpToTime:"), upToTime)
 	return rv
-}/* debug [instance_methods/method]: FlushAddedCaptionsIntoGroupsUpToTime */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for CaptionGrouper */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVCaptionGrouper */
+
+
+
+
+
 
 
 

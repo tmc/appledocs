@@ -25,7 +25,7 @@ type CGBitmapParameters struct {
 	Height uintptr
 	Layout BitmapLayout
 	Width uintptr
-}/* debug [types.gen.go/struct]: CGBitmapParameters */
+}
 
 // CGColorBufferFormat
 //
@@ -37,7 +37,7 @@ type CGColorBufferFormat struct {
 	BitsPerPixel uintptr
 	BytesPerRow uintptr
 	Version uint32
-}/* debug [types.gen.go/struct]: CGColorBufferFormat */
+}
 
 // CGColorDataFormat
 //
@@ -51,7 +51,7 @@ type CGColorDataFormat struct {
 	Decode *float64
 	Intent ColorRenderingIntent
 	Version uint32
-}/* debug [types.gen.go/struct]: CGColorDataFormat */
+}
 
 // CGContentInfo
 //
@@ -63,7 +63,7 @@ type CGContentInfo struct {
 	HasTransparency bool
 	HasWideGamut bool
 	LargestContentHeadroom float32
-}/* debug [types.gen.go/struct]: CGContentInfo */
+}
 
 // CGContentToneMappingInfo
 //
@@ -72,7 +72,7 @@ type CGContentInfo struct {
 type CGContentToneMappingInfo struct {
 	Method ToneMapping
 	Options DictionaryRef
-}/* debug [types.gen.go/struct]: CGContentToneMappingInfo */
+}
 
 // CGDataConsumerCallbacks - A structure that contains pointers to callback functions that manage the copying of data for a data consumer.
 //
@@ -81,7 +81,7 @@ type CGContentToneMappingInfo struct {
 type CGDataConsumerCallbacks struct {
 	PutBytes DataConsumerPutBytesCallback // A pointer to a function that copies data to the data consumer. For more information, see  .
 	ReleaseConsumer DataConsumerReleaseInfoCallback // A pointer to a function that handles clean-up for the data consumer, or  .
-}/* debug [types.gen.go/struct]: CGDataConsumerCallbacks */
+}
 
 // CGDataProviderDirectCallbacks - Defines pointers to client-defined callback functions that manage the sending of data for a direct-access data provider.
 //
@@ -93,7 +93,7 @@ type CGDataProviderDirectCallbacks struct {
 	ReleaseBytePointer DataProviderReleaseBytePointerCallback // A pointer to a function that Core Graphics calls to release a pointer to the provider’s data. For more information, see  .
 	ReleaseInfo DataProviderReleaseInfoCallback // A pointer to a function that handles clean-up for the data provider, or  . For more information, see  .
 	Version unsafe.Pointer // The version of this structure. It should be set to 0.
-}/* debug [types.gen.go/struct]: CGDataProviderDirectCallbacks */
+}
 
 // CGDataProviderSequentialCallbacks - Defines a structure containing pointers to client-defined callback functions that manage the sending of data for a sequential-access data provider.
 //
@@ -105,7 +105,7 @@ type CGDataProviderSequentialCallbacks struct {
 	Rewind DataProviderRewindCallback // A pointer to a function Core Graphics calls to return the provider to the beginning of the data stream. For more information, see  .
 	SkipForward DataProviderSkipForwardCallback // A pointer to a function that Core Graphics calls to advance the stream of data supplied by the provider.
 	Version unsafe.Pointer // The version of this structure. It should be set to 0.
-}/* debug [types.gen.go/struct]: CGDataProviderSequentialCallbacks */
+}
 
 // CGDeviceColor
 //
@@ -115,7 +115,7 @@ type CGDeviceColor struct {
 	Blue float32
 	Green float32
 	Red float32
-}/* debug [types.gen.go/struct]: CGDeviceColor */
+}
 
 // CGFunctionCallbacks - A structure that contains callbacks needed by a 
 //
@@ -125,7 +125,7 @@ type CGFunctionCallbacks struct {
 	Evaluate FunctionEvaluateCallback // The callback that evaluates the function.
 	ReleaseInfo FunctionReleaseInfoCallback // If non- ,the callback used to release the   parameterpassed to  .
 	Version unsafe.Pointer // The structure version number. For this structure,the version should be  .
-}/* debug [types.gen.go/struct]: CGFunctionCallbacks */
+}
 
 // CGPSConverterCallbacks - A structure for holding the callbacks provided when you create a PostScript converter object.
 //
@@ -140,7 +140,7 @@ type CGPSConverterCallbacks struct {
 	NoteProgress PSConverterProgressCallback // The callback called periodically during the conversion to indicate that conversion is proceeding, or  .
 	ReleaseInfo PSConverterReleaseInfoCallback // The callback called when the converter is deallocated, or  .
 	Version unsafe.Pointer // The version number of the structure passed in as a parameter to the converter creation functions. The structure defined below is version  .
-}/* debug [types.gen.go/struct]: CGPSConverterCallbacks */
+}
 
 // CGPathElement - A data structure that provides information about a path element.
 //
@@ -149,7 +149,7 @@ type CGPSConverterCallbacks struct {
 type CGPathElement struct {
 	Points corefoundation.CGPoint // An array of one or more points that serve as arguments.
 	Type PathElementType // An element type (or operation).
-}/* debug [types.gen.go/struct]: CGPathElement */
+}
 
 // CGPatternCallbacks - A structure that holds a version and two callback functions for drawing a custom pattern.
 //
@@ -159,7 +159,7 @@ type CGPatternCallbacks struct {
 	DrawPattern PatternDrawPatternCallback // A pointer to a custom function that draws thepattern. For information about this callback function, see  .
 	ReleaseInfo PatternReleaseInfoCallback // An optional pointer to a custom function that’sinvoked when the pattern is released.  .
 	Version unsafe.Pointer // The version of the structure passed in as a parameterto the  . Forthis version of the structure, you should set this value to zero.
-}/* debug [types.gen.go/struct]: CGPatternCallbacks */
+}
 
 // CGScreenUpdateMoveDelta - The distance, in pixel units, that an onscreen region moves.
 //
@@ -168,7 +168,7 @@ type CGPatternCallbacks struct {
 type CGScreenUpdateMoveDelta struct {
 	DX int32
 	DY int32
-}/* debug [types.gen.go/struct]: CGScreenUpdateMoveDelta */
+}
 
 
 

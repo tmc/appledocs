@@ -133,7 +133,7 @@ func NewImageHistogramEqualizationWithCoderDevice(aDecoder foundation.Coder, dev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/1618856-initwithdevice
-func NewImageHistogramEqualizationWithDeviceHistogramInfo(device unsafe.Pointer, histogramInfo objc.IObject /* cross-framework: MPSImageHistogramInfo */) ImageHistogramEqualization {
+func NewImageHistogramEqualizationWithDeviceHistogramInfo(device unsafe.Pointer, histogramInfo ImageHistogramInfo) ImageHistogramEqualization {
 	instance := getImageHistogramEqualizationClass().Alloc()
 	rv := objc.Send[ImageHistogramEqualization](instance.ID, objc.Sel("initWithDevice:histogramInfo:"), device, histogramInfo)
 	rv.Autorelease()

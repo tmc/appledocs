@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLTensorExtents */
 
 
-/* debug [class_header]: Header for MTLTensorExtents */
+
+
 // The class instance for the [TensorExtents] class.
 var (
 	TensorExtentsClass     _TensorExtentsClass
@@ -31,37 +30,37 @@ func getTensorExtentsClass() _TensorExtentsClass {
 type _TensorExtentsClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TensorExtents */
+
+
 // An interface definition for the [TensorExtents] class.
 type ITensorExtents interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for TensorExtents */
+
 	// properties:
 	Rank() uint
-	MTLTensorDomain() objc.IObject /* cross-framework: NSString */
+	MTLTensorDomain() foundation.foundation.INSString
 	Extents() int
 	SetExtents(value int)
 	MTL_TENSOR_MAX_RANK() objectivec.IObject
 	SetMTL_TENSOR_MAX_RANK(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TensorExtents */
+
 	// methods:
 	ExtentAtDimensionIndex(dimensionIndex uint) int
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TensorExtents */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TensorExtentsClass) Alloc() TensorExtents {
 	rv := objc.Send[TensorExtents](objc.ID(tc.class), objc.Sel("alloc"))
@@ -91,11 +90,11 @@ func (t_ TensorExtents) Autorelease() TensorExtents {
 func NewTensorExtents() TensorExtents {
 	return getTensorExtentsClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TensorExtents */
+
+
 // An array of length matching the rank, holding the dimensions of a tensor.
 //
 // Supports rank up to .
@@ -115,11 +114,11 @@ type TensorExtents struct {
 func TensorExtentsFrom(ptr unsafe.Pointer) TensorExtents {
 	return TensorExtents{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TensorExtents */
+
+
 
 // Creates a new tensor extents with the rank and extent values you provide.
 //
@@ -130,23 +129,23 @@ func NewTensorExtentsWithRankValues(rank uint, values int) TensorExtents {
 	rv := objc.Send[TensorExtents](instance.ID, objc.Sel("initWithRank:values:"), rank, values)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTensorExtentsWithRankValues */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for TensorExtents */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TensorExtents */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TensorExtents */
+
+
+
+
+
+
+
 
 // Returns the extent at an index.
 //
@@ -155,13 +154,13 @@ func NewTensorExtentsWithRankValues(rank uint, values int) TensorExtents {
 func (t_ TensorExtents) ExtentAtDimensionIndex(dimensionIndex uint) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("extentAtDimensionIndex:"), dimensionIndex)
 	return rv
-}/* debug [instance_methods/method]: ExtentAtDimensionIndex */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for TensorExtents */
+
+
+
 
 // Obtains the rank of the tensor.
 //
@@ -170,17 +169,17 @@ func (t_ TensorExtents) ExtentAtDimensionIndex(dimensionIndex uint) int {
 func (t_ TensorExtents) Rank() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("rank"))
 	return rv
-}/* debug [instance_properties/getter]: rank */
+}
 
 
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorExtents) MTLTensorDomain() objc.IObject /* cross-framework: NSString */ {
+func (t_ TensorExtents) MTLTensorDomain() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
-}/* debug [instance_properties/getter]: MTLTensorDomain */
+}
 
 
 // Retrieves the extents for this object.
@@ -190,7 +189,7 @@ func (t_ TensorExtents) MTLTensorDomain() objc.IObject /* cross-framework: NSStr
 func (t_ TensorExtents) Extents() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("extents"))
 	return rv
-}/* debug [instance_properties/getter]: extents */
+}
 
 
 // Retrieves the extents for this object.
@@ -199,7 +198,7 @@ func (t_ TensorExtents) Extents() int {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorextents/extents
 func (t_ TensorExtents) SetExtents(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExtents:"), value)
-}/* debug [instance_properties/setter]: extents */
+}
 
 
 // [Full Topic]
@@ -207,18 +206,18 @@ func (t_ TensorExtents) SetExtents(value int) {
 func (t_ TensorExtents) MTL_TENSOR_MAX_RANK() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
 	return rv
-}/* debug [instance_properties/getter]: MTL_TENSOR_MAX_RANK */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
 func (t_ TensorExtents) SetMTL_TENSOR_MAX_RANK(value objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
-}/* debug [instance_properties/setter]: MTL_TENSOR_MAX_RANK */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLTensorExtents */
+
+
+
 
 

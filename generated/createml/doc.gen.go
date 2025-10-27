@@ -1,4 +1,3 @@
-
 // Code generated from Apple documentation for CreateML. DO NOT EDIT.
 
 // Package createml provides Go bindings for the CreateML framework.

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLTileRenderPipelineDescriptor */
 
 
-/* debug [class_header]: Header for MTLTileRenderPipelineDescriptor */
+
+
 // The class instance for the [TileRenderPipelineDescriptor] class.
 var (
 	TileRenderPipelineDescriptorClass     _TileRenderPipelineDescriptorClass
@@ -31,22 +30,22 @@ func getTileRenderPipelineDescriptorClass() _TileRenderPipelineDescriptorClass {
 type _TileRenderPipelineDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TileRenderPipelineDescriptor */
+
+
 // An interface definition for the [TileRenderPipelineDescriptor] class.
 type ITileRenderPipelineDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for TileRenderPipelineDescriptor */
+
 	// properties:
 	BinaryArchives() []objc.ID
 	SetBinaryArchives(value []objc.ID)
 	ColorAttachments() IMTLTileRenderPipelineColorAttachmentDescriptorArray
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	LinkedFunctions() IMTLLinkedFunctions
 	SetLinkedFunctions(value IMTLLinkedFunctions)
 	MaxCallStackDepth() uint
@@ -57,8 +56,8 @@ type ITileRenderPipelineDescriptor interface {
 	SetPreloadedLibraries(value []objc.ID)
 	RasterSampleCount() uint
 	SetRasterSampleCount(value uint)
-	RequiredThreadsPerThreadgroup() objc.IObject /* cross-framework: MTLSize */
-	SetRequiredThreadsPerThreadgroup(value objc.IObject /* cross-framework: MTLSize */)
+	RequiredThreadsPerThreadgroup() MTLSize
+	SetRequiredThreadsPerThreadgroup(value MTLSize)
 	ShaderValidation() ShaderValidation
 	SetShaderValidation(value ShaderValidation)
 	SupportAddingBinaryFunctions() bool
@@ -68,20 +67,20 @@ type ITileRenderPipelineDescriptor interface {
 	TileBuffers() IMTLPipelineBufferDescriptorArray
 	TileFunction() unsafe.Pointer
 	SetTileFunction(value unsafe.Pointer)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TileRenderPipelineDescriptor */
+
 	// methods:
 	Reset()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TileRenderPipelineDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TileRenderPipelineDescriptorClass) Alloc() TileRenderPipelineDescriptor {
 	rv := objc.Send[TileRenderPipelineDescriptor](objc.ID(tc.class), objc.Sel("alloc"))
@@ -111,11 +110,11 @@ func (t_ TileRenderPipelineDescriptor) Autorelease() TileRenderPipelineDescripto
 func NewTileRenderPipelineDescriptor() TileRenderPipelineDescriptor {
 	return getTileRenderPipelineDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TileRenderPipelineDescriptor */
+
+
 // An object that configures new render pipeline state objects for tile shading.
 
 
@@ -133,25 +132,25 @@ type TileRenderPipelineDescriptor struct {
 func TileRenderPipelineDescriptorFrom(ptr unsafe.Pointer) TileRenderPipelineDescriptor {
 	return TileRenderPipelineDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TileRenderPipelineDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for TileRenderPipelineDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TileRenderPipelineDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TileRenderPipelineDescriptor */
+
+
+
+
+
+
+
 
 // Specifies the default rendering pipeline state values for the descriptor.
 //
@@ -159,13 +158,13 @@ func TileRenderPipelineDescriptorFrom(ptr unsafe.Pointer) TileRenderPipelineDesc
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/reset()
 func (t_ TileRenderPipelineDescriptor) Reset() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("reset"))
-}/* debug [instance_methods/method]: Reset */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for TileRenderPipelineDescriptor */
+
+
+
 
 // An array of binary archives to search for precompiled versions of the shader.
 //
@@ -174,7 +173,7 @@ func (t_ TileRenderPipelineDescriptor) Reset() {
 func (t_ TileRenderPipelineDescriptor) BinaryArchives() []objc.ID {
 	rv := objc.Send[[]objc.ID](t_.ID, objc.Sel("binaryArchives"))
 	return rv
-}/* debug [instance_properties/getter]: binaryArchives */
+}
 
 
 // An array of binary archives to search for precompiled versions of the shader.
@@ -192,7 +191,7 @@ func (t_ TileRenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBinaryArchives:"), nsArray)
-}/* debug [instance_properties/setter]: binaryArchives */
+}
 
 
 // An array of attachments that store color data.
@@ -202,26 +201,26 @@ func (t_ TileRenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 func (t_ TileRenderPipelineDescriptor) ColorAttachments() IMTLTileRenderPipelineColorAttachmentDescriptorArray {
 	rv := objc.Send[TileRenderPipelineColorAttachmentDescriptorArray](t_.ID, objc.Sel("colorAttachments"))
 	return rv
-}/* debug [instance_properties/getter]: colorAttachments */
+}
 
 
 // A string that identifies the tile pipeline descriptor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+func (t_ TileRenderPipelineDescriptor) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("label"))
 	return rv
-}/* debug [instance_properties/getter]: label */
+}
 
 
 // A string that identifies the tile pipeline descriptor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (t_ TileRenderPipelineDescriptor) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
-}/* debug [instance_properties/setter]: label */
+}
 
 
 // Functions that you can specify as function arguments for the tile shader when encoding commands that use the pipeline.
@@ -231,7 +230,7 @@ func (t_ TileRenderPipelineDescriptor) SetLabel(value objc.IObject /* cross-fram
 func (t_ TileRenderPipelineDescriptor) LinkedFunctions() IMTLLinkedFunctions {
 	rv := objc.Send[LinkedFunctions](t_.ID, objc.Sel("linkedFunctions"))
 	return rv
-}/* debug [instance_properties/getter]: linkedFunctions */
+}
 
 
 // Functions that you can specify as function arguments for the tile shader when encoding commands that use the pipeline.
@@ -240,7 +239,7 @@ func (t_ TileRenderPipelineDescriptor) LinkedFunctions() IMTLLinkedFunctions {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/linkedFunctions
 func (t_ TileRenderPipelineDescriptor) SetLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkedFunctions:"), value)
-}/* debug [instance_properties/setter]: linkedFunctions */
+}
 
 
 // The maximum function call depth from the top-most shader function.
@@ -250,7 +249,7 @@ func (t_ TileRenderPipelineDescriptor) SetLinkedFunctions(value IMTLLinkedFuncti
 func (t_ TileRenderPipelineDescriptor) MaxCallStackDepth() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("maxCallStackDepth"))
 	return rv
-}/* debug [instance_properties/getter]: maxCallStackDepth */
+}
 
 
 // The maximum function call depth from the top-most shader function.
@@ -259,7 +258,7 @@ func (t_ TileRenderPipelineDescriptor) MaxCallStackDepth() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/maxCallStackDepth
 func (t_ TileRenderPipelineDescriptor) SetMaxCallStackDepth(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxCallStackDepth:"), value)
-}/* debug [instance_properties/setter]: maxCallStackDepth */
+}
 
 
 // The maximum number of threads in a threadgroup when dispatching a command using the pipeline.
@@ -269,7 +268,7 @@ func (t_ TileRenderPipelineDescriptor) SetMaxCallStackDepth(value uint) {
 func (t_ TileRenderPipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("maxTotalThreadsPerThreadgroup"))
 	return rv
-}/* debug [instance_properties/getter]: maxTotalThreadsPerThreadgroup */
+}
 
 
 // The maximum number of threads in a threadgroup when dispatching a command using the pipeline.
@@ -278,7 +277,7 @@ func (t_ TileRenderPipelineDescriptor) MaxTotalThreadsPerThreadgroup() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/maxTotalThreadsPerThreadgroup
 func (t_ TileRenderPipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxTotalThreadsPerThreadgroup:"), value)
-}/* debug [instance_properties/setter]: maxTotalThreadsPerThreadgroup */
+}
 
 
 // [Full Topic]
@@ -286,7 +285,7 @@ func (t_ TileRenderPipelineDescriptor) SetMaxTotalThreadsPerThreadgroup(value ui
 func (t_ TileRenderPipelineDescriptor) PreloadedLibraries() []objc.ID {
 	rv := objc.Send[[]objc.ID](t_.ID, objc.Sel("preloadedLibraries"))
 	return rv
-}/* debug [instance_properties/getter]: preloadedLibraries */
+}
 
 
 // [Full Topic]
@@ -302,7 +301,7 @@ func (t_ TileRenderPipelineDescriptor) SetPreloadedLibraries(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreloadedLibraries:"), nsArray)
-}/* debug [instance_properties/setter]: preloadedLibraries */
+}
 
 
 // The number of samples in each fragment.
@@ -312,7 +311,7 @@ func (t_ TileRenderPipelineDescriptor) SetPreloadedLibraries(value []objc.ID) {
 func (t_ TileRenderPipelineDescriptor) RasterSampleCount() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("rasterSampleCount"))
 	return rv
-}/* debug [instance_properties/getter]: rasterSampleCount */
+}
 
 
 // The number of samples in each fragment.
@@ -321,22 +320,22 @@ func (t_ TileRenderPipelineDescriptor) RasterSampleCount() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/rasterSampleCount
 func (t_ TileRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRasterSampleCount:"), value)
-}/* debug [instance_properties/setter]: rasterSampleCount */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
-func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() objc.IObject /* cross-framework: MTLSize */ {
+func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() MTLSize {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
-}/* debug [instance_properties/getter]: requiredThreadsPerThreadgroup */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
-func (t_ TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value objc.IObject /* cross-framework: MTLSize */) {
+func (t_ TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value MTLSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
-}/* debug [instance_properties/setter]: requiredThreadsPerThreadgroup */
+}
 
 
 // A value that enables or disables shader validation for the pipeline.
@@ -346,7 +345,7 @@ func (t_ TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value ob
 func (t_ TileRenderPipelineDescriptor) ShaderValidation() ShaderValidation {
 	rv := objc.Send[ShaderValidation](t_.ID, objc.Sel("shaderValidation"))
 	return rv
-}/* debug [instance_properties/getter]: shaderValidation */
+}
 
 
 // A value that enables or disables shader validation for the pipeline.
@@ -355,7 +354,7 @@ func (t_ TileRenderPipelineDescriptor) ShaderValidation() ShaderValidation {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/shaderValidation
 func (t_ TileRenderPipelineDescriptor) SetShaderValidation(value ShaderValidation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShaderValidation:"), value)
-}/* debug [instance_properties/setter]: shaderValidation */
+}
 
 
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
@@ -365,7 +364,7 @@ func (t_ TileRenderPipelineDescriptor) SetShaderValidation(value ShaderValidatio
 func (t_ TileRenderPipelineDescriptor) SupportAddingBinaryFunctions() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("supportAddingBinaryFunctions"))
 	return rv
-}/* debug [instance_properties/getter]: supportAddingBinaryFunctions */
+}
 
 
 // A Boolean value that indicates whether you can use the pipeline to create new pipelines by adding binary functions to its callable functions list.
@@ -374,7 +373,7 @@ func (t_ TileRenderPipelineDescriptor) SupportAddingBinaryFunctions() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/supportAddingBinaryFunctions
 func (t_ TileRenderPipelineDescriptor) SetSupportAddingBinaryFunctions(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSupportAddingBinaryFunctions:"), value)
-}/* debug [instance_properties/setter]: supportAddingBinaryFunctions */
+}
 
 
 // A Boolean value that indicates whether all threadgroups for this pipeline completely cover tiles.
@@ -384,7 +383,7 @@ func (t_ TileRenderPipelineDescriptor) SetSupportAddingBinaryFunctions(value boo
 func (t_ TileRenderPipelineDescriptor) ThreadgroupSizeMatchesTileSize() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("threadgroupSizeMatchesTileSize"))
 	return rv
-}/* debug [instance_properties/getter]: threadgroupSizeMatchesTileSize */
+}
 
 
 // A Boolean value that indicates whether all threadgroups for this pipeline completely cover tiles.
@@ -393,7 +392,7 @@ func (t_ TileRenderPipelineDescriptor) ThreadgroupSizeMatchesTileSize() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/threadgroupSizeMatchesTileSize
 func (t_ TileRenderPipelineDescriptor) SetThreadgroupSizeMatchesTileSize(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadgroupSizeMatchesTileSize:"), value)
-}/* debug [instance_properties/setter]: threadgroupSizeMatchesTileSize */
+}
 
 
 // An array that contains the buffer mutability options for a render pipeline’s tile function.
@@ -403,7 +402,7 @@ func (t_ TileRenderPipelineDescriptor) SetThreadgroupSizeMatchesTileSize(value b
 func (t_ TileRenderPipelineDescriptor) TileBuffers() IMTLPipelineBufferDescriptorArray {
 	rv := objc.Send[PipelineBufferDescriptorArray](t_.ID, objc.Sel("tileBuffers"))
 	return rv
-}/* debug [instance_properties/getter]: tileBuffers */
+}
 
 
 // The compute kernel or fragment function the pipeline calls.
@@ -413,7 +412,7 @@ func (t_ TileRenderPipelineDescriptor) TileBuffers() IMTLPipelineBufferDescripto
 func (t_ TileRenderPipelineDescriptor) TileFunction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tileFunction"))
 	return rv
-}/* debug [instance_properties/getter]: tileFunction */
+}
 
 
 // The compute kernel or fragment function the pipeline calls.
@@ -422,12 +421,12 @@ func (t_ TileRenderPipelineDescriptor) TileFunction() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/tileFunction
 func (t_ TileRenderPipelineDescriptor) SetTileFunction(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTileFunction:"), value)
-}/* debug [instance_properties/setter]: tileFunction */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLTileRenderPipelineDescriptor */
+
+
+
 
 
 

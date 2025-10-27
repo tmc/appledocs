@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PVideoCompositionValidationHandling is the AVVideoCompositionValidationHandling protocol interface.
@@ -23,12 +25,12 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionValidationHandling
 type PVideoCompositionValidationHandling interface {
 	// Optional methods
-	VideoCompositionShouldContinueValidatingAfterFindingEmptyTimeRange(videoComposition IAVVideoComposition, timeRange TimeRange /* not a class type */) bool
+	VideoCompositionShouldContinueValidatingAfterFindingEmptyTimeRange(videoComposition IAVVideoComposition, timeRange objectivec.IObject) bool
 	HasVideoCompositionShouldContinueValidatingAfterFindingEmptyTimeRange() bool
 	VideoCompositionShouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction(videoComposition IAVVideoComposition, videoCompositionInstruction unsafe.Pointer) bool
 	HasVideoCompositionShouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction() bool
 	VideoCompositionShouldContinueValidatingAfterFindingInvalidTrackIDInInstructionLayerInstructionAsset(videoComposition IAVVideoComposition, videoCompositionInstruction unsafe.Pointer, layerInstruction IAVVideoCompositionLayerInstruction, asset IAVAsset) bool
 	HasVideoCompositionShouldContinueValidatingAfterFindingInvalidTrackIDInInstructionLayerInstructionAsset() bool
-	VideoCompositionShouldContinueValidatingAfterFindingInvalidValueForKey(videoComposition IAVVideoComposition, key objc.IObject /* cross-framework: NSString */) bool
+	VideoCompositionShouldContinueValidatingAfterFindingInvalidValueForKey(videoComposition IAVVideoComposition, key foundation.foundation.INSString) bool
 	HasVideoCompositionShouldContinueValidatingAfterFindingInvalidValueForKey() bool
 }

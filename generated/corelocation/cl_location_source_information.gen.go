@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [LocationSourceInformation] class.
 var (
 	LocationSourceInformationClass     _LocationSourceInformationClass
@@ -27,35 +31,32 @@ type _LocationSourceInformationClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [LocationSourceInformation] class.
 type ILocationSourceInformation interface {
 	objectivec.IObject
+	
+
 	// properties:
-	IsProducedByAccessory() unsafe.Pointer
-	SetIsProducedByAccessory(value unsafe.Pointer)
-	IsSimulatedBySoftware() unsafe.Pointer
-	SetIsSimulatedBySoftware(value unsafe.Pointer)
+	IsProducedByAccessory() objectivec.IObject
+	SetIsProducedByAccessory(value objectivec.IObject)
+	IsSimulatedBySoftware() objectivec.IObject
+	SetIsSimulatedBySoftware(value objectivec.IObject)
+
+
+	
+
 	// methods:
+
+
 }
 
-// Information about the source that provides a location.
-//
-// contains information about the source that provides a instance, such as instances that delivers. For example, an app may choose to check the source information and reject locations if the property is when the developer isn’t debugging or testing the app.
 
-// Information about the source that provides a location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation
-type LocationSourceInformation struct {
-	objectivec.Object
-}
 
-// LocationSourceInformationFrom constructs a [LocationSourceInformation] from an unsafe.Pointer.
-//
-// Information about the source that provides a location.
-func LocationSourceInformationFrom(ptr unsafe.Pointer) LocationSourceInformation {
-	return LocationSourceInformation{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (lc _LocationSourceInformationClass) Alloc() LocationSourceInformation {
@@ -64,7 +65,6 @@ func (lc _LocationSourceInformationClass) Alloc() LocationSourceInformation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LocationSourceInformationClass) New() LocationSourceInformation {
 	rv := objc.Send[LocationSourceInformation](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,36 +88,95 @@ func NewLocationSourceInformation() LocationSourceInformation {
 	return getLocationSourceInformationClass().New()
 }
 
-// A Boolean value that indicates whether the system receives the location from an external accessory.
+
+
+
+
+// Information about the source that provides a location.
+//
+// contains information about the source that provides a instance, such as instances that delivers. For example, an app may choose to check the source information and reject locations if the property is when the developer isn’t debugging or testing the app.
+
+
+// Information about the source that provides a location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
-func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("isProducedByAccessory"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation
+type LocationSourceInformation struct {
+	objectivec.Object
 }
+
+// LocationSourceInformationFrom constructs a [LocationSourceInformation] from an unsafe.Pointer.
+//
+// Information about the source that provides a location.
+func LocationSourceInformationFrom(ptr unsafe.Pointer) LocationSourceInformation {
+	return LocationSourceInformation{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // A Boolean value that indicates whether the system receives the location from an external accessory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
-func (l_ LocationSourceInformation) SetIsProducedByAccessory(value unsafe.Pointer) {
+func (l_ LocationSourceInformation) IsProducedByAccessory() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("isProducedByAccessory"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the system receives the location from an external accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
+func (l_ LocationSourceInformation) SetIsProducedByAccessory(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsProducedByAccessory:"), value)
 }
 
-// A Boolean value that indicates whether the system generates the location using on-device software simulation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
-func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("isSimulatedBySoftware"))
-	return rv
-}
 
 // A Boolean value that indicates whether the system generates the location using on-device software simulation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
-func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value unsafe.Pointer) {
+func (l_ LocationSourceInformation) IsSimulatedBySoftware() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("isSimulatedBySoftware"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the system generates the location using on-device software simulation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
+func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsSimulatedBySoftware:"), value)
 }
+
+
+
+
+
+
+
+

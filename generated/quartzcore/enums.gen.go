@@ -2,9 +2,9 @@
 
 package quartzcore
 
-/* debug [enums.gen.go]: Generating 4 enums for QuartzCore */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CAAutoresizingMask (7 cases) */
+
 // CAAutoresizingMask - These constants are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask
@@ -41,7 +41,7 @@ const (
 	kCALayerWidthSizable CAAutoresizingMask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAConstraintAttribute (8 cases) */
+
 // CAConstraintAttribute - The constraint attribute type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute
@@ -82,7 +82,7 @@ const (
 	kCAConstraintWidth CAConstraintAttribute = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CACornerMask (4 cases) */
+
 // CACornerMask enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACornerMask
@@ -103,7 +103,7 @@ const (
 	kCALayerMinXMinYCorner CACornerMask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAEdgeAntialiasingMask (4 cases) */
+
 // CAEdgeAntialiasingMask - This mask is used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEdgeAntialiasingMask

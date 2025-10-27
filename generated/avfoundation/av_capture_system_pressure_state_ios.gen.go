@@ -29,8 +29,8 @@ func (c_ CaptureSystemPressureState) Factors() CaptureSystemPressureFactors {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class/level-swift.property
-func (c_ CaptureSystemPressureState) Level() CaptureSystemPressureLevel /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("level"))
+func (c_ CaptureSystemPressureState) Level() CaptureSystemPressureLevel {
+	rv := objc.Send[CaptureSystemPressureLevel](c_.ID, objc.Sel("level"))
 	return rv
 }
 

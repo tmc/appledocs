@@ -6,6 +6,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -19,8 +21,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol
 type PAccessibilityElement interface {
 	// Required methods
-	AccessibilityFrame() Rect/* debug [protocol_interface/required_method]: AccessibilityFrame */
-	AccessibilityParent() objc.ID/* debug [protocol_interface/required_method]: AccessibilityParent */
+	AccessibilityFrame() corefoundation.CGRect
+	AccessibilityParent() objc.ID
 	// Optional methods
 	AccessibilityIdentifier() foundation.String
 	HasAccessibilityIdentifier() bool

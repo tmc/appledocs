@@ -2,9 +2,9 @@
 
 package coremediaio
 
-/* debug [enums.gen.go]: Generating 3 enums for CoreMediaIO */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CMIOExtensionStreamClockType (3 cases) */
+
 // CMIOExtensionStreamClockType - Constants that indicate the clock type of a stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOExtensionStream/ClockType-swift.enum
@@ -25,7 +25,7 @@ const (
 	CMIOExtensionStreamClockTypeLinkedCoreAudioDeviceUID CMIOExtensionStreamClockType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CMIOExtensionStreamDirection (2 cases) */
+
 // CMIOExtensionStreamDirection - Constants that define the data-flow direction of the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOExtensionStream/Direction-swift.enum
@@ -42,7 +42,7 @@ const (
 	CMIOExtensionStreamDirectionSource CMIOExtensionStreamDirection = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CMIOExtensionStreamDiscontinuityFlags (4 cases) */
+
 // CMIOExtensionStreamDiscontinuityFlags - Constants that specify the types of discontinuities that can occur in a media stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOExtensionStream/DiscontinuityFlags

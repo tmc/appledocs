@@ -16,5 +16,5 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSVolume/ItemDeactivation
 type PFSVolumeItemDeactivation interface {
 	// Required methods
-	DeactivateItemReplyHandler(item IFSItem, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: DeactivateItemReplyHandler */
+	DeactivateItemReplyHandler(item IFSItem, reply unsafe.Pointer)
 }

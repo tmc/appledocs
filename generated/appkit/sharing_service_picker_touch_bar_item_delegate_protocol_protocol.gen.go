@@ -7,6 +7,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PSharingServicePickerTouchBarItemDelegate is the NSSharingServicePickerTouchBarItemDelegate protocol interface.
@@ -19,7 +21,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerTouchBarItemDelegate
 type PSharingServicePickerTouchBarItemDelegate interface {
 	// Required methods
-	ItemsForSharingServicePickerTouchBarItem(pickerTouchBarItem ISharingServicePickerTouchBarItem) foundation.Array/* debug [protocol_interface/required_method]: ItemsForSharingServicePickerTouchBarItem */
+	ItemsForSharingServicePickerTouchBarItem(pickerTouchBarItem ISharingServicePickerTouchBarItem) foundation.Array
 }
 
 // SharingServicePickerTouchBarItemDelegate is a delegate implementation builder for the PSharingServicePickerTouchBarItemDelegate protocol.
@@ -48,4 +50,26 @@ func (d *SharingServicePickerTouchBarItemDelegate) ItemsForSharingServicePickerT
 // HasItemsForSharingServicePickerTouchBarItem returns true if a handler for ItemsForSharingServicePickerTouchBarItem has been set.
 func (d *SharingServicePickerTouchBarItemDelegate) HasItemsForSharingServicePickerTouchBarItem() bool {
 	return d._ItemsForSharingServicePickerTouchBarItem != nil
+}
+
+// SharingServicePickerTouchBarItemDelegateObject wraps an existing Objective-C object that conforms to the PSharingServicePickerTouchBarItemDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type SharingServicePickerTouchBarItemDelegateObject struct {
+	objectivec.Object
+}
+
+// NewSharingServicePickerTouchBarItemDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSSharingServicePickerTouchBarItemDelegate protocol.
+func NewSharingServicePickerTouchBarItemDelegateObject(obj objectivec.Object) *SharingServicePickerTouchBarItemDelegateObject {
+	return &SharingServicePickerTouchBarItemDelegateObject{obj}
+}
+
+// Make sure SharingServicePickerTouchBarItemDelegateObject implements PSharingServicePickerTouchBarItemDelegate.
+var _ PSharingServicePickerTouchBarItemDelegate = (*SharingServicePickerTouchBarItemDelegateObject)(nil)
+
+// ItemsForSharingServicePickerTouchBarItem implements the PSharingServicePickerTouchBarItemDelegate interface.
+// This required method is always available on objects conforming to ItemsForSharingServicePickerTouchBarItem.
+func (o *SharingServicePickerTouchBarItemDelegateObject) ItemsForSharingServicePickerTouchBarItem(pickerTouchBarItem ISharingServicePickerTouchBarItem) foundation.Array {
+	return objc.Send[foundation.Array](o.ID, objc.Sel("itemsForSharingServicePickerTouchBarItem:"), pickerTouchBarItem)
 }

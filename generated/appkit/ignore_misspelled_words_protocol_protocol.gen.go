@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PIgnoreMisspelledWords is the NSIgnoreMisspelledWords protocol interface.
@@ -17,5 +19,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords
 type PIgnoreMisspelledWords interface {
 	// Required methods
-	IgnoreSpelling(sender objc.IObject)/* debug [protocol_interface/required_method]: IgnoreSpelling */
+	IgnoreSpelling(sender objectivec.IObject)
 }

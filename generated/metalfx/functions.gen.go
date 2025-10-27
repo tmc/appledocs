@@ -2,7 +2,7 @@
 
 package metalfx
 
-/* debug [functions.gen.go]: Generating 0 functions for MetalFX */
+
 import (
 	"github.com/ebitengine/purego"
 )

@@ -38,7 +38,7 @@ func (d_ DocumentCameraScan) PageCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan/title
-func (d_ DocumentCameraScan) Title() objc.IObject /* cross-framework: NSString */ {
+func (d_ DocumentCameraScan) Title() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("title"))
 	return rv
 }

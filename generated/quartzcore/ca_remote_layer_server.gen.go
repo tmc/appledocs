@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CARemoteLayerServer */
 
 
-/* debug [class_header]: Header for CARemoteLayerServer */
+
+
 // The class instance for the [RemoteLayerServer] class.
 var (
 	RemoteLayerServerClass     _RemoteLayerServerClass
@@ -30,31 +30,31 @@ func getRemoteLayerServerClass() _RemoteLayerServerClass {
 type _RemoteLayerServerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for RemoteLayerServer */
+
+
 // An interface definition for the [RemoteLayerServer] class.
 type IRemoteLayerServer interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for RemoteLayerServer */
+
 	// properties:
 	ServerPort() objectivec.IObject
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for RemoteLayerServer */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for RemoteLayerServer */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _RemoteLayerServerClass) Alloc() RemoteLayerServer {
 	rv := objc.Send[RemoteLayerServer](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (r_ RemoteLayerServer) Autorelease() RemoteLayerServer {
 func NewRemoteLayerServer() RemoteLayerServer {
 	return getRemoteLayerServerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for RemoteLayerServer */
+
+
 // A legacy class for cross-process rendering.
 //
 // is a legacy class for cross-process rendering. and , available with , offer an improved way to perform cross-process rendering.
@@ -108,15 +108,15 @@ type RemoteLayerServer struct {
 func RemoteLayerServerFrom(ptr unsafe.Pointer) RemoteLayerServer {
 	return RemoteLayerServer{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for RemoteLayerServer *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for RemoteLayerServer */
+
+
+
 
 // Returns the (singleton) instance of the shared remote layer server.
 //
@@ -125,23 +125,23 @@ func RemoteLayerServerFrom(ptr unsafe.Pointer) RemoteLayerServer {
 func (rc _RemoteLayerServerClass) SharedServer() IRemoteLayerServer {
 	rv := objc.Send[RemoteLayerServer](objc.ID(rc.class), objc.Sel("sharedServer"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedServer) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for RemoteLayerServer */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for RemoteLayerServer */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for RemoteLayerServer */
+
+
+
+
+
+
+
 
 // The port number of the server.
 //
@@ -150,12 +150,12 @@ func (rc _RemoteLayerServerClass) SharedServer() IRemoteLayerServer {
 func (r_ RemoteLayerServer) ServerPort() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](r_.ID, objc.Sel("serverPort"))
 	return rv
-}/* debug [instance_properties/getter]: serverPort */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CARemoteLayerServer */
+
+
+
 
 
 

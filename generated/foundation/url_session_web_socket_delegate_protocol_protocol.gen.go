@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLSessionWebSocketDelegate is the NSURLSessionWebSocketDelegate protocol interface.
@@ -73,4 +75,42 @@ func (d *URLSessionWebSocketDelegate) URLSessionWebSocketTaskDidOpenWithProtocol
 // HasURLSessionWebSocketTaskDidOpenWithProtocol returns true if a handler for URLSessionWebSocketTaskDidOpenWithProtocol has been set.
 func (d *URLSessionWebSocketDelegate) HasURLSessionWebSocketTaskDidOpenWithProtocol() bool {
 	return d._URLSessionWebSocketTaskDidOpenWithProtocol != nil
+}
+
+// URLSessionWebSocketDelegateObject wraps an existing Objective-C object that conforms to the PURLSessionWebSocketDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLSessionWebSocketDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLSessionWebSocketDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLSessionWebSocketDelegate protocol.
+func NewURLSessionWebSocketDelegateObject(obj objectivec.Object) *URLSessionWebSocketDelegateObject {
+	return &URLSessionWebSocketDelegateObject{obj}
+}
+
+// Make sure URLSessionWebSocketDelegateObject implements PURLSessionWebSocketDelegate.
+var _ PURLSessionWebSocketDelegate = (*URLSessionWebSocketDelegateObject)(nil)
+
+// URLSessionWebSocketTaskDidCloseWithCodeReason implements the PURLSessionWebSocketDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionWebSocketDelegateObject) URLSessionWebSocketTaskDidCloseWithCodeReason(session IURLSession, webSocketTask IURLSessionWebSocketTask, closeCode URLSessionWebSocketCloseCode, reason IData) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:webSocketTask:didCloseWithCode:reason:"), session, webSocketTask, closeCode, reason)
+}
+
+// HasURLSessionWebSocketTaskDidCloseWithCodeReason returns true; this is a placeholder for optional method checks.
+func (o *URLSessionWebSocketDelegateObject) HasURLSessionWebSocketTaskDidCloseWithCodeReason() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionWebSocketTaskDidOpenWithProtocol implements the PURLSessionWebSocketDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionWebSocketDelegateObject) URLSessionWebSocketTaskDidOpenWithProtocol(session IURLSession, webSocketTask IURLSessionWebSocketTask, protocol_ IString) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:webSocketTask:didOpenWithProtocol:"), session, webSocketTask, protocol_)
+}
+
+// HasURLSessionWebSocketTaskDidOpenWithProtocol returns true; this is a placeholder for optional method checks.
+func (o *URLSessionWebSocketDelegateObject) HasURLSessionWebSocketTaskDidOpenWithProtocol() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

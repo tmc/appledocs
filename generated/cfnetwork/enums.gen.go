@@ -2,9 +2,9 @@
 
 package cfnetwork
 
-/* debug [enums.gen.go]: Generating 9 enums for CFNetwork */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CFHostInfoType (3 cases) */
+
 // CFHostInfoType - Values indicating the type of data that is to be resolved or the type of data that was resolved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostInfoType
@@ -25,7 +25,7 @@ const (
 	kCFHostReachability CFHostInfoType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFNetDiagnosticStatusValues (5 cases) */
+
 // CFNetDiagnosticStatusValues - Constants for diagnostic status values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticStatusValues
@@ -54,7 +54,7 @@ const (
 	kCFNetDiagnosticNoErr CFNetDiagnosticStatusValues = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFNetServiceBrowserFlags (5 cases) */
+
 // CFNetServiceBrowserFlags - Flags that the system passes to net service browser callbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags
@@ -82,7 +82,7 @@ const (
 	kCFNetServiceFlagRemove CFNetServiceBrowserFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFNetServiceMonitorType (1 cases) */
+
 // CFNetServiceMonitorType - Record type specifier used to tell a service monitor the type of record changes to watch for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorType
@@ -95,7 +95,7 @@ const (
 	kCFNetServiceMonitorTXT CFNetServiceMonitorType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFNetServiceRegisterFlags (1 cases) */
+
 // CFNetServiceRegisterFlags - Options to use when registering a service on the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegisterFlags
@@ -108,7 +108,7 @@ const (
 	kCFNetServiceFlagNoAutoRename CFNetServiceRegisterFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFNetServicesError (9 cases) */
+
 // CFNetServicesError - Error codes that may be returned by CFNetServices functions or passed to CFNetServices callback functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError
@@ -153,7 +153,7 @@ const (
 	kCFNetServicesErrorUnknown CFNetServicesError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFNetworkErrors (84 cases) */
+
 // CFNetworkErrors - This enumeration contains error codes returned under the error domain 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors
@@ -498,7 +498,7 @@ const (
 	kCFURLErrorZeroByteResource CFNetworkErrors = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFStreamErrorHTTP (3 cases) */
+
 // CFStreamErrorHTTP - Error codes that a read stream for an HTTP request may return.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamErrorHTTP
@@ -519,7 +519,7 @@ const (
 	kCFStreamErrorHTTPRedirectionLoop CFStreamErrorHTTP = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CFStreamErrorHTTPAuthentication (3 cases) */
+
 // CFStreamErrorHTTPAuthentication - Authentication error codes that may be returned when trying to apply authentication to a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamErrorHTTPAuthentication

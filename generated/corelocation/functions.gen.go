@@ -2,21 +2,69 @@
 
 package corelocation
 
-/* debug [functions.gen.go]: Generating 0 functions for CoreLocation */
+
 import (
+	"unsafe"
+
 	"github.com/ebitengine/purego"
 )
 
-// CoreLocation Functions (0 total)
+
+// CoreLocation Functions (2 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
+var (
+	_CLLocationCoordinate2DIsValid func(unsafe.Pointer,   CLLocationCoordinate2D) unsafe.Pointer
+	_CLLocationCoordinate2DMake func(unsafe.Pointer,   CLLocationDegrees _,   CLLocationDegrees) unsafe.Pointer
+)
+
 func init() {
-	// Framework has no exported C functions, only classes/protocols
 	lib, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
-	_ = lib // Suppress unused variable warning
+	tryRegister(&_CLLocationCoordinate2DIsValid, lib, "CLLocationCoordinate2DIsValid")
+	tryRegister(&_CLLocationCoordinate2DMake, lib, "CLLocationCoordinate2DMake")
 }
+
+// tryRegister attempts to register a function, silently ignoring failures.
+// This allows the library to load even if some symbols are missing.
+func tryRegister(fn interface{}, lib uintptr, name string) {
+	defer func() {
+		if r := recover(); r != nil {
+			// Symbol not found - function will remain nil and panic when called
+			// This is expected for inline functions, macros, or version-specific APIs
+		}
+	}()
+	purego.RegisterLibFunc(fn, lib, name)
+}
+
+
+
+// Returns a Boolean value indicating whether the specified coordinate is valid.
+//
+// Added in macOS 10.7.
+// Returns a Boolean value indicating whether the specified coordinate is valid.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationCoordinate2DIsValid(_:)
+func CLLocationCoordinate2DIsValid(coord unsafe.Pointer, p1   CLLocationCoordinate2D) unsafe.Pointer {
+	return _CLLocationCoordinate2DIsValid(coord, p1)
+}
+
+// Formats a latitude and longitude value into a coordinate data structure format.
+//
+// Added in macOS 10.7.
+// Formats a latitude and longitude value into a coordinate data structure format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationCoordinate2DMake(_:_:)
+func CLLocationCoordinate2DMake(latitude unsafe.Pointer, longitude   CLLocationDegrees _, p2   CLLocationDegrees) unsafe.Pointer {
+	return _CLLocationCoordinate2DMake(latitude, longitude, p2)
+}
+
+
+
+

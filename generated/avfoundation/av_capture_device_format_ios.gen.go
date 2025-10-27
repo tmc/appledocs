@@ -27,7 +27,7 @@ func (c_ CaptureDeviceFormat) IsVideoStabilizationModeSupported(videoStabilizati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Format/videoFieldOfView(for:geometricDistortionCorrected:)
-func (c_ CaptureDeviceFormat) VideoFieldOfViewForAspectRatioGeometricDistortionCorrected(aspectRatio CaptureAspectRatio /* typedef */, geometricDistortionCorrected bool) float32 {
+func (c_ CaptureDeviceFormat) VideoFieldOfViewForAspectRatioGeometricDistortionCorrected(aspectRatio CaptureAspectRatio, geometricDistortionCorrected bool) float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("videoFieldOfViewForAspectRatio:geometricDistortionCorrected:"), aspectRatio, geometricDistortionCorrected)
 	return rv
 }
@@ -56,8 +56,8 @@ func (c_ CaptureDeviceFormat) GeometricDistortionCorrectedVideoFieldOfView() flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Format/highResolutionStillImageDimensions
-func (c_ CaptureDeviceFormat) HighResolutionStillImageDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("highResolutionStillImageDimensions"))
+func (c_ CaptureDeviceFormat) HighResolutionStillImageDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("highResolutionStillImageDimensions"))
 	return rv
 }
 
@@ -137,8 +137,8 @@ func (c_ CaptureDeviceFormat) VideoStabilizationSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Format/maxExposureDuration
-func (c_ CaptureDeviceFormat) MaxExposureDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("maxExposureDuration"))
+func (c_ CaptureDeviceFormat) MaxExposureDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("maxExposureDuration"))
 	return rv
 }
 
@@ -155,8 +155,8 @@ func (c_ CaptureDeviceFormat) MaxISO() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Format/minExposureDuration
-func (c_ CaptureDeviceFormat) MinExposureDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("minExposureDuration"))
+func (c_ CaptureDeviceFormat) MinExposureDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("minExposureDuration"))
 	return rv
 }
 

@@ -21,8 +21,8 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap
 type PRasterizationRateMap interface {
 	// Required methods
-	CopyParameterDataToBufferOffset(buffer unsafe.Pointer, offset uint)/* debug [protocol_interface/required_method]: CopyParameterDataToBufferOffset */
-	MapScreenToPhysicalCoordinatesForLayer(screenCoordinates Coordinate2D /* typedef */, layerIndex uint) Coordinate2D/* debug [protocol_interface/required_method]: MapScreenToPhysicalCoordinatesForLayer */
-	PhysicalSizeForLayer(layerIndex uint) MTLSize/* debug [protocol_interface/required_method]: PhysicalSizeForLayer */
-	MapPhysicalToScreenCoordinatesForLayer(physicalCoordinates Coordinate2D /* typedef */, layerIndex uint) Coordinate2D/* debug [protocol_interface/required_method]: MapPhysicalToScreenCoordinatesForLayer */
+	CopyParameterDataToBufferOffset(buffer unsafe.Pointer, offset uint)
+	MapScreenToPhysicalCoordinatesForLayer(screenCoordinates Coordinate2D, layerIndex uint) Coordinate2D
+	PhysicalSizeForLayer(layerIndex uint) MTLSize
+	MapPhysicalToScreenCoordinatesForLayer(physicalCoordinates Coordinate2D, layerIndex uint) Coordinate2D
 }

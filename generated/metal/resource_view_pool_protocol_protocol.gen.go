@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PResourceViewPool is the MTLResourceViewPool protocol interface.
@@ -23,5 +23,5 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLResourceViewPool
 type PResourceViewPool interface {
 	// Required methods
-	CopyResourceViewsFromPoolSourceRangeDestinationIndex(sourcePool unsafe.Pointer, sourceRange corefoundation.Range, destinationIndex uint) MTLResourceID/* debug [protocol_interface/required_method]: CopyResourceViewsFromPoolSourceRangeDestinationIndex */
+	CopyResourceViewsFromPoolSourceRangeDestinationIndex(sourcePool unsafe.Pointer, sourceRange foundation.Range, destinationIndex uint) MTLResourceID
 }

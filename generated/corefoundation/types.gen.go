@@ -21,7 +21,7 @@ type AllocatorContext struct {
 	Release AllocatorReleaseCallBack // A prototype for a function callback that releases the data pointed to by the   field. In implementing this function, release (or free) the data you have defined for the allocator context. You may set this function pointer to  , but doing so might result in memory leaks.
 	Retain AllocatorRetainCallBack // A prototype for a function callback that retains the data pointed to by the   field. In implementing this function, retain the data you have defined for the allocator context in this field. (This might make sense only if the data is a Core Foundation object.) You may set this function pointer to  .
 	Version Index // An integer of type  . Assign the version number of the allocator. Currently the only valid value is 0.
-}/* debug [types.gen.go/struct]: AllocatorContext */
+}
 
 // ArrayCallBacks - Structure containing the callbacks of a CFArray.
 //
@@ -33,7 +33,7 @@ type ArrayCallBacks struct {
 	Release ArrayReleaseCallBack // The callback used to release values as they are removed from the collection. If  , values are not released. See   for a description of this callback.
 	Retain ArrayRetainCallBack // The callback used to retain each value as they are added to the collection. If  , values are not retained. See   for a description of this callback.
 	Version Index // The version number of this structure. If not one of the defined version numbers for this opaque type, the behavior is undefined. The current version of this structure is 0.
-}/* debug [types.gen.go/struct]: ArrayCallBacks */
+}
 
 // BagCallBacks - This structure contains the callbacks used to retain, release, describe, and compare the values of a CFBag object.
 //
@@ -46,7 +46,7 @@ type BagCallBacks struct {
 	Release BagReleaseCallBack // The callback used to release values as they are removed from the collection. If  , values are not released. See   for a description of this callback.
 	Retain BagRetainCallBack // The callback used to retain each value as they are added to the collection. If  , values are not retained. See   for a descriptions of this function’s parameters.
 	Version Index // The version number of this structure. If not one of the defined version numbers for this opaque type, the behavior is undefined. The current version of this structure is 0.
-}/* debug [types.gen.go/struct]: BagCallBacks */
+}
 
 // BinaryHeapCallBacks - Structure containing the callbacks for values for a 
 //
@@ -58,7 +58,7 @@ type BinaryHeapCallBacks struct {
 	Release unsafe.Pointer // Callback function used to release a value before it is removed from a binary heap.
 	Retain unsafe.Pointer // Callback function used to retain a value being added to a binary heap.
 	Version Index // The version number of the structure type being passed in as a parameter to the   creation functions. This structure is version  .
-}/* debug [types.gen.go/struct]: BinaryHeapCallBacks */
+}
 
 // BinaryHeapCompareContext - Not used.
 //
@@ -70,7 +70,7 @@ type BinaryHeapCompareContext struct {
 	Release unsafe.Pointer
 	Retain unsafe.Pointer
 	Version Index
-}/* debug [types.gen.go/struct]: BinaryHeapCompareContext */
+}
 
 // DictionaryKeyCallBacks - This structure contains the callbacks used to retain, release, describe, and compare the keys in a dictionary.
 //
@@ -83,7 +83,7 @@ type DictionaryKeyCallBacks struct {
 	Release DictionaryReleaseCallBack // The callback used to release keys as they are removed from the dictionary. If  , keys are not released. See   for a description of this callback.
 	Retain DictionaryRetainCallBack // The callback used to retain each key as they are added to the collection. This callback returns the value to use as the key in the dictionary, which is usually the value parameter passed to this callback, but may be a different value if a different value should be used as the key. If  , keys are not retained. See   for a descriptions of this function’s parameters.
 	Version Index // The version number of this structure. If not one of the defined version numbers for this opaque type, the behavior is undefined. The current version of this structure is 0.
-}/* debug [types.gen.go/struct]: DictionaryKeyCallBacks */
+}
 
 // DictionaryValueCallBacks - This structure contains the callbacks used to retain, release, describe, and compare the values in a dictionary.
 //
@@ -95,7 +95,7 @@ type DictionaryValueCallBacks struct {
 	Release DictionaryReleaseCallBack // The callback used to release values as they are removed from the dictionary. If  , values are not released. See   for a description of this callback.
 	Retain DictionaryRetainCallBack // The callback used to retain each value as they are added to the collection. This callback returns the value to use as the value in the dictionary, which is usually the value parameter passed to this callback, but may be a different value if a different value should be used as the value. If  , values are not retained. See   for a descriptions of this function’s parameters.
 	Version Index // The version number of this structure. If not one of the defined version numbers for this opaque type, the behavior is undefined. The current version of this structure is 0.
-}/* debug [types.gen.go/struct]: DictionaryValueCallBacks */
+}
 
 // FileDescriptorContext - Defines a structure for the context of a CFFileDescriptor.
 //
@@ -107,7 +107,7 @@ type FileDescriptorContext struct {
 	Release unsafe.Pointer // The release callback used by the CFFileDescriptor.
 	Retain unsafe.Pointer // The retain callback used by the CFFileDescriptor.
 	Version Index // The version number of this structure. If not one of the defined version numbers for this opaque type, the behavior is undefined. The current version of this structure is 0.
-}/* debug [types.gen.go/struct]: FileDescriptorContext */
+}
 
 // GregorianDate - Structure used to represent a point in time using the Gregorian calendar.
 //
@@ -120,7 +120,7 @@ type GregorianDate struct {
 	Month unsafe.Pointer
 	Second float64
 	Year unsafe.Pointer
-}/* debug [types.gen.go/struct]: GregorianDate */
+}
 
 // GregorianUnits - Structure used to represent a time interval in Gregorian units.
 //
@@ -133,7 +133,7 @@ type GregorianUnits struct {
 	Months unsafe.Pointer
 	Seconds float64
 	Years unsafe.Pointer
-}/* debug [types.gen.go/struct]: GregorianUnits */
+}
 
 // MachPortContext - A structure that contains program-defined data and callbacks with which you can configure a CFMachPort object’s behavior.
 //
@@ -145,7 +145,7 @@ type MachPortContext struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be  .
-}/* debug [types.gen.go/struct]: MachPortContext */
+}
 
 // MessagePortContext - A structure that contains program-defined data and callbacks with which you can configure a CFMessagePort object’s behavior.
 //
@@ -157,7 +157,7 @@ type MessagePortContext struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be  .
-}/* debug [types.gen.go/struct]: MessagePortContext */
+}
 
 // Range - A structure representing a range of sequential items in a container, such as characters in a buffer or elements in a collection.
 //
@@ -166,7 +166,7 @@ type MessagePortContext struct {
 type Range struct {
 	Length Index // An integer representing the number of items in the range. For type compatibility with the rest of the system,   is the maximum value you should use for length.
 	Location Index // An integer representing the starting location of the range. For type compatibility with the rest of the system,   is the maximum value you should use for location.
-}/* debug [types.gen.go/struct]: Range */
+}
 
 // RunLoopObserverContext - A structure that contains program-defined data and callbacks with which you can configure a CFRunLoopObserver object’s behavior.
 //
@@ -178,7 +178,7 @@ type RunLoopObserverContext struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be  .
-}/* debug [types.gen.go/struct]: RunLoopObserverContext */
+}
 
 // RunLoopSourceContext - A structure that contains program-defined data and callbacks with which you can configure a version 0 CFRunLoopSource’s behavior.
 //
@@ -195,7 +195,7 @@ type RunLoopSourceContext struct {
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Schedule unsafe.Pointer // A scheduling callback for the run loop source. This callback is called when the source is added to a run loop mode. Can be  .
 	Version Index // Version number of the structure. Must be 0.
-}/* debug [types.gen.go/struct]: RunLoopSourceContext */
+}
 
 // RunLoopSourceContext1 - A structure that contains program-defined data and callbacks with which you can configure a version 1 CFRunLoopSource’s behavior.
 //
@@ -211,7 +211,7 @@ type RunLoopSourceContext1 struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be 1.
-}/* debug [types.gen.go/struct]: RunLoopSourceContext1 */
+}
 
 // RunLoopTimerContext - A structure that contains program-defined data and callbacks with which you can configure a CFRunLoopTimer’s behavior.
 //
@@ -223,7 +223,7 @@ type RunLoopTimerContext struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be 0.
-}/* debug [types.gen.go/struct]: RunLoopTimerContext */
+}
 
 // SetCallBacks - This structure contains the callbacks used to retain, release, describe, and compare the values of a CFSet object.
 //
@@ -236,7 +236,7 @@ type SetCallBacks struct {
 	Release SetReleaseCallBack // The callback used to release values as they are removed from the collection. If  , values are not released. See   for a description of this callback.
 	Retain SetRetainCallBack // The callback used to retain each value as they are added to the collection. If  , values are not retained. See   for a descriptions of this function’s parameters.
 	Version Index // The version number of this structure. If not one of the defined version numbers for this opaque type, the behavior is undefined. The current version of this structure is  .
-}/* debug [types.gen.go/struct]: SetCallBacks */
+}
 
 // SocketContext - A structure that contains program-defined data and callbacks with which you can configure a CFSocket object’s behavior.
 //
@@ -248,7 +248,7 @@ type SocketContext struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be  .
-}/* debug [types.gen.go/struct]: SocketContext */
+}
 
 // SocketSignature - A structure that fully specifies the communication protocol and connection address of a CFSocket object.
 //
@@ -259,7 +259,7 @@ type SocketSignature struct {
 	Protocol unsafe.Pointer // The protocol type of the socket.
 	ProtocolFamily unsafe.Pointer // The protocol family of the socket.
 	SocketType unsafe.Pointer // The socket type of the socket.
-}/* debug [types.gen.go/struct]: SocketSignature */
+}
 
 // StreamClientContext - A structure that contains program-defined data and callbacks with which you can configure a stream’s client behavior.
 //
@@ -271,7 +271,7 @@ type StreamClientContext struct {
 	Release unsafe.Pointer // A release callback for your program-defined   pointer. Can be  .
 	Retain unsafe.Pointer // A retain callback for your program-defined   pointer. Can be  .
 	Version Index // Version number of the structure. Must be  .
-}/* debug [types.gen.go/struct]: StreamClientContext */
+}
 
 // StreamError - The structure returned by 
 //
@@ -280,7 +280,7 @@ type StreamClientContext struct {
 type StreamError struct {
 	Domain Index // The error domain that should be used to interpret the error. See   for possible values.
 	Error unsafe.Pointer // The error code.
-}/* debug [types.gen.go/struct]: StreamError */
+}
 
 // StringInlineBuffer - Defines the buffer and related fields used for in-line buffer access of characters in CFString objects.
 //
@@ -294,7 +294,7 @@ type StringInlineBuffer struct {
 	DirectUniCharBuffer unsafe.Pointer
 	RangeToBuffer Range
 	TheString StringRef
-}/* debug [types.gen.go/struct]: StringInlineBuffer */
+}
 
 // SwappedFloat32 - Structure holding a 32-bit float value in a platform-independentbyte order.
 //
@@ -302,7 +302,7 @@ type StringInlineBuffer struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSwappedFloat32
 type SwappedFloat32 struct {
 	V uint32 // A 32-bit float value stored with a platform-independentbyte order.
-}/* debug [types.gen.go/struct]: SwappedFloat32 */
+}
 
 // SwappedFloat64 - Structure holding a 64-bit float value in a platform-independentbyte order.
 //
@@ -310,7 +310,7 @@ type SwappedFloat32 struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSwappedFloat64
 type SwappedFloat64 struct {
 	V uint64 // A 64-bit float value stored with a platform-independentbyte order.
-}/* debug [types.gen.go/struct]: SwappedFloat64 */
+}
 
 // TreeContext - Structure containing program-defined data and callbacks for a CFTree object.
 //
@@ -322,7 +322,7 @@ type TreeContext struct {
 	Release TreeReleaseCallBack // The callback used to release a previously retained   field. If this parameter is not a pointer to a function of the correct prototype, the behavior is undefined. This value may be  .
 	Retain TreeRetainCallBack // The callback used to retain the   field. If this parameter is not a pointer to a function of the correct prototype, the behavior is undefined. This value may be  .
 	Version Index // The version number of the structure type being passed in as a parameter to a CFTree creation function. This structure is version  .
-}/* debug [types.gen.go/struct]: TreeContext */
+}
 
 // UUIDBytes - A 128-bit struct that represents a UUID as raw bytes.
 //
@@ -345,7 +345,7 @@ type UUIDBytes struct {
 	Byte7 unsafe.Pointer // The eighth byte.
 	Byte8 unsafe.Pointer // The ninth byte.
 	Byte9 unsafe.Pointer // The tenth byte.
-}/* debug [types.gen.go/struct]: UUIDBytes */
+}
 
 // XMLAttributeDeclarationInfo - Contains information about an element attribute definition.
 //
@@ -355,7 +355,7 @@ type XMLAttributeDeclarationInfo struct {
 	AttributeName StringRef // The name of the attribute.
 	DefaultString StringRef // The attribute’s default value.
 	TypeString StringRef // Describes the declaration of a single attribute.
-}/* debug [types.gen.go/struct]: XMLAttributeDeclarationInfo */
+}
 
 // XMLAttributeListDeclarationInfo - Contains a list of the attributes associated with an element.
 //
@@ -364,7 +364,7 @@ type XMLAttributeDeclarationInfo struct {
 type XMLAttributeListDeclarationInfo struct {
 	Attributes unsafe.Pointer // A C array of attributes.
 	NumberOfAttributes Index // The number of attributes in the array.
-}/* debug [types.gen.go/struct]: XMLAttributeListDeclarationInfo */
+}
 
 // XMLDocumentInfo - Contains the source URL and text encoding information for the XML document.
 //
@@ -373,7 +373,7 @@ type XMLAttributeListDeclarationInfo struct {
 type XMLDocumentInfo struct {
 	Encoding StringEncoding // The text encoding of the XML document.
 	SourceURL URLRef // The source URL of the XML document.
-}/* debug [types.gen.go/struct]: XMLDocumentInfo */
+}
 
 // XMLDocumentTypeInfo - Contains the external ID of the DTD.
 //
@@ -381,7 +381,7 @@ type XMLDocumentInfo struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLDocumentTypeInfo
 type XMLDocumentTypeInfo struct {
 	ExternalID XMLExternalID // The external ID of the DTD.
-}/* debug [types.gen.go/struct]: XMLDocumentTypeInfo */
+}
 
 // XMLElementInfo - Contains a list of element attributes packaged as CFDictionary key/value pairs.
 //
@@ -391,7 +391,7 @@ type XMLElementInfo struct {
 	AttributeOrder ArrayRef // An array specifying the order in which the attributes appeared in the XML document.
 	Attributes DictionaryRef // The dictionary of attribute values.
 	IsEmpty unsafe.Pointer // A flag indicating whether the element was expressed in closed form.
-}/* debug [types.gen.go/struct]: XMLElementInfo */
+}
 
 // XMLElementTypeDeclarationInfo - Contains a description of the element type.
 //
@@ -399,7 +399,7 @@ type XMLElementInfo struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLElementTypeDeclarationInfo
 type XMLElementTypeDeclarationInfo struct {
 	ContentDescription StringRef // A textual description of the element type.
-}/* debug [types.gen.go/struct]: XMLElementTypeDeclarationInfo */
+}
 
 // XMLEntityInfo - Contains information describing an XML entity.
 //
@@ -410,7 +410,7 @@ type XMLEntityInfo struct {
 	EntityType XMLEntityTypeCode // The entity type code.
 	NotationName StringRef //  if   is parsed.
 	ReplacementText StringRef //  if   is external or unparsed, otherwise the text that the entity should be replaced with.
-}/* debug [types.gen.go/struct]: XMLEntityInfo */
+}
 
 // XMLEntityReferenceInfo - Contains information describing an XML entity reference.
 //
@@ -418,7 +418,7 @@ type XMLEntityInfo struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLEntityReferenceInfo
 type XMLEntityReferenceInfo struct {
 	EntityType XMLEntityTypeCode // The entity type code.
-}/* debug [types.gen.go/struct]: XMLEntityReferenceInfo */
+}
 
 // XMLExternalID - Contains the system and public IDs for an external entity reference.
 //
@@ -427,7 +427,7 @@ type XMLEntityReferenceInfo struct {
 type XMLExternalID struct {
 	PublicID StringRef // The publicID string.
 	SystemID URLRef // The systemID URL.
-}/* debug [types.gen.go/struct]: XMLExternalID */
+}
 
 // XMLNotationInfo - Contains the external ID of the notation.
 //
@@ -435,7 +435,7 @@ type XMLExternalID struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNotationInfo
 type XMLNotationInfo struct {
 	ExternalID XMLExternalID // The external ID of the notation.
-}/* debug [types.gen.go/struct]: XMLNotationInfo */
+}
 
 // XMLParserCallBacks - Contains version information and function pointers to callbacks needed when parsing XML.
 //
@@ -448,7 +448,7 @@ type XMLParserCallBacks struct {
 	HandleError XMLParserHandleErrorCallBack // Called when a parse error needs to be handled.
 	ResolveExternalEntity XMLParserResolveExternalEntityCallBack // Called when an external entity needs to be resolved.
 	Version Index // Version number. Must be  .
-}/* debug [types.gen.go/struct]: XMLParserCallBacks */
+}
 
 // XMLParserContext - Contains version information and function pointers to callbacks used when handling a program-defined context.
 //
@@ -460,7 +460,7 @@ type XMLParserContext struct {
 	Release XMLParserReleaseCallBack // A release callback for your program-defined context data. Optional.
 	Retain XMLParserRetainCallBack // A retain callback for your program-defined context data. Optional.
 	Version Index // Version number of this structure. Must be 0.
-}/* debug [types.gen.go/struct]: XMLParserContext */
+}
 
 // XMLProcessingInstructionInfo - Contains the text of the processing instruction.
 //
@@ -468,7 +468,7 @@ type XMLParserContext struct {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLProcessingInstructionInfo
 type XMLProcessingInstructionInfo struct {
 	DataString StringRef // The text of the processing instruction.
-}/* debug [types.gen.go/struct]: XMLProcessingInstructionInfo */
+}
 
 // CGAffineTransform
 //
@@ -481,7 +481,7 @@ type CGAffineTransform struct {
 	D float64
 	Tx float64
 	Ty float64
-}/* debug [types.gen.go/struct]: CGAffineTransform */
+}
 
 // CGAffineTransformComponents
 //
@@ -492,7 +492,7 @@ type CGAffineTransformComponents struct {
 	Rotation float64
 	Scale CGSize
 	Translation CGVector
-}/* debug [types.gen.go/struct]: CGAffineTransformComponents */
+}
 
 // CGPoint
 //
@@ -501,7 +501,7 @@ type CGAffineTransformComponents struct {
 type CGPoint struct {
 	X float64
 	Y float64
-}/* debug [types.gen.go/struct]: CGPoint */
+}
 
 // CGRect
 //
@@ -510,7 +510,7 @@ type CGPoint struct {
 type CGRect struct {
 	Origin CGPoint
 	Size CGSize
-}/* debug [types.gen.go/struct]: CGRect */
+}
 
 // CGSize - A structure that contains width and height values.
 //
@@ -519,7 +519,7 @@ type CGRect struct {
 type CGSize struct {
 	Height float64 // A height value.
 	Width float64 // A width value.
-}/* debug [types.gen.go/struct]: CGSize */
+}
 
 // CGVector - A structure that contains a two-dimensional vector.
 //
@@ -528,7 +528,7 @@ type CGSize struct {
 type CGVector struct {
 	Dx float64 // The x component of the vector.
 	Dy float64 // The y component of the vector.
-}/* debug [types.gen.go/struct]: CGVector */
+}
 
 // IUnknownVTbl
 //
@@ -538,7 +538,7 @@ type IUnknownVTbl struct {
 	AddRef unsafe.Pointer
 	QueryInterface unsafe.Pointer
 	Release unsafe.Pointer
-}/* debug [types.gen.go/struct]: IUnknownVTbl */
+}
 
 
 

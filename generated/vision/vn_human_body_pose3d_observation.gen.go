@@ -51,11 +51,11 @@ type IHumanBodyPose3DObservation interface {
 	
 
 	// methods:
-	GetCameraRelativePositionForJointNameError(modelPositionOut objectivec.IObject, jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) bool
-	ParentJointNameForJointName(jointName HumanBodyPose3DObservationJointName /* typedef */) HumanBodyPose3DObservationJointName /* typedef */
-	PointInImageForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IPoint
-	RecognizedPointForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IHumanBodyRecognizedPoint3D
-	RecognizedPointsForJointsGroupNameError(jointsGroupName HumanBodyPose3DObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary
+	GetCameraRelativePositionForJointNameError(modelPositionOut objectivec.IObject, jointName HumanBodyPose3DObservationJointName, error_ foundation.foundation.INSError) bool
+	ParentJointNameForJointName(jointName HumanBodyPose3DObservationJointName) HumanBodyPose3DObservationJointName
+	PointInImageForJointNameError(jointName HumanBodyPose3DObservationJointName, error_ foundation.foundation.INSError) IPoint
+	RecognizedPointForJointNameError(jointName HumanBodyPose3DObservationJointName, error_ foundation.foundation.INSError) IHumanBodyRecognizedPoint3D
+	RecognizedPointsForJointsGroupNameError(jointsGroupName HumanBodyPose3DObservationJointsGroupName, error_ foundation.foundation.INSError) foundation.IDictionary
 
 
 }
@@ -141,7 +141,7 @@ func HumanBodyPose3DObservationFrom(ptr unsafe.Pointer) HumanBodyPose3DObservati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/getCameraRelativePosition:forJointName:error:
-func (h_ HumanBodyPose3DObservation) GetCameraRelativePositionForJointNameError(modelPositionOut objectivec.IObject, jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) bool {
+func (h_ HumanBodyPose3DObservation) GetCameraRelativePositionForJointNameError(modelPositionOut objectivec.IObject, jointName HumanBodyPose3DObservationJointName, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("getCameraRelativePosition:forJointName:error:"), modelPositionOut, jointName, error_)
 	return rv
 }
@@ -151,8 +151,8 @@ func (h_ HumanBodyPose3DObservation) GetCameraRelativePositionForJointNameError(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/parentJointName(_:)
-func (h_ HumanBodyPose3DObservation) ParentJointNameForJointName(jointName HumanBodyPose3DObservationJointName /* typedef */) HumanBodyPose3DObservationJointName /* typedef */ {
-	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("parentJointNameForJointName:"), jointName)
+func (h_ HumanBodyPose3DObservation) ParentJointNameForJointName(jointName HumanBodyPose3DObservationJointName) HumanBodyPose3DObservationJointName {
+	rv := objc.Send[HumanBodyPose3DObservationJointName](h_.ID, objc.Sel("parentJointNameForJointName:"), jointName)
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (h_ HumanBodyPose3DObservation) ParentJointNameForJointName(jointName Human
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/pointInImage(_:)
-func (h_ HumanBodyPose3DObservation) PointInImageForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IPoint {
+func (h_ HumanBodyPose3DObservation) PointInImageForJointNameError(jointName HumanBodyPose3DObservationJointName, error_ foundation.foundation.INSError) IPoint {
 	rv := objc.Send[Point](h_.ID, objc.Sel("pointInImageForJointName:error:"), jointName, error_)
 	return rv
 }
@@ -171,7 +171,7 @@ func (h_ HumanBodyPose3DObservation) PointInImageForJointNameError(jointName Hum
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/recognizedPoint(_:)
-func (h_ HumanBodyPose3DObservation) RecognizedPointForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IHumanBodyRecognizedPoint3D {
+func (h_ HumanBodyPose3DObservation) RecognizedPointForJointNameError(jointName HumanBodyPose3DObservationJointName, error_ foundation.foundation.INSError) IHumanBodyRecognizedPoint3D {
 	rv := objc.Send[HumanBodyRecognizedPoint3D](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
 }
@@ -181,7 +181,7 @@ func (h_ HumanBodyPose3DObservation) RecognizedPointForJointNameError(jointName 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/recognizedPoints(_:)
-func (h_ HumanBodyPose3DObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName HumanBodyPose3DObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
+func (h_ HumanBodyPose3DObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName HumanBodyPose3DObservationJointsGroupName, error_ foundation.foundation.INSError) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](h_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
 }

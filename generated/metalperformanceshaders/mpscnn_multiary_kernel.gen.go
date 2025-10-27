@@ -81,7 +81,7 @@ type ICNNMultiaryKernel interface {
 	KernelWidth()
 	KernelWidthAtIndex(index uint) uint
 	Offset()
-	OffsetAtIndex(index uint) objc.IObject /* cross-framework: MPSOffset */
+	OffsetAtIndex(index uint) MPSOffset
 	ResultStateBatch()
 	ResultStateBatchForSourceImagesSourceStatesDestinationImage(sourceImages ImageBatch /* not a class type */, sourceStates StateBatch /* not a class type */, destinationImage ImageBatch /* not a class type */) StateBatch /* not a class type */
 	ResultState()
@@ -114,7 +114,7 @@ type ICNNMultiaryKernel interface {
 	SetEdgeModeAtIndex(edgeMode ImageEdgeMode, index uint)
 	SetKernelHeightAtIndex(height uint, index uint)
 	SetKernelWidthAtIndex(width uint, index uint)
-	SetOffsetAtIndex(offset objc.IObject /* cross-framework: MPSOffset */, index uint)
+	SetOffsetAtIndex(offset Offset, index uint)
 	SetSourceFeatureChannelMaxCountAtIndex(count uint, index uint)
 	SetSourceFeatureChannelOffsetAtIndex(offset uint, index uint)
 	SetStrideInPixelsXAtIndex(stride uint, index uint)
@@ -373,7 +373,7 @@ func (c_ CNNMultiaryKernel) Offset() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/3043432-offsetatindex
-func (c_ CNNMultiaryKernel) OffsetAtIndex(index uint) objc.IObject /* cross-framework: MPSOffset */ {
+func (c_ CNNMultiaryKernel) OffsetAtIndex(index uint) MPSOffset {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("offsetAtIndex:"), index)
 	return rv
 }
@@ -615,7 +615,7 @@ func (c_ CNNMultiaryKernel) SetKernelWidthAtIndex(width uint, index uint) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNMultiaryKernel/setOffset(_:at:)
-func (c_ CNNMultiaryKernel) SetOffsetAtIndex(offset objc.IObject /* cross-framework: MPSOffset */, index uint) {
+func (c_ CNNMultiaryKernel) SetOffsetAtIndex(offset Offset, index uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOffset:atIndex:"), offset, index)
 }
 

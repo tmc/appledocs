@@ -17,6 +17,6 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton
 type PAccessibilityButton interface {
 	// Required methods
-	AccessibilityLabel() foundation.String/* debug [protocol_interface/required_method]: AccessibilityLabel */
-	AccessibilityPerformPress() bool/* debug [protocol_interface/required_method]: AccessibilityPerformPress */
+	AccessibilityLabel() foundation.String
+	AccessibilityPerformPress() bool
 }

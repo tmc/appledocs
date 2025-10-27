@@ -4,8 +4,6 @@ package metal
 
 import (
 
-	"github.com/tmc/appledocs/generated/corefoundation"
-
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -24,6 +22,6 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTL4CounterHeap
 type PMTL4CounterHeap interface {
 	// Required methods
-	InvalidateCounterRange(range_ corefoundation.Range)/* debug [protocol_interface/required_method]: InvalidateCounterRange */
-	ResolveCounterRange(range_ corefoundation.Range) foundation.Data/* debug [protocol_interface/required_method]: ResolveCounterRange */
+	InvalidateCounterRange(range_ foundation.Range)
+	ResolveCounterRange(range_ foundation.Range) foundation.Data
 }

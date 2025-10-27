@@ -2,7 +2,7 @@
 
 package metal
 
-/* debug [functions.gen.go]: Generating 8 functions for Metal */
+
 import (
 	"unsafe"
 
@@ -64,7 +64,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCopyAllDevices()
 func MTLCopyAllDevices() []unsafe.Pointer {
 	return _MTLCopyAllDevices()
-}/* debug [functions.gen.go/function]: MTLCopyAllDevices */
+}
 
 // Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.
 //
@@ -75,7 +75,7 @@ func MTLCopyAllDevices() []unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCopyAllDevicesWithObserver
 func MTLCopyAllDevicesWithObserver(observer unsafe.Pointer, handler DeviceNotificationHandler) []unsafe.Pointer {
 	return _MTLCopyAllDevicesWithObserver(observer, handler)
-}/* debug [functions.gen.go/function]: MTLCopyAllDevicesWithObserver */
+}
 
 // Returns the device instance Metal selects as the default.
 //
@@ -86,7 +86,7 @@ func MTLCopyAllDevicesWithObserver(observer unsafe.Pointer, handler DeviceNotifi
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCreateSystemDefaultDevice()
 func MTLCreateSystemDefaultDevice() unsafe.Pointer {
 	return _MTLCreateSystemDefaultDevice()
-}/* debug [functions.gen.go/function]: MTLCreateSystemDefaultDevice */
+}
 
 // Adds data to a compression context.
 //
@@ -97,7 +97,7 @@ func MTLCreateSystemDefaultDevice() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)
 func MTLIOCompressionContextAppendData(context IOCompressionContext, data unsafe.Pointer, size uintptr) {
 	_MTLIOCompressionContextAppendData(context, data, size)
-}/* debug [functions.gen.go/function]: MTLIOCompressionContextAppendData */
+}
 
 // Returns a compression chunk size you can use as a default for creating a compression context.
 //
@@ -108,7 +108,7 @@ func MTLIOCompressionContextAppendData(context IOCompressionContext, data unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()
 func MTLIOCompressionContextDefaultChunkSize() uintptr {
 	return _MTLIOCompressionContextDefaultChunkSize()
-}/* debug [functions.gen.go/function]: MTLIOCompressionContextDefaultChunkSize */
+}
 
 // Creates a compression context that you use to compress data into a single file.
 //
@@ -119,7 +119,7 @@ func MTLIOCompressionContextDefaultChunkSize() uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCreateCompressionContext
 func MTLIOCreateCompressionContext(path unsafe.Pointer, type_ IOCompressionMethod, chunkSize uintptr) IOCompressionContext {
 	return _MTLIOCreateCompressionContext(path, type_, chunkSize)
-}/* debug [functions.gen.go/function]: MTLIOCreateCompressionContext */
+}
 
 // Finishes compressing and saves the file that a compression context represents.
 //
@@ -130,7 +130,7 @@ func MTLIOCreateCompressionContext(path unsafe.Pointer, type_ IOCompressionMetho
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)
 func MTLIOFlushAndDestroyCompressionContext(context IOCompressionContext) IOCompressionStatus {
 	return _MTLIOFlushAndDestroyCompressionContext(context)
-}/* debug [functions.gen.go/function]: MTLIOFlushAndDestroyCompressionContext */
+}
 
 // Removes a registered observer of device notifications.
 //
@@ -141,7 +141,7 @@ func MTLIOFlushAndDestroyCompressionContext(context IOCompressionContext) IOComp
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRemoveDeviceObserver(_:)
 func MTLRemoveDeviceObserver(observer unsafe.Pointer) {
 	_MTLRemoveDeviceObserver(observer)
-}/* debug [functions.gen.go/function]: MTLRemoveDeviceObserver */
+}
 
 
 

@@ -21,12 +21,12 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLCommandQueue
 type PCommandQueue interface {
 	// Required methods
-	AddResidencySet(residencySet unsafe.Pointer)/* debug [protocol_interface/required_method]: AddResidencySet */
-	AddResidencySetsCount(residencySets []objc.ID, count uint)/* debug [protocol_interface/required_method]: AddResidencySetsCount */
-	InsertDebugCaptureBoundary()/* debug [protocol_interface/required_method]: InsertDebugCaptureBoundary */
-	CommandBuffer() unsafe.Pointer/* debug [protocol_interface/required_method]: CommandBuffer */
-	CommandBufferWithDescriptor(descriptor IMTLCommandBufferDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: CommandBufferWithDescriptor */
-	CommandBufferWithUnretainedReferences() unsafe.Pointer/* debug [protocol_interface/required_method]: CommandBufferWithUnretainedReferences */
-	RemoveResidencySet(residencySet unsafe.Pointer)/* debug [protocol_interface/required_method]: RemoveResidencySet */
-	RemoveResidencySetsCount(residencySets []objc.ID, count uint)/* debug [protocol_interface/required_method]: RemoveResidencySetsCount */
+	AddResidencySet(residencySet unsafe.Pointer)
+	AddResidencySetsCount(residencySets []objc.ID, count uint)
+	InsertDebugCaptureBoundary()
+	CommandBuffer() unsafe.Pointer
+	CommandBufferWithDescriptor(descriptor IMTLCommandBufferDescriptor) unsafe.Pointer
+	CommandBufferWithUnretainedReferences() unsafe.Pointer
+	RemoveResidencySet(residencySet unsafe.Pointer)
+	RemoveResidencySetsCount(residencySets []objc.ID, count uint)
 }

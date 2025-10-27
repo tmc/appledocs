@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -52,8 +51,8 @@ type IContoursObservation interface {
 	
 
 	// methods:
-	ContourAtIndexPathError(indexPath foundation.IndexPath, error_ objectivec.IObject) IContour
-	ContourAtIndexError(contourIndex int, error_ objectivec.IObject) IContour
+	ContourAtIndexPathError(indexPath foundation.foundation.INSIndexPath, error_ foundation.foundation.INSError) IContour
+	ContourAtIndexError(contourIndex int, error_ foundation.foundation.INSError) IContour
 
 
 }
@@ -139,7 +138,7 @@ func ContoursObservationFrom(ptr unsafe.Pointer) ContoursObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNContoursObservation/contour(at:)-52odo
-func (c_ ContoursObservation) ContourAtIndexPathError(indexPath foundation.IndexPath, error_ objectivec.IObject) IContour {
+func (c_ ContoursObservation) ContourAtIndexPathError(indexPath foundation.foundation.INSIndexPath, error_ foundation.foundation.INSError) IContour {
 	rv := objc.Send[Contour](c_.ID, objc.Sel("contourAtIndexPath:error:"), indexPath, error_)
 	return rv
 }
@@ -149,7 +148,7 @@ func (c_ ContoursObservation) ContourAtIndexPathError(indexPath foundation.Index
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNContoursObservation/contour(at:)-9on0y
-func (c_ ContoursObservation) ContourAtIndexError(contourIndex int, error_ objectivec.IObject) IContour {
+func (c_ ContoursObservation) ContourAtIndexError(contourIndex int, error_ foundation.foundation.INSError) IContour {
 	rv := objc.Send[Contour](c_.ID, objc.Sel("contourAtIndex:error:"), contourIndex, error_)
 	return rv
 }

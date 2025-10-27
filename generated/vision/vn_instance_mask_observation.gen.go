@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -49,9 +48,9 @@ type IInstanceMaskObservation interface {
 	
 
 	// methods:
-	GenerateMaskForInstancesError(instances foundation.IndexSet, error_ objectivec.IObject) PixelBufferRef /* not a class type */
-	GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ objectivec.IObject) PixelBufferRef /* not a class type */
-	GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, error_ objectivec.IObject) PixelBufferRef /* not a class type */
+	GenerateMaskForInstancesError(instances foundation.IndexSet, error_ foundation.foundation.INSError) PixelBufferRef /* not a class type */
+	GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ foundation.foundation.INSError) PixelBufferRef /* not a class type */
+	GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, error_ foundation.foundation.INSError) PixelBufferRef /* not a class type */
 
 
 }
@@ -137,7 +136,7 @@ func InstanceMaskObservationFrom(ptr unsafe.Pointer) InstanceMaskObservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateMask(forInstances:)
-func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances foundation.IndexSet, error_ objectivec.IObject) PixelBufferRef /* not a class type */ {
+func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances foundation.IndexSet, error_ foundation.foundation.INSError) PixelBufferRef /* not a class type */ {
 	rv := objc.Send[PixelBufferRef](i_.ID, objc.Sel("generateMaskForInstances:error:"), instances, error_)
 	return rv
 }
@@ -147,7 +146,7 @@ func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateMaskedImage(ofInstances:from:croppedToInstancesExtent:)
-func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ objectivec.IObject) PixelBufferRef /* not a class type */ {
+func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ foundation.foundation.INSError) PixelBufferRef /* not a class type */ {
 	rv := objc.Send[PixelBufferRef](i_.ID, objc.Sel("generateMaskedImageOfInstances:fromRequestHandler:croppedToInstancesExtent:error:"), instances, requestHandler, cropResult, error_)
 	return rv
 }
@@ -157,7 +156,7 @@ func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateScaledMaskForImage(forInstances:from:)
-func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, error_ objectivec.IObject) PixelBufferRef /* not a class type */ {
+func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IndexSet, requestHandler IVNImageRequestHandler, error_ foundation.foundation.INSError) PixelBufferRef /* not a class type */ {
 	rv := objc.Send[PixelBufferRef](i_.ID, objc.Sel("generateScaledMaskForImageForInstances:fromRequestHandler:error:"), instances, requestHandler, error_)
 	return rv
 }

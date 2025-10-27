@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [Condition] class.
 var (
 	ConditionClass     _ConditionClass
@@ -27,29 +31,28 @@ type _ConditionClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Condition] class.
 type ICondition interface {
 	objectivec.IObject
+	
+
 	// properties:
+
+
+	
+
 	// methods:
+
+
 }
 
-// The abstract base class that all other conditions derive from.
 
-// The abstract base class that all other conditions derive from.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCondition-c.class
-type Condition struct {
-	objectivec.Object
-}
 
-// ConditionFrom constructs a [Condition] from an unsafe.Pointer.
-//
-// The abstract base class that all other conditions derive from.
-func ConditionFrom(ptr unsafe.Pointer) Condition {
-	return Condition{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (cc _ConditionClass) Alloc() Condition {
@@ -58,7 +61,6 @@ func (cc _ConditionClass) Alloc() Condition {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ConditionClass) New() Condition {
 	rv := objc.Send[Condition](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,3 +83,56 @@ func (c_ Condition) Autorelease() Condition {
 func NewCondition() Condition {
 	return getConditionClass().New()
 }
+
+
+
+
+
+// The abstract base class that all other conditions derive from.
+
+
+// The abstract base class that all other conditions derive from.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCondition-c.class
+type Condition struct {
+	objectivec.Object
+}
+
+// ConditionFrom constructs a [Condition] from an unsafe.Pointer.
+//
+// The abstract base class that all other conditions derive from.
+func ConditionFrom(ptr unsafe.Pointer) Condition {
+	return Condition{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

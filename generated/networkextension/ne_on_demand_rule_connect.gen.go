@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NEOnDemandRuleConnect */
 
 
-/* debug [class_header]: Header for NEOnDemandRuleConnect */
+
+
 // The class instance for the [NEOnDemandRuleConnect] class.
 var (
 	NEOnDemandRuleConnectClass     _NEOnDemandRuleConnectClass
@@ -29,30 +29,30 @@ func getNEOnDemandRuleConnectClass() _NEOnDemandRuleConnectClass {
 type _NEOnDemandRuleConnectClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEOnDemandRuleConnect */
+
+
 // An interface definition for the [NEOnDemandRuleConnect] class.
 type INEOnDemandRuleConnect interface {
 	INEOnDemandRule
 	
-/* debug [class_interface_properties]: Properties for NEOnDemandRuleConnect */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEOnDemandRuleConnect */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEOnDemandRuleConnect */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEOnDemandRuleConnectClass) Alloc() NEOnDemandRuleConnect {
 	rv := objc.Send[NEOnDemandRuleConnect](objc.ID(nc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (n_ NEOnDemandRuleConnect) Autorelease() NEOnDemandRuleConnect {
 func NewNEOnDemandRuleConnect() NEOnDemandRuleConnect {
 	return getNEOnDemandRuleConnectClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEOnDemandRuleConnect */
+
+
 // A VPN On Demand rule that connects the VPN.
 //
 // When rules of this class match, the system starts the VPN connection whenever an application running on the system opens a network connection.
@@ -108,34 +108,34 @@ func NEOnDemandRuleConnectFrom(ptr unsafe.Pointer) NEOnDemandRuleConnect {
 		NEOnDemandRule: NEOnDemandRuleFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEOnDemandRuleConnect *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEOnDemandRuleConnect */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEOnDemandRuleConnect */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEOnDemandRuleConnect */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEOnDemandRuleConnect */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NEOnDemandRuleConnect */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

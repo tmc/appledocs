@@ -9,13 +9,12 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/security"
 )
 
-/* debug [class.gen.go]: Generating class SFKeychainSettingsPanel */
 
 
-/* debug [class_header]: Header for SFKeychainSettingsPanel */
+
+
 // The class instance for the [SFKeychainSettingsPanel] class.
 var (
 	SFKeychainSettingsPanelClass     _SFKeychainSettingsPanelClass
@@ -32,32 +31,32 @@ func getSFKeychainSettingsPanelClass() _SFKeychainSettingsPanelClass {
 type _SFKeychainSettingsPanelClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for SFKeychainSettingsPanel */
+
+
 // An interface definition for the [SFKeychainSettingsPanel] class.
 type ISFKeychainSettingsPanel interface {
 	appkit.IPanel
 	
-/* debug [class_interface_properties]: Properties for SFKeychainSettingsPanel */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for SFKeychainSettingsPanel */
+
 	// methods:
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow appkit.Window, delegate objc.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings security.SecKeychainSettings, keychain unsafe.Pointer)
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow appkit.Window, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings security.SecKeychainSettings, keychain unsafe.Pointer)
 	RunModalForSettingsKeychain(settings security.SecKeychainSettings, keychain unsafe.Pointer) int
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for SFKeychainSettingsPanel */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SFKeychainSettingsPanelClass) Alloc() SFKeychainSettingsPanel {
 	rv := objc.Send[SFKeychainSettingsPanel](objc.ID(sc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (s_ SFKeychainSettingsPanel) Autorelease() SFKeychainSettingsPanel {
 func NewSFKeychainSettingsPanel() SFKeychainSettingsPanel {
 	return getSFKeychainSettingsPanelClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for SFKeychainSettingsPanel */
+
+
 // A panel or sheet that allows users to change their keychain settings.
 //
 // Keychain settings include: Lock after a set period of inactivity Lock on sleep Synchronize using .Mac The following figure shows an example of a keychain settings panel. For more information, see .
@@ -113,15 +112,15 @@ func SFKeychainSettingsPanelFrom(ptr unsafe.Pointer) SFKeychainSettingsPanel {
 		Panel: appkit.PanelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for SFKeychainSettingsPanel *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for SFKeychainSettingsPanel */
+
+
+
 
 // Returns a shared keychain settings panel object.
 //
@@ -130,26 +129,26 @@ func SFKeychainSettingsPanelFrom(ptr unsafe.Pointer) SFKeychainSettingsPanel {
 func (sc _SFKeychainSettingsPanelClass) SharedKeychainSettingsPanel() SFKeychainSettingsPanel {
 	rv := objc.Send[SFKeychainSettingsPanel](objc.ID(sc.class), objc.Sel("sharedKeychainSettingsPanel"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedKeychainSettingsPanel) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for SFKeychainSettingsPanel */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for SFKeychainSettingsPanel */
+
+
+
+
+
 
 // Displays a sheet that allows users to change keychain settings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSettingsPanel/beginSheet(for:modalDelegate:didEnd:contextInfo:settings:keychain:)
-func (s_ SFKeychainSettingsPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow appkit.Window, delegate objc.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings security.SecKeychainSettings, keychain unsafe.Pointer) {
+func (s_ SFKeychainSettingsPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow appkit.Window, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings security.SecKeychainSettings, keychain unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:settings:keychain:"), docWindow, delegate, didEndSelector, contextInfo, settings, keychain)
-}/* debug [instance_methods/method]: BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain */
+}
 
 
 // Displays a panel that allows users to change keychain settings.
@@ -159,17 +158,17 @@ func (s_ SFKeychainSettingsPanel) BeginSheetForWindowModalDelegateDidEndSelector
 func (s_ SFKeychainSettingsPanel) RunModalForSettingsKeychain(settings security.SecKeychainSettings, keychain unsafe.Pointer) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("runModalForSettings:keychain:"), settings, keychain)
 	return rv
-}/* debug [instance_methods/method]: RunModalForSettingsKeychain */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for SFKeychainSettingsPanel */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class SFKeychainSettingsPanel */
+
+
+
+
+
 
 
 

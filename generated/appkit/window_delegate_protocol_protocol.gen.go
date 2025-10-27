@@ -6,9 +6,11 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PWindowDelegate is the NSWindowDelegate protocol interface.
@@ -21,47 +23,47 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSWindowDelegate
 type PWindowDelegate interface {
 	// Optional methods
-	WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool
+	WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation corefoundation.CGPoint, pasteboard IPasteboard) bool
 	HasWindowShouldDragDocumentWithEventFromWithPasteboard() bool
 	WindowShouldPopUpDocumentPathMenu(window IWindow, menu IMenu) bool
 	HasWindowShouldPopUpDocumentPathMenu() bool
-	WindowWillUseFullScreenContentSize(window IWindow, proposedSize Size /* not a class type */) Size
+	WindowWillUseFullScreenContentSize(window IWindow, proposedSize corefoundation.CGSize) corefoundation.CGSize
 	HasWindowWillUseFullScreenContentSize() bool
 	WindowWillUseFullScreenPresentationOptions(window IWindow, proposedOptions ApplicationPresentationOptions) ApplicationPresentationOptions
 	HasWindowWillUseFullScreenPresentationOptions() bool
-	WindowDidBecomeKey(notification foundation.Notification)
+	WindowDidBecomeKey(notification foundation.foundation.INSNotification)
 	HasWindowDidBecomeKey() bool
-	WindowDidBecomeMain(notification foundation.Notification)
+	WindowDidBecomeMain(notification foundation.foundation.INSNotification)
 	HasWindowDidBecomeMain() bool
-	WindowDidEndLiveResize(notification foundation.Notification)
+	WindowDidEndLiveResize(notification foundation.foundation.INSNotification)
 	HasWindowDidEndLiveResize() bool
-	WindowDidEnterFullScreen(notification foundation.Notification)
+	WindowDidEnterFullScreen(notification foundation.foundation.INSNotification)
 	HasWindowDidEnterFullScreen() bool
-	WindowDidExitFullScreen(notification foundation.Notification)
+	WindowDidExitFullScreen(notification foundation.foundation.INSNotification)
 	HasWindowDidExitFullScreen() bool
-	WindowDidResignKey(notification foundation.Notification)
+	WindowDidResignKey(notification foundation.foundation.INSNotification)
 	HasWindowDidResignKey() bool
-	WindowDidResignMain(notification foundation.Notification)
+	WindowDidResignMain(notification foundation.foundation.INSNotification)
 	HasWindowDidResignMain() bool
-	WindowDidResize(notification foundation.Notification)
+	WindowDidResize(notification foundation.foundation.INSNotification)
 	HasWindowDidResize() bool
 	WindowShouldClose(sender IWindow) bool
 	HasWindowShouldClose() bool
-	WindowShouldZoomToFrame(window IWindow, newFrame Rect /* not a class type */) bool
+	WindowShouldZoomToFrame(window IWindow, newFrame corefoundation.CGRect) bool
 	HasWindowShouldZoomToFrame() bool
-	WindowWillClose(notification foundation.Notification)
+	WindowWillClose(notification foundation.foundation.INSNotification)
 	HasWindowWillClose() bool
-	WindowWillEnterFullScreen(notification foundation.Notification)
+	WindowWillEnterFullScreen(notification foundation.foundation.INSNotification)
 	HasWindowWillEnterFullScreen() bool
-	WindowWillExitFullScreen(notification foundation.Notification)
+	WindowWillExitFullScreen(notification foundation.foundation.INSNotification)
 	HasWindowWillExitFullScreen() bool
-	WindowWillResizeToSize(sender IWindow, frameSize Size /* not a class type */) Size
+	WindowWillResizeToSize(sender IWindow, frameSize corefoundation.CGSize) corefoundation.CGSize
 	HasWindowWillResizeToSize() bool
-	WindowWillReturnFieldEditorToObject(sender IWindow, client objc.IObject) objc.ID
+	WindowWillReturnFieldEditorToObject(sender IWindow, client objectivec.IObject) objc.ID
 	HasWindowWillReturnFieldEditorToObject() bool
-	WindowWillStartLiveResize(notification foundation.Notification)
+	WindowWillStartLiveResize(notification foundation.foundation.INSNotification)
 	HasWindowWillStartLiveResize() bool
-	WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame Rect /* not a class type */) Rect
+	WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame corefoundation.CGRect) corefoundation.CGRect
 	HasWindowWillUseStandardFrameDefaultFrame() bool
 }
 
@@ -69,33 +71,33 @@ type PWindowDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WindowDelegate struct {
-	_WindowShouldDragDocumentWithEventFromWithPasteboard func(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool
+	_WindowShouldDragDocumentWithEventFromWithPasteboard func(window IWindow, event IEvent, dragImageLocation corefoundation.CGPoint, pasteboard IPasteboard) bool
 	_WindowShouldPopUpDocumentPathMenu func(window IWindow, menu IMenu) bool
-	_WindowWillUseFullScreenContentSize func(window IWindow, proposedSize Size /* not a class type */) Size
+	_WindowWillUseFullScreenContentSize func(window IWindow, proposedSize corefoundation.CGSize) corefoundation.CGSize
 	_WindowWillUseFullScreenPresentationOptions func(window IWindow, proposedOptions ApplicationPresentationOptions) ApplicationPresentationOptions
-	_WindowDidBecomeKey func(notification foundation.Notification)
-	_WindowDidBecomeMain func(notification foundation.Notification)
-	_WindowDidEndLiveResize func(notification foundation.Notification)
-	_WindowDidEnterFullScreen func(notification foundation.Notification)
-	_WindowDidExitFullScreen func(notification foundation.Notification)
-	_WindowDidResignKey func(notification foundation.Notification)
-	_WindowDidResignMain func(notification foundation.Notification)
-	_WindowDidResize func(notification foundation.Notification)
+	_WindowDidBecomeKey func(notification foundation.foundation.INSNotification)
+	_WindowDidBecomeMain func(notification foundation.foundation.INSNotification)
+	_WindowDidEndLiveResize func(notification foundation.foundation.INSNotification)
+	_WindowDidEnterFullScreen func(notification foundation.foundation.INSNotification)
+	_WindowDidExitFullScreen func(notification foundation.foundation.INSNotification)
+	_WindowDidResignKey func(notification foundation.foundation.INSNotification)
+	_WindowDidResignMain func(notification foundation.foundation.INSNotification)
+	_WindowDidResize func(notification foundation.foundation.INSNotification)
 	_WindowShouldClose func(sender IWindow) bool
-	_WindowShouldZoomToFrame func(window IWindow, newFrame Rect /* not a class type */) bool
-	_WindowWillClose func(notification foundation.Notification)
-	_WindowWillEnterFullScreen func(notification foundation.Notification)
-	_WindowWillExitFullScreen func(notification foundation.Notification)
-	_WindowWillResizeToSize func(sender IWindow, frameSize Size /* not a class type */) Size
-	_WindowWillReturnFieldEditorToObject func(sender IWindow, client objc.IObject) objc.ID
-	_WindowWillStartLiveResize func(notification foundation.Notification)
-	_WindowWillUseStandardFrameDefaultFrame func(window IWindow, newFrame Rect /* not a class type */) Rect
+	_WindowShouldZoomToFrame func(window IWindow, newFrame corefoundation.CGRect) bool
+	_WindowWillClose func(notification foundation.foundation.INSNotification)
+	_WindowWillEnterFullScreen func(notification foundation.foundation.INSNotification)
+	_WindowWillExitFullScreen func(notification foundation.foundation.INSNotification)
+	_WindowWillResizeToSize func(sender IWindow, frameSize corefoundation.CGSize) corefoundation.CGSize
+	_WindowWillReturnFieldEditorToObject func(sender IWindow, client objectivec.IObject) objc.ID
+	_WindowWillStartLiveResize func(notification foundation.foundation.INSNotification)
+	_WindowWillUseStandardFrameDefaultFrame func(window IWindow, newFrame corefoundation.CGRect) corefoundation.CGRect
 }
 
 // SetWindowShouldDragDocumentWithEventFromWithPasteboard sets the handler for the WindowShouldDragDocumentWithEventFromWithPasteboard delegate method.
 //
 // Asks the delegate whether a user can drag the document icon from the window’s title bar.
-func (d *WindowDelegate) SetWindowShouldDragDocumentWithEventFromWithPasteboard(f func(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool) {
+func (d *WindowDelegate) SetWindowShouldDragDocumentWithEventFromWithPasteboard(f func(window IWindow, event IEvent, dragImageLocation corefoundation.CGPoint, pasteboard IPasteboard) bool) {
 	d._WindowShouldDragDocumentWithEventFromWithPasteboard = f
 }
 
@@ -109,7 +111,7 @@ func (d *WindowDelegate) SetWindowShouldPopUpDocumentPathMenu(f func(window IWin
 // SetWindowWillUseFullScreenContentSize sets the handler for the WindowWillUseFullScreenContentSize delegate method.
 //
 // Called to allow the delegate to modify the full-screen content size.
-func (d *WindowDelegate) SetWindowWillUseFullScreenContentSize(f func(window IWindow, proposedSize Size /* not a class type */) Size) {
+func (d *WindowDelegate) SetWindowWillUseFullScreenContentSize(f func(window IWindow, proposedSize corefoundation.CGSize) corefoundation.CGSize) {
 	d._WindowWillUseFullScreenContentSize = f
 }
 
@@ -123,56 +125,56 @@ func (d *WindowDelegate) SetWindowWillUseFullScreenPresentationOptions(f func(wi
 // SetWindowDidBecomeKey sets the handler for the WindowDidBecomeKey delegate method.
 //
 // Tells the delegate that the window has become the key window.
-func (d *WindowDelegate) SetWindowDidBecomeKey(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidBecomeKey(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidBecomeKey = f
 }
 
 // SetWindowDidBecomeMain sets the handler for the WindowDidBecomeMain delegate method.
 //
 // Tells the delegate that the window has become main.
-func (d *WindowDelegate) SetWindowDidBecomeMain(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidBecomeMain(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidBecomeMain = f
 }
 
 // SetWindowDidEndLiveResize sets the handler for the WindowDidEndLiveResize delegate method.
 //
 // Tells the delegate that a live resize operation on the window has ended.
-func (d *WindowDelegate) SetWindowDidEndLiveResize(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidEndLiveResize(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidEndLiveResize = f
 }
 
 // SetWindowDidEnterFullScreen sets the handler for the WindowDidEnterFullScreen delegate method.
 //
 // The window has entered full-screen mode.
-func (d *WindowDelegate) SetWindowDidEnterFullScreen(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidEnterFullScreen(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidEnterFullScreen = f
 }
 
 // SetWindowDidExitFullScreen sets the handler for the WindowDidExitFullScreen delegate method.
 //
 // The window has left full-screen mode.
-func (d *WindowDelegate) SetWindowDidExitFullScreen(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidExitFullScreen(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidExitFullScreen = f
 }
 
 // SetWindowDidResignKey sets the handler for the WindowDidResignKey delegate method.
 //
 // Tells the delegate that the window has resigned key window status.
-func (d *WindowDelegate) SetWindowDidResignKey(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidResignKey(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidResignKey = f
 }
 
 // SetWindowDidResignMain sets the handler for the WindowDidResignMain delegate method.
 //
 // Tells the delegate that the window has resigned main window status.
-func (d *WindowDelegate) SetWindowDidResignMain(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidResignMain(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidResignMain = f
 }
 
 // SetWindowDidResize sets the handler for the WindowDidResize delegate method.
 //
 // Tells the delegate that the window has been resized.
-func (d *WindowDelegate) SetWindowDidResize(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowDidResize(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowDidResize = f
 }
 
@@ -186,61 +188,61 @@ func (d *WindowDelegate) SetWindowShouldClose(f func(sender IWindow) bool) {
 // SetWindowShouldZoomToFrame sets the handler for the WindowShouldZoomToFrame delegate method.
 //
 // Asks the delegate whether the specified window should zoom to the specified frame.
-func (d *WindowDelegate) SetWindowShouldZoomToFrame(f func(window IWindow, newFrame Rect /* not a class type */) bool) {
+func (d *WindowDelegate) SetWindowShouldZoomToFrame(f func(window IWindow, newFrame corefoundation.CGRect) bool) {
 	d._WindowShouldZoomToFrame = f
 }
 
 // SetWindowWillClose sets the handler for the WindowWillClose delegate method.
 //
 // Tells the delegate that the window is about to close.
-func (d *WindowDelegate) SetWindowWillClose(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowWillClose(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowWillClose = f
 }
 
 // SetWindowWillEnterFullScreen sets the handler for the WindowWillEnterFullScreen delegate method.
 //
 // The window is about to enter full-screen mode.
-func (d *WindowDelegate) SetWindowWillEnterFullScreen(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowWillEnterFullScreen(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowWillEnterFullScreen = f
 }
 
 // SetWindowWillExitFullScreen sets the handler for the WindowWillExitFullScreen delegate method.
 //
 // The window is about to exit full-screen mode.
-func (d *WindowDelegate) SetWindowWillExitFullScreen(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowWillExitFullScreen(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowWillExitFullScreen = f
 }
 
 // SetWindowWillResizeToSize sets the handler for the WindowWillResizeToSize delegate method.
 //
 // Tells the delegate that the window is being resized (whether by the user or through one of the   methods other than  ).
-func (d *WindowDelegate) SetWindowWillResizeToSize(f func(sender IWindow, frameSize Size /* not a class type */) Size) {
+func (d *WindowDelegate) SetWindowWillResizeToSize(f func(sender IWindow, frameSize corefoundation.CGSize) corefoundation.CGSize) {
 	d._WindowWillResizeToSize = f
 }
 
 // SetWindowWillReturnFieldEditorToObject sets the handler for the WindowWillReturnFieldEditorToObject delegate method.
 //
 // Tells the delegate that the field editor for a text-displaying object has been requested.
-func (d *WindowDelegate) SetWindowWillReturnFieldEditorToObject(f func(sender IWindow, client objc.IObject) objc.ID) {
+func (d *WindowDelegate) SetWindowWillReturnFieldEditorToObject(f func(sender IWindow, client objectivec.IObject) objc.ID) {
 	d._WindowWillReturnFieldEditorToObject = f
 }
 
 // SetWindowWillStartLiveResize sets the handler for the WindowWillStartLiveResize delegate method.
 //
 // Tells the delegate that the window is about to be live resized.
-func (d *WindowDelegate) SetWindowWillStartLiveResize(f func(notification foundation.Notification)) {
+func (d *WindowDelegate) SetWindowWillStartLiveResize(f func(notification foundation.foundation.INSNotification)) {
 	d._WindowWillStartLiveResize = f
 }
 
 // SetWindowWillUseStandardFrameDefaultFrame sets the handler for the WindowWillUseStandardFrameDefaultFrame delegate method.
 //
 // Called by  ’s   method while determining the frame a window may be zoomed to.
-func (d *WindowDelegate) SetWindowWillUseStandardFrameDefaultFrame(f func(window IWindow, newFrame Rect /* not a class type */) Rect) {
+func (d *WindowDelegate) SetWindowWillUseStandardFrameDefaultFrame(f func(window IWindow, newFrame corefoundation.CGRect) corefoundation.CGRect) {
 	d._WindowWillUseStandardFrameDefaultFrame = f
 }
 
 // WindowShouldDragDocumentWithEventFromWithPasteboard implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool {
+func (d *WindowDelegate) WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation corefoundation.CGPoint, pasteboard IPasteboard) bool {
 	if d._WindowShouldDragDocumentWithEventFromWithPasteboard != nil {
 		return d._WindowShouldDragDocumentWithEventFromWithPasteboard(window, event, dragImageLocation, pasteboard)
 	}
@@ -268,11 +270,11 @@ func (d *WindowDelegate) HasWindowShouldPopUpDocumentPathMenu() bool {
 }
 
 // WindowWillUseFullScreenContentSize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillUseFullScreenContentSize(window IWindow, proposedSize Size /* not a class type */) Size {
+func (d *WindowDelegate) WindowWillUseFullScreenContentSize(window IWindow, proposedSize corefoundation.CGSize) corefoundation.CGSize {
 	if d._WindowWillUseFullScreenContentSize != nil {
 		return d._WindowWillUseFullScreenContentSize(window, proposedSize)
 	}
-	var zero Size
+	var zero corefoundation.CGSize
 	return zero
 }
 
@@ -296,7 +298,7 @@ func (d *WindowDelegate) HasWindowWillUseFullScreenPresentationOptions() bool {
 }
 
 // WindowDidBecomeKey implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidBecomeKey(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidBecomeKey(notification foundation.foundation.INSNotification) {
 	if d._WindowDidBecomeKey != nil {
 		d._WindowDidBecomeKey(notification)
 	}
@@ -308,7 +310,7 @@ func (d *WindowDelegate) HasWindowDidBecomeKey() bool {
 }
 
 // WindowDidBecomeMain implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidBecomeMain(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidBecomeMain(notification foundation.foundation.INSNotification) {
 	if d._WindowDidBecomeMain != nil {
 		d._WindowDidBecomeMain(notification)
 	}
@@ -320,7 +322,7 @@ func (d *WindowDelegate) HasWindowDidBecomeMain() bool {
 }
 
 // WindowDidEndLiveResize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidEndLiveResize(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidEndLiveResize(notification foundation.foundation.INSNotification) {
 	if d._WindowDidEndLiveResize != nil {
 		d._WindowDidEndLiveResize(notification)
 	}
@@ -332,7 +334,7 @@ func (d *WindowDelegate) HasWindowDidEndLiveResize() bool {
 }
 
 // WindowDidEnterFullScreen implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidEnterFullScreen(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidEnterFullScreen(notification foundation.foundation.INSNotification) {
 	if d._WindowDidEnterFullScreen != nil {
 		d._WindowDidEnterFullScreen(notification)
 	}
@@ -344,7 +346,7 @@ func (d *WindowDelegate) HasWindowDidEnterFullScreen() bool {
 }
 
 // WindowDidExitFullScreen implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidExitFullScreen(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidExitFullScreen(notification foundation.foundation.INSNotification) {
 	if d._WindowDidExitFullScreen != nil {
 		d._WindowDidExitFullScreen(notification)
 	}
@@ -356,7 +358,7 @@ func (d *WindowDelegate) HasWindowDidExitFullScreen() bool {
 }
 
 // WindowDidResignKey implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidResignKey(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidResignKey(notification foundation.foundation.INSNotification) {
 	if d._WindowDidResignKey != nil {
 		d._WindowDidResignKey(notification)
 	}
@@ -368,7 +370,7 @@ func (d *WindowDelegate) HasWindowDidResignKey() bool {
 }
 
 // WindowDidResignMain implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidResignMain(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidResignMain(notification foundation.foundation.INSNotification) {
 	if d._WindowDidResignMain != nil {
 		d._WindowDidResignMain(notification)
 	}
@@ -380,7 +382,7 @@ func (d *WindowDelegate) HasWindowDidResignMain() bool {
 }
 
 // WindowDidResize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowDidResize(notification foundation.Notification) {
+func (d *WindowDelegate) WindowDidResize(notification foundation.foundation.INSNotification) {
 	if d._WindowDidResize != nil {
 		d._WindowDidResize(notification)
 	}
@@ -406,7 +408,7 @@ func (d *WindowDelegate) HasWindowShouldClose() bool {
 }
 
 // WindowShouldZoomToFrame implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowShouldZoomToFrame(window IWindow, newFrame Rect /* not a class type */) bool {
+func (d *WindowDelegate) WindowShouldZoomToFrame(window IWindow, newFrame corefoundation.CGRect) bool {
 	if d._WindowShouldZoomToFrame != nil {
 		return d._WindowShouldZoomToFrame(window, newFrame)
 	}
@@ -420,7 +422,7 @@ func (d *WindowDelegate) HasWindowShouldZoomToFrame() bool {
 }
 
 // WindowWillClose implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillClose(notification foundation.Notification) {
+func (d *WindowDelegate) WindowWillClose(notification foundation.foundation.INSNotification) {
 	if d._WindowWillClose != nil {
 		d._WindowWillClose(notification)
 	}
@@ -432,7 +434,7 @@ func (d *WindowDelegate) HasWindowWillClose() bool {
 }
 
 // WindowWillEnterFullScreen implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillEnterFullScreen(notification foundation.Notification) {
+func (d *WindowDelegate) WindowWillEnterFullScreen(notification foundation.foundation.INSNotification) {
 	if d._WindowWillEnterFullScreen != nil {
 		d._WindowWillEnterFullScreen(notification)
 	}
@@ -444,7 +446,7 @@ func (d *WindowDelegate) HasWindowWillEnterFullScreen() bool {
 }
 
 // WindowWillExitFullScreen implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillExitFullScreen(notification foundation.Notification) {
+func (d *WindowDelegate) WindowWillExitFullScreen(notification foundation.foundation.INSNotification) {
 	if d._WindowWillExitFullScreen != nil {
 		d._WindowWillExitFullScreen(notification)
 	}
@@ -456,11 +458,11 @@ func (d *WindowDelegate) HasWindowWillExitFullScreen() bool {
 }
 
 // WindowWillResizeToSize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillResizeToSize(sender IWindow, frameSize Size /* not a class type */) Size {
+func (d *WindowDelegate) WindowWillResizeToSize(sender IWindow, frameSize corefoundation.CGSize) corefoundation.CGSize {
 	if d._WindowWillResizeToSize != nil {
 		return d._WindowWillResizeToSize(sender, frameSize)
 	}
-	var zero Size
+	var zero corefoundation.CGSize
 	return zero
 }
 
@@ -470,7 +472,7 @@ func (d *WindowDelegate) HasWindowWillResizeToSize() bool {
 }
 
 // WindowWillReturnFieldEditorToObject implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillReturnFieldEditorToObject(sender IWindow, client objc.IObject) objc.ID {
+func (d *WindowDelegate) WindowWillReturnFieldEditorToObject(sender IWindow, client objectivec.IObject) objc.ID {
 	if d._WindowWillReturnFieldEditorToObject != nil {
 		return d._WindowWillReturnFieldEditorToObject(sender, client)
 	}
@@ -484,7 +486,7 @@ func (d *WindowDelegate) HasWindowWillReturnFieldEditorToObject() bool {
 }
 
 // WindowWillStartLiveResize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillStartLiveResize(notification foundation.Notification) {
+func (d *WindowDelegate) WindowWillStartLiveResize(notification foundation.foundation.INSNotification) {
 	if d._WindowWillStartLiveResize != nil {
 		d._WindowWillStartLiveResize(notification)
 	}
@@ -496,15 +498,262 @@ func (d *WindowDelegate) HasWindowWillStartLiveResize() bool {
 }
 
 // WindowWillUseStandardFrameDefaultFrame implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame Rect /* not a class type */) Rect {
+func (d *WindowDelegate) WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame corefoundation.CGRect) corefoundation.CGRect {
 	if d._WindowWillUseStandardFrameDefaultFrame != nil {
 		return d._WindowWillUseStandardFrameDefaultFrame(window, newFrame)
 	}
-	var zero Rect
+	var zero corefoundation.CGRect
 	return zero
 }
 
 // HasWindowWillUseStandardFrameDefaultFrame returns true if a handler for WindowWillUseStandardFrameDefaultFrame has been set.
 func (d *WindowDelegate) HasWindowWillUseStandardFrameDefaultFrame() bool {
 	return d._WindowWillUseStandardFrameDefaultFrame != nil
+}
+
+// WindowDelegateObject wraps an existing Objective-C object that conforms to the PWindowDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type WindowDelegateObject struct {
+	objectivec.Object
+}
+
+// NewWindowDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSWindowDelegate protocol.
+func NewWindowDelegateObject(obj objectivec.Object) *WindowDelegateObject {
+	return &WindowDelegateObject{obj}
+}
+
+// Make sure WindowDelegateObject implements PWindowDelegate.
+var _ PWindowDelegate = (*WindowDelegateObject)(nil)
+
+// WindowShouldDragDocumentWithEventFromWithPasteboard implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation corefoundation.CGPoint, pasteboard IPasteboard) bool {
+	return objc.Send[bool](o.ID, objc.Sel("window:shouldDragDocumentWithEvent:from:withPasteboard:"), window, event, dragImageLocation, pasteboard)
+}
+
+// HasWindowShouldDragDocumentWithEventFromWithPasteboard returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowShouldDragDocumentWithEventFromWithPasteboard() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowShouldPopUpDocumentPathMenu implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowShouldPopUpDocumentPathMenu(window IWindow, menu IMenu) bool {
+	return objc.Send[bool](o.ID, objc.Sel("window:shouldPopUpDocumentPathMenu:"), window, menu)
+}
+
+// HasWindowShouldPopUpDocumentPathMenu returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowShouldPopUpDocumentPathMenu() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillUseFullScreenContentSize implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillUseFullScreenContentSize(window IWindow, proposedSize corefoundation.CGSize) corefoundation.CGSize {
+	return objc.Send[corefoundation.CGSize](o.ID, objc.Sel("window:willUseFullScreenContentSize:"), window, proposedSize)
+}
+
+// HasWindowWillUseFullScreenContentSize returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillUseFullScreenContentSize() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillUseFullScreenPresentationOptions implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillUseFullScreenPresentationOptions(window IWindow, proposedOptions ApplicationPresentationOptions) ApplicationPresentationOptions {
+	return objc.Send[ApplicationPresentationOptions](o.ID, objc.Sel("window:willUseFullScreenPresentationOptions:"), window, proposedOptions)
+}
+
+// HasWindowWillUseFullScreenPresentationOptions returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillUseFullScreenPresentationOptions() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidBecomeKey implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidBecomeKey(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidBecomeKey:"), notification)
+}
+
+// HasWindowDidBecomeKey returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidBecomeKey() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidBecomeMain implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidBecomeMain(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidBecomeMain:"), notification)
+}
+
+// HasWindowDidBecomeMain returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidBecomeMain() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidEndLiveResize implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidEndLiveResize(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidEndLiveResize:"), notification)
+}
+
+// HasWindowDidEndLiveResize returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidEndLiveResize() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidEnterFullScreen implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidEnterFullScreen(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidEnterFullScreen:"), notification)
+}
+
+// HasWindowDidEnterFullScreen returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidEnterFullScreen() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidExitFullScreen implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidExitFullScreen(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidExitFullScreen:"), notification)
+}
+
+// HasWindowDidExitFullScreen returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidExitFullScreen() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidResignKey implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidResignKey(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidResignKey:"), notification)
+}
+
+// HasWindowDidResignKey returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidResignKey() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidResignMain implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidResignMain(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidResignMain:"), notification)
+}
+
+// HasWindowDidResignMain returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidResignMain() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowDidResize implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowDidResize(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowDidResize:"), notification)
+}
+
+// HasWindowDidResize returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowDidResize() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowShouldClose implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowShouldClose(sender IWindow) bool {
+	return objc.Send[bool](o.ID, objc.Sel("windowShouldClose:"), sender)
+}
+
+// HasWindowShouldClose returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowShouldClose() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowShouldZoomToFrame implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowShouldZoomToFrame(window IWindow, newFrame corefoundation.CGRect) bool {
+	return objc.Send[bool](o.ID, objc.Sel("windowShouldZoom:toFrame:"), window, newFrame)
+}
+
+// HasWindowShouldZoomToFrame returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowShouldZoomToFrame() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillClose implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillClose(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowWillClose:"), notification)
+}
+
+// HasWindowWillClose returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillClose() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillEnterFullScreen implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillEnterFullScreen(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowWillEnterFullScreen:"), notification)
+}
+
+// HasWindowWillEnterFullScreen returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillEnterFullScreen() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillExitFullScreen implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillExitFullScreen(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowWillExitFullScreen:"), notification)
+}
+
+// HasWindowWillExitFullScreen returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillExitFullScreen() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillResizeToSize implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillResizeToSize(sender IWindow, frameSize corefoundation.CGSize) corefoundation.CGSize {
+	return objc.Send[corefoundation.CGSize](o.ID, objc.Sel("windowWillResize:toSize:"), sender, frameSize)
+}
+
+// HasWindowWillResizeToSize returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillResizeToSize() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillReturnFieldEditorToObject implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillReturnFieldEditorToObject(sender IWindow, client objectivec.IObject) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("windowWillReturnFieldEditor:toObject:"), sender, client)
+}
+
+// HasWindowWillReturnFieldEditorToObject returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillReturnFieldEditorToObject() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillStartLiveResize implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillStartLiveResize(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("windowWillStartLiveResize:"), notification)
+}
+
+// HasWindowWillStartLiveResize returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillStartLiveResize() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// WindowWillUseStandardFrameDefaultFrame implements the PWindowDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *WindowDelegateObject) WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame corefoundation.CGRect) corefoundation.CGRect {
+	return objc.Send[corefoundation.CGRect](o.ID, objc.Sel("windowWillUseStandardFrame:defaultFrame:"), window, newFrame)
+}
+
+// HasWindowWillUseStandardFrameDefaultFrame returns true; this is a placeholder for optional method checks.
+func (o *WindowDelegateObject) HasWindowWillUseStandardFrameDefaultFrame() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

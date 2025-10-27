@@ -125,7 +125,7 @@ func CNNLossDataDescriptorFrom(ptr unsafe.Pointer) CNNLossDataDescriptor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlossdatadescriptor/2951840-cnnlossdatadescriptorwithdata
-func (cc _CNNLossDataDescriptorClass) CnnLossDataDescriptorWithDataLayoutSize(data foundation.Data, layout DataLayout, size objc.IObject /* cross-framework: MTLSize */) ICNNLossDataDescriptor {
+func (cc _CNNLossDataDescriptorClass) CnnLossDataDescriptorWithDataLayoutSize(data foundation.Data, layout DataLayout, size metal.IMTLSize) ICNNLossDataDescriptor {
 	rv := objc.Send[CNNLossDataDescriptor](objc.ID(cc.class), objc.Sel("cnnLossDataDescriptorWithData:layout:size:"), data, layout, size)
 	return rv
 }

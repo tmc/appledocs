@@ -16,5 +16,5 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSFileSystemBase
 type PFSFileSystemBase interface {
 	// Required methods
-	WipeResourceCompletionHandler(resource IFSBlockDeviceResource, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WipeResourceCompletionHandler */
+	WipeResourceCompletionHandler(resource IFSBlockDeviceResource, completion unsafe.Pointer)
 }

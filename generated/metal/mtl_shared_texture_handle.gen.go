@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLSharedTextureHandle */
 
 
-/* debug [class_header]: Header for MTLSharedTextureHandle */
+
+
 // The class instance for the [SharedTextureHandle] class.
 var (
 	SharedTextureHandleClass     _SharedTextureHandleClass
@@ -31,32 +30,32 @@ func getSharedTextureHandleClass() _SharedTextureHandleClass {
 type _SharedTextureHandleClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for SharedTextureHandle */
+
+
 // An interface definition for the [SharedTextureHandle] class.
 type ISharedTextureHandle interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for SharedTextureHandle */
+
 	// properties:
 	Device() unsafe.Pointer
-	Label() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+	Label() foundation.foundation.INSString
+
 
 	
-/* debug [class_interface_methods]: Methods for SharedTextureHandle */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for SharedTextureHandle */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SharedTextureHandleClass) Alloc() SharedTextureHandle {
 	rv := objc.Send[SharedTextureHandle](objc.ID(sc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (s_ SharedTextureHandle) Autorelease() SharedTextureHandle {
 func NewSharedTextureHandle() SharedTextureHandle {
 	return getSharedTextureHandleClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for SharedTextureHandle */
+
+
 // A texture handle that can be shared across process address space boundaries.
 //
 // objects may be passed between processes using XPC connections and then used to create a reference to the texture in another process. The texture in the other process must be created using the same on which the shared texture was originally created. To identify which device it was created on, you can use the property of the object.
@@ -110,30 +109,30 @@ type SharedTextureHandle struct {
 func SharedTextureHandleFrom(ptr unsafe.Pointer) SharedTextureHandle {
 	return SharedTextureHandle{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for SharedTextureHandle *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for SharedTextureHandle */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for SharedTextureHandle */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for SharedTextureHandle */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for SharedTextureHandle */
+
+
+
+
+
+
+
+
+
 
 // The device object that created the texture.
 //
@@ -142,22 +141,22 @@ func SharedTextureHandleFrom(ptr unsafe.Pointer) SharedTextureHandle {
 func (s_ SharedTextureHandle) Device() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("device"))
 	return rv
-}/* debug [instance_properties/getter]: device */
+}
 
 
 // A string that identifies the texture.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSharedTextureHandle/label
-func (s_ SharedTextureHandle) Label() objc.IObject /* cross-framework: NSString */ {
+func (s_ SharedTextureHandle) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("label"))
 	return rv
-}/* debug [instance_properties/getter]: label */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLSharedTextureHandle */
+
+
+
 
 
 

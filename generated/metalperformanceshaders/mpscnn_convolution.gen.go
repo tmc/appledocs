@@ -155,7 +155,7 @@ func CNNConvolutionFrom(ptr unsafe.Pointer) CNNConvolution {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolution/init(coder:device:)
-func NewCNNConvolutionWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNConvolution {
+func NewCNNConvolutionWithCoderDevice(aDecoder foundation.foundation.INSCoder, device unsafe.Pointer) CNNConvolution {
 	instance := getCNNConvolutionClass().Alloc()
 	rv := objc.Send[CNNConvolution](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

@@ -20,8 +20,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedData/timestamp
-func (c_ CaptureSynchronizedData) Timestamp() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("timestamp"))
+func (c_ CaptureSynchronizedData) Timestamp() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("timestamp"))
 	return rv
 }
 

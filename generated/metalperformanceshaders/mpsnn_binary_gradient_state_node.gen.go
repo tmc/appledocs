@@ -40,8 +40,8 @@ type IBinaryGradientStateNode interface {
 	
 
 	// properties:
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	PaddingPolicy() Padding /* not a class type */
 	SetPaddingPolicy(value Padding /* not a class type */)
 	ResultImage() IMPSNNImageNode
@@ -143,7 +143,7 @@ func BinaryGradientStateNodeFrom(ptr unsafe.Pointer) BinaryGradientStateNode {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (b_ BinaryGradientStateNode) Label() objc.IObject /* cross-framework: NSString */ {
+func (b_ BinaryGradientStateNode) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("label"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (b_ BinaryGradientStateNode) Label() objc.IObject /* cross-framework: NSStr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (b_ BinaryGradientStateNode) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (b_ BinaryGradientStateNode) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLabel:"), value)
 }
 

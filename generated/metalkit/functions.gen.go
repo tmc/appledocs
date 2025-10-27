@@ -2,7 +2,7 @@
 
 package metalkit
 
-/* debug [functions.gen.go]: Generating 6 functions for MetalKit */
+
 import (
 	"unsafe"
 
@@ -60,7 +60,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)
 func MTKMetalVertexDescriptorFromModelIO(modelIODescriptor unsafe.Pointer) unsafe.Pointer {
 	return _MTKMetalVertexDescriptorFromModelIO(modelIODescriptor)
-}/* debug [functions.gen.go/function]: MTKMetalVertexDescriptorFromModelIO */
+}
 
 // Returns a partially converted Metal vertex descriptor, reporting any error that occurs.
 //
@@ -71,7 +71,7 @@ func MTKMetalVertexDescriptorFromModelIO(modelIODescriptor unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIOWithError
 func MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor, error_)
-}/* debug [functions.gen.go/function]: MTKMetalVertexDescriptorFromModelIOWithError */
+}
 
 // Returns a converted Metal vertex format.
 //
@@ -82,7 +82,7 @@ func MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)
 func MTKMetalVertexFormatFromModelIO(vertexFormat unsafe.Pointer) VertexFormat {
 	return _MTKMetalVertexFormatFromModelIO(vertexFormat)
-}/* debug [functions.gen.go/function]: MTKMetalVertexFormatFromModelIO */
+}
 
 // Returns a partially converted Model I/O vertex descriptor.
 //
@@ -93,7 +93,7 @@ func MTKMetalVertexFormatFromModelIO(vertexFormat unsafe.Pointer) VertexFormat {
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)
 func MTKModelIOVertexDescriptorFromMetal(metalDescriptor unsafe.Pointer) unsafe.Pointer {
 	return _MTKModelIOVertexDescriptorFromMetal(metalDescriptor)
-}/* debug [functions.gen.go/function]: MTKModelIOVertexDescriptorFromMetal */
+}
 
 // Returns a partially converted Model I/O vertex descriptor, reporting any error that occurs.
 //
@@ -104,7 +104,7 @@ func MTKModelIOVertexDescriptorFromMetal(metalDescriptor unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetalWithError
 func MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor, error_)
-}/* debug [functions.gen.go/function]: MTKModelIOVertexDescriptorFromMetalWithError */
+}
 
 // Returns a converted Model I/O vertex format.
 //
@@ -115,7 +115,7 @@ func MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)
 func MTKModelIOVertexFormatFromMetal(vertexFormat VertexFormat) unsafe.Pointer {
 	return _MTKModelIOVertexFormatFromMetal(vertexFormat)
-}/* debug [functions.gen.go/function]: MTKModelIOVertexFormatFromMetal */
+}
 
 
 

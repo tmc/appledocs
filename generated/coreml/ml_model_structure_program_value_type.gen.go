@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLModelStructureProgramValueType */
 
 
-/* debug [class_header]: Header for MLModelStructureProgramValueType */
+
+
 // The class instance for the [ModelStructureProgramValueType] class.
 var (
 	ModelStructureProgramValueTypeClass     _ModelStructureProgramValueTypeClass
@@ -30,30 +30,30 @@ func getModelStructureProgramValueTypeClass() _ModelStructureProgramValueTypeCla
 type _ModelStructureProgramValueTypeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ModelStructureProgramValueType */
+
+
 // An interface definition for the [ModelStructureProgramValueType] class.
 type IModelStructureProgramValueType interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ModelStructureProgramValueType */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ModelStructureProgramValueType */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ModelStructureProgramValueType */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _ModelStructureProgramValueTypeClass) Alloc() ModelStructureProgramValueType {
 	rv := objc.Send[ModelStructureProgramValueType](objc.ID(mc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (m_ ModelStructureProgramValueType) Autorelease() ModelStructureProgramValu
 func NewModelStructureProgramValueType() ModelStructureProgramValueType {
 	return getModelStructureProgramValueTypeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ModelStructureProgramValueType */
+
+
 // A class representing the type of a value or a variable in the Program.
 
 
@@ -105,34 +105,34 @@ type ModelStructureProgramValueType struct {
 func ModelStructureProgramValueTypeFrom(ptr unsafe.Pointer) ModelStructureProgramValueType {
 	return ModelStructureProgramValueType{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ModelStructureProgramValueType *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ModelStructureProgramValueType */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ModelStructureProgramValueType */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ModelStructureProgramValueType */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ModelStructureProgramValueType */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MLModelStructureProgramValueType */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

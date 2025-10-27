@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PPasteboardReading is the NSPasteboardReading protocol interface.
@@ -17,5 +19,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading
 type PPasteboardReading interface {
 	// Required methods
-	InitWithPasteboardPropertyListOfType(propertyList objc.IObject, type_ PasteboardType /* typedef */) objc.ID/* debug [protocol_interface/required_method]: InitWithPasteboardPropertyListOfType */
+	InitWithPasteboardPropertyListOfType(propertyList objectivec.IObject, type_ PasteboardType) objc.ID
 }

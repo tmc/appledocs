@@ -131,7 +131,7 @@ func NewCNNDropoutGradientWithCoderDevice(aDecoder foundation.Coder, device unsa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradient/2942518-initwithdevice
-func NewCNNDropoutGradientWithDeviceKeepProbabilitySeedMaskStrideInPixels(device unsafe.Pointer, keepProbability float32, seed uint, maskStrideInPixels objc.IObject /* cross-framework: MTLSize */) CNNDropoutGradient {
+func NewCNNDropoutGradientWithDeviceKeepProbabilitySeedMaskStrideInPixels(device unsafe.Pointer, keepProbability float32, seed uint, maskStrideInPixels metal.IMTLSize) CNNDropoutGradient {
 	instance := getCNNDropoutGradientClass().Alloc()
 	rv := objc.Send[CNNDropoutGradient](instance.ID, objc.Sel("initWithDevice:keepProbability:seed:maskStrideInPixels:"), device, keepProbability, seed, maskStrideInPixels)
 	rv.Autorelease()

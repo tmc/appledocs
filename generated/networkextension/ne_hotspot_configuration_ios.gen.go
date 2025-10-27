@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -45,11 +44,11 @@ func (n_ NEHotspotConfiguration) SetJoinOnce(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/lifeTimeInDays
-func (n_ NEHotspotConfiguration) LifeTimeInDays() objc.IObject /* cross-framework: NSNumber */ {
+func (n_ NEHotspotConfiguration) LifeTimeInDays() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("lifeTimeInDays"))
 	return rv
 }
-func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value objc.IObject /* cross-framework: NSNumber */) {
+func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value foundation.foundation.INSNumber) {
 	n_.ID.Send(objc.RegisterName("setLifeTimeInDays:"), value)
 }
 
@@ -57,7 +56,7 @@ func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssid
-func (n_ NEHotspotConfiguration) SSID() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotConfiguration) SSID() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("SSID"))
 	return rv
 }
@@ -66,7 +65,7 @@ func (n_ NEHotspotConfiguration) SSID() objc.IObject /* cross-framework: NSStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssidPrefix
-func (n_ NEHotspotConfiguration) SSIDPrefix() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotConfiguration) SSIDPrefix() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("SSIDPrefix"))
 	return rv
 }

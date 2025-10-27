@@ -7,6 +7,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PAction is the CAAction protocol interface.
@@ -24,5 +26,5 @@ import (
 // See: doc://com.apple.quartzcore/documentation/QuartzCore/CAAction
 type PAction interface {
 	// Required methods
-	RunActionForKeyObjectArguments(event objc.IObject /* cross-framework: NSString */, anObject objc.IObject, dict objc.IObject /* cross-framework: NSDictionary */)/* debug [protocol_interface/required_method]: RunActionForKeyObjectArguments */
+	RunActionForKeyObjectArguments(event foundation.foundation.INSString, anObject objectivec.IObject, dict foundation.foundation.INSDictionary)
 }

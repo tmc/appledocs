@@ -20,5 +20,5 @@ import (
 type PNDArrayAllocator interface {
 	// Required methods
 	Array()
-	ArrayForCommandBufferArrayDescriptorKernel(cmdBuf unsafe.Pointer, descriptor INDArrayDescriptor, kernel IKernel) NDArray
+	ArrayForCommandBufferArrayDescriptorKernel(cmdBuf unsafe.Pointer, descriptor INDArrayDescriptor, kernel IKernel) INDArray
 }

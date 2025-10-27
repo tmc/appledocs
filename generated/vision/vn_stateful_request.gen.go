@@ -41,7 +41,7 @@ type IStatefulRequest interface {
 	
 
 	// properties:
-	FrameAnalysisSpacing() objc.IObject /* cross-framework: Time */
+	FrameAnalysisSpacing() objectivec.IObject
 	MinimumLatencyFrameCount() int
 
 
@@ -119,7 +119,7 @@ func StatefulRequestFrom(ptr unsafe.Pointer) StatefulRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNStatefulRequest/init(frameAnalysisSpacing:completionHandler:)
-func NewStatefulRequestWithFrameAnalysisSpacingCompletionHandler(frameAnalysisSpacing objc.IObject /* cross-framework: Time */, completionHandler RequestCompletionHandler /* not a class type */) StatefulRequest {
+func NewStatefulRequestWithFrameAnalysisSpacingCompletionHandler(frameAnalysisSpacing objectivec.IObject, completionHandler RequestCompletionHandler /* not a class type */) StatefulRequest {
 	instance := getStatefulRequestClass().Alloc()
 	rv := objc.Send[StatefulRequest](instance.ID, objc.Sel("initWithFrameAnalysisSpacing:completionHandler:"), frameAnalysisSpacing, completionHandler)
 	rv.Autorelease()
@@ -151,8 +151,8 @@ func NewStatefulRequestWithFrameAnalysisSpacingCompletionHandler(frameAnalysisSp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNStatefulRequest/frameAnalysisSpacing
-func (s_ StatefulRequest) FrameAnalysisSpacing() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("frameAnalysisSpacing"))
+func (s_ StatefulRequest) FrameAnalysisSpacing() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("frameAnalysisSpacing"))
 	return rv
 }
 

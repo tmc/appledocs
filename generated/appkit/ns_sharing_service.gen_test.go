@@ -13,7 +13,7 @@ var _ = appkit.NewSharingService
 // Returns a sharing service instance representing the specified service name.
 func ExampleNewSharingServiceNamed() {
 	_ = appkit.NewSharingServiceNamed(
-		appkit.SharingServiceName /* typedef */{}, // serviceName SharingServiceName /* typedef */
+		appkit.SharingServiceName{}, // serviceName SharingServiceName
 	)
 	// Output:
 }

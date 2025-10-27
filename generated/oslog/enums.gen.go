@@ -2,9 +2,9 @@
 
 package oslog
 
-/* debug [enums.gen.go]: Generating 6 enums for OSLog */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum OSLogEntryStoreCategory (9 cases) */
+
 // OSLogEntryStoreCategory - A classification of how the entry was to be stored and rotated at the point when it was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/StoreCategory-swift.enum
@@ -49,7 +49,7 @@ const (
 	OSLogEntryStoreCategoryUndefined OSLogEntryStoreCategory = 0
 )
 
-/* debug [enums.gen.go]: Processing enum OSLogEntryLogLevel (6 cases) */
+
 // OSLogEntryLogLevel - The log level at which the entry was generated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryLog/Level-swift.enum
@@ -82,7 +82,7 @@ const (
 	OSLogEntryLogLevelUndefined OSLogEntryLogLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum OSLogEntrySignpostType (4 cases) */
+
 // OSLogEntrySignpostType - The available signpost types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/SignpostType-swift.enum
@@ -107,7 +107,7 @@ const (
 	OSLogEntrySignpostTypeUndefined OSLogEntrySignpostType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum OSLogEnumeratorOptions (1 cases) */
+
 // OSLogEnumeratorOptions - Option to control the direction of the iteration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEnumerator/Options
@@ -120,7 +120,7 @@ const (
 	OSLogEnumeratorReverse OSLogEnumeratorOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum OSLogMessageComponentArgumentCategory (6 cases) */
+
 // OSLogMessageComponentArgumentCategory - The data type corresponding to the argument provided in a message payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/ArgumentCategory-swift.enum
@@ -153,7 +153,7 @@ const (
 	OSLogMessageComponentArgumentCategoryUndefined OSLogMessageComponentArgumentCategory = 0
 )
 
-/* debug [enums.gen.go]: Processing enum OSLogStoreScope (2 cases) */
+
 // OSLogStoreScope enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/Scope

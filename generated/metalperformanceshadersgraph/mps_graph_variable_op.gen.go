@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSGraphVariableOp */
 
 
-/* debug [class_header]: Header for MPSGraphVariableOp */
+
+
 // The class instance for the [GraphVariableOp] class.
 var (
 	GraphVariableOpClass     _GraphVariableOpClass
@@ -29,32 +29,32 @@ func getGraphVariableOpClass() _GraphVariableOpClass {
 type _GraphVariableOpClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GraphVariableOp */
+
+
 // An interface definition for the [GraphVariableOp] class.
 type IGraphVariableOp interface {
 	IGraphOperation
 	
-/* debug [class_interface_properties]: Properties for GraphVariableOp */
+
 	// properties:
-	DataType() objc.IObject /* cross-framework: DataType */
+	DataType() DataType /* not a class type */
 	Shape() Shape /* not a class type */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GraphVariableOp */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GraphVariableOp */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GraphVariableOpClass) Alloc() GraphVariableOp {
 	rv := objc.Send[GraphVariableOp](objc.ID(gc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (g_ GraphVariableOp) Autorelease() GraphVariableOp {
 func NewGraphVariableOp() GraphVariableOp {
 	return getGraphVariableOpClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GraphVariableOp */
+
+
 // The class that defines the parameters for a variable.
 
 
@@ -108,39 +108,39 @@ func GraphVariableOpFrom(ptr unsafe.Pointer) GraphVariableOp {
 		GraphOperation: GraphOperationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GraphVariableOp *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for GraphVariableOp */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for GraphVariableOp */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GraphVariableOp */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for GraphVariableOp */
+
+
+
+
+
+
+
+
+
 
 // The data type of the variable.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphVariableOp/dataType
-func (g_ GraphVariableOp) DataType() objc.IObject /* cross-framework: DataType */ {
-	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("dataType"))
+func (g_ GraphVariableOp) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
 	return rv
-}/* debug [instance_properties/getter]: dataType */
+}
 
 
 // The shape of the variable.
@@ -150,12 +150,12 @@ func (g_ GraphVariableOp) DataType() objc.IObject /* cross-framework: DataType *
 func (g_ GraphVariableOp) Shape() Shape /* not a class type */ {
 	rv := objc.Send[Shape](g_.ID, objc.Sel("shape"))
 	return rv
-}/* debug [instance_properties/getter]: shape */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSGraphVariableOp */
+
+
+
 
 
 

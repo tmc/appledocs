@@ -2,7 +2,7 @@
 
 package coreaudio
 
-/* debug [functions.gen.go]: Generating 57 functions for CoreAudio */
+
 import (
 	"unsafe"
 
@@ -160,7 +160,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioConvertHostTimeToNanos(_:)
 func AudioConvertHostTimeToNanos(inHostTime unsafe.Pointer) unsafe.Pointer {
 	return _AudioConvertHostTimeToNanos(inHostTime)
-}/* debug [functions.gen.go/function]: AudioConvertHostTimeToNanos */
+}
 
 // AudioConvertNanosToHostTime is a CoreAudio function.
 //
@@ -169,7 +169,7 @@ func AudioConvertHostTimeToNanos(inHostTime unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioConvertNanosToHostTime(_:)
 func AudioConvertNanosToHostTime(inNanos unsafe.Pointer) unsafe.Pointer {
 	return _AudioConvertNanosToHostTime(inNanos)
-}/* debug [functions.gen.go/function]: AudioConvertNanosToHostTime */
+}
 
 // AudioDeviceAddIOProc is a CoreAudio function.
 //
@@ -180,7 +180,7 @@ func AudioConvertNanosToHostTime(inNanos unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceAddIOProc
 func AudioDeviceAddIOProc(inDevice AudioDeviceID, inProc AudioDeviceIOProc, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceAddIOProc(inDevice, inProc, inClientData)
-}/* debug [functions.gen.go/function]: AudioDeviceAddIOProc */
+}
 
 // AudioDeviceAddPropertyListener is a CoreAudio function.
 //
@@ -191,7 +191,7 @@ func AudioDeviceAddIOProc(inDevice AudioDeviceID, inProc AudioDeviceIOProc, inCl
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceAddPropertyListener
 func AudioDeviceAddPropertyListener(inDevice AudioDeviceID, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, inProc AudioDevicePropertyListenerProc, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceAddPropertyListener(inDevice, inChannel, isInput, inPropertyID, inProc, inClientData)
-}/* debug [functions.gen.go/function]: AudioDeviceAddPropertyListener */
+}
 
 // AudioDeviceCreateIOProcID is a CoreAudio function.
 //
@@ -200,7 +200,7 @@ func AudioDeviceAddPropertyListener(inDevice AudioDeviceID, inChannel unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceCreateIOProcID(_:_:_:_:)
 func AudioDeviceCreateIOProcID(inDevice AudioObjectID, inProc AudioDeviceIOProc, inClientData unsafe.Pointer, outIOProcID unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceCreateIOProcID(inDevice, inProc, inClientData, outIOProcID)
-}/* debug [functions.gen.go/function]: AudioDeviceCreateIOProcID */
+}
 
 // AudioDeviceCreateIOProcIDWithBlock is a CoreAudio function.
 //
@@ -209,7 +209,7 @@ func AudioDeviceCreateIOProcID(inDevice AudioObjectID, inProc AudioDeviceIOProc,
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceCreateIOProcIDWithBlock(_:_:_:_:)
 func AudioDeviceCreateIOProcIDWithBlock(outIOProcID unsafe.Pointer, inDevice AudioObjectID, inDispatchQueue unsafe.Pointer, inIOBlock unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceCreateIOProcIDWithBlock(outIOProcID, inDevice, inDispatchQueue, inIOBlock)
-}/* debug [functions.gen.go/function]: AudioDeviceCreateIOProcIDWithBlock */
+}
 
 // AudioDeviceDestroyIOProcID is a CoreAudio function.
 //
@@ -218,7 +218,7 @@ func AudioDeviceCreateIOProcIDWithBlock(outIOProcID unsafe.Pointer, inDevice Aud
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceDestroyIOProcID(_:_:)
 func AudioDeviceDestroyIOProcID(inDevice AudioObjectID, inIOProcID AudioDeviceIOProcID) unsafe.Pointer {
 	return _AudioDeviceDestroyIOProcID(inDevice, inIOProcID)
-}/* debug [functions.gen.go/function]: AudioDeviceDestroyIOProcID */
+}
 
 // AudioDeviceGetCurrentTime is a CoreAudio function.
 //
@@ -227,7 +227,7 @@ func AudioDeviceDestroyIOProcID(inDevice AudioObjectID, inIOProcID AudioDeviceIO
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetCurrentTime(_:_:)
 func AudioDeviceGetCurrentTime(inDevice AudioObjectID, outTime unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetCurrentTime(inDevice, outTime)
-}/* debug [functions.gen.go/function]: AudioDeviceGetCurrentTime */
+}
 
 // AudioDeviceGetNearestStartTime is a CoreAudio function.
 //
@@ -236,7 +236,7 @@ func AudioDeviceGetCurrentTime(inDevice AudioObjectID, outTime unsafe.Pointer) u
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetNearestStartTime(_:_:_:)
 func AudioDeviceGetNearestStartTime(inDevice AudioObjectID, ioRequestedStartTime unsafe.Pointer, inFlags unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetNearestStartTime(inDevice, ioRequestedStartTime, inFlags)
-}/* debug [functions.gen.go/function]: AudioDeviceGetNearestStartTime */
+}
 
 // AudioDeviceGetProperty is a CoreAudio function.
 //
@@ -247,7 +247,7 @@ func AudioDeviceGetNearestStartTime(inDevice AudioObjectID, ioRequestedStartTime
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetProperty
 func AudioDeviceGetProperty(inDevice AudioDeviceID, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetProperty(inDevice, inChannel, isInput, inPropertyID, ioPropertyDataSize, outPropertyData)
-}/* debug [functions.gen.go/function]: AudioDeviceGetProperty */
+}
 
 // AudioDeviceGetPropertyInfo is a CoreAudio function.
 //
@@ -258,7 +258,7 @@ func AudioDeviceGetProperty(inDevice AudioDeviceID, inChannel unsafe.Pointer, is
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetPropertyInfo
 func AudioDeviceGetPropertyInfo(inDevice AudioDeviceID, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetPropertyInfo(inDevice, inChannel, isInput, inPropertyID, outSize, outWritable)
-}/* debug [functions.gen.go/function]: AudioDeviceGetPropertyInfo */
+}
 
 // AudioDeviceRead is a CoreAudio function.
 //
@@ -269,7 +269,7 @@ func AudioDeviceGetPropertyInfo(inDevice AudioDeviceID, inChannel unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceRead
 func AudioDeviceRead(inDevice AudioDeviceID, inStartTime unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceRead(inDevice, inStartTime, outData)
-}/* debug [functions.gen.go/function]: AudioDeviceRead */
+}
 
 // AudioDeviceRemoveIOProc is a CoreAudio function.
 //
@@ -280,7 +280,7 @@ func AudioDeviceRead(inDevice AudioDeviceID, inStartTime unsafe.Pointer, outData
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceRemoveIOProc
 func AudioDeviceRemoveIOProc(inDevice AudioDeviceID, inProc AudioDeviceIOProc) unsafe.Pointer {
 	return _AudioDeviceRemoveIOProc(inDevice, inProc)
-}/* debug [functions.gen.go/function]: AudioDeviceRemoveIOProc */
+}
 
 // AudioDeviceRemovePropertyListener is a CoreAudio function.
 //
@@ -291,7 +291,7 @@ func AudioDeviceRemoveIOProc(inDevice AudioDeviceID, inProc AudioDeviceIOProc) u
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceRemovePropertyListener
 func AudioDeviceRemovePropertyListener(inDevice AudioDeviceID, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, inProc AudioDevicePropertyListenerProc) unsafe.Pointer {
 	return _AudioDeviceRemovePropertyListener(inDevice, inChannel, isInput, inPropertyID, inProc)
-}/* debug [functions.gen.go/function]: AudioDeviceRemovePropertyListener */
+}
 
 // AudioDeviceSetProperty is a CoreAudio function.
 //
@@ -302,7 +302,7 @@ func AudioDeviceRemovePropertyListener(inDevice AudioDeviceID, inChannel unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceSetProperty
 func AudioDeviceSetProperty(inDevice AudioDeviceID, inWhen unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceSetProperty(inDevice, inWhen, inChannel, isInput, inPropertyID, inPropertyDataSize, inPropertyData)
-}/* debug [functions.gen.go/function]: AudioDeviceSetProperty */
+}
 
 // AudioDeviceStart is a CoreAudio function.
 //
@@ -311,7 +311,7 @@ func AudioDeviceSetProperty(inDevice AudioDeviceID, inWhen unsafe.Pointer, inCha
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceStart(_:_:)
 func AudioDeviceStart(inDevice AudioObjectID, inProcID AudioDeviceIOProcID) unsafe.Pointer {
 	return _AudioDeviceStart(inDevice, inProcID)
-}/* debug [functions.gen.go/function]: AudioDeviceStart */
+}
 
 // AudioDeviceStartAtTime is a CoreAudio function.
 //
@@ -320,7 +320,7 @@ func AudioDeviceStart(inDevice AudioObjectID, inProcID AudioDeviceIOProcID) unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceStartAtTime(_:_:_:_:)
 func AudioDeviceStartAtTime(inDevice AudioObjectID, inProcID AudioDeviceIOProcID, ioRequestedStartTime unsafe.Pointer, inFlags unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceStartAtTime(inDevice, inProcID, ioRequestedStartTime, inFlags)
-}/* debug [functions.gen.go/function]: AudioDeviceStartAtTime */
+}
 
 // AudioDeviceStop is a CoreAudio function.
 //
@@ -329,7 +329,7 @@ func AudioDeviceStartAtTime(inDevice AudioObjectID, inProcID AudioDeviceIOProcID
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceStop(_:_:)
 func AudioDeviceStop(inDevice AudioObjectID, inProcID AudioDeviceIOProcID) unsafe.Pointer {
 	return _AudioDeviceStop(inDevice, inProcID)
-}/* debug [functions.gen.go/function]: AudioDeviceStop */
+}
 
 // AudioDeviceTranslateTime is a CoreAudio function.
 //
@@ -338,7 +338,7 @@ func AudioDeviceStop(inDevice AudioObjectID, inProcID AudioDeviceIOProcID) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceTranslateTime(_:_:_:)
 func AudioDeviceTranslateTime(inDevice AudioObjectID, inTime unsafe.Pointer, outTime unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceTranslateTime(inDevice, inTime, outTime)
-}/* debug [functions.gen.go/function]: AudioDeviceTranslateTime */
+}
 
 // AudioDriverPlugInClose is a CoreAudio function.
 //
@@ -347,7 +347,7 @@ func AudioDeviceTranslateTime(inDevice AudioObjectID, inTime unsafe.Pointer, out
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInClose
 func AudioDriverPlugInClose(inDevice AudioDeviceID) unsafe.Pointer {
 	return _AudioDriverPlugInClose(inDevice)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInClose */
+}
 
 // AudioDriverPlugInDeviceGetProperty is a CoreAudio function.
 //
@@ -356,7 +356,7 @@ func AudioDriverPlugInClose(inDevice AudioDeviceID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInDeviceGetProperty
 func AudioDriverPlugInDeviceGetProperty(inDevice AudioDeviceID, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInDeviceGetProperty(inDevice, inChannel, isInput, inPropertyID, ioPropertyDataSize, outPropertyData)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInDeviceGetProperty */
+}
 
 // AudioDriverPlugInDeviceGetPropertyInfo is a CoreAudio function.
 //
@@ -365,7 +365,7 @@ func AudioDriverPlugInDeviceGetProperty(inDevice AudioDeviceID, inChannel unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInDeviceGetPropertyInfo
 func AudioDriverPlugInDeviceGetPropertyInfo(inDevice AudioDeviceID, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInDeviceGetPropertyInfo(inDevice, inChannel, isInput, inPropertyID, outSize, outWritable)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInDeviceGetPropertyInfo */
+}
 
 // AudioDriverPlugInDeviceSetProperty is a CoreAudio function.
 //
@@ -374,7 +374,7 @@ func AudioDriverPlugInDeviceGetPropertyInfo(inDevice AudioDeviceID, inChannel un
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInDeviceSetProperty
 func AudioDriverPlugInDeviceSetProperty(inDevice AudioDeviceID, inWhen unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID AudioDevicePropertyID, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInDeviceSetProperty(inDevice, inWhen, inChannel, isInput, inPropertyID, inPropertyDataSize, inPropertyData)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInDeviceSetProperty */
+}
 
 // AudioDriverPlugInOpen is a CoreAudio function.
 //
@@ -383,7 +383,7 @@ func AudioDriverPlugInDeviceSetProperty(inDevice AudioDeviceID, inWhen unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInOpen
 func AudioDriverPlugInOpen(inHostInfo unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInOpen(inHostInfo)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInOpen */
+}
 
 // AudioDriverPlugInStreamGetProperty is a CoreAudio function.
 //
@@ -392,7 +392,7 @@ func AudioDriverPlugInOpen(inHostInfo unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInStreamGetProperty
 func AudioDriverPlugInStreamGetProperty(inDevice AudioDeviceID, inIOAudioStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInStreamGetProperty(inDevice, inIOAudioStream, inChannel, inPropertyID, ioPropertyDataSize, outPropertyData)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInStreamGetProperty */
+}
 
 // AudioDriverPlugInStreamGetPropertyInfo is a CoreAudio function.
 //
@@ -401,7 +401,7 @@ func AudioDriverPlugInStreamGetProperty(inDevice AudioDeviceID, inIOAudioStream 
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInStreamGetPropertyInfo
 func AudioDriverPlugInStreamGetPropertyInfo(inDevice AudioDeviceID, inIOAudioStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInStreamGetPropertyInfo(inDevice, inIOAudioStream, inChannel, inPropertyID, outSize, outWritable)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInStreamGetPropertyInfo */
+}
 
 // AudioDriverPlugInStreamSetProperty is a CoreAudio function.
 //
@@ -410,7 +410,7 @@ func AudioDriverPlugInStreamGetPropertyInfo(inDevice AudioDeviceID, inIOAudioStr
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInStreamSetProperty
 func AudioDriverPlugInStreamSetProperty(inDevice AudioDeviceID, inIOAudioStream unsafe.Pointer, inWhen unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInStreamSetProperty(inDevice, inIOAudioStream, inWhen, inChannel, inPropertyID, inPropertyDataSize, inPropertyData)
-}/* debug [functions.gen.go/function]: AudioDriverPlugInStreamSetProperty */
+}
 
 // AudioGetCurrentHostTime is a CoreAudio function.
 //
@@ -419,7 +419,7 @@ func AudioDriverPlugInStreamSetProperty(inDevice AudioDeviceID, inIOAudioStream 
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioGetCurrentHostTime()
 func AudioGetCurrentHostTime() unsafe.Pointer {
 	return _AudioGetCurrentHostTime()
-}/* debug [functions.gen.go/function]: AudioGetCurrentHostTime */
+}
 
 // AudioGetHostClockFrequency is a CoreAudio function.
 //
@@ -428,7 +428,7 @@ func AudioGetCurrentHostTime() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioGetHostClockFrequency()
 func AudioGetHostClockFrequency() unsafe.Pointer {
 	return _AudioGetHostClockFrequency()
-}/* debug [functions.gen.go/function]: AudioGetHostClockFrequency */
+}
 
 // AudioGetHostClockMinimumTimeDelta is a CoreAudio function.
 //
@@ -437,7 +437,7 @@ func AudioGetHostClockFrequency() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioGetHostClockMinimumTimeDelta()
 func AudioGetHostClockMinimumTimeDelta() unsafe.Pointer {
 	return _AudioGetHostClockMinimumTimeDelta()
-}/* debug [functions.gen.go/function]: AudioGetHostClockMinimumTimeDelta */
+}
 
 // AudioHardwareAddPropertyListener is a CoreAudio function.
 //
@@ -448,7 +448,7 @@ func AudioGetHostClockMinimumTimeDelta() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareAddPropertyListener
 func AudioHardwareAddPropertyListener(inPropertyID AudioHardwarePropertyID, inProc AudioHardwarePropertyListenerProc, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareAddPropertyListener(inPropertyID, inProc, inClientData)
-}/* debug [functions.gen.go/function]: AudioHardwareAddPropertyListener */
+}
 
 // AudioHardwareAddRunLoopSource is a CoreAudio function.
 //
@@ -459,7 +459,7 @@ func AudioHardwareAddPropertyListener(inPropertyID AudioHardwarePropertyID, inPr
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareAddRunLoopSource
 func AudioHardwareAddRunLoopSource(inRunLoopSource RunLoopSourceRef) unsafe.Pointer {
 	return _AudioHardwareAddRunLoopSource(inRunLoopSource)
-}/* debug [functions.gen.go/function]: AudioHardwareAddRunLoopSource */
+}
 
 // AudioHardwareCreateAggregateDevice is a CoreAudio function.
 //
@@ -468,7 +468,7 @@ func AudioHardwareAddRunLoopSource(inRunLoopSource RunLoopSourceRef) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareCreateAggregateDevice(_:_:)
 func AudioHardwareCreateAggregateDevice(inDescription DictionaryRef, outDeviceID unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareCreateAggregateDevice(inDescription, outDeviceID)
-}/* debug [functions.gen.go/function]: AudioHardwareCreateAggregateDevice */
+}
 
 // AudioHardwareCreateProcessTap is a CoreAudio function.
 //
@@ -477,7 +477,7 @@ func AudioHardwareCreateAggregateDevice(inDescription DictionaryRef, outDeviceID
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareCreateProcessTap(_:_:)
 func AudioHardwareCreateProcessTap(inDescription unsafe.Pointer, outTapID unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareCreateProcessTap(inDescription, outTapID)
-}/* debug [functions.gen.go/function]: AudioHardwareCreateProcessTap */
+}
 
 // AudioHardwareDestroyAggregateDevice is a CoreAudio function.
 //
@@ -486,7 +486,7 @@ func AudioHardwareCreateProcessTap(inDescription unsafe.Pointer, outTapID unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareDestroyAggregateDevice(_:)
 func AudioHardwareDestroyAggregateDevice(inDeviceID AudioObjectID) unsafe.Pointer {
 	return _AudioHardwareDestroyAggregateDevice(inDeviceID)
-}/* debug [functions.gen.go/function]: AudioHardwareDestroyAggregateDevice */
+}
 
 // AudioHardwareDestroyProcessTap is a CoreAudio function.
 //
@@ -495,7 +495,7 @@ func AudioHardwareDestroyAggregateDevice(inDeviceID AudioObjectID) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareDestroyProcessTap(_:)
 func AudioHardwareDestroyProcessTap(inTapID AudioObjectID) unsafe.Pointer {
 	return _AudioHardwareDestroyProcessTap(inTapID)
-}/* debug [functions.gen.go/function]: AudioHardwareDestroyProcessTap */
+}
 
 // AudioHardwareGetProperty is a CoreAudio function.
 //
@@ -506,7 +506,7 @@ func AudioHardwareDestroyProcessTap(inTapID AudioObjectID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareGetProperty
 func AudioHardwareGetProperty(inPropertyID AudioHardwarePropertyID, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareGetProperty(inPropertyID, ioPropertyDataSize, outPropertyData)
-}/* debug [functions.gen.go/function]: AudioHardwareGetProperty */
+}
 
 // AudioHardwareGetPropertyInfo is a CoreAudio function.
 //
@@ -517,7 +517,7 @@ func AudioHardwareGetProperty(inPropertyID AudioHardwarePropertyID, ioPropertyDa
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareGetPropertyInfo
 func AudioHardwareGetPropertyInfo(inPropertyID AudioHardwarePropertyID, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareGetPropertyInfo(inPropertyID, outSize, outWritable)
-}/* debug [functions.gen.go/function]: AudioHardwareGetPropertyInfo */
+}
 
 // AudioHardwareRemovePropertyListener is a CoreAudio function.
 //
@@ -528,7 +528,7 @@ func AudioHardwareGetPropertyInfo(inPropertyID AudioHardwarePropertyID, outSize 
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareRemovePropertyListener
 func AudioHardwareRemovePropertyListener(inPropertyID AudioHardwarePropertyID, inProc AudioHardwarePropertyListenerProc) unsafe.Pointer {
 	return _AudioHardwareRemovePropertyListener(inPropertyID, inProc)
-}/* debug [functions.gen.go/function]: AudioHardwareRemovePropertyListener */
+}
 
 // AudioHardwareRemoveRunLoopSource is a CoreAudio function.
 //
@@ -539,7 +539,7 @@ func AudioHardwareRemovePropertyListener(inPropertyID AudioHardwarePropertyID, i
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareRemoveRunLoopSource
 func AudioHardwareRemoveRunLoopSource(inRunLoopSource RunLoopSourceRef) unsafe.Pointer {
 	return _AudioHardwareRemoveRunLoopSource(inRunLoopSource)
-}/* debug [functions.gen.go/function]: AudioHardwareRemoveRunLoopSource */
+}
 
 // AudioHardwareSetProperty is a CoreAudio function.
 //
@@ -550,7 +550,7 @@ func AudioHardwareRemoveRunLoopSource(inRunLoopSource RunLoopSourceRef) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareSetProperty
 func AudioHardwareSetProperty(inPropertyID AudioHardwarePropertyID, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareSetProperty(inPropertyID, inPropertyDataSize, inPropertyData)
-}/* debug [functions.gen.go/function]: AudioHardwareSetProperty */
+}
 
 // AudioHardwareUnload is a CoreAudio function.
 //
@@ -559,7 +559,7 @@ func AudioHardwareSetProperty(inPropertyID AudioHardwarePropertyID, inPropertyDa
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareUnload()
 func AudioHardwareUnload() unsafe.Pointer {
 	return _AudioHardwareUnload()
-}/* debug [functions.gen.go/function]: AudioHardwareUnload */
+}
 
 // AudioObjectAddPropertyListener is a CoreAudio function.
 //
@@ -568,7 +568,7 @@ func AudioHardwareUnload() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectAddPropertyListener(_:_:_:_:)
 func AudioObjectAddPropertyListener(inObjectID AudioObjectID, inAddress unsafe.Pointer, inListener AudioObjectPropertyListenerProc, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectAddPropertyListener(inObjectID, inAddress, inListener, inClientData)
-}/* debug [functions.gen.go/function]: AudioObjectAddPropertyListener */
+}
 
 // AudioObjectAddPropertyListenerBlock is a CoreAudio function.
 //
@@ -577,7 +577,7 @@ func AudioObjectAddPropertyListener(inObjectID AudioObjectID, inAddress unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectAddPropertyListenerBlock(_:_:_:_:)
 func AudioObjectAddPropertyListenerBlock(inObjectID AudioObjectID, inAddress unsafe.Pointer, inDispatchQueue unsafe.Pointer, inListener unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectAddPropertyListenerBlock(inObjectID, inAddress, inDispatchQueue, inListener)
-}/* debug [functions.gen.go/function]: AudioObjectAddPropertyListenerBlock */
+}
 
 // AudioObjectGetPropertyData is a CoreAudio function.
 //
@@ -586,7 +586,7 @@ func AudioObjectAddPropertyListenerBlock(inObjectID AudioObjectID, inAddress uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectGetPropertyData(_:_:_:_:_:_:)
 func AudioObjectGetPropertyData(inObjectID AudioObjectID, inAddress unsafe.Pointer, inQualifierDataSize unsafe.Pointer, inQualifierData unsafe.Pointer, ioDataSize unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectGetPropertyData(inObjectID, inAddress, inQualifierDataSize, inQualifierData, ioDataSize, outData)
-}/* debug [functions.gen.go/function]: AudioObjectGetPropertyData */
+}
 
 // AudioObjectGetPropertyDataSize is a CoreAudio function.
 //
@@ -595,7 +595,7 @@ func AudioObjectGetPropertyData(inObjectID AudioObjectID, inAddress unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectGetPropertyDataSize(_:_:_:_:_:)
 func AudioObjectGetPropertyDataSize(inObjectID AudioObjectID, inAddress unsafe.Pointer, inQualifierDataSize unsafe.Pointer, inQualifierData unsafe.Pointer, outDataSize unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectGetPropertyDataSize(inObjectID, inAddress, inQualifierDataSize, inQualifierData, outDataSize)
-}/* debug [functions.gen.go/function]: AudioObjectGetPropertyDataSize */
+}
 
 // AudioObjectHasProperty is a CoreAudio function.
 //
@@ -604,7 +604,7 @@ func AudioObjectGetPropertyDataSize(inObjectID AudioObjectID, inAddress unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectHasProperty(_:_:)
 func AudioObjectHasProperty(inObjectID AudioObjectID, inAddress unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectHasProperty(inObjectID, inAddress)
-}/* debug [functions.gen.go/function]: AudioObjectHasProperty */
+}
 
 // AudioObjectIsPropertySettable is a CoreAudio function.
 //
@@ -613,7 +613,7 @@ func AudioObjectHasProperty(inObjectID AudioObjectID, inAddress unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectIsPropertySettable(_:_:_:)
 func AudioObjectIsPropertySettable(inObjectID AudioObjectID, inAddress unsafe.Pointer, outIsSettable unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectIsPropertySettable(inObjectID, inAddress, outIsSettable)
-}/* debug [functions.gen.go/function]: AudioObjectIsPropertySettable */
+}
 
 // AudioObjectRemovePropertyListener is a CoreAudio function.
 //
@@ -622,7 +622,7 @@ func AudioObjectIsPropertySettable(inObjectID AudioObjectID, inAddress unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectRemovePropertyListener(_:_:_:_:)
 func AudioObjectRemovePropertyListener(inObjectID AudioObjectID, inAddress unsafe.Pointer, inListener AudioObjectPropertyListenerProc, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectRemovePropertyListener(inObjectID, inAddress, inListener, inClientData)
-}/* debug [functions.gen.go/function]: AudioObjectRemovePropertyListener */
+}
 
 // AudioObjectRemovePropertyListenerBlock is a CoreAudio function.
 //
@@ -631,7 +631,7 @@ func AudioObjectRemovePropertyListener(inObjectID AudioObjectID, inAddress unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectRemovePropertyListenerBlock(_:_:_:_:)
 func AudioObjectRemovePropertyListenerBlock(inObjectID AudioObjectID, inAddress unsafe.Pointer, inDispatchQueue unsafe.Pointer, inListener unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectRemovePropertyListenerBlock(inObjectID, inAddress, inDispatchQueue, inListener)
-}/* debug [functions.gen.go/function]: AudioObjectRemovePropertyListenerBlock */
+}
 
 // AudioObjectSetPropertyData is a CoreAudio function.
 //
@@ -640,7 +640,7 @@ func AudioObjectRemovePropertyListenerBlock(inObjectID AudioObjectID, inAddress 
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectSetPropertyData(_:_:_:_:_:_:)
 func AudioObjectSetPropertyData(inObjectID AudioObjectID, inAddress unsafe.Pointer, inQualifierDataSize unsafe.Pointer, inQualifierData unsafe.Pointer, inDataSize unsafe.Pointer, inData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectSetPropertyData(inObjectID, inAddress, inQualifierDataSize, inQualifierData, inDataSize, inData)
-}/* debug [functions.gen.go/function]: AudioObjectSetPropertyData */
+}
 
 // AudioObjectShow is a CoreAudio function.
 //
@@ -649,7 +649,7 @@ func AudioObjectSetPropertyData(inObjectID AudioObjectID, inAddress unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectShow(_:)
 func AudioObjectShow(inObjectID AudioObjectID) {
 	_AudioObjectShow(inObjectID)
-}/* debug [functions.gen.go/function]: AudioObjectShow */
+}
 
 // AudioStreamAddPropertyListener is a CoreAudio function.
 //
@@ -660,7 +660,7 @@ func AudioObjectShow(inObjectID AudioObjectID) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamAddPropertyListener
 func AudioStreamAddPropertyListener(inStream AudioStreamID, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, inProc AudioStreamPropertyListenerProc, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamAddPropertyListener(inStream, inChannel, inPropertyID, inProc, inClientData)
-}/* debug [functions.gen.go/function]: AudioStreamAddPropertyListener */
+}
 
 // AudioStreamGetProperty is a CoreAudio function.
 //
@@ -671,7 +671,7 @@ func AudioStreamAddPropertyListener(inStream AudioStreamID, inChannel unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamGetProperty
 func AudioStreamGetProperty(inStream AudioStreamID, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamGetProperty(inStream, inChannel, inPropertyID, ioPropertyDataSize, outPropertyData)
-}/* debug [functions.gen.go/function]: AudioStreamGetProperty */
+}
 
 // AudioStreamGetPropertyInfo is a CoreAudio function.
 //
@@ -682,7 +682,7 @@ func AudioStreamGetProperty(inStream AudioStreamID, inChannel unsafe.Pointer, in
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamGetPropertyInfo
 func AudioStreamGetPropertyInfo(inStream AudioStreamID, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamGetPropertyInfo(inStream, inChannel, inPropertyID, outSize, outWritable)
-}/* debug [functions.gen.go/function]: AudioStreamGetPropertyInfo */
+}
 
 // AudioStreamRemovePropertyListener is a CoreAudio function.
 //
@@ -693,7 +693,7 @@ func AudioStreamGetPropertyInfo(inStream AudioStreamID, inChannel unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamRemovePropertyListener
 func AudioStreamRemovePropertyListener(inStream AudioStreamID, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, inProc AudioStreamPropertyListenerProc) unsafe.Pointer {
 	return _AudioStreamRemovePropertyListener(inStream, inChannel, inPropertyID, inProc)
-}/* debug [functions.gen.go/function]: AudioStreamRemovePropertyListener */
+}
 
 // AudioStreamSetProperty is a CoreAudio function.
 //
@@ -704,7 +704,7 @@ func AudioStreamRemovePropertyListener(inStream AudioStreamID, inChannel unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamSetProperty
 func AudioStreamSetProperty(inStream AudioStreamID, inWhen unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID AudioDevicePropertyID, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamSetProperty(inStream, inWhen, inChannel, inPropertyID, inPropertyDataSize, inPropertyData)
-}/* debug [functions.gen.go/function]: AudioStreamSetProperty */
+}
 
 
 

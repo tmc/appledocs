@@ -5,7 +5,7 @@ package appkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PTextStorageObserving is the NSTextStorageObserving protocol interface.
@@ -18,6 +18,6 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving
 type PTextStorageObserving interface {
 	// Required methods
-	PerformEditingTransactionForTextStorageUsingBlock(textStorage ITextStorage, transaction unsafe.Pointer)/* debug [protocol_interface/required_method]: PerformEditingTransactionForTextStorageUsingBlock */
-	ProcessEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(textStorage ITextStorage, editMask TextStorageEditActions, newCharRange corefoundation.Range, delta int, invalidatedCharRange corefoundation.Range)/* debug [protocol_interface/required_method]: ProcessEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange */
+	PerformEditingTransactionForTextStorageUsingBlock(textStorage ITextStorage, transaction unsafe.Pointer)
+	ProcessEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(textStorage ITextStorage, editMask TextStorageEditActions, newCharRange foundation.Range, delta int, invalidatedCharRange foundation.Range)
 }

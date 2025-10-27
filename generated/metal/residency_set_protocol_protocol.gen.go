@@ -21,13 +21,13 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLResidencySet
 type PResidencySet interface {
 	// Required methods
-	AddAllocation(allocation unsafe.Pointer)/* debug [protocol_interface/required_method]: AddAllocation */
-	AddAllocationsCount(allocations []objc.ID, count uint)/* debug [protocol_interface/required_method]: AddAllocationsCount */
-	Commit()/* debug [protocol_interface/required_method]: Commit */
-	ContainsAllocation(anAllocation unsafe.Pointer) bool/* debug [protocol_interface/required_method]: ContainsAllocation */
-	EndResidency()/* debug [protocol_interface/required_method]: EndResidency */
-	RemoveAllAllocations()/* debug [protocol_interface/required_method]: RemoveAllAllocations */
-	RemoveAllocation(allocation unsafe.Pointer)/* debug [protocol_interface/required_method]: RemoveAllocation */
-	RemoveAllocationsCount(allocations []objc.ID, count uint)/* debug [protocol_interface/required_method]: RemoveAllocationsCount */
-	RequestResidency()/* debug [protocol_interface/required_method]: RequestResidency */
+	AddAllocation(allocation unsafe.Pointer)
+	AddAllocationsCount(allocations []objc.ID, count uint)
+	Commit()
+	ContainsAllocation(anAllocation unsafe.Pointer) bool
+	EndResidency()
+	RemoveAllAllocations()
+	RemoveAllocation(allocation unsafe.Pointer)
+	RemoveAllocationsCount(allocations []objc.ID, count uint)
+	RequestResidency()
 }

@@ -127,7 +127,7 @@ func CNNCrossChannelNormalizationFrom(ptr unsafe.Pointer) CNNCrossChannelNormali
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNCrossChannelNormalization/init(coder:device:)
-func NewCNNCrossChannelNormalizationWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNCrossChannelNormalization {
+func NewCNNCrossChannelNormalizationWithCoderDevice(aDecoder foundation.foundation.INSCoder, device unsafe.Pointer) CNNCrossChannelNormalization {
 	instance := getCNNCrossChannelNormalizationClass().Alloc()
 	rv := objc.Send[CNNCrossChannelNormalization](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

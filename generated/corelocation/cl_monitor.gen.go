@@ -6,10 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
+
+
+
+
 
 // The class instance for the [Monitor] class.
 var (
@@ -28,37 +31,34 @@ type _MonitorClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Monitor] class.
 type IMonitor interface {
 	objectivec.IObject
+	
+
 	// properties:
 	MonitoredIdentifiers() []string
-	Name() objc.IObject /* cross-framework: NSString */
+	Name() foundation.foundation.INSString
+
+
+	
+
 	// methods:
-	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */)
-	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */, state MonitoringState /* not a class type */)
-	MonitoringRecordForIdentifier(identifier objc.IObject /* cross-framework: NSString */) IMonitoringRecord
-	RemoveConditionFromMonitoringWithIdentifier(identifier objc.IObject /* cross-framework: NSString */)
+	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier foundation.foundation.INSString)
+	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier foundation.foundation.INSString, state MonitoringState)
+	MonitoringRecordForIdentifier(identifier foundation.foundation.INSString) IMonitoringRecord
+	RemoveConditionFromMonitoringWithIdentifier(identifier foundation.foundation.INSString)
+
+
 }
 
-// An object that monitors the conditions you add to it.
-//
-// Use to monitor for and observe events such as the entry to a specific geographic area or proximity to a beacon with characteristics that you specify. This service is unavailable in a compatible iPad or iPhone app running in visionOS.
 
-// An object that monitors the conditions you add to it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz
-type Monitor struct {
-	objectivec.Object
-}
 
-// MonitorFrom constructs a [Monitor] from an unsafe.Pointer.
-//
-// An object that monitors the conditions you add to it.
-func MonitorFrom(ptr unsafe.Pointer) Monitor {
-	return Monitor{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (mc _MonitorClass) Alloc() Monitor {
@@ -67,7 +67,6 @@ func (mc _MonitorClass) Alloc() Monitor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MonitorClass) New() Monitor {
 	rv := objc.Send[Monitor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,6 +90,39 @@ func NewMonitor() Monitor {
 	return getMonitorClass().New()
 }
 
+
+
+
+
+// An object that monitors the conditions you add to it.
+//
+// Use to monitor for and observe events such as the entry to a specific geographic area or proximity to a beacon with characteristics that you specify. This service is unavailable in a compatible iPad or iPhone app running in visionOS.
+
+
+// An object that monitors the conditions you add to it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz
+type Monitor struct {
+	objectivec.Object
+}
+
+// MonitorFrom constructs a [Monitor] from an unsafe.Pointer.
+//
+// An object that monitors the conditions you add to it.
+func MonitorFrom(ptr unsafe.Pointer) Monitor {
+	return Monitor{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
 // Creates a location monitor with the configuration and event handler you provide.
 //
 // [Full Topic]
@@ -99,38 +131,58 @@ func (mc _MonitorClass) RequestMonitorWithConfigurationCompletion(config ICLMoni
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("requestMonitorWithConfiguration:completion:"), config, completionHandler)
 }
 
+
+
+
+
+
+
+
+
+
+
+
 // Adds a condition to monitor with the identifier you provide.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:
-func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */) {
+func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier foundation.foundation.INSString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, identifier)
 }
+
 
 // Adds a condition to monitor with the state and identifier you provide.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:assumedState:
-func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */, state MonitoringState /* not a class type */) {
+func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier foundation.foundation.INSString, state MonitoringState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, identifier, state)
 }
+
 
 // Gets the monitoring record containing the condition and most recent monitoring event for the identifier you supply, if applicable.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoringRecordForIdentifier:
-func (m_ Monitor) MonitoringRecordForIdentifier(identifier objc.IObject /* cross-framework: NSString */) IMonitoringRecord {
+func (m_ Monitor) MonitoringRecordForIdentifier(identifier foundation.foundation.INSString) IMonitoringRecord {
 	rv := objc.Send[MonitoringRecord](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), identifier)
 	return rv
 }
+
 
 // Removes the monitoring record with the identifier from monitoring.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/removeConditionFromMonitoringWithIdentifier:
-func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) {
+func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier foundation.foundation.INSString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeConditionFromMonitoringWithIdentifier:"), identifier)
 }
+
+
+
+
+
+
 
 // An array that contains all the identifiers for each condition that the monitor is monitoring.
 //
@@ -141,11 +193,20 @@ func (m_ Monitor) MonitoredIdentifiers() []string {
 	return rv
 }
 
+
 // The name associated with the location monitor instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/name
-func (m_ Monitor) Name() objc.IObject /* cross-framework: NSString */ {
+func (m_ Monitor) Name() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
+
+
+
+
+
+
+
+

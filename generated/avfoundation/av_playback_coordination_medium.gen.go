@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPlaybackCoordinationMedium */
 
 
-/* debug [class_header]: Header for AVPlaybackCoordinationMedium */
+
+
 // The class instance for the [PlaybackCoordinationMedium] class.
 var (
 	PlaybackCoordinationMediumClass     _PlaybackCoordinationMediumClass
@@ -30,31 +30,31 @@ func getPlaybackCoordinationMediumClass() _PlaybackCoordinationMediumClass {
 type _PlaybackCoordinationMediumClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PlaybackCoordinationMedium */
+
+
 // An interface definition for the [PlaybackCoordinationMedium] class.
 type IPlaybackCoordinationMedium interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PlaybackCoordinationMedium */
+
 	// properties:
 	ConnectedPlaybackCoordinators() []PlayerPlaybackCoordinator
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PlaybackCoordinationMedium */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PlaybackCoordinationMedium */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlaybackCoordinationMediumClass) Alloc() PlaybackCoordinationMedium {
 	rv := objc.Send[PlaybackCoordinationMedium](objc.ID(pc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (p_ PlaybackCoordinationMedium) Autorelease() PlaybackCoordinationMedium {
 func NewPlaybackCoordinationMedium() PlaybackCoordinationMedium {
 	return getPlaybackCoordinationMediumClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PlaybackCoordinationMedium */
+
+
 
 
 // [Full Topic]
@@ -101,31 +101,31 @@ type PlaybackCoordinationMedium struct {
 func PlaybackCoordinationMediumFrom(ptr unsafe.Pointer) PlaybackCoordinationMedium {
 	return PlaybackCoordinationMedium{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PlaybackCoordinationMedium */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for PlaybackCoordinationMedium */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PlaybackCoordinationMedium */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PlaybackCoordinationMedium */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for PlaybackCoordinationMedium */
+
+
+
+
+
+
+
+
+
+
 
 // All playback coordinators that are connected to the coordination medium.
 //
@@ -134,11 +134,11 @@ func PlaybackCoordinationMediumFrom(ptr unsafe.Pointer) PlaybackCoordinationMedi
 func (p_ PlaybackCoordinationMedium) ConnectedPlaybackCoordinators() []PlayerPlaybackCoordinator {
 	rv := objc.Send[[]PlayerPlaybackCoordinator](p_.ID, objc.Sel("connectedPlaybackCoordinators"))
 	return rv
-}/* debug [instance_properties/getter]: connectedPlaybackCoordinators */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVPlaybackCoordinationMedium */
+
+
+
 
 

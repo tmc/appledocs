@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NEEthernetTunnelProvider */
 
 
-/* debug [class_header]: Header for NEEthernetTunnelProvider */
+
+
 // The class instance for the [NEEthernetTunnelProvider] class.
 var (
 	NEEthernetTunnelProviderClass     _NEEthernetTunnelProviderClass
@@ -29,30 +29,30 @@ func getNEEthernetTunnelProviderClass() _NEEthernetTunnelProviderClass {
 type _NEEthernetTunnelProviderClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEEthernetTunnelProvider */
+
+
 // An interface definition for the [NEEthernetTunnelProvider] class.
 type INEEthernetTunnelProvider interface {
 	INEPacketTunnelProvider
 	
-/* debug [class_interface_properties]: Properties for NEEthernetTunnelProvider */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEEthernetTunnelProvider */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEEthernetTunnelProvider */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEEthernetTunnelProviderClass) Alloc() NEEthernetTunnelProvider {
 	rv := objc.Send[NEEthernetTunnelProvider](objc.ID(nc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (n_ NEEthernetTunnelProvider) Autorelease() NEEthernetTunnelProvider {
 func NewNEEthernetTunnelProvider() NEEthernetTunnelProvider {
 	return getNEEthernetTunnelProviderClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEEthernetTunnelProvider */
+
+
 // A type that implements the client side of a custom link-layer packet tunneling protocol.
 
 
@@ -106,34 +106,34 @@ func NEEthernetTunnelProviderFrom(ptr unsafe.Pointer) NEEthernetTunnelProvider {
 		NEPacketTunnelProvider: NEPacketTunnelProviderFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEEthernetTunnelProvider *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEEthernetTunnelProvider */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEEthernetTunnelProvider */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEEthernetTunnelProvider */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEEthernetTunnelProvider */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NEEthernetTunnelProvider */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

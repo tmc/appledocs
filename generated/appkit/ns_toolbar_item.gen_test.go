@@ -13,7 +13,16 @@ var _ = appkit.NewToolbarItem
 // Creates a toolbar item with the specified identifier.
 func ExampleNewToolbarItemWithItemIdentifier() {
 	_ = appkit.NewToolbarItemWithItemIdentifier(
-		appkit.ToolbarItemIdentifier /* typedef */{}, // itemIdentifier ToolbarItemIdentifier /* typedef */
+		appkit.ToolbarItemIdentifier{}, // itemIdentifier ToolbarItemIdentifier
+	)
+	// Output:
+}
+// ExampleNewToolbarItemWithItemIdentifierBarButtonItem demonstrates how to create a ToolbarItem instance using NewToolbarItemWithItemIdentifierBarButtonItem.
+// Creates a toolbar item with property values from the specified bar button item.
+func ExampleNewToolbarItemWithItemIdentifierBarButtonItem() {
+	_ = appkit.NewToolbarItemWithItemIdentifierBarButtonItem(
+		appkit.ToolbarItemIdentifier{}, // itemIdentifier ToolbarItemIdentifier
+		appkit.BarButtonItem /* not a class type */{}, // barButtonItem BarButtonItem /* not a class type */
 	)
 	// Output:
 }

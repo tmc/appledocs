@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVSampleBufferRequest */
 
 
-/* debug [class_header]: Header for AVSampleBufferRequest */
+
+
 // The class instance for the [SampleBufferRequest] class.
 var (
 	SampleBufferRequestClass     _SampleBufferRequestClass
@@ -30,16 +30,16 @@ func getSampleBufferRequestClass() _SampleBufferRequestClass {
 type _SampleBufferRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for SampleBufferRequest */
+
+
 // An interface definition for the [SampleBufferRequest] class.
 type ISampleBufferRequest interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for SampleBufferRequest */
+
 	// properties:
 	Direction() SampleBufferRequestDirection
 	SetDirection(value SampleBufferRequestDirection)
@@ -49,24 +49,24 @@ type ISampleBufferRequest interface {
 	SetMaxSampleCount(value int)
 	Mode() SampleBufferRequestMode
 	SetMode(value SampleBufferRequestMode)
-	OverrideTime() objc.IObject /* cross-framework: Time */
-	SetOverrideTime(value objc.IObject /* cross-framework: Time */)
+	OverrideTime() objectivec.IObject
+	SetOverrideTime(value objectivec.IObject)
 	PreferredMinSampleCount() int
 	SetPreferredMinSampleCount(value int)
 	StartCursor() IAVSampleCursor
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for SampleBufferRequest */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for SampleBufferRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SampleBufferRequestClass) Alloc() SampleBufferRequest {
 	rv := objc.Send[SampleBufferRequest](objc.ID(sc.class), objc.Sel("alloc"))
@@ -96,11 +96,11 @@ func (s_ SampleBufferRequest) Autorelease() SampleBufferRequest {
 func NewSampleBufferRequest() SampleBufferRequest {
 	return getSampleBufferRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for SampleBufferRequest */
+
+
 // An object that describes a sample buffer creation request.
 
 
@@ -118,11 +118,11 @@ type SampleBufferRequest struct {
 func SampleBufferRequestFrom(ptr unsafe.Pointer) SampleBufferRequest {
 	return SampleBufferRequest{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for SampleBufferRequest */
+
+
 
 // Creates a newly allocated sample buffer request with the specified sample cursor.
 //
@@ -133,28 +133,28 @@ func NewSampleBufferRequestWithStartCursor(startCursor IAVSampleCursor) SampleBu
 	rv := objc.Send[SampleBufferRequest](instance.ID, objc.Sel("initWithStartCursor:"), startCursor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewSampleBufferRequestWithStartCursor */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for SampleBufferRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for SampleBufferRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for SampleBufferRequest */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for SampleBufferRequest */
+
+
+
+
+
+
+
+
+
 
 // The buffer sample direction.
 //
@@ -163,7 +163,7 @@ func NewSampleBufferRequestWithStartCursor(startCursor IAVSampleCursor) SampleBu
 func (s_ SampleBufferRequest) Direction() SampleBufferRequestDirection {
 	rv := objc.Send[SampleBufferRequestDirection](s_.ID, objc.Sel("direction"))
 	return rv
-}/* debug [instance_properties/getter]: direction */
+}
 
 
 // The buffer sample direction.
@@ -172,7 +172,7 @@ func (s_ SampleBufferRequest) Direction() SampleBufferRequestDirection {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/direction-swift.property
 func (s_ SampleBufferRequest) SetDirection(value SampleBufferRequestDirection) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDirection:"), value)
-}/* debug [instance_properties/setter]: direction */
+}
 
 
 // The limiting position for sample loading.
@@ -182,7 +182,7 @@ func (s_ SampleBufferRequest) SetDirection(value SampleBufferRequestDirection) {
 func (s_ SampleBufferRequest) LimitCursor() IAVSampleCursor {
 	rv := objc.Send[SampleCursor](s_.ID, objc.Sel("limitCursor"))
 	return rv
-}/* debug [instance_properties/getter]: limitCursor */
+}
 
 
 // The limiting position for sample loading.
@@ -191,7 +191,7 @@ func (s_ SampleBufferRequest) LimitCursor() IAVSampleCursor {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/limitCursor
 func (s_ SampleBufferRequest) SetLimitCursor(value IAVSampleCursor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLimitCursor:"), value)
-}/* debug [instance_properties/setter]: limitCursor */
+}
 
 
 // The maximum number of samples to load.
@@ -201,7 +201,7 @@ func (s_ SampleBufferRequest) SetLimitCursor(value IAVSampleCursor) {
 func (s_ SampleBufferRequest) MaxSampleCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("maxSampleCount"))
 	return rv
-}/* debug [instance_properties/getter]: maxSampleCount */
+}
 
 
 // The maximum number of samples to load.
@@ -210,7 +210,7 @@ func (s_ SampleBufferRequest) MaxSampleCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/maxSampleCount
 func (s_ SampleBufferRequest) SetMaxSampleCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxSampleCount:"), value)
-}/* debug [instance_properties/setter]: maxSampleCount */
+}
 
 
 // The sample buffer request mode.
@@ -220,7 +220,7 @@ func (s_ SampleBufferRequest) SetMaxSampleCount(value int) {
 func (s_ SampleBufferRequest) Mode() SampleBufferRequestMode {
 	rv := objc.Send[SampleBufferRequestMode](s_.ID, objc.Sel("mode"))
 	return rv
-}/* debug [instance_properties/getter]: mode */
+}
 
 
 // The sample buffer request mode.
@@ -229,26 +229,26 @@ func (s_ SampleBufferRequest) Mode() SampleBufferRequestMode {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/mode-swift.property
 func (s_ SampleBufferRequest) SetMode(value SampleBufferRequestMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMode:"), value)
-}/* debug [instance_properties/setter]: mode */
+}
 
 
 // The deadline for sample data and output PTS for the sample buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/overrideTime
-func (s_ SampleBufferRequest) OverrideTime() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("overrideTime"))
+func (s_ SampleBufferRequest) OverrideTime() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("overrideTime"))
 	return rv
-}/* debug [instance_properties/getter]: overrideTime */
+}
 
 
 // The deadline for sample data and output PTS for the sample buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/overrideTime
-func (s_ SampleBufferRequest) SetOverrideTime(value objc.IObject /* cross-framework: Time */) {
+func (s_ SampleBufferRequest) SetOverrideTime(value objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setOverrideTime:"), value)
-}/* debug [instance_properties/setter]: overrideTime */
+}
 
 
 // The preferred minimum number of samples to load.
@@ -258,7 +258,7 @@ func (s_ SampleBufferRequest) SetOverrideTime(value objc.IObject /* cross-framew
 func (s_ SampleBufferRequest) PreferredMinSampleCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("preferredMinSampleCount"))
 	return rv
-}/* debug [instance_properties/getter]: preferredMinSampleCount */
+}
 
 
 // The preferred minimum number of samples to load.
@@ -267,7 +267,7 @@ func (s_ SampleBufferRequest) PreferredMinSampleCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRequest/preferredMinSampleCount
 func (s_ SampleBufferRequest) SetPreferredMinSampleCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredMinSampleCount:"), value)
-}/* debug [instance_properties/setter]: preferredMinSampleCount */
+}
 
 
 // The starting cursor position.
@@ -277,11 +277,11 @@ func (s_ SampleBufferRequest) SetPreferredMinSampleCount(value int) {
 func (s_ SampleBufferRequest) StartCursor() IAVSampleCursor {
 	rv := objc.Send[SampleCursor](s_.ID, objc.Sel("startCursor"))
 	return rv
-}/* debug [instance_properties/getter]: startCursor */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVSampleBufferRequest */
+
+
+
 
 

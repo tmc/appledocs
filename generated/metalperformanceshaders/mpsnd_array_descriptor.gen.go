@@ -57,7 +57,7 @@ type INDArrayDescriptor interface {
 	LengthOfDimension(dimensionIndex uint) uint
 	SliceDimension()
 	SliceRange()
-	SliceRangeForDimension(dimensionIndex uint) objc.IObject /* cross-framework: MPSDimensionSlice */
+	SliceRangeForDimension(dimensionIndex uint) MPSDimensionSlice
 	TransposeDimension()
 	Reshape()
 	ReshapeWithDimensionCountDimensionSizes(numberOfDimensions uint, dimensionSizes uint)
@@ -201,7 +201,7 @@ func (n_ NDArrayDescriptor) SliceRange() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/3114070-slicerangefordimension
-func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) objc.IObject /* cross-framework: MPSDimensionSlice */ {
+func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) MPSDimensionSlice {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("sliceRangeForDimension:"), dimensionIndex)
 	return rv
 }

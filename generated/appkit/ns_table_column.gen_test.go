@@ -13,7 +13,7 @@ var _ = appkit.NewTableColumn
 // Initializes a newly created table column with a string identifier.
 func ExampleNewTableColumnWithIdentifier() {
 	_ = appkit.NewTableColumnWithIdentifier(
-		appkit.UserInterfaceItemIdentifier /* typedef */{}, // identifier UserInterfaceItemIdentifier /* typedef */
+		appkit.UserInterfaceItemIdentifier{}, // identifier UserInterfaceItemIdentifier
 	)
 	// Output:
 }

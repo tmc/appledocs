@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PIntersectionFunctionTable is the MTLIntersectionFunctionTable protocol interface.
@@ -23,14 +23,14 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable
 type PIntersectionFunctionTable interface {
 	// Required methods
-	SetBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetBufferOffsetAtIndex */
-	SetBuffersOffsetsWithRange(buffers []objc.ID, offsets uint, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetBuffersOffsetsWithRange */
-	SetFunctionAtIndex(function unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetFunctionAtIndex */
-	SetFunctionsWithRange(functions []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetFunctionsWithRange */
-	SetOpaqueCurveIntersectionFunctionWithSignatureAtIndex(signature IntersectionFunctionSignature, index uint)/* debug [protocol_interface/required_method]: SetOpaqueCurveIntersectionFunctionWithSignatureAtIndex */
-	SetOpaqueCurveIntersectionFunctionWithSignatureWithRange(signature IntersectionFunctionSignature, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetOpaqueCurveIntersectionFunctionWithSignatureWithRange */
-	SetOpaqueTriangleIntersectionFunctionWithSignatureAtIndex(signature IntersectionFunctionSignature, index uint)/* debug [protocol_interface/required_method]: SetOpaqueTriangleIntersectionFunctionWithSignatureAtIndex */
-	SetOpaqueTriangleIntersectionFunctionWithSignatureWithRange(signature IntersectionFunctionSignature, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetOpaqueTriangleIntersectionFunctionWithSignatureWithRange */
-	SetVisibleFunctionTableAtBufferIndex(functionTable unsafe.Pointer, bufferIndex uint)/* debug [protocol_interface/required_method]: SetVisibleFunctionTableAtBufferIndex */
-	SetVisibleFunctionTablesWithBufferRange(functionTables []objc.ID, bufferRange corefoundation.Range)/* debug [protocol_interface/required_method]: SetVisibleFunctionTablesWithBufferRange */
+	SetBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetBuffersOffsetsWithRange(buffers []objc.ID, offsets uint, range_ foundation.Range)
+	SetFunctionAtIndex(function unsafe.Pointer, index uint)
+	SetFunctionsWithRange(functions []objc.ID, range_ foundation.Range)
+	SetOpaqueCurveIntersectionFunctionWithSignatureAtIndex(signature IntersectionFunctionSignature, index uint)
+	SetOpaqueCurveIntersectionFunctionWithSignatureWithRange(signature IntersectionFunctionSignature, range_ foundation.Range)
+	SetOpaqueTriangleIntersectionFunctionWithSignatureAtIndex(signature IntersectionFunctionSignature, index uint)
+	SetOpaqueTriangleIntersectionFunctionWithSignatureWithRange(signature IntersectionFunctionSignature, range_ foundation.Range)
+	SetVisibleFunctionTableAtBufferIndex(functionTable unsafe.Pointer, bufferIndex uint)
+	SetVisibleFunctionTablesWithBufferRange(functionTables []objc.ID, bufferRange foundation.Range)
 }

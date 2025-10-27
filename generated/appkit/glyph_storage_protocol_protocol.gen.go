@@ -17,8 +17,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSGlyphStorage
 type PGlyphStorage interface {
 	// Required methods
-	AttributedString() foundation.AttributedString/* debug [protocol_interface/required_method]: AttributedString */
-	InsertGlyphsLengthForStartingGlyphAtIndexCharacterIndex(glyphs Glyph /* typedef */, length uint, glyphIndex uint, charIndex uint)/* debug [protocol_interface/required_method]: InsertGlyphsLengthForStartingGlyphAtIndexCharacterIndex */
-	LayoutOptions() uint/* debug [protocol_interface/required_method]: LayoutOptions */
-	SetIntAttributeValueForGlyphAtIndex(attributeTag int, val int, glyphIndex uint)/* debug [protocol_interface/required_method]: SetIntAttributeValueForGlyphAtIndex */
+	AttributedString() foundation.AttributedString
+	InsertGlyphsLengthForStartingGlyphAtIndexCharacterIndex(glyphs Glyph, length uint, glyphIndex uint, charIndex uint)
+	LayoutOptions() uint
+	SetIntAttributeValueForGlyphAtIndex(attributeTag int, val int, glyphIndex uint)
 }

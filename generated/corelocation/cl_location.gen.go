@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [Location] class.
 var (
 	LocationClass     _LocationClass
@@ -27,9 +31,15 @@ type _LocationClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Location] class.
 type ILocation interface {
 	objectivec.IObject
+	
+
 	// properties:
 	Altitude() LocationDistance get /* not a class type */
 	SetAltitude(value LocationDistance get /* not a class type */)
@@ -49,33 +59,23 @@ type ILocation interface {
 	SetSpeed(value LocationSpeed get /* not a class type */)
 	SpeedAccuracy() LocationSpeedAccuracy get /* not a class type */
 	SetSpeedAccuracy(value LocationSpeedAccuracy get /* not a class type */)
-	Timestamp() unsafe.Pointer
-	SetTimestamp(value unsafe.Pointer)
+	Timestamp() objectivec.IObject
+	SetTimestamp(value objectivec.IObject)
 	VerticalAccuracy() LocationAccuracy get /* not a class type */
 	SetVerticalAccuracy(value LocationAccuracy get /* not a class type */)
+
+
+	
+
 	// methods:
 	Distance()
+
+
 }
 
-// The latitude, longitude, and course information reported by the system.
-//
-// A object contains the geographical location and altitude of a device, along with values indicating the accuracy of those measurements and when they were collected. In iOS, a location object also contains course information — that is, the speed and heading in which the device was moving. Typically, you don’t create location objects yourself. After you request location updates from your object, the system uses onboard sensors to gather location data and report that data to your app. Some services also return previously collected location data, which you can use as context to improve your services. You can always retrieve the most recently collected location from the property of your object. You may create location objects yourself when you want to cache custom location data or calculate the distance between two geographical coordinates. Use objects as-is, and don’t subclass them.
 
 
-// The latitude, longitude, and course information reported by the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation
-type Location struct {
-	objectivec.Object
-}
 
-// LocationFrom constructs a [Location] from an unsafe.Pointer.
-//
-// The latitude, longitude, and course information reported by the system.
-func LocationFrom(ptr unsafe.Pointer) Location {
-	return Location{objectivec.Object{objc.ID(ptr)}}
-}
 
 // Alloc allocates a new instance without initialization.
 func (lc _LocationClass) Alloc() Location {
@@ -84,7 +84,6 @@ func (lc _LocationClass) Alloc() Location {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LocationClass) New() Location {
 	rv := objc.Send[Location](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -110,6 +109,47 @@ func NewLocation() Location {
 
 
 
+
+
+// The latitude, longitude, and course information reported by the system.
+//
+// A object contains the geographical location and altitude of a device, along with values indicating the accuracy of those measurements and when they were collected. In iOS, a location object also contains course information — that is, the speed and heading in which the device was moving. Typically, you don’t create location objects yourself. After you request location updates from your object, the system uses onboard sensors to gather location data and report that data to your app. Some services also return previously collected location data, which you can use as context to improve your services. You can always retrieve the most recently collected location from the property of your object. You may create location objects yourself when you want to cache custom location data or calculate the distance between two geographical coordinates. Use objects as-is, and don’t subclass them.
+
+
+// The latitude, longitude, and course information reported by the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation
+type Location struct {
+	objectivec.Object
+}
+
+// LocationFrom constructs a [Location] from an unsafe.Pointer.
+//
+// The latitude, longitude, and course information reported by the system.
+func LocationFrom(ptr unsafe.Pointer) Location {
+	return Location{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Returns the distance (measured in meters) from the current object’s location to the specified location.
 //
 // [Full Topic]
@@ -119,12 +159,17 @@ func (l_ Location) Distance() {
 }
 
 
+
+
+
+
+
 // The altitude above mean sea level associated with a location, measured in meters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/altitude
 func (l_ Location) Altitude() LocationDistance get /* not a class type */ {
-	rv := objc.Send[LocationDistance get](l_.ID, objc.Sel("altitude"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("altitude"))
 	return rv
 }
 
@@ -143,7 +188,7 @@ func (l_ Location) SetAltitude(value LocationDistance get /* not a class type */
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/coordinate
 func (l_ Location) Coordinate() LocationCoordinate2D get /* not a class type */ {
-	rv := objc.Send[LocationCoordinate2D get](l_.ID, objc.Sel("coordinate"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("coordinate"))
 	return rv
 }
 
@@ -162,7 +207,7 @@ func (l_ Location) SetCoordinate(value LocationCoordinate2D get /* not a class t
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/course
 func (l_ Location) Course() LocationDirection get /* not a class type */ {
-	rv := objc.Send[LocationDirection get](l_.ID, objc.Sel("course"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("course"))
 	return rv
 }
 
@@ -181,7 +226,7 @@ func (l_ Location) SetCourse(value LocationDirection get /* not a class type */)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/courseAccuracy
 func (l_ Location) CourseAccuracy() LocationDirectionAccuracy get /* not a class type */ {
-	rv := objc.Send[LocationDirectionAccuracy get](l_.ID, objc.Sel("courseAccuracy"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("courseAccuracy"))
 	return rv
 }
 
@@ -200,7 +245,7 @@ func (l_ Location) SetCourseAccuracy(value LocationDirectionAccuracy get /* not 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/ellipsoidalAltitude
 func (l_ Location) EllipsoidalAltitude() LocationDistance get /* not a class type */ {
-	rv := objc.Send[LocationDistance get](l_.ID, objc.Sel("ellipsoidalAltitude"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("ellipsoidalAltitude"))
 	return rv
 }
 
@@ -219,7 +264,7 @@ func (l_ Location) SetEllipsoidalAltitude(value LocationDistance get /* not a cl
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/horizontalAccuracy
 func (l_ Location) HorizontalAccuracy() LocationAccuracy get /* not a class type */ {
-	rv := objc.Send[LocationAccuracy get](l_.ID, objc.Sel("horizontalAccuracy"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("horizontalAccuracy"))
 	return rv
 }
 
@@ -257,7 +302,7 @@ func (l_ Location) SetSourceInformation(value ICLLocationSourceInformation) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speed
 func (l_ Location) Speed() LocationSpeed get /* not a class type */ {
-	rv := objc.Send[LocationSpeed get](l_.ID, objc.Sel("speed"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("speed"))
 	return rv
 }
 
@@ -276,7 +321,7 @@ func (l_ Location) SetSpeed(value LocationSpeed get /* not a class type */) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speedAccuracy
 func (l_ Location) SpeedAccuracy() LocationSpeedAccuracy get /* not a class type */ {
-	rv := objc.Send[LocationSpeedAccuracy get](l_.ID, objc.Sel("speedAccuracy"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("speedAccuracy"))
 	return rv
 }
 
@@ -294,8 +339,8 @@ func (l_ Location) SetSpeedAccuracy(value LocationSpeedAccuracy get /* not a cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-func (l_ Location) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("timestamp"))
+func (l_ Location) Timestamp() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -304,7 +349,7 @@ func (l_ Location) Timestamp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-func (l_ Location) SetTimestamp(value unsafe.Pointer) {
+func (l_ Location) SetTimestamp(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimestamp:"), value)
 }
 
@@ -314,7 +359,7 @@ func (l_ Location) SetTimestamp(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/verticalAccuracy
 func (l_ Location) VerticalAccuracy() LocationAccuracy get /* not a class type */ {
-	rv := objc.Send[LocationAccuracy get](l_.ID, objc.Sel("verticalAccuracy"))
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("verticalAccuracy"))
 	return rv
 }
 
@@ -326,6 +371,11 @@ func (l_ Location) VerticalAccuracy() LocationAccuracy get /* not a class type *
 func (l_ Location) SetVerticalAccuracy(value LocationAccuracy get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVerticalAccuracy:"), value)
 }
+
+
+
+
+
 
 
 

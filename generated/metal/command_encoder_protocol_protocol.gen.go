@@ -22,9 +22,9 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLCommandEncoder
 type PCommandEncoder interface {
 	// Required methods
-	BarrierAfterQueueStagesBeforeStages(afterQueueStages Stages, beforeStages Stages)/* debug [protocol_interface/required_method]: BarrierAfterQueueStagesBeforeStages */
-	EndEncoding()/* debug [protocol_interface/required_method]: EndEncoding */
-	InsertDebugSignpost(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: InsertDebugSignpost */
-	PopDebugGroup()/* debug [protocol_interface/required_method]: PopDebugGroup */
-	PushDebugGroup(string_ objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: PushDebugGroup */
+	BarrierAfterQueueStagesBeforeStages(afterQueueStages Stages, beforeStages Stages)
+	EndEncoding()
+	InsertDebugSignpost(string_ foundation.foundation.INSString)
+	PopDebugGroup()
+	PushDebugGroup(string_ foundation.foundation.INSString)
 }

@@ -20,8 +20,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming/aspectRatio
-func (c_ CaptureFraming) AspectRatio() CaptureAspectRatio /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("aspectRatio"))
+func (c_ CaptureFraming) AspectRatio() CaptureAspectRatio {
+	rv := objc.Send[CaptureAspectRatio](c_.ID, objc.Sel("aspectRatio"))
 	return rv
 }
 

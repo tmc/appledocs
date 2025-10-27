@@ -14,3 +14,11 @@ func ExampleNewRasterizationRateLayerDescriptor() {
 	_ = metal.NewRasterizationRateLayerDescriptor()
 	// Output:
 }
+// ExampleNewRasterizationRateLayerDescriptorWithSampleCount demonstrates how to create a RasterizationRateLayerDescriptor instance using NewRasterizationRateLayerDescriptorWithSampleCount.
+// Initializes the layer map with an empty grid.
+func ExampleNewRasterizationRateLayerDescriptorWithSampleCount() {
+	_ = metal.NewRasterizationRateLayerDescriptorWithSampleCount(
+		metal.MTLSize{}, // sampleCount MTLSize
+	)
+	// Output:
+}

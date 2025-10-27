@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NEIPv4Settings */
 
 
-/* debug [class_header]: Header for NEIPv4Settings */
+
+
 // The class instance for the [NEIPv4Settings] class.
 var (
 	NEIPv4SettingsClass     _NEIPv4SettingsClass
@@ -31,46 +30,46 @@ func getNEIPv4SettingsClass() _NEIPv4SettingsClass {
 type _NEIPv4SettingsClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEIPv4Settings */
+
+
 // An interface definition for the [NEIPv4Settings] class.
 type INEIPv4Settings interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NEIPv4Settings */
+
 	// properties:
 	Addresses() []string
 	ExcludedRoutes() []NEIPv4Route
 	SetExcludedRoutes(value []NEIPv4Route)
 	IncludedRoutes() []NEIPv4Route
 	SetIncludedRoutes(value []NEIPv4Route)
-	Router() objc.IObject /* cross-framework: NSString */
-	SetRouter(value objc.IObject /* cross-framework: NSString */)
+	Router() foundation.foundation.INSString
+	SetRouter(value foundation.foundation.INSString)
 	SubnetMasks() []string
 	Ipv4Settings() INEIPv4Settings
 	SetIpv4Settings(value INEIPv4Settings)
 	Ipv6Settings() INEIPv6Settings
 	SetIpv6Settings(value INEIPv6Settings)
-	Mtu() objc.IObject /* cross-framework: NSNumber */
-	SetMtu(value objc.IObject /* cross-framework: NSNumber */)
-	TunnelOverheadBytes() objc.IObject /* cross-framework: NSNumber */
-	SetTunnelOverheadBytes(value objc.IObject /* cross-framework: NSNumber */)
-/* debug [class_interface_properties]: End properties */
+	Mtu() foundation.foundation.INSNumber
+	SetMtu(value foundation.foundation.INSNumber)
+	TunnelOverheadBytes() foundation.foundation.INSNumber
+	SetTunnelOverheadBytes(value foundation.foundation.INSNumber)
+
 
 	
-/* debug [class_interface_methods]: Methods for NEIPv4Settings */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEIPv4Settings */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEIPv4SettingsClass) Alloc() NEIPv4Settings {
 	rv := objc.Send[NEIPv4Settings](objc.ID(nc.class), objc.Sel("alloc"))
@@ -100,11 +99,11 @@ func (n_ NEIPv4Settings) Autorelease() NEIPv4Settings {
 func NewNEIPv4Settings() NEIPv4Settings {
 	return getNEIPv4SettingsClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEIPv4Settings */
+
+
 // The IPv4 settings of an IP layer network tunnel.
 //
 // To specify the IPv4 settings of a packet tunnel, set its . property to an instance of this class.
@@ -124,11 +123,11 @@ type NEIPv4Settings struct {
 func NEIPv4SettingsFrom(ptr unsafe.Pointer) NEIPv4Settings {
 	return NEIPv4Settings{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEIPv4Settings */
+
+
 
 // Initializes an IPv4 settings object.
 //
@@ -139,36 +138,36 @@ func NewNEIPv4SettingsWithAddressesSubnetMasks(addresses []string, subnetMasks [
 	rv := objc.Send[NEIPv4Settings](instance.ID, objc.Sel("initWithAddresses:subnetMasks:"), addresses, subnetMasks)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNEIPv4SettingsWithAddressesSubnetMasks */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NEIPv4Settings */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv4Settings/settingsWithAutomaticAddressing
 func (nc _NEIPv4SettingsClass) SettingsWithAutomaticAddressing() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(nc.class), objc.Sel("settingsWithAutomaticAddressing"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SettingsWithAutomaticAddressing) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for NEIPv4Settings */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEIPv4Settings */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEIPv4Settings */
+
+
+
+
+
+
+
 
 // The IPv4 addresses to assign to the TUN interface.
 //
@@ -177,7 +176,7 @@ func (nc _NEIPv4SettingsClass) SettingsWithAutomaticAddressing() objectivec.IObj
 func (n_ NEIPv4Settings) Addresses() []string {
 	rv := objc.Send[[]string](n_.ID, objc.Sel("addresses"))
 	return rv
-}/* debug [instance_properties/getter]: addresses */
+}
 
 
 // The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
@@ -187,7 +186,7 @@ func (n_ NEIPv4Settings) Addresses() []string {
 func (n_ NEIPv4Settings) ExcludedRoutes() []NEIPv4Route {
 	rv := objc.Send[[]NEIPv4Route](n_.ID, objc.Sel("excludedRoutes"))
 	return rv
-}/* debug [instance_properties/getter]: excludedRoutes */
+}
 
 
 // The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
@@ -205,7 +204,7 @@ func (n_ NEIPv4Settings) SetExcludedRoutes(value []NEIPv4Route) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), nsArray)
-}/* debug [instance_properties/setter]: excludedRoutes */
+}
 
 
 // The IPv4 network traffic that the system routes to the TUN interface.
@@ -215,7 +214,7 @@ func (n_ NEIPv4Settings) SetExcludedRoutes(value []NEIPv4Route) {
 func (n_ NEIPv4Settings) IncludedRoutes() []NEIPv4Route {
 	rv := objc.Send[[]NEIPv4Route](n_.ID, objc.Sel("includedRoutes"))
 	return rv
-}/* debug [instance_properties/getter]: includedRoutes */
+}
 
 
 // The IPv4 network traffic that the system routes to the TUN interface.
@@ -233,26 +232,26 @@ func (n_ NEIPv4Settings) SetIncludedRoutes(value []NEIPv4Route) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), nsArray)
-}/* debug [instance_properties/setter]: includedRoutes */
+}
 
 
 // The address of the next-hop gateway router represented as a dotted decimal string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv4Settings/router
-func (n_ NEIPv4Settings) Router() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEIPv4Settings) Router() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("router"))
 	return rv
-}/* debug [instance_properties/getter]: router */
+}
 
 
 // The address of the next-hop gateway router represented as a dotted decimal string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv4Settings/router
-func (n_ NEIPv4Settings) SetRouter(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEIPv4Settings) SetRouter(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRouter:"), value)
-}/* debug [instance_properties/setter]: router */
+}
 
 
 // The IPv4 network masks to assign to the TUN interface.
@@ -262,7 +261,7 @@ func (n_ NEIPv4Settings) SetRouter(value objc.IObject /* cross-framework: NSStri
 func (n_ NEIPv4Settings) SubnetMasks() []string {
 	rv := objc.Send[[]string](n_.ID, objc.Sel("subnetMasks"))
 	return rv
-}/* debug [instance_properties/getter]: subnetMasks */
+}
 
 
 // The tunnel IP version 4 settings.
@@ -272,7 +271,7 @@ func (n_ NEIPv4Settings) SubnetMasks() []string {
 func (n_ NEIPv4Settings) Ipv4Settings() INEIPv4Settings {
 	rv := objc.Send[NEIPv4Settings](n_.ID, objc.Sel("ipv4Settings"))
 	return rv
-}/* debug [instance_properties/getter]: ipv4Settings */
+}
 
 
 // The tunnel IP version 4 settings.
@@ -281,7 +280,7 @@ func (n_ NEIPv4Settings) Ipv4Settings() INEIPv4Settings {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv4settings
 func (n_ NEIPv4Settings) SetIpv4Settings(value INEIPv4Settings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv4Settings:"), value)
-}/* debug [instance_properties/setter]: ipv4Settings */
+}
 
 
 // The tunnel IP version 6 settings.
@@ -291,7 +290,7 @@ func (n_ NEIPv4Settings) SetIpv4Settings(value INEIPv4Settings) {
 func (n_ NEIPv4Settings) Ipv6Settings() INEIPv6Settings {
 	rv := objc.Send[NEIPv6Settings](n_.ID, objc.Sel("ipv6Settings"))
 	return rv
-}/* debug [instance_properties/getter]: ipv6Settings */
+}
 
 
 // The tunnel IP version 6 settings.
@@ -300,49 +299,49 @@ func (n_ NEIPv4Settings) Ipv6Settings() INEIPv6Settings {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
 func (n_ NEIPv4Settings) SetIpv6Settings(value INEIPv6Settings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv6Settings:"), value)
-}/* debug [instance_properties/setter]: ipv6Settings */
+}
 
 
 // The size of the maximum trasnmission unit, in bytes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
-func (n_ NEIPv4Settings) Mtu() objc.IObject /* cross-framework: NSNumber */ {
+func (n_ NEIPv4Settings) Mtu() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("mtu"))
 	return rv
-}/* debug [instance_properties/getter]: mtu */
+}
 
 
 // The size of the maximum trasnmission unit, in bytes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
-func (n_ NEIPv4Settings) SetMtu(value objc.IObject /* cross-framework: NSNumber */) {
+func (n_ NEIPv4Settings) SetMtu(value foundation.foundation.INSNumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMtu:"), value)
-}/* debug [instance_properties/setter]: mtu */
+}
 
 
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
-func (n_ NEIPv4Settings) TunnelOverheadBytes() objc.IObject /* cross-framework: NSNumber */ {
+func (n_ NEIPv4Settings) TunnelOverheadBytes() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("tunnelOverheadBytes"))
 	return rv
-}/* debug [instance_properties/getter]: tunnelOverheadBytes */
+}
 
 
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
-func (n_ NEIPv4Settings) SetTunnelOverheadBytes(value objc.IObject /* cross-framework: NSNumber */) {
+func (n_ NEIPv4Settings) SetTunnelOverheadBytes(value foundation.foundation.INSNumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
-}/* debug [instance_properties/setter]: tunnelOverheadBytes */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NEIPv4Settings */
+
+
+
 
 

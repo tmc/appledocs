@@ -63,7 +63,7 @@ type IRNNMatrixTrainingLayer interface {
 	CreateWeightGradientMatrices()
 	CreateWeightMatrices()
 	EncodeCopyWeights()
-	EncodeCopyWeightsToCommandBufferWeightsMatrixIdMatrixCopyFromWeightsToMatrixMatrixOffset(commandBuffer unsafe.Pointer, weights unsafe.Pointer, matrixId RNNMatrixId, matrix IMatrix, copyFromWeightsToMatrix bool, matrixOffset objc.IObject /* cross-framework: MTLOrigin */)
+	EncodeCopyWeightsToCommandBufferWeightsMatrixIdMatrixCopyFromWeightsToMatrixMatrixOffset(commandBuffer unsafe.Pointer, weights unsafe.Pointer, matrixId RNNMatrixId, matrix IMatrix, copyFromWeightsToMatrix bool, matrixOffset metal.IMTLOrigin)
 	EncodeForwardSequence()
 	EncodeForwardSequenceToCommandBufferSourceMatricesDestinationMatricesTrainingStatesWeights(commandBuffer unsafe.Pointer, sourceMatrices unsafe.Pointer, destinationMatrices unsafe.Pointer, trainingStates unsafe.Pointer, weights unsafe.Pointer)
 	EncodeForwardSequenceToCommandBufferSourceMatricesSourceOffsetsDestinationMatricesDestinationOffsetsTrainingStatesRecurrentInputStateRecurrentOutputStatesWeights(commandBuffer unsafe.Pointer, sourceMatrices unsafe.Pointer, sourceOffsets uint, destinationMatrices unsafe.Pointer, destinationOffsets uint, trainingStates unsafe.Pointer, recurrentInputState IRNNRecurrentMatrixState, recurrentOutputStates unsafe.Pointer, weights unsafe.Pointer)
@@ -213,7 +213,7 @@ func (r_ RNNMatrixTrainingLayer) EncodeCopyWeights() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/2966788-encodecopyweightstocommandbuffer
-func (r_ RNNMatrixTrainingLayer) EncodeCopyWeightsToCommandBufferWeightsMatrixIdMatrixCopyFromWeightsToMatrixMatrixOffset(commandBuffer unsafe.Pointer, weights unsafe.Pointer, matrixId RNNMatrixId, matrix IMatrix, copyFromWeightsToMatrix bool, matrixOffset objc.IObject /* cross-framework: MTLOrigin */) {
+func (r_ RNNMatrixTrainingLayer) EncodeCopyWeightsToCommandBufferWeightsMatrixIdMatrixCopyFromWeightsToMatrixMatrixOffset(commandBuffer unsafe.Pointer, weights unsafe.Pointer, matrixId RNNMatrixId, matrix IMatrix, copyFromWeightsToMatrix bool, matrixOffset metal.IMTLOrigin) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("encodeCopyWeightsToCommandBuffer:weights:matrixId:matrix:copyFromWeightsToMatrix:matrixOffset:"), commandBuffer, weights, matrixId, matrix, copyFromWeightsToMatrix, matrixOffset)
 }
 

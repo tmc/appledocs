@@ -10,7 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AffineTransform = _undefined // referenced in QuartzCore
-	AnimationDelegate = _undefined // referenced in QuartzCore
 	ColorRef = _undefined // referenced in QuartzCore
 	ColorSpaceRef = _undefined // referenced in QuartzCore
 	ContextRef = _undefined // referenced in QuartzCore

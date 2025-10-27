@@ -4,8 +4,6 @@ package appkit
 
 import (
 
-	"github.com/tmc/appledocs/generated/corefoundation"
-
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -17,5 +15,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient
 type PTextCheckingClient interface {
 	// Required methods
-	ReplaceCharactersInRangeWithAnnotatedString(range_ corefoundation.Range, annotatedString foundation.AttributedString)/* debug [protocol_interface/required_method]: ReplaceCharactersInRangeWithAnnotatedString */
+	ReplaceCharactersInRangeWithAnnotatedString(range_ foundation.Range, annotatedString foundation.foundation.INSAttributedString)
 }

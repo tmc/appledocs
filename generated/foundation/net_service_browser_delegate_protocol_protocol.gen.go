@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PNetServiceBrowserDelegate is the NSNetServiceBrowserDelegate protocol interface.
@@ -182,4 +184,97 @@ func (d *NetServiceBrowserDelegate) NetServiceBrowserWillSearch(browser INetServ
 // HasNetServiceBrowserWillSearch returns true if a handler for NetServiceBrowserWillSearch has been set.
 func (d *NetServiceBrowserDelegate) HasNetServiceBrowserWillSearch() bool {
 	return d._NetServiceBrowserWillSearch != nil
+}
+
+// NetServiceBrowserDelegateObject wraps an existing Objective-C object that conforms to the PNetServiceBrowserDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type NetServiceBrowserDelegateObject struct {
+	objectivec.Object
+}
+
+// NewNetServiceBrowserDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSNetServiceBrowserDelegate protocol.
+func NewNetServiceBrowserDelegateObject(obj objectivec.Object) *NetServiceBrowserDelegateObject {
+	return &NetServiceBrowserDelegateObject{obj}
+}
+
+// Make sure NetServiceBrowserDelegateObject implements PNetServiceBrowserDelegate.
+var _ PNetServiceBrowserDelegate = (*NetServiceBrowserDelegateObject)(nil)
+
+// NetServiceBrowserDidFindServiceMoreComing implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserDidFindServiceMoreComing(browser INetServiceBrowser, service INetService, moreComing bool) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowser:didFindService:moreComing:"), browser, service, moreComing)
+}
+
+// HasNetServiceBrowserDidFindServiceMoreComing returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserDidFindServiceMoreComing() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceBrowserDidFindDomainMoreComing implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserDidFindDomainMoreComing(browser INetServiceBrowser, domainString IString, moreComing bool) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowser:didFindDomain:moreComing:"), browser, domainString, moreComing)
+}
+
+// HasNetServiceBrowserDidFindDomainMoreComing returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserDidFindDomainMoreComing() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceBrowserDidNotSearch implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserDidNotSearch(browser INetServiceBrowser, errorDict IDictionary) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowser:didNotSearch:"), browser, errorDict)
+}
+
+// HasNetServiceBrowserDidNotSearch returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserDidNotSearch() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceBrowserDidRemoveServiceMoreComing implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserDidRemoveServiceMoreComing(browser INetServiceBrowser, service INetService, moreComing bool) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowser:didRemoveService:moreComing:"), browser, service, moreComing)
+}
+
+// HasNetServiceBrowserDidRemoveServiceMoreComing returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserDidRemoveServiceMoreComing() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceBrowserDidRemoveDomainMoreComing implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserDidRemoveDomainMoreComing(browser INetServiceBrowser, domainString IString, moreComing bool) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowser:didRemoveDomain:moreComing:"), browser, domainString, moreComing)
+}
+
+// HasNetServiceBrowserDidRemoveDomainMoreComing returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserDidRemoveDomainMoreComing() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceBrowserDidStopSearch implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserDidStopSearch(browser INetServiceBrowser) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowserDidStopSearch:"), browser)
+}
+
+// HasNetServiceBrowserDidStopSearch returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserDidStopSearch() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceBrowserWillSearch implements the PNetServiceBrowserDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceBrowserDelegateObject) NetServiceBrowserWillSearch(browser INetServiceBrowser) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceBrowserWillSearch:"), browser)
+}
+
+// HasNetServiceBrowserWillSearch returns true; this is a placeholder for optional method checks.
+func (o *NetServiceBrowserDelegateObject) HasNetServiceBrowserWillSearch() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

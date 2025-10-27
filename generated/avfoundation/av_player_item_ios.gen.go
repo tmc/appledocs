@@ -59,8 +59,8 @@ func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
-func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange {
-	rv := objc.Send[[]avkit.InterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
+func (p_ PlayerItem) InterstitialTimeRanges() []InterstitialTimeRange /* not a class type */ {
+	rv := objc.Send[[]InterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
 	return rv
 }
 
@@ -68,11 +68,11 @@ func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) NavigationMarkerGroups() []avkit.NavigationMarkersGroup {
-	rv := objc.Send[[]avkit.NavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
+func (p_ PlayerItem) NavigationMarkerGroups() []NavigationMarkersGroup /* not a class type */ {
+	rv := objc.Send[[]NavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
 	return rv
 }
-func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup) {
+func (p_ PlayerItem) SetNavigationMarkerGroups(value []NavigationMarkersGroup /* not a class type */) {
 	p_.ID.Send(objc.RegisterName("setNavigationMarkerGroups:"), value)
 }
 
@@ -80,11 +80,11 @@ func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.NavigationMarkersGr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
-func (p_ PlayerItem) NextContentProposal() avkit.ContentProposal {
-	rv := objc.Send[avkit.ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
+func (p_ PlayerItem) NextContentProposal() ContentProposal /* not a class type */ {
+	rv := objc.Send[ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
 	return rv
 }
-func (p_ PlayerItem) SetNextContentProposal(value avkit.ContentProposal) {
+func (p_ PlayerItem) SetNextContentProposal(value ContentProposal /* not a class type */) {
 	p_.ID.Send(objc.RegisterName("setNextContentProposal:"), value)
 }
 
@@ -102,11 +102,11 @@ func (p_ PlayerItem) SetNowPlayingInfo(value foundation.IDictionary) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedExternalSubtitleOptionLanguage
-func (p_ PlayerItem) SelectedExternalSubtitleOptionLanguage() objc.IObject /* cross-framework: NSString */ {
+func (p_ PlayerItem) SelectedExternalSubtitleOptionLanguage() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("selectedExternalSubtitleOptionLanguage"))
 	return rv
 }
-func (p_ PlayerItem) SetSelectedExternalSubtitleOptionLanguage(value objc.IObject /* cross-framework: NSString */) {
+func (p_ PlayerItem) SetSelectedExternalSubtitleOptionLanguage(value foundation.foundation.INSString) {
 	p_.ID.Send(objc.RegisterName("setSelectedExternalSubtitleOptionLanguage:"), value)
 }
 

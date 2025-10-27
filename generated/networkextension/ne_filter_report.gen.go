@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NEFilterReport */
 
 
-/* debug [class_header]: Header for NEFilterReport */
+
+
 // The class instance for the [NEFilterReport] class.
 var (
 	NEFilterReportClass     _NEFilterReportClass
@@ -30,16 +30,16 @@ func getNEFilterReportClass() _NEFilterReportClass {
 type _NEFilterReportClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEFilterReport */
+
+
 // An interface definition for the [NEFilterReport] class.
 type INEFilterReport interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NEFilterReport */
+
 	// properties:
 	Action() NEFilterAction
 	BytesInboundCount() uint
@@ -48,19 +48,19 @@ type INEFilterReport interface {
 	Flow() INEFilterFlow
 	ShouldReport() bool
 	SetShouldReport(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEFilterReport */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEFilterReport */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterReportClass) Alloc() NEFilterReport {
 	rv := objc.Send[NEFilterReport](objc.ID(nc.class), objc.Sel("alloc"))
@@ -90,11 +90,11 @@ func (n_ NEFilterReport) Autorelease() NEFilterReport {
 func NewNEFilterReport() NEFilterReport {
 	return getNEFilterReportClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEFilterReport */
+
+
 // The report of the data provider’s action on a flow.
 //
 // The system issues a report by calling your control provider’s method with a report instance when the data provider issues a verdict whose property is set to .
@@ -114,30 +114,30 @@ type NEFilterReport struct {
 func NEFilterReportFrom(ptr unsafe.Pointer) NEFilterReport {
 	return NEFilterReport{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEFilterReport *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEFilterReport */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEFilterReport */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEFilterReport */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEFilterReport */
+
+
+
+
+
+
+
+
+
 
 // The action taken on the reported flow.
 //
@@ -146,7 +146,7 @@ func NEFilterReportFrom(ptr unsafe.Pointer) NEFilterReport {
 func (n_ NEFilterReport) Action() NEFilterAction {
 	rv := objc.Send[NEFilterAction](n_.ID, objc.Sel("action"))
 	return rv
-}/* debug [instance_properties/getter]: action */
+}
 
 
 // The number of inbound bytes received from the flow.
@@ -156,7 +156,7 @@ func (n_ NEFilterReport) Action() NEFilterAction {
 func (n_ NEFilterReport) BytesInboundCount() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("bytesInboundCount"))
 	return rv
-}/* debug [instance_properties/getter]: bytesInboundCount */
+}
 
 
 // The number of outbound bytes sent on the flow.
@@ -166,7 +166,7 @@ func (n_ NEFilterReport) BytesInboundCount() uint {
 func (n_ NEFilterReport) BytesOutboundCount() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("bytesOutboundCount"))
 	return rv
-}/* debug [instance_properties/getter]: bytesOutboundCount */
+}
 
 
 // The type of event indicated by this report.
@@ -176,7 +176,7 @@ func (n_ NEFilterReport) BytesOutboundCount() uint {
 func (n_ NEFilterReport) Event() NEFilterReportEvent {
 	rv := objc.Send[NEFilterReportEvent](n_.ID, objc.Sel("event"))
 	return rv
-}/* debug [instance_properties/getter]: event */
+}
 
 
 // The flow on which the associated action was taken.
@@ -186,7 +186,7 @@ func (n_ NEFilterReport) Event() NEFilterReportEvent {
 func (n_ NEFilterReport) Flow() INEFilterFlow {
 	rv := objc.Send[NEFilterFlow](n_.ID, objc.Sel("flow"))
 	return rv
-}/* debug [instance_properties/getter]: flow */
+}
 
 
 // A Boolean value that indicates whether to send a report to the control provider when processing this verdict.
@@ -196,7 +196,7 @@ func (n_ NEFilterReport) Flow() INEFilterFlow {
 func (n_ NEFilterReport) ShouldReport() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("shouldReport"))
 	return rv
-}/* debug [instance_properties/getter]: shouldReport */
+}
 
 
 // A Boolean value that indicates whether to send a report to the control provider when processing this verdict.
@@ -205,12 +205,12 @@ func (n_ NEFilterReport) ShouldReport() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterverdict/shouldreport
 func (n_ NEFilterReport) SetShouldReport(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setShouldReport:"), value)
-}/* debug [instance_properties/setter]: shouldReport */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NEFilterReport */
+
+
+
 
 
 

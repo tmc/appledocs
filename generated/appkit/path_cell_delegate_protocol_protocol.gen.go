@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PPathCellDelegate is the NSPathCellDelegate protocol interface.
@@ -67,4 +69,42 @@ func (d *PathCellDelegate) PathCellWillPopUpMenu(pathCell IPathCell, menu IMenu)
 // HasPathCellWillPopUpMenu returns true if a handler for PathCellWillPopUpMenu has been set.
 func (d *PathCellDelegate) HasPathCellWillPopUpMenu() bool {
 	return d._PathCellWillPopUpMenu != nil
+}
+
+// PathCellDelegateObject wraps an existing Objective-C object that conforms to the PPathCellDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type PathCellDelegateObject struct {
+	objectivec.Object
+}
+
+// NewPathCellDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSPathCellDelegate protocol.
+func NewPathCellDelegateObject(obj objectivec.Object) *PathCellDelegateObject {
+	return &PathCellDelegateObject{obj}
+}
+
+// Make sure PathCellDelegateObject implements PPathCellDelegate.
+var _ PPathCellDelegate = (*PathCellDelegateObject)(nil)
+
+// PathCellWillDisplayOpenPanel implements the PPathCellDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathCellDelegateObject) PathCellWillDisplayOpenPanel(pathCell IPathCell, openPanel IOpenPanel) {
+	objc.Send[objc.ID](o.ID, objc.Sel("pathCell:willDisplayOpenPanel:"), pathCell, openPanel)
+}
+
+// HasPathCellWillDisplayOpenPanel returns true; this is a placeholder for optional method checks.
+func (o *PathCellDelegateObject) HasPathCellWillDisplayOpenPanel() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// PathCellWillPopUpMenu implements the PPathCellDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathCellDelegateObject) PathCellWillPopUpMenu(pathCell IPathCell, menu IMenu) {
+	objc.Send[objc.ID](o.ID, objc.Sel("pathCell:willPopUpMenu:"), pathCell, menu)
+}
+
+// HasPathCellWillPopUpMenu returns true; this is a placeholder for optional method checks.
+func (o *PathCellDelegateObject) HasPathCellWillPopUpMenu() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

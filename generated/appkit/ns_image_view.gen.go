@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSImageView */
 
 
-/* debug [class_header]: Header for NSImageView */
+
+
 // The class instance for the [ImageView] class.
 var (
 	ImageViewClass     _ImageViewClass
@@ -30,16 +30,16 @@ func getImageViewClass() _ImageViewClass {
 type _ImageViewClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageView */
+
+
 // An interface definition for the [ImageView] class.
 type IImageView interface {
 	IControl
 	
-/* debug [class_interface_properties]: Properties for ImageView */
+
 	// properties:
 	AllowsCutCopyPaste() bool
 	SetAllowsCutCopyPaste(value bool)
@@ -64,10 +64,10 @@ type IImageView interface {
 	SetSymbolConfiguration(value IImageSymbolConfiguration)
 	IsEditable() bool
 	SetIsEditable(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageView */
+
 	// methods:
 	AddSymbolEffect(symbolEffect SymbolEffect /* not a class type */)
 	AddSymbolEffectOptions(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */)
@@ -80,14 +80,14 @@ type IImageView interface {
 	RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool)
 	SetSymbolImageWithContentTransition(symbolImage IImage, transition SymbolContentTransition /* not a class type */)
 	SetSymbolImageWithContentTransitionOptions(symbolImage IImage, transition SymbolContentTransition /* not a class type */, options SymbolEffectOptions /* not a class type */)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageView */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageViewClass) Alloc() ImageView {
 	rv := objc.Send[ImageView](objc.ID(ic.class), objc.Sel("alloc"))
@@ -117,11 +117,11 @@ func (i_ ImageView) Autorelease() ImageView {
 func NewImageView() ImageView {
 	return getImageViewClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageView */
+
+
 // A display of image data in a frame.
 //
 // Image views can be static or editable. A static image view only displays the image that you specify. An editable image view object lets the user change the displayed image. You can also configure an image view to allow copying, pasting, deleting, and dragging of the image.
@@ -143,37 +143,37 @@ func ImageViewFrom(ptr unsafe.Pointer) ImageView {
 		Control: ControlFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageView */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/init(image:)
 func NewImageViewWithImage(image IImage) ImageView {
 	rv := objc.Send[ImageView](objc.ID(getImageViewClass().class), objc.Sel("imageViewWithImage:"), image)
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageViewWithImage */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageView */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/init(image:)
 func (ic _ImageViewClass) ImageViewWithImage(image IImage) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("imageViewWithImage:"), image)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ImageViewWithImage) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ImageView */
+
+
+
 
 // The default preferred image dynamic range.
 //
@@ -182,12 +182,12 @@ func (ic _ImageViewClass) ImageViewWithImage(image IImage) objectivec.IObject {
 func (ic _ImageViewClass) DefaultPreferredImageDynamicRange() ImageDynamicRange {
 	rv := objc.Send[ImageDynamicRange](objc.ID(ic.class), objc.Sel("defaultPreferredImageDynamicRange"))
 	return rv
-}/* debug [class_properties_class/property]: defaultPreferredImageDynamicRange */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for ImageView */
+
+
 
 // Adds a symbol effect to the image view with default options and animation.
 //
@@ -195,7 +195,7 @@ func (ic _ImageViewClass) DefaultPreferredImageDynamicRange() ImageDynamicRange 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/addSymbolEffect:
 func (i_ ImageView) AddSymbolEffect(symbolEffect SymbolEffect /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("addSymbolEffect:"), symbolEffect)
-}/* debug [instance_methods/method]: AddSymbolEffect */
+}
 
 
 // Adds a symbol effect to the image view with the specified options and default animation.
@@ -204,7 +204,7 @@ func (i_ ImageView) AddSymbolEffect(symbolEffect SymbolEffect /* not a class typ
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/addSymbolEffect:options:
 func (i_ ImageView) AddSymbolEffectOptions(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("addSymbolEffect:options:"), symbolEffect, options)
-}/* debug [instance_methods/method]: AddSymbolEffectOptions */
+}
 
 
 // Adds a symbol effect to the image view with the specified options and animation.
@@ -213,7 +213,7 @@ func (i_ ImageView) AddSymbolEffectOptions(symbolEffect SymbolEffect /* not a cl
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/addSymbolEffect:options:animated:
 func (i_ ImageView) AddSymbolEffectOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("addSymbolEffect:options:animated:"), symbolEffect, options, animated)
-}/* debug [instance_methods/method]: AddSymbolEffectOptionsAnimated */
+}
 
 
 // Removes all symbol effects from the image view.
@@ -222,7 +222,7 @@ func (i_ ImageView) AddSymbolEffectOptionsAnimated(symbolEffect SymbolEffect /* 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeAllSymbolEffects
 func (i_ ImageView) RemoveAllSymbolEffects() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeAllSymbolEffects"))
-}/* debug [instance_methods/method]: RemoveAllSymbolEffects */
+}
 
 
 // Removes all symbol effects from the image view, using the specified options.
@@ -231,7 +231,7 @@ func (i_ ImageView) RemoveAllSymbolEffects() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeAllSymbolEffectsWithOptions:
 func (i_ ImageView) RemoveAllSymbolEffectsWithOptions(options SymbolEffectOptions /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeAllSymbolEffectsWithOptions:"), options)
-}/* debug [instance_methods/method]: RemoveAllSymbolEffectsWithOptions */
+}
 
 
 // Removes all symbol effects from the image view, using the specified options and animation setting.
@@ -240,7 +240,7 @@ func (i_ ImageView) RemoveAllSymbolEffectsWithOptions(options SymbolEffectOption
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeAllSymbolEffectsWithOptions:animated:
 func (i_ ImageView) RemoveAllSymbolEffectsWithOptionsAnimated(options SymbolEffectOptions /* not a class type */, animated bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeAllSymbolEffectsWithOptions:animated:"), options, animated)
-}/* debug [instance_methods/method]: RemoveAllSymbolEffectsWithOptionsAnimated */
+}
 
 
 // Removes the symbol effect that matches the specified effect type.
@@ -249,7 +249,7 @@ func (i_ ImageView) RemoveAllSymbolEffectsWithOptionsAnimated(options SymbolEffe
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeSymbolEffectOfType:
 func (i_ ImageView) RemoveSymbolEffectOfType(symbolEffect SymbolEffect /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeSymbolEffectOfType:"), symbolEffect)
-}/* debug [instance_methods/method]: RemoveSymbolEffectOfType */
+}
 
 
 // Removes the symbol effect that matches the specified effect type, using the specified options.
@@ -258,7 +258,7 @@ func (i_ ImageView) RemoveSymbolEffectOfType(symbolEffect SymbolEffect /* not a 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeSymbolEffectOfType:options:
 func (i_ ImageView) RemoveSymbolEffectOfTypeOptions(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeSymbolEffectOfType:options:"), symbolEffect, options)
-}/* debug [instance_methods/method]: RemoveSymbolEffectOfTypeOptions */
+}
 
 
 // Removes the symbol effect that matches the specified effect type, using the specified options and animation setting.
@@ -267,7 +267,7 @@ func (i_ ImageView) RemoveSymbolEffectOfTypeOptions(symbolEffect SymbolEffect /*
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeSymbolEffectOfType:options:animated:
 func (i_ ImageView) RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeSymbolEffectOfType:options:animated:"), symbolEffect, options, animated)
-}/* debug [instance_methods/method]: RemoveSymbolEffectOfTypeOptionsAnimated */
+}
 
 
 // Sets a symbol image using the specified content-transition effect.
@@ -276,7 +276,7 @@ func (i_ ImageView) RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolE
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/setSymbolImage:withContentTransition:
 func (i_ ImageView) SetSymbolImageWithContentTransition(symbolImage IImage, transition SymbolContentTransition /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolImage:withContentTransition:"), symbolImage, transition)
-}/* debug [instance_methods/method]: SetSymbolImageWithContentTransition */
+}
 
 
 // Sets a symbol image using the specified content-transition effect and options.
@@ -285,13 +285,13 @@ func (i_ ImageView) SetSymbolImageWithContentTransition(symbolImage IImage, tran
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/setSymbolImage:withContentTransition:options:
 func (i_ ImageView) SetSymbolImageWithContentTransitionOptions(symbolImage IImage, transition SymbolContentTransition /* not a class type */, options SymbolEffectOptions /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolImage:withContentTransition:options:"), symbolImage, transition, options)
-}/* debug [instance_methods/method]: SetSymbolImageWithContentTransitionOptions */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ImageView */
+
+
+
 
 // A Boolean value indicating whether the image view lets the user cut, copy, and paste the image contents.
 //
@@ -300,7 +300,7 @@ func (i_ ImageView) SetSymbolImageWithContentTransitionOptions(symbolImage IImag
 func (i_ ImageView) AllowsCutCopyPaste() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("allowsCutCopyPaste"))
 	return rv
-}/* debug [instance_properties/getter]: allowsCutCopyPaste */
+}
 
 
 // A Boolean value indicating whether the image view lets the user cut, copy, and paste the image contents.
@@ -309,7 +309,7 @@ func (i_ ImageView) AllowsCutCopyPaste() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/allowsCutCopyPaste
 func (i_ ImageView) SetAllowsCutCopyPaste(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAllowsCutCopyPaste:"), value)
-}/* debug [instance_properties/setter]: allowsCutCopyPaste */
+}
 
 
 // A Boolean value indicating whether the image view automatically plays animated images.
@@ -319,7 +319,7 @@ func (i_ ImageView) SetAllowsCutCopyPaste(value bool) {
 func (i_ ImageView) Animates() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("animates"))
 	return rv
-}/* debug [instance_properties/getter]: animates */
+}
 
 
 // A Boolean value indicating whether the image view automatically plays animated images.
@@ -328,7 +328,7 @@ func (i_ ImageView) Animates() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/animates
 func (i_ ImageView) SetAnimates(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAnimates:"), value)
-}/* debug [instance_properties/setter]: animates */
+}
 
 
 // [Full Topic]
@@ -336,14 +336,14 @@ func (i_ ImageView) SetAnimates(value bool) {
 func (i_ ImageView) ContentTintColor() IColor {
 	rv := objc.Send[Color](i_.ID, objc.Sel("contentTintColor"))
 	return rv
-}/* debug [instance_properties/getter]: contentTintColor */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/contentTintColor
 func (i_ ImageView) SetContentTintColor(value IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContentTintColor:"), value)
-}/* debug [instance_properties/setter]: contentTintColor */
+}
 
 
 // The default preferred image dynamic range.
@@ -353,7 +353,7 @@ func (i_ ImageView) SetContentTintColor(value IColor) {
 func (i_ ImageView) DefaultPreferredImageDynamicRange() ImageDynamicRange {
 	rv := objc.Send[ImageDynamicRange](i_.ID, objc.Sel("defaultPreferredImageDynamicRange"))
 	return rv
-}/* debug [instance_properties/getter]: defaultPreferredImageDynamicRange */
+}
 
 
 // The default preferred image dynamic range.
@@ -362,7 +362,7 @@ func (i_ ImageView) DefaultPreferredImageDynamicRange() ImageDynamicRange {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/defaultPreferredImageDynamicRange
 func (i_ ImageView) SetDefaultPreferredImageDynamicRange(value ImageDynamicRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultPreferredImageDynamicRange:"), value)
-}/* debug [instance_properties/setter]: defaultPreferredImageDynamicRange */
+}
 
 
 // The image displayed by the image view.
@@ -372,7 +372,7 @@ func (i_ ImageView) SetDefaultPreferredImageDynamicRange(value ImageDynamicRange
 func (i_ ImageView) Image() IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("image"))
 	return rv
-}/* debug [instance_properties/getter]: image */
+}
 
 
 // The image displayed by the image view.
@@ -381,7 +381,7 @@ func (i_ ImageView) Image() IImage {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/image
 func (i_ ImageView) SetImage(value IImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), value)
-}/* debug [instance_properties/setter]: image */
+}
 
 
 // The alignment of the cell’s image inside the image view.
@@ -391,7 +391,7 @@ func (i_ ImageView) SetImage(value IImage) {
 func (i_ ImageView) ImageAlignment() ImageAlignment {
 	rv := objc.Send[ImageAlignment](i_.ID, objc.Sel("imageAlignment"))
 	return rv
-}/* debug [instance_properties/getter]: imageAlignment */
+}
 
 
 // The alignment of the cell’s image inside the image view.
@@ -400,7 +400,7 @@ func (i_ ImageView) ImageAlignment() ImageAlignment {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageAlignment
 func (i_ ImageView) SetImageAlignment(value ImageAlignment) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAlignment:"), value)
-}/* debug [instance_properties/setter]: imageAlignment */
+}
 
 
 // The resolved dynamic range of the fully resolved image content.
@@ -410,7 +410,7 @@ func (i_ ImageView) SetImageAlignment(value ImageAlignment) {
 func (i_ ImageView) ImageDynamicRange() ImageDynamicRange {
 	rv := objc.Send[ImageDynamicRange](i_.ID, objc.Sel("imageDynamicRange"))
 	return rv
-}/* debug [instance_properties/getter]: imageDynamicRange */
+}
 
 
 // The style of frame that appears around the image.
@@ -420,7 +420,7 @@ func (i_ ImageView) ImageDynamicRange() ImageDynamicRange {
 func (i_ ImageView) ImageFrameStyle() ImageFrameStyle {
 	rv := objc.Send[ImageFrameStyle](i_.ID, objc.Sel("imageFrameStyle"))
 	return rv
-}/* debug [instance_properties/getter]: imageFrameStyle */
+}
 
 
 // The style of frame that appears around the image.
@@ -429,7 +429,7 @@ func (i_ ImageView) ImageFrameStyle() ImageFrameStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageFrameStyle
 func (i_ ImageView) SetImageFrameStyle(value ImageFrameStyle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageFrameStyle:"), value)
-}/* debug [instance_properties/setter]: imageFrameStyle */
+}
 
 
 // The scaling mode applied to make the cell’s image fit the frame of the image view.
@@ -439,7 +439,7 @@ func (i_ ImageView) SetImageFrameStyle(value ImageFrameStyle) {
 func (i_ ImageView) ImageScaling() ImageScaling {
 	rv := objc.Send[ImageScaling](i_.ID, objc.Sel("imageScaling"))
 	return rv
-}/* debug [instance_properties/getter]: imageScaling */
+}
 
 
 // The scaling mode applied to make the cell’s image fit the frame of the image view.
@@ -448,7 +448,7 @@ func (i_ ImageView) ImageScaling() ImageScaling {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageScaling
 func (i_ ImageView) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
-}/* debug [instance_properties/setter]: imageScaling */
+}
 
 
 // A Boolean value indicating whether the user can drag a new image into the image view.
@@ -458,7 +458,7 @@ func (i_ ImageView) SetImageScaling(value ImageScaling) {
 func (i_ ImageView) Editable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("editable"))
 	return rv
-}/* debug [instance_properties/getter]: editable */
+}
 
 
 // A Boolean value indicating whether the user can drag a new image into the image view.
@@ -467,7 +467,7 @@ func (i_ ImageView) Editable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/isEditable
 func (i_ ImageView) SetEditable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEditable:"), value)
-}/* debug [instance_properties/setter]: editable */
+}
 
 
 // The preferred dynamic range when displaying an image in the receiving image view.
@@ -477,7 +477,7 @@ func (i_ ImageView) SetEditable(value bool) {
 func (i_ ImageView) PreferredImageDynamicRange() ImageDynamicRange {
 	rv := objc.Send[ImageDynamicRange](i_.ID, objc.Sel("preferredImageDynamicRange"))
 	return rv
-}/* debug [instance_properties/getter]: preferredImageDynamicRange */
+}
 
 
 // The preferred dynamic range when displaying an image in the receiving image view.
@@ -486,7 +486,7 @@ func (i_ ImageView) PreferredImageDynamicRange() ImageDynamicRange {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/preferredImageDynamicRange
 func (i_ ImageView) SetPreferredImageDynamicRange(value ImageDynamicRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredImageDynamicRange:"), value)
-}/* debug [instance_properties/setter]: preferredImageDynamicRange */
+}
 
 
 // [Full Topic]
@@ -494,14 +494,14 @@ func (i_ ImageView) SetPreferredImageDynamicRange(value ImageDynamicRange) {
 func (i_ ImageView) SymbolConfiguration() IImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("symbolConfiguration"))
 	return rv
-}/* debug [instance_properties/getter]: symbolConfiguration */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/symbolConfiguration
 func (i_ ImageView) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
-}/* debug [instance_properties/setter]: symbolConfiguration */
+}
 
 
 // A Boolean value indicating whether the user can drag a new image into the image view.
@@ -511,7 +511,7 @@ func (i_ ImageView) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 func (i_ ImageView) IsEditable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEditable"))
 	return rv
-}/* debug [instance_properties/getter]: isEditable */
+}
 
 
 // A Boolean value indicating whether the user can drag a new image into the image view.
@@ -520,11 +520,11 @@ func (i_ ImageView) IsEditable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/iseditable
 func (i_ ImageView) SetIsEditable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEditable:"), value)
-}/* debug [instance_properties/setter]: isEditable */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSImageView */
+
+
+
 
 

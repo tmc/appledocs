@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coredata"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSPredicateEditorRowTemplate */
 
 
-/* debug [class_header]: Header for NSPredicateEditorRowTemplate */
+
+
 // The class instance for the [PredicateEditorRowTemplate] class.
 var (
 	PredicateEditorRowTemplateClass     _PredicateEditorRowTemplateClass
@@ -32,44 +30,44 @@ func getPredicateEditorRowTemplateClass() _PredicateEditorRowTemplateClass {
 type _PredicateEditorRowTemplateClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PredicateEditorRowTemplate */
+
+
 // An interface definition for the [PredicateEditorRowTemplate] class.
 type IPredicateEditorRowTemplate interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PredicateEditorRowTemplate */
+
 	// properties:
 	CompoundTypes() []foundation.Number
-	LeftExpressions() []coredata.Expression
+	LeftExpressions() []foundation.Expression
 	Modifier() ComparisonPredicateModifier /* not a class type */
 	Operators() []foundation.Number
 	Options() uint
 	RightExpressionAttributeType() AttributeType /* not a class type */
-	RightExpressions() []coredata.Expression
+	RightExpressions() []foundation.Expression
 	TemplateViews() []View
 	RowTemplates() IPredicateEditorRowTemplate
 	SetRowTemplates(value IPredicateEditorRowTemplate)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PredicateEditorRowTemplate */
+
 	// methods:
 	DisplayableSubpredicatesOfPredicate(predicate foundation.Predicate) []foundation.Predicate
 	MatchForPredicate(predicate foundation.Predicate) float64
 	PredicateWithSubpredicates(subpredicates []foundation.Predicate) foundation.Predicate
 	SetPredicate(predicate foundation.Predicate)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PredicateEditorRowTemplate */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PredicateEditorRowTemplateClass) Alloc() PredicateEditorRowTemplate {
 	rv := objc.Send[PredicateEditorRowTemplate](objc.ID(pc.class), objc.Sel("alloc"))
@@ -99,11 +97,11 @@ func (p_ PredicateEditorRowTemplate) Autorelease() PredicateEditorRowTemplate {
 func NewPredicateEditorRowTemplate() PredicateEditorRowTemplate {
 	return getPredicateEditorRowTemplateClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PredicateEditorRowTemplate */
+
+
 // A template that describes available predicates and how to display them.
 //
 // You can create instances of programmatically or in Interface Builder. By default, a noncompound row template has three views: a popup (or static text field) on the left, a popup or static text field for operators, and either a popup or other view on the right.  You can subclass to create a row template with different numbers or types of views. is a concrete class, but it has five primitive methods that are called by : , , , , and . implements all of these methods, but you can override them for custom templates. The primitive methods are used by an instance of as follows. First, an instance of is created, and some row templates are set on it—either through a nib file or programmatically. The first thing predicate editor does is ask each of the templates for their views, using . After setting up the predicate editor, you typically send it a message to restore a saved predicate. needs to determine which of its templates should display each predicate in the predicate tree. It does this by sending each of its row templates a message and choosing the one that returns the highest value. After finding the best match for a predicate, copies that template to get fresh views, inserts them into the proper row, and then sets the predicate on the template using . Within that method, the object must set its views’ values to represent that predicate. next asks the template for the “displayable sub-predicates” of the predicate by sending a message. If a template represents a predicate in its entirety, or if the predicate has no subpredicates, it can return for this.  Otherwise, it should return a list of predicates to be made into sub-rows of that template’s row. The whole process repeats for each sub-predicate. At this point, the user sees the predicate that was saved.  If the user then makes some changes to the views of the templates, this causes to recompute its predicate by asking each of the templates to return the predicate represented by the new view values, passing in the subpredicates represented by the sub-rows (an empty array if there are none, or if they aren’t supported by that predicate type):
@@ -123,11 +121,11 @@ type PredicateEditorRowTemplate struct {
 func PredicateEditorRowTemplateFrom(ptr unsafe.Pointer) PredicateEditorRowTemplate {
 	return PredicateEditorRowTemplate{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PredicateEditorRowTemplate */
+
+
 
 // Initializes and returns a row template suitable for displaying compound predicates.
 //
@@ -138,57 +136,57 @@ func NewPredicateEditorRowTemplateWithCompoundTypes(compoundTypes []foundation.N
 	rv := objc.Send[PredicateEditorRowTemplate](instance.ID, objc.Sel("initWithCompoundTypes:"), compoundTypes)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPredicateEditorRowTemplateWithCompoundTypes */
+}
 
 
 // Initializes and returns a “pop-up-pop-up-view”–style row template.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)
-func NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions(leftExpressions []coredata.Expression, attributeType AttributeType /* not a class type */, modifier ComparisonPredicateModifier /* not a class type */, operators []foundation.Number, options uint) PredicateEditorRowTemplate {
+func NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions(leftExpressions []foundation.Expression, attributeType AttributeType /* not a class type */, modifier ComparisonPredicateModifier /* not a class type */, operators []foundation.Number, options uint) PredicateEditorRowTemplate {
 	instance := getPredicateEditorRowTemplateClass().Alloc()
 	rv := objc.Send[PredicateEditorRowTemplate](instance.ID, objc.Sel("initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"), leftExpressions, attributeType, modifier, operators, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions */
+}
 
 
 // Initializes and returns a “pop-up-pop-up-pop-up”–style row template.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressions:modifier:operators:options:)
-func NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionsModifierOperatorsOptions(leftExpressions []coredata.Expression, rightExpressions []coredata.Expression, modifier ComparisonPredicateModifier /* not a class type */, operators []foundation.Number, options uint) PredicateEditorRowTemplate {
+func NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionsModifierOperatorsOptions(leftExpressions []foundation.Expression, rightExpressions []foundation.Expression, modifier ComparisonPredicateModifier /* not a class type */, operators []foundation.Number, options uint) PredicateEditorRowTemplate {
 	instance := getPredicateEditorRowTemplateClass().Alloc()
 	rv := objc.Send[PredicateEditorRowTemplate](instance.ID, objc.Sel("initWithLeftExpressions:rightExpressions:modifier:operators:options:"), leftExpressions, rightExpressions, modifier, operators, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionsModifierOperatorsOptions */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for PredicateEditorRowTemplate */
+
+
+
 
 // Returns an array of predicate templates for the given attribute key paths for a given entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/templates(withAttributeKeyPaths:in:)
-func (pc _PredicateEditorRowTemplateClass) TemplatesWithAttributeKeyPathsInEntityDescription(keyPaths []string, entityDescription coredata.EntityDescription) []PredicateEditorRowTemplate {
+func (pc _PredicateEditorRowTemplateClass) TemplatesWithAttributeKeyPathsInEntityDescription(keyPaths []string, entityDescription EntityDescription /* not a class type */) []PredicateEditorRowTemplate {
 	rv := objc.Send[[]PredicateEditorRowTemplate](objc.ID(pc.class), objc.Sel("templatesWithAttributeKeyPaths:inEntityDescription:"), keyPaths, entityDescription)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TemplatesWithAttributeKeyPathsInEntityDescription) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for PredicateEditorRowTemplate */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PredicateEditorRowTemplate */
+
+
+
+
+
 
 // Returns the subpredicates that should be made sub-rows of a given predicate.
 //
@@ -197,7 +195,7 @@ func (pc _PredicateEditorRowTemplateClass) TemplatesWithAttributeKeyPathsInEntit
 func (p_ PredicateEditorRowTemplate) DisplayableSubpredicatesOfPredicate(predicate foundation.Predicate) []foundation.Predicate {
 	rv := objc.Send[[]foundation.Predicate](p_.ID, objc.Sel("displayableSubpredicatesOfPredicate:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: DisplayableSubpredicatesOfPredicate */
+}
 
 
 // Returns a positive number if the receiver can represent a given predicate, and if it cannot.
@@ -207,7 +205,7 @@ func (p_ PredicateEditorRowTemplate) DisplayableSubpredicatesOfPredicate(predica
 func (p_ PredicateEditorRowTemplate) MatchForPredicate(predicate foundation.Predicate) float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("matchForPredicate:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: MatchForPredicate */
+}
 
 
 // Returns the predicate represented by the receiver’s views’ values and the given sub-predicates.
@@ -217,7 +215,7 @@ func (p_ PredicateEditorRowTemplate) MatchForPredicate(predicate foundation.Pred
 func (p_ PredicateEditorRowTemplate) PredicateWithSubpredicates(subpredicates []foundation.Predicate) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicateWithSubpredicates:"), subpredicates)
 	return rv
-}/* debug [instance_methods/method]: PredicateWithSubpredicates */
+}
 
 
 // Sets the value of the views according to the given predicate.
@@ -226,13 +224,13 @@ func (p_ PredicateEditorRowTemplate) PredicateWithSubpredicates(subpredicates []
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)
 func (p_ PredicateEditorRowTemplate) SetPredicate(predicate foundation.Predicate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicate:"), predicate)
-}/* debug [instance_methods/method]: SetPredicate */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PredicateEditorRowTemplate */
+
+
+
 
 // Returns the compound predicate types.
 //
@@ -241,17 +239,17 @@ func (p_ PredicateEditorRowTemplate) SetPredicate(predicate foundation.Predicate
 func (p_ PredicateEditorRowTemplate) CompoundTypes() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](p_.ID, objc.Sel("compoundTypes"))
 	return rv
-}/* debug [instance_properties/getter]: compoundTypes */
+}
 
 
 // Returns the left hand expressions for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/leftExpressions
-func (p_ PredicateEditorRowTemplate) LeftExpressions() []coredata.Expression {
-	rv := objc.Send[[]coredata.Expression](p_.ID, objc.Sel("leftExpressions"))
+func (p_ PredicateEditorRowTemplate) LeftExpressions() []foundation.Expression {
+	rv := objc.Send[[]foundation.Expression](p_.ID, objc.Sel("leftExpressions"))
 	return rv
-}/* debug [instance_properties/getter]: leftExpressions */
+}
 
 
 // Returns the comparison predicate modifier for the receiver.
@@ -261,7 +259,7 @@ func (p_ PredicateEditorRowTemplate) LeftExpressions() []coredata.Expression {
 func (p_ PredicateEditorRowTemplate) Modifier() ComparisonPredicateModifier /* not a class type */ {
 	rv := objc.Send[ComparisonPredicateModifier](p_.ID, objc.Sel("modifier"))
 	return rv
-}/* debug [instance_properties/getter]: modifier */
+}
 
 
 // Returns the array of comparison predicate operators.
@@ -271,7 +269,7 @@ func (p_ PredicateEditorRowTemplate) Modifier() ComparisonPredicateModifier /* n
 func (p_ PredicateEditorRowTemplate) Operators() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](p_.ID, objc.Sel("operators"))
 	return rv
-}/* debug [instance_properties/getter]: operators */
+}
 
 
 // Returns the comparison predicate options.
@@ -281,7 +279,7 @@ func (p_ PredicateEditorRowTemplate) Operators() []foundation.Number {
 func (p_ PredicateEditorRowTemplate) Options() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("options"))
 	return rv
-}/* debug [instance_properties/getter]: options */
+}
 
 
 // Returns the attribute type of the receiver’s right expression.
@@ -291,17 +289,17 @@ func (p_ PredicateEditorRowTemplate) Options() uint {
 func (p_ PredicateEditorRowTemplate) RightExpressionAttributeType() AttributeType /* not a class type */ {
 	rv := objc.Send[AttributeType](p_.ID, objc.Sel("rightExpressionAttributeType"))
 	return rv
-}/* debug [instance_properties/getter]: rightExpressionAttributeType */
+}
 
 
 // Returns the right hand expressions for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressions
-func (p_ PredicateEditorRowTemplate) RightExpressions() []coredata.Expression {
-	rv := objc.Send[[]coredata.Expression](p_.ID, objc.Sel("rightExpressions"))
+func (p_ PredicateEditorRowTemplate) RightExpressions() []foundation.Expression {
+	rv := objc.Send[[]foundation.Expression](p_.ID, objc.Sel("rightExpressions"))
 	return rv
-}/* debug [instance_properties/getter]: rightExpressions */
+}
 
 
 // Returns the views that display this template’s predicate.
@@ -311,7 +309,7 @@ func (p_ PredicateEditorRowTemplate) RightExpressions() []coredata.Expression {
 func (p_ PredicateEditorRowTemplate) TemplateViews() []View {
 	rv := objc.Send[[]View](p_.ID, objc.Sel("templateViews"))
 	return rv
-}/* debug [instance_properties/getter]: templateViews */
+}
 
 
 // The row templates for the receiver.
@@ -321,7 +319,7 @@ func (p_ PredicateEditorRowTemplate) TemplateViews() []View {
 func (p_ PredicateEditorRowTemplate) RowTemplates() IPredicateEditorRowTemplate {
 	rv := objc.Send[PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
-}/* debug [instance_properties/getter]: rowTemplates */
+}
 
 
 // The row templates for the receiver.
@@ -330,11 +328,11 @@ func (p_ PredicateEditorRowTemplate) RowTemplates() IPredicateEditorRowTemplate 
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
 func (p_ PredicateEditorRowTemplate) SetRowTemplates(value IPredicateEditorRowTemplate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
-}/* debug [instance_properties/setter]: rowTemplates */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSPredicateEditorRowTemplate */
+
+
+
 
 

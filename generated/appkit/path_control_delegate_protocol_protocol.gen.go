@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PPathControlDelegate is the NSPathControlDelegate protocol interface.
@@ -162,4 +164,86 @@ func (d *PathControlDelegate) PathControlWillPopUpMenu(pathControl IPathControl,
 // HasPathControlWillPopUpMenu returns true if a handler for PathControlWillPopUpMenu has been set.
 func (d *PathControlDelegate) HasPathControlWillPopUpMenu() bool {
 	return d._PathControlWillPopUpMenu != nil
+}
+
+// PathControlDelegateObject wraps an existing Objective-C object that conforms to the PPathControlDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type PathControlDelegateObject struct {
+	objectivec.Object
+}
+
+// NewPathControlDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSPathControlDelegate protocol.
+func NewPathControlDelegateObject(obj objectivec.Object) *PathControlDelegateObject {
+	return &PathControlDelegateObject{obj}
+}
+
+// Make sure PathControlDelegateObject implements PPathControlDelegate.
+var _ PPathControlDelegate = (*PathControlDelegateObject)(nil)
+
+// PathControlAcceptDrop implements the PPathControlDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathControlDelegateObject) PathControlAcceptDrop(pathControl IPathControl, info unsafe.Pointer) bool {
+	return objc.Send[bool](o.ID, objc.Sel("pathControl:acceptDrop:"), pathControl, info)
+}
+
+// HasPathControlAcceptDrop returns true; this is a placeholder for optional method checks.
+func (o *PathControlDelegateObject) HasPathControlAcceptDrop() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// PathControlShouldDragPathComponentCellWithPasteboard implements the PPathControlDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathControlDelegateObject) PathControlShouldDragPathComponentCellWithPasteboard(pathControl IPathControl, pathComponentCell IPathComponentCell, pasteboard IPasteboard) bool {
+	return objc.Send[bool](o.ID, objc.Sel("pathControl:shouldDragPathComponentCell:withPasteboard:"), pathControl, pathComponentCell, pasteboard)
+}
+
+// HasPathControlShouldDragPathComponentCellWithPasteboard returns true; this is a placeholder for optional method checks.
+func (o *PathControlDelegateObject) HasPathControlShouldDragPathComponentCellWithPasteboard() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// PathControlShouldDragItemWithPasteboard implements the PPathControlDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathControlDelegateObject) PathControlShouldDragItemWithPasteboard(pathControl IPathControl, pathItem IPathControlItem, pasteboard IPasteboard) bool {
+	return objc.Send[bool](o.ID, objc.Sel("pathControl:shouldDragItem:withPasteboard:"), pathControl, pathItem, pasteboard)
+}
+
+// HasPathControlShouldDragItemWithPasteboard returns true; this is a placeholder for optional method checks.
+func (o *PathControlDelegateObject) HasPathControlShouldDragItemWithPasteboard() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// PathControlValidateDrop implements the PPathControlDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathControlDelegateObject) PathControlValidateDrop(pathControl IPathControl, info unsafe.Pointer) DragOperation {
+	return objc.Send[DragOperation](o.ID, objc.Sel("pathControl:validateDrop:"), pathControl, info)
+}
+
+// HasPathControlValidateDrop returns true; this is a placeholder for optional method checks.
+func (o *PathControlDelegateObject) HasPathControlValidateDrop() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// PathControlWillDisplayOpenPanel implements the PPathControlDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathControlDelegateObject) PathControlWillDisplayOpenPanel(pathControl IPathControl, openPanel IOpenPanel) {
+	objc.Send[objc.ID](o.ID, objc.Sel("pathControl:willDisplayOpenPanel:"), pathControl, openPanel)
+}
+
+// HasPathControlWillDisplayOpenPanel returns true; this is a placeholder for optional method checks.
+func (o *PathControlDelegateObject) HasPathControlWillDisplayOpenPanel() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// PathControlWillPopUpMenu implements the PPathControlDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *PathControlDelegateObject) PathControlWillPopUpMenu(pathControl IPathControl, menu IMenu) {
+	objc.Send[objc.ID](o.ID, objc.Sel("pathControl:willPopUpMenu:"), pathControl, menu)
+}
+
+// HasPathControlWillPopUpMenu returns true; this is a placeholder for optional method checks.
+func (o *PathControlDelegateObject) HasPathControlWillPopUpMenu() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

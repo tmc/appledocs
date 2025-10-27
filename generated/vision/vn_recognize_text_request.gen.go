@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -62,7 +61,7 @@ type IRecognizeTextRequest interface {
 	
 
 	// methods:
-	SupportedRecognitionLanguagesAndReturnError(error_ objectivec.IObject) []string
+	SupportedRecognitionLanguagesAndReturnError(error_ foundation.foundation.INSError) []string
 
 
 }
@@ -140,7 +139,7 @@ func RecognizeTextRequestFrom(ptr unsafe.Pointer) RecognizeTextRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/supportedRecognitionLanguages(for:revision:)
-func (rc _RecognizeTextRequestClass) SupportedRecognitionLanguagesForTextRecognitionLevelRevisionError(recognitionLevel RequestTextRecognitionLevel, requestRevision uint, error_ objectivec.IObject) []string {
+func (rc _RecognizeTextRequestClass) SupportedRecognitionLanguagesForTextRecognitionLevelRevisionError(recognitionLevel RequestTextRecognitionLevel, requestRevision uint, error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:"), recognitionLevel, requestRevision, error_)
 	return rv
 }
@@ -160,7 +159,7 @@ func (rc _RecognizeTextRequestClass) SupportedRecognitionLanguagesForTextRecogni
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/supportedRecognitionLanguages()
-func (r_ RecognizeTextRequest) SupportedRecognitionLanguagesAndReturnError(error_ objectivec.IObject) []string {
+func (r_ RecognizeTextRequest) SupportedRecognitionLanguagesAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("supportedRecognitionLanguagesAndReturnError:"), error_)
 	return rv
 }

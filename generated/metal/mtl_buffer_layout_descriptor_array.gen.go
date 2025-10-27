@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLBufferLayoutDescriptorArray */
 
 
-/* debug [class_header]: Header for MTLBufferLayoutDescriptorArray */
+
+
 // The class instance for the [BufferLayoutDescriptorArray] class.
 var (
 	BufferLayoutDescriptorArrayClass     _BufferLayoutDescriptorArrayClass
@@ -30,34 +30,34 @@ func getBufferLayoutDescriptorArrayClass() _BufferLayoutDescriptorArrayClass {
 type _BufferLayoutDescriptorArrayClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for BufferLayoutDescriptorArray */
+
+
 // An interface definition for the [BufferLayoutDescriptorArray] class.
 type IBufferLayoutDescriptorArray interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for BufferLayoutDescriptorArray */
+
 	// properties:
 	StageInputDescriptor() IMTLStageInputOutputDescriptor
 	SetStageInputDescriptor(value IMTLStageInputOutputDescriptor)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for BufferLayoutDescriptorArray */
+
 	// methods:
 	SetObjectAtIndexedSubscript(bufferDesc IMTLBufferLayoutDescriptor, index uint)
 	ObjectAtIndexedSubscript(index uint) IBufferLayoutDescriptor
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for BufferLayoutDescriptorArray */
+
+
 // Alloc allocates a new instance without initialization.
 func (bc _BufferLayoutDescriptorArrayClass) Alloc() BufferLayoutDescriptorArray {
 	rv := objc.Send[BufferLayoutDescriptorArray](objc.ID(bc.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (b_ BufferLayoutDescriptorArray) Autorelease() BufferLayoutDescriptorArray 
 func NewBufferLayoutDescriptorArray() BufferLayoutDescriptorArray {
 	return getBufferLayoutDescriptorArrayClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for BufferLayoutDescriptorArray */
+
+
 // An array of buffer layout descriptor objects.
 //
 // An defines the data layout and loading for compute data, using instances.
@@ -111,25 +111,25 @@ type BufferLayoutDescriptorArray struct {
 func BufferLayoutDescriptorArrayFrom(ptr unsafe.Pointer) BufferLayoutDescriptorArray {
 	return BufferLayoutDescriptorArray{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for BufferLayoutDescriptorArray *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for BufferLayoutDescriptorArray */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for BufferLayoutDescriptorArray */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for BufferLayoutDescriptorArray */
+
+
+
+
+
+
+
 
 // Sets the state of the specified buffer layout.
 //
@@ -137,7 +137,7 @@ func BufferLayoutDescriptorArrayFrom(ptr unsafe.Pointer) BufferLayoutDescriptorA
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBufferLayoutDescriptorArray/setObject:atIndexedSubscript:
 func (b_ BufferLayoutDescriptorArray) SetObjectAtIndexedSubscript(bufferDesc IMTLBufferLayoutDescriptor, index uint) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setObject:atIndexedSubscript:"), bufferDesc, index)
-}/* debug [instance_methods/method]: SetObjectAtIndexedSubscript */
+}
 
 
 // Returns the state of the specified buffer layout.
@@ -147,13 +147,13 @@ func (b_ BufferLayoutDescriptorArray) SetObjectAtIndexedSubscript(bufferDesc IMT
 func (b_ BufferLayoutDescriptorArray) ObjectAtIndexedSubscript(index uint) IBufferLayoutDescriptor {
 	rv := objc.Send[BufferLayoutDescriptor](b_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
 	return rv
-}/* debug [instance_methods/method]: ObjectAtIndexedSubscript */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for BufferLayoutDescriptorArray */
+
+
+
 
 // The organization of input and output data for the next kernel call.
 //
@@ -162,7 +162,7 @@ func (b_ BufferLayoutDescriptorArray) ObjectAtIndexedSubscript(index uint) IBuff
 func (b_ BufferLayoutDescriptorArray) StageInputDescriptor() IMTLStageInputOutputDescriptor {
 	rv := objc.Send[StageInputOutputDescriptor](b_.ID, objc.Sel("stageInputDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: stageInputDescriptor */
+}
 
 
 // The organization of input and output data for the next kernel call.
@@ -171,12 +171,12 @@ func (b_ BufferLayoutDescriptorArray) StageInputDescriptor() IMTLStageInputOutpu
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/stageinputdescriptor
 func (b_ BufferLayoutDescriptorArray) SetStageInputDescriptor(value IMTLStageInputOutputDescriptor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setStageInputDescriptor:"), value)
-}/* debug [instance_properties/setter]: stageInputDescriptor */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLBufferLayoutDescriptorArray */
+
+
+
 
 
 

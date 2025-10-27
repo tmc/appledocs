@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NLContextualEmbedding */
 
 
-/* debug [class_header]: Header for NLContextualEmbedding */
+
+
 // The class instance for the [ContextualEmbedding] class.
 var (
 	ContextualEmbeddingClass     _ContextualEmbeddingClass
@@ -31,41 +30,41 @@ func getContextualEmbeddingClass() _ContextualEmbeddingClass {
 type _ContextualEmbeddingClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ContextualEmbedding */
+
+
 // An interface definition for the [ContextualEmbedding] class.
 type IContextualEmbedding interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ContextualEmbedding */
+
 	// properties:
 	Dimension() uint
 	HasAvailableAssets() bool
 	Languages() []string
 	MaximumSequenceLength() uint
-	ModelIdentifier() objc.IObject /* cross-framework: NSString */
+	ModelIdentifier() foundation.foundation.INSString
 	Revision() uint
 	Scripts() []string
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ContextualEmbedding */
+
 	// methods:
-	EmbeddingResultForStringLanguageError(string_ objc.IObject /* cross-framework: NSString */, language Language /* typedef */, error_ objectivec.IObject) IContextualEmbeddingResult
-	LoadWithError(error_ objectivec.IObject) bool
+	EmbeddingResultForStringLanguageError(string_ foundation.foundation.INSString, language Language, error_ foundation.foundation.INSError) IContextualEmbeddingResult
+	LoadWithError(error_ foundation.foundation.INSError) bool
 	RequestEmbeddingAssetsWithCompletionHandler(completionHandler unsafe.Pointer)
 	Unload()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ContextualEmbedding */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ContextualEmbeddingClass) Alloc() ContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(cc.class), objc.Sel("alloc"))
@@ -95,11 +94,11 @@ func (c_ ContextualEmbedding) Autorelease() ContextualEmbedding {
 func NewContextualEmbedding() ContextualEmbedding {
 	return getContextualEmbeddingClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ContextualEmbedding */
+
+
 // A model that computes sequences of embedding vectors for natural language utterances.
 //
 // Starting in iOS 17 and macOS 14, the framework supports 27 languages across three models: Latin — including Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Hungarian, Indonesian, Italian, Norwegian, Polish, Portuguese, Romanian, Slovak, Swedish, Spanish, Turkish, and Vietnamese Cyrillic — including Bulgarian, Kazakh, Russian, and Ukrainian Chinese, Japanese, and Korean In iOS 18 and macOS 15, the framework expands language support to include three additional models: Arabic Thai Indic — including Hindi, Marathi, Bangla, Urdu, Punjabi, Gujarati, Tamil, Telugu, Kannada, and Malayalam
@@ -119,113 +118,113 @@ type ContextualEmbedding struct {
 func ContextualEmbeddingFrom(ptr unsafe.Pointer) ContextualEmbedding {
 	return ContextualEmbedding{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ContextualEmbedding */
+
+
 
 // Creates a contextual embedding from a language.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(language:)
-func NewContextualEmbeddingWithLanguage(language Language /* typedef */) ContextualEmbedding {
+func NewContextualEmbeddingWithLanguage(language Language) ContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithLanguage:"), language)
 	return rv
-}/* debug [class_init_methods/constructor]: NewContextualEmbeddingWithLanguage */
+}
 
 
 // Creates a contextual embedding from a model identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(modelIdentifier:)
-func NewContextualEmbeddingWithModelIdentifier(modelIdentifier objc.IObject /* cross-framework: NSString */) ContextualEmbedding {
+func NewContextualEmbeddingWithModelIdentifier(modelIdentifier foundation.foundation.INSString) ContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithModelIdentifier:"), modelIdentifier)
 	return rv
-}/* debug [class_init_methods/constructor]: NewContextualEmbeddingWithModelIdentifier */
+}
 
 
 // Creates a contextual embedding from a script.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(script:)
-func NewContextualEmbeddingWithScript(script Script /* typedef */) ContextualEmbedding {
+func NewContextualEmbeddingWithScript(script Script) ContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(getContextualEmbeddingClass().class), objc.Sel("contextualEmbeddingWithScript:"), script)
 	return rv
-}/* debug [class_init_methods/constructor]: NewContextualEmbeddingWithScript */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ContextualEmbedding */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/contextualEmbeddings(forValues:)
 func (cc _ContextualEmbeddingClass) ContextualEmbeddingsForValues(valuesDictionary foundation.IDictionary) []ContextualEmbedding {
 	rv := objc.Send[[]ContextualEmbedding](objc.ID(cc.class), objc.Sel("contextualEmbeddingsForValues:"), valuesDictionary)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ContextualEmbeddingsForValues) */
+}
 
 
 // Creates a contextual embedding from a language.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(language:)
-func (cc _ContextualEmbeddingClass) ContextualEmbeddingWithLanguage(language Language /* typedef */) IContextualEmbedding {
+func (cc _ContextualEmbeddingClass) ContextualEmbeddingWithLanguage(language Language) IContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(cc.class), objc.Sel("contextualEmbeddingWithLanguage:"), language)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ContextualEmbeddingWithLanguage) */
+}
 
 
 // Creates a contextual embedding from a model identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(modelIdentifier:)
-func (cc _ContextualEmbeddingClass) ContextualEmbeddingWithModelIdentifier(modelIdentifier objc.IObject /* cross-framework: NSString */) objectivec.IObject {
+func (cc _ContextualEmbeddingClass) ContextualEmbeddingWithModelIdentifier(modelIdentifier foundation.foundation.INSString) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("contextualEmbeddingWithModelIdentifier:"), modelIdentifier)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ContextualEmbeddingWithModelIdentifier) */
+}
 
 
 // Creates a contextual embedding from a script.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/init(script:)
-func (cc _ContextualEmbeddingClass) ContextualEmbeddingWithScript(script Script /* typedef */) IContextualEmbedding {
+func (cc _ContextualEmbeddingClass) ContextualEmbeddingWithScript(script Script) IContextualEmbedding {
 	rv := objc.Send[ContextualEmbedding](objc.ID(cc.class), objc.Sel("contextualEmbeddingWithScript:"), script)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ContextualEmbeddingWithScript) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ContextualEmbedding */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ContextualEmbedding */
+
+
+
+
+
 
 // Applies an embedding to a string and obtains the resulting embedding vectors.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/embeddingResult(for:language:)
-func (c_ ContextualEmbedding) EmbeddingResultForStringLanguageError(string_ objc.IObject /* cross-framework: NSString */, language Language /* typedef */, error_ objectivec.IObject) IContextualEmbeddingResult {
+func (c_ ContextualEmbedding) EmbeddingResultForStringLanguageError(string_ foundation.foundation.INSString, language Language, error_ foundation.foundation.INSError) IContextualEmbeddingResult {
 	rv := objc.Send[ContextualEmbeddingResult](c_.ID, objc.Sel("embeddingResultForString:language:error:"), string_, language, error_)
 	return rv
-}/* debug [instance_methods/method]: EmbeddingResultForStringLanguageError */
+}
 
 
 // Loads the embedding model.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/load()
-func (c_ ContextualEmbedding) LoadWithError(error_ objectivec.IObject) bool {
+func (c_ ContextualEmbedding) LoadWithError(error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("loadWithError:"), error_)
 	return rv
-}/* debug [instance_methods/method]: LoadWithError */
+}
 
 
 // Requests assets for an embedding, if available.
@@ -234,7 +233,7 @@ func (c_ ContextualEmbedding) LoadWithError(error_ objectivec.IObject) bool {
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/requestAssets(completionHandler:)
 func (c_ ContextualEmbedding) RequestEmbeddingAssetsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestEmbeddingAssetsWithCompletionHandler:"), completionHandler)
-}/* debug [instance_methods/method]: RequestEmbeddingAssetsWithCompletionHandler */
+}
 
 
 // Unloads the embedding model.
@@ -243,13 +242,13 @@ func (c_ ContextualEmbedding) RequestEmbeddingAssetsWithCompletionHandler(comple
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/unload()
 func (c_ ContextualEmbedding) Unload() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("unload"))
-}/* debug [instance_methods/method]: Unload */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ContextualEmbedding */
+
+
+
 
 // The number of dimensions in the script’s vector space.
 //
@@ -258,7 +257,7 @@ func (c_ ContextualEmbedding) Unload() {
 func (c_ ContextualEmbedding) Dimension() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("dimension"))
 	return rv
-}/* debug [instance_properties/getter]: dimension */
+}
 
 
 // A Boolean value that indicates whether assets are available to load.
@@ -268,7 +267,7 @@ func (c_ ContextualEmbedding) Dimension() uint {
 func (c_ ContextualEmbedding) HasAvailableAssets() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasAvailableAssets"))
 	return rv
-}/* debug [instance_properties/getter]: hasAvailableAssets */
+}
 
 
 // The languages of the text in the contextual embedding.
@@ -278,7 +277,7 @@ func (c_ ContextualEmbedding) HasAvailableAssets() bool {
 func (c_ ContextualEmbedding) Languages() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("languages"))
 	return rv
-}/* debug [instance_properties/getter]: languages */
+}
 
 
 // The maximum number of embedding vectors the model generates, in sequence.
@@ -288,17 +287,17 @@ func (c_ ContextualEmbedding) Languages() []string {
 func (c_ ContextualEmbedding) MaximumSequenceLength() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumSequenceLength"))
 	return rv
-}/* debug [instance_properties/getter]: maximumSequenceLength */
+}
 
 
 // The model identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/modelIdentifier
-func (c_ ContextualEmbedding) ModelIdentifier() objc.IObject /* cross-framework: NSString */ {
+func (c_ ContextualEmbedding) ModelIdentifier() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("modelIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: modelIdentifier */
+}
 
 
 // The revision of the contextual embedding.
@@ -308,7 +307,7 @@ func (c_ ContextualEmbedding) ModelIdentifier() objc.IObject /* cross-framework:
 func (c_ ContextualEmbedding) Revision() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("revision"))
 	return rv
-}/* debug [instance_properties/getter]: revision */
+}
 
 
 // The scripts of the text in the contextual embedding.
@@ -318,11 +317,11 @@ func (c_ ContextualEmbedding) Revision() uint {
 func (c_ ContextualEmbedding) Scripts() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("scripts"))
 	return rv
-}/* debug [instance_properties/getter]: scripts */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NLContextualEmbedding */
+
+
+
 
 

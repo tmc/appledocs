@@ -13,7 +13,7 @@ var _ = appkit.NewPasteboard
 // Returns the pasteboard with the specified name.
 func ExampleNewPasteboardWithName() {
 	_ = appkit.NewPasteboardWithName(
-		appkit.PasteboardName /* typedef */{}, // name PasteboardName /* typedef */
+		appkit.PasteboardName{}, // name PasteboardName
 	)
 	// Output:
 }

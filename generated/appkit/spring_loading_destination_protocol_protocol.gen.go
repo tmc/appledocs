@@ -16,8 +16,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSpringLoadingDestination
 type PSpringLoadingDestination interface {
 	// Required methods
-	SpringLoadingActivatedDraggingInfo(activated bool, draggingInfo unsafe.Pointer)/* debug [protocol_interface/required_method]: SpringLoadingActivatedDraggingInfo */
-	SpringLoadingHighlightChanged(draggingInfo unsafe.Pointer)/* debug [protocol_interface/required_method]: SpringLoadingHighlightChanged */
+	SpringLoadingActivatedDraggingInfo(activated bool, draggingInfo unsafe.Pointer)
+	SpringLoadingHighlightChanged(draggingInfo unsafe.Pointer)
 	// Optional methods
 	DraggingEnded(draggingInfo unsafe.Pointer)
 	HasDraggingEnded() bool

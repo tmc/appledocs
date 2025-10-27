@@ -6,9 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
+
+
+
+
 
 // The class instance for the [BeaconIdentityCondition] class.
 var (
@@ -27,36 +31,31 @@ type _BeaconIdentityConditionClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [BeaconIdentityCondition] class.
 type IBeaconIdentityCondition interface {
 	ICondition
+	
+
 	// properties:
-	UUID() objc.IObject  /* cross-framework: UUID */
-	Major() objc.IObject /* cross-framework: NSNumber */
-	Minor() objc.IObject /* cross-framework: NSNumber */
+	Major() foundation.foundation.INSNumber
+	Minor() foundation.foundation.INSNumber
+	UUID() foundation.UUID
+
+
+	
+
 	// methods:
+
+
 }
 
-// A condition that describes the identity characteristics of a beacon.
-//
-// Core Location defines a beacon identity by UUID, and major and minor values. You need to specify the UUID. If you only specify a UUID, the framework treats the major and minor values as wildcards and any beacons with the same UUID satisfy the condition. Similarly, if you specify only a UUID and a major value, the framework treats the minor value as a wildcard and any beacons with the same UUID and major value satisfy the condition.
 
-// A condition that describes the identity characteristics of a beacon.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition
-type BeaconIdentityCondition struct {
-	Condition
-}
 
-// BeaconIdentityConditionFrom constructs a [BeaconIdentityCondition] from an unsafe.Pointer.
-//
-// A condition that describes the identity characteristics of a beacon.
-func BeaconIdentityConditionFrom(ptr unsafe.Pointer) BeaconIdentityCondition {
-	return BeaconIdentityCondition{
-		Condition: ConditionFrom(ptr),
-	}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (bc _BeaconIdentityConditionClass) Alloc() BeaconIdentityCondition {
@@ -65,7 +64,6 @@ func (bc _BeaconIdentityConditionClass) Alloc() BeaconIdentityCondition {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BeaconIdentityConditionClass) New() BeaconIdentityCondition {
 	rv := objc.Send[BeaconIdentityCondition](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,62 +87,125 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 	return getBeaconIdentityConditionClass().New()
 }
 
+
+
+
+
+// A condition that describes the identity characteristics of a beacon.
+//
+// Core Location defines a beacon identity by UUID, and major and minor values. You need to specify the UUID. If you only specify a UUID, the framework treats the major and minor values as wildcards and any beacons with the same UUID satisfy the condition. Similarly, if you specify only a UUID and a major value, the framework treats the minor value as a wildcard and any beacons with the same UUID and major value satisfy the condition.
+
+
+// A condition that describes the identity characteristics of a beacon.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition
+type BeaconIdentityCondition struct {
+	Condition
+}
+
+// BeaconIdentityConditionFrom constructs a [BeaconIdentityCondition] from an unsafe.Pointer.
+//
+// A condition that describes the identity characteristics of a beacon.
+func BeaconIdentityConditionFrom(ptr unsafe.Pointer) BeaconIdentityCondition {
+	return BeaconIdentityCondition{
+		Condition: ConditionFrom(ptr),
+	}
+}
+
+
+
+
+
+
 // Creates a new beacon identity condition with the identifier you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
-func NewBeaconIdentityConditionWithUUID(uuid objc.IObject /* cross-framework: UUID */) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUID(uuid foundation.UUID) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
 	rv.Autorelease()
 	return rv
 }
 
+
 // Creates a new beacon identity condition with the identifier and major value you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
-func NewBeaconIdentityConditionWithUUIDMajor(uuid objc.IObject /* cross-framework: UUID */, major BeaconMajorValue /* not a class type */) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajor(uuid foundation.UUID, major BeaconMajorValue) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:"), uuid, major)
 	rv.Autorelease()
 	return rv
 }
 
+
 // Creates a new beacon identity condition with the identifier, and major and minor values you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
-func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid objc.IObject /* cross-framework: UUID */, major BeaconMajorValue /* not a class type */, minor BeaconMinorValue /* not a class type */) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid foundation.UUID, major BeaconMajorValue, minor BeaconMinorValue) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:minor:"), uuid, major, minor)
 	rv.Autorelease()
 	return rv
 }
 
-// A universally unique identifier that represent the beacon’s identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/UUID
-func (b_ BeaconIdentityCondition) UUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
-	return rv
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // The most significant value associated with the beacon.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/major
-func (b_ BeaconIdentityCondition) Major() objc.IObject /* cross-framework: NSNumber */ {
+func (b_ BeaconIdentityCondition) Major() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
+
 
 // The least significant value associated with the beacon.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/minor
-func (b_ BeaconIdentityCondition) Minor() objc.IObject /* cross-framework: NSNumber */ {
+func (b_ BeaconIdentityCondition) Minor() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
+
+
+// A universally unique identifier that represent the beacon’s identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/UUID
+func (b_ BeaconIdentityCondition) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
+	return rv
+}
+
+
+
+
+
+
+

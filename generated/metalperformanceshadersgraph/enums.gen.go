@@ -2,9 +2,9 @@
 
 package metalperformanceshadersgraph
 
-/* debug [enums.gen.go]: Generating 22 enums for MetalPerformanceShadersGraph */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum MPSGraphDeploymentPlatform (4 cases) */
+
 // MPSGraphDeploymentPlatform - The options available to a graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDeploymentPlatform
@@ -29,7 +29,7 @@ const (
 	MPSGraphDeploymentPlatformVisionOS MPSGraphDeploymentPlatform = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphDeviceType (1 cases) */
+
 // MPSGraphDeviceType - The device type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDeviceType
@@ -42,7 +42,7 @@ const (
 	MPSGraphDeviceTypeMetal MPSGraphDeviceType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphExecutionStage (1 cases) */
+
 // MPSGraphExecutionStage - Execution events that can be used with shared events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionStage
@@ -55,7 +55,7 @@ const (
 	MPSGraphExecutionStageCompleted MPSGraphExecutionStage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphFFTScalingMode (3 cases) */
+
 // MPSGraphFFTScalingMode - The scaling modes for Fourier transform operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTScalingMode
@@ -76,7 +76,7 @@ const (
 	MPSGraphFFTScalingModeUnitary MPSGraphFFTScalingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphLossReductionType (4 cases) */
+
 // MPSGraphLossReductionType - The type of the reduction the graph applies in the loss operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphLossReductionType
@@ -101,7 +101,7 @@ const (
 	MPSGraphLossReductionTypeSum MPSGraphLossReductionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphNonMaximumSuppressionCoordinateMode (4 cases) */
+
 // MPSGraphNonMaximumSuppressionCoordinateMode - The non-maximum suppression coordinate mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphNonMaximumSuppressionCoordinateMode
@@ -122,7 +122,7 @@ const (
 	MPSGraphNonMaximumSuppressionCoordinateModeCornersHeightFirst MPSGraphNonMaximumSuppressionCoordinateMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphOptimization (2 cases) */
+
 // MPSGraphOptimization - The optimization levels to trade compilation time for even more runtime performance by running more passes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOptimization
@@ -139,7 +139,7 @@ const (
 	MPSGraphOptimizationLevel1 MPSGraphOptimization = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphOptimizationProfile (2 cases) */
+
 // MPSGraphOptimizationProfile - The optimization profile used as a heuristic as the graph compiler optimizes the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOptimizationProfile
@@ -156,7 +156,7 @@ const (
 	MPSGraphOptimizationProfilePowerEfficiency MPSGraphOptimizationProfile = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphOptions (4 cases) */
+
 // MPSGraphOptions - The options available to a graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOptions
@@ -181,7 +181,7 @@ const (
 	MPSGraphOptionsVerbose MPSGraphOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphPaddingMode (7 cases) */
+
 // MPSGraphPaddingMode - The tensor padding mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPaddingMode
@@ -218,7 +218,7 @@ const (
 	MPSGraphPaddingModeZero MPSGraphPaddingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphPaddingStyle (5 cases) */
+
 // MPSGraphPaddingStyle - The tensor padding style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPaddingStyle
@@ -247,7 +247,7 @@ const (
 	MPSGraphPaddingStyleTF_VALID MPSGraphPaddingStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphPoolingReturnIndicesMode (9 cases) */
+
 // MPSGraphPoolingReturnIndicesMode - The flattening mode for returned indices with max-pooling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPoolingReturnIndicesMode
@@ -292,7 +292,7 @@ const (
 	MPSGraphPoolingReturnIndicesNone MPSGraphPoolingReturnIndicesMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphRNNActivation (5 cases) */
+
 // MPSGraphRNNActivation - The activation modes for RNN operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRNNActivation
@@ -321,7 +321,7 @@ const (
 	MPSGraphRNNActivationTanh MPSGraphRNNActivation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphRandomDistribution (3 cases) */
+
 // MPSGraphRandomDistribution - The distributions supported by random operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRandomDistribution
@@ -342,7 +342,7 @@ const (
 	MPSGraphRandomDistributionUniform MPSGraphRandomDistribution = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphRandomNormalSamplingMethod (2 cases) */
+
 // MPSGraphRandomNormalSamplingMethod - The sampling method to use when generating values in the normal distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRandomNormalSamplingMethod
@@ -359,7 +359,7 @@ const (
 	MPSGraphRandomNormalSamplingInvCDF MPSGraphRandomNormalSamplingMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphReducedPrecisionFastMath (4 cases) */
+
 // MPSGraphReducedPrecisionFastMath - MPSGraph could use these reduced precision paths to deliver faster math, but it is not guaranteed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphReducedPrecisionFastMath
@@ -384,7 +384,7 @@ const (
 	MPSGraphReducedPrecisionFastMathNone MPSGraphReducedPrecisionFastMath = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphReductionMode (6 cases) */
+
 // MPSGraphReductionMode - The reduction mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphReductionMode
@@ -417,7 +417,7 @@ const (
 	MPSGraphReductionModeSum MPSGraphReductionMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphResizeMode (2 cases) */
+
 // MPSGraphResizeMode - The resize mode to use for resizing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphResizeMode
@@ -434,7 +434,7 @@ const (
 	MPSGraphResizeNearest MPSGraphResizeMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphResizeNearestRoundingMode (6 cases) */
+
 // MPSGraphResizeNearestRoundingMode - The rounding mode to use when using nearest resize mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphResizeNearestRoundingMode
@@ -467,7 +467,7 @@ const (
 	MPSGraphResizeNearestRoundingModeRoundToOdd MPSGraphResizeNearestRoundingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphScatterMode (7 cases) */
+
 // MPSGraphScatterMode - The scatter mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphScatterMode
@@ -504,7 +504,7 @@ const (
 	MPSGraphScatterModeSub MPSGraphScatterMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphSparseStorageType (3 cases) */
+
 // MPSGraphSparseStorageType - The sparse storage options in the Metal Performance Shaders Graph framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSparseStorageType
@@ -525,7 +525,7 @@ const (
 	MPSGraphSparseStorageCSR MPSGraphSparseStorageType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSGraphTensorNamedDataLayout (11 cases) */
+
 // MPSGraphTensorNamedDataLayout - The tensor layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorNamedDataLayout

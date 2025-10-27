@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,11 +77,11 @@ func (n_ NEAppPushManager) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/localizedDescription
-func (n_ NEAppPushManager) LocalizedDescription() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEAppPushManager) LocalizedDescription() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
-func (n_ NEAppPushManager) SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEAppPushManager) SetLocalizedDescription(value foundation.foundation.INSString) {
 	n_.ID.Send(objc.RegisterName("setLocalizedDescription:"), value)
 }
 
@@ -126,11 +125,11 @@ func (n_ NEAppPushManager) SetMatchSSIDs(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEAppPushManager) ProviderBundleIdentifier() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
-func (n_ NEAppPushManager) SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEAppPushManager) SetProviderBundleIdentifier(value foundation.foundation.INSString) {
 	n_.ID.Send(objc.RegisterName("setProviderBundleIdentifier:"), value)
 }
 

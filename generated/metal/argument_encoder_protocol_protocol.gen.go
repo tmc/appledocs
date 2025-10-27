@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PArgumentEncoder is the MTLArgumentEncoder protocol interface.
@@ -23,27 +23,27 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder
 type PArgumentEncoder interface {
 	// Required methods
-	ConstantDataAtIndex(index uint)/* debug [protocol_interface/required_method]: ConstantDataAtIndex */
-	NewArgumentEncoderForBufferAtIndex(index uint) unsafe.Pointer/* debug [protocol_interface/required_method]: NewArgumentEncoderForBufferAtIndex */
-	SetAccelerationStructureAtIndex(accelerationStructure unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetAccelerationStructureAtIndex */
-	SetArgumentBufferOffset(argumentBuffer unsafe.Pointer, offset uint)/* debug [protocol_interface/required_method]: SetArgumentBufferOffset */
-	SetArgumentBufferStartOffsetArrayElement(argumentBuffer unsafe.Pointer, startOffset uint, arrayElement uint)/* debug [protocol_interface/required_method]: SetArgumentBufferStartOffsetArrayElement */
-	SetBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)/* debug [protocol_interface/required_method]: SetBufferOffsetAtIndex */
-	SetBuffersOffsetsWithRange(buffers []objc.ID, offsets uint, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetBuffersOffsetsWithRange */
-	SetComputePipelineStateAtIndex(pipeline unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetComputePipelineStateAtIndex */
-	SetComputePipelineStatesWithRange(pipelines []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetComputePipelineStatesWithRange */
-	SetDepthStencilStateAtIndex(depthStencilState unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetDepthStencilStateAtIndex */
-	SetDepthStencilStatesWithRange(depthStencilStates []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetDepthStencilStatesWithRange */
-	SetIndirectCommandBufferAtIndex(indirectCommandBuffer unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetIndirectCommandBufferAtIndex */
-	SetIndirectCommandBuffersWithRange(buffers []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetIndirectCommandBuffersWithRange */
-	SetIntersectionFunctionTableAtIndex(intersectionFunctionTable unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetIntersectionFunctionTableAtIndex */
-	SetIntersectionFunctionTablesWithRange(intersectionFunctionTables []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetIntersectionFunctionTablesWithRange */
-	SetRenderPipelineStateAtIndex(pipeline unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetRenderPipelineStateAtIndex */
-	SetRenderPipelineStatesWithRange(pipelines []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetRenderPipelineStatesWithRange */
-	SetSamplerStateAtIndex(sampler unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetSamplerStateAtIndex */
-	SetSamplerStatesWithRange(samplers []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetSamplerStatesWithRange */
-	SetTextureAtIndex(texture unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetTextureAtIndex */
-	SetTexturesWithRange(textures []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetTexturesWithRange */
-	SetVisibleFunctionTableAtIndex(visibleFunctionTable unsafe.Pointer, index uint)/* debug [protocol_interface/required_method]: SetVisibleFunctionTableAtIndex */
-	SetVisibleFunctionTablesWithRange(visibleFunctionTables []objc.ID, range_ corefoundation.Range)/* debug [protocol_interface/required_method]: SetVisibleFunctionTablesWithRange */
+	ConstantDataAtIndex(index uint)
+	NewArgumentEncoderForBufferAtIndex(index uint) unsafe.Pointer
+	SetAccelerationStructureAtIndex(accelerationStructure unsafe.Pointer, index uint)
+	SetArgumentBufferOffset(argumentBuffer unsafe.Pointer, offset uint)
+	SetArgumentBufferStartOffsetArrayElement(argumentBuffer unsafe.Pointer, startOffset uint, arrayElement uint)
+	SetBufferOffsetAtIndex(buffer unsafe.Pointer, offset uint, index uint)
+	SetBuffersOffsetsWithRange(buffers []objc.ID, offsets uint, range_ foundation.Range)
+	SetComputePipelineStateAtIndex(pipeline unsafe.Pointer, index uint)
+	SetComputePipelineStatesWithRange(pipelines []objc.ID, range_ foundation.Range)
+	SetDepthStencilStateAtIndex(depthStencilState unsafe.Pointer, index uint)
+	SetDepthStencilStatesWithRange(depthStencilStates []objc.ID, range_ foundation.Range)
+	SetIndirectCommandBufferAtIndex(indirectCommandBuffer unsafe.Pointer, index uint)
+	SetIndirectCommandBuffersWithRange(buffers []objc.ID, range_ foundation.Range)
+	SetIntersectionFunctionTableAtIndex(intersectionFunctionTable unsafe.Pointer, index uint)
+	SetIntersectionFunctionTablesWithRange(intersectionFunctionTables []objc.ID, range_ foundation.Range)
+	SetRenderPipelineStateAtIndex(pipeline unsafe.Pointer, index uint)
+	SetRenderPipelineStatesWithRange(pipelines []objc.ID, range_ foundation.Range)
+	SetSamplerStateAtIndex(sampler unsafe.Pointer, index uint)
+	SetSamplerStatesWithRange(samplers []objc.ID, range_ foundation.Range)
+	SetTextureAtIndex(texture unsafe.Pointer, index uint)
+	SetTexturesWithRange(textures []objc.ID, range_ foundation.Range)
+	SetVisibleFunctionTableAtIndex(visibleFunctionTable unsafe.Pointer, index uint)
+	SetVisibleFunctionTablesWithRange(visibleFunctionTables []objc.ID, range_ foundation.Range)
 }

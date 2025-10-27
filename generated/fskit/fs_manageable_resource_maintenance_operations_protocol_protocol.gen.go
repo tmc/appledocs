@@ -3,7 +3,6 @@
 package fskit
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -18,6 +17,6 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations
 type PFSManageableResourceMaintenanceOperations interface {
 	// Required methods
-	StartCheckWithTaskOptionsError(task IFSTask, options IFSTaskOptions, error_ unsafe.Pointer) foundation.Progress/* debug [protocol_interface/required_method]: StartCheckWithTaskOptionsError */
-	StartFormatWithTaskOptionsError(task IFSTask, options IFSTaskOptions, error_ unsafe.Pointer) foundation.Progress/* debug [protocol_interface/required_method]: StartFormatWithTaskOptionsError */
+	StartCheckWithTaskOptionsError(task IFSTask, options IFSTaskOptions, error_ foundation.foundation.INSError) foundation.Progress
+	StartFormatWithTaskOptionsError(task IFSTask, options IFSTaskOptions, error_ foundation.foundation.INSError) foundation.Progress
 }

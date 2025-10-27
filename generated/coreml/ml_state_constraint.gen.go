@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLStateConstraint */
 
 
-/* debug [class_header]: Header for MLStateConstraint */
+
+
 // The class instance for the [StateConstraint] class.
 var (
 	StateConstraintClass     _StateConstraintClass
@@ -30,32 +30,32 @@ func getStateConstraintClass() _StateConstraintClass {
 type _StateConstraintClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for StateConstraint */
+
+
 // An interface definition for the [StateConstraint] class.
 type IStateConstraint interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for StateConstraint */
+
 	// properties:
 	BufferShape() []foundation.Number
 	DataType() MultiArrayDataType
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for StateConstraint */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for StateConstraint */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _StateConstraintClass) Alloc() StateConstraint {
 	rv := objc.Send[StateConstraint](objc.ID(sc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (s_ StateConstraint) Autorelease() StateConstraint {
 func NewStateConstraint() StateConstraint {
 	return getStateConstraintClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for StateConstraint */
+
+
 // Constraint of a state feature value.
 
 
@@ -107,30 +107,30 @@ type StateConstraint struct {
 func StateConstraintFrom(ptr unsafe.Pointer) StateConstraint {
 	return StateConstraint{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for StateConstraint *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for StateConstraint */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for StateConstraint */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for StateConstraint */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for StateConstraint */
+
+
+
+
+
+
+
+
+
 
 // The shape of the state buffer.
 //
@@ -139,7 +139,7 @@ func StateConstraintFrom(ptr unsafe.Pointer) StateConstraint {
 func (s_ StateConstraint) BufferShape() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("bufferShape"))
 	return rv
-}/* debug [instance_properties/getter]: bufferShape */
+}
 
 
 // The data type of scalars in the state buffer.
@@ -149,12 +149,12 @@ func (s_ StateConstraint) BufferShape() []foundation.Number {
 func (s_ StateConstraint) DataType() MultiArrayDataType {
 	rv := objc.Send[MultiArrayDataType](s_.ID, objc.Sel("dataType"))
 	return rv
-}/* debug [instance_properties/getter]: dataType */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLStateConstraint */
+
+
+
 
 
 

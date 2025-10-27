@@ -4,6 +4,8 @@ package coremediaio
 
 import (
 	"unsafe"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PIOExtensionDeviceSource is the CMIOExtensionDeviceSource protocol interface.
@@ -17,6 +19,6 @@ import (
 // See: doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDeviceSource
 type PIOExtensionDeviceSource interface {
 	// Required methods
-	DevicePropertiesForPropertiesError(properties unsafe.Pointer, outError unsafe.Pointer) IOExtensionDeviceProperties/* debug [protocol_interface/required_method]: DevicePropertiesForPropertiesError */
-	SetDevicePropertiesError(deviceProperties ExtensionDeviceProperties, outError unsafe.Pointer) bool/* debug [protocol_interface/required_method]: SetDevicePropertiesError */
+	DevicePropertiesForPropertiesError(properties unsafe.Pointer, outError foundation.foundation.INSError) IOExtensionDeviceProperties
+	SetDevicePropertiesError(deviceProperties ExtensionDeviceProperties, outError foundation.foundation.INSError) bool
 }

@@ -44,11 +44,11 @@ func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/minFrameDuration
-func (c_ CaptureVideoDataOutput) MinFrameDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("minFrameDuration"))
+func (c_ CaptureVideoDataOutput) MinFrameDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("minFrameDuration"))
 	return rv
 }
-func (c_ CaptureVideoDataOutput) SetMinFrameDuration(value objc.IObject /* cross-framework: Time */) {
+func (c_ CaptureVideoDataOutput) SetMinFrameDuration(value objectivec.IObject) {
 	c_.ID.Send(objc.RegisterName("setMinFrameDuration:"), value)
 }
 

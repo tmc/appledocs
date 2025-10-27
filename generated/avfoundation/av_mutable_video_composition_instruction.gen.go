@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVMutableVideoCompositionInstruction */
 
 
-/* debug [class_header]: Header for AVMutableVideoCompositionInstruction */
+
+
 // The class instance for the [MutableVideoCompositionInstruction] class.
 var (
 	MutableVideoCompositionInstructionClass     _MutableVideoCompositionInstructionClass
@@ -30,16 +30,16 @@ func getMutableVideoCompositionInstructionClass() _MutableVideoCompositionInstru
 type _MutableVideoCompositionInstructionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MutableVideoCompositionInstruction */
+
+
 // An interface definition for the [MutableVideoCompositionInstruction] class.
 type IMutableVideoCompositionInstruction interface {
 	IVideoCompositionInstruction
 	
-/* debug [class_interface_properties]: Properties for MutableVideoCompositionInstruction */
+
 	// properties:
 	BackgroundColor() ColorRef /* not a class type */
 	SetBackgroundColor(value ColorRef /* not a class type */)
@@ -49,23 +49,23 @@ type IMutableVideoCompositionInstruction interface {
 	SetLayerInstructions(value []VideoCompositionLayerInstruction)
 	RequiredSourceSampleDataTrackIDs() []foundation.Number
 	SetRequiredSourceSampleDataTrackIDs(value []foundation.Number)
-	TimeRange() TimeRange /* not a class type */
-	SetTimeRange(value TimeRange /* not a class type */)
+	TimeRange() objectivec.IObject
+	SetTimeRange(value objectivec.IObject)
 	Instructions() VideoCompositionInstructionProtocol /* not a class type */
 	SetInstructions(value VideoCompositionInstructionProtocol /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MutableVideoCompositionInstruction */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MutableVideoCompositionInstruction */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableVideoCompositionInstructionClass) Alloc() MutableVideoCompositionInstruction {
 	rv := objc.Send[MutableVideoCompositionInstruction](objc.ID(mc.class), objc.Sel("alloc"))
@@ -95,11 +95,11 @@ func (m_ MutableVideoCompositionInstruction) Autorelease() MutableVideoCompositi
 func NewMutableVideoCompositionInstruction() MutableVideoCompositionInstruction {
 	return getMutableVideoCompositionInstructionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MutableVideoCompositionInstruction */
+
+
 // A mutable video composition instruction subclass.
 //
 // An object maintains an array of to perform its composition.
@@ -121,15 +121,15 @@ func MutableVideoCompositionInstructionFrom(ptr unsafe.Pointer) MutableVideoComp
 		VideoCompositionInstruction: VideoCompositionInstructionFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MutableVideoCompositionInstruction *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MutableVideoCompositionInstruction */
+
+
+
 
 // Returns a new mutable video composition instruction.
 //
@@ -138,23 +138,23 @@ func MutableVideoCompositionInstructionFrom(ptr unsafe.Pointer) MutableVideoComp
 func (mc _MutableVideoCompositionInstructionClass) VideoCompositionInstruction() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(mc.class), objc.Sel("videoCompositionInstruction"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionInstruction) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for MutableVideoCompositionInstruction */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MutableVideoCompositionInstruction */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MutableVideoCompositionInstruction */
+
+
+
+
+
+
+
 
 // The background color of the composition.
 //
@@ -163,7 +163,7 @@ func (mc _MutableVideoCompositionInstructionClass) VideoCompositionInstruction()
 func (m_ MutableVideoCompositionInstruction) BackgroundColor() ColorRef /* not a class type */ {
 	rv := objc.Send[ColorRef](m_.ID, objc.Sel("backgroundColor"))
 	return rv
-}/* debug [instance_properties/getter]: backgroundColor */
+}
 
 
 // The background color of the composition.
@@ -172,7 +172,7 @@ func (m_ MutableVideoCompositionInstruction) BackgroundColor() ColorRef /* not a
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableVideoCompositionInstruction/backgroundColor
 func (m_ MutableVideoCompositionInstruction) SetBackgroundColor(value ColorRef /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundColor:"), value)
-}/* debug [instance_properties/setter]: backgroundColor */
+}
 
 
 // A Boolean value that indicates whether the instruction requires post processing.
@@ -182,7 +182,7 @@ func (m_ MutableVideoCompositionInstruction) SetBackgroundColor(value ColorRef /
 func (m_ MutableVideoCompositionInstruction) EnablePostProcessing() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("enablePostProcessing"))
 	return rv
-}/* debug [instance_properties/getter]: enablePostProcessing */
+}
 
 
 // A Boolean value that indicates whether the instruction requires post processing.
@@ -191,7 +191,7 @@ func (m_ MutableVideoCompositionInstruction) EnablePostProcessing() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableVideoCompositionInstruction/enablePostProcessing
 func (m_ MutableVideoCompositionInstruction) SetEnablePostProcessing(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnablePostProcessing:"), value)
-}/* debug [instance_properties/setter]: enablePostProcessing */
+}
 
 
 // Instructions that specify how to layer and compose video frames from source tracks.
@@ -201,7 +201,7 @@ func (m_ MutableVideoCompositionInstruction) SetEnablePostProcessing(value bool)
 func (m_ MutableVideoCompositionInstruction) LayerInstructions() []VideoCompositionLayerInstruction {
 	rv := objc.Send[[]VideoCompositionLayerInstruction](m_.ID, objc.Sel("layerInstructions"))
 	return rv
-}/* debug [instance_properties/getter]: layerInstructions */
+}
 
 
 // Instructions that specify how to layer and compose video frames from source tracks.
@@ -219,7 +219,7 @@ func (m_ MutableVideoCompositionInstruction) SetLayerInstructions(value []VideoC
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLayerInstructions:"), nsArray)
-}/* debug [instance_properties/setter]: layerInstructions */
+}
 
 
 // The track identifiers of source sample data that the compositor requires to compose frames for the instruction.
@@ -229,7 +229,7 @@ func (m_ MutableVideoCompositionInstruction) SetLayerInstructions(value []VideoC
 func (m_ MutableVideoCompositionInstruction) RequiredSourceSampleDataTrackIDs() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("requiredSourceSampleDataTrackIDs"))
 	return rv
-}/* debug [instance_properties/getter]: requiredSourceSampleDataTrackIDs */
+}
 
 
 // The track identifiers of source sample data that the compositor requires to compose frames for the instruction.
@@ -247,26 +247,26 @@ func (m_ MutableVideoCompositionInstruction) SetRequiredSourceSampleDataTrackIDs
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredSourceSampleDataTrackIDs:"), nsArray)
-}/* debug [instance_properties/setter]: requiredSourceSampleDataTrackIDs */
+}
 
 
 // The time range to which the instruction applies.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableVideoCompositionInstruction/timeRange
-func (m_ MutableVideoCompositionInstruction) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](m_.ID, objc.Sel("timeRange"))
+func (m_ MutableVideoCompositionInstruction) TimeRange() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("timeRange"))
 	return rv
-}/* debug [instance_properties/getter]: timeRange */
+}
 
 
 // The time range to which the instruction applies.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableVideoCompositionInstruction/timeRange
-func (m_ MutableVideoCompositionInstruction) SetTimeRange(value TimeRange /* not a class type */) {
+func (m_ MutableVideoCompositionInstruction) SetTimeRange(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeRange:"), value)
-}/* debug [instance_properties/setter]: timeRange */
+}
 
 
 // The video composition instructions.
@@ -276,7 +276,7 @@ func (m_ MutableVideoCompositionInstruction) SetTimeRange(value TimeRange /* not
 func (m_ MutableVideoCompositionInstruction) Instructions() VideoCompositionInstructionProtocol /* not a class type */ {
 	rv := objc.Send[VideoCompositionInstructionProtocol](m_.ID, objc.Sel("instructions"))
 	return rv
-}/* debug [instance_properties/getter]: instructions */
+}
 
 
 // The video composition instructions.
@@ -285,12 +285,12 @@ func (m_ MutableVideoCompositionInstruction) Instructions() VideoCompositionInst
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/instructions
 func (m_ MutableVideoCompositionInstruction) SetInstructions(value VideoCompositionInstructionProtocol /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), value)
-}/* debug [instance_properties/setter]: instructions */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMutableVideoCompositionInstruction */
+
+
+
 
 
 

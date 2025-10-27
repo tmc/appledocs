@@ -5,8 +5,6 @@ package coreml
 import (
 
 	"github.com/tmc/appledocs/generated/foundation"
-
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PWritable is the MLWritable protocol interface.
@@ -25,5 +23,5 @@ import (
 // See: doc://com.apple.coreml/documentation/CoreML/MLWritable
 type PWritable interface {
 	// Required methods
-	WriteToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool/* debug [protocol_interface/required_method]: WriteToURLError */
+	WriteToURLError(url foundation.foundation.INSURL, error_ foundation.foundation.INSError) bool
 }

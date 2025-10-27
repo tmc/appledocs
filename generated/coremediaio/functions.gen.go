@@ -2,12 +2,12 @@
 
 package coremediaio
 
-/* debug [functions.gen.go]: Generating 35 functions for CoreMediaIO */
+
 import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	corevideo "github.com/tmc/appledocs/generated/corevideo"
+	coremedia "github.com/tmc/appledocs/generated/coremedia"
 )
 
 
@@ -43,10 +43,10 @@ var (
 	_CMIOSampleBufferGetSequenceNumber func(SampleBufferRef) unsafe.Pointer
 	_CMIOSampleBufferSetDiscontinuityFlags func(AllocatorRef, SampleBufferRef, unsafe.Pointer)
 	_CMIOSampleBufferSetSequenceNumber func(AllocatorRef, SampleBufferRef, unsafe.Pointer)
-	_CMIOStreamClockConvertHostTimeToDeviceTime func(unsafe.Pointer, TypeRef) corevideo.Time
-	_CMIOStreamClockCreate func(AllocatorRef, StringRef, unsafe.Pointer, corevideo.Time, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CMIOStreamClockConvertHostTimeToDeviceTime func(unsafe.Pointer, TypeRef) coremedia.Time
+	_CMIOStreamClockCreate func(AllocatorRef, StringRef, unsafe.Pointer, coremedia.Time, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CMIOStreamClockInvalidate func(TypeRef) unsafe.Pointer
-	_CMIOStreamClockPostTimingEvent func(corevideo.Time, unsafe.Pointer, unsafe.Pointer, TypeRef) unsafe.Pointer
+	_CMIOStreamClockPostTimingEvent func(coremedia.Time, unsafe.Pointer, unsafe.Pointer, TypeRef) unsafe.Pointer
 	_CMIOStreamCopyBufferQueue func(IOStreamID, IODeviceStreamQueueAlteredProc, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CMIOStreamDeckCueTo func(IOStreamID, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CMIOStreamDeckJog func(IOStreamID, unsafe.Pointer) unsafe.Pointer
@@ -117,7 +117,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceProcessAVCCommand(_:_:)
 func CMIODeviceProcessAVCCommand(deviceID IODeviceID, ioAVCCommand unsafe.Pointer) unsafe.Pointer {
 	return _CMIODeviceProcessAVCCommand(deviceID, ioAVCCommand)
-}/* debug [functions.gen.go/function]: CMIODeviceProcessAVCCommand */
+}
 
 // CMIODeviceProcessRS422Command is a CoreMediaIO function.
 //
@@ -126,7 +126,7 @@ func CMIODeviceProcessAVCCommand(deviceID IODeviceID, ioAVCCommand unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceProcessRS422Command(_:_:)
 func CMIODeviceProcessRS422Command(deviceID IODeviceID, ioRS422Command unsafe.Pointer) unsafe.Pointer {
 	return _CMIODeviceProcessRS422Command(deviceID, ioRS422Command)
-}/* debug [functions.gen.go/function]: CMIODeviceProcessRS422Command */
+}
 
 // CMIODeviceStartStream is a CoreMediaIO function.
 //
@@ -135,7 +135,7 @@ func CMIODeviceProcessRS422Command(deviceID IODeviceID, ioRS422Command unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceStartStream(_:_:)
 func CMIODeviceStartStream(deviceID IODeviceID, streamID IOStreamID) unsafe.Pointer {
 	return _CMIODeviceStartStream(deviceID, streamID)
-}/* debug [functions.gen.go/function]: CMIODeviceStartStream */
+}
 
 // CMIODeviceStopStream is a CoreMediaIO function.
 //
@@ -144,7 +144,7 @@ func CMIODeviceStartStream(deviceID IODeviceID, streamID IOStreamID) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceStopStream(_:_:)
 func CMIODeviceStopStream(deviceID IODeviceID, streamID IOStreamID) unsafe.Pointer {
 	return _CMIODeviceStopStream(deviceID, streamID)
-}/* debug [functions.gen.go/function]: CMIODeviceStopStream */
+}
 
 // CMIOObjectAddPropertyListener is a CoreMediaIO function.
 //
@@ -153,7 +153,7 @@ func CMIODeviceStopStream(deviceID IODeviceID, streamID IOStreamID) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectAddPropertyListener(_:_:_:_:)
 func CMIOObjectAddPropertyListener(objectID IOObjectID, address unsafe.Pointer, listener IOObjectPropertyListenerProc, clientData unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectAddPropertyListener(objectID, address, listener, clientData)
-}/* debug [functions.gen.go/function]: CMIOObjectAddPropertyListener */
+}
 
 // CMIOObjectAddPropertyListenerBlock is a CoreMediaIO function.
 //
@@ -162,7 +162,7 @@ func CMIOObjectAddPropertyListener(objectID IOObjectID, address unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectAddPropertyListenerBlock(_:_:_:_:)
 func CMIOObjectAddPropertyListenerBlock(objectID IOObjectID, address unsafe.Pointer, dispatchQueue unsafe.Pointer, listener IOObjectPropertyListenerBlock) unsafe.Pointer {
 	return _CMIOObjectAddPropertyListenerBlock(objectID, address, dispatchQueue, listener)
-}/* debug [functions.gen.go/function]: CMIOObjectAddPropertyListenerBlock */
+}
 
 // CMIOObjectCreate is a CoreMediaIO function.
 //
@@ -173,7 +173,7 @@ func CMIOObjectAddPropertyListenerBlock(objectID IOObjectID, address unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectCreate
 func CMIOObjectCreate(owningPlugIn IOHardwarePlugInRef, owningObjectID IOObjectID, classID IOClassID, objectID unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectCreate(owningPlugIn, owningObjectID, classID, objectID)
-}/* debug [functions.gen.go/function]: CMIOObjectCreate */
+}
 
 // CMIOObjectGetPropertyData is a CoreMediaIO function.
 //
@@ -182,7 +182,7 @@ func CMIOObjectCreate(owningPlugIn IOHardwarePlugInRef, owningObjectID IOObjectI
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectGetPropertyData(_:_:_:_:_:_:_:)
 func CMIOObjectGetPropertyData(objectID IOObjectID, address unsafe.Pointer, qualifierDataSize unsafe.Pointer, qualifierData unsafe.Pointer, dataSize unsafe.Pointer, dataUsed unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectGetPropertyData(objectID, address, qualifierDataSize, qualifierData, dataSize, dataUsed, data)
-}/* debug [functions.gen.go/function]: CMIOObjectGetPropertyData */
+}
 
 // CMIOObjectGetPropertyDataSize is a CoreMediaIO function.
 //
@@ -191,7 +191,7 @@ func CMIOObjectGetPropertyData(objectID IOObjectID, address unsafe.Pointer, qual
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectGetPropertyDataSize(_:_:_:_:_:)
 func CMIOObjectGetPropertyDataSize(objectID IOObjectID, address unsafe.Pointer, qualifierDataSize unsafe.Pointer, qualifierData unsafe.Pointer, dataSize unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectGetPropertyDataSize(objectID, address, qualifierDataSize, qualifierData, dataSize)
-}/* debug [functions.gen.go/function]: CMIOObjectGetPropertyDataSize */
+}
 
 // CMIOObjectHasProperty is a CoreMediaIO function.
 //
@@ -200,7 +200,7 @@ func CMIOObjectGetPropertyDataSize(objectID IOObjectID, address unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectHasProperty(_:_:)
 func CMIOObjectHasProperty(objectID IOObjectID, address unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectHasProperty(objectID, address)
-}/* debug [functions.gen.go/function]: CMIOObjectHasProperty */
+}
 
 // CMIOObjectIsPropertySettable is a CoreMediaIO function.
 //
@@ -209,7 +209,7 @@ func CMIOObjectHasProperty(objectID IOObjectID, address unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectIsPropertySettable(_:_:_:)
 func CMIOObjectIsPropertySettable(objectID IOObjectID, address unsafe.Pointer, isSettable unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectIsPropertySettable(objectID, address, isSettable)
-}/* debug [functions.gen.go/function]: CMIOObjectIsPropertySettable */
+}
 
 // CMIOObjectPropertiesChanged is a CoreMediaIO function.
 //
@@ -220,7 +220,7 @@ func CMIOObjectIsPropertySettable(objectID IOObjectID, address unsafe.Pointer, i
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectPropertiesChanged
 func CMIOObjectPropertiesChanged(owningPlugIn IOHardwarePlugInRef, objectID IOObjectID, numberAddresses unsafe.Pointer, addresses unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectPropertiesChanged(owningPlugIn, objectID, numberAddresses, addresses)
-}/* debug [functions.gen.go/function]: CMIOObjectPropertiesChanged */
+}
 
 // CMIOObjectRemovePropertyListener is a CoreMediaIO function.
 //
@@ -229,7 +229,7 @@ func CMIOObjectPropertiesChanged(owningPlugIn IOHardwarePlugInRef, objectID IOOb
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectRemovePropertyListener(_:_:_:_:)
 func CMIOObjectRemovePropertyListener(objectID IOObjectID, address unsafe.Pointer, listener IOObjectPropertyListenerProc, clientData unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectRemovePropertyListener(objectID, address, listener, clientData)
-}/* debug [functions.gen.go/function]: CMIOObjectRemovePropertyListener */
+}
 
 // CMIOObjectRemovePropertyListenerBlock is a CoreMediaIO function.
 //
@@ -238,7 +238,7 @@ func CMIOObjectRemovePropertyListener(objectID IOObjectID, address unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectRemovePropertyListenerBlock(_:_:_:_:)
 func CMIOObjectRemovePropertyListenerBlock(objectID IOObjectID, address unsafe.Pointer, dispatchQueue unsafe.Pointer, listener IOObjectPropertyListenerBlock) unsafe.Pointer {
 	return _CMIOObjectRemovePropertyListenerBlock(objectID, address, dispatchQueue, listener)
-}/* debug [functions.gen.go/function]: CMIOObjectRemovePropertyListenerBlock */
+}
 
 // CMIOObjectSetPropertyData is a CoreMediaIO function.
 //
@@ -247,7 +247,7 @@ func CMIOObjectRemovePropertyListenerBlock(objectID IOObjectID, address unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectSetPropertyData(_:_:_:_:_:_:)
 func CMIOObjectSetPropertyData(objectID IOObjectID, address unsafe.Pointer, qualifierDataSize unsafe.Pointer, qualifierData unsafe.Pointer, dataSize unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectSetPropertyData(objectID, address, qualifierDataSize, qualifierData, dataSize, data)
-}/* debug [functions.gen.go/function]: CMIOObjectSetPropertyData */
+}
 
 // CMIOObjectShow is a CoreMediaIO function.
 //
@@ -256,7 +256,7 @@ func CMIOObjectSetPropertyData(objectID IOObjectID, address unsafe.Pointer, qual
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectShow(_:)
 func CMIOObjectShow(objectID IOObjectID) {
 	_CMIOObjectShow(objectID)
-}/* debug [functions.gen.go/function]: CMIOObjectShow */
+}
 
 // CMIOObjectsPublishedAndDied is a CoreMediaIO function.
 //
@@ -267,7 +267,7 @@ func CMIOObjectShow(objectID IOObjectID) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectsPublishedAndDied
 func CMIOObjectsPublishedAndDied(owningPlugIn IOHardwarePlugInRef, owningObjectID IOObjectID, numberPublishedCMIOObjects unsafe.Pointer, publishedCMIOObjects unsafe.Pointer, numberDeadCMIOObjects unsafe.Pointer, deadCMIOObjects unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectsPublishedAndDied(owningPlugIn, owningObjectID, numberPublishedCMIOObjects, publishedCMIOObjects, numberDeadCMIOObjects, deadCMIOObjects)
-}/* debug [functions.gen.go/function]: CMIOObjectsPublishedAndDied */
+}
 
 // CMIOSampleBufferCopyNonRequiredAttachments is a CoreMediaIO function.
 //
@@ -276,7 +276,7 @@ func CMIOObjectsPublishedAndDied(owningPlugIn IOHardwarePlugInRef, owningObjectI
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferCopyNonRequiredAttachments
 func CMIOSampleBufferCopyNonRequiredAttachments(sourceSBuf SampleBufferRef, destSBuf SampleBufferRef, attachmentMode AttachmentMode) unsafe.Pointer {
 	return _CMIOSampleBufferCopyNonRequiredAttachments(sourceSBuf, destSBuf, attachmentMode)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferCopyNonRequiredAttachments */
+}
 
 // CMIOSampleBufferCopySampleAttachments is a CoreMediaIO function.
 //
@@ -285,7 +285,7 @@ func CMIOSampleBufferCopyNonRequiredAttachments(sourceSBuf SampleBufferRef, dest
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferCopySampleAttachments
 func CMIOSampleBufferCopySampleAttachments(sourceSBuf SampleBufferRef, destSBuf SampleBufferRef) unsafe.Pointer {
 	return _CMIOSampleBufferCopySampleAttachments(sourceSBuf, destSBuf)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferCopySampleAttachments */
+}
 
 // CMIOSampleBufferCreate is a CoreMediaIO function.
 //
@@ -294,7 +294,7 @@ func CMIOSampleBufferCopySampleAttachments(sourceSBuf SampleBufferRef, destSBuf 
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferCreate
 func CMIOSampleBufferCreate(allocator AllocatorRef, dataBuffer BlockBufferRef, formatDescription FormatDescriptionRef, numSamples unsafe.Pointer, numSampleTimingEntries unsafe.Pointer, sampleTimingArray unsafe.Pointer, numSampleSizeEntries unsafe.Pointer, sampleSizeArray unsafe.Pointer, sequenceNumber unsafe.Pointer, discontinuityFlags unsafe.Pointer, sBufOut unsafe.Pointer) unsafe.Pointer {
 	return _CMIOSampleBufferCreate(allocator, dataBuffer, formatDescription, numSamples, numSampleTimingEntries, sampleTimingArray, numSampleSizeEntries, sampleSizeArray, sequenceNumber, discontinuityFlags, sBufOut)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferCreate */
+}
 
 // CMIOSampleBufferCreateForImageBuffer is a CoreMediaIO function.
 //
@@ -303,7 +303,7 @@ func CMIOSampleBufferCreate(allocator AllocatorRef, dataBuffer BlockBufferRef, f
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferCreateForImageBuffer
 func CMIOSampleBufferCreateForImageBuffer(allocator AllocatorRef, imageBuffer ImageBufferRef, formatDescription VideoFormatDescriptionRef, sampleTiming unsafe.Pointer, sequenceNumber unsafe.Pointer, discontinuityFlags unsafe.Pointer, sBufOut unsafe.Pointer) unsafe.Pointer {
 	return _CMIOSampleBufferCreateForImageBuffer(allocator, imageBuffer, formatDescription, sampleTiming, sequenceNumber, discontinuityFlags, sBufOut)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferCreateForImageBuffer */
+}
 
 // CMIOSampleBufferCreateNoDataMarker is a CoreMediaIO function.
 //
@@ -312,7 +312,7 @@ func CMIOSampleBufferCreateForImageBuffer(allocator AllocatorRef, imageBuffer Im
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferCreateNoDataMarker
 func CMIOSampleBufferCreateNoDataMarker(allocator AllocatorRef, noDataEvent unsafe.Pointer, formatDescription FormatDescriptionRef, sequenceNumber unsafe.Pointer, discontinuityFlags unsafe.Pointer, sBufOut unsafe.Pointer) unsafe.Pointer {
 	return _CMIOSampleBufferCreateNoDataMarker(allocator, noDataEvent, formatDescription, sequenceNumber, discontinuityFlags, sBufOut)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferCreateNoDataMarker */
+}
 
 // CMIOSampleBufferGetDiscontinuityFlags is a CoreMediaIO function.
 //
@@ -321,7 +321,7 @@ func CMIOSampleBufferCreateNoDataMarker(allocator AllocatorRef, noDataEvent unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferGetDiscontinuityFlags
 func CMIOSampleBufferGetDiscontinuityFlags(sbuf SampleBufferRef) unsafe.Pointer {
 	return _CMIOSampleBufferGetDiscontinuityFlags(sbuf)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferGetDiscontinuityFlags */
+}
 
 // CMIOSampleBufferGetSequenceNumber is a CoreMediaIO function.
 //
@@ -330,7 +330,7 @@ func CMIOSampleBufferGetDiscontinuityFlags(sbuf SampleBufferRef) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferGetSequenceNumber
 func CMIOSampleBufferGetSequenceNumber(sbuf SampleBufferRef) unsafe.Pointer {
 	return _CMIOSampleBufferGetSequenceNumber(sbuf)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferGetSequenceNumber */
+}
 
 // CMIOSampleBufferSetDiscontinuityFlags is a CoreMediaIO function.
 //
@@ -339,7 +339,7 @@ func CMIOSampleBufferGetSequenceNumber(sbuf SampleBufferRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferSetDiscontinuityFlags
 func CMIOSampleBufferSetDiscontinuityFlags(allocator AllocatorRef, sbuf SampleBufferRef, discontinuityFlags unsafe.Pointer) {
 	_CMIOSampleBufferSetDiscontinuityFlags(allocator, sbuf, discontinuityFlags)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferSetDiscontinuityFlags */
+}
 
 // CMIOSampleBufferSetSequenceNumber is a CoreMediaIO function.
 //
@@ -348,25 +348,25 @@ func CMIOSampleBufferSetDiscontinuityFlags(allocator AllocatorRef, sbuf SampleBu
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferSetSequenceNumber
 func CMIOSampleBufferSetSequenceNumber(allocator AllocatorRef, sbuf SampleBufferRef, sequenceNumber unsafe.Pointer) {
 	_CMIOSampleBufferSetSequenceNumber(allocator, sbuf, sequenceNumber)
-}/* debug [functions.gen.go/function]: CMIOSampleBufferSetSequenceNumber */
+}
 
 // CMIOStreamClockConvertHostTimeToDeviceTime is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamClockConvertHostTimeToDeviceTime(_:_:)
-func CMIOStreamClockConvertHostTimeToDeviceTime(hostTime unsafe.Pointer, clock TypeRef) corevideo.Time {
+func CMIOStreamClockConvertHostTimeToDeviceTime(hostTime unsafe.Pointer, clock TypeRef) coremedia.Time {
 	return _CMIOStreamClockConvertHostTimeToDeviceTime(hostTime, clock)
-}/* debug [functions.gen.go/function]: CMIOStreamClockConvertHostTimeToDeviceTime */
+}
 
 // CMIOStreamClockCreate is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamClockCreate(_:_:_:_:_:_:_:)
-func CMIOStreamClockCreate(allocator AllocatorRef, clockName StringRef, sourceIdentifier unsafe.Pointer, getTimeCallMinimumInterval corevideo.Time, numberOfEventsForRateSmoothing unsafe.Pointer, numberOfAveragesForRateSmoothing unsafe.Pointer, clock unsafe.Pointer) unsafe.Pointer {
+func CMIOStreamClockCreate(allocator AllocatorRef, clockName StringRef, sourceIdentifier unsafe.Pointer, getTimeCallMinimumInterval coremedia.Time, numberOfEventsForRateSmoothing unsafe.Pointer, numberOfAveragesForRateSmoothing unsafe.Pointer, clock unsafe.Pointer) unsafe.Pointer {
 	return _CMIOStreamClockCreate(allocator, clockName, sourceIdentifier, getTimeCallMinimumInterval, numberOfEventsForRateSmoothing, numberOfAveragesForRateSmoothing, clock)
-}/* debug [functions.gen.go/function]: CMIOStreamClockCreate */
+}
 
 // CMIOStreamClockInvalidate is a CoreMediaIO function.
 //
@@ -375,16 +375,16 @@ func CMIOStreamClockCreate(allocator AllocatorRef, clockName StringRef, sourceId
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamClockInvalidate(_:)
 func CMIOStreamClockInvalidate(clock TypeRef) unsafe.Pointer {
 	return _CMIOStreamClockInvalidate(clock)
-}/* debug [functions.gen.go/function]: CMIOStreamClockInvalidate */
+}
 
 // CMIOStreamClockPostTimingEvent is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamClockPostTimingEvent(_:_:_:_:)
-func CMIOStreamClockPostTimingEvent(eventTime corevideo.Time, hostTime unsafe.Pointer, resynchronize unsafe.Pointer, clock TypeRef) unsafe.Pointer {
+func CMIOStreamClockPostTimingEvent(eventTime coremedia.Time, hostTime unsafe.Pointer, resynchronize unsafe.Pointer, clock TypeRef) unsafe.Pointer {
 	return _CMIOStreamClockPostTimingEvent(eventTime, hostTime, resynchronize, clock)
-}/* debug [functions.gen.go/function]: CMIOStreamClockPostTimingEvent */
+}
 
 // CMIOStreamCopyBufferQueue is a CoreMediaIO function.
 //
@@ -393,7 +393,7 @@ func CMIOStreamClockPostTimingEvent(eventTime corevideo.Time, hostTime unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamCopyBufferQueue(_:_:_:_:)
 func CMIOStreamCopyBufferQueue(streamID IOStreamID, queueAlteredProc IODeviceStreamQueueAlteredProc, queueAlteredRefCon unsafe.Pointer, queue unsafe.Pointer) unsafe.Pointer {
 	return _CMIOStreamCopyBufferQueue(streamID, queueAlteredProc, queueAlteredRefCon, queue)
-}/* debug [functions.gen.go/function]: CMIOStreamCopyBufferQueue */
+}
 
 // CMIOStreamDeckCueTo is a CoreMediaIO function.
 //
@@ -402,7 +402,7 @@ func CMIOStreamCopyBufferQueue(streamID IOStreamID, queueAlteredProc IODeviceStr
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckCueTo(_:_:_:)
 func CMIOStreamDeckCueTo(streamID IOStreamID, frameNumber unsafe.Pointer, playOnCue unsafe.Pointer) unsafe.Pointer {
 	return _CMIOStreamDeckCueTo(streamID, frameNumber, playOnCue)
-}/* debug [functions.gen.go/function]: CMIOStreamDeckCueTo */
+}
 
 // CMIOStreamDeckJog is a CoreMediaIO function.
 //
@@ -411,7 +411,7 @@ func CMIOStreamDeckCueTo(streamID IOStreamID, frameNumber unsafe.Pointer, playOn
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckJog(_:_:)
 func CMIOStreamDeckJog(streamID IOStreamID, speed unsafe.Pointer) unsafe.Pointer {
 	return _CMIOStreamDeckJog(streamID, speed)
-}/* debug [functions.gen.go/function]: CMIOStreamDeckJog */
+}
 
 // CMIOStreamDeckPlay is a CoreMediaIO function.
 //
@@ -420,7 +420,7 @@ func CMIOStreamDeckJog(streamID IOStreamID, speed unsafe.Pointer) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckPlay(_:)
 func CMIOStreamDeckPlay(streamID IOStreamID) unsafe.Pointer {
 	return _CMIOStreamDeckPlay(streamID)
-}/* debug [functions.gen.go/function]: CMIOStreamDeckPlay */
+}
 
 // CMIOStreamDeckStop is a CoreMediaIO function.
 //
@@ -429,7 +429,7 @@ func CMIOStreamDeckPlay(streamID IOStreamID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckStop(_:)
 func CMIOStreamDeckStop(streamID IOStreamID) unsafe.Pointer {
 	return _CMIOStreamDeckStop(streamID)
-}/* debug [functions.gen.go/function]: CMIOStreamDeckStop */
+}
 
 
 

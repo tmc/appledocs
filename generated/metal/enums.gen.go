@@ -2,9 +2,9 @@
 
 package metal
 
-/* debug [enums.gen.go]: Generating 125 enums for Metal */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum MTL4AlphaToCoverageState (2 cases) */
+
 // MTL4AlphaToCoverageState - Enumeration for controlling alpha-to-coverage state of a pipeline state object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AlphaToCoverageState
@@ -21,7 +21,7 @@ const (
 	MTL4AlphaToCoverageStateEnabled MTL4AlphaToCoverageState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4AlphaToOneState (2 cases) */
+
 // MTL4AlphaToOneState - Enumeration for controlling alpha-to-one state of a pipeline state object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AlphaToOneState
@@ -38,7 +38,7 @@ const (
 	MTL4AlphaToOneStateEnabled MTL4AlphaToOneState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4BinaryFunctionOptions (2 cases) */
+
 // MTL4BinaryFunctionOptions - Options for configuring the creation of binary functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4BinaryFunctionOptions
@@ -55,7 +55,7 @@ const (
 	MTL4BinaryFunctionOptionPipelineIndependent MTL4BinaryFunctionOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4BlendState (3 cases) */
+
 // MTL4BlendState - Enumeration for controlling the blend state of a pipeline state object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4BlendState
@@ -76,7 +76,7 @@ const (
 	MTL4BlendStateUnspecialized MTL4BlendState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4CommandQueueError (7 cases) */
+
 // MTL4CommandQueueError - Enumeration of kinds of errors that committing an array of command buffers instances can produce.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4CommandQueueError-swift.struct/Code
@@ -113,7 +113,7 @@ const (
 	MTL4CommandQueueErrorTimeout MTL4CommandQueueError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4CompilerTaskStatus (4 cases) */
+
 // MTL4CompilerTaskStatus - Represents the status of a compiler task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4CompilerTaskStatus
@@ -138,7 +138,7 @@ const (
 	MTL4CompilerTaskStatusScheduled MTL4CompilerTaskStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4CounterHeapType (2 cases) */
+
 // MTL4CounterHeapType - Defines the type of a 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4CounterHeapType
@@ -155,7 +155,7 @@ const (
 	MTL4CounterHeapTypeTimestamp MTL4CounterHeapType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4IndirectCommandBufferSupportState (2 cases) */
+
 // MTL4IndirectCommandBufferSupportState - Enumeration for controlling support for 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4IndirectCommandBufferSupportState
@@ -172,7 +172,7 @@ const (
 	MTL4IndirectCommandBufferSupportStateEnabled MTL4IndirectCommandBufferSupportState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4LogicalToPhysicalColorAttachmentMappingState (2 cases) */
+
 // MTL4LogicalToPhysicalColorAttachmentMappingState - Enumerates possible behaviors of how a pipeline maps its logical outputs to its color attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4LogicalToPhysicalColorAttachmentMappingState
@@ -189,7 +189,7 @@ const (
 	MTL4LogicalToPhysicalColorAttachmentMappingStateInherited MTL4LogicalToPhysicalColorAttachmentMappingState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4PipelineDataSetSerializerConfiguration (2 cases) */
+
 // MTL4PipelineDataSetSerializerConfiguration - Configuration options for pipeline dataset serializer objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4PipelineDataSetSerializerConfiguration
@@ -206,7 +206,7 @@ const (
 	MTL4PipelineDataSetSerializerConfigurationCaptureDescriptors MTL4PipelineDataSetSerializerConfiguration = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4RenderEncoderOptions (3 cases) */
+
 // MTL4RenderEncoderOptions - Custom render pass options you specify at encoder creation time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderEncoderOptions
@@ -227,7 +227,7 @@ const (
 	MTL4RenderEncoderOptionSuspending MTL4RenderEncoderOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4ShaderReflection (3 cases) */
+
 // MTL4ShaderReflection - Option mask for requesting reflection information at pipeline build time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4ShaderReflection
@@ -248,7 +248,7 @@ const (
 	MTL4ShaderReflectionNone MTL4ShaderReflection = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4TimestampGranularity (2 cases) */
+
 // MTL4TimestampGranularity - Provides a hint to the system about the desired accuracy when writing GPU counter timestamps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TimestampGranularity
@@ -265,7 +265,7 @@ const (
 	MTL4TimestampGranularityRelaxed MTL4TimestampGranularity = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTL4VisibilityOptions (3 cases) */
+
 // MTL4VisibilityOptions - Memory consistency options for synchronization commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4VisibilityOptions
@@ -286,7 +286,7 @@ const (
 	MTL4VisibilityOptionResourceAlias MTL4VisibilityOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLAccelerationStructureInstanceDescriptorType (5 cases) */
+
 // MTLAccelerationStructureInstanceDescriptorType - Options for specifying different kinds of instance types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureInstanceDescriptorType
@@ -315,7 +315,7 @@ const (
 	MTLAccelerationStructureInstanceDescriptorTypeUserID MTLAccelerationStructureInstanceDescriptorType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLAccelerationStructureInstanceOptions (5 cases) */
+
 // MTLAccelerationStructureInstanceOptions - Options for adjusting the behavior of an instanced acceleration structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureInstanceOptions
@@ -344,7 +344,7 @@ const (
 	MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise MTLAccelerationStructureInstanceOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLAccelerationStructureRefitOptions (2 cases) */
+
 // MTLAccelerationStructureRefitOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureRefitOptions
@@ -359,7 +359,7 @@ const (
 	MTLAccelerationStructureRefitOptionVertexData MTLAccelerationStructureRefitOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLAccelerationStructureUsage (6 cases) */
+
 // MTLAccelerationStructureUsage - Options that affect how Metal builds an acceleration structure and the behavior
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureUsage
@@ -392,7 +392,7 @@ const (
 	MTLAccelerationStructureUsageRefit MTLAccelerationStructureUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLArgumentBuffersTier (2 cases) */
+
 // MTLArgumentBuffersTier - The values that determine the limits and capabilities of argument buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentBuffersTier
@@ -409,7 +409,7 @@ const (
 	MTLArgumentBuffersTier2 MTLArgumentBuffersTier = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLArgumentType (10 cases) */
+
 // MTLArgumentType - The resource type for an argument of a function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentType
@@ -458,7 +458,7 @@ const (
 	MTLArgumentTypeVisibleFunctionTable MTLArgumentType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLAttributeFormat (54 cases) */
+
 // MTLAttributeFormat - Values indicating the organization and format of data for function attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAttributeFormat
@@ -683,7 +683,7 @@ const (
 	MTLAttributeFormatUShortNormalized MTLAttributeFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBarrierScope (3 cases) */
+
 // MTLBarrierScope - Describes the types of resources that a barrier operates on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBarrierScope
@@ -704,7 +704,7 @@ const (
 	MTLBarrierScopeTextures MTLBarrierScope = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBinaryArchiveError (5 cases) */
+
 // MTLBinaryArchiveError - Error codes when creating binary archives of compiled shader code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBinaryArchiveError-swift.struct/Code
@@ -733,7 +733,7 @@ const (
 	MTLBinaryArchiveErrorUnexpectedElement MTLBinaryArchiveError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBindingAccess (6 cases) */
+
 // MTLBindingAccess enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBindingAccess
@@ -763,7 +763,7 @@ const (
 	MTLBindingAccessWriteOnly MTLBindingAccess = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBindingType (12 cases) */
+
 // MTLBindingType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBindingType
@@ -808,7 +808,7 @@ const (
 	MTLBindingTypeVisibleFunctionTable MTLBindingType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBlendFactor (20 cases) */
+
 // MTLBlendFactor - The source and destination blend factors are often needed to complete specification of a blend operation. In most cases, the blend factor for both RGB values (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlendFactor
@@ -897,7 +897,7 @@ const (
 	MTLBlendFactorZero MTLBlendFactor = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBlendOperation (6 cases) */
+
 // MTLBlendOperation - For every pixel, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlendOperation
@@ -930,7 +930,7 @@ const (
 	MTLBlendOperationUnspecialized MTLBlendOperation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBlitOption (4 cases) */
+
 // MTLBlitOption - The options that enable behavior for some blit operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlitOption
@@ -955,7 +955,7 @@ const (
 	MTLBlitOptionStencilFromDepthStencil MTLBlitOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLBufferSparseTier (2 cases) */
+
 // MTLBufferSparseTier - Enumerates the different support levels for sparse buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBufferSparseTier
@@ -972,7 +972,7 @@ const (
 	MTLBufferSparseTierNone MTLBufferSparseTier = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCaptureDestination (2 cases) */
+
 // MTLCaptureDestination - The kinds of destinations for captured command data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCaptureDestination
@@ -989,7 +989,7 @@ const (
 	MTLCaptureDestinationGPUTraceDocument MTLCaptureDestination = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCaptureError (3 cases) */
+
 // MTLCaptureError - Errors returned by capture sessions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCaptureError
@@ -1010,7 +1010,7 @@ const (
 	MTLCaptureErrorNotSupported MTLCaptureError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLColorWriteMask (7 cases) */
+
 // MTLColorWriteMask - Values used to specify a mask to permit or restrict writing to color channels of a color value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLColorWriteMask
@@ -1047,7 +1047,7 @@ const (
 	MTLColorWriteMaskUnspecialized MTLColorWriteMask = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCommandBufferError (12 cases) */
+
 // MTLCommandBufferError - Error codes that indicate why a GPU is unable to finish running a command buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferError-swift.struct/Code
@@ -1104,7 +1104,7 @@ const (
 	MTLCommandBufferErrorTimeout MTLCommandBufferError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCommandBufferErrorOption (2 cases) */
+
 // MTLCommandBufferErrorOption - Options for reporting errors from a command buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferErrorOption
@@ -1121,7 +1121,7 @@ const (
 	MTLCommandBufferErrorOptionNone MTLCommandBufferErrorOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCommandBufferStatus (6 cases) */
+
 // MTLCommandBufferStatus - The discrete states for a command buffer that represent its life cycle stages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferStatus
@@ -1154,7 +1154,7 @@ const (
 	MTLCommandBufferStatusScheduled MTLCommandBufferStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCommandEncoderErrorState (5 cases) */
+
 // MTLCommandEncoderErrorState - Possible error conditions for the command encoder’s commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandEncoderErrorState
@@ -1183,7 +1183,7 @@ const (
 	MTLCommandEncoderErrorStateUnknown MTLCommandEncoderErrorState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCompareFunction (8 cases) */
+
 // MTLCompareFunction - Options used to specify how a sample compare operation should be performed on a depth texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompareFunction
@@ -1224,7 +1224,7 @@ const (
 	MTLCompareFunctionNotEqual MTLCompareFunction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCompileSymbolVisibility (2 cases) */
+
 // MTLCompileSymbolVisibility enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileSymbolVisibility
@@ -1239,7 +1239,7 @@ const (
 	MTLCompileSymbolVisibilityHidden MTLCompileSymbolVisibility = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCounterSampleBufferError (3 cases) */
+
 // MTLCounterSampleBufferError - The underlying error code type that indicates why a GPU driver can’t create a counter sample buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCounterSampleBufferError-swift.struct/Code
@@ -1260,7 +1260,7 @@ const (
 	MTLCounterSampleBufferErrorOutOfMemory MTLCounterSampleBufferError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCounterSamplingPoint (5 cases) */
+
 // MTLCounterSamplingPoint - Options for different times when you can sample GPU counters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCounterSamplingPoint
@@ -1289,7 +1289,7 @@ const (
 	MTLCounterSamplingPointAtTileDispatchBoundary MTLCounterSamplingPoint = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCPUCacheMode (2 cases) */
+
 // MTLCPUCacheMode - Options for the CPU cache mode that define the CPU mapping of the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCPUCacheMode
@@ -1306,7 +1306,7 @@ const (
 	MTLCPUCacheModeWriteCombined MTLCPUCacheMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCullMode (3 cases) */
+
 // MTLCullMode - The mode that determines whether to perform culling and which type of primitive to cull.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCullMode
@@ -1327,7 +1327,7 @@ const (
 	MTLCullModeNone MTLCullMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCurveBasis (4 cases) */
+
 // MTLCurveBasis enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCurveBasis
@@ -1348,7 +1348,7 @@ const (
 	MTLCurveBasisLinear MTLCurveBasis = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCurveEndCaps (3 cases) */
+
 // MTLCurveEndCaps enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCurveEndCaps
@@ -1366,7 +1366,7 @@ const (
 	MTLCurveEndCapsSphere MTLCurveEndCaps = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLCurveType (2 cases) */
+
 // MTLCurveType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCurveType
@@ -1381,7 +1381,7 @@ const (
 	MTLCurveTypeRound MTLCurveType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLDataType (97 cases) */
+
 // MTLDataType - The types of GPU functions, including shaders and compute kernels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDataType
@@ -1778,7 +1778,7 @@ const (
 	MTLDataTypeVisibleFunctionTable MTLDataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLDepthClipMode (2 cases) */
+
 // MTLDepthClipMode - The mode that determines how to deal with fragments outside of the near or far planes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthClipMode
@@ -1795,7 +1795,7 @@ const (
 	MTLDepthClipModeClip MTLDepthClipMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLDeviceLocation (4 cases) */
+
 // MTLDeviceLocation - Indicates the location of the GPU relative to the system it’s connect to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDeviceLocation
@@ -1820,7 +1820,7 @@ const (
 	MTLDeviceLocationUnspecified MTLDeviceLocation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLDispatchType (2 cases) */
+
 // MTLDispatchType - The type of dispatch method to use when calling encoded functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDispatchType
@@ -1837,7 +1837,7 @@ const (
 	MTLDispatchTypeSerial MTLDispatchType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLDynamicLibraryError (6 cases) */
+
 // MTLDynamicLibraryError - Error codes that Metal can generate when creating dynamic libraries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDynamicLibraryError-swift.struct/Code
@@ -1870,7 +1870,7 @@ const (
 	MTLDynamicLibraryErrorUnsupported MTLDynamicLibraryError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLFeatureSet (33 cases) */
+
 // MTLFeatureSet - The device feature sets that define specific platform, hardware, and software configurations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFeatureSet
@@ -2007,7 +2007,7 @@ const (
 	MTLFeatureSet_tvOS_GPUFamily2_v2 MTLFeatureSet = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLFunctionLogType (1 cases) */
+
 // MTLFunctionLogType - Options for different kinds of function logs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionLogType
@@ -2020,7 +2020,7 @@ const (
 	MTLFunctionLogTypeValidation MTLFunctionLogType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLFunctionOptions (6 cases) */
+
 // MTLFunctionOptions - Options that define how Metal creates the function object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionOptions
@@ -2049,7 +2049,7 @@ const (
 	MTLFunctionOptionStoreFunctionInMetalScript MTLFunctionOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLFunctionType (7 cases) */
+
 // MTLFunctionType - The type of a top-level Metal Shading Language (MSL) function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionType
@@ -2084,7 +2084,7 @@ const (
 	MTLFunctionTypeVisible MTLFunctionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLGPUFamily (19 cases) */
+
 // MTLGPUFamily - Represents the functionality for families of GPUs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLGPUFamily
@@ -2167,7 +2167,7 @@ const (
 	MTLGPUFamilyMetal4 MTLGPUFamily = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLHazardTrackingMode (3 cases) */
+
 // MTLHazardTrackingMode - The options you use to specify the hazard tracking mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHazardTrackingMode
@@ -2188,7 +2188,7 @@ const (
 	MTLHazardTrackingModeUntracked MTLHazardTrackingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLHeapType (3 cases) */
+
 // MTLHeapType - The options you use to choose the heap type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHeapType
@@ -2209,7 +2209,7 @@ const (
 	MTLHeapTypeSparse MTLHeapType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIndexType (2 cases) */
+
 // MTLIndexType - The index type for an index buffer that references vertices of geometric primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIndexType
@@ -2226,7 +2226,7 @@ const (
 	MTLIndexTypeUInt32 MTLIndexType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIndirectCommandType (8 cases) */
+
 // MTLIndirectCommandType - The types of commands that you can encode into the indirect command buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIndirectCommandType
@@ -2265,7 +2265,7 @@ const (
 	MTLIndirectCommandTypeDrawPatches MTLIndirectCommandType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIntersectionFunctionSignature (11 cases) */
+
 // MTLIntersectionFunctionSignature - Constants for specifying different types of custom intersection functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionSignature
@@ -2311,7 +2311,7 @@ const (
 	MTLIntersectionFunctionSignatureWorldSpaceData MTLIntersectionFunctionSignature = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIOCommandQueueType (2 cases) */
+
 // MTLIOCommandQueueType - Designates the queue type for a new input/output command queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueType
@@ -2328,7 +2328,7 @@ const (
 	MTLIOCommandQueueTypeSerial MTLIOCommandQueueType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIOCompressionMethod (5 cases) */
+
 // MTLIOCompressionMethod - The compression codecs that Metal supports for input/output handles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionMethod
@@ -2357,7 +2357,7 @@ const (
 	MTLIOCompressionMethodZlib MTLIOCompressionMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIOCompressionStatus (2 cases) */
+
 // MTLIOCompressionStatus - Represents the final state of a compression context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCompressionStatus
@@ -2374,7 +2374,7 @@ const (
 	MTLIOCompressionStatusError MTLIOCompressionStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIOError (2 cases) */
+
 // MTLIOError - The error codes for creating an input/output file handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOError-swift.struct/Code
@@ -2391,7 +2391,7 @@ const (
 	MTLIOErrorURLInvalid MTLIOError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIOPriority (3 cases) */
+
 // MTLIOPriority - Designates the priority for a new input/output command queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOPriority
@@ -2412,7 +2412,7 @@ const (
 	MTLIOPriorityNormal MTLIOPriority = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLIOStatus (4 cases) */
+
 // MTLIOStatus - Represents the state of an input/output command buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOStatus
@@ -2437,7 +2437,7 @@ const (
 	MTLIOStatusPending MTLIOStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLanguageVersion (12 cases) */
+
 // MTLLanguageVersion - Metal shading language versions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLanguageVersion
@@ -2493,7 +2493,7 @@ const (
 	MTLLanguageVersion4_0 MTLLanguageVersion = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLibraryError (6 cases) */
+
 // MTLLibraryError - Error codes for Metal library errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLibraryError-swift.struct/Code
@@ -2526,7 +2526,7 @@ const (
 	MTLLibraryErrorUnsupported MTLLibraryError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLibraryOptimizationLevel (2 cases) */
+
 // MTLLibraryOptimizationLevel - The optimization options for the Metal compiler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLibraryOptimizationLevel
@@ -2543,7 +2543,7 @@ const (
 	MTLLibraryOptimizationLevelSize MTLLibraryOptimizationLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLibraryType (2 cases) */
+
 // MTLLibraryType - A set of options for Metal library types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLibraryType
@@ -2560,7 +2560,7 @@ const (
 	MTLLibraryTypeExecutable MTLLibraryType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLoadAction (3 cases) */
+
 // MTLLoadAction - Types of actions performed for an attachment at the start of a rendering pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLoadAction
@@ -2581,7 +2581,7 @@ const (
 	MTLLoadActionLoad MTLLoadAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLogLevel (6 cases) */
+
 // MTLLogLevel - The supported log levels for shader logging.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLogLevel
@@ -2614,7 +2614,7 @@ const (
 	MTLLogLevelUndefined MTLLogLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLLogStateError (2 cases) */
+
 // MTLLogStateError enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLogStateError
@@ -2629,7 +2629,7 @@ const (
 	MTLLogStateErrorInvalidSize MTLLogStateError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMathFloatingPointFunctions (2 cases) */
+
 // MTLMathFloatingPointFunctions - Indicates which FP32 math functions Metal uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMathFloatingPointFunctions
@@ -2646,7 +2646,7 @@ const (
 	MTLMathFloatingPointFunctionsPrecise MTLMathFloatingPointFunctions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMathMode (3 cases) */
+
 // MTLMathMode - An indication of whether the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMathMode
@@ -2667,7 +2667,7 @@ const (
 	MTLMathModeSafe MTLMathMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMatrixLayout (2 cases) */
+
 // MTLMatrixLayout enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMatrixLayout
@@ -2682,7 +2682,7 @@ const (
 	MTLMatrixLayoutRowMajor MTLMatrixLayout = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMotionBorderMode (2 cases) */
+
 // MTLMotionBorderMode - Options for specifying how the acceleration structure handles timestamps that are outside the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMotionBorderMode
@@ -2699,7 +2699,7 @@ const (
 	MTLMotionBorderModeVanish MTLMotionBorderMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMultisampleDepthResolveFilter (3 cases) */
+
 // MTLMultisampleDepthResolveFilter - Filtering options for controlling an MSAA depth resolve operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMultisampleDepthResolveFilter
@@ -2720,7 +2720,7 @@ const (
 	MTLMultisampleDepthResolveFilterSample0 MTLMultisampleDepthResolveFilter = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMultisampleStencilResolveFilter (2 cases) */
+
 // MTLMultisampleStencilResolveFilter - Constants used to control the multisample stencil resolve operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMultisampleStencilResolveFilter
@@ -2737,7 +2737,7 @@ const (
 	MTLMultisampleStencilResolveFilterSample0 MTLMultisampleStencilResolveFilter = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLMutability (3 cases) */
+
 // MTLMutability - The options that determine the mutability of a buffer’s contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMutability
@@ -2758,7 +2758,7 @@ const (
 	MTLMutabilityMutable MTLMutability = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLPatchType (3 cases) */
+
 // MTLPatchType - Types of tessellation patches that can be inputs of a post-tessellation vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPatchType
@@ -2779,7 +2779,7 @@ const (
 	MTLPatchTypeTriangle MTLPatchType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLPipelineOption (5 cases) */
+
 // MTLPipelineOption - Options that determine how Metal prepares the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPipelineOption
@@ -2808,7 +2808,7 @@ const (
 	MTLPipelineOptionNone MTLPipelineOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLPixelFormat (140 cases) */
+
 // MTLPixelFormat - The data formats that describe the organization and characteristics of individual pixels in a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPixelFormat
@@ -3376,7 +3376,7 @@ const (
 	MTLPixelFormatX32_Stencil8 MTLPixelFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLPrimitiveTopologyClass (4 cases) */
+
 // MTLPrimitiveTopologyClass - The primitive topologies available for rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveTopologyClass
@@ -3401,7 +3401,7 @@ const (
 	MTLPrimitiveTopologyClassUnspecified MTLPrimitiveTopologyClass = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLPrimitiveType (5 cases) */
+
 // MTLPrimitiveType - The geometric primitive type for drawing commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveType
@@ -3430,7 +3430,7 @@ const (
 	MTLPrimitiveTypeTriangleStrip MTLPrimitiveType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLPurgeableState (4 cases) */
+
 // MTLPurgeableState - The purgeable state of the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPurgeableState
@@ -3455,7 +3455,7 @@ const (
 	MTLPurgeableStateVolatile MTLPurgeableState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLReadWriteTextureTier (3 cases) */
+
 // MTLReadWriteTextureTier - The support level for read-write texture formats.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLReadWriteTextureTier
@@ -3476,7 +3476,7 @@ const (
 	MTLReadWriteTextureTierNone MTLReadWriteTextureTier = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLRenderStages (5 cases) */
+
 // MTLRenderStages - The stages in a render pass that triggers a synchronization command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderStages
@@ -3505,7 +3505,7 @@ const (
 	MTLRenderStageVertex MTLRenderStages = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLResourceOptions (11 cases) */
+
 // MTLResourceOptions - Optional arguments used to set the behavior of a resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceOptions
@@ -3558,7 +3558,7 @@ const (
 	MTLResourceStorageModeShared MTLResourceOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLResourceUsage (3 cases) */
+
 // MTLResourceUsage - Options that describe how a graphics or compute function uses an argument buffer’s resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceUsage
@@ -3579,7 +3579,7 @@ const (
 	MTLResourceUsageWrite MTLResourceUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSamplerAddressMode (6 cases) */
+
 // MTLSamplerAddressMode - Modes that determine the texture coordinate at each pixel when a fetch falls outside the bounds of a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerAddressMode
@@ -3612,7 +3612,7 @@ const (
 	MTLSamplerAddressModeRepeat MTLSamplerAddressMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSamplerBorderColor (3 cases) */
+
 // MTLSamplerBorderColor - Values that determine the border color for clamped texture values when the sampler address mode is 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerBorderColor
@@ -3633,7 +3633,7 @@ const (
 	MTLSamplerBorderColorTransparentBlack MTLSamplerBorderColor = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSamplerMinMagFilter (2 cases) */
+
 // MTLSamplerMinMagFilter - Filtering options for determining which pixel value is returned within a mipmap level.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerMinMagFilter
@@ -3650,7 +3650,7 @@ const (
 	MTLSamplerMinMagFilterNearest MTLSamplerMinMagFilter = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSamplerMipFilter (3 cases) */
+
 // MTLSamplerMipFilter - Filtering options for determining what pixel value is returned with multiple mipmap levels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerMipFilter
@@ -3671,7 +3671,7 @@ const (
 	MTLSamplerMipFilterNotMipmapped MTLSamplerMipFilter = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSamplerReductionMode (3 cases) */
+
 // MTLSamplerReductionMode - Configures how the sampler aggregates contributing samples to a final value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerReductionMode
@@ -3692,7 +3692,7 @@ const (
 	MTLSamplerReductionModeWeightedAverage MTLSamplerReductionMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLShaderValidation (3 cases) */
+
 // MTLShaderValidation - Indicates whether shader validation in an enabled or disabled state, or neither state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLShaderValidation
@@ -3713,7 +3713,7 @@ const (
 	MTLShaderValidationEnabled MTLShaderValidation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSparsePageSize (3 cases) */
+
 // MTLSparsePageSize - The page size options, in kilobytes, for sparse textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSparsePageSize
@@ -3734,7 +3734,7 @@ const (
 	MTLSparsePageSize64 MTLSparsePageSize = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSparseTextureMappingMode (2 cases) */
+
 // MTLSparseTextureMappingMode - Options for sparse texture mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSparseTextureMappingMode
@@ -3751,7 +3751,7 @@ const (
 	MTLSparseTextureMappingModeUnmap MTLSparseTextureMappingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLSparseTextureRegionAlignmentMode (2 cases) */
+
 // MTLSparseTextureRegionAlignmentMode - Options used when converting between a pixel-based region within a texture to a tile-based region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSparseTextureRegionAlignmentMode
@@ -3768,7 +3768,7 @@ const (
 	MTLSparseTextureRegionAlignmentModeOutward MTLSparseTextureRegionAlignmentMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStages (11 cases) */
+
 // MTLStages - Describes stages of GPU work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStages
@@ -3821,7 +3821,7 @@ const (
 	MTLStageVertex MTLStages = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStencilOperation (8 cases) */
+
 // MTLStencilOperation - The operation performed on a currently stored stencil value when a comparison test passes or fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilOperation
@@ -3862,7 +3862,7 @@ const (
 	MTLStencilOperationZero MTLStencilOperation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStepFunction (9 cases) */
+
 // MTLStepFunction - The frequency and locations at which a function fetches attribute data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStepFunction
@@ -3907,7 +3907,7 @@ const (
 	MTLStepFunctionThreadPositionInGridYIndexed MTLStepFunction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStitchedLibraryOptions (3 cases) */
+
 // MTLStitchedLibraryOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStitchedLibraryOptions
@@ -3925,7 +3925,7 @@ const (
 	MTLStitchedLibraryOptionStoreLibraryInMetalPipelinesScript MTLStitchedLibraryOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStorageMode (4 cases) */
+
 // MTLStorageMode - Options for the memory location and access permissions for a resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStorageMode
@@ -3950,7 +3950,7 @@ const (
 	MTLStorageModeShared MTLStorageMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStoreAction (6 cases) */
+
 // MTLStoreAction - Types of actions performed for an attachment at the end of a rendering pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStoreAction
@@ -3983,7 +3983,7 @@ const (
 	MTLStoreActionUnknown MTLStoreAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLStoreActionOptions (2 cases) */
+
 // MTLStoreActionOptions - Options that modify a store action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStoreActionOptions
@@ -4000,7 +4000,7 @@ const (
 	MTLStoreActionOptionNone MTLStoreActionOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTensorDataType (10 cases) */
+
 // MTLTensorDataType - The possible data types for the elements of a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDataType
@@ -4039,7 +4039,7 @@ const (
 	MTLTensorDataTypeUInt8 MTLTensorDataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTensorError (3 cases) */
+
 // MTLTensorError - The error codes that Metal can raise when you create a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorError-swift.struct/Code
@@ -4057,7 +4057,7 @@ const (
 	MTLTensorErrorNone MTLTensorError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTensorUsage (3 cases) */
+
 // MTLTensorUsage - The type that represents the different contexts for a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorUsage
@@ -4078,7 +4078,7 @@ const (
 	MTLTensorUsageRender MTLTensorUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTessellationControlPointIndexType (3 cases) */
+
 // MTLTessellationControlPointIndexType - Options for specifying the size of the control point indices in a control point index buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTessellationControlPointIndexType
@@ -4099,7 +4099,7 @@ const (
 	MTLTessellationControlPointIndexTypeUInt32 MTLTessellationControlPointIndexType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTessellationFactorFormat (1 cases) */
+
 // MTLTessellationFactorFormat - Options for specifying the format of the tessellation factors in a tessellation factor buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTessellationFactorFormat
@@ -4112,7 +4112,7 @@ const (
 	MTLTessellationFactorFormatHalf MTLTessellationFactorFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTessellationFactorStepFunction (4 cases) */
+
 // MTLTessellationFactorStepFunction - Options for specifying the step function that determines the tessellation factors for a patch from the tessellation factor buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTessellationFactorStepFunction
@@ -4137,7 +4137,7 @@ const (
 	MTLTessellationFactorStepFunctionPerPatchAndPerInstance MTLTessellationFactorStepFunction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTessellationPartitionMode (4 cases) */
+
 // MTLTessellationPartitionMode - Options for choosing the partition mode that the tessellator applies when deriving
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTessellationPartitionMode
@@ -4162,7 +4162,7 @@ const (
 	MTLTessellationPartitionModePow2 MTLTessellationPartitionMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTextureCompressionType (2 cases) */
+
 // MTLTextureCompressionType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureCompressionType
@@ -4177,7 +4177,7 @@ const (
 	MTLTextureCompressionTypeLossy MTLTextureCompressionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTextureSparseTier (3 cases) */
+
 // MTLTextureSparseTier - Enumerates the different support levels for sparse textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureSparseTier
@@ -4198,7 +4198,7 @@ const (
 	MTLTextureSparseTierNone MTLTextureSparseTier = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTextureSwizzle (6 cases) */
+
 // MTLTextureSwizzle - A set of options to choose from when creating a texture swizzle pattern.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureSwizzle
@@ -4231,7 +4231,7 @@ const (
 	MTLTextureSwizzleZero MTLTextureSwizzle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTextureType (10 cases) */
+
 // MTLTextureType - The dimension of each image, including whether multiple images are arranged into an array or a cube.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureType
@@ -4280,7 +4280,7 @@ const (
 	MTLTextureTypeTextureBuffer MTLTextureType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTextureUsage (6 cases) */
+
 // MTLTextureUsage - An enumeration for the various options that determine how you can use a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureUsage
@@ -4312,7 +4312,7 @@ const (
 	MTLTextureUsageUnknown MTLTextureUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTransformType (2 cases) */
+
 // MTLTransformType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTransformType
@@ -4327,7 +4327,7 @@ const (
 	MTLTransformTypePackedFloat4x3 MTLTransformType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLTriangleFillMode (2 cases) */
+
 // MTLTriangleFillMode - Specifies how to rasterize triangle and triangle strip primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTriangleFillMode
@@ -4344,7 +4344,7 @@ const (
 	MTLTriangleFillModeLines MTLTriangleFillMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLVertexFormat (54 cases) */
+
 // MTLVertexFormat - Values that specify the organization of function vertex data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexFormat
@@ -4567,7 +4567,7 @@ const (
 	MTLVertexFormatUShortNormalized MTLVertexFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLVertexStepFunction (5 cases) */
+
 // MTLVertexStepFunction - The frequency with which the vertex function or post-tessellation vertex function fetches attribute data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexStepFunction
@@ -4596,7 +4596,7 @@ const (
 	MTLVertexStepFunctionPerVertex MTLVertexStepFunction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLVisibilityResultMode (3 cases) */
+
 // MTLVisibilityResultMode - The mode that determines what, if anything, the GPU writes to the results buffer, after the GPU executes the render pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVisibilityResultMode
@@ -4617,7 +4617,7 @@ const (
 	MTLVisibilityResultModeDisabled MTLVisibilityResultMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLVisibilityResultType (2 cases) */
+
 // MTLVisibilityResultType - This enumeration controls if Metal accumulates visibility results between render encoders or resets them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVisibilityResultType
@@ -4634,7 +4634,7 @@ const (
 	MTLVisibilityResultTypeReset MTLVisibilityResultType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MTLWinding (2 cases) */
+
 // MTLWinding - The vertex winding rule that determines a front-facing primitive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLWinding

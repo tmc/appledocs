@@ -2,9 +2,9 @@
 
 package naturallanguage
 
-/* debug [enums.gen.go]: Generating 7 enums for NaturalLanguage */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum NLContextualEmbeddingAssetsResult (3 cases) */
+
 // NLContextualEmbeddingAssetsResult - The status of an asset request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbedding/AssetsResult
@@ -25,7 +25,7 @@ const (
 	NLContextualEmbeddingAssetsResultNotAvailable NLContextualEmbeddingAssetsResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NLModelType (2 cases) */
+
 // NLModelType - The different types of a natural language model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/ModelType
@@ -42,7 +42,7 @@ const (
 	NLModelTypeSequence NLModelType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NLTaggerAssetsResult (3 cases) */
+
 // NLTaggerAssetsResult - The response to an asset request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/AssetsResult
@@ -63,7 +63,7 @@ const (
 	NLTaggerAssetsResultNotAvailable NLTaggerAssetsResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NLTaggerOptions (6 cases) */
+
 // NLTaggerOptions - Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/Options
@@ -96,7 +96,7 @@ const (
 	NLTaggerOmitWords NLTaggerOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NLTokenizerAttributes (3 cases) */
+
 // NLTokenizerAttributes - Hints about the contents of the string for the tokenizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/Attributes
@@ -117,7 +117,7 @@ const (
 	NLTokenizerAttributeSymbolic NLTokenizerAttributes = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NLDistanceType (1 cases) */
+
 // NLDistanceType - The means of calculating a distance between two locations in a text embedding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLDistanceType
@@ -130,7 +130,7 @@ const (
 	NLDistanceTypeCosine NLDistanceType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NLTokenUnit (4 cases) */
+
 // NLTokenUnit - Constants representing linguistic units.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenUnit

@@ -21,7 +21,7 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTL4MachineLearningCommandEncoder
 type PMTL4MachineLearningCommandEncoder interface {
 	// Required methods
-	DispatchNetworkWithIntermediatesHeap(heap unsafe.Pointer)/* debug [protocol_interface/required_method]: DispatchNetworkWithIntermediatesHeap */
-	SetArgumentTable(argumentTable unsafe.Pointer)/* debug [protocol_interface/required_method]: SetArgumentTable */
-	SetPipelineState(pipelineState unsafe.Pointer)/* debug [protocol_interface/required_method]: SetPipelineState */
+	DispatchNetworkWithIntermediatesHeap(heap unsafe.Pointer)
+	SetArgumentTable(argumentTable unsafe.Pointer)
+	SetPipelineState(pipelineState unsafe.Pointer)
 }

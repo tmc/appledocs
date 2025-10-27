@@ -21,11 +21,11 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder
 type PParallelRenderCommandEncoder interface {
 	// Required methods
-	RenderCommandEncoder() unsafe.Pointer/* debug [protocol_interface/required_method]: RenderCommandEncoder */
-	SetColorStoreActionAtIndex(storeAction StoreAction, colorAttachmentIndex uint)/* debug [protocol_interface/required_method]: SetColorStoreActionAtIndex */
-	SetColorStoreActionOptionsAtIndex(storeActionOptions StoreActionOptions, colorAttachmentIndex uint)/* debug [protocol_interface/required_method]: SetColorStoreActionOptionsAtIndex */
-	SetDepthStoreAction(storeAction StoreAction)/* debug [protocol_interface/required_method]: SetDepthStoreAction */
-	SetDepthStoreActionOptions(storeActionOptions StoreActionOptions)/* debug [protocol_interface/required_method]: SetDepthStoreActionOptions */
-	SetStencilStoreAction(storeAction StoreAction)/* debug [protocol_interface/required_method]: SetStencilStoreAction */
-	SetStencilStoreActionOptions(storeActionOptions StoreActionOptions)/* debug [protocol_interface/required_method]: SetStencilStoreActionOptions */
+	RenderCommandEncoder() unsafe.Pointer
+	SetColorStoreActionAtIndex(storeAction StoreAction, colorAttachmentIndex uint)
+	SetColorStoreActionOptionsAtIndex(storeActionOptions StoreActionOptions, colorAttachmentIndex uint)
+	SetDepthStoreAction(storeAction StoreAction)
+	SetDepthStoreActionOptions(storeActionOptions StoreActionOptions)
+	SetStencilStoreAction(storeAction StoreAction)
+	SetStencilStoreActionOptions(storeActionOptions StoreActionOptions)
 }

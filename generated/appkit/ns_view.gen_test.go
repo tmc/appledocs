@@ -9,14 +9,6 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewView
 
-// ExampleNewViewWithFrame demonstrates how to create a View instance using NewViewWithFrame.
-// Initializes and returns a newly allocated   object with a specified frame rectangle.
-func ExampleNewViewWithFrame() {
-	_ = appkit.NewViewWithFrame(
-		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
-	)
-	// Output:
-}
 // ExampleView_BeginDocument demonstrates using BeginDocument on a View instance.
 // Invoked at the beginning of the printing session, this method sets up the current graphics context.
 func ExampleView_BeginDocument() {

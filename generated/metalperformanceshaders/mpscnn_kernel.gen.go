@@ -73,10 +73,10 @@ type ICNNKernel interface {
 	SetSourceFeatureChannelOffset(value objectivec.IObject)
 	SourceFeatureChannelMaxCount() objectivec.IObject
 	SetSourceFeatureChannelMaxCount(value objectivec.IObject)
-	Origin() objc.IObject /* cross-framework: MTLOrigin */
-	SetOrigin(value objc.IObject /* cross-framework: MTLOrigin */)
-	Size() objc.IObject /* cross-framework: MPSSize */
-	SetSize(value objc.IObject /* cross-framework: MPSSize */)
+	Origin() metal.IMTLOrigin
+	SetOrigin(value metal.IMTLOrigin)
+	Size() MPSSize
+	SetSize(value MPSSize)
 
 
 	
@@ -674,7 +674,7 @@ func (c_ CNNKernel) SetSourceFeatureChannelMaxCount(value objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRegion/origin
-func (c_ CNNKernel) Origin() objc.IObject /* cross-framework: MTLOrigin */ {
+func (c_ CNNKernel) Origin() metal.IMTLOrigin {
 	rv := objc.Send[Origin](c_.ID, objc.Sel("origin"))
 	return rv
 }
@@ -684,7 +684,7 @@ func (c_ CNNKernel) Origin() objc.IObject /* cross-framework: MTLOrigin */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRegion/origin
-func (c_ CNNKernel) SetOrigin(value objc.IObject /* cross-framework: MTLOrigin */) {
+func (c_ CNNKernel) SetOrigin(value metal.IMTLOrigin) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOrigin:"), value)
 }
 
@@ -693,7 +693,7 @@ func (c_ CNNKernel) SetOrigin(value objc.IObject /* cross-framework: MTLOrigin *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsregion/size
-func (c_ CNNKernel) Size() objc.IObject /* cross-framework: MPSSize */ {
+func (c_ CNNKernel) Size() MPSSize {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("size"))
 	return rv
 }
@@ -703,7 +703,7 @@ func (c_ CNNKernel) Size() objc.IObject /* cross-framework: MPSSize */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsregion/size
-func (c_ CNNKernel) SetSize(value objc.IObject /* cross-framework: MPSSize */) {
+func (c_ CNNKernel) SetSize(value MPSSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSize:"), value)
 }
 

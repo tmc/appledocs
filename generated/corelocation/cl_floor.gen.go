@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [Floor] class.
 var (
 	FloorClass     _FloorClass
@@ -27,33 +31,30 @@ type _FloorClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [Floor] class.
 type IFloor interface {
 	objectivec.IObject
+	
+
 	// properties:
-	Level() unsafe.Pointer
-	SetLevel(value unsafe.Pointer)
+	Level() objectivec.IObject
+	SetLevel(value objectivec.IObject)
+
+
+	
+
 	// methods:
+
+
 }
 
-// The floor of a building on which the user’s device is located.
-//
-// A object specifies the floor of the building on which the device is located. In places where floor information can be determined, a object may include a floor object along with the regular location data. You do not create instances of this class directly, nor should you subclass it.
 
-// The floor of a building on which the user’s device is located.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor
-type Floor struct {
-	objectivec.Object
-}
 
-// FloorFrom constructs a [Floor] from an unsafe.Pointer.
-//
-// The floor of a building on which the user’s device is located.
-func FloorFrom(ptr unsafe.Pointer) Floor {
-	return Floor{objectivec.Object{objc.ID(ptr)}}
-}
+
 
 // Alloc allocates a new instance without initialization.
 func (fc _FloorClass) Alloc() Floor {
@@ -62,7 +63,6 @@ func (fc _FloorClass) Alloc() Floor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FloorClass) New() Floor {
 	rv := objc.Send[Floor](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,19 +86,76 @@ func NewFloor() Floor {
 	return getFloorClass().New()
 }
 
-// The logical floor of the building.
+
+
+
+
+// The floor of a building on which the user’s device is located.
+//
+// A object specifies the floor of the building on which the device is located. In places where floor information can be determined, a object may include a floor object along with the regular location data. You do not create instances of this class directly, nor should you subclass it.
+
+
+// The floor of a building on which the user’s device is located.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
-func (f_ Floor) Level() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("level"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor
+type Floor struct {
+	objectivec.Object
 }
+
+// FloorFrom constructs a [Floor] from an unsafe.Pointer.
+//
+// The floor of a building on which the user’s device is located.
+func FloorFrom(ptr unsafe.Pointer) Floor {
+	return Floor{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // The logical floor of the building.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
-func (f_ Floor) SetLevel(value unsafe.Pointer) {
+func (f_ Floor) Level() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("level"))
+	return rv
+}
+
+
+// The logical floor of the building.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
+func (f_ Floor) SetLevel(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLevel:"), value)
 }
+
+
+
+
+
+
+
+

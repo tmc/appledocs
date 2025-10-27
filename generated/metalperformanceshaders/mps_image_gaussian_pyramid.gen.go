@@ -40,10 +40,10 @@ type IImageGaussianPyramid interface {
 	
 
 	// properties:
-	ClipRect() objc.IObject /* cross-framework: MTLRegion */
-	SetClipRect(value objc.IObject /* cross-framework: MTLRegion */)
-	Offset() objc.IObject /* cross-framework: MPSOffset */
-	SetOffset(value objc.IObject /* cross-framework: MPSOffset */)
+	ClipRect() metal.IMTLRegion
+	SetClipRect(value metal.IMTLRegion)
+	Offset() MPSOffset
+	SetOffset(value MPSOffset)
 
 
 	
@@ -141,7 +141,7 @@ func ImageGaussianPyramidFrom(ptr unsafe.Pointer) ImageGaussianPyramid {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect
-func (i_ ImageGaussianPyramid) ClipRect() objc.IObject /* cross-framework: MTLRegion */ {
+func (i_ ImageGaussianPyramid) ClipRect() metal.IMTLRegion {
 	rv := objc.Send[Region](i_.ID, objc.Sel("clipRect"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (i_ ImageGaussianPyramid) ClipRect() objc.IObject /* cross-framework: MTLRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect
-func (i_ ImageGaussianPyramid) SetClipRect(value objc.IObject /* cross-framework: MTLRegion */) {
+func (i_ ImageGaussianPyramid) SetClipRect(value metal.IMTLRegion) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRect:"), value)
 }
 
@@ -160,7 +160,7 @@ func (i_ ImageGaussianPyramid) SetClipRect(value objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/offset
-func (i_ ImageGaussianPyramid) Offset() objc.IObject /* cross-framework: MPSOffset */ {
+func (i_ ImageGaussianPyramid) Offset() MPSOffset {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("offset"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (i_ ImageGaussianPyramid) Offset() objc.IObject /* cross-framework: MPSOffs
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/offset
-func (i_ ImageGaussianPyramid) SetOffset(value objc.IObject /* cross-framework: MPSOffset */) {
+func (i_ ImageGaussianPyramid) SetOffset(value MPSOffset) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOffset:"), value)
 }
 

@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PSearchFieldDelegate is the NSSearchFieldDelegate protocol interface.
@@ -67,4 +69,42 @@ func (d *SearchFieldDelegate) SearchFieldDidStartSearching(sender ISearchField) 
 // HasSearchFieldDidStartSearching returns true if a handler for SearchFieldDidStartSearching has been set.
 func (d *SearchFieldDelegate) HasSearchFieldDidStartSearching() bool {
 	return d._SearchFieldDidStartSearching != nil
+}
+
+// SearchFieldDelegateObject wraps an existing Objective-C object that conforms to the PSearchFieldDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type SearchFieldDelegateObject struct {
+	objectivec.Object
+}
+
+// NewSearchFieldDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSSearchFieldDelegate protocol.
+func NewSearchFieldDelegateObject(obj objectivec.Object) *SearchFieldDelegateObject {
+	return &SearchFieldDelegateObject{obj}
+}
+
+// Make sure SearchFieldDelegateObject implements PSearchFieldDelegate.
+var _ PSearchFieldDelegate = (*SearchFieldDelegateObject)(nil)
+
+// SearchFieldDidEndSearching implements the PSearchFieldDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SearchFieldDelegateObject) SearchFieldDidEndSearching(sender ISearchField) {
+	objc.Send[objc.ID](o.ID, objc.Sel("searchFieldDidEndSearching:"), sender)
+}
+
+// HasSearchFieldDidEndSearching returns true; this is a placeholder for optional method checks.
+func (o *SearchFieldDelegateObject) HasSearchFieldDidEndSearching() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// SearchFieldDidStartSearching implements the PSearchFieldDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *SearchFieldDelegateObject) SearchFieldDidStartSearching(sender ISearchField) {
+	objc.Send[objc.ID](o.ID, objc.Sel("searchFieldDidStartSearching:"), sender)
+}
+
+// HasSearchFieldDidStartSearching returns true; this is a placeholder for optional method checks.
+func (o *SearchFieldDelegateObject) HasSearchFieldDidStartSearching() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

@@ -2,7 +2,7 @@
 
 package cfnetwork
 
-/* debug [functions.gen.go]: Generating 97 functions for CFNetwork */
+
 import (
 	"unsafe"
 
@@ -244,7 +244,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFFTPCreateParsedResourceListing(_:_:_:_:)
 func CFFTPCreateParsedResourceListing(alloc AllocatorRef, buffer unsafe.Pointer, bufferLength Index, parsed unsafe.Pointer) Index {
 	return _CFFTPCreateParsedResourceListing(alloc, buffer, bufferLength, parsed)
-}/* debug [functions.gen.go/function]: CFFTPCreateParsedResourceListing */
+}
 
 // Returns a Boolean value that indicates whether a CFHTTPAuthentication object is associated with a CFHTTPMessage object.
 //
@@ -255,7 +255,7 @@ func CFFTPCreateParsedResourceListing(alloc AllocatorRef, buffer unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationAppliesToRequest(_:_:)
 func CFHTTPAuthenticationAppliesToRequest(auth HTTPAuthenticationRef, request HTTPMessageRef) unsafe.Pointer {
 	return _CFHTTPAuthenticationAppliesToRequest(auth, request)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationAppliesToRequest */
+}
 
 // Returns an array of domain URLs to which a given CFHTTPAuthentication object can be applied.
 //
@@ -266,7 +266,7 @@ func CFHTTPAuthenticationAppliesToRequest(auth HTTPAuthenticationRef, request HT
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCopyDomains(_:)
 func CFHTTPAuthenticationCopyDomains(auth HTTPAuthenticationRef) ArrayRef {
 	return _CFHTTPAuthenticationCopyDomains(auth)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationCopyDomains */
+}
 
 // Gets the strongest authentication method that will be used when a CFHTTPAuthentication object is applied to a request.
 //
@@ -277,7 +277,7 @@ func CFHTTPAuthenticationCopyDomains(auth HTTPAuthenticationRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCopyMethod(_:)
 func CFHTTPAuthenticationCopyMethod(auth HTTPAuthenticationRef) StringRef {
 	return _CFHTTPAuthenticationCopyMethod(auth)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationCopyMethod */
+}
 
 // Gets an authentication information’s namespace.
 //
@@ -288,7 +288,7 @@ func CFHTTPAuthenticationCopyMethod(auth HTTPAuthenticationRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCopyRealm(_:)
 func CFHTTPAuthenticationCopyRealm(auth HTTPAuthenticationRef) StringRef {
 	return _CFHTTPAuthenticationCopyRealm(auth)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationCopyRealm */
+}
 
 // Uses an authentication failure response to create a CFHTTPAuthentication object.
 //
@@ -299,7 +299,7 @@ func CFHTTPAuthenticationCopyRealm(auth HTTPAuthenticationRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCreateFromResponse(_:_:)
 func CFHTTPAuthenticationCreateFromResponse(alloc AllocatorRef, response HTTPMessageRef) HTTPAuthenticationRef {
 	return _CFHTTPAuthenticationCreateFromResponse(alloc, response)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationCreateFromResponse */
+}
 
 // Gets the Core Foundation type identifier for the CFHTTPAuthentication opaque type.
 //
@@ -310,7 +310,7 @@ func CFHTTPAuthenticationCreateFromResponse(alloc AllocatorRef, response HTTPMes
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationGetTypeID()
 func CFHTTPAuthenticationGetTypeID() TypeID {
 	return _CFHTTPAuthenticationGetTypeID()
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationGetTypeID */
+}
 
 // Returns a Boolean value that indicates whether a CFHTTPAuthentication object is valid.
 //
@@ -321,7 +321,7 @@ func CFHTTPAuthenticationGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationIsValid(_:_:)
 func CFHTTPAuthenticationIsValid(auth HTTPAuthenticationRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationIsValid(auth, error_)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationIsValid */
+}
 
 // Returns a Boolean value that indicates whether a CFHTTPAuthentication object uses an authentication method that requires an account domain.
 //
@@ -332,7 +332,7 @@ func CFHTTPAuthenticationIsValid(auth HTTPAuthenticationRef, error_ unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationRequiresAccountDomain(_:)
 func CFHTTPAuthenticationRequiresAccountDomain(auth HTTPAuthenticationRef) unsafe.Pointer {
 	return _CFHTTPAuthenticationRequiresAccountDomain(auth)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationRequiresAccountDomain */
+}
 
 // Returns a Boolean value that indicates whether authentication requests should be made one at a time.
 //
@@ -343,7 +343,7 @@ func CFHTTPAuthenticationRequiresAccountDomain(auth HTTPAuthenticationRef) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationRequiresOrderedRequests(_:)
 func CFHTTPAuthenticationRequiresOrderedRequests(auth HTTPAuthenticationRef) unsafe.Pointer {
 	return _CFHTTPAuthenticationRequiresOrderedRequests(auth)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationRequiresOrderedRequests */
+}
 
 // Returns a Boolean value that indicates whether a CFHTTPAuthentication object uses an authentication method that requires a username and a password.
 //
@@ -354,7 +354,7 @@ func CFHTTPAuthenticationRequiresOrderedRequests(auth HTTPAuthenticationRef) uns
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationRequiresUserNameAndPassword(_:)
 func CFHTTPAuthenticationRequiresUserNameAndPassword(auth HTTPAuthenticationRef) unsafe.Pointer {
 	return _CFHTTPAuthenticationRequiresUserNameAndPassword(auth)
-}/* debug [functions.gen.go/function]: CFHTTPAuthenticationRequiresUserNameAndPassword */
+}
 
 // Adds authentication information to a request.
 //
@@ -365,7 +365,7 @@ func CFHTTPAuthenticationRequiresUserNameAndPassword(auth HTTPAuthenticationRef)
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageAddAuthentication(_:_:_:_:_:_:)
 func CFHTTPMessageAddAuthentication(request HTTPMessageRef, authenticationFailureResponse HTTPMessageRef, username StringRef, password StringRef, authenticationScheme StringRef, forProxy unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageAddAuthentication(request, authenticationFailureResponse, username, password, authenticationScheme, forProxy)
-}/* debug [functions.gen.go/function]: CFHTTPMessageAddAuthentication */
+}
 
 // Appends data to a object.
 //
@@ -376,7 +376,7 @@ func CFHTTPMessageAddAuthentication(request HTTPMessageRef, authenticationFailur
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageAppendBytes(_:_:_:)
 func CFHTTPMessageAppendBytes(message HTTPMessageRef, newBytes unsafe.Pointer, numBytes Index) unsafe.Pointer {
 	return _CFHTTPMessageAppendBytes(message, newBytes, numBytes)
-}/* debug [functions.gen.go/function]: CFHTTPMessageAppendBytes */
+}
 
 // Use a dictionary containing authentication credentials to perform the authentication method specified by a object.
 //
@@ -387,7 +387,7 @@ func CFHTTPMessageAppendBytes(message HTTPMessageRef, newBytes unsafe.Pointer, n
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageApplyCredentialDictionary(_:_:_:_:)
 func CFHTTPMessageApplyCredentialDictionary(request HTTPMessageRef, auth HTTPAuthenticationRef, dict DictionaryRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageApplyCredentialDictionary(request, auth, dict, error_)
-}/* debug [functions.gen.go/function]: CFHTTPMessageApplyCredentialDictionary */
+}
 
 // Performs the authentication method specified by a object.
 //
@@ -398,7 +398,7 @@ func CFHTTPMessageApplyCredentialDictionary(request HTTPMessageRef, auth HTTPAut
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageApplyCredentials(_:_:_:_:_:)
 func CFHTTPMessageApplyCredentials(request HTTPMessageRef, auth HTTPAuthenticationRef, username StringRef, password StringRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageApplyCredentials(request, auth, username, password, error_)
-}/* debug [functions.gen.go/function]: CFHTTPMessageApplyCredentials */
+}
 
 // Gets all header fields from a object.
 //
@@ -409,7 +409,7 @@ func CFHTTPMessageApplyCredentials(request HTTPMessageRef, auth HTTPAuthenticati
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyAllHeaderFields(_:)
 func CFHTTPMessageCopyAllHeaderFields(message HTTPMessageRef) DictionaryRef {
 	return _CFHTTPMessageCopyAllHeaderFields(message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyAllHeaderFields */
+}
 
 // Gets the body from a object.
 //
@@ -420,7 +420,7 @@ func CFHTTPMessageCopyAllHeaderFields(message HTTPMessageRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyBody(_:)
 func CFHTTPMessageCopyBody(message HTTPMessageRef) DataRef {
 	return _CFHTTPMessageCopyBody(message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyBody */
+}
 
 // Gets the value of a header field from a object.
 //
@@ -431,7 +431,7 @@ func CFHTTPMessageCopyBody(message HTTPMessageRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyHeaderFieldValue(_:_:)
 func CFHTTPMessageCopyHeaderFieldValue(message HTTPMessageRef, headerField StringRef) StringRef {
 	return _CFHTTPMessageCopyHeaderFieldValue(message, headerField)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyHeaderFieldValue */
+}
 
 // Gets the request method from a object.
 //
@@ -442,7 +442,7 @@ func CFHTTPMessageCopyHeaderFieldValue(message HTTPMessageRef, headerField Strin
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyRequestMethod(_:)
 func CFHTTPMessageCopyRequestMethod(request HTTPMessageRef) StringRef {
 	return _CFHTTPMessageCopyRequestMethod(request)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyRequestMethod */
+}
 
 // Gets the URL from a object.
 //
@@ -453,7 +453,7 @@ func CFHTTPMessageCopyRequestMethod(request HTTPMessageRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyRequestURL(_:)
 func CFHTTPMessageCopyRequestURL(request HTTPMessageRef) URLRef {
 	return _CFHTTPMessageCopyRequestURL(request)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyRequestURL */
+}
 
 // Gets the status line from a object.
 //
@@ -464,7 +464,7 @@ func CFHTTPMessageCopyRequestURL(request HTTPMessageRef) URLRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyResponseStatusLine(_:)
 func CFHTTPMessageCopyResponseStatusLine(response HTTPMessageRef) StringRef {
 	return _CFHTTPMessageCopyResponseStatusLine(response)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyResponseStatusLine */
+}
 
 // Serializes a CFHTTPMessage object.
 //
@@ -475,7 +475,7 @@ func CFHTTPMessageCopyResponseStatusLine(response HTTPMessageRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopySerializedMessage(_:)
 func CFHTTPMessageCopySerializedMessage(message HTTPMessageRef) DataRef {
 	return _CFHTTPMessageCopySerializedMessage(message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopySerializedMessage */
+}
 
 // Gets the HTTP version from a object.
 //
@@ -486,7 +486,7 @@ func CFHTTPMessageCopySerializedMessage(message HTTPMessageRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyVersion(_:)
 func CFHTTPMessageCopyVersion(message HTTPMessageRef) StringRef {
 	return _CFHTTPMessageCopyVersion(message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCopyVersion */
+}
 
 // Gets a copy of a CFHTTPMessage object.
 //
@@ -497,7 +497,7 @@ func CFHTTPMessageCopyVersion(message HTTPMessageRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateCopy(_:_:)
 func CFHTTPMessageCreateCopy(alloc AllocatorRef, message HTTPMessageRef) HTTPMessageRef {
 	return _CFHTTPMessageCreateCopy(alloc, message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCreateCopy */
+}
 
 // Creates and returns a new, empty object.
 //
@@ -508,7 +508,7 @@ func CFHTTPMessageCreateCopy(alloc AllocatorRef, message HTTPMessageRef) HTTPMes
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateEmpty(_:_:)
 func CFHTTPMessageCreateEmpty(alloc AllocatorRef, isRequest unsafe.Pointer) HTTPMessageRef {
 	return _CFHTTPMessageCreateEmpty(alloc, isRequest)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCreateEmpty */
+}
 
 // Creates and returns a object for an HTTP request.
 //
@@ -519,7 +519,7 @@ func CFHTTPMessageCreateEmpty(alloc AllocatorRef, isRequest unsafe.Pointer) HTTP
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateRequest(_:_:_:_:)
 func CFHTTPMessageCreateRequest(alloc AllocatorRef, requestMethod StringRef, url URLRef, httpVersion StringRef) HTTPMessageRef {
 	return _CFHTTPMessageCreateRequest(alloc, requestMethod, url, httpVersion)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCreateRequest */
+}
 
 // Creates and returns a object for an HTTP response.
 //
@@ -530,7 +530,7 @@ func CFHTTPMessageCreateRequest(alloc AllocatorRef, requestMethod StringRef, url
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateResponse(_:_:_:_:)
 func CFHTTPMessageCreateResponse(alloc AllocatorRef, statusCode Index, statusDescription StringRef, httpVersion StringRef) HTTPMessageRef {
 	return _CFHTTPMessageCreateResponse(alloc, statusCode, statusDescription, httpVersion)
-}/* debug [functions.gen.go/function]: CFHTTPMessageCreateResponse */
+}
 
 // Gets the status code from a object representing an HTTP response.
 //
@@ -541,7 +541,7 @@ func CFHTTPMessageCreateResponse(alloc AllocatorRef, statusCode Index, statusDes
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageGetResponseStatusCode(_:)
 func CFHTTPMessageGetResponseStatusCode(response HTTPMessageRef) Index {
 	return _CFHTTPMessageGetResponseStatusCode(response)
-}/* debug [functions.gen.go/function]: CFHTTPMessageGetResponseStatusCode */
+}
 
 // Returns the Core Foundation type identifier for the opaque type.
 //
@@ -552,7 +552,7 @@ func CFHTTPMessageGetResponseStatusCode(response HTTPMessageRef) Index {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageGetTypeID()
 func CFHTTPMessageGetTypeID() TypeID {
 	return _CFHTTPMessageGetTypeID()
-}/* debug [functions.gen.go/function]: CFHTTPMessageGetTypeID */
+}
 
 // Determines whether a message header is complete.
 //
@@ -563,7 +563,7 @@ func CFHTTPMessageGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageIsHeaderComplete(_:)
 func CFHTTPMessageIsHeaderComplete(message HTTPMessageRef) unsafe.Pointer {
 	return _CFHTTPMessageIsHeaderComplete(message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageIsHeaderComplete */
+}
 
 // Returns a Boolean indicating whether the HTTP message is a request or a response.
 //
@@ -574,7 +574,7 @@ func CFHTTPMessageIsHeaderComplete(message HTTPMessageRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageIsRequest(_:)
 func CFHTTPMessageIsRequest(message HTTPMessageRef) unsafe.Pointer {
 	return _CFHTTPMessageIsRequest(message)
-}/* debug [functions.gen.go/function]: CFHTTPMessageIsRequest */
+}
 
 // Sets the body of a object.
 //
@@ -585,7 +585,7 @@ func CFHTTPMessageIsRequest(message HTTPMessageRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageSetBody(_:_:)
 func CFHTTPMessageSetBody(message HTTPMessageRef, bodyData DataRef) {
 	_CFHTTPMessageSetBody(message, bodyData)
-}/* debug [functions.gen.go/function]: CFHTTPMessageSetBody */
+}
 
 // Sets the value of a header field in an HTTP message.
 //
@@ -596,7 +596,7 @@ func CFHTTPMessageSetBody(message HTTPMessageRef, bodyData DataRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageSetHeaderFieldValue(_:_:_:)
 func CFHTTPMessageSetHeaderFieldValue(message HTTPMessageRef, headerField StringRef, value StringRef) {
 	_CFHTTPMessageSetHeaderFieldValue(message, headerField, value)
-}/* debug [functions.gen.go/function]: CFHTTPMessageSetHeaderFieldValue */
+}
 
 // Cancels the resolution of a host.
 //
@@ -609,7 +609,7 @@ func CFHTTPMessageSetHeaderFieldValue(message HTTPMessageRef, headerField String
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCancelInfoResolution(_:_:)
 func CFHostCancelInfoResolution(theHost HostRef, info HostInfoType) {
 	_CFHostCancelInfoResolution(theHost, info)
-}/* debug [functions.gen.go/function]: CFHostCancelInfoResolution */
+}
 
 // Creates a new host object by copying.
 //
@@ -622,7 +622,7 @@ func CFHostCancelInfoResolution(theHost HostRef, info HostInfoType) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCreateCopy(_:_:)
 func CFHostCreateCopy(alloc AllocatorRef, host HostRef) HostRef {
 	return _CFHostCreateCopy(alloc, host)
-}/* debug [functions.gen.go/function]: CFHostCreateCopy */
+}
 
 // Uses an address to create an instance of a host object.
 //
@@ -635,7 +635,7 @@ func CFHostCreateCopy(alloc AllocatorRef, host HostRef) HostRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCreateWithAddress(_:_:)
 func CFHostCreateWithAddress(allocator AllocatorRef, addr DataRef) HostRef {
 	return _CFHostCreateWithAddress(allocator, addr)
-}/* debug [functions.gen.go/function]: CFHostCreateWithAddress */
+}
 
 // Uses a name to create an instance of a host object.
 //
@@ -648,7 +648,7 @@ func CFHostCreateWithAddress(allocator AllocatorRef, addr DataRef) HostRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCreateWithName(_:_:)
 func CFHostCreateWithName(allocator AllocatorRef, hostname StringRef) HostRef {
 	return _CFHostCreateWithName(allocator, hostname)
-}/* debug [functions.gen.go/function]: CFHostCreateWithName */
+}
 
 // Gets the addresses from a host.
 //
@@ -661,7 +661,7 @@ func CFHostCreateWithName(allocator AllocatorRef, hostname StringRef) HostRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetAddressing(_:_:)
 func CFHostGetAddressing(theHost HostRef, hasBeenResolved unsafe.Pointer) ArrayRef {
 	return _CFHostGetAddressing(theHost, hasBeenResolved)
-}/* debug [functions.gen.go/function]: CFHostGetAddressing */
+}
 
 // Gets the names from a CFHost.
 //
@@ -674,7 +674,7 @@ func CFHostGetAddressing(theHost HostRef, hasBeenResolved unsafe.Pointer) ArrayR
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetNames(_:_:)
 func CFHostGetNames(theHost HostRef, hasBeenResolved unsafe.Pointer) ArrayRef {
 	return _CFHostGetNames(theHost, hasBeenResolved)
-}/* debug [functions.gen.go/function]: CFHostGetNames */
+}
 
 // Gets reachability information from a host.
 //
@@ -687,7 +687,7 @@ func CFHostGetNames(theHost HostRef, hasBeenResolved unsafe.Pointer) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetReachability(_:_:)
 func CFHostGetReachability(theHost HostRef, hasBeenResolved unsafe.Pointer) DataRef {
 	return _CFHostGetReachability(theHost, hasBeenResolved)
-}/* debug [functions.gen.go/function]: CFHostGetReachability */
+}
 
 // Gets the Core Foundation type identifier for the CFHost opaque type.
 //
@@ -700,7 +700,7 @@ func CFHostGetReachability(theHost HostRef, hasBeenResolved unsafe.Pointer) Data
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetTypeID()
 func CFHostGetTypeID() TypeID {
 	return _CFHostGetTypeID()
-}/* debug [functions.gen.go/function]: CFHostGetTypeID */
+}
 
 // Schedules a CFHost on a run loop.
 //
@@ -713,7 +713,7 @@ func CFHostGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostScheduleWithRunLoop(_:_:_:)
 func CFHostScheduleWithRunLoop(theHost HostRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFHostScheduleWithRunLoop(theHost, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFHostScheduleWithRunLoop */
+}
 
 // Associates a client context and a callback function with a CFHost object or disassociates a client context and callback function that were previously set.
 //
@@ -726,7 +726,7 @@ func CFHostScheduleWithRunLoop(theHost HostRef, runLoop RunLoopRef, runLoopMode 
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostSetClient(_:_:_:)
 func CFHostSetClient(theHost HostRef, clientCB HostClientCallBack, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFHostSetClient(theHost, clientCB, clientContext)
-}/* debug [functions.gen.go/function]: CFHostSetClient */
+}
 
 // Starts resolution for a host object.
 //
@@ -739,7 +739,7 @@ func CFHostSetClient(theHost HostRef, clientCB HostClientCallBack, clientContext
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostStartInfoResolution(_:_:_:)
 func CFHostStartInfoResolution(theHost HostRef, info HostInfoType, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHostStartInfoResolution(theHost, info, error_)
-}/* debug [functions.gen.go/function]: CFHostStartInfoResolution */
+}
 
 // Unschedules a CFHost from a run loop.
 //
@@ -752,7 +752,7 @@ func CFHostStartInfoResolution(theHost HostRef, info HostInfoType, error_ unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostUnscheduleFromRunLoop(_:_:_:)
 func CFHostUnscheduleFromRunLoop(theHost HostRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFHostUnscheduleFromRunLoop(theHost, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFHostUnscheduleFromRunLoop */
+}
 
 // Gets a network status value.
 //
@@ -765,7 +765,7 @@ func CFHostUnscheduleFromRunLoop(theHost HostRef, runLoop RunLoopRef, runLoopMod
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticCopyNetworkStatusPassively(_:_:)
 func CFNetDiagnosticCopyNetworkStatusPassively(details NetDiagnosticRef, description unsafe.Pointer) NetDiagnosticStatus {
 	return _CFNetDiagnosticCopyNetworkStatusPassively(details, description)
-}/* debug [functions.gen.go/function]: CFNetDiagnosticCopyNetworkStatusPassively */
+}
 
 // Creates a network diagnostic object from a pair of CFStreams.
 //
@@ -778,7 +778,7 @@ func CFNetDiagnosticCopyNetworkStatusPassively(details NetDiagnosticRef, descrip
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticCreateWithStreams(_:_:_:)
 func CFNetDiagnosticCreateWithStreams(alloc AllocatorRef, readStream ReadStreamRef, writeStream WriteStreamRef) NetDiagnosticRef {
 	return _CFNetDiagnosticCreateWithStreams(alloc, readStream, writeStream)
-}/* debug [functions.gen.go/function]: CFNetDiagnosticCreateWithStreams */
+}
 
 // Creates a CFNetDiagnosticRef from a CFURLRef.
 //
@@ -791,7 +791,7 @@ func CFNetDiagnosticCreateWithStreams(alloc AllocatorRef, readStream ReadStreamR
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticCreateWithURL(_:_:)
 func CFNetDiagnosticCreateWithURL(alloc AllocatorRef, url URLRef) NetDiagnosticRef {
 	return _CFNetDiagnosticCreateWithURL(alloc, url)
-}/* debug [functions.gen.go/function]: CFNetDiagnosticCreateWithURL */
+}
 
 // Opens a Network Diagnostics window.
 //
@@ -804,7 +804,7 @@ func CFNetDiagnosticCreateWithURL(alloc AllocatorRef, url URLRef) NetDiagnosticR
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticDiagnoseProblemInteractively(_:)
 func CFNetDiagnosticDiagnoseProblemInteractively(details NetDiagnosticRef) NetDiagnosticStatus {
 	return _CFNetDiagnosticDiagnoseProblemInteractively(details)
-}/* debug [functions.gen.go/function]: CFNetDiagnosticDiagnoseProblemInteractively */
+}
 
 // Overrides the displayed application name.
 //
@@ -817,7 +817,7 @@ func CFNetDiagnosticDiagnoseProblemInteractively(details NetDiagnosticRef) NetDi
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticSetName(_:_:)
 func CFNetDiagnosticSetName(details NetDiagnosticRef, name StringRef) {
 	_CFNetDiagnosticSetName(details, name)
-}/* debug [functions.gen.go/function]: CFNetDiagnosticSetName */
+}
 
 // Creates an instance of a Network Service browser object.
 //
@@ -830,7 +830,7 @@ func CFNetDiagnosticSetName(details NetDiagnosticRef, name StringRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserCreate(_:_:_:)
 func CFNetServiceBrowserCreate(alloc AllocatorRef, clientCB NetServiceBrowserClientCallBack, clientContext unsafe.Pointer) NetServiceBrowserRef {
 	return _CFNetServiceBrowserCreate(alloc, clientCB, clientContext)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserCreate */
+}
 
 // Gets the Core Foundation type identifier for the Network Service browser object.
 //
@@ -843,7 +843,7 @@ func CFNetServiceBrowserCreate(alloc AllocatorRef, clientCB NetServiceBrowserCli
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserGetTypeID()
 func CFNetServiceBrowserGetTypeID() TypeID {
 	return _CFNetServiceBrowserGetTypeID()
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserGetTypeID */
+}
 
 // Invalidates an instance of a Network Service browser object.
 //
@@ -856,7 +856,7 @@ func CFNetServiceBrowserGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserInvalidate(_:)
 func CFNetServiceBrowserInvalidate(browser NetServiceBrowserRef) {
 	_CFNetServiceBrowserInvalidate(browser)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserInvalidate */
+}
 
 // Schedules a CFNetServiceBrowser on a run loop.
 //
@@ -869,7 +869,7 @@ func CFNetServiceBrowserInvalidate(browser NetServiceBrowserRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserScheduleWithRunLoop(_:_:_:)
 func CFNetServiceBrowserScheduleWithRunLoop(browser NetServiceBrowserRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFNetServiceBrowserScheduleWithRunLoop(browser, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserScheduleWithRunLoop */
+}
 
 // Searches for domains.
 //
@@ -882,7 +882,7 @@ func CFNetServiceBrowserScheduleWithRunLoop(browser NetServiceBrowserRef, runLoo
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserSearchForDomains(_:_:_:)
 func CFNetServiceBrowserSearchForDomains(browser NetServiceBrowserRef, registrationDomains unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceBrowserSearchForDomains(browser, registrationDomains, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserSearchForDomains */
+}
 
 // Searches a domain for services of a specified type.
 //
@@ -895,7 +895,7 @@ func CFNetServiceBrowserSearchForDomains(browser NetServiceBrowserRef, registrat
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserSearchForServices(_:_:_:_:)
 func CFNetServiceBrowserSearchForServices(browser NetServiceBrowserRef, domain StringRef, serviceType StringRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceBrowserSearchForServices(browser, domain, serviceType, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserSearchForServices */
+}
 
 // Stops a search for domains or services.
 //
@@ -908,7 +908,7 @@ func CFNetServiceBrowserSearchForServices(browser NetServiceBrowserRef, domain S
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserStopSearch(_:_:)
 func CFNetServiceBrowserStopSearch(browser NetServiceBrowserRef, error_ unsafe.Pointer) {
 	_CFNetServiceBrowserStopSearch(browser, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserStopSearch */
+}
 
 // Unschedules a CFNetServiceBrowser from a run loop and mode.
 //
@@ -921,7 +921,7 @@ func CFNetServiceBrowserStopSearch(browser NetServiceBrowserRef, error_ unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserUnscheduleFromRunLoop(_:_:_:)
 func CFNetServiceBrowserUnscheduleFromRunLoop(browser NetServiceBrowserRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFNetServiceBrowserUnscheduleFromRunLoop(browser, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFNetServiceBrowserUnscheduleFromRunLoop */
+}
 
 // Cancels a service registration or a service resolution.
 //
@@ -934,7 +934,7 @@ func CFNetServiceBrowserUnscheduleFromRunLoop(browser NetServiceBrowserRef, runL
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCancel(_:)
 func CFNetServiceCancel(theService NetServiceRef) {
 	_CFNetServiceCancel(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceCancel */
+}
 
 // Creates an instance of a Network Service object.
 //
@@ -947,7 +947,7 @@ func CFNetServiceCancel(theService NetServiceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreate(_:_:_:_:_:)
 func CFNetServiceCreate(alloc AllocatorRef, domain StringRef, serviceType StringRef, name StringRef, port unsafe.Pointer) NetServiceRef {
 	return _CFNetServiceCreate(alloc, domain, serviceType, name, port)
-}/* debug [functions.gen.go/function]: CFNetServiceCreate */
+}
 
 // Creates a copy of a CFNetService object.
 //
@@ -960,7 +960,7 @@ func CFNetServiceCreate(alloc AllocatorRef, domain StringRef, serviceType String
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreateCopy(_:_:)
 func CFNetServiceCreateCopy(alloc AllocatorRef, service NetServiceRef) NetServiceRef {
 	return _CFNetServiceCreateCopy(alloc, service)
-}/* debug [functions.gen.go/function]: CFNetServiceCreateCopy */
+}
 
 // Uses TXT record data to create a dictionary.
 //
@@ -973,7 +973,7 @@ func CFNetServiceCreateCopy(alloc AllocatorRef, service NetServiceRef) NetServic
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreateDictionaryWithTXTData(_:_:)
 func CFNetServiceCreateDictionaryWithTXTData(alloc AllocatorRef, txtRecord DataRef) DictionaryRef {
 	return _CFNetServiceCreateDictionaryWithTXTData(alloc, txtRecord)
-}/* debug [functions.gen.go/function]: CFNetServiceCreateDictionaryWithTXTData */
+}
 
 // Flattens a set of key/value pairs into a CFDataRef suitable for passing to .
 //
@@ -986,7 +986,7 @@ func CFNetServiceCreateDictionaryWithTXTData(alloc AllocatorRef, txtRecord DataR
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreateTXTDataWithDictionary(_:_:)
 func CFNetServiceCreateTXTDataWithDictionary(alloc AllocatorRef, keyValuePairs DictionaryRef) DataRef {
 	return _CFNetServiceCreateTXTDataWithDictionary(alloc, keyValuePairs)
-}/* debug [functions.gen.go/function]: CFNetServiceCreateTXTDataWithDictionary */
+}
 
 // Gets the IP addressing from a CFNetService.
 //
@@ -999,7 +999,7 @@ func CFNetServiceCreateTXTDataWithDictionary(alloc AllocatorRef, keyValuePairs D
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetAddressing(_:)
 func CFNetServiceGetAddressing(theService NetServiceRef) ArrayRef {
 	return _CFNetServiceGetAddressing(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetAddressing */
+}
 
 // Gets the domain from a CFNetService.
 //
@@ -1012,7 +1012,7 @@ func CFNetServiceGetAddressing(theService NetServiceRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetDomain(_:)
 func CFNetServiceGetDomain(theService NetServiceRef) StringRef {
 	return _CFNetServiceGetDomain(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetDomain */
+}
 
 // Gets the name from a CFNetService.
 //
@@ -1025,7 +1025,7 @@ func CFNetServiceGetDomain(theService NetServiceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetName(_:)
 func CFNetServiceGetName(theService NetServiceRef) StringRef {
 	return _CFNetServiceGetName(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetName */
+}
 
 // This function gets the port number from a CFNetService.
 //
@@ -1038,7 +1038,7 @@ func CFNetServiceGetName(theService NetServiceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetPortNumber(_:)
 func CFNetServiceGetPortNumber(theService NetServiceRef) unsafe.Pointer {
 	return _CFNetServiceGetPortNumber(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetPortNumber */
+}
 
 // Queries a network service for the contents of its TXT records.
 //
@@ -1051,7 +1051,7 @@ func CFNetServiceGetPortNumber(theService NetServiceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetTXTData(_:)
 func CFNetServiceGetTXTData(theService NetServiceRef) DataRef {
 	return _CFNetServiceGetTXTData(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetTXTData */
+}
 
 // Queries a CFNetService for its target hosts.
 //
@@ -1064,7 +1064,7 @@ func CFNetServiceGetTXTData(theService NetServiceRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetTargetHost(_:)
 func CFNetServiceGetTargetHost(theService NetServiceRef) StringRef {
 	return _CFNetServiceGetTargetHost(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetTargetHost */
+}
 
 // Gets the type from a CFNetService.
 //
@@ -1077,7 +1077,7 @@ func CFNetServiceGetTargetHost(theService NetServiceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetType(_:)
 func CFNetServiceGetType(theService NetServiceRef) StringRef {
 	return _CFNetServiceGetType(theService)
-}/* debug [functions.gen.go/function]: CFNetServiceGetType */
+}
 
 // Gets the Core Foundation type identifier for the Network Service object.
 //
@@ -1090,7 +1090,7 @@ func CFNetServiceGetType(theService NetServiceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetTypeID()
 func CFNetServiceGetTypeID() TypeID {
 	return _CFNetServiceGetTypeID()
-}/* debug [functions.gen.go/function]: CFNetServiceGetTypeID */
+}
 
 // Creates an instance of a NetServiceMonitor object that watches for record changes.
 //
@@ -1103,7 +1103,7 @@ func CFNetServiceGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorCreate(_:_:_:_:)
 func CFNetServiceMonitorCreate(alloc AllocatorRef, theService NetServiceRef, clientCB NetServiceMonitorClientCallBack, clientContext unsafe.Pointer) NetServiceMonitorRef {
 	return _CFNetServiceMonitorCreate(alloc, theService, clientCB, clientContext)
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorCreate */
+}
 
 // Gets the Core Foundation type identifier for all CFNetServiceMonitor instances.
 //
@@ -1116,7 +1116,7 @@ func CFNetServiceMonitorCreate(alloc AllocatorRef, theService NetServiceRef, cli
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorGetTypeID()
 func CFNetServiceMonitorGetTypeID() TypeID {
 	return _CFNetServiceMonitorGetTypeID()
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorGetTypeID */
+}
 
 // Invalidates an instance of a Network Service monitor object.
 //
@@ -1129,7 +1129,7 @@ func CFNetServiceMonitorGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorInvalidate(_:)
 func CFNetServiceMonitorInvalidate(monitor NetServiceMonitorRef) {
 	_CFNetServiceMonitorInvalidate(monitor)
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorInvalidate */
+}
 
 // Schedules a CFNetServiceMonitor on a run loop.
 //
@@ -1142,7 +1142,7 @@ func CFNetServiceMonitorInvalidate(monitor NetServiceMonitorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorScheduleWithRunLoop(_:_:_:)
 func CFNetServiceMonitorScheduleWithRunLoop(monitor NetServiceMonitorRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFNetServiceMonitorScheduleWithRunLoop(monitor, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorScheduleWithRunLoop */
+}
 
 // Starts monitoring.
 //
@@ -1155,7 +1155,7 @@ func CFNetServiceMonitorScheduleWithRunLoop(monitor NetServiceMonitorRef, runLoo
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorStart(_:_:_:)
 func CFNetServiceMonitorStart(monitor NetServiceMonitorRef, recordType NetServiceMonitorType, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceMonitorStart(monitor, recordType, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorStart */
+}
 
 // Stops a CFNetServiceMonitor.
 //
@@ -1168,7 +1168,7 @@ func CFNetServiceMonitorStart(monitor NetServiceMonitorRef, recordType NetServic
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorStop(_:_:)
 func CFNetServiceMonitorStop(monitor NetServiceMonitorRef, error_ unsafe.Pointer) {
 	_CFNetServiceMonitorStop(monitor, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorStop */
+}
 
 // Unschedules a CFNetServiceMonitor from a run loop.
 //
@@ -1181,7 +1181,7 @@ func CFNetServiceMonitorStop(monitor NetServiceMonitorRef, error_ unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorUnscheduleFromRunLoop(_:_:_:)
 func CFNetServiceMonitorUnscheduleFromRunLoop(monitor NetServiceMonitorRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFNetServiceMonitorUnscheduleFromRunLoop(monitor, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFNetServiceMonitorUnscheduleFromRunLoop */
+}
 
 // Makes a CFNetService available on the network.
 //
@@ -1194,7 +1194,7 @@ func CFNetServiceMonitorUnscheduleFromRunLoop(monitor NetServiceMonitorRef, runL
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegister
 func CFNetServiceRegister(theService NetServiceRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceRegister(theService, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceRegister */
+}
 
 // Makes a CFNetService available on the network.
 //
@@ -1207,7 +1207,7 @@ func CFNetServiceRegister(theService NetServiceRef, error_ unsafe.Pointer) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegisterWithOptions(_:_:_:)
 func CFNetServiceRegisterWithOptions(theService NetServiceRef, options OptionFlags, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceRegisterWithOptions(theService, options, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceRegisterWithOptions */
+}
 
 // This function updates the specified CFNetService with the IP address or addresses associated with the service. Call to get the addresses.
 //
@@ -1220,7 +1220,7 @@ func CFNetServiceRegisterWithOptions(theService NetServiceRef, options OptionFla
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceResolve
 func CFNetServiceResolve(theService NetServiceRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceResolve(theService, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceResolve */
+}
 
 // Gets the IP address or addresses for a CFNetService.
 //
@@ -1233,7 +1233,7 @@ func CFNetServiceResolve(theService NetServiceRef, error_ unsafe.Pointer) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceResolveWithTimeout(_:_:_:)
 func CFNetServiceResolveWithTimeout(theService NetServiceRef, timeout TimeInterval, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceResolveWithTimeout(theService, timeout, error_)
-}/* debug [functions.gen.go/function]: CFNetServiceResolveWithTimeout */
+}
 
 // Schedules a CFNetService on a run loop.
 //
@@ -1246,7 +1246,7 @@ func CFNetServiceResolveWithTimeout(theService NetServiceRef, timeout TimeInterv
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceScheduleWithRunLoop(_:_:_:)
 func CFNetServiceScheduleWithRunLoop(theService NetServiceRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFNetServiceScheduleWithRunLoop(theService, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFNetServiceScheduleWithRunLoop */
+}
 
 // Associates a callback function with a CFNetService or disassociates a callback function from a CFNetService.
 //
@@ -1259,7 +1259,7 @@ func CFNetServiceScheduleWithRunLoop(theService NetServiceRef, runLoop RunLoopRe
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceSetClient(_:_:_:)
 func CFNetServiceSetClient(theService NetServiceRef, clientCB NetServiceClientCallBack, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceSetClient(theService, clientCB, clientContext)
-}/* debug [functions.gen.go/function]: CFNetServiceSetClient */
+}
 
 // Sets the TXT record for a CFNetService.
 //
@@ -1272,7 +1272,7 @@ func CFNetServiceSetClient(theService NetServiceRef, clientCB NetServiceClientCa
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceSetTXTData(_:_:)
 func CFNetServiceSetTXTData(theService NetServiceRef, txtRecord DataRef) unsafe.Pointer {
 	return _CFNetServiceSetTXTData(theService, txtRecord)
-}/* debug [functions.gen.go/function]: CFNetServiceSetTXTData */
+}
 
 // Unschedules a CFNetService from a run loop.
 //
@@ -1285,7 +1285,7 @@ func CFNetServiceSetTXTData(theService NetServiceRef, txtRecord DataRef) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceUnscheduleFromRunLoop(_:_:_:)
 func CFNetServiceUnscheduleFromRunLoop(theService NetServiceRef, runLoop RunLoopRef, runLoopMode StringRef) {
 	_CFNetServiceUnscheduleFromRunLoop(theService, runLoop, runLoopMode)
-}/* debug [functions.gen.go/function]: CFNetServiceUnscheduleFromRunLoop */
+}
 
 // Executes a proxy autoconfiguration script to determine the best proxy to use to retrieve a specified URL.
 //
@@ -1296,7 +1296,7 @@ func CFNetServiceUnscheduleFromRunLoop(theService NetServiceRef, runLoop RunLoop
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkCopyProxiesForAutoConfigurationScript(_:_:_:)
 func CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript StringRef, targetURL URLRef, error_ unsafe.Pointer) ArrayRef {
 	return _CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript, targetURL, error_)
-}/* debug [functions.gen.go/function]: CFNetworkCopyProxiesForAutoConfigurationScript */
+}
 
 // Returns the list of proxies that should be used to download a given URL.
 //
@@ -1307,7 +1307,7 @@ func CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkCopyProxiesForURL(_:_:)
 func CFNetworkCopyProxiesForURL(url URLRef, proxySettings DictionaryRef) ArrayRef {
 	return _CFNetworkCopyProxiesForURL(url, proxySettings)
-}/* debug [functions.gen.go/function]: CFNetworkCopyProxiesForURL */
+}
 
 // Returns a CFDictionary containing the current systemwide internet proxy settings.
 //
@@ -1318,7 +1318,7 @@ func CFNetworkCopyProxiesForURL(url URLRef, proxySettings DictionaryRef) ArrayRe
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkCopySystemProxySettings()
 func CFNetworkCopySystemProxySettings() DictionaryRef {
 	return _CFNetworkCopySystemProxySettings()
-}/* debug [functions.gen.go/function]: CFNetworkCopySystemProxySettings */
+}
 
 // Downloads a proxy autoconfiguration script and executes it.
 //
@@ -1329,7 +1329,7 @@ func CFNetworkCopySystemProxySettings() DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationScript(_:_:_:_:)
 func CFNetworkExecuteProxyAutoConfigurationScript(proxyAutoConfigurationScript StringRef, targetURL URLRef, cb ProxyAutoConfigurationResultCallback, clientContext unsafe.Pointer) RunLoopSourceRef {
 	return _CFNetworkExecuteProxyAutoConfigurationScript(proxyAutoConfigurationScript, targetURL, cb, clientContext)
-}/* debug [functions.gen.go/function]: CFNetworkExecuteProxyAutoConfigurationScript */
+}
 
 // Downloads a proxy autoconfiguration script and executes it.
 //
@@ -1340,7 +1340,7 @@ func CFNetworkExecuteProxyAutoConfigurationScript(proxyAutoConfigurationScript S
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)
 func CFNetworkExecuteProxyAutoConfigurationURL(proxyAutoConfigURL URLRef, targetURL URLRef, cb ProxyAutoConfigurationResultCallback, clientContext unsafe.Pointer) RunLoopSourceRef {
 	return _CFNetworkExecuteProxyAutoConfigurationURL(proxyAutoConfigURL, targetURL, cb, clientContext)
-}/* debug [functions.gen.go/function]: CFNetworkExecuteProxyAutoConfigurationURL */
+}
 
 // Creates a read stream for a CFHTTP request message.
 //
@@ -1353,7 +1353,7 @@ func CFNetworkExecuteProxyAutoConfigurationURL(proxyAutoConfigURL URLRef, target
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFReadStreamCreateForHTTPRequest(_:_:)
 func CFReadStreamCreateForHTTPRequest(alloc AllocatorRef, request HTTPMessageRef) ReadStreamRef {
 	return _CFReadStreamCreateForHTTPRequest(alloc, request)
-}/* debug [functions.gen.go/function]: CFReadStreamCreateForHTTPRequest */
+}
 
 // Creates a read stream for a CFHTTP request message object whose body is too long to keep in memory.
 //
@@ -1366,7 +1366,7 @@ func CFReadStreamCreateForHTTPRequest(alloc AllocatorRef, request HTTPMessageRef
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)
 func CFReadStreamCreateForStreamedHTTPRequest(alloc AllocatorRef, requestHeaders HTTPMessageRef, requestBody ReadStreamRef) ReadStreamRef {
 	return _CFReadStreamCreateForStreamedHTTPRequest(alloc, requestHeaders, requestBody)
-}/* debug [functions.gen.go/function]: CFReadStreamCreateForStreamedHTTPRequest */
+}
 
 // Creates an FTP read stream.
 //
@@ -1379,7 +1379,7 @@ func CFReadStreamCreateForStreamedHTTPRequest(alloc AllocatorRef, requestHeaders
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFReadStreamCreateWithFTPURL(_:_:)
 func CFReadStreamCreateWithFTPURL(alloc AllocatorRef, ftpURL URLRef) ReadStreamRef {
 	return _CFReadStreamCreateWithFTPURL(alloc, ftpURL)
-}/* debug [functions.gen.go/function]: CFReadStreamCreateWithFTPURL */
+}
 
 // Creates readable and writable streams connected to a given object.
 //
@@ -1392,7 +1392,7 @@ func CFReadStreamCreateWithFTPURL(alloc AllocatorRef, ftpURL URLRef) ReadStreamR
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamCreatePairWithSocketToCFHost(_:_:_:_:_:)
 func CFStreamCreatePairWithSocketToCFHost(alloc AllocatorRef, host HostRef, port unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToCFHost(alloc, host, port, readStream, writeStream)
-}/* debug [functions.gen.go/function]: CFStreamCreatePairWithSocketToCFHost */
+}
 
 // Creates a pair of streams for a CFNetService.
 //
@@ -1405,7 +1405,7 @@ func CFStreamCreatePairWithSocketToCFHost(alloc AllocatorRef, host HostRef, port
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamCreatePairWithSocketToNetService(_:_:_:_:)
 func CFStreamCreatePairWithSocketToNetService(alloc AllocatorRef, service NetServiceRef, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToNetService(alloc, service, readStream, writeStream)
-}/* debug [functions.gen.go/function]: CFStreamCreatePairWithSocketToNetService */
+}
 
 // Creates an FTP write stream.
 //
@@ -1418,7 +1418,7 @@ func CFStreamCreatePairWithSocketToNetService(alloc AllocatorRef, service NetSer
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFWriteStreamCreateWithFTPURL(_:_:)
 func CFWriteStreamCreateWithFTPURL(alloc AllocatorRef, ftpURL URLRef) WriteStreamRef {
 	return _CFWriteStreamCreateWithFTPURL(alloc, ftpURL)
-}/* debug [functions.gen.go/function]: CFWriteStreamCreateWithFTPURL */
+}
 
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptureSynchronizedDataCollection */
 
 
-/* debug [class_header]: Header for AVCaptureSynchronizedDataCollection */
+
+
 // The class instance for the [CaptureSynchronizedDataCollection] class.
 var (
 	CaptureSynchronizedDataCollectionClass     _CaptureSynchronizedDataCollectionClass
@@ -30,30 +30,30 @@ func getCaptureSynchronizedDataCollectionClass() _CaptureSynchronizedDataCollect
 type _CaptureSynchronizedDataCollectionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptureSynchronizedDataCollection */
+
+
 // An interface definition for the [CaptureSynchronizedDataCollection] class.
 type ICaptureSynchronizedDataCollection interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CaptureSynchronizedDataCollection */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptureSynchronizedDataCollection */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptureSynchronizedDataCollection */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureSynchronizedDataCollectionClass) Alloc() CaptureSynchronizedDataCollection {
 	rv := objc.Send[CaptureSynchronizedDataCollection](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CaptureSynchronizedDataCollection) Autorelease() CaptureSynchronizedDat
 func NewCaptureSynchronizedDataCollection() CaptureSynchronizedDataCollection {
 	return getCaptureSynchronizedDataCollectionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptureSynchronizedDataCollection */
+
+
 // A set of data samples collected simultaneously from multiple capture outputs.
 
 
@@ -105,33 +105,33 @@ type CaptureSynchronizedDataCollection struct {
 func CaptureSynchronizedDataCollectionFrom(ptr unsafe.Pointer) CaptureSynchronizedDataCollection {
 	return CaptureSynchronizedDataCollection{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptureSynchronizedDataCollection *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CaptureSynchronizedDataCollection */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptureSynchronizedDataCollection */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptureSynchronizedDataCollection */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CaptureSynchronizedDataCollection */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVCaptureSynchronizedDataCollection */
+
+
+
+
+
+
+
+
+
+
+
 
 

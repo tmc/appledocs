@@ -12,6 +12,6 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSDockTilePlugIn
 type PDockTilePlugIn interface {
 	// Optional methods
-	DockMenu() Menu
+	DockMenu() IMenu
 	HasDockMenu() bool
 }

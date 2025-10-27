@@ -2,9 +2,9 @@
 
 package networkextension
 
-/* debug [enums.gen.go]: Generating 45 enums for NetworkExtension */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum NERelayManagerClientError (10 cases) */
+
 // NERelayManagerClientError enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerClientError
@@ -43,7 +43,7 @@ const (
 	NERelayManagerClientErrorServerUnreachable NERelayManagerClientError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NETunnelProviderError (3 cases) */
+
 // NETunnelProviderError - Error codes that the tunnel provider declares.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderError-swift.struct/Code
@@ -64,7 +64,7 @@ const (
 	NETunnelProviderErrorNetworkSettingsInvalid NETunnelProviderError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNError (6 cases) */
+
 // NEVPNError - Codes that indicate the source of an error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNError-swift.struct/Code
@@ -97,7 +97,7 @@ const (
 	NEVPNErrorConnectionFailed NEVPNError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEAppProxyFlowError (10 cases) */
+
 // NEAppProxyFlowError - Error codes that the app proxy flow API declares.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlowError-swift.struct/Code
@@ -146,7 +146,7 @@ const (
 	NEAppProxyFlowErrorTimedOut NEAppProxyFlowError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEAppPushManagerError (4 cases) */
+
 // NEAppPushManagerError - Error codes that the local push API declares.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManagerError-swift.struct/Code
@@ -171,7 +171,7 @@ const (
 	NEAppPushManagerErrorInternalError NEAppPushManagerError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEDNSProtocol (3 cases) */
+
 // NEDNSProtocol enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProtocol
@@ -192,7 +192,7 @@ const (
 	NEDNSProtocolTLS NEDNSProtocol = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEDNSProxyManagerError (4 cases) */
+
 // NEDNSProxyManagerError - The possible DNS proxy manager errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyManagerError
@@ -217,7 +217,7 @@ const (
 	NEDNSProxyManagerErrorConfigurationStale NEDNSProxyManagerError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEDNSSettingsManagerError (4 cases) */
+
 // NEDNSSettingsManagerError - Error codes specific to DNS managers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManagerError
@@ -242,7 +242,7 @@ const (
 	NEDNSSettingsManagerErrorConfigurationStale NEDNSSettingsManagerError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEEvaluateConnectionRuleAction (2 cases) */
+
 // NEEvaluateConnectionRuleAction enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEvaluateConnectionRuleAction
@@ -259,7 +259,7 @@ const (
 	NEEvaluateConnectionRuleActionNeverConnect NEEvaluateConnectionRuleAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterAction (5 cases) */
+
 // NEFilterAction - The actions a data provider can take on a filter flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterAction
@@ -288,7 +288,7 @@ const (
 	NEFilterActionRemediate NEFilterAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterDataAttribute (1 cases) */
+
 // NEFilterDataAttribute - Attribute flags that describe the data handled by a filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterDataAttribute
@@ -301,7 +301,7 @@ const (
 	NEFilterDataAttributeHasIPHeader NEFilterDataAttribute = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterManagerGrade (2 cases) */
+
 // NEFilterManagerGrade - A type for the grade or priority of the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterManager/Grade-swift.enum
@@ -318,7 +318,7 @@ const (
 	NEFilterManagerGradeInspector NEFilterManagerGrade = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterManagerError (6 cases) */
+
 // NEFilterManagerError - Error codes specific to filter managers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterManagerError
@@ -351,7 +351,7 @@ const (
 	NEFilterManagerErrorConfigurationStale NEFilterManagerError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterPacketProviderVerdict (3 cases) */
+
 // NEFilterPacketProviderVerdict - The verdict returned by a packet handler indicating what the framework should do with a packet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterPacketProvider/Verdict
@@ -372,7 +372,7 @@ const (
 	NEFilterPacketProviderVerdictDrop NEFilterPacketProviderVerdict = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterReportEvent (4 cases) */
+
 // NEFilterReportEvent - A type that represents the kind of event indicated by a report.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterReport/Event-swift.enum
@@ -397,7 +397,7 @@ const (
 	NEFilterReportEventStatistics NEFilterReportEvent = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEFilterReportFrequency (4 cases) */
+
 // NEFilterReportFrequency - An enumeration that represents the frequency of filter report delivery.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterReport/Frequency
@@ -422,7 +422,7 @@ const (
 	NEFilterReportFrequencyNone NEFilterReportFrequency = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotConfigurationError (18 cases) */
+
 // NEHotspotConfigurationError - Error values returned by hotspot configuration manager methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfigurationError
@@ -501,7 +501,7 @@ const (
 	NEHotspotConfigurationErrorUserUnauthorized NEHotspotConfigurationError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotConfigurationEAPType (4 cases) */
+
 // NEHotspotConfigurationEAPType - The EAP types that may be specified in 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/EAPType
@@ -526,7 +526,7 @@ const (
 	NEHotspotConfigurationEAPTypeEAPTTLS NEHotspotConfigurationEAPType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotConfigurationEAPTLSVersion (3 cases) */
+
 // NEHotspotConfigurationEAPTLSVersion - The EAPTLS Version identifiers that may be specified by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/TLSVersion
@@ -547,7 +547,7 @@ const (
 	NEHotspotConfigurationEAPTLSVersion_1_2 NEHotspotConfigurationEAPTLSVersion = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotConfigurationTTLSInnerAuthenticationType (5 cases) */
+
 // NEHotspotConfigurationTTLSInnerAuthenticationType - The TTLS Inner Authentication Types that may be specified by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/TTLSInnerAuthenticationType-swift.enum
@@ -576,7 +576,7 @@ const (
 	NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP NEHotspotConfigurationTTLSInnerAuthenticationType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotHelperCommandType (7 cases) */
+
 // NEHotspotHelperCommandType - An enumeration of hotspot command types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelperCommandType
@@ -613,7 +613,7 @@ const (
 	kNEHotspotHelperCommandTypePresentUI NEHotspotHelperCommandType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotHelperConfidence (3 cases) */
+
 // NEHotspotHelperConfidence - A type that indicates the hotspot helper’s confidence in its ability to handle the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelperConfidence
@@ -634,7 +634,7 @@ const (
 	kNEHotspotHelperConfidenceNone NEHotspotHelperConfidence = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotHelperResult (7 cases) */
+
 // NEHotspotHelperResult - The result of handling a hotspot command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelperResult
@@ -671,7 +671,7 @@ const (
 	kNEHotspotHelperResultUnsupportedNetwork NEHotspotHelperResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEHotspotNetworkSecurityType (5 cases) */
+
 // NEHotspotNetworkSecurityType - An enumeration of constants that define Wi-Fi hotspot network security types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetworkSecurityType
@@ -700,7 +700,7 @@ const (
 	NEHotspotNetworkSecurityTypeWEP NEHotspotNetworkSecurityType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NENetworkRuleProtocol (3 cases) */
+
 // NENetworkRuleProtocol - A type to represent network protocols used by routing rules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NENetworkRule/Protocol
@@ -721,7 +721,7 @@ const (
 	NENetworkRuleProtocolUDP NENetworkRuleProtocol = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEOnDemandRuleAction (4 cases) */
+
 // NEOnDemandRuleAction enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRuleAction
@@ -746,7 +746,7 @@ const (
 	NEOnDemandRuleActionIgnore NEOnDemandRuleAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEOnDemandRuleInterfaceType (4 cases) */
+
 // NEOnDemandRuleInterfaceType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRuleInterfaceType
@@ -771,7 +771,7 @@ const (
 	NEOnDemandRuleInterfaceTypeWiFi NEOnDemandRuleInterfaceType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEProviderStopReason (18 cases) */
+
 // NEProviderStopReason - Reasons why the provider extension was stopped.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProviderStopReason
@@ -851,7 +851,7 @@ const (
 	NEProviderStopReasonUserSwitch NEProviderStopReason = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NERelayManagerError (4 cases) */
+
 // NERelayManagerError - Error codes specific to relay managers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManagerError
@@ -876,7 +876,7 @@ const (
 	NERelayManagerErrorConfigurationStale NERelayManagerError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NETrafficDirection (3 cases) */
+
 // NETrafficDirection - A type to represent the direction of network traffic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETrafficDirection
@@ -897,7 +897,7 @@ const (
 	NETrafficDirectionOutbound NETrafficDirection = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NETunnelProviderRoutingMethod (3 cases) */
+
 // NETunnelProviderRoutingMethod enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderRoutingMethod
@@ -918,7 +918,7 @@ const (
 	NETunnelProviderRoutingMethodSourceApplication NETunnelProviderRoutingMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEURLFilterVerdict (3 cases) */
+
 // NEURLFilterVerdict - A verdict returned by a URL filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter/Verdict
@@ -939,7 +939,7 @@ const (
 	NEURLFilterVerdictUnknown NEURLFilterVerdict = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNConnectionError (19 cases) */
+
 // NEVPNConnectionError - Error codes specific to VPN connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnectionError
@@ -1024,7 +1024,7 @@ const (
 	NEVPNConnectionErrorUnrecoverableNetworkChange NEVPNConnectionError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEAuthenticationMethod (3 cases) */
+
 // NEVPNIKEAuthenticationMethod - Internet Key Exchange (IKE) authentication methods used to authenticate with the IPSec server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEAuthenticationMethod
@@ -1045,7 +1045,7 @@ const (
 	NEVPNIKEAuthenticationMethodSharedSecret NEVPNIKEAuthenticationMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2CertificateType (6 cases) */
+
 // NEVPNIKEv2CertificateType - An enumeration of certificate type values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2CertificateType
@@ -1078,7 +1078,7 @@ const (
 	NEVPNIKEv2CertificateTypeRSAPSS NEVPNIKEv2CertificateType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2DeadPeerDetectionRate (4 cases) */
+
 // NEVPNIKEv2DeadPeerDetectionRate - An enumeration of values for the frequency at which the IKEv2 client runs the dead peer detection algorithm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2DeadPeerDetectionRate
@@ -1103,7 +1103,7 @@ const (
 	NEVPNIKEv2DeadPeerDetectionRateNone NEVPNIKEv2DeadPeerDetectionRate = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2DiffieHellmanGroup (14 cases) */
+
 // NEVPNIKEv2DiffieHellmanGroup - An enumeration of Diffie-Hellman group values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2DiffieHellmanGroup
@@ -1168,7 +1168,7 @@ const (
 	NEVPNIKEv2DiffieHellmanGroupInvalid NEVPNIKEv2DiffieHellmanGroup = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2EncryptionAlgorithm (7 cases) */
+
 // NEVPNIKEv2EncryptionAlgorithm - An enumeration of encryption algorithm values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2EncryptionAlgorithm
@@ -1205,7 +1205,7 @@ const (
 	NEVPNIKEv2EncryptionAlgorithmDES NEVPNIKEv2EncryptionAlgorithm = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2IntegrityAlgorithm (5 cases) */
+
 // NEVPNIKEv2IntegrityAlgorithm enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2IntegrityAlgorithm
@@ -1234,7 +1234,7 @@ const (
 	NEVPNIKEv2IntegrityAlgorithmSHA96 NEVPNIKEv2IntegrityAlgorithm = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2PostQuantumKeyExchangeMethod (3 cases) */
+
 // NEVPNIKEv2PostQuantumKeyExchangeMethod - Quantum-secure key exchange methods you use with IKEv2 servers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2PostQuantumKeyExchangeMethod
@@ -1255,7 +1255,7 @@ const (
 	NEVPNIKEv2PostQuantumKeyExchangeMethodNone NEVPNIKEv2PostQuantumKeyExchangeMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNIKEv2TLSVersion (4 cases) */
+
 // NEVPNIKEv2TLSVersion - An enumeration of TLS Versions for use in EAP-TLS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNIKEv2TLSVersion
@@ -1280,7 +1280,7 @@ const (
 	NEVPNIKEv2TLSVersionDefault NEVPNIKEv2TLSVersion = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NEVPNStatus (6 cases) */
+
 // NEVPNStatus - The possible states of a VPN connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNStatus
@@ -1313,7 +1313,7 @@ const (
 	NEVPNStatusReasserting NEVPNStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NWPathStatus (4 cases) */
+
 // NWPathStatus enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWPathStatus
@@ -1338,7 +1338,7 @@ const (
 	NWPathStatusUnsatisfied NWPathStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NWTCPConnectionState (6 cases) */
+
 // NWTCPConnectionState - Defined connection states. New types may be defined in the future.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnectionState
@@ -1371,7 +1371,7 @@ const (
 	NWTCPConnectionStateWaiting NWTCPConnectionState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NWUDPSessionState (6 cases) */
+
 // NWUDPSessionState enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSessionState

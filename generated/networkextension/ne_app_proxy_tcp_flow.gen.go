@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NEAppProxyTCPFlow */
 
 
-/* debug [class_header]: Header for NEAppProxyTCPFlow */
+
+
 // The class instance for the [NEAppProxyTCPFlow] class.
 var (
 	NEAppProxyTCPFlowClass     _NEAppProxyTCPFlowClass
@@ -31,34 +30,34 @@ func getNEAppProxyTCPFlowClass() _NEAppProxyTCPFlowClass {
 type _NEAppProxyTCPFlowClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEAppProxyTCPFlow */
+
+
 // An interface definition for the [NEAppProxyTCPFlow] class.
 type INEAppProxyTCPFlow interface {
 	INEAppProxyFlow
 	
-/* debug [class_interface_properties]: Properties for NEAppProxyTCPFlow */
+
 	// properties:
 	RemoteEndpoint() INWEndpoint
 	RemoteFlowEndpoint() objectivec.IObject
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEAppProxyTCPFlow */
+
 	// methods:
 	ReadDataWithCompletionHandler(completionHandler unsafe.Pointer)
-	WriteDataWithCompletionHandler(data objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer)
-/* debug [class_interface_methods]: End methods */
+	WriteDataWithCompletionHandler(data foundation.foundation.INSData, completionHandler unsafe.Pointer)
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEAppProxyTCPFlow */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEAppProxyTCPFlowClass) Alloc() NEAppProxyTCPFlow {
 	rv := objc.Send[NEAppProxyTCPFlow](objc.ID(nc.class), objc.Sel("alloc"))
@@ -88,11 +87,11 @@ func (n_ NEAppProxyTCPFlow) Autorelease() NEAppProxyTCPFlow {
 func NewNEAppProxyTCPFlow() NEAppProxyTCPFlow {
 	return getNEAppProxyTCPFlowClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEAppProxyTCPFlow */
+
+
 // An object for reading and writing data to and from a TCP connection being proxied by the provider.
 //
 // App Proxy Providers receive TCP connections to be proxied in the form of objects.
@@ -114,25 +113,25 @@ func NEAppProxyTCPFlowFrom(ptr unsafe.Pointer) NEAppProxyTCPFlow {
 		NEAppProxyFlow: NEAppProxyFlowFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEAppProxyTCPFlow *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEAppProxyTCPFlow */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEAppProxyTCPFlow */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEAppProxyTCPFlow */
+
+
+
+
+
+
+
 
 // Read data from the flow.
 //
@@ -140,22 +139,22 @@ func NEAppProxyTCPFlowFrom(ptr unsafe.Pointer) NEAppProxyTCPFlow {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyTCPFlow/readData(completionHandler:)
 func (n_ NEAppProxyTCPFlow) ReadDataWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("readDataWithCompletionHandler:"), completionHandler)
-}/* debug [instance_methods/method]: ReadDataWithCompletionHandler */
+}
 
 
 // Write data to the flow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyTCPFlow/write(_:withCompletionHandler:)
-func (n_ NEAppProxyTCPFlow) WriteDataWithCompletionHandler(data objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer) {
+func (n_ NEAppProxyTCPFlow) WriteDataWithCompletionHandler(data foundation.foundation.INSData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("writeData:withCompletionHandler:"), data, completionHandler)
-}/* debug [instance_methods/method]: WriteDataWithCompletionHandler */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for NEAppProxyTCPFlow */
+
+
+
 
 // An object containing information about the intended remote endpoint of the flow.
 //
@@ -164,7 +163,7 @@ func (n_ NEAppProxyTCPFlow) WriteDataWithCompletionHandler(data objc.IObject /* 
 func (n_ NEAppProxyTCPFlow) RemoteEndpoint() INWEndpoint {
 	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteEndpoint"))
 	return rv
-}/* debug [instance_properties/getter]: remoteEndpoint */
+}
 
 
 // [Full Topic]
@@ -172,12 +171,12 @@ func (n_ NEAppProxyTCPFlow) RemoteEndpoint() INWEndpoint {
 func (n_ NEAppProxyTCPFlow) RemoteFlowEndpoint() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("remoteFlowEndpoint"))
 	return rv
-}/* debug [instance_properties/getter]: remoteFlowEndpoint */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NEAppProxyTCPFlow */
+
+
+
 
 
 

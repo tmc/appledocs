@@ -42,7 +42,7 @@ type IHumanBodyRecognizedPoint3D interface {
 
 	// properties:
 	LocalPosition() objectivec.IObject
-	ParentJoint() HumanBodyPose3DObservationJointName /* typedef */
+	ParentJoint() HumanBodyPose3DObservationJointName
 
 
 	
@@ -148,8 +148,8 @@ func (h_ HumanBodyRecognizedPoint3D) LocalPosition() objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyRecognizedPoint3D/parentJoint
-func (h_ HumanBodyRecognizedPoint3D) ParentJoint() HumanBodyPose3DObservationJointName /* typedef */ {
-	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("parentJoint"))
+func (h_ HumanBodyRecognizedPoint3D) ParentJoint() HumanBodyPose3DObservationJointName {
+	rv := objc.Send[HumanBodyPose3DObservationJointName](h_.ID, objc.Sel("parentJoint"))
 	return rv
 }
 

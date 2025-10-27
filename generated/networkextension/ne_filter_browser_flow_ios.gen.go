@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // iOS-only methods for NEFilterBrowserFlow
@@ -20,7 +19,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterBrowserFlow/parentURL
-func (n_ NEFilterBrowserFlow) ParentURL() objc.IObject /* cross-framework: NSURL */ {
+func (n_ NEFilterBrowserFlow) ParentURL() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](n_.ID, objc.Sel("parentURL"))
 	return rv
 }

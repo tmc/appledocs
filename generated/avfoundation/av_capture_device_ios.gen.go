@@ -62,7 +62,7 @@ func (c_ CaptureDevice) RampToVideoZoomFactorWithRate(factor float64, rate float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setDynamicAspectRatio(_:completionHandler:)
-func (c_ CaptureDevice) SetDynamicAspectRatioCompletionHandler(dynamicAspectRatio CaptureAspectRatio /* typedef */, handler unsafe.Pointer) {
+func (c_ CaptureDevice) SetDynamicAspectRatioCompletionHandler(dynamicAspectRatio CaptureAspectRatio, handler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDynamicAspectRatio:completionHandler:"), dynamicAspectRatio, handler)
 }
 
@@ -70,7 +70,7 @@ func (c_ CaptureDevice) SetDynamicAspectRatioCompletionHandler(dynamicAspectRati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setExposureModeCustom(duration:iso:completionHandler:)
-func (c_ CaptureDevice) SetExposureModeCustomWithDurationISOCompletionHandler(duration objc.IObject /* cross-framework: Time */, ISO float32, handler unsafe.Pointer) {
+func (c_ CaptureDevice) SetExposureModeCustomWithDurationISOCompletionHandler(duration objectivec.IObject, ISO float32, handler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureModeCustomWithDuration:ISO:completionHandler:"), duration, ISO, handler)
 }
 
@@ -133,11 +133,11 @@ func (c_ CaptureDevice) SetActiveDepthDataFormat(value IAVCaptureDeviceFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeDepthDataMinFrameDuration
-func (c_ CaptureDevice) ActiveDepthDataMinFrameDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("activeDepthDataMinFrameDuration"))
+func (c_ CaptureDevice) ActiveDepthDataMinFrameDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("activeDepthDataMinFrameDuration"))
 	return rv
 }
-func (c_ CaptureDevice) SetActiveDepthDataMinFrameDuration(value objc.IObject /* cross-framework: Time */) {
+func (c_ CaptureDevice) SetActiveDepthDataMinFrameDuration(value objectivec.IObject) {
 	c_.ID.Send(objc.RegisterName("setActiveDepthDataMinFrameDuration:"), value)
 }
 
@@ -145,11 +145,11 @@ func (c_ CaptureDevice) SetActiveDepthDataMinFrameDuration(value objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activeMaxExposureDuration
-func (c_ CaptureDevice) ActiveMaxExposureDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("activeMaxExposureDuration"))
+func (c_ CaptureDevice) ActiveMaxExposureDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("activeMaxExposureDuration"))
 	return rv
 }
-func (c_ CaptureDevice) SetActiveMaxExposureDuration(value objc.IObject /* cross-framework: Time */) {
+func (c_ CaptureDevice) SetActiveMaxExposureDuration(value objectivec.IObject) {
 	c_.ID.Send(objc.RegisterName("setActiveMaxExposureDuration:"), value)
 }
 
@@ -244,8 +244,8 @@ func (c_ CaptureDevice) DualCameraSwitchOverVideoZoomFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/dynamicAspectRatio
-func (c_ CaptureDevice) DynamicAspectRatio() CaptureAspectRatio /* typedef */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("dynamicAspectRatio"))
+func (c_ CaptureDevice) DynamicAspectRatio() CaptureAspectRatio {
+	rv := objc.Send[CaptureAspectRatio](c_.ID, objc.Sel("dynamicAspectRatio"))
 	return rv
 }
 
@@ -253,8 +253,8 @@ func (c_ CaptureDevice) DynamicAspectRatio() CaptureAspectRatio /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/dynamicDimensions
-func (c_ CaptureDevice) DynamicDimensions() VideoDimensions /* not a class type */ {
-	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("dynamicDimensions"))
+func (c_ CaptureDevice) DynamicDimensions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("dynamicDimensions"))
 	return rv
 }
 
@@ -262,8 +262,8 @@ func (c_ CaptureDevice) DynamicDimensions() VideoDimensions /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/exposureDuration
-func (c_ CaptureDevice) ExposureDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("exposureDuration"))
+func (c_ CaptureDevice) ExposureDuration() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("exposureDuration"))
 	return rv
 }
 

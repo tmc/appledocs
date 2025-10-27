@@ -13,7 +13,7 @@ var _ = quartzcore.NewValueFunction
 // Returns the value function object identified by the name.
 func ExampleNewValueFunctionWithName() {
 	_ = quartzcore.NewValueFunctionWithName(
-		quartzcore.ValueFunctionName /* typedef */{}, // name ValueFunctionName /* typedef */
+		quartzcore.ValueFunctionName{}, // name ValueFunctionName
 	)
 	// Output:
 }

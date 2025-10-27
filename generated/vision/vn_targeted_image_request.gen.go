@@ -311,7 +311,7 @@ func NewTargetedImageRequestWithTargetedCVPixelBufferOrientationOptionsCompletio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageData:options:
-func NewTargetedImageRequestWithTargetedImageDataOptions(imageData objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageDataOptions(imageData foundation.foundation.INSData, options foundation.IDictionary) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:options:"), imageData, options)
 	rv.Autorelease()
@@ -323,7 +323,7 @@ func NewTargetedImageRequestWithTargetedImageDataOptions(imageData objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageData:options:completionHandler:)
-func NewTargetedImageRequestWithTargetedImageDataOptionsCompletionHandler(imageData objc.IObject /* cross-framework: NSData */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageDataOptionsCompletionHandler(imageData foundation.foundation.INSData, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:options:completionHandler:"), imageData, options, completionHandler)
 	rv.Autorelease()
@@ -335,7 +335,7 @@ func NewTargetedImageRequestWithTargetedImageDataOptionsCompletionHandler(imageD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageData:orientation:options:
-func NewTargetedImageRequestWithTargetedImageDataOrientationOptions(imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageDataOrientationOptions(imageData foundation.foundation.INSData, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:orientation:options:"), imageData, orientation, options)
 	rv.Autorelease()
@@ -347,7 +347,7 @@ func NewTargetedImageRequestWithTargetedImageDataOrientationOptions(imageData ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageData:orientation:options:completionHandler:)
-func NewTargetedImageRequestWithTargetedImageDataOrientationOptionsCompletionHandler(imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageDataOrientationOptionsCompletionHandler(imageData foundation.foundation.INSData, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:orientation:options:completionHandler:"), imageData, orientation, options, completionHandler)
 	rv.Autorelease()
@@ -359,7 +359,7 @@ func NewTargetedImageRequestWithTargetedImageDataOrientationOptionsCompletionHan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:options:
-func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL foundation.foundation.INSURL, options foundation.IDictionary) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:options:"), imageURL, options)
 	rv.Autorelease()
@@ -371,7 +371,7 @@ func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageURL:options:completionHandler:)
-func NewTargetedImageRequestWithTargetedImageURLOptionsCompletionHandler(imageURL objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageURLOptionsCompletionHandler(imageURL foundation.foundation.INSURL, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:options:completionHandler:"), imageURL, options, completionHandler)
 	rv.Autorelease()
@@ -383,7 +383,7 @@ func NewTargetedImageRequestWithTargetedImageURLOptionsCompletionHandler(imageUR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:orientation:options:
-func NewTargetedImageRequestWithTargetedImageURLOrientationOptions(imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageURLOrientationOptions(imageURL foundation.foundation.INSURL, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:orientation:options:"), imageURL, orientation, options)
 	rv.Autorelease()
@@ -395,7 +395,7 @@ func NewTargetedImageRequestWithTargetedImageURLOrientationOptions(imageURL objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageURL:orientation:options:completionHandler:)
-func NewTargetedImageRequestWithTargetedImageURLOrientationOptionsCompletionHandler(imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+func NewTargetedImageRequestWithTargetedImageURLOrientationOptionsCompletionHandler(imageURL foundation.foundation.INSURL, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
 	instance := getTargetedImageRequestClass().Alloc()
 	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:orientation:options:completionHandler:"), imageURL, orientation, options, completionHandler)
 	rv.Autorelease()

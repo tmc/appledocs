@@ -16,5 +16,5 @@ import (
 // See: doc://FSKit/documentation/FSKit/FSVolume/RenameOperations
 type PFSVolumeRenameOperations interface {
 	// Required methods
-	SetVolumeNameReplyHandler(name IFSFileName, reply unsafe.Pointer)/* debug [protocol_interface/required_method]: SetVolumeNameReplyHandler */
+	SetVolumeNameReplyHandler(name IFSFileName, reply unsafe.Pointer)
 }

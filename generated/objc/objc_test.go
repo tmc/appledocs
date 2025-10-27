@@ -82,3 +82,4 @@ func BenchmarkString(b *testing.B) {
 		_ = String("benchmark string")
 	}
 }
+

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAssetDownloadStorageManager */
 
 
-/* debug [class_header]: Header for AVAssetDownloadStorageManager */
+
+
 // The class instance for the [AssetDownloadStorageManager] class.
 var (
 	AssetDownloadStorageManagerClass     _AssetDownloadStorageManagerClass
@@ -30,32 +30,32 @@ func getAssetDownloadStorageManagerClass() _AssetDownloadStorageManagerClass {
 type _AssetDownloadStorageManagerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AssetDownloadStorageManager */
+
+
 // An interface definition for the [AssetDownloadStorageManager] class.
 type IAssetDownloadStorageManager interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AssetDownloadStorageManager */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AssetDownloadStorageManager */
+
 	// methods:
-	SetStorageManagementPolicyForURL(storageManagementPolicy IAVAssetDownloadStorageManagementPolicy, downloadStorageURL objc.IObject /* cross-framework: NSURL */)
-	StorageManagementPolicyForURL(downloadStorageURL objc.IObject /* cross-framework: NSURL */) IAssetDownloadStorageManagementPolicy
-/* debug [class_interface_methods]: End methods */
+	SetStorageManagementPolicyForURL(storageManagementPolicy IAVAssetDownloadStorageManagementPolicy, downloadStorageURL foundation.foundation.INSURL)
+	StorageManagementPolicyForURL(downloadStorageURL foundation.foundation.INSURL) IAssetDownloadStorageManagementPolicy
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AssetDownloadStorageManager */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssetDownloadStorageManagerClass) Alloc() AssetDownloadStorageManager {
 	rv := objc.Send[AssetDownloadStorageManager](objc.ID(ac.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (a_ AssetDownloadStorageManager) Autorelease() AssetDownloadStorageManager 
 func NewAssetDownloadStorageManager() AssetDownloadStorageManager {
 	return getAssetDownloadStorageManagerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AssetDownloadStorageManager */
+
+
 // An object that manages policies to automatically purge downloaded assets.
 
 
@@ -107,15 +107,15 @@ type AssetDownloadStorageManager struct {
 func AssetDownloadStorageManagerFrom(ptr unsafe.Pointer) AssetDownloadStorageManager {
 	return AssetDownloadStorageManager{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AssetDownloadStorageManager *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AssetDownloadStorageManager */
+
+
+
 
 // Returns the shared storage manager instance.
 //
@@ -124,46 +124,46 @@ func AssetDownloadStorageManagerFrom(ptr unsafe.Pointer) AssetDownloadStorageMan
 func (ac _AssetDownloadStorageManagerClass) SharedDownloadStorageManager() IAssetDownloadStorageManager {
 	rv := objc.Send[AssetDownloadStorageManager](objc.ID(ac.class), objc.Sel("sharedDownloadStorageManager"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedDownloadStorageManager) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for AssetDownloadStorageManager */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AssetDownloadStorageManager */
+
+
+
+
+
 
 // Sets a storage policy for the downloaded asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManager/setStorageManagementPolicy(_:for:)
-func (a_ AssetDownloadStorageManager) SetStorageManagementPolicyForURL(storageManagementPolicy IAVAssetDownloadStorageManagementPolicy, downloadStorageURL objc.IObject /* cross-framework: NSURL */) {
+func (a_ AssetDownloadStorageManager) SetStorageManagementPolicyForURL(storageManagementPolicy IAVAssetDownloadStorageManagementPolicy, downloadStorageURL foundation.foundation.INSURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStorageManagementPolicy:forURL:"), storageManagementPolicy, downloadStorageURL)
-}/* debug [instance_methods/method]: SetStorageManagementPolicyForURL */
+}
 
 
 // Returns the storage management policy for a downloaded asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManager/storageManagementPolicy(for:)
-func (a_ AssetDownloadStorageManager) StorageManagementPolicyForURL(downloadStorageURL objc.IObject /* cross-framework: NSURL */) IAssetDownloadStorageManagementPolicy {
+func (a_ AssetDownloadStorageManager) StorageManagementPolicyForURL(downloadStorageURL foundation.foundation.INSURL) IAssetDownloadStorageManagementPolicy {
 	rv := objc.Send[AssetDownloadStorageManagementPolicy](a_.ID, objc.Sel("storageManagementPolicyForURL:"), downloadStorageURL)
 	return rv
-}/* debug [instance_methods/method]: StorageManagementPolicyForURL */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for AssetDownloadStorageManager */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVAssetDownloadStorageManager */
+
+
+
+
+
 
 
 

@@ -7,15 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/vision"
 )
 
-/* debug [class.gen.go]: Generating class NSCollectionViewLayout */
 
 
-/* debug [class_header]: Header for NSCollectionViewLayout */
+
+
 // The class instance for the [CollectionViewLayout] class.
 var (
 	CollectionViewLayoutClass     _CollectionViewLayoutClass
@@ -32,65 +31,65 @@ func getCollectionViewLayoutClass() _CollectionViewLayoutClass {
 type _CollectionViewLayoutClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CollectionViewLayout */
+
+
 // An interface definition for the [CollectionViewLayout] class.
 type ICollectionViewLayout interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CollectionViewLayout */
+
 	// properties:
-	CollectionView() objc.IObject /* cross-framework: CollectionView */
-	CollectionViewContentSize() Size /* not a class type */
+	CollectionView() CollectionView /* not a class type */
+	CollectionViewContentSize() corefoundation.CGSize
 	CollectionViewLayout() ICollectionViewLayout
 	SetCollectionViewLayout(value ICollectionViewLayout)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CollectionViewLayout */
+
 	// methods:
-	FinalLayoutAttributesForDisappearingDecorationElementOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind /* typedef */, decorationIndexPath foundation.IndexPath) ICollectionViewLayoutAttributes
-	FinalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath foundation.IndexPath) ICollectionViewLayoutAttributes
-	FinalLayoutAttributesForDisappearingSupplementaryElementOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind /* typedef */, elementIndexPath foundation.IndexPath) ICollectionViewLayoutAttributes
+	FinalLayoutAttributesForDisappearingDecorationElementOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind, decorationIndexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
+	FinalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
+	FinalLayoutAttributesForDisappearingSupplementaryElementOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, elementIndexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
 	FinalizeAnimatedBoundsChange()
 	FinalizeCollectionViewUpdates()
 	FinalizeLayoutTransition()
-	IndexPathsToDeleteForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind /* typedef */) unsafe.Pointer
-	IndexPathsToDeleteForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind /* typedef */) unsafe.Pointer
-	IndexPathsToInsertForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind /* typedef */) unsafe.Pointer
-	IndexPathsToInsertForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind /* typedef */) unsafe.Pointer
+	IndexPathsToDeleteForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind) unsafe.Pointer
+	IndexPathsToDeleteForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind) unsafe.Pointer
+	IndexPathsToInsertForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind) unsafe.Pointer
+	IndexPathsToInsertForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind) unsafe.Pointer
 	InvalidateLayout()
 	InvalidateLayoutWithContext(context ICollectionViewLayoutInvalidationContext)
-	InvalidationContextForBoundsChange(newBounds Rect /* not a class type */) ICollectionViewLayoutInvalidationContext
+	InvalidationContextForBoundsChange(newBounds corefoundation.CGRect) ICollectionViewLayoutInvalidationContext
 	InvalidationContextForPreferredLayoutAttributesWithOriginalAttributes(preferredAttributes ICollectionViewLayoutAttributes, originalAttributes ICollectionViewLayoutAttributes) ICollectionViewLayoutInvalidationContext
-	LayoutAttributesForDecorationViewOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind /* typedef */, indexPath foundation.IndexPath) ICollectionViewLayoutAttributes
-	LayoutAttributesForDropTargetAtPoint(pointInCollectionView vision.Point) ICollectionViewLayoutAttributes
-	LayoutAttributesForElementsInRect(rect Rect /* not a class type */) []CollectionViewLayoutAttributes
-	LayoutAttributesForInterItemGapBeforeIndexPath(indexPath foundation.IndexPath) ICollectionViewLayoutAttributes
-	LayoutAttributesForItemAtIndexPath(indexPath foundation.IndexPath) ICollectionViewLayoutAttributes
-	LayoutAttributesForSupplementaryViewOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) ICollectionViewLayoutAttributes
+	LayoutAttributesForDecorationViewOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind, indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
+	LayoutAttributesForDropTargetAtPoint(pointInCollectionView corefoundation.CGPoint) ICollectionViewLayoutAttributes
+	LayoutAttributesForElementsInRect(rect corefoundation.CGRect) []CollectionViewLayoutAttributes
+	LayoutAttributesForInterItemGapBeforeIndexPath(indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
+	LayoutAttributesForItemAtIndexPath(indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
+	LayoutAttributesForSupplementaryViewOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes
 	PrepareLayout()
-	PrepareForAnimatedBoundsChange(oldBounds Rect /* not a class type */)
+	PrepareForAnimatedBoundsChange(oldBounds corefoundation.CGRect)
 	PrepareForCollectionViewUpdates(updateItems []CollectionViewUpdateItem)
 	PrepareForTransitionFromLayout(oldLayout ICollectionViewLayout)
 	PrepareForTransitionToLayout(newLayout ICollectionViewLayout)
-	RegisterClassForDecorationViewOfKind(viewClass objc.Class, elementKind CollectionViewDecorationElementKind /* typedef */)
-	RegisterNibForDecorationViewOfKind(nib INib, elementKind CollectionViewDecorationElementKind /* typedef */)
-	ShouldInvalidateLayoutForBoundsChange(newBounds Rect /* not a class type */) bool
+	RegisterClassForDecorationViewOfKind(viewClass objc.Class, elementKind CollectionViewDecorationElementKind)
+	RegisterNibForDecorationViewOfKind(nib INib, elementKind CollectionViewDecorationElementKind)
+	ShouldInvalidateLayoutForBoundsChange(newBounds corefoundation.CGRect) bool
 	ShouldInvalidateLayoutForPreferredLayoutAttributesWithOriginalAttributes(preferredAttributes ICollectionViewLayoutAttributes, originalAttributes ICollectionViewLayoutAttributes) bool
-	TargetContentOffsetForProposedContentOffset(proposedContentOffset vision.Point) vision.Point
-	TargetContentOffsetForProposedContentOffsetWithScrollingVelocity(proposedContentOffset vision.Point, velocity vision.Point) vision.Point
-/* debug [class_interface_methods]: End methods */
+	TargetContentOffsetForProposedContentOffset(proposedContentOffset corefoundation.CGPoint) corefoundation.CGPoint
+	TargetContentOffsetForProposedContentOffsetWithScrollingVelocity(proposedContentOffset corefoundation.CGPoint, velocity corefoundation.CGPoint) corefoundation.CGPoint
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CollectionViewLayout */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionViewLayoutClass) Alloc() CollectionViewLayout {
 	rv := objc.Send[CollectionViewLayout](objc.ID(cc.class), objc.Sel("alloc"))
@@ -120,11 +119,11 @@ func (c_ CollectionViewLayout) Autorelease() CollectionViewLayout {
 func NewCollectionViewLayout() CollectionViewLayout {
 	return getCollectionViewLayoutClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CollectionViewLayout */
+
+
 // An abstract base class that you subclass and use to generate layout information for a collection view.
 //
 // The job of a layout object is to perform the calculations needed to determine the placement and appearance of items, supplementary views, and other content in the collection view. The layout object does not apply the layout attributes it generates to the views in your interface. Instead, it passes those layout attributes to the collection view, which then creates the needed views and applies the layout attributes to them. You do not create instances of this class directly. Instead, you create instances of one of its subclasses and associate that object with your collection view either programmatically (using the property) or at design time in Interface Builder. Changing the layout object of a collection view forces an immediate update of the layout information. Collection views support many different types of elements, most of which are visual and all of which require layout attributes: are the main elements managed by the layout. Each item represents a single piece of data in the collection view. A collection view can have a single group of items or it can divide the items into multiple sections. are optional views associated with a specific section. The layout object defines the placement and use of supplementary views. For example, grid and flow layouts use supplementary views to implement headers and footers for each section. Supplementary views cannot be selected by the user. are visual adornments used to implement themes or to present visual content that is unrelated to the data being managed by the collection view. Decoration views are optional and the layout object defines their use and placement. supply a drop target for dragged content. Gaps do not have a direct visual representation, but they do have layout attributes, which the collection view uses for hit testing. The layout object provides attributes for inter-item gaps only when asked to do so. Each concrete layout object defines a specific organization for the contained elements and provides the appropriate layout attributes. The placement and appearance of items is determined entirely by the layout object. The and subclasses define variants of a grid-based layout, but you can create custom layouts that arrange elements in different ways. For example, you might define a layout class that arranges items in a circle or define a class that groups items into stacks that resemble a pile of photos on a table.
@@ -144,57 +143,57 @@ type CollectionViewLayout struct {
 func CollectionViewLayoutFrom(ptr unsafe.Pointer) CollectionViewLayout {
 	return CollectionViewLayout{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CollectionViewLayout */
+
+
 
 // Returns the starting layout information for a decoration view being added to the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/initialLayoutAttributesForAppearingDecorationElement(ofKind:at:)
-func NewCollectionViewLayoutialLayoutAttributesForAppearingDecorationElementOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind /* typedef */, decorationIndexPath foundation.IndexPath) CollectionViewLayout {
+func NewCollectionViewLayoutialLayoutAttributesForAppearingDecorationElementOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind, decorationIndexPath foundation.foundation.INSIndexPath) CollectionViewLayout {
 	instance := getCollectionViewLayoutClass().Alloc()
 	rv := objc.Send[CollectionViewLayout](instance.ID, objc.Sel("initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:"), elementKind, decorationIndexPath)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCollectionViewLayoutialLayoutAttributesForAppearingDecorationElementOfKindAtIndexPath */
+}
 
 
 // Returns the starting layout information for an item being inserted into the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/initialLayoutAttributesForAppearingItem(at:)
-func NewCollectionViewLayoutialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath foundation.IndexPath) CollectionViewLayout {
+func NewCollectionViewLayoutialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath foundation.foundation.INSIndexPath) CollectionViewLayout {
 	instance := getCollectionViewLayoutClass().Alloc()
 	rv := objc.Send[CollectionViewLayout](instance.ID, objc.Sel("initialLayoutAttributesForAppearingItemAtIndexPath:"), itemIndexPath)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCollectionViewLayoutialLayoutAttributesForAppearingItemAtIndexPath */
+}
 
 
 // Returns the starting layout information for a supplementary view being added to the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/initialLayoutAttributesForAppearingSupplementaryElement(ofKind:at:)
-func NewCollectionViewLayoutialLayoutAttributesForAppearingSupplementaryElementOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind /* typedef */, elementIndexPath foundation.IndexPath) CollectionViewLayout {
+func NewCollectionViewLayoutialLayoutAttributesForAppearingSupplementaryElementOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, elementIndexPath foundation.foundation.INSIndexPath) CollectionViewLayout {
 	instance := getCollectionViewLayoutClass().Alloc()
 	rv := objc.Send[CollectionViewLayout](instance.ID, objc.Sel("initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:"), elementKind, elementIndexPath)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCollectionViewLayoutialLayoutAttributesForAppearingSupplementaryElementOfKindAtIndexPath */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CollectionViewLayout */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CollectionViewLayout */
+
+
+
+
+
 
 // Returns the class to use when creating an invalidation context object for the layout.
 //
@@ -203,7 +202,7 @@ func NewCollectionViewLayoutialLayoutAttributesForAppearingSupplementaryElementO
 func (cc _CollectionViewLayoutClass) InvalidationContextClass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(cc.class), objc.Sel("invalidationContextClass"))
 	return rv
-}/* debug [class_properties_class/property]: invalidationContextClass */
+}
 
 // Returns the class to use for layout attribute objects
 //
@@ -212,41 +211,41 @@ func (cc _CollectionViewLayoutClass) InvalidationContextClass() objc.Class {
 func (cc _CollectionViewLayoutClass) LayoutAttributesClass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(cc.class), objc.Sel("layoutAttributesClass"))
 	return rv
-}/* debug [class_properties_class/property]: layoutAttributesClass */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for CollectionViewLayout */
+
+
 
 // Returns the ending layout information for a decoration view being removed from the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/finalLayoutAttributesForDisappearingDecorationElement(ofKind:at:)
-func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingDecorationElementOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind /* typedef */, decorationIndexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingDecorationElementOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind, decorationIndexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:"), elementKind, decorationIndexPath)
 	return rv
-}/* debug [instance_methods/method]: FinalLayoutAttributesForDisappearingDecorationElementOfKindAtIndexPath */
+}
 
 
 // Returns the ending layout information for an item being removed from the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/finalLayoutAttributesForDisappearingItem(at:)
-func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("finalLayoutAttributesForDisappearingItemAtIndexPath:"), itemIndexPath)
 	return rv
-}/* debug [instance_methods/method]: FinalLayoutAttributesForDisappearingItemAtIndexPath */
+}
 
 
 // Returns the ending layout information for a supplementary view being removed from the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/finalLayoutAttributesForDisappearingSupplementaryElement(ofKind:at:)
-func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingSupplementaryElementOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind /* typedef */, elementIndexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingSupplementaryElementOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, elementIndexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:"), elementKind, elementIndexPath)
 	return rv
-}/* debug [instance_methods/method]: FinalLayoutAttributesForDisappearingSupplementaryElementOfKindAtIndexPath */
+}
 
 
 // Cleans up after any animated changes to the collection view’s bounds or after the insertion or deletion of items.
@@ -255,7 +254,7 @@ func (c_ CollectionViewLayout) FinalLayoutAttributesForDisappearingSupplementary
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/finalizeAnimatedBoundsChange()
 func (c_ CollectionViewLayout) FinalizeAnimatedBoundsChange() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("finalizeAnimatedBoundsChange"))
-}/* debug [instance_methods/method]: FinalizeAnimatedBoundsChange */
+}
 
 
 // Performs needed steps after items are inserted, deleted, or moved within a collection view.
@@ -264,7 +263,7 @@ func (c_ CollectionViewLayout) FinalizeAnimatedBoundsChange() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/finalizeCollectionViewUpdates()
 func (c_ CollectionViewLayout) FinalizeCollectionViewUpdates() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("finalizeCollectionViewUpdates"))
-}/* debug [instance_methods/method]: FinalizeCollectionViewUpdates */
+}
 
 
 // Performs any final steps related to a layout transition before the transition animations actually occur.
@@ -273,47 +272,47 @@ func (c_ CollectionViewLayout) FinalizeCollectionViewUpdates() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/finalizeLayoutTransition()
 func (c_ CollectionViewLayout) FinalizeLayoutTransition() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("finalizeLayoutTransition"))
-}/* debug [instance_methods/method]: FinalizeLayoutTransition */
+}
 
 
 // Returns index paths for any decoration views that the layout object wants to remove from the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/indexPathsToDeleteForDecorationView(ofKind:)
-func (c_ CollectionViewLayout) IndexPathsToDeleteForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind /* typedef */) unsafe.Pointer {
+func (c_ CollectionViewLayout) IndexPathsToDeleteForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathsToDeleteForDecorationViewOfKind:"), elementKind)
 	return rv
-}/* debug [instance_methods/method]: IndexPathsToDeleteForDecorationViewOfKind */
+}
 
 
 // Returns the index paths for any supplementary views that the layout object wants to remove from the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/indexPathsToDeleteForSupplementaryView(ofKind:)
-func (c_ CollectionViewLayout) IndexPathsToDeleteForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind /* typedef */) unsafe.Pointer {
+func (c_ CollectionViewLayout) IndexPathsToDeleteForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathsToDeleteForSupplementaryViewOfKind:"), elementKind)
 	return rv
-}/* debug [instance_methods/method]: IndexPathsToDeleteForSupplementaryViewOfKind */
+}
 
 
 // Returns the index paths for any decoration views that the layout object wants to add to the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/indexPathsToInsertForDecorationView(ofKind:)
-func (c_ CollectionViewLayout) IndexPathsToInsertForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind /* typedef */) unsafe.Pointer {
+func (c_ CollectionViewLayout) IndexPathsToInsertForDecorationViewOfKind(elementKind CollectionViewDecorationElementKind) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathsToInsertForDecorationViewOfKind:"), elementKind)
 	return rv
-}/* debug [instance_methods/method]: IndexPathsToInsertForDecorationViewOfKind */
+}
 
 
 // Returns the index paths for any supplementary views that the layout object wants to add to the collection view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/indexPathsToInsertForSupplementaryView(ofKind:)
-func (c_ CollectionViewLayout) IndexPathsToInsertForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind /* typedef */) unsafe.Pointer {
+func (c_ CollectionViewLayout) IndexPathsToInsertForSupplementaryViewOfKind(elementKind CollectionViewSupplementaryElementKind) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPathsToInsertForSupplementaryViewOfKind:"), elementKind)
 	return rv
-}/* debug [instance_methods/method]: IndexPathsToInsertForSupplementaryViewOfKind */
+}
 
 
 // Invalidates all layout information and triggers a layout update.
@@ -322,7 +321,7 @@ func (c_ CollectionViewLayout) IndexPathsToInsertForSupplementaryViewOfKind(elem
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/invalidateLayout()
 func (c_ CollectionViewLayout) InvalidateLayout() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateLayout"))
-}/* debug [instance_methods/method]: InvalidateLayout */
+}
 
 
 // Invalidates specific parts of the layout using the specified context object.
@@ -331,17 +330,17 @@ func (c_ CollectionViewLayout) InvalidateLayout() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/invalidateLayout(with:)
 func (c_ CollectionViewLayout) InvalidateLayoutWithContext(context ICollectionViewLayoutInvalidationContext) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateLayoutWithContext:"), context)
-}/* debug [instance_methods/method]: InvalidateLayoutWithContext */
+}
 
 
 // Returns an invalidation context object that defines the portions of the layout that need to be updated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/invalidationContext(forBoundsChange:)
-func (c_ CollectionViewLayout) InvalidationContextForBoundsChange(newBounds Rect /* not a class type */) ICollectionViewLayoutInvalidationContext {
+func (c_ CollectionViewLayout) InvalidationContextForBoundsChange(newBounds corefoundation.CGRect) ICollectionViewLayoutInvalidationContext {
 	rv := objc.Send[CollectionViewLayoutInvalidationContext](c_.ID, objc.Sel("invalidationContextForBoundsChange:"), newBounds)
 	return rv
-}/* debug [instance_methods/method]: InvalidationContextForBoundsChange */
+}
 
 
 // Returns an invalidation context object that defines the portions of the layout that need to be updated.
@@ -351,67 +350,67 @@ func (c_ CollectionViewLayout) InvalidationContextForBoundsChange(newBounds Rect
 func (c_ CollectionViewLayout) InvalidationContextForPreferredLayoutAttributesWithOriginalAttributes(preferredAttributes ICollectionViewLayoutAttributes, originalAttributes ICollectionViewLayoutAttributes) ICollectionViewLayoutInvalidationContext {
 	rv := objc.Send[CollectionViewLayoutInvalidationContext](c_.ID, objc.Sel("invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:"), preferredAttributes, originalAttributes)
 	return rv
-}/* debug [instance_methods/method]: InvalidationContextForPreferredLayoutAttributesWithOriginalAttributes */
+}
 
 
 // Returns the layout attributes of the decoration view at the specified location in your layout.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDecorationView(ofKind:at:)
-func (c_ CollectionViewLayout) LayoutAttributesForDecorationViewOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind /* typedef */, indexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) LayoutAttributesForDecorationViewOfKindAtIndexPath(elementKind CollectionViewDecorationElementKind, indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForDecorationViewOfKind:atIndexPath:"), elementKind, indexPath)
 	return rv
-}/* debug [instance_methods/method]: LayoutAttributesForDecorationViewOfKindAtIndexPath */
+}
 
 
 // Returns layout attributes for the drop target at the specified point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDropTarget(at:)
-func (c_ CollectionViewLayout) LayoutAttributesForDropTargetAtPoint(pointInCollectionView vision.Point) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) LayoutAttributesForDropTargetAtPoint(pointInCollectionView corefoundation.CGPoint) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForDropTargetAtPoint:"), pointInCollectionView)
 	return rv
-}/* debug [instance_methods/method]: LayoutAttributesForDropTargetAtPoint */
+}
 
 
 // Returns the layout attribute objects for all items and views in the specified rectangle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForElements(in:)
-func (c_ CollectionViewLayout) LayoutAttributesForElementsInRect(rect Rect /* not a class type */) []CollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) LayoutAttributesForElementsInRect(rect corefoundation.CGRect) []CollectionViewLayoutAttributes {
 	rv := objc.Send[[]CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForElementsInRect:"), rect)
 	return rv
-}/* debug [instance_methods/method]: LayoutAttributesForElementsInRect */
+}
 
 
 // Returns layout attributes for the inter-item gap at the specified location in your layout.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForInterItemGap(before:)
-func (c_ CollectionViewLayout) LayoutAttributesForInterItemGapBeforeIndexPath(indexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) LayoutAttributesForInterItemGapBeforeIndexPath(indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForInterItemGapBeforeIndexPath:"), indexPath)
 	return rv
-}/* debug [instance_methods/method]: LayoutAttributesForInterItemGapBeforeIndexPath */
+}
 
 
 // Returns the layout attributes for the item at the specified index path.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForItem(at:)
-func (c_ CollectionViewLayout) LayoutAttributesForItemAtIndexPath(indexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) LayoutAttributesForItemAtIndexPath(indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForItemAtIndexPath:"), indexPath)
 	return rv
-}/* debug [instance_methods/method]: LayoutAttributesForItemAtIndexPath */
+}
 
 
 // Returns the layout attributes of the supplementary view at the specified location in your layout.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForSupplementaryView(ofKind:at:)
-func (c_ CollectionViewLayout) LayoutAttributesForSupplementaryViewOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) ICollectionViewLayoutAttributes {
+func (c_ CollectionViewLayout) LayoutAttributesForSupplementaryViewOfKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, indexPath foundation.foundation.INSIndexPath) ICollectionViewLayoutAttributes {
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForSupplementaryViewOfKind:atIndexPath:"), elementKind, indexPath)
 	return rv
-}/* debug [instance_methods/method]: LayoutAttributesForSupplementaryViewOfKindAtIndexPath */
+}
 
 
 // Prepares the layout object to begin laying out content.
@@ -420,16 +419,16 @@ func (c_ CollectionViewLayout) LayoutAttributesForSupplementaryViewOfKindAtIndex
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/prepare()
 func (c_ CollectionViewLayout) PrepareLayout() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareLayout"))
-}/* debug [instance_methods/method]: PrepareLayout */
+}
 
 
 // Prepares the layout object for animated changes to the collection view’s bounds or for the insertion or deletion of items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/prepare(forAnimatedBoundsChange:)
-func (c_ CollectionViewLayout) PrepareForAnimatedBoundsChange(oldBounds Rect /* not a class type */) {
+func (c_ CollectionViewLayout) PrepareForAnimatedBoundsChange(oldBounds corefoundation.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareForAnimatedBoundsChange:"), oldBounds)
-}/* debug [instance_methods/method]: PrepareForAnimatedBoundsChange */
+}
 
 
 // Performs needed tasks before items are inserted, deleted, or moved within the collection view.
@@ -438,7 +437,7 @@ func (c_ CollectionViewLayout) PrepareForAnimatedBoundsChange(oldBounds Rect /* 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/prepare(forCollectionViewUpdates:)
 func (c_ CollectionViewLayout) PrepareForCollectionViewUpdates(updateItems []CollectionViewUpdateItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareForCollectionViewUpdates:"), updateItems)
-}/* debug [instance_methods/method]: PrepareForCollectionViewUpdates */
+}
 
 
 // Prepares the layout object to be installed in the collection view.
@@ -447,7 +446,7 @@ func (c_ CollectionViewLayout) PrepareForCollectionViewUpdates(updateItems []Col
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/prepareForTransition(from:)
 func (c_ CollectionViewLayout) PrepareForTransitionFromLayout(oldLayout ICollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareForTransitionFromLayout:"), oldLayout)
-}/* debug [instance_methods/method]: PrepareForTransitionFromLayout */
+}
 
 
 // Prepares the layout object to be uninstalled from the collection view.
@@ -456,35 +455,35 @@ func (c_ CollectionViewLayout) PrepareForTransitionFromLayout(oldLayout ICollect
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/prepareForTransition(to:)
 func (c_ CollectionViewLayout) PrepareForTransitionToLayout(newLayout ICollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareForTransitionToLayout:"), newLayout)
-}/* debug [instance_methods/method]: PrepareForTransitionToLayout */
+}
 
 
 // Registers a class to use when creating the layout’s decoration views.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/register(_:forDecorationViewOfKind:)-44qmc
-func (c_ CollectionViewLayout) RegisterClassForDecorationViewOfKind(viewClass objc.Class, elementKind CollectionViewDecorationElementKind /* typedef */) {
+func (c_ CollectionViewLayout) RegisterClassForDecorationViewOfKind(viewClass objc.Class, elementKind CollectionViewDecorationElementKind) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerClass:forDecorationViewOfKind:"), viewClass, elementKind)
-}/* debug [instance_methods/method]: RegisterClassForDecorationViewOfKind */
+}
 
 
 // Registers a nib file to use when creating the layout’s decoration views.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/register(_:forDecorationViewOfKind:)-7z7uf
-func (c_ CollectionViewLayout) RegisterNibForDecorationViewOfKind(nib INib, elementKind CollectionViewDecorationElementKind /* typedef */) {
+func (c_ CollectionViewLayout) RegisterNibForDecorationViewOfKind(nib INib, elementKind CollectionViewDecorationElementKind) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerNib:forDecorationViewOfKind:"), nib, elementKind)
-}/* debug [instance_methods/method]: RegisterNibForDecorationViewOfKind */
+}
 
 
 // Returns a Boolean indicating whether a bounds change triggers a layout update.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/shouldInvalidateLayout(forBoundsChange:)
-func (c_ CollectionViewLayout) ShouldInvalidateLayoutForBoundsChange(newBounds Rect /* not a class type */) bool {
+func (c_ CollectionViewLayout) ShouldInvalidateLayoutForBoundsChange(newBounds corefoundation.CGRect) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldInvalidateLayoutForBoundsChange:"), newBounds)
 	return rv
-}/* debug [instance_methods/method]: ShouldInvalidateLayoutForBoundsChange */
+}
 
 
 // Returns a Boolean indicating whether changes to a cell’s layout attributes trigger a larger layout update.
@@ -494,52 +493,52 @@ func (c_ CollectionViewLayout) ShouldInvalidateLayoutForBoundsChange(newBounds R
 func (c_ CollectionViewLayout) ShouldInvalidateLayoutForPreferredLayoutAttributesWithOriginalAttributes(preferredAttributes ICollectionViewLayoutAttributes, originalAttributes ICollectionViewLayoutAttributes) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:"), preferredAttributes, originalAttributes)
 	return rv
-}/* debug [instance_methods/method]: ShouldInvalidateLayoutForPreferredLayoutAttributesWithOriginalAttributes */
+}
 
 
 // Returns the offset value to use after an animated layout update or change.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:)
-func (c_ CollectionViewLayout) TargetContentOffsetForProposedContentOffset(proposedContentOffset vision.Point) vision.Point {
-	rv := objc.Send[vision.Point](c_.ID, objc.Sel("targetContentOffsetForProposedContentOffset:"), proposedContentOffset)
+func (c_ CollectionViewLayout) TargetContentOffsetForProposedContentOffset(proposedContentOffset corefoundation.CGPoint) corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](c_.ID, objc.Sel("targetContentOffsetForProposedContentOffset:"), proposedContentOffset)
 	return rv
-}/* debug [instance_methods/method]: TargetContentOffsetForProposedContentOffset */
+}
 
 
 // Returns the offset value to use for the collection view’s content at the end of scrolling.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:withScrollingVelocity:)
-func (c_ CollectionViewLayout) TargetContentOffsetForProposedContentOffsetWithScrollingVelocity(proposedContentOffset vision.Point, velocity vision.Point) vision.Point {
-	rv := objc.Send[vision.Point](c_.ID, objc.Sel("targetContentOffsetForProposedContentOffset:withScrollingVelocity:"), proposedContentOffset, velocity)
+func (c_ CollectionViewLayout) TargetContentOffsetForProposedContentOffsetWithScrollingVelocity(proposedContentOffset corefoundation.CGPoint, velocity corefoundation.CGPoint) corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](c_.ID, objc.Sel("targetContentOffsetForProposedContentOffset:withScrollingVelocity:"), proposedContentOffset, velocity)
 	return rv
-}/* debug [instance_methods/method]: TargetContentOffsetForProposedContentOffsetWithScrollingVelocity */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for CollectionViewLayout */
+
+
+
 
 // The collection view object currently using this layout.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/collectionView
-func (c_ CollectionViewLayout) CollectionView() objc.IObject /* cross-framework: CollectionView */ {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("collectionView"))
+func (c_ CollectionViewLayout) CollectionView() CollectionView /* not a class type */ {
+	rv := objc.Send[CollectionView](c_.ID, objc.Sel("collectionView"))
 	return rv
-}/* debug [instance_properties/getter]: collectionView */
+}
 
 
 // The width and height of the collection view’s contents.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout/collectionViewContentSize
-func (c_ CollectionViewLayout) CollectionViewContentSize() Size /* not a class type */ {
-	rv := objc.Send[Size](c_.ID, objc.Sel("collectionViewContentSize"))
+func (c_ CollectionViewLayout) CollectionViewContentSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](c_.ID, objc.Sel("collectionViewContentSize"))
 	return rv
-}/* debug [instance_properties/getter]: collectionViewContentSize */
+}
 
 
 // Returns the class to use when creating an invalidation context object for the layout.
@@ -549,7 +548,7 @@ func (c_ CollectionViewLayout) CollectionViewContentSize() Size /* not a class t
 func (c_ CollectionViewLayout) InvalidationContextClass() objc.Class {
 	rv := objc.Send[objc.Class](c_.ID, objc.Sel("invalidationContextClass"))
 	return rv
-}/* debug [instance_properties/getter]: invalidationContextClass */
+}
 
 
 // Returns the class to use for layout attribute objects
@@ -559,7 +558,7 @@ func (c_ CollectionViewLayout) InvalidationContextClass() objc.Class {
 func (c_ CollectionViewLayout) LayoutAttributesClass() objc.Class {
 	rv := objc.Send[objc.Class](c_.ID, objc.Sel("layoutAttributesClass"))
 	return rv
-}/* debug [instance_properties/getter]: layoutAttributesClass */
+}
 
 
 // The layout object used to organize the collection view’s content.
@@ -569,7 +568,7 @@ func (c_ CollectionViewLayout) LayoutAttributesClass() objc.Class {
 func (c_ CollectionViewLayout) CollectionViewLayout() ICollectionViewLayout {
 	rv := objc.Send[CollectionViewLayout](c_.ID, objc.Sel("collectionViewLayout"))
 	return rv
-}/* debug [instance_properties/getter]: collectionViewLayout */
+}
 
 
 // The layout object used to organize the collection view’s content.
@@ -578,11 +577,11 @@ func (c_ CollectionViewLayout) CollectionViewLayout() ICollectionViewLayout {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
 func (c_ CollectionViewLayout) SetCollectionViewLayout(value ICollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
-}/* debug [instance_properties/setter]: collectionViewLayout */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSCollectionViewLayout */
+
+
+
 
 

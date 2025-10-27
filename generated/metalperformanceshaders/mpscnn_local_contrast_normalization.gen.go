@@ -131,7 +131,7 @@ func CNNLocalContrastNormalizationFrom(ptr unsafe.Pointer) CNNLocalContrastNorma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNLocalContrastNormalization/init(coder:device:)
-func NewCNNLocalContrastNormalizationWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNLocalContrastNormalization {
+func NewCNNLocalContrastNormalizationWithCoderDevice(aDecoder foundation.foundation.INSCoder, device unsafe.Pointer) CNNLocalContrastNormalization {
 	instance := getCNNLocalContrastNormalizationClass().Alloc()
 	rv := objc.Send[CNNLocalContrastNormalization](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

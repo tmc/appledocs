@@ -125,7 +125,7 @@ func CNNSpatialNormalizationFrom(ptr unsafe.Pointer) CNNSpatialNormalization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNSpatialNormalization/init(coder:device:)
-func NewCNNSpatialNormalizationWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNSpatialNormalization {
+func NewCNNSpatialNormalizationWithCoderDevice(aDecoder foundation.foundation.INSCoder, device unsafe.Pointer) CNNSpatialNormalization {
 	instance := getCNNSpatialNormalizationClass().Alloc()
 	rv := objc.Send[CNNSpatialNormalization](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

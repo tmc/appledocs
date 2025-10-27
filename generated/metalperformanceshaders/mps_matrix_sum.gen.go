@@ -47,8 +47,6 @@ type IMatrixSum interface {
 	SetNeuronParameterB(value objectivec.IObject)
 	NeuronParameterC() objectivec.IObject
 	SetNeuronParameterC(value objectivec.IObject)
-	Count() objectivec.IObject
-	SetCount(value objectivec.IObject)
 	Transpose() objectivec.IObject
 	SetTranspose(value objectivec.IObject)
 	Rows() objectivec.IObject
@@ -251,21 +249,6 @@ func (m_ MatrixSum) NeuronParameterC() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsum/2935618-neuronparameterc
 func (m_ MatrixSum) SetNeuronParameterC(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeuronParameterC:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsum/2935620-count
-func (m_ MatrixSum) Count() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("count"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsum/2935620-count
-func (m_ MatrixSum) SetCount(value objectivec.IObject) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
 
 

@@ -368,11 +368,11 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return objc.Object{ID: rv}
+	return {{objectType $.Framework}}{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objectivec.IObject"))}}
-	result := make([]objectivec.IObject, len(rv))
+	result := make([]{{if eq $.Framework "ObjectiveC"}}IObject{{else}}objectivec.IObject{{end}}, len(rv))
 	for i, id := range rv {
-		result[i] = objc.Object{ID: id}
+		result[i] = {{objectType $.Framework}}{ID: id}
 	}
 	return result
 	{{- else if and (hasPrefix (concreteReturnType $goType) "[]") (ne (concreteReturnType $goType) $returnType)}}
@@ -409,11 +409,11 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return objc.Object{ID: rv}
+	return {{objectType $.Framework}}{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
-	result := make([]IObject, len(rv))
+	result := make([]{{if eq $.Framework "ObjectiveC"}}IObject{{else}}objectivec.IObject{{end}}, len(rv))
 	for i, id := range rv {
-		result[i] = objc.Object{ID: id}
+		result[i] = {{objectType $.Framework}}{ID: id}
 	}
 	return result
 	{{- else}}
@@ -607,11 +607,11 @@ func ({{$.ClassReceiver}} {{$.ClassTypeName}}) {{.Name}}({{formatMethodParams .}
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}](objc.ID({{$.ClassReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return objc.Object{ID: rv}
+	return {{objectType $.Framework}}{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
-	result := make([]IObject, len(rv))
+	result := make([]{{if eq $.Framework "ObjectiveC"}}IObject{{else}}objectivec.IObject{{end}}, len(rv))
 	for i, id := range rv {
-		result[i] = objc.Object{ID: id}
+		result[i] = {{objectType $.Framework}}{ID: id}
 	}
 	return result
 	{{- else}}
@@ -679,11 +679,11 @@ func ({{$.InstReceiver}} {{$.StructName}}) {{.Name}}({{formatMethodParams .}}){{
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$.InstReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return objc.Object{ID: rv}
+	return {{objectType $.Framework}}{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
-	result := make([]IObject, len(rv))
+	result := make([]{{if eq $.Framework "ObjectiveC"}}IObject{{else}}objectivec.IObject{{end}}, len(rv))
 	for i, id := range rv {
-		result[i] = objc.Object{ID: id}
+		result[i] = {{objectType $.Framework}}{ID: id}
 	}
 	return result
 	{{- else}}
@@ -716,11 +716,11 @@ func ({{$.InstReceiver}} {{$.StructName}}) {{.Name}}({{formatMethodParams .}}){{
 func ({{$.InstReceiver}} {{$.StructName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$.InstReceiver}}.ID, objc.Sel("{{.Name}}"))
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
-	return objc.Object{ID: rv}
+	return {{objectType $.Framework}}{ID: rv}
 	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objectivec.IObject"))}}
-	result := make([]objectivec.IObject, len(rv))
+	result := make([]{{if eq $.Framework "ObjectiveC"}}IObject{{else}}objectivec.IObject{{end}}, len(rv))
 	for i, id := range rv {
-		result[i] = objc.Object{ID: id}
+		result[i] = {{objectType $.Framework}}{ID: id}
 	}
 	return result
 	{{- else if and (hasPrefix (concreteReturnType $goType) "[]") (ne (concreteReturnType $goType) $returnType)}}

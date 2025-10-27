@@ -42,8 +42,8 @@ type IDetectContoursRequest interface {
 	// properties:
 	ContrastAdjustment() float32
 	SetContrastAdjustment(value float32)
-	ContrastPivot() objc.IObject /* cross-framework: NSNumber */
-	SetContrastPivot(value objc.IObject /* cross-framework: NSNumber */)
+	ContrastPivot() foundation.foundation.INSNumber
+	SetContrastPivot(value foundation.foundation.INSNumber)
 	DetectDarkOnLight() bool
 	SetDetectDarkOnLight(value bool)
 	DetectsDarkOnLight() bool
@@ -166,7 +166,7 @@ func (d_ DetectContoursRequest) SetContrastAdjustment(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/contrastPivot
-func (d_ DetectContoursRequest) ContrastPivot() objc.IObject /* cross-framework: NSNumber */ {
+func (d_ DetectContoursRequest) ContrastPivot() foundation.foundation.INSNumber {
 	rv := objc.Send[foundation.NSNumber](d_.ID, objc.Sel("contrastPivot"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (d_ DetectContoursRequest) ContrastPivot() objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/contrastPivot
-func (d_ DetectContoursRequest) SetContrastPivot(value objc.IObject /* cross-framework: NSNumber */) {
+func (d_ DetectContoursRequest) SetContrastPivot(value foundation.foundation.INSNumber) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastPivot:"), value)
 }
 

@@ -8,6 +8,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTextSelectionDataSource is the NSTextSelectionDataSource protocol interface.
@@ -20,13 +22,13 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextSelectionDataSource
 type PTextSelectionDataSource interface {
 	// Required methods
-	BaseWritingDirectionAtLocation(location unsafe.Pointer) TextSelectionNavigationWritingDirection/* debug [protocol_interface/required_method]: BaseWritingDirectionAtLocation */
-	EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(location unsafe.Pointer, block unsafe.Pointer)/* debug [protocol_interface/required_method]: EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock */
-	EnumerateSubstringsFromLocationOptionsUsingBlock(location unsafe.Pointer, options StringEnumerationOptions /* not a class type */, block unsafe.Pointer)/* debug [protocol_interface/required_method]: EnumerateSubstringsFromLocationOptionsUsingBlock */
-	LineFragmentRangeForPointInContainerAtLocation(point corefoundation.CGPoint, location unsafe.Pointer) TextRange/* debug [protocol_interface/required_method]: LineFragmentRangeForPointInContainerAtLocation */
-	LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer/* debug [protocol_interface/required_method]: LocationFromLocationWithOffset */
-	OffsetFromLocationToLocation(from unsafe.Pointer, to unsafe.Pointer) int/* debug [protocol_interface/required_method]: OffsetFromLocationToLocation */
-	TextRangeForSelectionGranularityEnclosingLocation(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) TextRange/* debug [protocol_interface/required_method]: TextRangeForSelectionGranularityEnclosingLocation */
+	BaseWritingDirectionAtLocation(location unsafe.Pointer) TextSelectionNavigationWritingDirection
+	EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(location unsafe.Pointer, block unsafe.Pointer)
+	EnumerateSubstringsFromLocationOptionsUsingBlock(location unsafe.Pointer, options StringEnumerationOptions /* not a class type */, block unsafe.Pointer)
+	LineFragmentRangeForPointInContainerAtLocation(point corefoundation.CGPoint, location unsafe.Pointer) ITextRange
+	LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer
+	OffsetFromLocationToLocation(from unsafe.Pointer, to unsafe.Pointer) int
+	TextRangeForSelectionGranularityEnclosingLocation(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) ITextRange
 	// Optional methods
 	EnumerateContainerBoundariesFromLocationReverseUsingBlock(location unsafe.Pointer, reverse bool, block unsafe.Pointer)
 	HasEnumerateContainerBoundariesFromLocationReverseUsingBlock() bool
@@ -43,10 +45,10 @@ type TextSelectionDataSource struct {
 	_BaseWritingDirectionAtLocation func(location unsafe.Pointer) TextSelectionNavigationWritingDirection
 	_EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock func(location unsafe.Pointer, block unsafe.Pointer)
 	_EnumerateSubstringsFromLocationOptionsUsingBlock func(location unsafe.Pointer, options StringEnumerationOptions /* not a class type */, block unsafe.Pointer)
-	_LineFragmentRangeForPointInContainerAtLocation func(point corefoundation.CGPoint, location unsafe.Pointer) TextRange
+	_LineFragmentRangeForPointInContainerAtLocation func(point corefoundation.CGPoint, location unsafe.Pointer) ITextRange
 	_LocationFromLocationWithOffset func(location unsafe.Pointer, offset int) unsafe.Pointer
 	_OffsetFromLocationToLocation func(from unsafe.Pointer, to unsafe.Pointer) int
-	_TextRangeForSelectionGranularityEnclosingLocation func(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) TextRange
+	_TextRangeForSelectionGranularityEnclosingLocation func(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) ITextRange
 }
 
 // SetEnumerateContainerBoundariesFromLocationReverseUsingBlock sets the handler for the EnumerateContainerBoundariesFromLocationReverseUsingBlock delegate method.
@@ -87,7 +89,7 @@ func (d *TextSelectionDataSource) SetEnumerateSubstringsFromLocationOptionsUsing
 // SetLineFragmentRangeForPointInContainerAtLocation sets the handler for the LineFragmentRangeForPointInContainerAtLocation delegate method.
 //
 // Returns the range of the line fragment that contains the point you specify.
-func (d *TextSelectionDataSource) SetLineFragmentRangeForPointInContainerAtLocation(f func(point corefoundation.CGPoint, location unsafe.Pointer) TextRange) {
+func (d *TextSelectionDataSource) SetLineFragmentRangeForPointInContainerAtLocation(f func(point corefoundation.CGPoint, location unsafe.Pointer) ITextRange) {
 	d._LineFragmentRangeForPointInContainerAtLocation = f
 }
 
@@ -108,7 +110,7 @@ func (d *TextSelectionDataSource) SetOffsetFromLocationToLocation(f func(from un
 // SetTextRangeForSelectionGranularityEnclosingLocation sets the handler for the TextRangeForSelectionGranularityEnclosingLocation delegate method.
 //
 // Returns a text range that corresponds to selection granularity of the enclosing location.
-func (d *TextSelectionDataSource) SetTextRangeForSelectionGranularityEnclosingLocation(f func(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) TextRange) {
+func (d *TextSelectionDataSource) SetTextRangeForSelectionGranularityEnclosingLocation(f func(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) ITextRange) {
 	d._TextRangeForSelectionGranularityEnclosingLocation = f
 }
 
@@ -177,11 +179,11 @@ func (d *TextSelectionDataSource) HasEnumerateSubstringsFromLocationOptionsUsing
 }
 
 // LineFragmentRangeForPointInContainerAtLocation implements the PTextSelectionDataSource interface.
-func (d *TextSelectionDataSource) LineFragmentRangeForPointInContainerAtLocation(point corefoundation.CGPoint, location unsafe.Pointer) TextRange {
+func (d *TextSelectionDataSource) LineFragmentRangeForPointInContainerAtLocation(point corefoundation.CGPoint, location unsafe.Pointer) ITextRange {
 	if d._LineFragmentRangeForPointInContainerAtLocation != nil {
 		return d._LineFragmentRangeForPointInContainerAtLocation(point, location)
 	}
-	var zero TextRange
+	var zero ITextRange
 	return zero
 }
 
@@ -219,15 +221,95 @@ func (d *TextSelectionDataSource) HasOffsetFromLocationToLocation() bool {
 }
 
 // TextRangeForSelectionGranularityEnclosingLocation implements the PTextSelectionDataSource interface.
-func (d *TextSelectionDataSource) TextRangeForSelectionGranularityEnclosingLocation(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) TextRange {
+func (d *TextSelectionDataSource) TextRangeForSelectionGranularityEnclosingLocation(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) ITextRange {
 	if d._TextRangeForSelectionGranularityEnclosingLocation != nil {
 		return d._TextRangeForSelectionGranularityEnclosingLocation(selectionGranularity, location)
 	}
-	var zero TextRange
+	var zero ITextRange
 	return zero
 }
 
 // HasTextRangeForSelectionGranularityEnclosingLocation returns true if a handler for TextRangeForSelectionGranularityEnclosingLocation has been set.
 func (d *TextSelectionDataSource) HasTextRangeForSelectionGranularityEnclosingLocation() bool {
 	return d._TextRangeForSelectionGranularityEnclosingLocation != nil
+}
+
+// TextSelectionDataSourceObject wraps an existing Objective-C object that conforms to the PTextSelectionDataSource protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type TextSelectionDataSourceObject struct {
+	objectivec.Object
+}
+
+// NewTextSelectionDataSourceObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSTextSelectionDataSource protocol.
+func NewTextSelectionDataSourceObject(obj objectivec.Object) *TextSelectionDataSourceObject {
+	return &TextSelectionDataSourceObject{obj}
+}
+
+// Make sure TextSelectionDataSourceObject implements PTextSelectionDataSource.
+var _ PTextSelectionDataSource = (*TextSelectionDataSourceObject)(nil)
+
+// BaseWritingDirectionAtLocation implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to BaseWritingDirectionAtLocation.
+func (o *TextSelectionDataSourceObject) BaseWritingDirectionAtLocation(location unsafe.Pointer) TextSelectionNavigationWritingDirection {
+	return objc.Send[TextSelectionNavigationWritingDirection](o.ID, objc.Sel("baseWritingDirectionAtLocation:"), location)
+}
+
+// EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock.
+func (o *TextSelectionDataSourceObject) EnumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(location unsafe.Pointer, block unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:"), location, block)
+}
+
+// EnumerateSubstringsFromLocationOptionsUsingBlock implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to EnumerateSubstringsFromLocationOptionsUsingBlock.
+func (o *TextSelectionDataSourceObject) EnumerateSubstringsFromLocationOptionsUsingBlock(location unsafe.Pointer, options StringEnumerationOptions /* not a class type */, block unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("enumerateSubstringsFromLocation:options:usingBlock:"), location, options, block)
+}
+
+// LineFragmentRangeForPointInContainerAtLocation implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to LineFragmentRangeForPointInContainerAtLocation.
+func (o *TextSelectionDataSourceObject) LineFragmentRangeForPointInContainerAtLocation(point corefoundation.CGPoint, location unsafe.Pointer) ITextRange {
+	return objc.Send[ITextRange](o.ID, objc.Sel("lineFragmentRangeForPoint:inContainerAtLocation:"), point, location)
+}
+
+// LocationFromLocationWithOffset implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to LocationFromLocationWithOffset.
+func (o *TextSelectionDataSourceObject) LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer {
+	return objc.Send[unsafe.Pointer](o.ID, objc.Sel("locationFromLocation:withOffset:"), location, offset)
+}
+
+// OffsetFromLocationToLocation implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to OffsetFromLocationToLocation.
+func (o *TextSelectionDataSourceObject) OffsetFromLocationToLocation(from unsafe.Pointer, to unsafe.Pointer) int {
+	return objc.Send[int](o.ID, objc.Sel("offsetFromLocation:toLocation:"), from, to)
+}
+
+// TextRangeForSelectionGranularityEnclosingLocation implements the PTextSelectionDataSource interface.
+// This required method is always available on objects conforming to TextRangeForSelectionGranularityEnclosingLocation.
+func (o *TextSelectionDataSourceObject) TextRangeForSelectionGranularityEnclosingLocation(selectionGranularity TextSelectionGranularity, location unsafe.Pointer) ITextRange {
+	return objc.Send[ITextRange](o.ID, objc.Sel("textRangeForSelectionGranularity:enclosingLocation:"), selectionGranularity, location)
+}
+
+// EnumerateContainerBoundariesFromLocationReverseUsingBlock implements the PTextSelectionDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TextSelectionDataSourceObject) EnumerateContainerBoundariesFromLocationReverseUsingBlock(location unsafe.Pointer, reverse bool, block unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("enumerateContainerBoundariesFromLocation:reverse:usingBlock:"), location, reverse, block)
+}
+
+// HasEnumerateContainerBoundariesFromLocationReverseUsingBlock returns true; this is a placeholder for optional method checks.
+func (o *TextSelectionDataSourceObject) HasEnumerateContainerBoundariesFromLocationReverseUsingBlock() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TextLayoutOrientationAtLocation implements the PTextSelectionDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TextSelectionDataSourceObject) TextLayoutOrientationAtLocation(location unsafe.Pointer) TextSelectionNavigationLayoutOrientation {
+	return objc.Send[TextSelectionNavigationLayoutOrientation](o.ID, objc.Sel("textLayoutOrientationAtLocation:"), location)
+}
+
+// HasTextLayoutOrientationAtLocation returns true; this is a placeholder for optional method checks.
+func (o *TextSelectionDataSourceObject) HasTextLayoutOrientationAtLocation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

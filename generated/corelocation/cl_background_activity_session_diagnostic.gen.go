@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+
+
+
+
 // The class instance for the [BackgroundActivitySessionDiagnostic] class.
 var (
 	BackgroundActivitySessionDiagnosticClass     _BackgroundActivitySessionDiagnosticClass
@@ -27,23 +31,28 @@ type _BackgroundActivitySessionDiagnosticClass struct {
 	class objc.Class
 }
 
+
+
+
+
 // An interface definition for the [BackgroundActivitySessionDiagnostic] class.
 type IBackgroundActivitySessionDiagnostic interface {
 	objectivec.IObject
+	
+
 	// properties:
+
+
+	
+
 	// methods:
+
+
 }
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic
-type BackgroundActivitySessionDiagnostic struct {
-	objectivec.Object
-}
 
-// BackgroundActivitySessionDiagnosticFrom constructs a [BackgroundActivitySessionDiagnostic] from an unsafe.Pointer.
-func BackgroundActivitySessionDiagnosticFrom(ptr unsafe.Pointer) BackgroundActivitySessionDiagnostic {
-	return BackgroundActivitySessionDiagnostic{objectivec.Object{objc.ID(ptr)}}
-}
+
+
 
 // Alloc allocates a new instance without initialization.
 func (bc _BackgroundActivitySessionDiagnosticClass) Alloc() BackgroundActivitySessionDiagnostic {
@@ -52,7 +61,6 @@ func (bc _BackgroundActivitySessionDiagnosticClass) Alloc() BackgroundActivitySe
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BackgroundActivitySessionDiagnosticClass) New() BackgroundActivitySessionDiagnostic {
 	rv := objc.Send[BackgroundActivitySessionDiagnostic](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -75,3 +83,50 @@ func (b_ BackgroundActivitySessionDiagnostic) Autorelease() BackgroundActivitySe
 func NewBackgroundActivitySessionDiagnostic() BackgroundActivitySessionDiagnostic {
 	return getBackgroundActivitySessionDiagnosticClass().New()
 }
+
+
+
+
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic
+type BackgroundActivitySessionDiagnostic struct {
+	objectivec.Object
+}
+
+// BackgroundActivitySessionDiagnosticFrom constructs a [BackgroundActivitySessionDiagnostic] from an unsafe.Pointer.
+func BackgroundActivitySessionDiagnosticFrom(ptr unsafe.Pointer) BackgroundActivitySessionDiagnostic {
+	return BackgroundActivitySessionDiagnostic{objectivec.Object{objc.ID(ptr)}}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

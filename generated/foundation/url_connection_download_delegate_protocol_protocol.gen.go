@@ -25,7 +25,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSURLConnectionDownloadDelegate
 type PURLConnectionDownloadDelegate interface {
 	// Required methods
-	ConnectionDidFinishDownloadingDestinationURL(connection IURLConnection, destinationURL IURL)/* debug [protocol_interface/required_method]: ConnectionDidFinishDownloadingDestinationURL */
+	ConnectionDidFinishDownloadingDestinationURL(connection IURLConnection, destinationURL IURL)
 	// Optional methods
 	ConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes(connection IURLConnection, bytesWritten objectivec.IObject, totalBytesWritten objectivec.IObject, expectedTotalBytes objectivec.IObject)
 	HasConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes() bool
@@ -97,4 +97,48 @@ func (d *URLConnectionDownloadDelegate) ConnectionDidFinishDownloadingDestinatio
 // HasConnectionDidFinishDownloadingDestinationURL returns true if a handler for ConnectionDidFinishDownloadingDestinationURL has been set.
 func (d *URLConnectionDownloadDelegate) HasConnectionDidFinishDownloadingDestinationURL() bool {
 	return d._ConnectionDidFinishDownloadingDestinationURL != nil
+}
+
+// URLConnectionDownloadDelegateObject wraps an existing Objective-C object that conforms to the PURLConnectionDownloadDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLConnectionDownloadDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLConnectionDownloadDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLConnectionDownloadDelegate protocol.
+func NewURLConnectionDownloadDelegateObject(obj objectivec.Object) *URLConnectionDownloadDelegateObject {
+	return &URLConnectionDownloadDelegateObject{obj}
+}
+
+// Make sure URLConnectionDownloadDelegateObject implements PURLConnectionDownloadDelegate.
+var _ PURLConnectionDownloadDelegate = (*URLConnectionDownloadDelegateObject)(nil)
+
+// ConnectionDidFinishDownloadingDestinationURL implements the PURLConnectionDownloadDelegate interface.
+// This required method is always available on objects conforming to ConnectionDidFinishDownloadingDestinationURL.
+func (o *URLConnectionDownloadDelegateObject) ConnectionDidFinishDownloadingDestinationURL(connection IURLConnection, destinationURL IURL) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connectionDidFinishDownloading:destinationURL:"), connection, destinationURL)
+}
+
+// ConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes implements the PURLConnectionDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDownloadDelegateObject) ConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes(connection IURLConnection, bytesWritten objectivec.IObject, totalBytesWritten objectivec.IObject, expectedTotalBytes objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connection:didWriteData:totalBytesWritten:expectedTotalBytes:"), connection, bytesWritten, totalBytesWritten, expectedTotalBytes)
+}
+
+// HasConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDownloadDelegateObject) HasConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ConnectionDidResumeDownloadingTotalBytesWrittenExpectedTotalBytes implements the PURLConnectionDownloadDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLConnectionDownloadDelegateObject) ConnectionDidResumeDownloadingTotalBytesWrittenExpectedTotalBytes(connection IURLConnection, totalBytesWritten objectivec.IObject, expectedTotalBytes objectivec.IObject) {
+	objc.Send[objc.ID](o.ID, objc.Sel("connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:"), connection, totalBytesWritten, expectedTotalBytes)
+}
+
+// HasConnectionDidResumeDownloadingTotalBytesWrittenExpectedTotalBytes returns true; this is a placeholder for optional method checks.
+func (o *URLConnectionDownloadDelegateObject) HasConnectionDidResumeDownloadingTotalBytesWrittenExpectedTotalBytes() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

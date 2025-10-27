@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptureAudioPreviewOutput */
 
 
-/* debug [class_header]: Header for AVCaptureAudioPreviewOutput */
+
+
 // The class instance for the [CaptureAudioPreviewOutput] class.
 var (
 	CaptureAudioPreviewOutputClass     _CaptureAudioPreviewOutputClass
@@ -30,34 +30,34 @@ func getCaptureAudioPreviewOutputClass() _CaptureAudioPreviewOutputClass {
 type _CaptureAudioPreviewOutputClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptureAudioPreviewOutput */
+
+
 // An interface definition for the [CaptureAudioPreviewOutput] class.
 type ICaptureAudioPreviewOutput interface {
 	ICaptureOutput
 	
-/* debug [class_interface_properties]: Properties for CaptureAudioPreviewOutput */
+
 	// properties:
-	OutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */
-	SetOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */)
+	OutputDeviceUniqueID() foundation.foundation.INSString
+	SetOutputDeviceUniqueID(value foundation.foundation.INSString)
 	Volume() float32
 	SetVolume(value float32)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptureAudioPreviewOutput */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptureAudioPreviewOutput */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureAudioPreviewOutputClass) Alloc() CaptureAudioPreviewOutput {
 	rv := objc.Send[CaptureAudioPreviewOutput](objc.ID(cc.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (c_ CaptureAudioPreviewOutput) Autorelease() CaptureAudioPreviewOutput {
 func NewCaptureAudioPreviewOutput() CaptureAudioPreviewOutput {
 	return getCaptureAudioPreviewOutputClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptureAudioPreviewOutput */
+
+
 // A capture output that provides a preview of the captured audio.
 
 
@@ -111,49 +111,49 @@ func CaptureAudioPreviewOutputFrom(ptr unsafe.Pointer) CaptureAudioPreviewOutput
 		CaptureOutput: CaptureOutputFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptureAudioPreviewOutput */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CaptureAudioPreviewOutput */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptureAudioPreviewOutput */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptureAudioPreviewOutput */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CaptureAudioPreviewOutput */
+
+
+
+
+
+
+
+
+
+
 
 // The unique identifier of the Core Audio output device to use for audio preview.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioPreviewOutput/outputDeviceUniqueID
-func (c_ CaptureAudioPreviewOutput) OutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */ {
+func (c_ CaptureAudioPreviewOutput) OutputDeviceUniqueID() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("outputDeviceUniqueID"))
 	return rv
-}/* debug [instance_properties/getter]: outputDeviceUniqueID */
+}
 
 
 // The unique identifier of the Core Audio output device to use for audio preview.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioPreviewOutput/outputDeviceUniqueID
-func (c_ CaptureAudioPreviewOutput) SetOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */) {
+func (c_ CaptureAudioPreviewOutput) SetOutputDeviceUniqueID(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputDeviceUniqueID:"), value)
-}/* debug [instance_properties/setter]: outputDeviceUniqueID */
+}
 
 
 // The output volume of the audio preview.
@@ -163,7 +163,7 @@ func (c_ CaptureAudioPreviewOutput) SetOutputDeviceUniqueID(value objc.IObject /
 func (c_ CaptureAudioPreviewOutput) Volume() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("volume"))
 	return rv
-}/* debug [instance_properties/getter]: volume */
+}
 
 
 // The output volume of the audio preview.
@@ -172,11 +172,11 @@ func (c_ CaptureAudioPreviewOutput) Volume() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioPreviewOutput/volume
 func (c_ CaptureAudioPreviewOutput) SetVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVolume:"), value)
-}/* debug [instance_properties/setter]: volume */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVCaptureAudioPreviewOutput */
+
+
+
 
 

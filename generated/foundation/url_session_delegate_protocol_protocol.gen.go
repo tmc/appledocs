@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLSessionDelegate is the NSURLSessionDelegate protocol interface.
@@ -96,4 +98,53 @@ func (d *URLSessionDelegate) URLSessionDidFinishEventsForBackgroundURLSession(se
 // HasURLSessionDidFinishEventsForBackgroundURLSession returns true if a handler for URLSessionDidFinishEventsForBackgroundURLSession has been set.
 func (d *URLSessionDelegate) HasURLSessionDidFinishEventsForBackgroundURLSession() bool {
 	return d._URLSessionDidFinishEventsForBackgroundURLSession != nil
+}
+
+// URLSessionDelegateObject wraps an existing Objective-C object that conforms to the PURLSessionDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLSessionDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLSessionDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLSessionDelegate protocol.
+func NewURLSessionDelegateObject(obj objectivec.Object) *URLSessionDelegateObject {
+	return &URLSessionDelegateObject{obj}
+}
+
+// Make sure URLSessionDelegateObject implements PURLSessionDelegate.
+var _ PURLSessionDelegate = (*URLSessionDelegateObject)(nil)
+
+// URLSessionDidBecomeInvalidWithError implements the PURLSessionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDelegateObject) URLSessionDidBecomeInvalidWithError(session IURLSession, error_ IError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:didBecomeInvalidWithError:"), session, error_)
+}
+
+// HasURLSessionDidBecomeInvalidWithError returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDelegateObject) HasURLSessionDidBecomeInvalidWithError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionDidReceiveChallengeCompletionHandler implements the PURLSessionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDelegateObject) URLSessionDidReceiveChallengeCompletionHandler(session IURLSession, challenge IURLAuthenticationChallenge, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:didReceiveChallenge:completionHandler:"), session, challenge, completionHandler)
+}
+
+// HasURLSessionDidReceiveChallengeCompletionHandler returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDelegateObject) HasURLSessionDidReceiveChallengeCompletionHandler() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionDidFinishEventsForBackgroundURLSession implements the PURLSessionDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionDelegateObject) URLSessionDidFinishEventsForBackgroundURLSession(session IURLSession) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSessionDidFinishEventsForBackgroundURLSession:"), session)
+}
+
+// HasURLSessionDidFinishEventsForBackgroundURLSession returns true; this is a placeholder for optional method checks.
+func (o *URLSessionDelegateObject) HasURLSessionDidFinishEventsForBackgroundURLSession() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

@@ -21,3 +21,4 @@ var LocationManagerDelegateProtocol *objc.Protocol
 func init() {
 	LocationManagerDelegateProtocol = objc.GetProtocol("CLLocationManagerDelegate")
 }
+

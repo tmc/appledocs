@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PNetServiceDelegate is the NSNetServiceDelegate protocol interface.
@@ -226,4 +228,119 @@ func (d *NetServiceDelegate) NetServiceWillResolve(sender INetService) {
 // HasNetServiceWillResolve returns true if a handler for NetServiceWillResolve has been set.
 func (d *NetServiceDelegate) HasNetServiceWillResolve() bool {
 	return d._NetServiceWillResolve != nil
+}
+
+// NetServiceDelegateObject wraps an existing Objective-C object that conforms to the PNetServiceDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type NetServiceDelegateObject struct {
+	objectivec.Object
+}
+
+// NewNetServiceDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSNetServiceDelegate protocol.
+func NewNetServiceDelegateObject(obj objectivec.Object) *NetServiceDelegateObject {
+	return &NetServiceDelegateObject{obj}
+}
+
+// Make sure NetServiceDelegateObject implements PNetServiceDelegate.
+var _ PNetServiceDelegate = (*NetServiceDelegateObject)(nil)
+
+// NetServiceDidAcceptConnectionWithInputStreamOutputStream implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidAcceptConnectionWithInputStreamOutputStream(sender INetService, inputStream IInputStream, outputStream IOutputStream) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netService:didAcceptConnectionWithInputStream:outputStream:"), sender, inputStream, outputStream)
+}
+
+// HasNetServiceDidAcceptConnectionWithInputStreamOutputStream returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidAcceptConnectionWithInputStreamOutputStream() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceDidNotPublish implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidNotPublish(sender INetService, errorDict IDictionary) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netService:didNotPublish:"), sender, errorDict)
+}
+
+// HasNetServiceDidNotPublish returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidNotPublish() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceDidNotResolve implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidNotResolve(sender INetService, errorDict IDictionary) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netService:didNotResolve:"), sender, errorDict)
+}
+
+// HasNetServiceDidNotResolve returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidNotResolve() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceDidUpdateTXTRecordData implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidUpdateTXTRecordData(sender INetService, data IData) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netService:didUpdateTXTRecordData:"), sender, data)
+}
+
+// HasNetServiceDidUpdateTXTRecordData returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidUpdateTXTRecordData() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceDidPublish implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidPublish(sender INetService) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceDidPublish:"), sender)
+}
+
+// HasNetServiceDidPublish returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidPublish() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceDidResolveAddress implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidResolveAddress(sender INetService) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceDidResolveAddress:"), sender)
+}
+
+// HasNetServiceDidResolveAddress returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidResolveAddress() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceDidStop implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceDidStop(sender INetService) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceDidStop:"), sender)
+}
+
+// HasNetServiceDidStop returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceDidStop() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceWillPublish implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceWillPublish(sender INetService) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceWillPublish:"), sender)
+}
+
+// HasNetServiceWillPublish returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceWillPublish() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NetServiceWillResolve implements the PNetServiceDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *NetServiceDelegateObject) NetServiceWillResolve(sender INetService) {
+	objc.Send[objc.ID](o.ID, objc.Sel("netServiceWillResolve:"), sender)
+}
+
+// HasNetServiceWillResolve returns true; this is a placeholder for optional method checks.
+func (o *NetServiceDelegateObject) HasNetServiceWillResolve() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

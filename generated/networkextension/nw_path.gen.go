@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NWPath */
 
 
-/* debug [class_header]: Header for NWPath */
+
+
 // The class instance for the [NWPath] class.
 var (
 	NWPathClass     _NWPathClass
@@ -30,16 +30,16 @@ func getNWPathClass() _NWPathClass {
 type _NWPathClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NWPath */
+
+
 // An interface definition for the [NWPath] class.
 type INWPath interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NWPath */
+
 	// properties:
 	Constrained() bool
 	Expensive() bool
@@ -48,19 +48,19 @@ type INWPath interface {
 	SetIsConstrained(value bool)
 	IsExpensive() bool
 	SetIsExpensive(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NWPath */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NWPath */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NWPathClass) Alloc() NWPath {
 	rv := objc.Send[NWPath](objc.ID(nc.class), objc.Sel("alloc"))
@@ -90,11 +90,11 @@ func (n_ NWPath) Autorelease() NWPath {
 func NewNWPath() NWPath {
 	return getNWPathClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NWPath */
+
+
 // The path made by a network connection, including information about its viability.
 //
 // For example, if the path status is , then a connection attempt will be made. When attached to a specific connection, a path takes all of the connection parameters into account. For example, if the route for a connection changes or is removed, the path will reflect that change. Note that every path is evaluated within the context of the process it is running in, and may be different across processes. is a static object, and properties of the path will never change. To monitor changing network status, use Key-Value Observing (KVO) to watch a path property on another object. For information about KVO, see .
@@ -114,30 +114,30 @@ type NWPath struct {
 func NWPathFrom(ptr unsafe.Pointer) NWPath {
 	return NWPath{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NWPath *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NWPath */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NWPath */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NWPath */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NWPath */
+
+
+
+
+
+
+
+
+
 
 // A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
 //
@@ -146,7 +146,7 @@ func NWPathFrom(ptr unsafe.Pointer) NWPath {
 func (n_ NWPath) Constrained() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("constrained"))
 	return rv
-}/* debug [instance_properties/getter]: constrained */
+}
 
 
 // A Boolean that indicates whether or not the path uses an expensive interface.
@@ -156,7 +156,7 @@ func (n_ NWPath) Constrained() bool {
 func (n_ NWPath) Expensive() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("expensive"))
 	return rv
-}/* debug [instance_properties/getter]: expensive */
+}
 
 
 // The evaluated status of the network path.
@@ -166,7 +166,7 @@ func (n_ NWPath) Expensive() bool {
 func (n_ NWPath) Status() NWPathStatus {
 	rv := objc.Send[NWPathStatus](n_.ID, objc.Sel("status"))
 	return rv
-}/* debug [instance_properties/getter]: status */
+}
 
 
 // A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
@@ -176,7 +176,7 @@ func (n_ NWPath) Status() NWPathStatus {
 func (n_ NWPath) IsConstrained() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isConstrained"))
 	return rv
-}/* debug [instance_properties/getter]: isConstrained */
+}
 
 
 // A Boolean that indicates whether or not the path uses a constrained interface, such as when using low-data mode.
@@ -185,7 +185,7 @@ func (n_ NWPath) IsConstrained() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isconstrained
 func (n_ NWPath) SetIsConstrained(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsConstrained:"), value)
-}/* debug [instance_properties/setter]: isConstrained */
+}
 
 
 // A Boolean that indicates whether or not the path uses an expensive interface.
@@ -195,7 +195,7 @@ func (n_ NWPath) SetIsConstrained(value bool) {
 func (n_ NWPath) IsExpensive() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isExpensive"))
 	return rv
-}/* debug [instance_properties/getter]: isExpensive */
+}
 
 
 // A Boolean that indicates whether or not the path uses an expensive interface.
@@ -204,12 +204,12 @@ func (n_ NWPath) IsExpensive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwpath/isexpensive
 func (n_ NWPath) SetIsExpensive(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsExpensive:"), value)
-}/* debug [instance_properties/setter]: isExpensive */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NWPath */
+
+
+
 
 
 

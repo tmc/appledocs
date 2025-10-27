@@ -18,7 +18,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/ports(for:sourceDeviceType:sourceDevicePosition:)
-func (c_ CaptureDeviceInput) PortsWithMediaTypeSourceDeviceTypeSourceDevicePosition(mediaType MediaType /* typedef */, sourceDeviceType CaptureDeviceType /* typedef */, sourceDevicePosition CaptureDevicePosition) []CaptureInputPort {
+func (c_ CaptureDeviceInput) PortsWithMediaTypeSourceDeviceTypeSourceDevicePosition(mediaType MediaType, sourceDeviceType CaptureDeviceType, sourceDevicePosition CaptureDevicePosition) []CaptureInputPort {
 	rv := objc.Send[[]CaptureInputPort](c_.ID, objc.Sel("portsWithMediaType:sourceDeviceType:sourceDevicePosition:"), mediaType, sourceDeviceType, sourceDevicePosition)
 	return rv
 }
@@ -41,11 +41,11 @@ func (c_ CaptureDeviceInput) SetUnifiedAutoExposureDefaultsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/videoMinFrameDurationOverride
-func (c_ CaptureDeviceInput) VideoMinFrameDurationOverride() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("videoMinFrameDurationOverride"))
+func (c_ CaptureDeviceInput) VideoMinFrameDurationOverride() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("videoMinFrameDurationOverride"))
 	return rv
 }
-func (c_ CaptureDeviceInput) SetVideoMinFrameDurationOverride(value objc.IObject /* cross-framework: Time */) {
+func (c_ CaptureDeviceInput) SetVideoMinFrameDurationOverride(value objectivec.IObject) {
 	c_.ID.Send(objc.RegisterName("setVideoMinFrameDurationOverride:"), value)
 }
 

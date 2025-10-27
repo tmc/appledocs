@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSColorSampler */
 
 
-/* debug [class_header]: Header for NSColorSampler */
+
+
 // The class instance for the [ColorSampler] class.
 var (
 	ColorSamplerClass     _ColorSamplerClass
@@ -30,31 +30,31 @@ func getColorSamplerClass() _ColorSamplerClass {
 type _ColorSamplerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ColorSampler */
+
+
 // An interface definition for the [ColorSampler] class.
 type IColorSampler interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ColorSampler */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ColorSampler */
+
 	// methods:
 	ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ColorSampler */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ColorSamplerClass) Alloc() ColorSampler {
 	rv := objc.Send[ColorSampler](objc.ID(cc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (c_ ColorSampler) Autorelease() ColorSampler {
 func NewColorSampler() ColorSampler {
 	return getColorSamplerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ColorSampler */
+
+
 // An object that displays the system’s color-sampling interface and returns the selected color to your app.
 //
 // Create an object when you want the user to select a color based on existing onscreen colors. When you call the method, AppKit shows the system’s color sampler interface and reports the selected color back to the provided block.
@@ -108,25 +108,25 @@ type ColorSampler struct {
 func ColorSamplerFrom(ptr unsafe.Pointer) ColorSampler {
 	return ColorSampler{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ColorSampler *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ColorSampler */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ColorSampler */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ColorSampler */
+
+
+
+
+
+
+
 
 // Displays the system color-sampling interface asynchronously and reports the selected color back to your app.
 //
@@ -134,17 +134,17 @@ func ColorSamplerFrom(ptr unsafe.Pointer) ColorSampler {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler/show(selectionHandler:)
 func (c_ ColorSampler) ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showSamplerWithSelectionHandler:"), selectionHandler)
-}/* debug [instance_methods/method]: ShowSamplerWithSelectionHandler */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ColorSampler */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NSColorSampler */
+
+
+
+
+
 
 
 

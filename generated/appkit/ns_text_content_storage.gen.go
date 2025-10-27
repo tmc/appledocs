@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class NSTextContentStorage */
 
 
-/* debug [class_header]: Header for NSTextContentStorage */
+
+
 // The class instance for the [TextContentStorage] class.
 var (
 	TextContentStorageClass     _TextContentStorageClass
@@ -30,43 +29,41 @@ func getTextContentStorageClass() _TextContentStorageClass {
 type _TextContentStorageClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TextContentStorage */
+
+
 // An interface definition for the [TextContentStorage] class.
 type ITextContentStorage interface {
 	ITextContentManager
 	
-/* debug [class_interface_properties]: Properties for TextContentStorage */
+
 	// properties:
-	AttributedString() foundation.AttributedString
-	SetAttributedString(value foundation.AttributedString)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	AttributedString() foundation.foundation.INSAttributedString
+	SetAttributedString(value foundation.foundation.INSAttributedString)
 	IncludesTextListMarkers() bool
 	SetIncludesTextListMarkers(value bool)
 	DocumentRange() ITextRange
 	SetDocumentRange(value ITextRange)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TextContentStorage */
+
 	// methods:
 	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) ITextRange
 	AttributedStringForTextElement(textElement ITextElement) foundation.AttributedString
 	LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer
 	OffsetFromLocationToLocation(from unsafe.Pointer, to unsafe.Pointer) int
-	TextElementForAttributedString(attributedString foundation.AttributedString) ITextElement
-/* debug [class_interface_methods]: End methods */
+	TextElementForAttributedString(attributedString foundation.foundation.INSAttributedString) ITextElement
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TextContentStorage */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TextContentStorageClass) Alloc() TextContentStorage {
 	rv := objc.Send[TextContentStorage](objc.ID(tc.class), objc.Sel("alloc"))
@@ -96,11 +93,11 @@ func (t_ TextContentStorage) Autorelease() TextContentStorage {
 func NewTextContentStorage() TextContentStorage {
 	return getTextContentStorageClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TextContentStorage */
+
+
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.
 //
 // An object provides the backing store for a view that contains text. This object stores the text in an attributed string object, and defaults to using an object. It also maps portions of the text to objects to organize the text into paragraphs, lists, and other common element types found in text content. During layout, TextKit uses these elements to lay out and render the text in your view. The standard system views use an object to manage their text content. When building a custom text view, use this type to store the text for your view. works with an associated to lay out your view’s text. When someone inserts new text or edits the existing text, call the method and use a block to modify the contents of the property. Wrapping your edits in an edit transaction lets the rest of the text system respond to those changes. TextKit uses the abstract protocol to identify locations within text. manager provides its own implementation of this protocol to represent locations within its storage object. To get the start and end locations, access the object’s property and use them to create new location objects. If you provide your own implementation of the protocol to manage locations in your content, subclass and implement your own storage object to support those locations.
@@ -122,25 +119,25 @@ func TextContentStorageFrom(ptr unsafe.Pointer) TextContentStorage {
 		TextContentManager: TextContentManagerFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TextContentStorage *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for TextContentStorage */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TextContentStorage */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TextContentStorage */
+
+
+
+
+
+
+
 
 // Returns the text range, if any, in the backing store that required manual adjustment after editing.
 //
@@ -149,7 +146,7 @@ func TextContentStorageFrom(ptr unsafe.Pointer) TextContentStorage {
 func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) ITextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("adjustedRangeFromRange:forEditingTextSelection:"), textRange, forEditingTextSelection)
 	return rv
-}/* debug [instance_methods/method]: AdjustedRangeFromRangeForEditingTextSelection */
+}
 
 
 // Returns a new attributed string for the text element.
@@ -159,7 +156,7 @@ func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textR
 func (t_ TextContentStorage) AttributedStringForTextElement(textElement ITextElement) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedStringForTextElement:"), textElement)
 	return rv
-}/* debug [instance_methods/method]: AttributedStringForTextElement */
+}
 
 
 // Returns a new text location object based on an existing location and offset you provide.
@@ -169,7 +166,7 @@ func (t_ TextContentStorage) AttributedStringForTextElement(textElement ITextEle
 func (t_ TextContentStorage) LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("locationFromLocation:withOffset:"), location, offset)
 	return rv
-}/* debug [instance_methods/method]: LocationFromLocationWithOffset */
+}
 
 
 // Returns the number of characters between the specified locations.
@@ -179,60 +176,41 @@ func (t_ TextContentStorage) LocationFromLocationWithOffset(location unsafe.Poin
 func (t_ TextContentStorage) OffsetFromLocationToLocation(from unsafe.Pointer, to unsafe.Pointer) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("offsetFromLocation:toLocation:"), from, to)
 	return rv
-}/* debug [instance_methods/method]: OffsetFromLocationToLocation */
+}
 
 
 // Returns the text element corresponding to object’s attributed string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/textElement(for:)
-func (t_ TextContentStorage) TextElementForAttributedString(attributedString foundation.AttributedString) ITextElement {
+func (t_ TextContentStorage) TextElementForAttributedString(attributedString foundation.foundation.INSAttributedString) ITextElement {
 	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
 	return rv
-}/* debug [instance_methods/method]: TextElementForAttributedString */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for TextContentStorage */
+
+
+
 
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) AttributedString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
+func (t_ TextContentStorage) AttributedString() foundation.foundation.INSAttributedString {
+	rv := objc.Send[foundation.NSAttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
-}/* debug [instance_properties/getter]: attributedString */
+}
 
 
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) SetAttributedString(value foundation.AttributedString) {
+func (t_ TextContentStorage) SetAttributedString(value foundation.foundation.INSAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
-}/* debug [instance_properties/setter]: attributedString */
-
-
-// The delegate for the content storage object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/delegate
-func (t_ TextContentStorage) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
-	return rv
-}/* debug [instance_properties/getter]: delegate */
-
-
-// The delegate for the content storage object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/delegate
-func (t_ TextContentStorage) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}/* debug [instance_properties/setter]: delegate */
+}
 
 
 // [Full Topic]
@@ -240,14 +218,14 @@ func (t_ TextContentStorage) SetDelegate(value unsafe.Pointer) {
 func (t_ TextContentStorage) IncludesTextListMarkers() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("includesTextListMarkers"))
 	return rv
-}/* debug [instance_properties/getter]: includesTextListMarkers */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
 func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
-}/* debug [instance_properties/setter]: includesTextListMarkers */
+}
 
 
 // Describes the starting and ending locations for the document.
@@ -257,7 +235,7 @@ func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
 func (t_ TextContentStorage) DocumentRange() ITextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("documentRange"))
 	return rv
-}/* debug [instance_properties/getter]: documentRange */
+}
 
 
 // Describes the starting and ending locations for the document.
@@ -266,12 +244,12 @@ func (t_ TextContentStorage) DocumentRange() ITextRange {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
 func (t_ TextContentStorage) SetDocumentRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDocumentRange:"), value)
-}/* debug [instance_properties/setter]: documentRange */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSTextContentStorage */
+
+
+
 
 
 

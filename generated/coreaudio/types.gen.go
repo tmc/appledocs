@@ -19,7 +19,7 @@ type AudioDriverPlugInHostInfo struct {
 	MIOAudioDevice unsafe.Pointer
 	MIOAudioEngine unsafe.Pointer
 	MStreamPropertyChangedProc unsafe.Pointer
-}/* debug [types.gen.go/struct]: AudioDriverPlugInHostInfo */
+}
 
 // AudioHardwareIOProcStreamUsage
 //
@@ -29,7 +29,7 @@ type AudioHardwareIOProcStreamUsage struct {
 	MIOProc unsafe.Pointer
 	MNumberStreams unsafe.Pointer
 	MStreamIsOn unsafe.Pointer
-}/* debug [types.gen.go/struct]: AudioHardwareIOProcStreamUsage */
+}
 
 // AudioObjectPropertyAddress
 //
@@ -39,7 +39,7 @@ type AudioObjectPropertyAddress struct {
 	MElement AudioObjectPropertyElement
 	MScope AudioObjectPropertyScope
 	MSelector AudioObjectPropertySelector
-}/* debug [types.gen.go/struct]: AudioObjectPropertyAddress */
+}
 
 // AudioServerPlugInClientInfo
 //
@@ -50,7 +50,7 @@ type AudioServerPlugInClientInfo struct {
 	MClientID unsafe.Pointer
 	MIsNativeEndian unsafe.Pointer
 	MProcessID unsafe.Pointer
-}/* debug [types.gen.go/struct]: AudioServerPlugInClientInfo */
+}
 
 // AudioServerPlugInCustomPropertyInfo
 //
@@ -60,7 +60,7 @@ type AudioServerPlugInCustomPropertyInfo struct {
 	MPropertyDataType unsafe.Pointer
 	MQualifierDataType unsafe.Pointer
 	MSelector AudioObjectPropertySelector
-}/* debug [types.gen.go/struct]: AudioServerPlugInCustomPropertyInfo */
+}
 
 // AudioServerPlugInDriverInterface
 //
@@ -89,7 +89,7 @@ type AudioServerPlugInDriverInterface struct {
 	StartIO unsafe.Pointer
 	StopIO unsafe.Pointer
 	WillDoIOOperation unsafe.Pointer
-}/* debug [types.gen.go/struct]: AudioServerPlugInDriverInterface */
+}
 
 // AudioServerPlugInHostInterface
 //
@@ -101,7 +101,7 @@ type AudioServerPlugInHostInterface struct {
 	PropertiesChanged unsafe.Pointer
 	RequestDeviceConfigurationChange unsafe.Pointer
 	WriteToStorage unsafe.Pointer
-}/* debug [types.gen.go/struct]: AudioServerPlugInHostInterface */
+}
 
 // AudioServerPlugInIOCycleInfo
 //
@@ -116,7 +116,7 @@ type AudioServerPlugInIOCycleInfo struct {
 	MMasterHostTicksPerFrame unsafe.Pointer
 	MNominalIOBufferFrameSize unsafe.Pointer
 	MOutputTime coreaudiotypes.AudioTimeStamp
-}/* debug [types.gen.go/struct]: AudioServerPlugInIOCycleInfo */
+}
 
 // AudioStreamRangedDescription
 //
@@ -125,7 +125,7 @@ type AudioServerPlugInIOCycleInfo struct {
 type AudioStreamRangedDescription struct {
 	MFormat coreaudiotypes.AudioStreamBasicDescription
 	MSampleRateRange coreaudiotypes.AudioValueRange
-}/* debug [types.gen.go/struct]: AudioStreamRangedDescription */
+}
 
 
 

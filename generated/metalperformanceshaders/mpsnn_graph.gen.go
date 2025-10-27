@@ -61,8 +61,8 @@ type IGraph interface {
 	SetResultImageIsNeeded(value objectivec.IObject)
 	DestinationFeatureChannelOffset() int
 	SetDestinationFeatureChannelOffset(value int)
-	Offset() objc.IObject /* cross-framework: MPSOffset */
-	SetOffset(value objc.IObject /* cross-framework: MPSOffset */)
+	Offset() MPSOffset
+	SetOffset(value MPSOffset)
 
 
 	
@@ -490,7 +490,7 @@ func (g_ Graph) SetDestinationFeatureChannelOffset(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
-func (g_ Graph) Offset() objc.IObject /* cross-framework: MPSOffset */ {
+func (g_ Graph) Offset() MPSOffset {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("offset"))
 	return rv
 }
@@ -500,7 +500,7 @@ func (g_ Graph) Offset() objc.IObject /* cross-framework: MPSOffset */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
-func (g_ Graph) SetOffset(value objc.IObject /* cross-framework: MPSOffset */) {
+func (g_ Graph) SetOffset(value MPSOffset) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOffset:"), value)
 }
 

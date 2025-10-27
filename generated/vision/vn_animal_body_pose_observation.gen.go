@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -48,8 +47,8 @@ type IAnimalBodyPoseObservation interface {
 	
 
 	// methods:
-	RecognizedPointForJointNameError(jointName AnimalBodyPoseObservationJointName /* typedef */, error_ objectivec.IObject) IRecognizedPoint
-	RecognizedPointsForJointsGroupNameError(jointsGroupName AnimalBodyPoseObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary
+	RecognizedPointForJointNameError(jointName AnimalBodyPoseObservationJointName, error_ foundation.foundation.INSError) IRecognizedPoint
+	RecognizedPointsForJointsGroupNameError(jointsGroupName AnimalBodyPoseObservationJointsGroupName, error_ foundation.foundation.INSError) foundation.IDictionary
 
 
 }
@@ -135,7 +134,7 @@ func AnimalBodyPoseObservationFrom(ptr unsafe.Pointer) AnimalBodyPoseObservation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNAnimalBodyPoseObservation/recognizedPoint(_:)
-func (a_ AnimalBodyPoseObservation) RecognizedPointForJointNameError(jointName AnimalBodyPoseObservationJointName /* typedef */, error_ objectivec.IObject) IRecognizedPoint {
+func (a_ AnimalBodyPoseObservation) RecognizedPointForJointNameError(jointName AnimalBodyPoseObservationJointName, error_ foundation.foundation.INSError) IRecognizedPoint {
 	rv := objc.Send[RecognizedPoint](a_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
 }
@@ -145,7 +144,7 @@ func (a_ AnimalBodyPoseObservation) RecognizedPointForJointNameError(jointName A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNAnimalBodyPoseObservation/recognizedPoints(_:)
-func (a_ AnimalBodyPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName AnimalBodyPoseObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
+func (a_ AnimalBodyPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName AnimalBodyPoseObservationJointsGroupName, error_ foundation.foundation.INSError) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
 }

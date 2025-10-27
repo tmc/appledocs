@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class issuerTextField */
 
 
-/* debug [class_header]: Header for issuerTextField */
+
+
 // The class instance for the [issuerTextField] class.
 var (
 	IssuerTextFieldClass     _issuerTextFieldClass
@@ -30,30 +30,30 @@ func getissuerTextFieldClass() _issuerTextFieldClass {
 type _issuerTextFieldClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for issuerTextField */
+
+
 // An interface definition for the [issuerTextField] class.
 type IissuerTextField interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for issuerTextField */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for issuerTextField */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for issuerTextField */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _issuerTextFieldClass) Alloc() issuerTextField {
 	rv := objc.Send[issuerTextField](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ issuerTextField) Autorelease() issuerTextField {
 func NewissuerTextField() issuerTextField {
 	return getissuerTextFieldClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for issuerTextField */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type issuerTextField struct {
 func issuerTextFieldFrom(ptr unsafe.Pointer) issuerTextField {
 	return issuerTextField{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for issuerTextField *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for issuerTextField */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for issuerTextField */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for issuerTextField */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for issuerTextField */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class issuerTextField */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

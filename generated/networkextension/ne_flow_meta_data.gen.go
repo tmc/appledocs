@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NEFlowMetaData */
 
 
-/* debug [class_header]: Header for NEFlowMetaData */
+
+
 // The class instance for the [NEFlowMetaData] class.
 var (
 	NEFlowMetaDataClass     _NEFlowMetaDataClass
@@ -31,36 +30,36 @@ func getNEFlowMetaDataClass() _NEFlowMetaDataClass {
 type _NEFlowMetaDataClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEFlowMetaData */
+
+
 // An interface definition for the [NEFlowMetaData] class.
 type INEFlowMetaData interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NEFlowMetaData */
+
 	// properties:
 	FilterFlowIdentifier() foundation.UUID
-	SourceAppAuditToken() objc.IObject /* cross-framework: NSData */
-	SourceAppSigningIdentifier() objc.IObject /* cross-framework: NSString */
-	SourceAppUniqueIdentifier() objc.IObject /* cross-framework: NSData */
+	SourceAppAuditToken() foundation.foundation.INSData
+	SourceAppSigningIdentifier() foundation.foundation.INSString
+	SourceAppUniqueIdentifier() foundation.foundation.INSData
 	RoutingMethod() NETunnelProviderRoutingMethod
 	SetRoutingMethod(value NETunnelProviderRoutingMethod)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEFlowMetaData */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEFlowMetaData */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEFlowMetaDataClass) Alloc() NEFlowMetaData {
 	rv := objc.Send[NEFlowMetaData](objc.ID(nc.class), objc.Sel("alloc"))
@@ -90,11 +89,11 @@ func (n_ NEFlowMetaData) Autorelease() NEFlowMetaData {
 func NewNEFlowMetaData() NEFlowMetaData {
 	return getNEFlowMetaDataClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEFlowMetaData */
+
+
 // Additional information about data flowing through a per-app VPN provider.
 //
 // This metadata is only present for data flowing through per-app VPN providers, that is, app proxy providers and packet tunnel providers in per-app VPN mode, as indicated by the property.
@@ -114,30 +113,30 @@ type NEFlowMetaData struct {
 func NEFlowMetaDataFrom(ptr unsafe.Pointer) NEFlowMetaData {
 	return NEFlowMetaData{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEFlowMetaData *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEFlowMetaData */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEFlowMetaData */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEFlowMetaData */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEFlowMetaData */
+
+
+
+
+
+
+
+
+
 
 // The identifier of the content filter flow corresponding to this flow.
 //
@@ -146,37 +145,37 @@ func NEFlowMetaDataFrom(ptr unsafe.Pointer) NEFlowMetaData {
 func (n_ NEFlowMetaData) FilterFlowIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](n_.ID, objc.Sel("filterFlowIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: filterFlowIdentifier */
+}
 
 
 // The audit token of the source application of the flow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppAuditToken
-func (n_ NEFlowMetaData) SourceAppAuditToken() objc.IObject /* cross-framework: NSData */ {
+func (n_ NEFlowMetaData) SourceAppAuditToken() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("sourceAppAuditToken"))
 	return rv
-}/* debug [instance_properties/getter]: sourceAppAuditToken */
+}
 
 
 // A string that contains the signing identifier of the source application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppSigningIdentifier
-func (n_ NEFlowMetaData) SourceAppSigningIdentifier() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEFlowMetaData) SourceAppSigningIdentifier() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: sourceAppSigningIdentifier */
+}
 
 
 // A data instance that contains a unique hash value for the source application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppUniqueIdentifier
-func (n_ NEFlowMetaData) SourceAppUniqueIdentifier() objc.IObject /* cross-framework: NSData */ {
+func (n_ NEFlowMetaData) SourceAppUniqueIdentifier() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: sourceAppUniqueIdentifier */
+}
 
 
 // The method by which network traffic is routed to the tunnel.
@@ -186,7 +185,7 @@ func (n_ NEFlowMetaData) SourceAppUniqueIdentifier() objc.IObject /* cross-frame
 func (n_ NEFlowMetaData) RoutingMethod() NETunnelProviderRoutingMethod {
 	rv := objc.Send[NETunnelProviderRoutingMethod](n_.ID, objc.Sel("routingMethod"))
 	return rv
-}/* debug [instance_properties/getter]: routingMethod */
+}
 
 
 // The method by which network traffic is routed to the tunnel.
@@ -195,12 +194,12 @@ func (n_ NEFlowMetaData) RoutingMethod() NETunnelProviderRoutingMethod {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
 func (n_ NEFlowMetaData) SetRoutingMethod(value NETunnelProviderRoutingMethod) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoutingMethod:"), value)
-}/* debug [instance_properties/setter]: routingMethod */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NEFlowMetaData */
+
+
+
 
 
 

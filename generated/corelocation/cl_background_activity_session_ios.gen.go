@@ -5,10 +5,14 @@
 package corelocation
 
 import (
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for BackgroundActivitySession
+
 
 // Invalidates the background activity session.
 //
@@ -19,3 +23,8 @@ func (b_ BackgroundActivitySession) Invalidate() {
 }
 
 // iOS-only properties
+
+
+
+
+

@@ -19,7 +19,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask/destinationURL
-func (a_ AssetDownloadTask) DestinationURL() objc.IObject /* cross-framework: NSURL */ {
+func (a_ AssetDownloadTask) DestinationURL() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](a_.ID, objc.Sel("destinationURL"))
 	return rv
 }

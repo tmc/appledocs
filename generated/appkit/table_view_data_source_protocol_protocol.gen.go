@@ -7,9 +7,11 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTableViewDataSource is the NSTableViewDataSource protocol interface.
@@ -26,17 +28,17 @@ type PTableViewDataSource interface {
 	HasNumberOfRowsInTableView() bool
 	TableViewAcceptDropRowDropOperation(tableView ITableView, info unsafe.Pointer, row int, dropOperation TableViewDropOperation) bool
 	HasTableViewAcceptDropRowDropOperation() bool
-	TableViewDraggingSessionEndedAtPointOperation(tableView ITableView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
+	TableViewDraggingSessionEndedAtPointOperation(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)
 	HasTableViewDraggingSessionEndedAtPointOperation() bool
-	TableViewDraggingSessionWillBeginAtPointForRowIndexes(tableView ITableView, session IDraggingSession, screenPoint vision.Point, rowIndexes foundation.IndexSet)
+	TableViewDraggingSessionWillBeginAtPointForRowIndexes(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, rowIndexes foundation.IndexSet)
 	HasTableViewDraggingSessionWillBeginAtPointForRowIndexes() bool
-	TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(tableView ITableView, dropDestination objc.IObject /* cross-framework: NSURL */, indexSet foundation.IndexSet) []string
+	TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(tableView ITableView, dropDestination foundation.foundation.INSURL, indexSet foundation.IndexSet) []string
 	HasTableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes() bool
 	TableViewPasteboardWriterForRow(tableView ITableView, row int) unsafe.Pointer
 	HasTableViewPasteboardWriterForRow() bool
-	TableViewSetObjectValueForTableColumnRow(tableView ITableView, object objc.IObject, tableColumn ITableColumn, row int)
+	TableViewSetObjectValueForTableColumnRow(tableView ITableView, object objectivec.IObject, tableColumn ITableColumn, row int)
 	HasTableViewSetObjectValueForTableColumnRow() bool
-	TableViewSortDescriptorsDidChange(tableView ITableView, oldDescriptors []objc.IObject)
+	TableViewSortDescriptorsDidChange(tableView ITableView, oldDescriptors []foundation.SortDescriptor)
 	HasTableViewSortDescriptorsDidChange() bool
 	TableViewUpdateDraggingItemsForDrag(tableView ITableView, draggingInfo unsafe.Pointer)
 	HasTableViewUpdateDraggingItemsForDrag() bool
@@ -54,12 +56,12 @@ type PTableViewDataSource interface {
 type TableViewDataSource struct {
 	_NumberOfRowsInTableView func(tableView ITableView) int
 	_TableViewAcceptDropRowDropOperation func(tableView ITableView, info unsafe.Pointer, row int, dropOperation TableViewDropOperation) bool
-	_TableViewDraggingSessionEndedAtPointOperation func(tableView ITableView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
-	_TableViewDraggingSessionWillBeginAtPointForRowIndexes func(tableView ITableView, session IDraggingSession, screenPoint vision.Point, rowIndexes foundation.IndexSet)
-	_TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes func(tableView ITableView, dropDestination objc.IObject /* cross-framework: NSURL */, indexSet foundation.IndexSet) []string
+	_TableViewDraggingSessionEndedAtPointOperation func(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)
+	_TableViewDraggingSessionWillBeginAtPointForRowIndexes func(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, rowIndexes foundation.IndexSet)
+	_TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes func(tableView ITableView, dropDestination foundation.foundation.INSURL, indexSet foundation.IndexSet) []string
 	_TableViewPasteboardWriterForRow func(tableView ITableView, row int) unsafe.Pointer
-	_TableViewSetObjectValueForTableColumnRow func(tableView ITableView, object objc.IObject, tableColumn ITableColumn, row int)
-	_TableViewSortDescriptorsDidChange func(tableView ITableView, oldDescriptors []objc.IObject)
+	_TableViewSetObjectValueForTableColumnRow func(tableView ITableView, object objectivec.IObject, tableColumn ITableColumn, row int)
+	_TableViewSortDescriptorsDidChange func(tableView ITableView, oldDescriptors []foundation.SortDescriptor)
 	_TableViewUpdateDraggingItemsForDrag func(tableView ITableView, draggingInfo unsafe.Pointer)
 	_TableViewValidateDropProposedRowProposedDropOperation func(tableView ITableView, info unsafe.Pointer, row int, dropOperation TableViewDropOperation) DragOperation
 	_TableViewWriteRowsWithIndexesToPasteboard func(tableView ITableView, rowIndexes foundation.IndexSet, pboard IPasteboard) bool
@@ -83,21 +85,21 @@ func (d *TableViewDataSource) SetTableViewAcceptDropRowDropOperation(f func(tabl
 // SetTableViewDraggingSessionEndedAtPointOperation sets the handler for the TableViewDraggingSessionEndedAtPointOperation delegate method.
 //
 // Implement this method to determine when a dragging session has ended.
-func (d *TableViewDataSource) SetTableViewDraggingSessionEndedAtPointOperation(f func(tableView ITableView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)) {
+func (d *TableViewDataSource) SetTableViewDraggingSessionEndedAtPointOperation(f func(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation)) {
 	d._TableViewDraggingSessionEndedAtPointOperation = f
 }
 
 // SetTableViewDraggingSessionWillBeginAtPointForRowIndexes sets the handler for the TableViewDraggingSessionWillBeginAtPointForRowIndexes delegate method.
 //
 // Implement this method to determine when a dragging session will begin.
-func (d *TableViewDataSource) SetTableViewDraggingSessionWillBeginAtPointForRowIndexes(f func(tableView ITableView, session IDraggingSession, screenPoint vision.Point, rowIndexes foundation.IndexSet)) {
+func (d *TableViewDataSource) SetTableViewDraggingSessionWillBeginAtPointForRowIndexes(f func(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, rowIndexes foundation.IndexSet)) {
 	d._TableViewDraggingSessionWillBeginAtPointForRowIndexes = f
 }
 
 // SetTableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes sets the handler for the TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes delegate method.
 //
 // Returns an array of filenames that represent the   rows for a drag to  .
-func (d *TableViewDataSource) SetTableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(f func(tableView ITableView, dropDestination objc.IObject /* cross-framework: NSURL */, indexSet foundation.IndexSet) []string) {
+func (d *TableViewDataSource) SetTableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(f func(tableView ITableView, dropDestination foundation.foundation.INSURL, indexSet foundation.IndexSet) []string) {
 	d._TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes = f
 }
 
@@ -111,14 +113,14 @@ func (d *TableViewDataSource) SetTableViewPasteboardWriterForRow(f func(tableVie
 // SetTableViewSetObjectValueForTableColumnRow sets the handler for the TableViewSetObjectValueForTableColumnRow delegate method.
 //
 // Sets the data object for an item in the specified row and column.
-func (d *TableViewDataSource) SetTableViewSetObjectValueForTableColumnRow(f func(tableView ITableView, object objc.IObject, tableColumn ITableColumn, row int)) {
+func (d *TableViewDataSource) SetTableViewSetObjectValueForTableColumnRow(f func(tableView ITableView, object objectivec.IObject, tableColumn ITableColumn, row int)) {
 	d._TableViewSetObjectValueForTableColumnRow = f
 }
 
 // SetTableViewSortDescriptorsDidChange sets the handler for the TableViewSortDescriptorsDidChange delegate method.
 //
 // Called by   to indicate that sorting may need to be done.
-func (d *TableViewDataSource) SetTableViewSortDescriptorsDidChange(f func(tableView ITableView, oldDescriptors []objc.IObject)) {
+func (d *TableViewDataSource) SetTableViewSortDescriptorsDidChange(f func(tableView ITableView, oldDescriptors []foundation.SortDescriptor)) {
 	d._TableViewSortDescriptorsDidChange = f
 }
 
@@ -179,7 +181,7 @@ func (d *TableViewDataSource) HasTableViewAcceptDropRowDropOperation() bool {
 }
 
 // TableViewDraggingSessionEndedAtPointOperation implements the PTableViewDataSource interface.
-func (d *TableViewDataSource) TableViewDraggingSessionEndedAtPointOperation(tableView ITableView, session IDraggingSession, screenPoint vision.Point, operation DragOperation) {
+func (d *TableViewDataSource) TableViewDraggingSessionEndedAtPointOperation(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation) {
 	if d._TableViewDraggingSessionEndedAtPointOperation != nil {
 		d._TableViewDraggingSessionEndedAtPointOperation(tableView, session, screenPoint, operation)
 	}
@@ -191,7 +193,7 @@ func (d *TableViewDataSource) HasTableViewDraggingSessionEndedAtPointOperation()
 }
 
 // TableViewDraggingSessionWillBeginAtPointForRowIndexes implements the PTableViewDataSource interface.
-func (d *TableViewDataSource) TableViewDraggingSessionWillBeginAtPointForRowIndexes(tableView ITableView, session IDraggingSession, screenPoint vision.Point, rowIndexes foundation.IndexSet) {
+func (d *TableViewDataSource) TableViewDraggingSessionWillBeginAtPointForRowIndexes(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, rowIndexes foundation.IndexSet) {
 	if d._TableViewDraggingSessionWillBeginAtPointForRowIndexes != nil {
 		d._TableViewDraggingSessionWillBeginAtPointForRowIndexes(tableView, session, screenPoint, rowIndexes)
 	}
@@ -203,7 +205,7 @@ func (d *TableViewDataSource) HasTableViewDraggingSessionWillBeginAtPointForRowI
 }
 
 // TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes implements the PTableViewDataSource interface.
-func (d *TableViewDataSource) TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(tableView ITableView, dropDestination objc.IObject /* cross-framework: NSURL */, indexSet foundation.IndexSet) []string {
+func (d *TableViewDataSource) TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(tableView ITableView, dropDestination foundation.foundation.INSURL, indexSet foundation.IndexSet) []string {
 	if d._TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes != nil {
 		return d._TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(tableView, dropDestination, indexSet)
 	}
@@ -231,7 +233,7 @@ func (d *TableViewDataSource) HasTableViewPasteboardWriterForRow() bool {
 }
 
 // TableViewSetObjectValueForTableColumnRow implements the PTableViewDataSource interface.
-func (d *TableViewDataSource) TableViewSetObjectValueForTableColumnRow(tableView ITableView, object objc.IObject, tableColumn ITableColumn, row int) {
+func (d *TableViewDataSource) TableViewSetObjectValueForTableColumnRow(tableView ITableView, object objectivec.IObject, tableColumn ITableColumn, row int) {
 	if d._TableViewSetObjectValueForTableColumnRow != nil {
 		d._TableViewSetObjectValueForTableColumnRow(tableView, object, tableColumn, row)
 	}
@@ -243,7 +245,7 @@ func (d *TableViewDataSource) HasTableViewSetObjectValueForTableColumnRow() bool
 }
 
 // TableViewSortDescriptorsDidChange implements the PTableViewDataSource interface.
-func (d *TableViewDataSource) TableViewSortDescriptorsDidChange(tableView ITableView, oldDescriptors []objc.IObject) {
+func (d *TableViewDataSource) TableViewSortDescriptorsDidChange(tableView ITableView, oldDescriptors []foundation.SortDescriptor) {
 	if d._TableViewSortDescriptorsDidChange != nil {
 		d._TableViewSortDescriptorsDidChange(tableView, oldDescriptors)
 	}
@@ -306,4 +308,152 @@ func (d *TableViewDataSource) TableViewObjectValueForTableColumnRow(tableView IT
 // HasTableViewObjectValueForTableColumnRow returns true if a handler for TableViewObjectValueForTableColumnRow has been set.
 func (d *TableViewDataSource) HasTableViewObjectValueForTableColumnRow() bool {
 	return d._TableViewObjectValueForTableColumnRow != nil
+}
+
+// TableViewDataSourceObject wraps an existing Objective-C object that conforms to the PTableViewDataSource protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type TableViewDataSourceObject struct {
+	objectivec.Object
+}
+
+// NewTableViewDataSourceObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSTableViewDataSource protocol.
+func NewTableViewDataSourceObject(obj objectivec.Object) *TableViewDataSourceObject {
+	return &TableViewDataSourceObject{obj}
+}
+
+// Make sure TableViewDataSourceObject implements PTableViewDataSource.
+var _ PTableViewDataSource = (*TableViewDataSourceObject)(nil)
+
+// NumberOfRowsInTableView implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) NumberOfRowsInTableView(tableView ITableView) int {
+	return objc.Send[int](o.ID, objc.Sel("numberOfRowsInTableView:"), tableView)
+}
+
+// HasNumberOfRowsInTableView returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasNumberOfRowsInTableView() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewAcceptDropRowDropOperation implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewAcceptDropRowDropOperation(tableView ITableView, info unsafe.Pointer, row int, dropOperation TableViewDropOperation) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:acceptDrop:row:dropOperation:"), tableView, info, row, dropOperation)
+}
+
+// HasTableViewAcceptDropRowDropOperation returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewAcceptDropRowDropOperation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDraggingSessionEndedAtPointOperation implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewDraggingSessionEndedAtPointOperation(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, operation DragOperation) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:draggingSession:endedAtPoint:operation:"), tableView, session, screenPoint, operation)
+}
+
+// HasTableViewDraggingSessionEndedAtPointOperation returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewDraggingSessionEndedAtPointOperation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDraggingSessionWillBeginAtPointForRowIndexes implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewDraggingSessionWillBeginAtPointForRowIndexes(tableView ITableView, session IDraggingSession, screenPoint corefoundation.CGPoint, rowIndexes foundation.IndexSet) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:draggingSession:willBeginAtPoint:forRowIndexes:"), tableView, session, screenPoint, rowIndexes)
+}
+
+// HasTableViewDraggingSessionWillBeginAtPointForRowIndexes returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewDraggingSessionWillBeginAtPointForRowIndexes() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(tableView ITableView, dropDestination foundation.foundation.INSURL, indexSet foundation.IndexSet) []string {
+	return objc.Send[[]string](o.ID, objc.Sel("tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:"), tableView, dropDestination, indexSet)
+}
+
+// HasTableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewPasteboardWriterForRow implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewPasteboardWriterForRow(tableView ITableView, row int) unsafe.Pointer {
+	return objc.Send[unsafe.Pointer](o.ID, objc.Sel("tableView:pasteboardWriterForRow:"), tableView, row)
+}
+
+// HasTableViewPasteboardWriterForRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewPasteboardWriterForRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewSetObjectValueForTableColumnRow implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewSetObjectValueForTableColumnRow(tableView ITableView, object objectivec.IObject, tableColumn ITableColumn, row int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:setObjectValue:forTableColumn:row:"), tableView, object, tableColumn, row)
+}
+
+// HasTableViewSetObjectValueForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewSetObjectValueForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewSortDescriptorsDidChange implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewSortDescriptorsDidChange(tableView ITableView, oldDescriptors []foundation.SortDescriptor) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:sortDescriptorsDidChange:"), tableView, oldDescriptors)
+}
+
+// HasTableViewSortDescriptorsDidChange returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewSortDescriptorsDidChange() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewUpdateDraggingItemsForDrag implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewUpdateDraggingItemsForDrag(tableView ITableView, draggingInfo unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:updateDraggingItemsForDrag:"), tableView, draggingInfo)
+}
+
+// HasTableViewUpdateDraggingItemsForDrag returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewUpdateDraggingItemsForDrag() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewValidateDropProposedRowProposedDropOperation implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewValidateDropProposedRowProposedDropOperation(tableView ITableView, info unsafe.Pointer, row int, dropOperation TableViewDropOperation) DragOperation {
+	return objc.Send[DragOperation](o.ID, objc.Sel("tableView:validateDrop:proposedRow:proposedDropOperation:"), tableView, info, row, dropOperation)
+}
+
+// HasTableViewValidateDropProposedRowProposedDropOperation returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewValidateDropProposedRowProposedDropOperation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewWriteRowsWithIndexesToPasteboard implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewWriteRowsWithIndexesToPasteboard(tableView ITableView, rowIndexes foundation.IndexSet, pboard IPasteboard) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:writeRowsWithIndexes:toPasteboard:"), tableView, rowIndexes, pboard)
+}
+
+// HasTableViewWriteRowsWithIndexesToPasteboard returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewWriteRowsWithIndexesToPasteboard() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewObjectValueForTableColumnRow implements the PTableViewDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDataSourceObject) TableViewObjectValueForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("tableView:objectValueForTableColumn:row:"), tableView, tableColumn, row)
+}
+
+// HasTableViewObjectValueForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDataSourceObject) HasTableViewObjectValueForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

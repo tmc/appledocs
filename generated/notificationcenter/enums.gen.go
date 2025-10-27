@@ -2,9 +2,9 @@
 
 package notificationcenter
 
-/* debug [enums.gen.go]: Generating 2 enums for NotificationCenter */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum NCUpdateResult (3 cases) */
+
 // NCUpdateResult - The result of updating a widget’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCUpdateResult
@@ -25,7 +25,7 @@ const (
 	NCUpdateResultNoData NCUpdateResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum NCWidgetDisplayMode (2 cases) */
+
 // NCWidgetDisplayMode - The modes that can be toggled between when the user activates the More button for a widget running in iOS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetDisplayMode

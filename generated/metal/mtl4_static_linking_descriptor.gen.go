@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTL4StaticLinkingDescriptor */
 
 
-/* debug [class_header]: Header for MTL4StaticLinkingDescriptor */
+
+
 // The class instance for the [MTL4StaticLinkingDescriptor] class.
 var (
 	MTL4StaticLinkingDescriptorClass     _MTL4StaticLinkingDescriptorClass
@@ -31,16 +30,16 @@ func getMTL4StaticLinkingDescriptorClass() _MTL4StaticLinkingDescriptorClass {
 type _MTL4StaticLinkingDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MTL4StaticLinkingDescriptor */
+
+
 // An interface definition for the [MTL4StaticLinkingDescriptor] class.
 type IMTL4StaticLinkingDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for MTL4StaticLinkingDescriptor */
+
 	// properties:
 	FunctionDescriptors() []MTL4FunctionDescriptor
 	SetFunctionDescriptors(value []MTL4FunctionDescriptor)
@@ -48,19 +47,19 @@ type IMTL4StaticLinkingDescriptor interface {
 	SetGroups(value foundation.IDictionary)
 	PrivateFunctionDescriptors() []MTL4FunctionDescriptor
 	SetPrivateFunctionDescriptors(value []MTL4FunctionDescriptor)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MTL4StaticLinkingDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MTL4StaticLinkingDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4StaticLinkingDescriptorClass) Alloc() MTL4StaticLinkingDescriptor {
 	rv := objc.Send[MTL4StaticLinkingDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -90,11 +89,11 @@ func (m_ MTL4StaticLinkingDescriptor) Autorelease() MTL4StaticLinkingDescriptor 
 func NewMTL4StaticLinkingDescriptor() MTL4StaticLinkingDescriptor {
 	return getMTL4StaticLinkingDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MTL4StaticLinkingDescriptor */
+
+
 // Groups together properties to drive a static linking process.
 
 
@@ -112,30 +111,30 @@ type MTL4StaticLinkingDescriptor struct {
 func MTL4StaticLinkingDescriptorFrom(ptr unsafe.Pointer) MTL4StaticLinkingDescriptor {
 	return MTL4StaticLinkingDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MTL4StaticLinkingDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MTL4StaticLinkingDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MTL4StaticLinkingDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MTL4StaticLinkingDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MTL4StaticLinkingDescriptor */
+
+
+
+
+
+
+
+
+
 
 // Provides an array of functions to link at the Metal IR level.
 //
@@ -144,7 +143,7 @@ func MTL4StaticLinkingDescriptorFrom(ptr unsafe.Pointer) MTL4StaticLinkingDescri
 func (m_ MTL4StaticLinkingDescriptor) FunctionDescriptors() []MTL4FunctionDescriptor {
 	rv := objc.Send[[]MTL4FunctionDescriptor](m_.ID, objc.Sel("functionDescriptors"))
 	return rv
-}/* debug [instance_properties/getter]: functionDescriptors */
+}
 
 
 // Provides an array of functions to link at the Metal IR level.
@@ -162,7 +161,7 @@ func (m_ MTL4StaticLinkingDescriptor) SetFunctionDescriptors(value []MTL4Functio
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionDescriptors:"), nsArray)
-}/* debug [instance_properties/setter]: functionDescriptors */
+}
 
 
 // Assigns groups of functions to match call-site attributes in shader code.
@@ -172,7 +171,7 @@ func (m_ MTL4StaticLinkingDescriptor) SetFunctionDescriptors(value []MTL4Functio
 func (m_ MTL4StaticLinkingDescriptor) Groups() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("groups"))
 	return rv
-}/* debug [instance_properties/getter]: groups */
+}
 
 
 // Assigns groups of functions to match call-site attributes in shader code.
@@ -181,7 +180,7 @@ func (m_ MTL4StaticLinkingDescriptor) Groups() foundation.IDictionary {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4StaticLinkingDescriptor/groups
 func (m_ MTL4StaticLinkingDescriptor) SetGroups(value foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroups:"), value)
-}/* debug [instance_properties/setter]: groups */
+}
 
 
 // Provides an array of private functions to link at the Metal IR level.
@@ -191,7 +190,7 @@ func (m_ MTL4StaticLinkingDescriptor) SetGroups(value foundation.IDictionary) {
 func (m_ MTL4StaticLinkingDescriptor) PrivateFunctionDescriptors() []MTL4FunctionDescriptor {
 	rv := objc.Send[[]MTL4FunctionDescriptor](m_.ID, objc.Sel("privateFunctionDescriptors"))
 	return rv
-}/* debug [instance_properties/getter]: privateFunctionDescriptors */
+}
 
 
 // Provides an array of private functions to link at the Metal IR level.
@@ -209,12 +208,12 @@ func (m_ MTL4StaticLinkingDescriptor) SetPrivateFunctionDescriptors(value []MTL4
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrivateFunctionDescriptors:"), nsArray)
-}/* debug [instance_properties/setter]: privateFunctionDescriptors */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTL4StaticLinkingDescriptor */
+
+
+
 
 
 

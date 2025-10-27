@@ -8,6 +8,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PFilePromiseProviderDelegate is the NSFilePromiseProviderDelegate protocol interface.
@@ -20,8 +22,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate
 type PFilePromiseProviderDelegate interface {
 	// Required methods
-	FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType objc.IObject /* cross-framework: NSString */) foundation.String/* debug [protocol_interface/required_method]: FilePromiseProviderFileNameForType */
-	FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: FilePromiseProviderWritePromiseToURLCompletionHandler */
+	FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType foundation.foundation.INSString) foundation.String
+	FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url foundation.foundation.INSURL, completionHandler unsafe.Pointer)
 	// Optional methods
 	OperationQueueForFilePromiseProvider(filePromiseProvider IFilePromiseProvider) foundation.OperationQueue
 	HasOperationQueueForFilePromiseProvider() bool
@@ -32,8 +34,8 @@ type PFilePromiseProviderDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type FilePromiseProviderDelegate struct {
 	_OperationQueueForFilePromiseProvider func(filePromiseProvider IFilePromiseProvider) foundation.OperationQueue
-	_FilePromiseProviderFileNameForType func(filePromiseProvider IFilePromiseProvider, fileType objc.IObject /* cross-framework: NSString */) foundation.String
-	_FilePromiseProviderWritePromiseToURLCompletionHandler func(filePromiseProvider IFilePromiseProvider, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)
+	_FilePromiseProviderFileNameForType func(filePromiseProvider IFilePromiseProvider, fileType foundation.foundation.INSString) foundation.String
+	_FilePromiseProviderWritePromiseToURLCompletionHandler func(filePromiseProvider IFilePromiseProvider, url foundation.foundation.INSURL, completionHandler unsafe.Pointer)
 }
 
 // SetOperationQueueForFilePromiseProvider sets the handler for the OperationQueueForFilePromiseProvider delegate method.
@@ -46,14 +48,14 @@ func (d *FilePromiseProviderDelegate) SetOperationQueueForFilePromiseProvider(f 
 // SetFilePromiseProviderFileNameForType sets the handler for the FilePromiseProviderFileNameForType delegate method.
 //
 // Provides the drag destination file’s name.
-func (d *FilePromiseProviderDelegate) SetFilePromiseProviderFileNameForType(f func(filePromiseProvider IFilePromiseProvider, fileType objc.IObject /* cross-framework: NSString */) foundation.String) {
+func (d *FilePromiseProviderDelegate) SetFilePromiseProviderFileNameForType(f func(filePromiseProvider IFilePromiseProvider, fileType foundation.foundation.INSString) foundation.String) {
 	d._FilePromiseProviderFileNameForType = f
 }
 
 // SetFilePromiseProviderWritePromiseToURLCompletionHandler sets the handler for the FilePromiseProviderWritePromiseToURLCompletionHandler delegate method.
 //
 // Writes the contents of a promise to the specified URL.
-func (d *FilePromiseProviderDelegate) SetFilePromiseProviderWritePromiseToURLCompletionHandler(f func(filePromiseProvider IFilePromiseProvider, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)) {
+func (d *FilePromiseProviderDelegate) SetFilePromiseProviderWritePromiseToURLCompletionHandler(f func(filePromiseProvider IFilePromiseProvider, url foundation.foundation.INSURL, completionHandler unsafe.Pointer)) {
 	d._FilePromiseProviderWritePromiseToURLCompletionHandler = f
 }
 
@@ -72,7 +74,7 @@ func (d *FilePromiseProviderDelegate) HasOperationQueueForFilePromiseProvider() 
 }
 
 // FilePromiseProviderFileNameForType implements the PFilePromiseProviderDelegate interface.
-func (d *FilePromiseProviderDelegate) FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType objc.IObject /* cross-framework: NSString */) foundation.String {
+func (d *FilePromiseProviderDelegate) FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType foundation.foundation.INSString) foundation.String {
 	if d._FilePromiseProviderFileNameForType != nil {
 		return d._FilePromiseProviderFileNameForType(filePromiseProvider, fileType)
 	}
@@ -86,7 +88,7 @@ func (d *FilePromiseProviderDelegate) HasFilePromiseProviderFileNameForType() bo
 }
 
 // FilePromiseProviderWritePromiseToURLCompletionHandler implements the PFilePromiseProviderDelegate interface.
-func (d *FilePromiseProviderDelegate) FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer) {
+func (d *FilePromiseProviderDelegate) FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url foundation.foundation.INSURL, completionHandler unsafe.Pointer) {
 	if d._FilePromiseProviderWritePromiseToURLCompletionHandler != nil {
 		d._FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider, url, completionHandler)
 	}
@@ -95,4 +97,43 @@ func (d *FilePromiseProviderDelegate) FilePromiseProviderWritePromiseToURLComple
 // HasFilePromiseProviderWritePromiseToURLCompletionHandler returns true if a handler for FilePromiseProviderWritePromiseToURLCompletionHandler has been set.
 func (d *FilePromiseProviderDelegate) HasFilePromiseProviderWritePromiseToURLCompletionHandler() bool {
 	return d._FilePromiseProviderWritePromiseToURLCompletionHandler != nil
+}
+
+// FilePromiseProviderDelegateObject wraps an existing Objective-C object that conforms to the PFilePromiseProviderDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type FilePromiseProviderDelegateObject struct {
+	objectivec.Object
+}
+
+// NewFilePromiseProviderDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSFilePromiseProviderDelegate protocol.
+func NewFilePromiseProviderDelegateObject(obj objectivec.Object) *FilePromiseProviderDelegateObject {
+	return &FilePromiseProviderDelegateObject{obj}
+}
+
+// Make sure FilePromiseProviderDelegateObject implements PFilePromiseProviderDelegate.
+var _ PFilePromiseProviderDelegate = (*FilePromiseProviderDelegateObject)(nil)
+
+// FilePromiseProviderFileNameForType implements the PFilePromiseProviderDelegate interface.
+// This required method is always available on objects conforming to FilePromiseProviderFileNameForType.
+func (o *FilePromiseProviderDelegateObject) FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType foundation.foundation.INSString) foundation.String {
+	return objc.Send[foundation.String](o.ID, objc.Sel("filePromiseProvider:fileNameForType:"), filePromiseProvider, fileType)
+}
+
+// FilePromiseProviderWritePromiseToURLCompletionHandler implements the PFilePromiseProviderDelegate interface.
+// This required method is always available on objects conforming to FilePromiseProviderWritePromiseToURLCompletionHandler.
+func (o *FilePromiseProviderDelegateObject) FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url foundation.foundation.INSURL, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("filePromiseProvider:writePromiseToURL:completionHandler:"), filePromiseProvider, url, completionHandler)
+}
+
+// OperationQueueForFilePromiseProvider implements the PFilePromiseProviderDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FilePromiseProviderDelegateObject) OperationQueueForFilePromiseProvider(filePromiseProvider IFilePromiseProvider) foundation.OperationQueue {
+	return objc.Send[foundation.OperationQueue](o.ID, objc.Sel("operationQueueForFilePromiseProvider:"), filePromiseProvider)
+}
+
+// HasOperationQueueForFilePromiseProvider returns true; this is a placeholder for optional method checks.
+func (o *FilePromiseProviderDelegateObject) HasOperationQueueForFilePromiseProvider() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

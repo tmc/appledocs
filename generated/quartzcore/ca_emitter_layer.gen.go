@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CAEmitterLayer */
 
 
-/* debug [class_header]: Header for CAEmitterLayer */
+
+
 // The class instance for the [EmitterLayer] class.
 var (
 	EmitterLayerClass     _EmitterLayerClass
@@ -31,16 +31,16 @@ func getEmitterLayerClass() _EmitterLayerClass {
 type _EmitterLayerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for EmitterLayer */
+
+
 // An interface definition for the [EmitterLayer] class.
 type IEmitterLayer interface {
 	ILayer
 	
-/* debug [class_interface_properties]: Properties for EmitterLayer */
+
 	// properties:
 	BirthRate() float32
 	SetBirthRate(value float32)
@@ -48,12 +48,12 @@ type IEmitterLayer interface {
 	SetEmitterCells(value []EmitterCell)
 	EmitterDepth() float64
 	SetEmitterDepth(value float64)
-	EmitterMode() EmitterLayerEmitterMode /* typedef */
-	SetEmitterMode(value EmitterLayerEmitterMode /* typedef */)
+	EmitterMode() EmitterLayerEmitterMode
+	SetEmitterMode(value EmitterLayerEmitterMode)
 	EmitterPosition() corefoundation.CGPoint
 	SetEmitterPosition(value corefoundation.CGPoint)
-	EmitterShape() EmitterLayerEmitterShape /* typedef */
-	SetEmitterShape(value EmitterLayerEmitterShape /* typedef */)
+	EmitterShape() EmitterLayerEmitterShape
+	SetEmitterShape(value EmitterLayerEmitterShape)
 	EmitterSize() corefoundation.CGSize
 	SetEmitterSize(value corefoundation.CGSize)
 	EmitterZPosition() float64
@@ -62,8 +62,8 @@ type IEmitterLayer interface {
 	SetLifetime(value float32)
 	PreservesDepth() bool
 	SetPreservesDepth(value bool)
-	RenderMode() EmitterLayerRenderMode /* typedef */
-	SetRenderMode(value EmitterLayerRenderMode /* typedef */)
+	RenderMode() EmitterLayerRenderMode
+	SetRenderMode(value EmitterLayerRenderMode)
 	Scale() float32
 	SetScale(value float32)
 	Seed() objectivec.IObject
@@ -74,19 +74,19 @@ type IEmitterLayer interface {
 	SetVelocity(value float32)
 	EmissionRange() float64
 	SetEmissionRange(value float64)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for EmitterLayer */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for EmitterLayer */
+
+
 // Alloc allocates a new instance without initialization.
 func (ec _EmitterLayerClass) Alloc() EmitterLayer {
 	rv := objc.Send[EmitterLayer](objc.ID(ec.class), objc.Sel("alloc"))
@@ -116,11 +116,11 @@ func (e_ EmitterLayer) Autorelease() EmitterLayer {
 func NewEmitterLayer() EmitterLayer {
 	return getEmitterLayerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for EmitterLayer */
+
+
 // A layer that emits, animates, and renders a particle system.
 //
 // The particles, defined by instances of , are drawn above the layer’s background color and border. The following code shows how to set up a simple point (the default is ) particle emitter. It uses an image named as the cell contents and, by setting the emitter cell’s to doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi , the particles are emitted in all directions.
@@ -142,30 +142,30 @@ func EmitterLayerFrom(ptr unsafe.Pointer) EmitterLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for EmitterLayer *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for EmitterLayer */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for EmitterLayer */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for EmitterLayer */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for EmitterLayer */
+
+
+
+
+
+
+
+
+
 
 // Defines a multiplier that is applied to the cell-defined birth rate. Animatable
 //
@@ -174,7 +174,7 @@ func EmitterLayerFrom(ptr unsafe.Pointer) EmitterLayer {
 func (e_ EmitterLayer) BirthRate() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("birthRate"))
 	return rv
-}/* debug [instance_properties/getter]: birthRate */
+}
 
 
 // Defines a multiplier that is applied to the cell-defined birth rate. Animatable
@@ -183,7 +183,7 @@ func (e_ EmitterLayer) BirthRate() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/birthRate
 func (e_ EmitterLayer) SetBirthRate(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBirthRate:"), value)
-}/* debug [instance_properties/setter]: birthRate */
+}
 
 
 // The array emitter cells attached to the layer.
@@ -193,7 +193,7 @@ func (e_ EmitterLayer) SetBirthRate(value float32) {
 func (e_ EmitterLayer) EmitterCells() []EmitterCell {
 	rv := objc.Send[[]EmitterCell](e_.ID, objc.Sel("emitterCells"))
 	return rv
-}/* debug [instance_properties/getter]: emitterCells */
+}
 
 
 // The array emitter cells attached to the layer.
@@ -211,7 +211,7 @@ func (e_ EmitterLayer) SetEmitterCells(value []EmitterCell) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterCells:"), nsArray)
-}/* debug [instance_properties/setter]: emitterCells */
+}
 
 
 // Determines the depth of the emitter shape.
@@ -221,7 +221,7 @@ func (e_ EmitterLayer) SetEmitterCells(value []EmitterCell) {
 func (e_ EmitterLayer) EmitterDepth() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("emitterDepth"))
 	return rv
-}/* debug [instance_properties/getter]: emitterDepth */
+}
 
 
 // Determines the depth of the emitter shape.
@@ -230,26 +230,26 @@ func (e_ EmitterLayer) EmitterDepth() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterDepth
 func (e_ EmitterLayer) SetEmitterDepth(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterDepth:"), value)
-}/* debug [instance_properties/setter]: emitterDepth */
+}
 
 
 // Specifies the emitter mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterMode
-func (e_ EmitterLayer) EmitterMode() EmitterLayerEmitterMode /* typedef */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("emitterMode"))
+func (e_ EmitterLayer) EmitterMode() EmitterLayerEmitterMode {
+	rv := objc.Send[EmitterLayerEmitterMode](e_.ID, objc.Sel("emitterMode"))
 	return rv
-}/* debug [instance_properties/getter]: emitterMode */
+}
 
 
 // Specifies the emitter mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterMode
-func (e_ EmitterLayer) SetEmitterMode(value EmitterLayerEmitterMode /* typedef */) {
+func (e_ EmitterLayer) SetEmitterMode(value EmitterLayerEmitterMode) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterMode:"), value)
-}/* debug [instance_properties/setter]: emitterMode */
+}
 
 
 // The position of the center of the particle emitter. Animatable.
@@ -259,7 +259,7 @@ func (e_ EmitterLayer) SetEmitterMode(value EmitterLayerEmitterMode /* typedef *
 func (e_ EmitterLayer) EmitterPosition() corefoundation.CGPoint {
 	rv := objc.Send[corefoundation.CGPoint](e_.ID, objc.Sel("emitterPosition"))
 	return rv
-}/* debug [instance_properties/getter]: emitterPosition */
+}
 
 
 // The position of the center of the particle emitter. Animatable.
@@ -268,26 +268,26 @@ func (e_ EmitterLayer) EmitterPosition() corefoundation.CGPoint {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterPosition
 func (e_ EmitterLayer) SetEmitterPosition(value corefoundation.CGPoint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterPosition:"), value)
-}/* debug [instance_properties/setter]: emitterPosition */
+}
 
 
 // Specifies the emitter shape.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
-func (e_ EmitterLayer) EmitterShape() EmitterLayerEmitterShape /* typedef */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("emitterShape"))
+func (e_ EmitterLayer) EmitterShape() EmitterLayerEmitterShape {
+	rv := objc.Send[EmitterLayerEmitterShape](e_.ID, objc.Sel("emitterShape"))
 	return rv
-}/* debug [instance_properties/getter]: emitterShape */
+}
 
 
 // Specifies the emitter shape.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
-func (e_ EmitterLayer) SetEmitterShape(value EmitterLayerEmitterShape /* typedef */) {
+func (e_ EmitterLayer) SetEmitterShape(value EmitterLayerEmitterShape) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterShape:"), value)
-}/* debug [instance_properties/setter]: emitterShape */
+}
 
 
 // Determines the size of the particle emitter shape. Animatable.
@@ -297,7 +297,7 @@ func (e_ EmitterLayer) SetEmitterShape(value EmitterLayerEmitterShape /* typedef
 func (e_ EmitterLayer) EmitterSize() corefoundation.CGSize {
 	rv := objc.Send[corefoundation.CGSize](e_.ID, objc.Sel("emitterSize"))
 	return rv
-}/* debug [instance_properties/getter]: emitterSize */
+}
 
 
 // Determines the size of the particle emitter shape. Animatable.
@@ -306,7 +306,7 @@ func (e_ EmitterLayer) EmitterSize() corefoundation.CGSize {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterSize
 func (e_ EmitterLayer) SetEmitterSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterSize:"), value)
-}/* debug [instance_properties/setter]: emitterSize */
+}
 
 
 // Specifies the center of the particle emitter shape along the z-axis. Animatable.
@@ -316,7 +316,7 @@ func (e_ EmitterLayer) SetEmitterSize(value corefoundation.CGSize) {
 func (e_ EmitterLayer) EmitterZPosition() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("emitterZPosition"))
 	return rv
-}/* debug [instance_properties/getter]: emitterZPosition */
+}
 
 
 // Specifies the center of the particle emitter shape along the z-axis. Animatable.
@@ -325,7 +325,7 @@ func (e_ EmitterLayer) EmitterZPosition() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterZPosition
 func (e_ EmitterLayer) SetEmitterZPosition(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterZPosition:"), value)
-}/* debug [instance_properties/setter]: emitterZPosition */
+}
 
 
 // Defines a multiplier applied to the cell-defined lifetime range when particles are created. Animatable.
@@ -335,7 +335,7 @@ func (e_ EmitterLayer) SetEmitterZPosition(value float64) {
 func (e_ EmitterLayer) Lifetime() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("lifetime"))
 	return rv
-}/* debug [instance_properties/getter]: lifetime */
+}
 
 
 // Defines a multiplier applied to the cell-defined lifetime range when particles are created. Animatable.
@@ -344,7 +344,7 @@ func (e_ EmitterLayer) Lifetime() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/lifetime
 func (e_ EmitterLayer) SetLifetime(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLifetime:"), value)
-}/* debug [instance_properties/setter]: lifetime */
+}
 
 
 // Defines whether the layer flattens the particles into its plane.
@@ -354,7 +354,7 @@ func (e_ EmitterLayer) SetLifetime(value float32) {
 func (e_ EmitterLayer) PreservesDepth() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("preservesDepth"))
 	return rv
-}/* debug [instance_properties/getter]: preservesDepth */
+}
 
 
 // Defines whether the layer flattens the particles into its plane.
@@ -363,26 +363,26 @@ func (e_ EmitterLayer) PreservesDepth() bool {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/preservesDepth
 func (e_ EmitterLayer) SetPreservesDepth(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPreservesDepth:"), value)
-}/* debug [instance_properties/setter]: preservesDepth */
+}
 
 
 // Defines how particle cells are rendered into the layer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/renderMode
-func (e_ EmitterLayer) RenderMode() EmitterLayerRenderMode /* typedef */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("renderMode"))
+func (e_ EmitterLayer) RenderMode() EmitterLayerRenderMode {
+	rv := objc.Send[EmitterLayerRenderMode](e_.ID, objc.Sel("renderMode"))
 	return rv
-}/* debug [instance_properties/getter]: renderMode */
+}
 
 
 // Defines how particle cells are rendered into the layer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/renderMode
-func (e_ EmitterLayer) SetRenderMode(value EmitterLayerRenderMode /* typedef */) {
+func (e_ EmitterLayer) SetRenderMode(value EmitterLayerRenderMode) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRenderMode:"), value)
-}/* debug [instance_properties/setter]: renderMode */
+}
 
 
 // Defines a multiplier applied to the cell-defined particle scale.
@@ -392,7 +392,7 @@ func (e_ EmitterLayer) SetRenderMode(value EmitterLayerRenderMode /* typedef */)
 func (e_ EmitterLayer) Scale() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("scale"))
 	return rv
-}/* debug [instance_properties/getter]: scale */
+}
 
 
 // Defines a multiplier applied to the cell-defined particle scale.
@@ -401,7 +401,7 @@ func (e_ EmitterLayer) Scale() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/scale
 func (e_ EmitterLayer) SetScale(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setScale:"), value)
-}/* debug [instance_properties/setter]: scale */
+}
 
 
 // Specifies the seed used to initialize the random number generator.
@@ -411,7 +411,7 @@ func (e_ EmitterLayer) SetScale(value float32) {
 func (e_ EmitterLayer) Seed() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("seed"))
 	return rv
-}/* debug [instance_properties/getter]: seed */
+}
 
 
 // Specifies the seed used to initialize the random number generator.
@@ -420,7 +420,7 @@ func (e_ EmitterLayer) Seed() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/seed
 func (e_ EmitterLayer) SetSeed(value objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSeed:"), value)
-}/* debug [instance_properties/setter]: seed */
+}
 
 
 // Defines a multiplier applied to the cell-defined particle spin. Animatable.
@@ -430,7 +430,7 @@ func (e_ EmitterLayer) SetSeed(value objectivec.IObject) {
 func (e_ EmitterLayer) Spin() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("spin"))
 	return rv
-}/* debug [instance_properties/getter]: spin */
+}
 
 
 // Defines a multiplier applied to the cell-defined particle spin. Animatable.
@@ -439,7 +439,7 @@ func (e_ EmitterLayer) Spin() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/spin
 func (e_ EmitterLayer) SetSpin(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSpin:"), value)
-}/* debug [instance_properties/setter]: spin */
+}
 
 
 // Defines a multiplier applied to the cell-defined particle velocity. Animatable.
@@ -449,7 +449,7 @@ func (e_ EmitterLayer) SetSpin(value float32) {
 func (e_ EmitterLayer) Velocity() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("velocity"))
 	return rv
-}/* debug [instance_properties/getter]: velocity */
+}
 
 
 // Defines a multiplier applied to the cell-defined particle velocity. Animatable.
@@ -458,7 +458,7 @@ func (e_ EmitterLayer) Velocity() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/velocity
 func (e_ EmitterLayer) SetVelocity(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVelocity:"), value)
-}/* debug [instance_properties/setter]: velocity */
+}
 
 
 // The angle, in radians, defining a cone around the emission angle. Animatable.
@@ -468,7 +468,7 @@ func (e_ EmitterLayer) SetVelocity(value float32) {
 func (e_ EmitterLayer) EmissionRange() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("emissionRange"))
 	return rv
-}/* debug [instance_properties/getter]: emissionRange */
+}
 
 
 // The angle, in radians, defining a cone around the emission angle. Animatable.
@@ -477,12 +477,12 @@ func (e_ EmitterLayer) EmissionRange() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/caemittercell/emissionrange
 func (e_ EmitterLayer) SetEmissionRange(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmissionRange:"), value)
-}/* debug [instance_properties/setter]: emissionRange */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CAEmitterLayer */
+
+
+
 
 
 

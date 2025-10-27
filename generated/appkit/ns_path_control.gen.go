@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class NSPathControl */
 
 
-/* debug [class_header]: Header for NSPathControl */
+
+
 // The class instance for the [PathControl] class.
 var (
 	PathControlClass     _PathControlClass
@@ -30,24 +29,22 @@ func getPathControlClass() _PathControlClass {
 type _PathControlClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PathControl */
+
+
 // An interface definition for the [PathControl] class.
 type IPathControl interface {
 	IControl
 	
-/* debug [class_interface_properties]: Properties for PathControl */
+
 	// properties:
 	AllowedTypes() []string
 	SetAllowedTypes(value []string)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	ClickedPathItem() IPathControlItem
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	DoubleAction() objc.SEL
 	SetDoubleAction(value objc.SEL)
 	Editable() bool
@@ -58,28 +55,28 @@ type IPathControl interface {
 	SetPathItems(value []PathControlItem)
 	PathStyle() PathStyle
 	SetPathStyle(value PathStyle)
-	PlaceholderAttributedString() foundation.AttributedString
-	SetPlaceholderAttributedString(value foundation.AttributedString)
-	PlaceholderString() objc.IObject /* cross-framework: NSString */
-	SetPlaceholderString(value objc.IObject /* cross-framework: NSString */)
-	URL() objc.IObject /* cross-framework: NSURL */
-	SetURL(value objc.IObject /* cross-framework: NSURL */)
+	PlaceholderAttributedString() foundation.foundation.INSAttributedString
+	SetPlaceholderAttributedString(value foundation.foundation.INSAttributedString)
+	PlaceholderString() foundation.foundation.INSString
+	SetPlaceholderString(value foundation.foundation.INSString)
+	URL() foundation.foundation.INSURL
+	SetURL(value foundation.foundation.INSURL)
 	IsEditable() bool
 	SetIsEditable(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PathControl */
+
 	// methods:
 	SetDraggingSourceOperationMaskForLocal(mask DragOperation, isLocal bool)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PathControl */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PathControlClass) Alloc() PathControl {
 	rv := objc.Send[PathControl](objc.ID(pc.class), objc.Sel("alloc"))
@@ -109,11 +106,11 @@ func (p_ PathControl) Autorelease() PathControl {
 func NewPathControl() PathControl {
 	return getPathControlClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PathControl */
+
+
 // A display of a file system path or virtual path information.
 //
 // The class uses to implement its user interface. provides cover methods for most methods—the cover method simply invokes the corresponding cell method. See also , which represents individual components of the path, and two associated protocols: and . has three styles represented by the enumeration constants , , and . The represented path can be a file system path or any other type of path leading through a sequence of nodes or components, as defined by the programmer. automatically supports drag and drop, which can be further customized via delegate methods. To accept drag and drop, calls with and . When the URL value in the object changes because of an automatic drag and drop operation or the user selecting a new path via the open panel, the action is sent. In OS X v10.5 the value returned by is , in macOS 10.6 and later, returns the clicked cell.
@@ -135,25 +132,25 @@ func PathControlFrom(ptr unsafe.Pointer) PathControl {
 		Control: ControlFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PathControl *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for PathControl */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PathControl */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PathControl */
+
+
+
+
+
+
+
 
 // Configures the drag operation mask.
 //
@@ -161,20 +158,20 @@ func PathControlFrom(ptr unsafe.Pointer) PathControl {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/setDraggingSourceOperationMask(_:forLocal:)
 func (p_ PathControl) SetDraggingSourceOperationMaskForLocal(mask DragOperation, isLocal bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDraggingSourceOperationMask:forLocal:"), mask, isLocal)
-}/* debug [instance_methods/method]: SetDraggingSourceOperationMaskForLocal */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PathControl */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/allowedTypes
 func (p_ PathControl) AllowedTypes() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("allowedTypes"))
 	return rv
-}/* debug [instance_properties/getter]: allowedTypes */
+}
 
 
 // [Full Topic]
@@ -190,7 +187,7 @@ func (p_ PathControl) SetAllowedTypes(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), nsArray)
-}/* debug [instance_properties/setter]: allowedTypes */
+}
 
 
 // The receiver’s background color.
@@ -200,7 +197,7 @@ func (p_ PathControl) SetAllowedTypes(value []string) {
 func (p_ PathControl) BackgroundColor() IColor {
 	rv := objc.Send[Color](p_.ID, objc.Sel("backgroundColor"))
 	return rv
-}/* debug [instance_properties/getter]: backgroundColor */
+}
 
 
 // The receiver’s background color.
@@ -209,7 +206,7 @@ func (p_ PathControl) BackgroundColor() IColor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/backgroundColor
 func (p_ PathControl) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
-}/* debug [instance_properties/setter]: backgroundColor */
+}
 
 
 // [Full Topic]
@@ -217,26 +214,7 @@ func (p_ PathControl) SetBackgroundColor(value IColor) {
 func (p_ PathControl) ClickedPathItem() IPathControlItem {
 	rv := objc.Send[PathControlItem](p_.ID, objc.Sel("clickedPathItem"))
 	return rv
-}/* debug [instance_properties/getter]: clickedPathItem */
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/delegate
-func (p_ PathControl) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
-	return rv
-}/* debug [instance_properties/getter]: delegate */
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/delegate
-func (p_ PathControl) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
-}/* debug [instance_properties/setter]: delegate */
+}
 
 
 // The receiver’s double-click action method.
@@ -246,7 +224,7 @@ func (p_ PathControl) SetDelegate(value unsafe.Pointer) {
 func (p_ PathControl) DoubleAction() objc.SEL {
 	rv := objc.Send[objc.SEL](p_.ID, objc.Sel("doubleAction"))
 	return rv
-}/* debug [instance_properties/getter]: doubleAction */
+}
 
 
 // The receiver’s double-click action method.
@@ -255,7 +233,7 @@ func (p_ PathControl) DoubleAction() objc.SEL {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/doubleAction
 func (p_ PathControl) SetDoubleAction(value objc.SEL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleAction:"), value)
-}/* debug [instance_properties/setter]: doubleAction */
+}
 
 
 // [Full Topic]
@@ -263,14 +241,14 @@ func (p_ PathControl) SetDoubleAction(value objc.SEL) {
 func (p_ PathControl) Editable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("editable"))
 	return rv
-}/* debug [instance_properties/getter]: editable */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/isEditable
 func (p_ PathControl) SetEditable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEditable:"), value)
-}/* debug [instance_properties/setter]: editable */
+}
 
 
 // The menu that is used for the path control’s cells.
@@ -280,7 +258,7 @@ func (p_ PathControl) SetEditable(value bool) {
 func (p_ PathControl) Menu() IMenu {
 	rv := objc.Send[Menu](p_.ID, objc.Sel("menu"))
 	return rv
-}/* debug [instance_properties/getter]: menu */
+}
 
 
 // The menu that is used for the path control’s cells.
@@ -289,7 +267,7 @@ func (p_ PathControl) Menu() IMenu {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/menu
 func (p_ PathControl) SetMenu(value IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
-}/* debug [instance_properties/setter]: menu */
+}
 
 
 // [Full Topic]
@@ -297,7 +275,7 @@ func (p_ PathControl) SetMenu(value IMenu) {
 func (p_ PathControl) PathItems() []PathControlItem {
 	rv := objc.Send[[]PathControlItem](p_.ID, objc.Sel("pathItems"))
 	return rv
-}/* debug [instance_properties/getter]: pathItems */
+}
 
 
 // [Full Topic]
@@ -313,7 +291,7 @@ func (p_ PathControl) SetPathItems(value []PathControlItem) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPathItems:"), nsArray)
-}/* debug [instance_properties/setter]: pathItems */
+}
 
 
 // The receiver’s path style.
@@ -323,7 +301,7 @@ func (p_ PathControl) SetPathItems(value []PathControlItem) {
 func (p_ PathControl) PathStyle() PathStyle {
 	rv := objc.Send[PathStyle](p_.ID, objc.Sel("pathStyle"))
 	return rv
-}/* debug [instance_properties/getter]: pathStyle */
+}
 
 
 // The receiver’s path style.
@@ -332,56 +310,56 @@ func (p_ PathControl) PathStyle() PathStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/pathStyle
 func (p_ PathControl) SetPathStyle(value PathStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPathStyle:"), value)
-}/* debug [instance_properties/setter]: pathStyle */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/placeholderAttributedString
-func (p_ PathControl) PlaceholderAttributedString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
+func (p_ PathControl) PlaceholderAttributedString() foundation.foundation.INSAttributedString {
+	rv := objc.Send[foundation.NSAttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
-}/* debug [instance_properties/getter]: placeholderAttributedString */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/placeholderAttributedString
-func (p_ PathControl) SetPlaceholderAttributedString(value foundation.AttributedString) {
+func (p_ PathControl) SetPlaceholderAttributedString(value foundation.foundation.INSAttributedString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
-}/* debug [instance_properties/setter]: placeholderAttributedString */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/placeholderString
-func (p_ PathControl) PlaceholderString() objc.IObject /* cross-framework: NSString */ {
+func (p_ PathControl) PlaceholderString() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("placeholderString"))
 	return rv
-}/* debug [instance_properties/getter]: placeholderString */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/placeholderString
-func (p_ PathControl) SetPlaceholderString(value objc.IObject /* cross-framework: NSString */) {
+func (p_ PathControl) SetPlaceholderString(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), value)
-}/* debug [instance_properties/setter]: placeholderString */
+}
 
 
 // The path value displayed by the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/url
-func (p_ PathControl) URL() objc.IObject /* cross-framework: NSURL */ {
+func (p_ PathControl) URL() foundation.foundation.INSURL {
 	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("URL"))
 	return rv
-}/* debug [instance_properties/getter]: URL */
+}
 
 
 // The path value displayed by the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/url
-func (p_ PathControl) SetURL(value objc.IObject /* cross-framework: NSURL */) {
+func (p_ PathControl) SetURL(value foundation.foundation.INSURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
-}/* debug [instance_properties/setter]: URL */
+}
 
 
 // [Full Topic]
@@ -389,19 +367,19 @@ func (p_ PathControl) SetURL(value objc.IObject /* cross-framework: NSURL */) {
 func (p_ PathControl) IsEditable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
 	return rv
-}/* debug [instance_properties/getter]: isEditable */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
 func (p_ PathControl) SetIsEditable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
-}/* debug [instance_properties/setter]: isEditable */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSPathControl */
+
+
+
 
 
 

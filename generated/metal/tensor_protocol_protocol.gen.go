@@ -22,6 +22,6 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLTensor
 type PTensor interface {
 	// Required methods
-	GetBytesStridesFromSliceOriginSliceDimensions(bytes objectivec.IObject, strides IMTLTensorExtents, sliceOrigin IMTLTensorExtents, sliceDimensions IMTLTensorExtents)/* debug [protocol_interface/required_method]: GetBytesStridesFromSliceOriginSliceDimensions */
-	ReplaceSliceOriginSliceDimensionsWithBytesStrides(sliceOrigin IMTLTensorExtents, sliceDimensions IMTLTensorExtents, bytes objectivec.IObject, strides IMTLTensorExtents)/* debug [protocol_interface/required_method]: ReplaceSliceOriginSliceDimensionsWithBytesStrides */
+	GetBytesStridesFromSliceOriginSliceDimensions(bytes objectivec.IObject, strides IMTLTensorExtents, sliceOrigin IMTLTensorExtents, sliceDimensions IMTLTensorExtents)
+	ReplaceSliceOriginSliceDimensionsWithBytesStrides(sliceOrigin IMTLTensorExtents, sliceDimensions IMTLTensorExtents, bytes objectivec.IObject, strides IMTLTensorExtents)
 }

@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PStackViewDelegate is the NSStackViewDelegate protocol interface.
@@ -67,4 +69,42 @@ func (d *StackViewDelegate) StackViewWillDetachViews(stackView IStackView, views
 // HasStackViewWillDetachViews returns true if a handler for StackViewWillDetachViews has been set.
 func (d *StackViewDelegate) HasStackViewWillDetachViews() bool {
 	return d._StackViewWillDetachViews != nil
+}
+
+// StackViewDelegateObject wraps an existing Objective-C object that conforms to the PStackViewDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type StackViewDelegateObject struct {
+	objectivec.Object
+}
+
+// NewStackViewDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSStackViewDelegate protocol.
+func NewStackViewDelegateObject(obj objectivec.Object) *StackViewDelegateObject {
+	return &StackViewDelegateObject{obj}
+}
+
+// Make sure StackViewDelegateObject implements PStackViewDelegate.
+var _ PStackViewDelegate = (*StackViewDelegateObject)(nil)
+
+// StackViewDidReattachViews implements the PStackViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *StackViewDelegateObject) StackViewDidReattachViews(stackView IStackView, views []View) {
+	objc.Send[objc.ID](o.ID, objc.Sel("stackView:didReattachViews:"), stackView, views)
+}
+
+// HasStackViewDidReattachViews returns true; this is a placeholder for optional method checks.
+func (o *StackViewDelegateObject) HasStackViewDidReattachViews() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// StackViewWillDetachViews implements the PStackViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *StackViewDelegateObject) StackViewWillDetachViews(stackView IStackView, views []View) {
+	objc.Send[objc.ID](o.ID, objc.Sel("stackView:willDetachViews:"), stackView, views)
+}
+
+// HasStackViewWillDetachViews returns true; this is a placeholder for optional method checks.
+func (o *StackViewDelegateObject) HasStackViewWillDetachViews() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

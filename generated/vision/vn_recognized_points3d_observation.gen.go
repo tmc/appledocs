@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 
@@ -48,8 +47,8 @@ type IRecognizedPoints3DObservation interface {
 	
 
 	// methods:
-	RecognizedPointForKeyError(pointKey RecognizedPointKey /* typedef */, error_ objectivec.IObject) IRecognizedPoint3D
-	RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey /* typedef */, error_ objectivec.IObject) foundation.IDictionary
+	RecognizedPointForKeyError(pointKey RecognizedPointKey, error_ foundation.foundation.INSError) IRecognizedPoint3D
+	RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey, error_ foundation.foundation.INSError) foundation.IDictionary
 
 
 }
@@ -135,7 +134,7 @@ func RecognizedPoints3DObservationFrom(ptr unsafe.Pointer) RecognizedPoints3DObs
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoints3DObservation/recognizedPoint(forKey:)
-func (r_ RecognizedPoints3DObservation) RecognizedPointForKeyError(pointKey RecognizedPointKey /* typedef */, error_ objectivec.IObject) IRecognizedPoint3D {
+func (r_ RecognizedPoints3DObservation) RecognizedPointForKeyError(pointKey RecognizedPointKey, error_ foundation.foundation.INSError) IRecognizedPoint3D {
 	rv := objc.Send[RecognizedPoint3D](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
 	return rv
 }
@@ -145,7 +144,7 @@ func (r_ RecognizedPoints3DObservation) RecognizedPointForKeyError(pointKey Reco
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoints3DObservation/recognizedPoints(forGroupKey:)
-func (r_ RecognizedPoints3DObservation) RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
+func (r_ RecognizedPoints3DObservation) RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey, error_ foundation.foundation.INSError) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
 	return rv
 }

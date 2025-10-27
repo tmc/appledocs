@@ -16,11 +16,11 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider
 type PTextElementProvider interface {
 	// Required methods
-	EnumerateTextElementsFromLocationOptionsUsingBlock(textLocation unsafe.Pointer, options TextContentManagerEnumerationOptions, block unsafe.Pointer) unsafe.Pointer/* debug [protocol_interface/required_method]: EnumerateTextElementsFromLocationOptionsUsingBlock */
-	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)/* debug [protocol_interface/required_method]: ReplaceContentsInRangeWithTextElements */
-	SynchronizeToBackingStore(completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: SynchronizeToBackingStore */
+	EnumerateTextElementsFromLocationOptionsUsingBlock(textLocation unsafe.Pointer, options TextContentManagerEnumerationOptions, block unsafe.Pointer) unsafe.Pointer
+	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
+	SynchronizeToBackingStore(completionHandler unsafe.Pointer)
 	// Optional methods
-	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange
+	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) ITextRange
 	HasAdjustedRangeFromRangeForEditingTextSelection() bool
 	LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer
 	HasLocationFromLocationWithOffset() bool

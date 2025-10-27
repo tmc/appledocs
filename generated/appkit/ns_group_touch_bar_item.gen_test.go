@@ -13,7 +13,7 @@ var _ = appkit.NewGroupTouchBarItem
 // Initializes and returns a group item configured to match system alerts.
 func ExampleNewGroupTouchBarItemAlertStyleGroupItemWithIdentifier() {
 	_ = appkit.NewGroupTouchBarItemAlertStyleGroupItemWithIdentifier(
-		appkit.TouchBarItemIdentifier /* typedef */{}, // identifier TouchBarItemIdentifier /* typedef */
+		appkit.TouchBarItemIdentifier{}, // identifier TouchBarItemIdentifier
 	)
 	// Output:
 }
@@ -21,7 +21,7 @@ func ExampleNewGroupTouchBarItemAlertStyleGroupItemWithIdentifier() {
 // Initializes and returns a group item whose bar is constructed from the supplied items.
 func ExampleNewGroupTouchBarItemGroupItemWithIdentifierItems() {
 	_ = appkit.NewGroupTouchBarItemGroupItemWithIdentifierItems(
-		appkit.TouchBarItemIdentifier /* typedef */{}, // identifier TouchBarItemIdentifier /* typedef */
+		appkit.TouchBarItemIdentifier{}, // identifier TouchBarItemIdentifier
 		[]appkit.TouchBarItem{}, // items []TouchBarItem
 	)
 	// Output:

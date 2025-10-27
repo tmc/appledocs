@@ -22,7 +22,7 @@ import (
 type PPadding interface {
 	// Required methods
 	PaddingMethod()
-	DestinationImageDescriptorForSourceImagesSourceStatesForKernelSuggestedDescriptor(sourceImages unsafe.Pointer, sourceStates unsafe.Pointer, kernel IKernel, inDescriptor IImageDescriptor) ImageDescriptor
+	DestinationImageDescriptorForSourceImagesSourceStatesForKernelSuggestedDescriptor(sourceImages unsafe.Pointer, sourceStates unsafe.Pointer, kernel IKernel, inDescriptor IImageDescriptor) IImageDescriptor
 	// Optional methods
 	DestinationImageDescriptor()
 	HasDestinationImageDescriptor() bool

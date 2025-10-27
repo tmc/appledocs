@@ -20,11 +20,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/intendedSpatialAudioExperience-2wthu
-func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience {
-	rv := objc.Send[audiotoolbox.SpatialAudioExperience](s_.ID, objc.Sel("intendedSpatialAudioExperience"))
+func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() SpatialAudioExperience /* not a class type */ {
+	rv := objc.Send[SpatialAudioExperience](s_.ID, objc.Sel("intendedSpatialAudioExperience"))
 	return rv
 }
-func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value audiotoolbox.SpatialAudioExperience) {
+func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value SpatialAudioExperience /* not a class type */) {
 	s_.ID.Send(objc.RegisterName("setIntendedSpatialAudioExperience:"), value)
 }
 

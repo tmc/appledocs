@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLComputePlan */
 
 
-/* debug [class_header]: Header for MLComputePlan */
+
+
 // The class instance for the [ComputePlan] class.
 var (
 	ComputePlanClass     _ComputePlanClass
@@ -31,34 +30,34 @@ func getComputePlanClass() _ComputePlanClass {
 type _ComputePlanClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ComputePlan */
+
+
 // An interface definition for the [ComputePlan] class.
 type IComputePlan interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ComputePlan */
+
 	// properties:
 	ModelStructure() IMLModelStructure
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ComputePlan */
+
 	// methods:
 	ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) IComputePlanDeviceUsage
 	ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) IComputePlanDeviceUsage
 	EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) IComputePlanCost
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ComputePlan */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComputePlanClass) Alloc() ComputePlan {
 	rv := objc.Send[ComputePlan](objc.ID(cc.class), objc.Sel("alloc"))
@@ -88,11 +87,11 @@ func (c_ ComputePlan) Autorelease() ComputePlan {
 func NewComputePlan() ComputePlan {
 	return getComputePlanClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ComputePlan */
+
+
 // A class describing the plan for executing a model.
 //
 // The application can use the plan to estimate the necessary cost and resources of the model before running the predictions.
@@ -112,23 +111,23 @@ type ComputePlan struct {
 func ComputePlanFrom(ptr unsafe.Pointer) ComputePlan {
 	return ComputePlan{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ComputePlan *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ComputePlan */
+
+
+
 
 // Construct the compute plan of a model asynchronously given the location of its on-disk representation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:
-func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url objc.IObject /* cross-framework: NSURL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
+func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.foundation.INSURL, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LoadContentsOfURLConfigurationCompletionHandler) */
+}
 
 
 // Construct the compute plan of a model asynchronously given the model asset.
@@ -137,18 +136,18 @@ func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url 
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadModelAsset:configuration:completionHandler:
 func (cc _ComputePlanClass) LoadModelAssetConfigurationCompletionHandler(asset IMLModelAsset, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadModelAsset:configuration:completionHandler:"), asset, configuration, handler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LoadModelAssetConfigurationCompletionHandler) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ComputePlan */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ComputePlan */
+
+
+
+
+
 
 // Returns The anticipated compute devices that would be used for executing an ML Program operation.
 //
@@ -157,7 +156,7 @@ func (cc _ComputePlanClass) LoadModelAssetConfigurationCompletionHandler(asset I
 func (c_ ComputePlan) ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) IComputePlanDeviceUsage {
 	rv := objc.Send[ComputePlanDeviceUsage](c_.ID, objc.Sel("computeDeviceUsageForMLProgramOperation:"), operation)
 	return rv
-}/* debug [instance_methods/method]: ComputeDeviceUsageForMLProgramOperation */
+}
 
 
 // Returns the anticipated compute devices that would be used for executing a NeuralNetwork layer.
@@ -167,7 +166,7 @@ func (c_ ComputePlan) ComputeDeviceUsageForMLProgramOperation(operation IMLModel
 func (c_ ComputePlan) ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) IComputePlanDeviceUsage {
 	rv := objc.Send[ComputePlanDeviceUsage](c_.ID, objc.Sel("computeDeviceUsageForNeuralNetworkLayer:"), layer)
 	return rv
-}/* debug [instance_methods/method]: ComputeDeviceUsageForNeuralNetworkLayer */
+}
 
 
 // Returns the estimated cost of executing an ML Program operation.
@@ -177,13 +176,13 @@ func (c_ ComputePlan) ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStru
 func (c_ ComputePlan) EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) IComputePlanCost {
 	rv := objc.Send[ComputePlanCost](c_.ID, objc.Sel("estimatedCostOfMLProgramOperation:"), operation)
 	return rv
-}/* debug [instance_methods/method]: EstimatedCostOfMLProgramOperation */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ComputePlan */
+
+
+
 
 // The model structure.
 //
@@ -192,12 +191,12 @@ func (c_ ComputePlan) EstimatedCostOfMLProgramOperation(operation IMLModelStruct
 func (c_ ComputePlan) ModelStructure() IMLModelStructure {
 	rv := objc.Send[ModelStructure](c_.ID, objc.Sel("modelStructure"))
 	return rv
-}/* debug [instance_properties/getter]: modelStructure */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLComputePlan */
+
+
+
 
 
 

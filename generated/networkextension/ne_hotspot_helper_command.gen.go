@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NEHotspotHelperCommand */
 
 
-/* debug [class_header]: Header for NEHotspotHelperCommand */
+
+
 // The class instance for the [NEHotspotHelperCommand] class.
 var (
 	NEHotspotHelperCommandClass     _NEHotspotHelperCommandClass
@@ -30,30 +30,30 @@ func getNEHotspotHelperCommandClass() _NEHotspotHelperCommandClass {
 type _NEHotspotHelperCommandClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NEHotspotHelperCommand */
+
+
 // An interface definition for the [NEHotspotHelperCommand] class.
 type INEHotspotHelperCommand interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for NEHotspotHelperCommand */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NEHotspotHelperCommand */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NEHotspotHelperCommand */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotHelperCommandClass) Alloc() NEHotspotHelperCommand {
 	rv := objc.Send[NEHotspotHelperCommand](objc.ID(nc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (n_ NEHotspotHelperCommand) Autorelease() NEHotspotHelperCommand {
 func NewNEHotspotHelperCommand() NEHotspotHelperCommand {
 	return getNEHotspotHelperCommandClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NEHotspotHelperCommand */
+
+
 // A command for the hotspot helper to handle.
 //
 // NEHotspostHelperCommand objects are passed to the the Hotspot Helper app’s command handler block. The Hotspot Helper app processes the command, instantiates an object, sets the annotated or ( or commands only), and then delivers the response to the system.
@@ -107,33 +107,33 @@ type NEHotspotHelperCommand struct {
 func NEHotspotHelperCommandFrom(ptr unsafe.Pointer) NEHotspotHelperCommand {
 	return NEHotspotHelperCommand{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NEHotspotHelperCommand *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for NEHotspotHelperCommand */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NEHotspotHelperCommand */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NEHotspotHelperCommand */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NEHotspotHelperCommand */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NEHotspotHelperCommand */
+
+
+
+
+
+
+
+
+
+
+
 
 

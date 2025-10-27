@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CAMetalDisplayLinkUpdate */
 
 
-/* debug [class_header]: Header for CAMetalDisplayLinkUpdate */
+
+
 // The class instance for the [MetalDisplayLinkUpdate] class.
 var (
 	MetalDisplayLinkUpdateClass     _MetalDisplayLinkUpdateClass
@@ -30,33 +30,33 @@ func getMetalDisplayLinkUpdateClass() _MetalDisplayLinkUpdateClass {
 type _MetalDisplayLinkUpdateClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetalDisplayLinkUpdate */
+
+
 // An interface definition for the [MetalDisplayLinkUpdate] class.
 type IMetalDisplayLinkUpdate interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for MetalDisplayLinkUpdate */
+
 	// properties:
 	Drawable() unsafe.Pointer
 	TargetPresentationTimestamp() float64
 	TargetTimestamp() float64
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetalDisplayLinkUpdate */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetalDisplayLinkUpdate */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetalDisplayLinkUpdateClass) Alloc() MetalDisplayLinkUpdate {
 	rv := objc.Send[MetalDisplayLinkUpdate](objc.ID(mc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (m_ MetalDisplayLinkUpdate) Autorelease() MetalDisplayLinkUpdate {
 func NewMetalDisplayLinkUpdate() MetalDisplayLinkUpdate {
 	return getMetalDisplayLinkUpdateClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetalDisplayLinkUpdate */
+
+
 // Stores information about a single update from a Metal display link instance.
 
 
@@ -108,30 +108,30 @@ type MetalDisplayLinkUpdate struct {
 func MetalDisplayLinkUpdateFrom(ptr unsafe.Pointer) MetalDisplayLinkUpdate {
 	return MetalDisplayLinkUpdate{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetalDisplayLinkUpdate *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetalDisplayLinkUpdate */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetalDisplayLinkUpdate */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetalDisplayLinkUpdate */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetalDisplayLinkUpdate */
+
+
+
+
+
+
+
+
+
 
 // The Metal drawable your app uses to render the next frame.
 //
@@ -140,7 +140,7 @@ func MetalDisplayLinkUpdateFrom(ptr unsafe.Pointer) MetalDisplayLinkUpdate {
 func (m_ MetalDisplayLinkUpdate) Drawable() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("drawable"))
 	return rv
-}/* debug [instance_properties/getter]: drawable */
+}
 
 
 // The time the system estimates until the display of the next frame.
@@ -150,7 +150,7 @@ func (m_ MetalDisplayLinkUpdate) Drawable() unsafe.Pointer {
 func (m_ MetalDisplayLinkUpdate) TargetPresentationTimestamp() float64 {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("targetPresentationTimestamp"))
 	return rv
-}/* debug [instance_properties/getter]: targetPresentationTimestamp */
+}
 
 
 // A deadline that indicates when your app needs to finish rendering to the drawable.
@@ -160,12 +160,12 @@ func (m_ MetalDisplayLinkUpdate) TargetPresentationTimestamp() float64 {
 func (m_ MetalDisplayLinkUpdate) TargetTimestamp() float64 {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("targetTimestamp"))
 	return rv
-}/* debug [instance_properties/getter]: targetTimestamp */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CAMetalDisplayLinkUpdate */
+
+
+
 
 
 

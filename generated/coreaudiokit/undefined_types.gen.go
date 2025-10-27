@@ -9,5 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in CoreAudioKit
+	AudioUnit = _undefined // referenced in CoreAudioKit
 )
+
+

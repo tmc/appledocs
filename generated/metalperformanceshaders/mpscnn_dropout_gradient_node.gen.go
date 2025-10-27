@@ -121,7 +121,7 @@ func CNNDropoutGradientNodeFrom(ptr unsafe.Pointer) CNNDropoutGradientNode {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradientnode/2948001-initwithsourcegradient
-func NewCNNDropoutGradientNodeWithSourceGradientSourceImageGradientStateKeepProbabilitySeedMaskStrideInPixels(sourceGradient IImageNode, sourceImage IImageNode, gradientState IGradientStateNode, keepProbability float32, seed uint, maskStrideInPixels objc.IObject /* cross-framework: MTLSize */) CNNDropoutGradientNode {
+func NewCNNDropoutGradientNodeWithSourceGradientSourceImageGradientStateKeepProbabilitySeedMaskStrideInPixels(sourceGradient IImageNode, sourceImage IImageNode, gradientState IGradientStateNode, keepProbability float32, seed uint, maskStrideInPixels metal.IMTLSize) CNNDropoutGradientNode {
 	instance := getCNNDropoutGradientNodeClass().Alloc()
 	rv := objc.Send[CNNDropoutGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:"), sourceGradient, sourceImage, gradientState, keepProbability, seed, maskStrideInPixels)
 	rv.Autorelease()
@@ -136,7 +136,7 @@ func NewCNNDropoutGradientNodeWithSourceGradientSourceImageGradientStateKeepProb
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradientnode/2947997-nodewithsourcegradient
-func (cc _CNNDropoutGradientNodeClass) NodeWithSourceGradientSourceImageGradientStateKeepProbabilitySeedMaskStrideInPixels(sourceGradient IImageNode, sourceImage IImageNode, gradientState IGradientStateNode, keepProbability float32, seed uint, maskStrideInPixels objc.IObject /* cross-framework: MTLSize */) objectivec.IObject {
+func (cc _CNNDropoutGradientNodeClass) NodeWithSourceGradientSourceImageGradientStateKeepProbabilitySeedMaskStrideInPixels(sourceGradient IImageNode, sourceImage IImageNode, gradientState IGradientStateNode, keepProbability float32, seed uint, maskStrideInPixels metal.IMTLSize) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:"), sourceGradient, sourceImage, gradientState, keepProbability, seed, maskStrideInPixels)
 	return rv
 }

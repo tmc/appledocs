@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PXPCListenerDelegate is the NSXPCListenerDelegate protocol interface.
@@ -53,4 +55,31 @@ func (d *XPCListenerDelegate) ListenerShouldAcceptNewConnection(listener IXPCLis
 // HasListenerShouldAcceptNewConnection returns true if a handler for ListenerShouldAcceptNewConnection has been set.
 func (d *XPCListenerDelegate) HasListenerShouldAcceptNewConnection() bool {
 	return d._ListenerShouldAcceptNewConnection != nil
+}
+
+// XPCListenerDelegateObject wraps an existing Objective-C object that conforms to the PXPCListenerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type XPCListenerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewXPCListenerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSXPCListenerDelegate protocol.
+func NewXPCListenerDelegateObject(obj objectivec.Object) *XPCListenerDelegateObject {
+	return &XPCListenerDelegateObject{obj}
+}
+
+// Make sure XPCListenerDelegateObject implements PXPCListenerDelegate.
+var _ PXPCListenerDelegate = (*XPCListenerDelegateObject)(nil)
+
+// ListenerShouldAcceptNewConnection implements the PXPCListenerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *XPCListenerDelegateObject) ListenerShouldAcceptNewConnection(listener IXPCListener, newConnection IXPCConnection) bool {
+	return objc.Send[bool](o.ID, objc.Sel("listener:shouldAcceptNewConnection:"), listener, newConnection)
+}
+
+// HasListenerShouldAcceptNewConnection returns true; this is a placeholder for optional method checks.
+func (o *XPCListenerDelegateObject) HasListenerShouldAcceptNewConnection() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

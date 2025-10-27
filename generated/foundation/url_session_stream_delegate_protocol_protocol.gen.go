@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLSessionStreamDelegate is the NSURLSessionStreamDelegate protocol interface.
@@ -117,4 +119,64 @@ func (d *URLSessionStreamDelegate) URLSessionWriteClosedForStreamTask(session IU
 // HasURLSessionWriteClosedForStreamTask returns true if a handler for URLSessionWriteClosedForStreamTask has been set.
 func (d *URLSessionStreamDelegate) HasURLSessionWriteClosedForStreamTask() bool {
 	return d._URLSessionWriteClosedForStreamTask != nil
+}
+
+// URLSessionStreamDelegateObject wraps an existing Objective-C object that conforms to the PURLSessionStreamDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLSessionStreamDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLSessionStreamDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLSessionStreamDelegate protocol.
+func NewURLSessionStreamDelegateObject(obj objectivec.Object) *URLSessionStreamDelegateObject {
+	return &URLSessionStreamDelegateObject{obj}
+}
+
+// Make sure URLSessionStreamDelegateObject implements PURLSessionStreamDelegate.
+var _ PURLSessionStreamDelegate = (*URLSessionStreamDelegateObject)(nil)
+
+// URLSessionBetterRouteDiscoveredForStreamTask implements the PURLSessionStreamDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionStreamDelegateObject) URLSessionBetterRouteDiscoveredForStreamTask(session IURLSession, streamTask IURLSessionStreamTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:betterRouteDiscoveredForStreamTask:"), session, streamTask)
+}
+
+// HasURLSessionBetterRouteDiscoveredForStreamTask returns true; this is a placeholder for optional method checks.
+func (o *URLSessionStreamDelegateObject) HasURLSessionBetterRouteDiscoveredForStreamTask() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionReadClosedForStreamTask implements the PURLSessionStreamDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionStreamDelegateObject) URLSessionReadClosedForStreamTask(session IURLSession, streamTask IURLSessionStreamTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:readClosedForStreamTask:"), session, streamTask)
+}
+
+// HasURLSessionReadClosedForStreamTask returns true; this is a placeholder for optional method checks.
+func (o *URLSessionStreamDelegateObject) HasURLSessionReadClosedForStreamTask() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionStreamTaskDidBecomeInputStreamOutputStream implements the PURLSessionStreamDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionStreamDelegateObject) URLSessionStreamTaskDidBecomeInputStreamOutputStream(session IURLSession, streamTask IURLSessionStreamTask, inputStream IInputStream, outputStream IOutputStream) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:streamTask:didBecomeInputStream:outputStream:"), session, streamTask, inputStream, outputStream)
+}
+
+// HasURLSessionStreamTaskDidBecomeInputStreamOutputStream returns true; this is a placeholder for optional method checks.
+func (o *URLSessionStreamDelegateObject) HasURLSessionStreamTaskDidBecomeInputStreamOutputStream() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionWriteClosedForStreamTask implements the PURLSessionStreamDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionStreamDelegateObject) URLSessionWriteClosedForStreamTask(session IURLSession, streamTask IURLSessionStreamTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:writeClosedForStreamTask:"), session, streamTask)
+}
+
+// HasURLSessionWriteClosedForStreamTask returns true; this is a placeholder for optional method checks.
+func (o *URLSessionStreamDelegateObject) HasURLSessionWriteClosedForStreamTask() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

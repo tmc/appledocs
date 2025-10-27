@@ -2,9 +2,7 @@
 
 package coreaudiotypes
 
-/* debug [enums.gen.go]: Generating 8 enums for CoreAudioTypes */
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum AVAudioSessionErrorCode (15 cases) */
 // AVAudioSessionErrorCode - Codes that describe error conditions that may occur when performing audio session operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode
@@ -73,7 +71,6 @@ const (
 	AVAudioSessionErrorCodeUnspecified AVAudioSessionErrorCode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioTimeStampFlags (7 cases) */
 // AudioTimeStampFlags - A structure that represents flags for a timestamp.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioTimeStampFlags
@@ -110,7 +107,6 @@ const (
 	kAudioTimeStampWordClockTimeValid AudioTimeStampFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPEG4ObjectID (9 cases) */
 // MPEG4ObjectID - Constants that define the type of MPEG-4 audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/MPEG4ObjectID
@@ -155,7 +151,6 @@ const (
 	kMPEG4Object_TwinVQ MPEG4ObjectID = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SMPTETimeFlags (3 cases) */
 // SMPTETimeFlags - A structure that defines SMPTE time flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeFlags
@@ -175,7 +170,6 @@ const (
 	kSMPTETimeValid SMPTETimeFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum SMPTETimeType (12 cases) */
 // SMPTETimeType - Constants that define SMPTE time types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType
@@ -232,7 +226,6 @@ const (
 	kSMPTETimeType60Drop SMPTETimeType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioChannelBitmap (27 cases) */
 // AudioChannelBitmap - The supported channel bitmaps to use when defining channel layouts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelBitmap
@@ -349,8 +342,7 @@ const (
 	kAudioChannelBit_VerticalHeightRight AudioChannelBitmap = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioChannelCoordinateIndex (6 cases) */
-// AudioChannelCoordinateIndex - Indexes the fields of the
+// AudioChannelCoordinateIndex - Indexes the fields of the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelCoordinateIndex
 type AudioChannelCoordinateIndex uint
@@ -382,7 +374,6 @@ const (
 	kAudioChannelCoordinates_LeftRight AudioChannelCoordinateIndex = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioChannelFlags (4 cases) */
 // AudioChannelFlags - Constants that define the audio channel flags of an audio channel description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelFlags
@@ -406,3 +397,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelFlags/sphericalCoordinates
 	kAudioChannelFlags_SphericalCoordinates AudioChannelFlags = 0
 )
+
+

@@ -2,7 +2,7 @@
 
 package imageio
 
-/* debug [functions.gen.go]: Generating 58 functions for ImageIO */
+
 import (
 	"unsafe"
 
@@ -164,7 +164,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGAnimateImageAtURLWithBlock(_:_:_:)
 func CGAnimateImageAtURLWithBlock(url URLRef, options DictionaryRef, block ImageSourceAnimationBlock) unsafe.Pointer {
 	return _CGAnimateImageAtURLWithBlock(url, options, block)
-}/* debug [functions.gen.go/function]: CGAnimateImageAtURLWithBlock */
+}
 
 // Animate the sequence of images using data from a Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file file.
 //
@@ -175,7 +175,7 @@ func CGAnimateImageAtURLWithBlock(url URLRef, options DictionaryRef, block Image
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGAnimateImageDataWithBlock(_:_:_:)
 func CGAnimateImageDataWithBlock(data DataRef, options DictionaryRef, block ImageSourceAnimationBlock) unsafe.Pointer {
 	return _CGAnimateImageDataWithBlock(data, options, block)
-}/* debug [functions.gen.go/function]: CGAnimateImageDataWithBlock */
+}
 
 // Sets the auxiliary data, such as mattes and depth information, that accompany the image.
 //
@@ -186,7 +186,7 @@ func CGAnimateImageDataWithBlock(data DataRef, options DictionaryRef, block Imag
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddAuxiliaryDataInfo(_:_:_:)
 func CGImageDestinationAddAuxiliaryDataInfo(idst ImageDestinationRef, auxiliaryImageDataType StringRef, auxiliaryDataInfoDictionary DictionaryRef) {
 	_CGImageDestinationAddAuxiliaryDataInfo(idst, auxiliaryImageDataType, auxiliaryDataInfoDictionary)
-}/* debug [functions.gen.go/function]: CGImageDestinationAddAuxiliaryDataInfo */
+}
 
 // Adds an image to an image destination.
 //
@@ -197,7 +197,7 @@ func CGImageDestinationAddAuxiliaryDataInfo(idst ImageDestinationRef, auxiliaryI
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImage(_:_:_:)
 func CGImageDestinationAddImage(idst ImageDestinationRef, image ImageRef, properties DictionaryRef) {
 	_CGImageDestinationAddImage(idst, image, properties)
-}/* debug [functions.gen.go/function]: CGImageDestinationAddImage */
+}
 
 // CGImageDestinationAddImageAndMetadata is a ImageIO function.
 //
@@ -206,7 +206,7 @@ func CGImageDestinationAddImage(idst ImageDestinationRef, image ImageRef, proper
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImageAndMetadata(_:_:_:_:)
 func CGImageDestinationAddImageAndMetadata(idst ImageDestinationRef, image ImageRef, metadata ImageMetadataRef, options DictionaryRef) {
 	_CGImageDestinationAddImageAndMetadata(idst, image, metadata, options)
-}/* debug [functions.gen.go/function]: CGImageDestinationAddImageAndMetadata */
+}
 
 // Adds an image from an image source to an image destination.
 //
@@ -217,7 +217,7 @@ func CGImageDestinationAddImageAndMetadata(idst ImageDestinationRef, image Image
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImageFromSource(_:_:_:_:)
 func CGImageDestinationAddImageFromSource(idst ImageDestinationRef, isrc ImageSourceRef, index uintptr, properties DictionaryRef) {
 	_CGImageDestinationAddImageFromSource(idst, isrc, index, properties)
-}/* debug [functions.gen.go/function]: CGImageDestinationAddImageFromSource */
+}
 
 // CGImageDestinationCopyImageSource is a ImageIO function.
 //
@@ -226,7 +226,7 @@ func CGImageDestinationAddImageFromSource(idst ImageDestinationRef, isrc ImageSo
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCopyImageSource(_:_:_:_:)
 func CGImageDestinationCopyImageSource(idst ImageDestinationRef, isrc ImageSourceRef, options DictionaryRef, err unsafe.Pointer) bool {
 	return _CGImageDestinationCopyImageSource(idst, isrc, options, err)
-}/* debug [functions.gen.go/function]: CGImageDestinationCopyImageSource */
+}
 
 // Returns an array of the uniform type identifiers that are supported for image destinations.
 //
@@ -237,7 +237,7 @@ func CGImageDestinationCopyImageSource(idst ImageDestinationRef, isrc ImageSourc
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCopyTypeIdentifiers()
 func CGImageDestinationCopyTypeIdentifiers() ArrayRef {
 	return _CGImageDestinationCopyTypeIdentifiers()
-}/* debug [functions.gen.go/function]: CGImageDestinationCopyTypeIdentifiers */
+}
 
 // Creates an image destination that writes to a Core Foundation mutable data object.
 //
@@ -248,7 +248,7 @@ func CGImageDestinationCopyTypeIdentifiers() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithData(_:_:_:_:)
 func CGImageDestinationCreateWithData(data MutableDataRef, type_ StringRef, count uintptr, options DictionaryRef) ImageDestinationRef {
 	return _CGImageDestinationCreateWithData(data, type_, count, options)
-}/* debug [functions.gen.go/function]: CGImageDestinationCreateWithData */
+}
 
 // Creates an image destination that writes to the specified data consumer.
 //
@@ -259,7 +259,7 @@ func CGImageDestinationCreateWithData(data MutableDataRef, type_ StringRef, coun
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithDataConsumer(_:_:_:_:)
 func CGImageDestinationCreateWithDataConsumer(consumer DataConsumerRef, type_ StringRef, count uintptr, options DictionaryRef) ImageDestinationRef {
 	return _CGImageDestinationCreateWithDataConsumer(consumer, type_, count, options)
-}/* debug [functions.gen.go/function]: CGImageDestinationCreateWithDataConsumer */
+}
 
 // Creates an image destination that writes image data to the specified URL.
 //
@@ -270,7 +270,7 @@ func CGImageDestinationCreateWithDataConsumer(consumer DataConsumerRef, type_ St
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)
 func CGImageDestinationCreateWithURL(url URLRef, type_ StringRef, count uintptr, options DictionaryRef) ImageDestinationRef {
 	return _CGImageDestinationCreateWithURL(url, type_, count, options)
-}/* debug [functions.gen.go/function]: CGImageDestinationCreateWithURL */
+}
 
 // Writes image data and properties to the data, URL, or data consumer associated with the image destination.
 //
@@ -281,7 +281,7 @@ func CGImageDestinationCreateWithURL(url URLRef, type_ StringRef, count uintptr,
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationFinalize(_:)
 func CGImageDestinationFinalize(idst ImageDestinationRef) bool {
 	return _CGImageDestinationFinalize(idst)
-}/* debug [functions.gen.go/function]: CGImageDestinationFinalize */
+}
 
 // Returns the unique type identifier of an image destination opaque type.
 //
@@ -292,7 +292,7 @@ func CGImageDestinationFinalize(idst ImageDestinationRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationGetTypeID()
 func CGImageDestinationGetTypeID() TypeID {
 	return _CGImageDestinationGetTypeID()
-}/* debug [functions.gen.go/function]: CGImageDestinationGetTypeID */
+}
 
 // Applies one or more properties to all images in an image destination.
 //
@@ -303,7 +303,7 @@ func CGImageDestinationGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationSetProperties(_:_:)
 func CGImageDestinationSetProperties(idst ImageDestinationRef, properties DictionaryRef) {
 	_CGImageDestinationSetProperties(idst, properties)
-}/* debug [functions.gen.go/function]: CGImageDestinationSetProperties */
+}
 
 // Searches the metadata for the specified tag, and returns its string value if it exists.
 //
@@ -314,7 +314,7 @@ func CGImageDestinationSetProperties(idst ImageDestinationRef, properties Dictio
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyStringValueWithPath(_:_:_:)
 func CGImageMetadataCopyStringValueWithPath(metadata ImageMetadataRef, parent ImageMetadataTagRef, path StringRef) StringRef {
 	return _CGImageMetadataCopyStringValueWithPath(metadata, parent, path)
-}/* debug [functions.gen.go/function]: CGImageMetadataCopyStringValueWithPath */
+}
 
 // Searches for the specified image property and, if found, returns the corresponding tag object.
 //
@@ -325,7 +325,7 @@ func CGImageMetadataCopyStringValueWithPath(metadata ImageMetadataRef, parent Im
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyTagMatchingImageProperty(_:_:_:)
 func CGImageMetadataCopyTagMatchingImageProperty(metadata ImageMetadataRef, dictionaryName StringRef, propertyName StringRef) ImageMetadataTagRef {
 	return _CGImageMetadataCopyTagMatchingImageProperty(metadata, dictionaryName, propertyName)
-}/* debug [functions.gen.go/function]: CGImageMetadataCopyTagMatchingImageProperty */
+}
 
 // Returns an array of root-level metadata tags from the specified metadata object.
 //
@@ -336,7 +336,7 @@ func CGImageMetadataCopyTagMatchingImageProperty(metadata ImageMetadataRef, dict
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyTags(_:)
 func CGImageMetadataCopyTags(metadata ImageMetadataRef) ArrayRef {
 	return _CGImageMetadataCopyTags(metadata)
-}/* debug [functions.gen.go/function]: CGImageMetadataCopyTags */
+}
 
 // Searches for a specific metadata tag within a metadata collection.
 //
@@ -347,7 +347,7 @@ func CGImageMetadataCopyTags(metadata ImageMetadataRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCopyTagWithPath(_:_:_:)
 func CGImageMetadataCopyTagWithPath(metadata ImageMetadataRef, parent ImageMetadataTagRef, path StringRef) ImageMetadataTagRef {
 	return _CGImageMetadataCopyTagWithPath(metadata, parent, path)
-}/* debug [functions.gen.go/function]: CGImageMetadataCopyTagWithPath */
+}
 
 // Creates a collection of metadata tags from the specified XMP data.
 //
@@ -358,7 +358,7 @@ func CGImageMetadataCopyTagWithPath(metadata ImageMetadataRef, parent ImageMetad
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateFromXMPData(_:)
 func CGImageMetadataCreateFromXMPData(data DataRef) ImageMetadataRef {
 	return _CGImageMetadataCreateFromXMPData(data)
-}/* debug [functions.gen.go/function]: CGImageMetadataCreateFromXMPData */
+}
 
 // Creates an empty, mutable image metdata opaque type.
 //
@@ -369,7 +369,7 @@ func CGImageMetadataCreateFromXMPData(data DataRef) ImageMetadataRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateMutable()
 func CGImageMetadataCreateMutable() MutableImageMetadataRef {
 	return _CGImageMetadataCreateMutable()
-}/* debug [functions.gen.go/function]: CGImageMetadataCreateMutable */
+}
 
 // Creates a deep, mutable copy of the specified metadata information.
 //
@@ -380,7 +380,7 @@ func CGImageMetadataCreateMutable() MutableImageMetadataRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateMutableCopy(_:)
 func CGImageMetadataCreateMutableCopy(metadata ImageMetadataRef) MutableImageMetadataRef {
 	return _CGImageMetadataCreateMutableCopy(metadata)
-}/* debug [functions.gen.go/function]: CGImageMetadataCreateMutableCopy */
+}
 
 // Returns a data object that contains the metadata object’s contents serialized into the XMP format.
 //
@@ -391,7 +391,7 @@ func CGImageMetadataCreateMutableCopy(metadata ImageMetadataRef) MutableImageMet
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataCreateXMPData(_:_:)
 func CGImageMetadataCreateXMPData(metadata ImageMetadataRef, options DictionaryRef) DataRef {
 	return _CGImageMetadataCreateXMPData(metadata, options)
-}/* debug [functions.gen.go/function]: CGImageMetadataCreateXMPData */
+}
 
 // Enumerates the tags of a metadata object and executes the specified block on each tag.
 //
@@ -402,7 +402,7 @@ func CGImageMetadataCreateXMPData(metadata ImageMetadataRef, options DictionaryR
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataEnumerateTagsUsingBlock(_:_:_:_:)
 func CGImageMetadataEnumerateTagsUsingBlock(metadata ImageMetadataRef, rootPath StringRef, options DictionaryRef, block ImageMetadataTagBlock) {
 	_CGImageMetadataEnumerateTagsUsingBlock(metadata, rootPath, options, block)
-}/* debug [functions.gen.go/function]: CGImageMetadataEnumerateTagsUsingBlock */
+}
 
 // Returns the type identifier for metadata objects.
 //
@@ -413,7 +413,7 @@ func CGImageMetadataEnumerateTagsUsingBlock(metadata ImageMetadataRef, rootPath 
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataGetTypeID()
 func CGImageMetadataGetTypeID() TypeID {
 	return _CGImageMetadataGetTypeID()
-}/* debug [functions.gen.go/function]: CGImageMetadataGetTypeID */
+}
 
 // Registers the specified namespace and prefix with the metadata object.
 //
@@ -424,7 +424,7 @@ func CGImageMetadataGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataRegisterNamespaceForPrefix(_:_:_:_:)
 func CGImageMetadataRegisterNamespaceForPrefix(metadata MutableImageMetadataRef, xmlns StringRef, prefix StringRef, err unsafe.Pointer) bool {
 	return _CGImageMetadataRegisterNamespaceForPrefix(metadata, xmlns, prefix, err)
-}/* debug [functions.gen.go/function]: CGImageMetadataRegisterNamespaceForPrefix */
+}
 
 // Removes the tag at the specified path from the metadata object.
 //
@@ -435,7 +435,7 @@ func CGImageMetadataRegisterNamespaceForPrefix(metadata MutableImageMetadataRef,
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataRemoveTagWithPath(_:_:_:)
 func CGImageMetadataRemoveTagWithPath(metadata MutableImageMetadataRef, parent ImageMetadataTagRef, path StringRef) bool {
 	return _CGImageMetadataRemoveTagWithPath(metadata, parent, path)
-}/* debug [functions.gen.go/function]: CGImageMetadataRemoveTagWithPath */
+}
 
 // Sets the tag at the specified path in the metadata object.
 //
@@ -446,7 +446,7 @@ func CGImageMetadataRemoveTagWithPath(metadata MutableImageMetadataRef, parent I
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataSetTagWithPath(_:_:_:_:)
 func CGImageMetadataSetTagWithPath(metadata MutableImageMetadataRef, parent ImageMetadataTagRef, path StringRef, tag ImageMetadataTagRef) bool {
 	return _CGImageMetadataSetTagWithPath(metadata, parent, path, tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataSetTagWithPath */
+}
 
 // Updates the value of the metadata tag assigned to the specified image property.
 //
@@ -457,7 +457,7 @@ func CGImageMetadataSetTagWithPath(metadata MutableImageMetadataRef, parent Imag
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataSetValueMatchingImageProperty(_:_:_:_:)
 func CGImageMetadataSetValueMatchingImageProperty(metadata MutableImageMetadataRef, dictionaryName StringRef, propertyName StringRef, value TypeRef) bool {
 	return _CGImageMetadataSetValueMatchingImageProperty(metadata, dictionaryName, propertyName, value)
-}/* debug [functions.gen.go/function]: CGImageMetadataSetValueMatchingImageProperty */
+}
 
 // Update the value of an existing metadata tag, or create a new tag using the specified information.
 //
@@ -468,7 +468,7 @@ func CGImageMetadataSetValueMatchingImageProperty(metadata MutableImageMetadataR
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataSetValueWithPath(_:_:_:_:)
 func CGImageMetadataSetValueWithPath(metadata MutableImageMetadataRef, parent ImageMetadataTagRef, path StringRef, value TypeRef) bool {
 	return _CGImageMetadataSetValueWithPath(metadata, parent, path, value)
-}/* debug [functions.gen.go/function]: CGImageMetadataSetValueWithPath */
+}
 
 // Returns an immutable copy of the tag’s name.
 //
@@ -479,7 +479,7 @@ func CGImageMetadataSetValueWithPath(metadata MutableImageMetadataRef, parent Im
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyName(_:)
 func CGImageMetadataTagCopyName(tag ImageMetadataTagRef) StringRef {
 	return _CGImageMetadataTagCopyName(tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagCopyName */
+}
 
 // Returns an immutable copy of the tag’s XMP namespace.
 //
@@ -490,7 +490,7 @@ func CGImageMetadataTagCopyName(tag ImageMetadataTagRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyNamespace(_:)
 func CGImageMetadataTagCopyNamespace(tag ImageMetadataTagRef) StringRef {
 	return _CGImageMetadataTagCopyNamespace(tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagCopyNamespace */
+}
 
 // Returns an immutable copy of the tag’s prefix.
 //
@@ -501,7 +501,7 @@ func CGImageMetadataTagCopyNamespace(tag ImageMetadataTagRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyPrefix(_:)
 func CGImageMetadataTagCopyPrefix(tag ImageMetadataTagRef) StringRef {
 	return _CGImageMetadataTagCopyPrefix(tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagCopyPrefix */
+}
 
 // Returns a shallow copy of the metadata tags that act as qualifiers for the current tag.
 //
@@ -512,7 +512,7 @@ func CGImageMetadataTagCopyPrefix(tag ImageMetadataTagRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyQualifiers(_:)
 func CGImageMetadataTagCopyQualifiers(tag ImageMetadataTagRef) ArrayRef {
 	return _CGImageMetadataTagCopyQualifiers(tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagCopyQualifiers */
+}
 
 // Returns a shallow copy of the tag’s value, which is suitable only for reading.
 //
@@ -523,7 +523,7 @@ func CGImageMetadataTagCopyQualifiers(tag ImageMetadataTagRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCopyValue(_:)
 func CGImageMetadataTagCopyValue(tag ImageMetadataTagRef) TypeRef {
 	return _CGImageMetadataTagCopyValue(tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagCopyValue */
+}
 
 // Creates a new image metadata tag, and fills it with the specified information.
 //
@@ -534,7 +534,7 @@ func CGImageMetadataTagCopyValue(tag ImageMetadataTagRef) TypeRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagCreate(_:_:_:_:_:)
 func CGImageMetadataTagCreate(xmlns StringRef, prefix StringRef, name StringRef, type_ ImageMetadataType, value TypeRef) ImageMetadataTagRef {
 	return _CGImageMetadataTagCreate(xmlns, prefix, name, type_, value)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagCreate */
+}
 
 // Returns the type of the metadata tag’s value.
 //
@@ -545,7 +545,7 @@ func CGImageMetadataTagCreate(xmlns StringRef, prefix StringRef, name StringRef,
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagGetType(_:)
 func CGImageMetadataTagGetType(tag ImageMetadataTagRef) ImageMetadataType {
 	return _CGImageMetadataTagGetType(tag)
-}/* debug [functions.gen.go/function]: CGImageMetadataTagGetType */
+}
 
 // Returns the type identifier for the image metadata tag opaque type
 //
@@ -556,7 +556,7 @@ func CGImageMetadataTagGetType(tag ImageMetadataTagRef) ImageMetadataType {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageMetadataTagGetTypeID()
 func CGImageMetadataTagGetTypeID() TypeID {
 	return _CGImageMetadataTagGetTypeID()
-}/* debug [functions.gen.go/function]: CGImageMetadataTagGetTypeID */
+}
 
 // Returns auxiliary data, such as mattes and depth information, that accompany the image.
 //
@@ -567,7 +567,7 @@ func CGImageMetadataTagGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)
 func CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc ImageSourceRef, index uintptr, auxiliaryImageDataType StringRef) DictionaryRef {
 	return _CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc, index, auxiliaryImageDataType)
-}/* debug [functions.gen.go/function]: CGImageSourceCopyAuxiliaryDataInfoAtIndex */
+}
 
 // CGImageSourceCopyMetadataAtIndex is a ImageIO function.
 //
@@ -576,7 +576,7 @@ func CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc ImageSourceRef, index uintpt
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyMetadataAtIndex(_:_:_:)
 func CGImageSourceCopyMetadataAtIndex(isrc ImageSourceRef, index uintptr, options DictionaryRef) ImageMetadataRef {
 	return _CGImageSourceCopyMetadataAtIndex(isrc, index, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCopyMetadataAtIndex */
+}
 
 // Returns the properties of the image source.
 //
@@ -587,7 +587,7 @@ func CGImageSourceCopyMetadataAtIndex(isrc ImageSourceRef, index uintptr, option
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyProperties(_:_:)
 func CGImageSourceCopyProperties(isrc ImageSourceRef, options DictionaryRef) DictionaryRef {
 	return _CGImageSourceCopyProperties(isrc, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCopyProperties */
+}
 
 // Returns the properties of the image at a specified location in an image source.
 //
@@ -598,7 +598,7 @@ func CGImageSourceCopyProperties(isrc ImageSourceRef, options DictionaryRef) Dic
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyPropertiesAtIndex(_:_:_:)
 func CGImageSourceCopyPropertiesAtIndex(isrc ImageSourceRef, index uintptr, options DictionaryRef) DictionaryRef {
 	return _CGImageSourceCopyPropertiesAtIndex(isrc, index, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCopyPropertiesAtIndex */
+}
 
 // Returns an array of uniform type identifiers that are supported for image sources.
 //
@@ -609,7 +609,7 @@ func CGImageSourceCopyPropertiesAtIndex(isrc ImageSourceRef, index uintptr, opti
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyTypeIdentifiers()
 func CGImageSourceCopyTypeIdentifiers() ArrayRef {
 	return _CGImageSourceCopyTypeIdentifiers()
-}/* debug [functions.gen.go/function]: CGImageSourceCopyTypeIdentifiers */
+}
 
 // Creates an image object from the data at the specified index in an image source.
 //
@@ -620,7 +620,7 @@ func CGImageSourceCopyTypeIdentifiers() ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateImageAtIndex(_:_:_:)
 func CGImageSourceCreateImageAtIndex(isrc ImageSourceRef, index uintptr, options DictionaryRef) ImageRef {
 	return _CGImageSourceCreateImageAtIndex(isrc, index, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCreateImageAtIndex */
+}
 
 // Creates an empty image source that you can use to accumulate incremental image data.
 //
@@ -631,7 +631,7 @@ func CGImageSourceCreateImageAtIndex(isrc ImageSourceRef, index uintptr, options
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateIncremental(_:)
 func CGImageSourceCreateIncremental(options DictionaryRef) ImageSourceRef {
 	return _CGImageSourceCreateIncremental(options)
-}/* debug [functions.gen.go/function]: CGImageSourceCreateIncremental */
+}
 
 // Creates a thumbnail version of the image at the specified index in an image source.
 //
@@ -642,7 +642,7 @@ func CGImageSourceCreateIncremental(options DictionaryRef) ImageSourceRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateThumbnailAtIndex(_:_:_:)
 func CGImageSourceCreateThumbnailAtIndex(isrc ImageSourceRef, index uintptr, options DictionaryRef) ImageRef {
 	return _CGImageSourceCreateThumbnailAtIndex(isrc, index, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCreateThumbnailAtIndex */
+}
 
 // Creates an image source that reads from a Core Foundation data object.
 //
@@ -653,7 +653,7 @@ func CGImageSourceCreateThumbnailAtIndex(isrc ImageSourceRef, index uintptr, opt
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateWithData(_:_:)
 func CGImageSourceCreateWithData(data DataRef, options DictionaryRef) ImageSourceRef {
 	return _CGImageSourceCreateWithData(data, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCreateWithData */
+}
 
 // Creates an image source that reads data from the specified data provider.
 //
@@ -664,7 +664,7 @@ func CGImageSourceCreateWithData(data DataRef, options DictionaryRef) ImageSourc
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateWithDataProvider(_:_:)
 func CGImageSourceCreateWithDataProvider(provider DataProviderRef, options DictionaryRef) ImageSourceRef {
 	return _CGImageSourceCreateWithDataProvider(provider, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCreateWithDataProvider */
+}
 
 // Creates an image source that reads from a location specified by a URL.
 //
@@ -675,7 +675,7 @@ func CGImageSourceCreateWithDataProvider(provider DataProviderRef, options Dicti
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)
 func CGImageSourceCreateWithURL(url URLRef, options DictionaryRef) ImageSourceRef {
 	return _CGImageSourceCreateWithURL(url, options)
-}/* debug [functions.gen.go/function]: CGImageSourceCreateWithURL */
+}
 
 // Returns the number of images (not including thumbnails) in the image source.
 //
@@ -686,7 +686,7 @@ func CGImageSourceCreateWithURL(url URLRef, options DictionaryRef) ImageSourceRe
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetCount(_:)
 func CGImageSourceGetCount(isrc ImageSourceRef) uintptr {
 	return _CGImageSourceGetCount(isrc)
-}/* debug [functions.gen.go/function]: CGImageSourceGetCount */
+}
 
 // Returns the index of the primary image for an High Efficiency Image File Format (HEIF) image.
 //
@@ -697,7 +697,7 @@ func CGImageSourceGetCount(isrc ImageSourceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetPrimaryImageIndex(_:)
 func CGImageSourceGetPrimaryImageIndex(isrc ImageSourceRef) uintptr {
 	return _CGImageSourceGetPrimaryImageIndex(isrc)
-}/* debug [functions.gen.go/function]: CGImageSourceGetPrimaryImageIndex */
+}
 
 // Return the status of an image source.
 //
@@ -708,7 +708,7 @@ func CGImageSourceGetPrimaryImageIndex(isrc ImageSourceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetStatus(_:)
 func CGImageSourceGetStatus(isrc ImageSourceRef) ImageSourceStatus {
 	return _CGImageSourceGetStatus(isrc)
-}/* debug [functions.gen.go/function]: CGImageSourceGetStatus */
+}
 
 // Returns the current status of an image at the specified location in the image source.
 //
@@ -719,7 +719,7 @@ func CGImageSourceGetStatus(isrc ImageSourceRef) ImageSourceStatus {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetStatusAtIndex(_:_:)
 func CGImageSourceGetStatusAtIndex(isrc ImageSourceRef, index uintptr) ImageSourceStatus {
 	return _CGImageSourceGetStatusAtIndex(isrc, index)
-}/* debug [functions.gen.go/function]: CGImageSourceGetStatusAtIndex */
+}
 
 // Returns the uniform type identifier of the source container.
 //
@@ -730,7 +730,7 @@ func CGImageSourceGetStatusAtIndex(isrc ImageSourceRef, index uintptr) ImageSour
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetType(_:)
 func CGImageSourceGetType(isrc ImageSourceRef) StringRef {
 	return _CGImageSourceGetType(isrc)
-}/* debug [functions.gen.go/function]: CGImageSourceGetType */
+}
 
 // Returns the unique type identifier of an image source opaque type.
 //
@@ -741,7 +741,7 @@ func CGImageSourceGetType(isrc ImageSourceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetTypeID()
 func CGImageSourceGetTypeID() TypeID {
 	return _CGImageSourceGetTypeID()
-}/* debug [functions.gen.go/function]: CGImageSourceGetTypeID */
+}
 
 // CGImageSourceRemoveCacheAtIndex is a ImageIO function.
 //
@@ -750,7 +750,7 @@ func CGImageSourceGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceRemoveCacheAtIndex(_:_:)
 func CGImageSourceRemoveCacheAtIndex(isrc ImageSourceRef, index uintptr) {
 	_CGImageSourceRemoveCacheAtIndex(isrc, index)
-}/* debug [functions.gen.go/function]: CGImageSourceRemoveCacheAtIndex */
+}
 
 // CGImageSourceSetAllowableTypes is a ImageIO function.
 //
@@ -759,7 +759,7 @@ func CGImageSourceRemoveCacheAtIndex(isrc ImageSourceRef, index uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceSetAllowableTypes(_:)
 func CGImageSourceSetAllowableTypes(allowableTypes ArrayRef) unsafe.Pointer {
 	return _CGImageSourceSetAllowableTypes(allowableTypes)
-}/* debug [functions.gen.go/function]: CGImageSourceSetAllowableTypes */
+}
 
 // Updates the data in an incremental image source.
 //
@@ -770,7 +770,7 @@ func CGImageSourceSetAllowableTypes(allowableTypes ArrayRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceUpdateData(_:_:_:)
 func CGImageSourceUpdateData(isrc ImageSourceRef, data DataRef, final bool) {
 	_CGImageSourceUpdateData(isrc, data, final)
-}/* debug [functions.gen.go/function]: CGImageSourceUpdateData */
+}
 
 // Updates an incremental image source with a new data provider.
 //
@@ -781,7 +781,7 @@ func CGImageSourceUpdateData(isrc ImageSourceRef, data DataRef, final bool) {
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceUpdateDataProvider(_:_:_:)
 func CGImageSourceUpdateDataProvider(isrc ImageSourceRef, provider DataProviderRef, final bool) {
 	_CGImageSourceUpdateDataProvider(isrc, provider, final)
-}/* debug [functions.gen.go/function]: CGImageSourceUpdateDataProvider */
+}
 
 
 

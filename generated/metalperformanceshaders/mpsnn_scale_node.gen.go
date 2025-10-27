@@ -115,7 +115,7 @@ func ScaleNodeFrom(ptr unsafe.Pointer) ScaleNode {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode/2915285-initwithsource
-func NewScaleNodeWithSourceOutputSize(sourceNode IImageNode, size objc.IObject /* cross-framework: MTLSize */) ScaleNode {
+func NewScaleNodeWithSourceOutputSize(sourceNode IImageNode, size metal.IMTLSize) ScaleNode {
 	instance := getScaleNodeClass().Alloc()
 	rv := objc.Send[ScaleNode](instance.ID, objc.Sel("initWithSource:outputSize:"), sourceNode, size)
 	rv.Autorelease()
@@ -125,7 +125,7 @@ func NewScaleNodeWithSourceOutputSize(sourceNode IImageNode, size objc.IObject /
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode/2915278-initwithsource
-func NewScaleNodeWithSourceTransformProviderOutputSize(sourceNode IImageNode, transformProvider unsafe.Pointer, size objc.IObject /* cross-framework: MTLSize */) ScaleNode {
+func NewScaleNodeWithSourceTransformProviderOutputSize(sourceNode IImageNode, transformProvider unsafe.Pointer, size metal.IMTLSize) ScaleNode {
 	instance := getScaleNodeClass().Alloc()
 	rv := objc.Send[ScaleNode](instance.ID, objc.Sel("initWithSource:transformProvider:outputSize:"), sourceNode, transformProvider, size)
 	rv.Autorelease()
@@ -140,7 +140,7 @@ func NewScaleNodeWithSourceTransformProviderOutputSize(sourceNode IImageNode, tr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode/2915280-nodewithsource
-func (sc _ScaleNodeClass) NodeWithSourceOutputSize(sourceNode IImageNode, size objc.IObject /* cross-framework: MTLSize */) objectivec.IObject {
+func (sc _ScaleNodeClass) NodeWithSourceOutputSize(sourceNode IImageNode, size metal.IMTLSize) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("nodeWithSource:outputSize:"), sourceNode, size)
 	return rv
 }
@@ -148,7 +148,7 @@ func (sc _ScaleNodeClass) NodeWithSourceOutputSize(sourceNode IImageNode, size o
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode/2915286-nodewithsource
-func (sc _ScaleNodeClass) NodeWithSourceTransformProviderOutputSize(sourceNode IImageNode, transformProvider unsafe.Pointer, size objc.IObject /* cross-framework: MTLSize */) objectivec.IObject {
+func (sc _ScaleNodeClass) NodeWithSourceTransformProviderOutputSize(sourceNode IImageNode, transformProvider unsafe.Pointer, size metal.IMTLSize) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("nodeWithSource:transformProvider:outputSize:"), sourceNode, transformProvider, size)
 	return rv
 }

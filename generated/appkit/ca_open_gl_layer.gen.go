@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CAOpenGLLayer */
 
 
-/* debug [class_header]: Header for CAOpenGLLayer */
+
+
 // The class instance for the [OpenGLLayer] class.
 var (
 	OpenGLLayerClass     _OpenGLLayerClass
@@ -30,30 +30,30 @@ func getOpenGLLayerClass() _OpenGLLayerClass {
 type _OpenGLLayerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for OpenGLLayer */
+
+
 // An interface definition for the [OpenGLLayer] class.
 type IOpenGLLayer interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for OpenGLLayer */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for OpenGLLayer */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for OpenGLLayer */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLLayerClass) Alloc() OpenGLLayer {
 	rv := objc.Send[OpenGLLayer](objc.ID(oc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (o_ OpenGLLayer) Autorelease() OpenGLLayer {
 func NewOpenGLLayer() OpenGLLayer {
 	return getOpenGLLayerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for OpenGLLayer */
+
+
 // A parent class referenced by other AppKit classes.
 
 
@@ -102,34 +102,34 @@ type OpenGLLayer struct {
 func OpenGLLayerFrom(ptr unsafe.Pointer) OpenGLLayer {
 	return OpenGLLayer{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for OpenGLLayer *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for OpenGLLayer */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for OpenGLLayer */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for OpenGLLayer */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for OpenGLLayer */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class CAOpenGLLayer */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

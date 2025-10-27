@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSScriptCommand */
 
 
-/* debug [class_header]: Header for NSScriptCommand */
+
+
 // The class instance for the [ScriptCommand] class.
 var (
 	ScriptCommandClass     _ScriptCommandClass
@@ -30,16 +30,16 @@ func getScriptCommandClass() _ScriptCommandClass {
 type _ScriptCommandClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ScriptCommand */
+
+
 // An interface definition for the [ScriptCommand] class.
 type IScriptCommand interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ScriptCommand */
+
 	// properties:
 	AppleEvent() IAppleEventDescriptor
 	SetAppleEvent(value IAppleEventDescriptor)
@@ -61,21 +61,21 @@ type IScriptCommand interface {
 	SetScriptErrorOffendingObjectDescriptor(value IAppleEventDescriptor)
 	ScriptErrorString() IString
 	SetScriptErrorString(value IString)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ScriptCommand */
+
 	// methods:
-	ResumeExecutionWithResult(result objc.IObject)
+	ResumeExecutionWithResult(result objectivec.IObject)
 	SuspendExecution()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ScriptCommand */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptCommandClass) Alloc() ScriptCommand {
 	rv := objc.Send[ScriptCommand](objc.ID(sc.class), objc.Sel("alloc"))
@@ -105,11 +105,11 @@ func (s_ ScriptCommand) Autorelease() ScriptCommand {
 func NewScriptCommand() ScriptCommand {
 	return getScriptCommandClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ScriptCommand */
+
+
 // A self-contained scripting statement.
 //
 // An instance of represents a scripting statement, such as , and contains the information needed to perform the operation specified by the statement. When an Apple event reaches a Cocoa application, Cocoa’s built-in scripting support transforms it into a script command (that is, an instance of or one of the subclasses provided by Cocoa scripting or by your application) and executes the command in the context of the application. Executing a command means either invoking the selector associated with the command on the object or objects designated to receive the command, or having the command perform its default implementation method ( ). Your application most likely calls methods of to extract the command arguments. You do this either in the method of a command subclass you have created, or in an object method designated as the selector to handle a particular command. As part of Cocoa’s standard scripting implementation, and its subclasses can handle the default command set for AppleScript’s Standard suite for most applications without any subclassing. The Standard suite includes commands such as , , , , , and , as well as common object classes such as , , and . For more information on working with script commands, see in .
@@ -129,33 +129,33 @@ type ScriptCommand struct {
 func ScriptCommandFrom(ptr unsafe.Pointer) ScriptCommand {
 	return ScriptCommand{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ScriptCommand *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ScriptCommand */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ScriptCommand */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ScriptCommand */
+
+
+
+
+
+
+
 
 // If a successful, unmatched, invocation of has been made, resume the execution of the command.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/resumeExecution(withResult:)
-func (s_ ScriptCommand) ResumeExecutionWithResult(result objc.IObject) {
+func (s_ ScriptCommand) ResumeExecutionWithResult(result objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("resumeExecutionWithResult:"), result)
-}/* debug [instance_methods/method]: ResumeExecutionWithResult */
+}
 
 
 // Suspends the execution of the receiver.
@@ -164,13 +164,13 @@ func (s_ ScriptCommand) ResumeExecutionWithResult(result objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/suspendExecution()
 func (s_ ScriptCommand) SuspendExecution() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("suspendExecution"))
-}/* debug [instance_methods/method]: SuspendExecution */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ScriptCommand */
+
+
+
 
 // If the receiver was constructed by Cocoa scripting’s built-in Apple event handling, returns the Apple event descriptor from which it was constructed.
 //
@@ -179,7 +179,7 @@ func (s_ ScriptCommand) SuspendExecution() {
 func (s_ ScriptCommand) AppleEvent() IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("appleEvent"))
 	return rv
-}/* debug [instance_properties/getter]: appleEvent */
+}
 
 
 // If the receiver was constructed by Cocoa scripting’s built-in Apple event handling, returns the Apple event descriptor from which it was constructed.
@@ -188,7 +188,7 @@ func (s_ ScriptCommand) AppleEvent() IAppleEventDescriptor {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/appleevent
 func (s_ ScriptCommand) SetAppleEvent(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEvent:"), value)
-}/* debug [instance_properties/setter]: appleEvent */
+}
 
 
 // Sets the arguments of the command to
@@ -198,7 +198,7 @@ func (s_ ScriptCommand) SetAppleEvent(value IAppleEventDescriptor) {
 func (s_ ScriptCommand) Arguments() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("arguments"))
 	return rv
-}/* debug [instance_properties/getter]: arguments */
+}
 
 
 // Sets the arguments of the command to
@@ -207,7 +207,7 @@ func (s_ ScriptCommand) Arguments() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/arguments
 func (s_ ScriptCommand) SetArguments(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArguments:"), value)
-}/* debug [instance_properties/setter]: arguments */
+}
 
 
 // Returns the command description for the command.
@@ -217,7 +217,7 @@ func (s_ ScriptCommand) SetArguments(value IString) {
 func (s_ ScriptCommand) CommandDescription() IScriptCommandDescription {
 	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("commandDescription"))
 	return rv
-}/* debug [instance_properties/getter]: commandDescription */
+}
 
 
 // Returns the command description for the command.
@@ -226,7 +226,7 @@ func (s_ ScriptCommand) CommandDescription() IScriptCommandDescription {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/commanddescription
 func (s_ ScriptCommand) SetCommandDescription(value IScriptCommandDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandDescription:"), value)
-}/* debug [instance_properties/setter]: commandDescription */
+}
 
 
 // Returns a dictionary containing the arguments of the command, evaluated from object specifiers to objects if necessary. The keys in the dictionary are the argument names.
@@ -236,7 +236,7 @@ func (s_ ScriptCommand) SetCommandDescription(value IScriptCommandDescription) {
 func (s_ ScriptCommand) EvaluatedArguments() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("evaluatedArguments"))
 	return rv
-}/* debug [instance_properties/getter]: evaluatedArguments */
+}
 
 
 // Returns a dictionary containing the arguments of the command, evaluated from object specifiers to objects if necessary. The keys in the dictionary are the argument names.
@@ -245,7 +245,7 @@ func (s_ ScriptCommand) EvaluatedArguments() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/evaluatedarguments
 func (s_ ScriptCommand) SetEvaluatedArguments(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluatedArguments:"), value)
-}/* debug [instance_properties/setter]: evaluatedArguments */
+}
 
 
 // Returns a Boolean value indicating whether the receiver is well formed according to its command description.
@@ -255,7 +255,7 @@ func (s_ ScriptCommand) SetEvaluatedArguments(value IString) {
 func (s_ ScriptCommand) IsWellFormed() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWellFormed"))
 	return rv
-}/* debug [instance_properties/getter]: isWellFormed */
+}
 
 
 // Returns a Boolean value indicating whether the receiver is well formed according to its command description.
@@ -264,7 +264,7 @@ func (s_ ScriptCommand) IsWellFormed() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/iswellformed
 func (s_ ScriptCommand) SetIsWellFormed(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsWellFormed:"), value)
-}/* debug [instance_properties/setter]: isWellFormed */
+}
 
 
 // Sets the object specifier to
@@ -274,7 +274,7 @@ func (s_ ScriptCommand) SetIsWellFormed(value bool) {
 func (s_ ScriptCommand) ReceiversSpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("receiversSpecifier"))
 	return rv
-}/* debug [instance_properties/getter]: receiversSpecifier */
+}
 
 
 // Sets the object specifier to
@@ -283,7 +283,7 @@ func (s_ ScriptCommand) ReceiversSpecifier() IScriptObjectSpecifier {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/receiversspecifier
 func (s_ ScriptCommand) SetReceiversSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReceiversSpecifier:"), value)
-}/* debug [instance_properties/setter]: receiversSpecifier */
+}
 
 
 // Sets a descriptor for the expected type that will be put in the reply Apple event if the sender requested a reply, execution of the receiver completes, and an error number was set.
@@ -293,7 +293,7 @@ func (s_ ScriptCommand) SetReceiversSpecifier(value IScriptObjectSpecifier) {
 func (s_ ScriptCommand) ScriptErrorExpectedTypeDescriptor() IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("scriptErrorExpectedTypeDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: scriptErrorExpectedTypeDescriptor */
+}
 
 
 // Sets a descriptor for the expected type that will be put in the reply Apple event if the sender requested a reply, execution of the receiver completes, and an error number was set.
@@ -302,7 +302,7 @@ func (s_ ScriptCommand) ScriptErrorExpectedTypeDescriptor() IAppleEventDescripto
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterrorexpectedtypedescriptor
 func (s_ ScriptCommand) SetScriptErrorExpectedTypeDescriptor(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorExpectedTypeDescriptor:"), value)
-}/* debug [instance_properties/setter]: scriptErrorExpectedTypeDescriptor */
+}
 
 
 // Sets a script error number that is associated with the execution of the command and is returned in the reply Apple event, if a reply was requested by the sender.
@@ -312,7 +312,7 @@ func (s_ ScriptCommand) SetScriptErrorExpectedTypeDescriptor(value IAppleEventDe
 func (s_ ScriptCommand) ScriptErrorNumber() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("scriptErrorNumber"))
 	return rv
-}/* debug [instance_properties/getter]: scriptErrorNumber */
+}
 
 
 // Sets a script error number that is associated with the execution of the command and is returned in the reply Apple event, if a reply was requested by the sender.
@@ -321,7 +321,7 @@ func (s_ ScriptCommand) ScriptErrorNumber() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterrornumber
 func (s_ ScriptCommand) SetScriptErrorNumber(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorNumber:"), value)
-}/* debug [instance_properties/setter]: scriptErrorNumber */
+}
 
 
 // Sets a descriptor for an object that will be put in the reply Apple event if the sender requested a reply, execution of the receiver completes, and an error number was set.
@@ -331,7 +331,7 @@ func (s_ ScriptCommand) SetScriptErrorNumber(value int) {
 func (s_ ScriptCommand) ScriptErrorOffendingObjectDescriptor() IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("scriptErrorOffendingObjectDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: scriptErrorOffendingObjectDescriptor */
+}
 
 
 // Sets a descriptor for an object that will be put in the reply Apple event if the sender requested a reply, execution of the receiver completes, and an error number was set.
@@ -340,7 +340,7 @@ func (s_ ScriptCommand) ScriptErrorOffendingObjectDescriptor() IAppleEventDescri
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterroroffendingobjectdescriptor
 func (s_ ScriptCommand) SetScriptErrorOffendingObjectDescriptor(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorOffendingObjectDescriptor:"), value)
-}/* debug [instance_properties/setter]: scriptErrorOffendingObjectDescriptor */
+}
 
 
 // Sets a script error string that is associated with execution of the command.
@@ -350,7 +350,7 @@ func (s_ ScriptCommand) SetScriptErrorOffendingObjectDescriptor(value IAppleEven
 func (s_ ScriptCommand) ScriptErrorString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("scriptErrorString"))
 	return rv
-}/* debug [instance_properties/getter]: scriptErrorString */
+}
 
 
 // Sets a script error string that is associated with execution of the command.
@@ -359,12 +359,12 @@ func (s_ ScriptCommand) ScriptErrorString() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/scripterrorstring
 func (s_ ScriptCommand) SetScriptErrorString(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorString:"), value)
-}/* debug [instance_properties/setter]: scriptErrorString */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSScriptCommand */
+
+
+
 
 
 

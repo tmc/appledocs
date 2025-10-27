@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSWorkspaceAuthorization */
 
 
-/* debug [class_header]: Header for NSWorkspaceAuthorization */
+
+
 // The class instance for the [WorkspaceAuthorization] class.
 var (
 	WorkspaceAuthorizationClass     _WorkspaceAuthorizationClass
@@ -30,30 +30,30 @@ func getWorkspaceAuthorizationClass() _WorkspaceAuthorizationClass {
 type _WorkspaceAuthorizationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for WorkspaceAuthorization */
+
+
 // An interface definition for the [WorkspaceAuthorization] class.
 type IWorkspaceAuthorization interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for WorkspaceAuthorization */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for WorkspaceAuthorization */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for WorkspaceAuthorization */
+
+
 // Alloc allocates a new instance without initialization.
 func (wc _WorkspaceAuthorizationClass) Alloc() WorkspaceAuthorization {
 	rv := objc.Send[WorkspaceAuthorization](objc.ID(wc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (w_ WorkspaceAuthorization) Autorelease() WorkspaceAuthorization {
 func NewWorkspaceAuthorization() WorkspaceAuthorization {
 	return getWorkspaceAuthorizationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for WorkspaceAuthorization */
+
+
 // The authorization granted to the app by the user.
 //
 // To enable your app to prompt the user for these file permissions, you must have a Privileged File Operation entitlement. If you have an app on the Mac App Store or plan to submit your app for review, you can .
@@ -107,34 +107,34 @@ type WorkspaceAuthorization struct {
 func WorkspaceAuthorizationFrom(ptr unsafe.Pointer) WorkspaceAuthorization {
 	return WorkspaceAuthorization{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for WorkspaceAuthorization *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for WorkspaceAuthorization */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for WorkspaceAuthorization */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for WorkspaceAuthorization */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for WorkspaceAuthorization */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NSWorkspaceAuthorization */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

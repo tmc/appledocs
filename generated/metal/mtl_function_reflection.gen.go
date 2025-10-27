@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLFunctionReflection */
 
 
-/* debug [class_header]: Header for MTLFunctionReflection */
+
+
 // The class instance for the [FunctionReflection] class.
 var (
 	FunctionReflectionClass     _FunctionReflectionClass
@@ -31,32 +30,32 @@ func getFunctionReflectionClass() _FunctionReflectionClass {
 type _FunctionReflectionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FunctionReflection */
+
+
 // An interface definition for the [FunctionReflection] class.
 type IFunctionReflection interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for FunctionReflection */
+
 	// properties:
 	Bindings() []objc.ID
-	UserAnnotation() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+	UserAnnotation() foundation.foundation.INSString
+
 
 	
-/* debug [class_interface_methods]: Methods for FunctionReflection */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FunctionReflection */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FunctionReflectionClass) Alloc() FunctionReflection {
 	rv := objc.Send[FunctionReflection](objc.ID(fc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (f_ FunctionReflection) Autorelease() FunctionReflection {
 func NewFunctionReflection() FunctionReflection {
 	return getFunctionReflectionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FunctionReflection */
+
+
 // Represents a reflection object containing information about a function in a Metal library.
 
 
@@ -108,30 +107,30 @@ type FunctionReflection struct {
 func FunctionReflectionFrom(ptr unsafe.Pointer) FunctionReflection {
 	return FunctionReflection{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FunctionReflection *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FunctionReflection */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FunctionReflection */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FunctionReflection */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FunctionReflection */
+
+
+
+
+
+
+
+
+
 
 // Provides a list of inputs and outputs of the function.
 //
@@ -140,22 +139,22 @@ func FunctionReflectionFrom(ptr unsafe.Pointer) FunctionReflection {
 func (f_ FunctionReflection) Bindings() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("bindings"))
 	return rv
-}/* debug [instance_properties/getter]: bindings */
+}
 
 
 // The string passed to the user annotation attribute for this function. Null if no user annotation is present for this function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFunctionReflection/userAnnotation
-func (f_ FunctionReflection) UserAnnotation() objc.IObject /* cross-framework: NSString */ {
+func (f_ FunctionReflection) UserAnnotation() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("userAnnotation"))
 	return rv
-}/* debug [instance_properties/getter]: userAnnotation */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLFunctionReflection */
+
+
+
 
 
 

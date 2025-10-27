@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MLParameterDescription */
 
 
-/* debug [class_header]: Header for MLParameterDescription */
+
+
 // The class instance for the [ParameterDescription] class.
 var (
 	ParameterDescriptionClass     _ParameterDescriptionClass
@@ -30,16 +30,16 @@ func getParameterDescriptionClass() _ParameterDescriptionClass {
 type _ParameterDescriptionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ParameterDescription */
+
+
 // An interface definition for the [ParameterDescription] class.
 type IParameterDescription interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ParameterDescription */
+
 	// properties:
 	DefaultValue() objc.ID
 	Key() IMLParameterKey
@@ -50,19 +50,19 @@ type IParameterDescription interface {
 	SetParameterDescriptionsByKey(value IMLParameterDescription)
 	TrainingInputDescriptionsByName() IMLFeatureDescription
 	SetTrainingInputDescriptionsByName(value IMLFeatureDescription)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ParameterDescription */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ParameterDescription */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _ParameterDescriptionClass) Alloc() ParameterDescription {
 	rv := objc.Send[ParameterDescription](objc.ID(pc.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (p_ ParameterDescription) Autorelease() ParameterDescription {
 func NewParameterDescription() ParameterDescription {
 	return getParameterDescriptionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ParameterDescription */
+
+
 // A description of a model parameter that includes a default value and a constraint, if applicable.
 
 
@@ -114,30 +114,30 @@ type ParameterDescription struct {
 func ParameterDescriptionFrom(ptr unsafe.Pointer) ParameterDescription {
 	return ParameterDescription{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ParameterDescription *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ParameterDescription */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ParameterDescription */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ParameterDescription */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ParameterDescription */
+
+
+
+
+
+
+
+
+
 
 // The default value for the parameter.
 //
@@ -146,7 +146,7 @@ func ParameterDescriptionFrom(ptr unsafe.Pointer) ParameterDescription {
 func (p_ ParameterDescription) DefaultValue() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("defaultValue"))
 	return rv
-}/* debug [instance_properties/getter]: defaultValue */
+}
 
 
 // The key for this parameter description value.
@@ -156,7 +156,7 @@ func (p_ ParameterDescription) DefaultValue() objc.ID {
 func (p_ ParameterDescription) Key() IMLParameterKey {
 	rv := objc.Send[ParameterKey](p_.ID, objc.Sel("key"))
 	return rv
-}/* debug [instance_properties/getter]: key */
+}
 
 
 // The constraints of this paramter description value, if and only if the value is numerical.
@@ -166,7 +166,7 @@ func (p_ ParameterDescription) Key() IMLParameterKey {
 func (p_ ParameterDescription) NumericConstraint() IMLNumericConstraint {
 	rv := objc.Send[NumericConstraint](p_.ID, objc.Sel("numericConstraint"))
 	return rv
-}/* debug [instance_properties/getter]: numericConstraint */
+}
 
 
 // A Boolean value that indicates whether you can update the model with additional training.
@@ -176,7 +176,7 @@ func (p_ ParameterDescription) NumericConstraint() IMLNumericConstraint {
 func (p_ ParameterDescription) IsUpdatable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isUpdatable"))
 	return rv
-}/* debug [instance_properties/getter]: isUpdatable */
+}
 
 
 // A Boolean value that indicates whether you can update the model with additional training.
@@ -185,7 +185,7 @@ func (p_ ParameterDescription) IsUpdatable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/isupdatable
 func (p_ ParameterDescription) SetIsUpdatable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsUpdatable:"), value)
-}/* debug [instance_properties/setter]: isUpdatable */
+}
 
 
 // A dictionary of the descriptions for the model’s parameters.
@@ -195,7 +195,7 @@ func (p_ ParameterDescription) SetIsUpdatable(value bool) {
 func (p_ ParameterDescription) ParameterDescriptionsByKey() IMLParameterDescription {
 	rv := objc.Send[ParameterDescription](p_.ID, objc.Sel("parameterDescriptionsByKey"))
 	return rv
-}/* debug [instance_properties/getter]: parameterDescriptionsByKey */
+}
 
 
 // A dictionary of the descriptions for the model’s parameters.
@@ -204,7 +204,7 @@ func (p_ ParameterDescription) ParameterDescriptionsByKey() IMLParameterDescript
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/parameterdescriptionsbykey
 func (p_ ParameterDescription) SetParameterDescriptionsByKey(value IMLParameterDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParameterDescriptionsByKey:"), value)
-}/* debug [instance_properties/setter]: parameterDescriptionsByKey */
+}
 
 
 // A dictionary of the training input feature descriptions, which the model keys by the input’s name.
@@ -214,7 +214,7 @@ func (p_ ParameterDescription) SetParameterDescriptionsByKey(value IMLParameterD
 func (p_ ParameterDescription) TrainingInputDescriptionsByName() IMLFeatureDescription {
 	rv := objc.Send[FeatureDescription](p_.ID, objc.Sel("trainingInputDescriptionsByName"))
 	return rv
-}/* debug [instance_properties/getter]: trainingInputDescriptionsByName */
+}
 
 
 // A dictionary of the training input feature descriptions, which the model keys by the input’s name.
@@ -223,12 +223,12 @@ func (p_ ParameterDescription) TrainingInputDescriptionsByName() IMLFeatureDescr
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/traininginputdescriptionsbyname
 func (p_ ParameterDescription) SetTrainingInputDescriptionsByName(value IMLFeatureDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTrainingInputDescriptionsByName:"), value)
-}/* debug [instance_properties/setter]: trainingInputDescriptionsByName */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MLParameterDescription */
+
+
+
 
 
 

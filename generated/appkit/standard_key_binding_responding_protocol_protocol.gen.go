@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PStandardKeyBindingResponding is the NSStandardKeyBindingResponding protocol interface.
@@ -17,196 +19,196 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding
 type PStandardKeyBindingResponding interface {
 	// Optional methods
-	CancelOperation(sender objc.IObject)
+	CancelOperation(sender objectivec.IObject)
 	HasCancelOperation() bool
-	CapitalizeWord(sender objc.IObject)
+	CapitalizeWord(sender objectivec.IObject)
 	HasCapitalizeWord() bool
-	CenterSelectionInVisibleArea(sender objc.IObject)
+	CenterSelectionInVisibleArea(sender objectivec.IObject)
 	HasCenterSelectionInVisibleArea() bool
-	ChangeCaseOfLetter(sender objc.IObject)
+	ChangeCaseOfLetter(sender objectivec.IObject)
 	HasChangeCaseOfLetter() bool
-	Complete(sender objc.IObject)
+	Complete(sender objectivec.IObject)
 	HasComplete() bool
-	DeleteBackward(sender objc.IObject)
+	DeleteBackward(sender objectivec.IObject)
 	HasDeleteBackward() bool
-	DeleteBackwardByDecomposingPreviousCharacter(sender objc.IObject)
+	DeleteBackwardByDecomposingPreviousCharacter(sender objectivec.IObject)
 	HasDeleteBackwardByDecomposingPreviousCharacter() bool
-	DeleteForward(sender objc.IObject)
+	DeleteForward(sender objectivec.IObject)
 	HasDeleteForward() bool
-	DeleteToBeginningOfLine(sender objc.IObject)
+	DeleteToBeginningOfLine(sender objectivec.IObject)
 	HasDeleteToBeginningOfLine() bool
-	DeleteToBeginningOfParagraph(sender objc.IObject)
+	DeleteToBeginningOfParagraph(sender objectivec.IObject)
 	HasDeleteToBeginningOfParagraph() bool
-	DeleteToEndOfLine(sender objc.IObject)
+	DeleteToEndOfLine(sender objectivec.IObject)
 	HasDeleteToEndOfLine() bool
-	DeleteToEndOfParagraph(sender objc.IObject)
+	DeleteToEndOfParagraph(sender objectivec.IObject)
 	HasDeleteToEndOfParagraph() bool
-	DeleteToMark(sender objc.IObject)
+	DeleteToMark(sender objectivec.IObject)
 	HasDeleteToMark() bool
-	DeleteWordBackward(sender objc.IObject)
+	DeleteWordBackward(sender objectivec.IObject)
 	HasDeleteWordBackward() bool
-	DeleteWordForward(sender objc.IObject)
+	DeleteWordForward(sender objectivec.IObject)
 	HasDeleteWordForward() bool
 	DoCommandBySelector(selector objc.SEL)
 	HasDoCommandBySelector() bool
-	Indent(sender objc.IObject)
+	Indent(sender objectivec.IObject)
 	HasIndent() bool
-	InsertBacktab(sender objc.IObject)
+	InsertBacktab(sender objectivec.IObject)
 	HasInsertBacktab() bool
-	InsertContainerBreak(sender objc.IObject)
+	InsertContainerBreak(sender objectivec.IObject)
 	HasInsertContainerBreak() bool
-	InsertDoubleQuoteIgnoringSubstitution(sender objc.IObject)
+	InsertDoubleQuoteIgnoringSubstitution(sender objectivec.IObject)
 	HasInsertDoubleQuoteIgnoringSubstitution() bool
-	InsertLineBreak(sender objc.IObject)
+	InsertLineBreak(sender objectivec.IObject)
 	HasInsertLineBreak() bool
-	InsertNewline(sender objc.IObject)
+	InsertNewline(sender objectivec.IObject)
 	HasInsertNewline() bool
-	InsertNewlineIgnoringFieldEditor(sender objc.IObject)
+	InsertNewlineIgnoringFieldEditor(sender objectivec.IObject)
 	HasInsertNewlineIgnoringFieldEditor() bool
-	InsertParagraphSeparator(sender objc.IObject)
+	InsertParagraphSeparator(sender objectivec.IObject)
 	HasInsertParagraphSeparator() bool
-	InsertSingleQuoteIgnoringSubstitution(sender objc.IObject)
+	InsertSingleQuoteIgnoringSubstitution(sender objectivec.IObject)
 	HasInsertSingleQuoteIgnoringSubstitution() bool
-	InsertTab(sender objc.IObject)
+	InsertTab(sender objectivec.IObject)
 	HasInsertTab() bool
-	InsertTabIgnoringFieldEditor(sender objc.IObject)
+	InsertTabIgnoringFieldEditor(sender objectivec.IObject)
 	HasInsertTabIgnoringFieldEditor() bool
-	InsertText(insertString objc.IObject)
+	InsertText(insertString objectivec.IObject)
 	HasInsertText() bool
-	LowercaseWord(sender objc.IObject)
+	LowercaseWord(sender objectivec.IObject)
 	HasLowercaseWord() bool
-	MakeBaseWritingDirectionLeftToRight(sender objc.IObject)
+	MakeBaseWritingDirectionLeftToRight(sender objectivec.IObject)
 	HasMakeBaseWritingDirectionLeftToRight() bool
-	MakeBaseWritingDirectionNatural(sender objc.IObject)
+	MakeBaseWritingDirectionNatural(sender objectivec.IObject)
 	HasMakeBaseWritingDirectionNatural() bool
-	MakeBaseWritingDirectionRightToLeft(sender objc.IObject)
+	MakeBaseWritingDirectionRightToLeft(sender objectivec.IObject)
 	HasMakeBaseWritingDirectionRightToLeft() bool
-	MakeTextWritingDirectionLeftToRight(sender objc.IObject)
+	MakeTextWritingDirectionLeftToRight(sender objectivec.IObject)
 	HasMakeTextWritingDirectionLeftToRight() bool
-	MakeTextWritingDirectionNatural(sender objc.IObject)
+	MakeTextWritingDirectionNatural(sender objectivec.IObject)
 	HasMakeTextWritingDirectionNatural() bool
-	MakeTextWritingDirectionRightToLeft(sender objc.IObject)
+	MakeTextWritingDirectionRightToLeft(sender objectivec.IObject)
 	HasMakeTextWritingDirectionRightToLeft() bool
-	MoveBackward(sender objc.IObject)
+	MoveBackward(sender objectivec.IObject)
 	HasMoveBackward() bool
-	MoveBackwardAndModifySelection(sender objc.IObject)
+	MoveBackwardAndModifySelection(sender objectivec.IObject)
 	HasMoveBackwardAndModifySelection() bool
-	MoveDown(sender objc.IObject)
+	MoveDown(sender objectivec.IObject)
 	HasMoveDown() bool
-	MoveDownAndModifySelection(sender objc.IObject)
+	MoveDownAndModifySelection(sender objectivec.IObject)
 	HasMoveDownAndModifySelection() bool
-	MoveForward(sender objc.IObject)
+	MoveForward(sender objectivec.IObject)
 	HasMoveForward() bool
-	MoveForwardAndModifySelection(sender objc.IObject)
+	MoveForwardAndModifySelection(sender objectivec.IObject)
 	HasMoveForwardAndModifySelection() bool
-	MoveLeft(sender objc.IObject)
+	MoveLeft(sender objectivec.IObject)
 	HasMoveLeft() bool
-	MoveLeftAndModifySelection(sender objc.IObject)
+	MoveLeftAndModifySelection(sender objectivec.IObject)
 	HasMoveLeftAndModifySelection() bool
-	MoveParagraphBackwardAndModifySelection(sender objc.IObject)
+	MoveParagraphBackwardAndModifySelection(sender objectivec.IObject)
 	HasMoveParagraphBackwardAndModifySelection() bool
-	MoveParagraphForwardAndModifySelection(sender objc.IObject)
+	MoveParagraphForwardAndModifySelection(sender objectivec.IObject)
 	HasMoveParagraphForwardAndModifySelection() bool
-	MoveRight(sender objc.IObject)
+	MoveRight(sender objectivec.IObject)
 	HasMoveRight() bool
-	MoveRightAndModifySelection(sender objc.IObject)
+	MoveRightAndModifySelection(sender objectivec.IObject)
 	HasMoveRightAndModifySelection() bool
-	MoveToBeginningOfDocument(sender objc.IObject)
+	MoveToBeginningOfDocument(sender objectivec.IObject)
 	HasMoveToBeginningOfDocument() bool
-	MoveToBeginningOfDocumentAndModifySelection(sender objc.IObject)
+	MoveToBeginningOfDocumentAndModifySelection(sender objectivec.IObject)
 	HasMoveToBeginningOfDocumentAndModifySelection() bool
-	MoveToBeginningOfLine(sender objc.IObject)
+	MoveToBeginningOfLine(sender objectivec.IObject)
 	HasMoveToBeginningOfLine() bool
-	MoveToBeginningOfLineAndModifySelection(sender objc.IObject)
+	MoveToBeginningOfLineAndModifySelection(sender objectivec.IObject)
 	HasMoveToBeginningOfLineAndModifySelection() bool
-	MoveToBeginningOfParagraph(sender objc.IObject)
+	MoveToBeginningOfParagraph(sender objectivec.IObject)
 	HasMoveToBeginningOfParagraph() bool
-	MoveToBeginningOfParagraphAndModifySelection(sender objc.IObject)
+	MoveToBeginningOfParagraphAndModifySelection(sender objectivec.IObject)
 	HasMoveToBeginningOfParagraphAndModifySelection() bool
-	MoveToEndOfDocument(sender objc.IObject)
+	MoveToEndOfDocument(sender objectivec.IObject)
 	HasMoveToEndOfDocument() bool
-	MoveToEndOfDocumentAndModifySelection(sender objc.IObject)
+	MoveToEndOfDocumentAndModifySelection(sender objectivec.IObject)
 	HasMoveToEndOfDocumentAndModifySelection() bool
-	MoveToEndOfLine(sender objc.IObject)
+	MoveToEndOfLine(sender objectivec.IObject)
 	HasMoveToEndOfLine() bool
-	MoveToEndOfLineAndModifySelection(sender objc.IObject)
+	MoveToEndOfLineAndModifySelection(sender objectivec.IObject)
 	HasMoveToEndOfLineAndModifySelection() bool
-	MoveToEndOfParagraph(sender objc.IObject)
+	MoveToEndOfParagraph(sender objectivec.IObject)
 	HasMoveToEndOfParagraph() bool
-	MoveToEndOfParagraphAndModifySelection(sender objc.IObject)
+	MoveToEndOfParagraphAndModifySelection(sender objectivec.IObject)
 	HasMoveToEndOfParagraphAndModifySelection() bool
-	MoveToLeftEndOfLine(sender objc.IObject)
+	MoveToLeftEndOfLine(sender objectivec.IObject)
 	HasMoveToLeftEndOfLine() bool
-	MoveToLeftEndOfLineAndModifySelection(sender objc.IObject)
+	MoveToLeftEndOfLineAndModifySelection(sender objectivec.IObject)
 	HasMoveToLeftEndOfLineAndModifySelection() bool
-	MoveToRightEndOfLine(sender objc.IObject)
+	MoveToRightEndOfLine(sender objectivec.IObject)
 	HasMoveToRightEndOfLine() bool
-	MoveToRightEndOfLineAndModifySelection(sender objc.IObject)
+	MoveToRightEndOfLineAndModifySelection(sender objectivec.IObject)
 	HasMoveToRightEndOfLineAndModifySelection() bool
-	MoveUp(sender objc.IObject)
+	MoveUp(sender objectivec.IObject)
 	HasMoveUp() bool
-	MoveUpAndModifySelection(sender objc.IObject)
+	MoveUpAndModifySelection(sender objectivec.IObject)
 	HasMoveUpAndModifySelection() bool
-	MoveWordBackward(sender objc.IObject)
+	MoveWordBackward(sender objectivec.IObject)
 	HasMoveWordBackward() bool
-	MoveWordBackwardAndModifySelection(sender objc.IObject)
+	MoveWordBackwardAndModifySelection(sender objectivec.IObject)
 	HasMoveWordBackwardAndModifySelection() bool
-	MoveWordForward(sender objc.IObject)
+	MoveWordForward(sender objectivec.IObject)
 	HasMoveWordForward() bool
-	MoveWordForwardAndModifySelection(sender objc.IObject)
+	MoveWordForwardAndModifySelection(sender objectivec.IObject)
 	HasMoveWordForwardAndModifySelection() bool
-	MoveWordLeft(sender objc.IObject)
+	MoveWordLeft(sender objectivec.IObject)
 	HasMoveWordLeft() bool
-	MoveWordLeftAndModifySelection(sender objc.IObject)
+	MoveWordLeftAndModifySelection(sender objectivec.IObject)
 	HasMoveWordLeftAndModifySelection() bool
-	MoveWordRight(sender objc.IObject)
+	MoveWordRight(sender objectivec.IObject)
 	HasMoveWordRight() bool
-	MoveWordRightAndModifySelection(sender objc.IObject)
+	MoveWordRightAndModifySelection(sender objectivec.IObject)
 	HasMoveWordRightAndModifySelection() bool
-	PageDown(sender objc.IObject)
+	PageDown(sender objectivec.IObject)
 	HasPageDown() bool
-	PageDownAndModifySelection(sender objc.IObject)
+	PageDownAndModifySelection(sender objectivec.IObject)
 	HasPageDownAndModifySelection() bool
-	PageUp(sender objc.IObject)
+	PageUp(sender objectivec.IObject)
 	HasPageUp() bool
-	PageUpAndModifySelection(sender objc.IObject)
+	PageUpAndModifySelection(sender objectivec.IObject)
 	HasPageUpAndModifySelection() bool
-	QuickLookPreviewItems(sender objc.IObject)
+	QuickLookPreviewItems(sender objectivec.IObject)
 	HasQuickLookPreviewItems() bool
-	ScrollLineDown(sender objc.IObject)
+	ScrollLineDown(sender objectivec.IObject)
 	HasScrollLineDown() bool
-	ScrollLineUp(sender objc.IObject)
+	ScrollLineUp(sender objectivec.IObject)
 	HasScrollLineUp() bool
-	ScrollPageDown(sender objc.IObject)
+	ScrollPageDown(sender objectivec.IObject)
 	HasScrollPageDown() bool
-	ScrollPageUp(sender objc.IObject)
+	ScrollPageUp(sender objectivec.IObject)
 	HasScrollPageUp() bool
-	ScrollToBeginningOfDocument(sender objc.IObject)
+	ScrollToBeginningOfDocument(sender objectivec.IObject)
 	HasScrollToBeginningOfDocument() bool
-	ScrollToEndOfDocument(sender objc.IObject)
+	ScrollToEndOfDocument(sender objectivec.IObject)
 	HasScrollToEndOfDocument() bool
-	SelectAll(sender objc.IObject)
+	SelectAll(sender objectivec.IObject)
 	HasSelectAll() bool
-	SelectLine(sender objc.IObject)
+	SelectLine(sender objectivec.IObject)
 	HasSelectLine() bool
-	SelectParagraph(sender objc.IObject)
+	SelectParagraph(sender objectivec.IObject)
 	HasSelectParagraph() bool
-	SelectToMark(sender objc.IObject)
+	SelectToMark(sender objectivec.IObject)
 	HasSelectToMark() bool
-	SelectWord(sender objc.IObject)
+	SelectWord(sender objectivec.IObject)
 	HasSelectWord() bool
-	SetMark(sender objc.IObject)
+	SetMark(sender objectivec.IObject)
 	HasSetMark() bool
-	ShowContextMenuForSelection(sender objc.IObject)
+	ShowContextMenuForSelection(sender objectivec.IObject)
 	HasShowContextMenuForSelection() bool
-	SwapWithMark(sender objc.IObject)
+	SwapWithMark(sender objectivec.IObject)
 	HasSwapWithMark() bool
-	Transpose(sender objc.IObject)
+	Transpose(sender objectivec.IObject)
 	HasTranspose() bool
-	TransposeWords(sender objc.IObject)
+	TransposeWords(sender objectivec.IObject)
 	HasTransposeWords() bool
-	UppercaseWord(sender objc.IObject)
+	UppercaseWord(sender objectivec.IObject)
 	HasUppercaseWord() bool
-	Yank(sender objc.IObject)
+	Yank(sender objectivec.IObject)
 	HasYank() bool
 }

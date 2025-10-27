@@ -2,6 +2,11 @@
 
 package appkit
 
+import (
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+)
+
 // PAccessibilityLayoutItem is the NSAccessibilityLayoutItem protocol interface.
 //
 // A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a layout item.
@@ -12,6 +17,6 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutItem
 type PAccessibilityLayoutItem interface {
 	// Optional methods
-	SetAccessibilityFrame(frame Rect /* not a class type */)
+	SetAccessibilityFrame(frame corefoundation.CGRect)
 	HasSetAccessibilityFrame() bool
 }

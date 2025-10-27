@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAssetCache */
 
 
-/* debug [class_header]: Header for AVAssetCache */
+
+
 // The class instance for the [AssetCache] class.
 var (
 	AssetCacheClass     _AssetCacheClass
@@ -30,36 +30,36 @@ func getAssetCacheClass() _AssetCacheClass {
 type _AssetCacheClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AssetCache */
+
+
 // An interface definition for the [AssetCache] class.
 type IAssetCache interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AssetCache */
+
 	// properties:
 	PlayableOffline() bool
 	IsPlayableOffline() bool
 	SetIsPlayableOffline(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AssetCache */
+
 	// methods:
 	MediaPresentationLanguagesForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) []string
 	MediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary
 	MediaSelectionOptionsInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) []MediaSelectionOption
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AssetCache */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssetCacheClass) Alloc() AssetCache {
 	rv := objc.Send[AssetCache](objc.ID(ac.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (a_ AssetCache) Autorelease() AssetCache {
 func NewAssetCache() AssetCache {
 	return getAssetCacheClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AssetCache */
+
+
 // An object that you use to inspect locally cached media data.
 //
 // You can download HTTP Live Streaming assets to an iOS device using the and classes.
@@ -113,25 +113,25 @@ type AssetCache struct {
 func AssetCacheFrom(ptr unsafe.Pointer) AssetCache {
 	return AssetCache{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AssetCache *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AssetCache */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AssetCache */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AssetCache */
+
+
+
+
+
+
+
 
 // Returns an array of extended language tags for languages that can be selected for offline operations via use of the AVMediaSelectionGroup’s AVCustomMediaSelectionScheme.
 //
@@ -140,7 +140,7 @@ func AssetCacheFrom(ptr unsafe.Pointer) AssetCache {
 func (a_ AssetCache) MediaPresentationLanguagesForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("mediaPresentationLanguagesForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
-}/* debug [instance_methods/method]: MediaPresentationLanguagesForMediaSelectionGroup */
+}
 
 
 // For each AVMediaPresentationSelector defined by the AVCustomMediaSelectionScheme of an AVMediaSelectionGroup, returns the AVMediaPresentationSettings that can be satisfied for offline operations, e.g. playback.
@@ -150,7 +150,7 @@ func (a_ AssetCache) MediaPresentationLanguagesForMediaSelectionGroup(mediaSelec
 func (a_ AssetCache) MediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("mediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
-}/* debug [instance_methods/method]: MediaPresentationSettingsForMediaSelectionGroup */
+}
 
 
 // Returns an array of locally cached media selection options that are available for offline use.
@@ -160,13 +160,13 @@ func (a_ AssetCache) MediaPresentationSettingsForMediaSelectionGroup(mediaSelect
 func (a_ AssetCache) MediaSelectionOptionsInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) []MediaSelectionOption {
 	rv := objc.Send[[]MediaSelectionOption](a_.ID, objc.Sel("mediaSelectionOptionsInMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
-}/* debug [instance_methods/method]: MediaSelectionOptionsInMediaSelectionGroup */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for AssetCache */
+
+
+
 
 // A Boolean value that indicates whether the asset is playable without an internet connection.
 //
@@ -175,7 +175,7 @@ func (a_ AssetCache) MediaSelectionOptionsInMediaSelectionGroup(mediaSelectionGr
 func (a_ AssetCache) PlayableOffline() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("playableOffline"))
 	return rv
-}/* debug [instance_properties/getter]: playableOffline */
+}
 
 
 // A Boolean value that indicates whether the asset is playable without an internet connection.
@@ -185,7 +185,7 @@ func (a_ AssetCache) PlayableOffline() bool {
 func (a_ AssetCache) IsPlayableOffline() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPlayableOffline"))
 	return rv
-}/* debug [instance_properties/getter]: isPlayableOffline */
+}
 
 
 // A Boolean value that indicates whether the asset is playable without an internet connection.
@@ -194,12 +194,12 @@ func (a_ AssetCache) IsPlayableOffline() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetcache/isplayableoffline
 func (a_ AssetCache) SetIsPlayableOffline(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlayableOffline:"), value)
-}/* debug [instance_properties/setter]: isPlayableOffline */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAssetCache */
+
+
+
 
 
 

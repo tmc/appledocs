@@ -20,8 +20,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/audioSessionInputs
-func (c_ ContinuityDevice) AudioSessionInputs() []avfaudio.AudioSessionPortDescription {
-	rv := objc.Send[[]avfaudio.AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
+func (c_ ContinuityDevice) AudioSessionInputs() []AudioSessionPortDescription /* not a class type */ {
+	rv := objc.Send[[]AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
 

@@ -2,9 +2,9 @@
 
 package corevideo
 
-/* debug [enums.gen.go]: Generating 7 enums for CoreVideo */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CVAttachmentMode (2 cases) */
+
 // AttachmentMode - The propagation modes of a Core Video buffer attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVAttachmentMode
@@ -21,7 +21,7 @@ const (
 	kCVAttachmentMode_ShouldPropagate AttachmentMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CVPixelBufferLockFlags (1 cases) */
+
 // PixelBufferLockFlags - The flags to pass to 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferLockFlags
@@ -34,7 +34,7 @@ const (
 	kCVPixelBufferLock_ReadOnly PixelBufferLockFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CVPixelBufferPoolFlushFlags (1 cases) */
+
 // PixelBufferPoolFlushFlags - The flags to pass to flush the pool.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolFlushFlags
@@ -47,7 +47,7 @@ const (
 	kCVPixelBufferPoolFlushExcessBuffers PixelBufferPoolFlushFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CVSMPTETimeFlags (2 cases) */
+
 // SMPTETimeFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVSMPTETimeFlags
@@ -64,7 +64,7 @@ const (
 	kCVSMPTETimeValid SMPTETimeFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CVSMPTETimeType (8 cases) */
+
 // SMPTETimeType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVSMPTETimeType
@@ -105,7 +105,7 @@ const (
 	kCVSMPTETimeType60 SMPTETimeType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CVTimeFlags (1 cases) */
+
 // TimeFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTimeFlags
@@ -118,7 +118,7 @@ const (
 	kCVTimeIsIndefinite TimeFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CVTimeStampFlags (9 cases) */
+
 // TimeStampFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTimeStampFlags

@@ -10,5 +10,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation
 type PMenuItemValidation interface {
 	// Required methods
-	ValidateMenuItem(menuItem IMenuItem) bool/* debug [protocol_interface/required_method]: ValidateMenuItem */
+	ValidateMenuItem(menuItem IMenuItem) bool
 }

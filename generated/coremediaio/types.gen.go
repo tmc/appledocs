@@ -17,7 +17,7 @@ type CMIODeviceAVCCommand struct {
 	MResponse unsafe.Pointer
 	MResponseLength unsafe.Pointer
 	MResponseUsed unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIODeviceAVCCommand */
+}
 
 // CMIODeviceRS422Command
 //
@@ -29,7 +29,7 @@ type CMIODeviceRS422Command struct {
 	MResponse unsafe.Pointer
 	MResponseLength unsafe.Pointer
 	MResponseUsed unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIODeviceRS422Command */
+}
 
 // CMIODeviceSMPTETimeCallback
 //
@@ -38,7 +38,7 @@ type CMIODeviceRS422Command struct {
 type CMIODeviceSMPTETimeCallback struct {
 	MGetSMPTETimeProc IODeviceGetSMPTETimeProc
 	MRefCon unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIODeviceSMPTETimeCallback */
+}
 
 // CMIODeviceStreamConfiguration
 //
@@ -47,7 +47,7 @@ type CMIODeviceSMPTETimeCallback struct {
 type CMIODeviceStreamConfiguration struct {
 	MNumberChannels unsafe.Pointer
 	MNumberStreams unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIODeviceStreamConfiguration */
+}
 
 // CMIOHardwarePlugInInterface
 //
@@ -77,7 +77,7 @@ type CMIOHardwarePlugInInterface struct {
 	StreamDeckPlay unsafe.Pointer
 	StreamDeckStop unsafe.Pointer
 	Teardown unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIOHardwarePlugInInterface */
+}
 
 // CMIOObjectPropertyAddress
 //
@@ -87,7 +87,7 @@ type CMIOObjectPropertyAddress struct {
 	MElement IOObjectPropertyElement
 	MScope IOObjectPropertyScope
 	MSelector IOObjectPropertySelector
-}/* debug [types.gen.go/struct]: CMIOObjectPropertyAddress */
+}
 
 // CMIOStreamDeck
 //
@@ -97,7 +97,7 @@ type CMIOStreamDeck struct {
 	MState unsafe.Pointer
 	MState2 unsafe.Pointer
 	MStatus unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIOStreamDeck */
+}
 
 // CMIOStreamScheduledOutputNotificationProcAndRefCon
 //
@@ -106,7 +106,7 @@ type CMIOStreamDeck struct {
 type CMIOStreamScheduledOutputNotificationProcAndRefCon struct {
 	ScheduledOutputNotificationProc IOStreamScheduledOutputNotificationProc
 	ScheduledOutputNotificationRefCon unsafe.Pointer
-}/* debug [types.gen.go/struct]: CMIOStreamScheduledOutputNotificationProcAndRefCon */
+}
 
 
 

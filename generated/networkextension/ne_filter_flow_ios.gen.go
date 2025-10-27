@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -21,7 +20,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterFlow/sourceAppIdentifier
-func (n_ NEFilterFlow) SourceAppIdentifier() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEFilterFlow) SourceAppIdentifier() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("sourceAppIdentifier"))
 	return rv
 }
@@ -30,7 +29,7 @@ func (n_ NEFilterFlow) SourceAppIdentifier() objc.IObject /* cross-framework: NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterFlow/sourceAppUniqueIdentifier
-func (n_ NEFilterFlow) SourceAppUniqueIdentifier() objc.IObject /* cross-framework: NSData */ {
+func (n_ NEFilterFlow) SourceAppUniqueIdentifier() foundation.foundation.INSData {
 	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
 	return rv
 }
@@ -39,7 +38,7 @@ func (n_ NEFilterFlow) SourceAppUniqueIdentifier() objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterFlow/sourceAppVersion
-func (n_ NEFilterFlow) SourceAppVersion() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEFilterFlow) SourceAppVersion() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("sourceAppVersion"))
 	return rv
 }

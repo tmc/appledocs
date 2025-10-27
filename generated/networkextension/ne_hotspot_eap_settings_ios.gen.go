@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -28,7 +27,7 @@ func (n_ NEHotspotEAPSettings) SetIdentity(identity objectivec.IObject) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/setTrustedServerCertificates(_:)
-func (n_ NEHotspotEAPSettings) SetTrustedServerCertificates(certificates objc.IObject /* cross-framework: NSArray */) bool {
+func (n_ NEHotspotEAPSettings) SetTrustedServerCertificates(certificates foundation.foundation.INSArray) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("setTrustedServerCertificates:"), certificates)
 	return rv
 }
@@ -51,11 +50,11 @@ func (n_ NEHotspotEAPSettings) SetTlsClientCertificateRequired(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/outerIdentity
-func (n_ NEHotspotEAPSettings) OuterIdentity() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotEAPSettings) OuterIdentity() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("outerIdentity"))
 	return rv
 }
-func (n_ NEHotspotEAPSettings) SetOuterIdentity(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEHotspotEAPSettings) SetOuterIdentity(value foundation.foundation.INSString) {
 	n_.ID.Send(objc.RegisterName("setOuterIdentity:"), value)
 }
 
@@ -63,11 +62,11 @@ func (n_ NEHotspotEAPSettings) SetOuterIdentity(value objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/password
-func (n_ NEHotspotEAPSettings) Password() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotEAPSettings) Password() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("password"))
 	return rv
 }
-func (n_ NEHotspotEAPSettings) SetPassword(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEHotspotEAPSettings) SetPassword(value foundation.foundation.INSString) {
 	n_.ID.Send(objc.RegisterName("setPassword:"), value)
 }
 
@@ -123,11 +122,11 @@ func (n_ NEHotspotEAPSettings) SetTtlsInnerAuthenticationType(value NEHotspotCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings/username
-func (n_ NEHotspotEAPSettings) Username() objc.IObject /* cross-framework: NSString */ {
+func (n_ NEHotspotEAPSettings) Username() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("username"))
 	return rv
 }
-func (n_ NEHotspotEAPSettings) SetUsername(value objc.IObject /* cross-framework: NSString */) {
+func (n_ NEHotspotEAPSettings) SetUsername(value foundation.foundation.INSString) {
 	n_.ID.Send(objc.RegisterName("setUsername:"), value)
 }
 

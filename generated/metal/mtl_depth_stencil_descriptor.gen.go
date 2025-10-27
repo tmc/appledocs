@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLDepthStencilDescriptor */
 
 
-/* debug [class_header]: Header for MTLDepthStencilDescriptor */
+
+
 // The class instance for the [DepthStencilDescriptor] class.
 var (
 	DepthStencilDescriptorClass     _DepthStencilDescriptorClass
@@ -31,16 +30,16 @@ func getDepthStencilDescriptorClass() _DepthStencilDescriptorClass {
 type _DepthStencilDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DepthStencilDescriptor */
+
+
 // An interface definition for the [DepthStencilDescriptor] class.
 type IDepthStencilDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for DepthStencilDescriptor */
+
 	// properties:
 	BackFaceStencil() IMTLStencilDescriptor
 	SetBackFaceStencil(value IMTLStencilDescriptor)
@@ -50,23 +49,23 @@ type IDepthStencilDescriptor interface {
 	SetFrontFaceStencil(value IMTLStencilDescriptor)
 	DepthWriteEnabled() bool
 	SetDepthWriteEnabled(value bool)
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	IsDepthWriteEnabled() bool
 	SetIsDepthWriteEnabled(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DepthStencilDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DepthStencilDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DepthStencilDescriptorClass) Alloc() DepthStencilDescriptor {
 	rv := objc.Send[DepthStencilDescriptor](objc.ID(dc.class), objc.Sel("alloc"))
@@ -96,11 +95,11 @@ func (d_ DepthStencilDescriptor) Autorelease() DepthStencilDescriptor {
 func NewDepthStencilDescriptor() DepthStencilDescriptor {
 	return getDepthStencilDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DepthStencilDescriptor */
+
+
 // An instance that configures new instances.
 //
 // An instance is used to define a specific configuration of the depth and stencil stages of a rendering pipeline. To create an instance, use standard allocation and initialization techniques. To enable writing the depth value to a depth attachment, set the depthWriteEnabled property to . The depthCompareFunction property specifies how the depth test is performed. If a fragment’s depth value fails the depth test, the fragment is discarded. is a commonly used value for , because fragment values that are farther away from the viewer than the pixel depth value (a previously written fragment) fail the depth test and are considered occluded by the earlier depth value. The and properties define two independent stencil descriptors: one for front-facing primitives and the other for back-facing primitives, respectively. Both properties can be set to the same MTLStencilDescriptor instance.
@@ -120,30 +119,30 @@ type DepthStencilDescriptor struct {
 func DepthStencilDescriptorFrom(ptr unsafe.Pointer) DepthStencilDescriptor {
 	return DepthStencilDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DepthStencilDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DepthStencilDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DepthStencilDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DepthStencilDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DepthStencilDescriptor */
+
+
+
+
+
+
+
+
+
 
 // The stencil descriptor for back-facing primitives.
 //
@@ -152,7 +151,7 @@ func DepthStencilDescriptorFrom(ptr unsafe.Pointer) DepthStencilDescriptor {
 func (d_ DepthStencilDescriptor) BackFaceStencil() IMTLStencilDescriptor {
 	rv := objc.Send[StencilDescriptor](d_.ID, objc.Sel("backFaceStencil"))
 	return rv
-}/* debug [instance_properties/getter]: backFaceStencil */
+}
 
 
 // The stencil descriptor for back-facing primitives.
@@ -161,7 +160,7 @@ func (d_ DepthStencilDescriptor) BackFaceStencil() IMTLStencilDescriptor {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/backFaceStencil
 func (d_ DepthStencilDescriptor) SetBackFaceStencil(value IMTLStencilDescriptor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBackFaceStencil:"), value)
-}/* debug [instance_properties/setter]: backFaceStencil */
+}
 
 
 // The comparison that is performed between a fragment’s depth value and the depth value in the attachment, which determines whether to discard the fragment.
@@ -171,7 +170,7 @@ func (d_ DepthStencilDescriptor) SetBackFaceStencil(value IMTLStencilDescriptor)
 func (d_ DepthStencilDescriptor) DepthCompareFunction() CompareFunction {
 	rv := objc.Send[CompareFunction](d_.ID, objc.Sel("depthCompareFunction"))
 	return rv
-}/* debug [instance_properties/getter]: depthCompareFunction */
+}
 
 
 // The comparison that is performed between a fragment’s depth value and the depth value in the attachment, which determines whether to discard the fragment.
@@ -180,7 +179,7 @@ func (d_ DepthStencilDescriptor) DepthCompareFunction() CompareFunction {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/depthCompareFunction
 func (d_ DepthStencilDescriptor) SetDepthCompareFunction(value CompareFunction) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthCompareFunction:"), value)
-}/* debug [instance_properties/setter]: depthCompareFunction */
+}
 
 
 // The stencil descriptor for front-facing primitives.
@@ -190,7 +189,7 @@ func (d_ DepthStencilDescriptor) SetDepthCompareFunction(value CompareFunction) 
 func (d_ DepthStencilDescriptor) FrontFaceStencil() IMTLStencilDescriptor {
 	rv := objc.Send[StencilDescriptor](d_.ID, objc.Sel("frontFaceStencil"))
 	return rv
-}/* debug [instance_properties/getter]: frontFaceStencil */
+}
 
 
 // The stencil descriptor for front-facing primitives.
@@ -199,7 +198,7 @@ func (d_ DepthStencilDescriptor) FrontFaceStencil() IMTLStencilDescriptor {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/frontFaceStencil
 func (d_ DepthStencilDescriptor) SetFrontFaceStencil(value IMTLStencilDescriptor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrontFaceStencil:"), value)
-}/* debug [instance_properties/setter]: frontFaceStencil */
+}
 
 
 // A Boolean value that indicates whether depth values can be written to the depth attachment.
@@ -209,7 +208,7 @@ func (d_ DepthStencilDescriptor) SetFrontFaceStencil(value IMTLStencilDescriptor
 func (d_ DepthStencilDescriptor) DepthWriteEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("depthWriteEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: depthWriteEnabled */
+}
 
 
 // A Boolean value that indicates whether depth values can be written to the depth attachment.
@@ -218,26 +217,26 @@ func (d_ DepthStencilDescriptor) DepthWriteEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/isDepthWriteEnabled
 func (d_ DepthStencilDescriptor) SetDepthWriteEnabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthWriteEnabled:"), value)
-}/* debug [instance_properties/setter]: depthWriteEnabled */
+}
 
 
 // A string that identifies this object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+func (d_ DepthStencilDescriptor) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("label"))
 	return rv
-}/* debug [instance_properties/getter]: label */
+}
 
 
 // A string that identifies this object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (d_ DepthStencilDescriptor) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), value)
-}/* debug [instance_properties/setter]: label */
+}
 
 
 // A Boolean value that indicates whether depth values can be written to the depth attachment.
@@ -247,7 +246,7 @@ func (d_ DepthStencilDescriptor) SetLabel(value objc.IObject /* cross-framework:
 func (d_ DepthStencilDescriptor) IsDepthWriteEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDepthWriteEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: isDepthWriteEnabled */
+}
 
 
 // A Boolean value that indicates whether depth values can be written to the depth attachment.
@@ -256,12 +255,12 @@ func (d_ DepthStencilDescriptor) IsDepthWriteEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/isdepthwriteenabled
 func (d_ DepthStencilDescriptor) SetIsDepthWriteEnabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDepthWriteEnabled:"), value)
-}/* debug [instance_properties/setter]: isDepthWriteEnabled */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLDepthStencilDescriptor */
+
+
+
 
 
 

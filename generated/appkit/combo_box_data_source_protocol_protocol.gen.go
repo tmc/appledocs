@@ -7,6 +7,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 
 	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PComboBoxDataSource is the NSComboBoxDataSource protocol interface.
@@ -17,9 +19,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSComboBoxDataSource
 type PComboBoxDataSource interface {
 	// Optional methods
-	ComboBoxCompletedString(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) foundation.String
+	ComboBoxCompletedString(comboBox IComboBox, string_ foundation.foundation.INSString) foundation.String
 	HasComboBoxCompletedString() bool
-	ComboBoxIndexOfItemWithStringValue(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) uint
+	ComboBoxIndexOfItemWithStringValue(comboBox IComboBox, string_ foundation.foundation.INSString) uint
 	HasComboBoxIndexOfItemWithStringValue() bool
 	ComboBoxObjectValueForItemAtIndex(comboBox IComboBox, index int) objc.ID
 	HasComboBoxObjectValueForItemAtIndex() bool
@@ -31,8 +33,8 @@ type PComboBoxDataSource interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ComboBoxDataSource struct {
-	_ComboBoxCompletedString func(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) foundation.String
-	_ComboBoxIndexOfItemWithStringValue func(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) uint
+	_ComboBoxCompletedString func(comboBox IComboBox, string_ foundation.foundation.INSString) foundation.String
+	_ComboBoxIndexOfItemWithStringValue func(comboBox IComboBox, string_ foundation.foundation.INSString) uint
 	_ComboBoxObjectValueForItemAtIndex func(comboBox IComboBox, index int) objc.ID
 	_NumberOfItemsInComboBox func(comboBox IComboBox) int
 }
@@ -40,14 +42,14 @@ type ComboBoxDataSource struct {
 // SetComboBoxCompletedString sets the handler for the ComboBoxCompletedString delegate method.
 //
 // Returns the first item from the pop-up list that starts with the text the user has typed.
-func (d *ComboBoxDataSource) SetComboBoxCompletedString(f func(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) foundation.String) {
+func (d *ComboBoxDataSource) SetComboBoxCompletedString(f func(comboBox IComboBox, string_ foundation.foundation.INSString) foundation.String) {
 	d._ComboBoxCompletedString = f
 }
 
 // SetComboBoxIndexOfItemWithStringValue sets the handler for the ComboBoxIndexOfItemWithStringValue delegate method.
 //
 // Returns the index of the combo box item matching the specified string.
-func (d *ComboBoxDataSource) SetComboBoxIndexOfItemWithStringValue(f func(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) uint) {
+func (d *ComboBoxDataSource) SetComboBoxIndexOfItemWithStringValue(f func(comboBox IComboBox, string_ foundation.foundation.INSString) uint) {
 	d._ComboBoxIndexOfItemWithStringValue = f
 }
 
@@ -66,7 +68,7 @@ func (d *ComboBoxDataSource) SetNumberOfItemsInComboBox(f func(comboBox IComboBo
 }
 
 // ComboBoxCompletedString implements the PComboBoxDataSource interface.
-func (d *ComboBoxDataSource) ComboBoxCompletedString(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) foundation.String {
+func (d *ComboBoxDataSource) ComboBoxCompletedString(comboBox IComboBox, string_ foundation.foundation.INSString) foundation.String {
 	if d._ComboBoxCompletedString != nil {
 		return d._ComboBoxCompletedString(comboBox, string_)
 	}
@@ -80,7 +82,7 @@ func (d *ComboBoxDataSource) HasComboBoxCompletedString() bool {
 }
 
 // ComboBoxIndexOfItemWithStringValue implements the PComboBoxDataSource interface.
-func (d *ComboBoxDataSource) ComboBoxIndexOfItemWithStringValue(comboBox IComboBox, string_ objc.IObject /* cross-framework: NSString */) uint {
+func (d *ComboBoxDataSource) ComboBoxIndexOfItemWithStringValue(comboBox IComboBox, string_ foundation.foundation.INSString) uint {
 	if d._ComboBoxIndexOfItemWithStringValue != nil {
 		return d._ComboBoxIndexOfItemWithStringValue(comboBox, string_)
 	}
@@ -119,4 +121,64 @@ func (d *ComboBoxDataSource) NumberOfItemsInComboBox(comboBox IComboBox) int {
 // HasNumberOfItemsInComboBox returns true if a handler for NumberOfItemsInComboBox has been set.
 func (d *ComboBoxDataSource) HasNumberOfItemsInComboBox() bool {
 	return d._NumberOfItemsInComboBox != nil
+}
+
+// ComboBoxDataSourceObject wraps an existing Objective-C object that conforms to the PComboBoxDataSource protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type ComboBoxDataSourceObject struct {
+	objectivec.Object
+}
+
+// NewComboBoxDataSourceObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSComboBoxDataSource protocol.
+func NewComboBoxDataSourceObject(obj objectivec.Object) *ComboBoxDataSourceObject {
+	return &ComboBoxDataSourceObject{obj}
+}
+
+// Make sure ComboBoxDataSourceObject implements PComboBoxDataSource.
+var _ PComboBoxDataSource = (*ComboBoxDataSourceObject)(nil)
+
+// ComboBoxCompletedString implements the PComboBoxDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ComboBoxDataSourceObject) ComboBoxCompletedString(comboBox IComboBox, string_ foundation.foundation.INSString) foundation.String {
+	return objc.Send[foundation.String](o.ID, objc.Sel("comboBox:completedString:"), comboBox, string_)
+}
+
+// HasComboBoxCompletedString returns true; this is a placeholder for optional method checks.
+func (o *ComboBoxDataSourceObject) HasComboBoxCompletedString() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ComboBoxIndexOfItemWithStringValue implements the PComboBoxDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ComboBoxDataSourceObject) ComboBoxIndexOfItemWithStringValue(comboBox IComboBox, string_ foundation.foundation.INSString) uint {
+	return objc.Send[uint](o.ID, objc.Sel("comboBox:indexOfItemWithStringValue:"), comboBox, string_)
+}
+
+// HasComboBoxIndexOfItemWithStringValue returns true; this is a placeholder for optional method checks.
+func (o *ComboBoxDataSourceObject) HasComboBoxIndexOfItemWithStringValue() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// ComboBoxObjectValueForItemAtIndex implements the PComboBoxDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ComboBoxDataSourceObject) ComboBoxObjectValueForItemAtIndex(comboBox IComboBox, index int) objc.ID {
+	return objc.Send[objc.ID](o.ID, objc.Sel("comboBox:objectValueForItemAtIndex:"), comboBox, index)
+}
+
+// HasComboBoxObjectValueForItemAtIndex returns true; this is a placeholder for optional method checks.
+func (o *ComboBoxDataSourceObject) HasComboBoxObjectValueForItemAtIndex() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// NumberOfItemsInComboBox implements the PComboBoxDataSource interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *ComboBoxDataSourceObject) NumberOfItemsInComboBox(comboBox IComboBox) int {
+	return objc.Send[int](o.ID, objc.Sel("numberOfItemsInComboBox:"), comboBox)
+}
+
+// HasNumberOfItemsInComboBox returns true; this is a placeholder for optional method checks.
+func (o *ComboBoxDataSourceObject) HasNumberOfItemsInComboBox() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

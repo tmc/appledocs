@@ -51,8 +51,8 @@ type IDetectAnimalBodyPoseRequest interface {
 	
 
 	// methods:
-	SupportedJointNamesAndReturnError(error_ objectivec.IObject) []string
-	SupportedJointsGroupNamesAndReturnError(error_ objectivec.IObject) []string
+	SupportedJointNamesAndReturnError(error_ foundation.foundation.INSError) []string
+	SupportedJointsGroupNamesAndReturnError(error_ foundation.foundation.INSError) []string
 
 
 }
@@ -138,7 +138,7 @@ func DetectAnimalBodyPoseRequestFrom(ptr unsafe.Pointer) DetectAnimalBodyPoseReq
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectAnimalBodyPoseRequest/supportedJointNamesAndReturnError:
-func (d_ DetectAnimalBodyPoseRequest) SupportedJointNamesAndReturnError(error_ objectivec.IObject) []string {
+func (d_ DetectAnimalBodyPoseRequest) SupportedJointNamesAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedJointNamesAndReturnError:"), error_)
 	return rv
 }
@@ -148,7 +148,7 @@ func (d_ DetectAnimalBodyPoseRequest) SupportedJointNamesAndReturnError(error_ o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectAnimalBodyPoseRequest/supportedJointsGroupNamesAndReturnError:
-func (d_ DetectAnimalBodyPoseRequest) SupportedJointsGroupNamesAndReturnError(error_ objectivec.IObject) []string {
+func (d_ DetectAnimalBodyPoseRequest) SupportedJointsGroupNamesAndReturnError(error_ foundation.foundation.INSError) []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedJointsGroupNamesAndReturnError:"), error_)
 	return rv
 }

@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSGraphCompilationDescriptor */
 
 
-/* debug [class_header]: Header for MPSGraphCompilationDescriptor */
+
+
 // The class instance for the [GraphCompilationDescriptor] class.
 var (
 	GraphCompilationDescriptorClass     _GraphCompilationDescriptorClass
@@ -29,16 +29,16 @@ func getGraphCompilationDescriptorClass() _GraphCompilationDescriptorClass {
 type _GraphCompilationDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GraphCompilationDescriptor */
+
+
 // An interface definition for the [GraphCompilationDescriptor] class.
 type IGraphCompilationDescriptor interface {
 	IGraphObject
 	
-/* debug [class_interface_properties]: Properties for GraphCompilationDescriptor */
+
 	// properties:
 	Callables() GraphCallableMap /* not a class type */
 	SetCallables(value GraphCallableMap /* not a class type */)
@@ -54,20 +54,20 @@ type IGraphCompilationDescriptor interface {
 	SetReducedPrecisionFastMath(value GraphReducedPrecisionFastMath)
 	WaitForCompilationCompletion() bool
 	SetWaitForCompilationCompletion(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GraphCompilationDescriptor */
+
 	// methods:
 	DisableTypeInference()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GraphCompilationDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GraphCompilationDescriptorClass) Alloc() GraphCompilationDescriptor {
 	rv := objc.Send[GraphCompilationDescriptor](objc.ID(gc.class), objc.Sel("alloc"))
@@ -97,11 +97,11 @@ func (g_ GraphCompilationDescriptor) Autorelease() GraphCompilationDescriptor {
 func NewGraphCompilationDescriptor() GraphCompilationDescriptor {
 	return getGraphCompilationDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GraphCompilationDescriptor */
+
+
 // A class that consists of all the levers for compiling graphs.
 
 
@@ -121,25 +121,25 @@ func GraphCompilationDescriptorFrom(ptr unsafe.Pointer) GraphCompilationDescript
 		GraphObject: GraphObjectFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GraphCompilationDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for GraphCompilationDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for GraphCompilationDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GraphCompilationDescriptor */
+
+
+
+
+
+
+
 
 // Turns off type inference and relies on type inference during runtime.
 //
@@ -147,13 +147,13 @@ func GraphCompilationDescriptorFrom(ptr unsafe.Pointer) GraphCompilationDescript
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/disableTypeInference()
 func (g_ GraphCompilationDescriptor) DisableTypeInference() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("disableTypeInference"))
-}/* debug [instance_methods/method]: DisableTypeInference */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for GraphCompilationDescriptor */
+
+
+
 
 // The dictionary used during runtime to lookup the which correspond to the .
 //
@@ -162,7 +162,7 @@ func (g_ GraphCompilationDescriptor) DisableTypeInference() {
 func (g_ GraphCompilationDescriptor) Callables() GraphCallableMap /* not a class type */ {
 	rv := objc.Send[GraphCallableMap](g_.ID, objc.Sel("callables"))
 	return rv
-}/* debug [instance_properties/getter]: callables */
+}
 
 
 // The dictionary used during runtime to lookup the which correspond to the .
@@ -171,7 +171,7 @@ func (g_ GraphCompilationDescriptor) Callables() GraphCallableMap /* not a class
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/callables
 func (g_ GraphCompilationDescriptor) SetCallables(value GraphCallableMap /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCallables:"), value)
-}/* debug [instance_properties/setter]: callables */
+}
 
 
 // The handler that the graph calls when the compilation completes.
@@ -181,7 +181,7 @@ func (g_ GraphCompilationDescriptor) SetCallables(value GraphCallableMap /* not 
 func (g_ GraphCompilationDescriptor) CompilationCompletionHandler() GraphCompilationCompletionHandler /* not a class type */ {
 	rv := objc.Send[GraphCompilationCompletionHandler](g_.ID, objc.Sel("compilationCompletionHandler"))
 	return rv
-}/* debug [instance_properties/getter]: compilationCompletionHandler */
+}
 
 
 // The handler that the graph calls when the compilation completes.
@@ -190,7 +190,7 @@ func (g_ GraphCompilationDescriptor) CompilationCompletionHandler() GraphCompila
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/compilationCompletionHandler
 func (g_ GraphCompilationDescriptor) SetCompilationCompletionHandler(value GraphCompilationCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompilationCompletionHandler:"), value)
-}/* debug [instance_properties/setter]: compilationCompletionHandler */
+}
 
 
 // The dispatch queue used for the compilation.
@@ -200,7 +200,7 @@ func (g_ GraphCompilationDescriptor) SetCompilationCompletionHandler(value Graph
 func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dispatchQueue"))
 	return rv
-}/* debug [instance_properties/getter]: dispatchQueue */
+}
 
 
 // The dispatch queue used for the compilation.
@@ -209,7 +209,7 @@ func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
 func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDispatchQueue:"), value)
-}/* debug [instance_properties/setter]: dispatchQueue */
+}
 
 
 // The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
@@ -219,7 +219,7 @@ func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
 func (g_ GraphCompilationDescriptor) OptimizationLevel() GraphOptimization {
 	rv := objc.Send[GraphOptimization](g_.ID, objc.Sel("optimizationLevel"))
 	return rv
-}/* debug [instance_properties/getter]: optimizationLevel */
+}
 
 
 // The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
@@ -228,7 +228,7 @@ func (g_ GraphCompilationDescriptor) OptimizationLevel() GraphOptimization {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationLevel
 func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value GraphOptimization) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationLevel:"), value)
-}/* debug [instance_properties/setter]: optimizationLevel */
+}
 
 
 // The optimization profile for the graph optimization.
@@ -238,7 +238,7 @@ func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value GraphOptimizatio
 func (g_ GraphCompilationDescriptor) OptimizationProfile() GraphOptimizationProfile {
 	rv := objc.Send[GraphOptimizationProfile](g_.ID, objc.Sel("optimizationProfile"))
 	return rv
-}/* debug [instance_properties/getter]: optimizationProfile */
+}
 
 
 // The optimization profile for the graph optimization.
@@ -247,7 +247,7 @@ func (g_ GraphCompilationDescriptor) OptimizationProfile() GraphOptimizationProf
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
 func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value GraphOptimizationProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationProfile:"), value)
-}/* debug [instance_properties/setter]: optimizationProfile */
+}
 
 
 // Across the executable allow reduced precision fast math optimizations.
@@ -257,7 +257,7 @@ func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value GraphOptimizat
 func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() GraphReducedPrecisionFastMath {
 	rv := objc.Send[GraphReducedPrecisionFastMath](g_.ID, objc.Sel("reducedPrecisionFastMath"))
 	return rv
-}/* debug [instance_properties/getter]: reducedPrecisionFastMath */
+}
 
 
 // Across the executable allow reduced precision fast math optimizations.
@@ -266,7 +266,7 @@ func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() GraphReducedPrec
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/reducedPrecisionFastMath
 func (g_ GraphCompilationDescriptor) SetReducedPrecisionFastMath(value GraphReducedPrecisionFastMath) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReducedPrecisionFastMath:"), value)
-}/* debug [instance_properties/setter]: reducedPrecisionFastMath */
+}
 
 
 // Flag that makes the compile or specialize call blocking till the entire compilation is complete, defaults to NO.
@@ -276,7 +276,7 @@ func (g_ GraphCompilationDescriptor) SetReducedPrecisionFastMath(value GraphRedu
 func (g_ GraphCompilationDescriptor) WaitForCompilationCompletion() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("waitForCompilationCompletion"))
 	return rv
-}/* debug [instance_properties/getter]: waitForCompilationCompletion */
+}
 
 
 // Flag that makes the compile or specialize call blocking till the entire compilation is complete, defaults to NO.
@@ -285,12 +285,12 @@ func (g_ GraphCompilationDescriptor) WaitForCompilationCompletion() bool {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/waitForCompilationCompletion
 func (g_ GraphCompilationDescriptor) SetWaitForCompilationCompletion(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitForCompilationCompletion:"), value)
-}/* debug [instance_properties/setter]: waitForCompilationCompletion */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSGraphCompilationDescriptor */
+
+
+
 
 
 

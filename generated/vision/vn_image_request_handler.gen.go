@@ -46,7 +46,7 @@ type IImageRequestHandler interface {
 	
 
 	// methods:
-	PerformRequestsError(requests []Request, error_ objectivec.IObject) bool
+	PerformRequestsError(requests []Request, error_ foundation.foundation.INSError) bool
 
 
 }
@@ -236,7 +236,7 @@ func NewImageRequestHandlerWithCVPixelBufferOrientationOptions(pixelBuffer Pixel
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(data:options:)
-func NewImageRequestHandlerWithDataOptions(imageData objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) ImageRequestHandler {
+func NewImageRequestHandlerWithDataOptions(imageData foundation.foundation.INSData, options foundation.IDictionary) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithData:options:"), imageData, options)
 	rv.Autorelease()
@@ -248,7 +248,7 @@ func NewImageRequestHandlerWithDataOptions(imageData objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(data:orientation:options:)
-func NewImageRequestHandlerWithDataOrientationOptions(imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) ImageRequestHandler {
+func NewImageRequestHandlerWithDataOrientationOptions(imageData foundation.foundation.INSData, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithData:orientation:options:"), imageData, orientation, options)
 	rv.Autorelease()
@@ -260,7 +260,7 @@ func NewImageRequestHandlerWithDataOrientationOptions(imageData objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(url:options:)
-func NewImageRequestHandlerWithURLOptions(imageURL objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) ImageRequestHandler {
+func NewImageRequestHandlerWithURLOptions(imageURL foundation.foundation.INSURL, options foundation.IDictionary) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:options:"), imageURL, options)
 	rv.Autorelease()
@@ -272,7 +272,7 @@ func NewImageRequestHandlerWithURLOptions(imageURL objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(url:orientation:options:)
-func NewImageRequestHandlerWithURLOrientationOptions(imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) ImageRequestHandler {
+func NewImageRequestHandlerWithURLOrientationOptions(imageURL foundation.foundation.INSURL, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:orientation:options:"), imageURL, orientation, options)
 	rv.Autorelease()
@@ -299,7 +299,7 @@ func NewImageRequestHandlerWithURLOrientationOptions(imageURL objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/perform(_:)
-func (i_ ImageRequestHandler) PerformRequestsError(requests []Request, error_ objectivec.IObject) bool {
+func (i_ ImageRequestHandler) PerformRequestsError(requests []Request, error_ foundation.foundation.INSError) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("performRequests:error:"), requests, error_)
 	return rv
 }

@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PURLSessionTaskDelegate is the NSURLSessionTaskDelegate protocol interface.
@@ -266,4 +268,141 @@ func (d *URLSessionTaskDelegate) URLSessionTaskIsWaitingForConnectivity(session 
 // HasURLSessionTaskIsWaitingForConnectivity returns true if a handler for URLSessionTaskIsWaitingForConnectivity has been set.
 func (d *URLSessionTaskDelegate) HasURLSessionTaskIsWaitingForConnectivity() bool {
 	return d._URLSessionTaskIsWaitingForConnectivity != nil
+}
+
+// URLSessionTaskDelegateObject wraps an existing Objective-C object that conforms to the PURLSessionTaskDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type URLSessionTaskDelegateObject struct {
+	objectivec.Object
+}
+
+// NewURLSessionTaskDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSURLSessionTaskDelegate protocol.
+func NewURLSessionTaskDelegateObject(obj objectivec.Object) *URLSessionTaskDelegateObject {
+	return &URLSessionTaskDelegateObject{obj}
+}
+
+// Make sure URLSessionTaskDelegateObject implements PURLSessionTaskDelegate.
+var _ PURLSessionTaskDelegate = (*URLSessionTaskDelegateObject)(nil)
+
+// URLSessionDidCreateTask implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionDidCreateTask(session IURLSession, task IURLSessionTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:didCreateTask:"), session, task)
+}
+
+// HasURLSessionDidCreateTask returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionDidCreateTask() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskDidCompleteWithError implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskDidCompleteWithError(session IURLSession, task IURLSessionTask, error_ IError) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:didCompleteWithError:"), session, task, error_)
+}
+
+// HasURLSessionTaskDidCompleteWithError returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskDidCompleteWithError() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskDidFinishCollectingMetrics implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskDidFinishCollectingMetrics(session IURLSession, task IURLSessionTask, metrics IURLSessionTaskMetrics) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:didFinishCollectingMetrics:"), session, task, metrics)
+}
+
+// HasURLSessionTaskDidFinishCollectingMetrics returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskDidFinishCollectingMetrics() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskDidReceiveChallengeCompletionHandler implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskDidReceiveChallengeCompletionHandler(session IURLSession, task IURLSessionTask, challenge IURLAuthenticationChallenge, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:didReceiveChallenge:completionHandler:"), session, task, challenge, completionHandler)
+}
+
+// HasURLSessionTaskDidReceiveChallengeCompletionHandler returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskDidReceiveChallengeCompletionHandler() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskDidReceiveInformationalResponse implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskDidReceiveInformationalResponse(session IURLSession, task IURLSessionTask, response IHTTPURLResponse) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:didReceiveInformationalResponse:"), session, task, response)
+}
+
+// HasURLSessionTaskDidReceiveInformationalResponse returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskDidReceiveInformationalResponse() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend(session IURLSession, task IURLSessionTask, bytesSent int64, totalBytesSent int64, totalBytesExpectedToSend int64) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:"), session, task, bytesSent, totalBytesSent, totalBytesExpectedToSend)
+}
+
+// HasURLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskNeedNewBodyStream implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskNeedNewBodyStream(session IURLSession, task IURLSessionTask, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:needNewBodyStream:"), session, task, completionHandler)
+}
+
+// HasURLSessionTaskNeedNewBodyStream returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskNeedNewBodyStream() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler(session IURLSession, task IURLSessionTask, offset int64, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:needNewBodyStreamFromOffset:completionHandler:"), session, task, offset, completionHandler)
+}
+
+// HasURLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskWillBeginDelayedRequestCompletionHandler implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskWillBeginDelayedRequestCompletionHandler(session IURLSession, task IURLSessionTask, request IURLRequest, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:willBeginDelayedRequest:completionHandler:"), session, task, request, completionHandler)
+}
+
+// HasURLSessionTaskWillBeginDelayedRequestCompletionHandler returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskWillBeginDelayedRequestCompletionHandler() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(session IURLSession, task IURLSessionTask, response IHTTPURLResponse, request IURLRequest, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:"), session, task, response, request, completionHandler)
+}
+
+// HasURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// URLSessionTaskIsWaitingForConnectivity implements the PURLSessionTaskDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *URLSessionTaskDelegateObject) URLSessionTaskIsWaitingForConnectivity(session IURLSession, task IURLSessionTask) {
+	objc.Send[objc.ID](o.ID, objc.Sel("URLSession:taskIsWaitingForConnectivity:"), session, task)
+}
+
+// HasURLSessionTaskIsWaitingForConnectivity returns true; this is a placeholder for optional method checks.
+func (o *URLSessionTaskDelegateObject) HasURLSessionTaskIsWaitingForConnectivity() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

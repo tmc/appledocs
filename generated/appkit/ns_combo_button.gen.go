@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSComboButton */
 
 
-/* debug [class_header]: Header for NSComboButton */
+
+
 // The class instance for the [ComboButton] class.
 var (
 	ComboButtonClass     _ComboButtonClass
@@ -31,16 +30,16 @@ func getComboButtonClass() _ComboButtonClass {
 type _ComboButtonClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ComboButton */
+
+
 // An interface definition for the [ComboButton] class.
 type IComboButton interface {
 	IControl
 	
-/* debug [class_interface_properties]: Properties for ComboButton */
+
 	// properties:
 	Image() IImage
 	SetImage(value IImage)
@@ -50,23 +49,23 @@ type IComboButton interface {
 	SetMenu(value IMenu)
 	Style() ComboButtonStyle
 	SetStyle(value ComboButtonStyle)
-	Title() objc.IObject /* cross-framework: NSString */
-	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	Title() foundation.foundation.INSString
+	SetTitle(value foundation.foundation.INSString)
 	Action() objectivec.IObject
 	SetAction(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ComboButton */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ComboButton */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ComboButtonClass) Alloc() ComboButton {
 	rv := objc.Send[ComboButton](objc.ID(cc.class), objc.Sel("alloc"))
@@ -96,11 +95,11 @@ func (c_ ComboButton) Autorelease() ComboButton {
 func NewComboButton() ComboButton {
 	return getComboButtonClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ComboButton */
+
+
 // A button with a pull-down menu and a default action.
 //
 // An object is a button that displays a title string, image, and an optional control for displaying a menu. Use this control in places where you want to offer a button with a default action and one or more alternative actions. Clicking the title or image executes the default action you provide, and clicking the menu control displays a menu for selecting a different action. If you configure the button to hide the menu control, a long-press gesture displays the menu. After you create a combo button programmatically or in Interface Builder, choose the button you want and add a title or image for your content. A combo button has a default action, which you specify at creation time. You can also change that action later using the inherited and properties. To specify one or more alternative actions, configure a menu with those actions and assign it to the button’s property. This control doesn’t use an object for its underlying implementation. It also doesn’t support the addition of a contextual menu.
@@ -122,91 +121,91 @@ func ComboButtonFrom(ptr unsafe.Pointer) ComboButton {
 		Control: ControlFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ComboButton */
+
+
 
 // Creates a combo button that displays an image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(image:menu:target:action:)
-func NewComboButtonWithImageMenuTargetAction(image IImage, menu IMenu, target objc.IObject, action objc.SEL) ComboButton {
+func NewComboButtonWithImageMenuTargetAction(image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
 	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithImage:menu:target:action:"), image, menu, target, action)
 	return rv
-}/* debug [class_init_methods/constructor]: NewComboButtonWithImageMenuTargetAction */
+}
 
 
 // Creates a combo button that displays both a title and image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:image:menu:target:action:)
-func NewComboButtonWithTitleImageMenuTargetAction(title objc.IObject /* cross-framework: NSString */, image IImage, menu IMenu, target objc.IObject, action objc.SEL) ComboButton {
+func NewComboButtonWithTitleImageMenuTargetAction(title foundation.foundation.INSString, image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
 	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithTitle:image:menu:target:action:"), title, image, menu, target, action)
 	return rv
-}/* debug [class_init_methods/constructor]: NewComboButtonWithTitleImageMenuTargetAction */
+}
 
 
 // Creates a combo button that displays a title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:menu:target:action:)
-func NewComboButtonWithTitleMenuTargetAction(title objc.IObject /* cross-framework: NSString */, menu IMenu, target objc.IObject, action objc.SEL) ComboButton {
+func NewComboButtonWithTitleMenuTargetAction(title foundation.foundation.INSString, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
 	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithTitle:menu:target:action:"), title, menu, target, action)
 	return rv
-}/* debug [class_init_methods/constructor]: NewComboButtonWithTitleMenuTargetAction */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ComboButton */
+
+
+
 
 // Creates a combo button that displays an image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(image:menu:target:action:)
-func (cc _ComboButtonClass) ComboButtonWithImageMenuTargetAction(image IImage, menu IMenu, target objc.IObject, action objc.SEL) objectivec.IObject {
+func (cc _ComboButtonClass) ComboButtonWithImageMenuTargetAction(image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("comboButtonWithImage:menu:target:action:"), image, menu, target, action)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ComboButtonWithImageMenuTargetAction) */
+}
 
 
 // Creates a combo button that displays both a title and image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:image:menu:target:action:)
-func (cc _ComboButtonClass) ComboButtonWithTitleImageMenuTargetAction(title objc.IObject /* cross-framework: NSString */, image IImage, menu IMenu, target objc.IObject, action objc.SEL) objectivec.IObject {
+func (cc _ComboButtonClass) ComboButtonWithTitleImageMenuTargetAction(title foundation.foundation.INSString, image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("comboButtonWithTitle:image:menu:target:action:"), title, image, menu, target, action)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ComboButtonWithTitleImageMenuTargetAction) */
+}
 
 
 // Creates a combo button that displays a title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:menu:target:action:)
-func (cc _ComboButtonClass) ComboButtonWithTitleMenuTargetAction(title objc.IObject /* cross-framework: NSString */, menu IMenu, target objc.IObject, action objc.SEL) objectivec.IObject {
+func (cc _ComboButtonClass) ComboButtonWithTitleMenuTargetAction(title foundation.foundation.INSString, menu IMenu, target objectivec.IObject, action objc.SEL) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("comboButtonWithTitle:menu:target:action:"), title, menu, target, action)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ComboButtonWithTitleMenuTargetAction) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ComboButton */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ComboButton */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ComboButton */
+
+
+
+
+
+
+
 
 // The image that the button displays.
 //
@@ -215,7 +214,7 @@ func (cc _ComboButtonClass) ComboButtonWithTitleMenuTargetAction(title objc.IObj
 func (c_ ComboButton) Image() IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
-}/* debug [instance_properties/getter]: image */
+}
 
 
 // The image that the button displays.
@@ -224,7 +223,7 @@ func (c_ ComboButton) Image() IImage {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/image
 func (c_ ComboButton) SetImage(value IImage) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
-}/* debug [instance_properties/setter]: image */
+}
 
 
 // The scaling behavior to apply to the button’s image.
@@ -234,7 +233,7 @@ func (c_ ComboButton) SetImage(value IImage) {
 func (c_ ComboButton) ImageScaling() ImageScaling {
 	rv := objc.Send[ImageScaling](c_.ID, objc.Sel("imageScaling"))
 	return rv
-}/* debug [instance_properties/getter]: imageScaling */
+}
 
 
 // The scaling behavior to apply to the button’s image.
@@ -243,7 +242,7 @@ func (c_ ComboButton) ImageScaling() ImageScaling {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/imageScaling
 func (c_ ComboButton) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageScaling:"), value)
-}/* debug [instance_properties/setter]: imageScaling */
+}
 
 
 // The menu that contains the button’s alternate actions.
@@ -253,7 +252,7 @@ func (c_ ComboButton) SetImageScaling(value ImageScaling) {
 func (c_ ComboButton) Menu() IMenu {
 	rv := objc.Send[Menu](c_.ID, objc.Sel("menu"))
 	return rv
-}/* debug [instance_properties/getter]: menu */
+}
 
 
 // The menu that contains the button’s alternate actions.
@@ -262,7 +261,7 @@ func (c_ ComboButton) Menu() IMenu {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/menu
 func (c_ ComboButton) SetMenu(value IMenu) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMenu:"), value)
-}/* debug [instance_properties/setter]: menu */
+}
 
 
 // The appearance setting that determines how the button presents its menu .
@@ -272,7 +271,7 @@ func (c_ ComboButton) SetMenu(value IMenu) {
 func (c_ ComboButton) Style() ComboButtonStyle {
 	rv := objc.Send[ComboButtonStyle](c_.ID, objc.Sel("style"))
 	return rv
-}/* debug [instance_properties/getter]: style */
+}
 
 
 // The appearance setting that determines how the button presents its menu .
@@ -281,26 +280,26 @@ func (c_ ComboButton) Style() ComboButtonStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/style-swift.property
 func (c_ ComboButton) SetStyle(value ComboButtonStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
-}/* debug [instance_properties/setter]: style */
+}
 
 
 // The localized string that the button displays.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/title
-func (c_ ComboButton) Title() objc.IObject /* cross-framework: NSString */ {
+func (c_ ComboButton) Title() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
-}/* debug [instance_properties/getter]: title */
+}
 
 
 // The localized string that the button displays.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/title
-func (c_ ComboButton) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+func (c_ ComboButton) SetTitle(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
-}/* debug [instance_properties/setter]: title */
+}
 
 
 // The default action-message selector associated with the control.
@@ -310,7 +309,7 @@ func (c_ ComboButton) SetTitle(value objc.IObject /* cross-framework: NSString *
 func (c_ ComboButton) Action() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("action"))
 	return rv
-}/* debug [instance_properties/getter]: action */
+}
 
 
 // The default action-message selector associated with the control.
@@ -319,11 +318,11 @@ func (c_ ComboButton) Action() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
 func (c_ ComboButton) SetAction(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
-}/* debug [instance_properties/setter]: action */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSComboButton */
+
+
+
 
 

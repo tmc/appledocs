@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAssetReaderVideoCompositionOutput */
 
 
-/* debug [class_header]: Header for AVAssetReaderVideoCompositionOutput */
+
+
 // The class instance for the [AssetReaderVideoCompositionOutput] class.
 var (
 	AssetReaderVideoCompositionOutputClass     _AssetReaderVideoCompositionOutputClass
@@ -30,35 +30,35 @@ func getAssetReaderVideoCompositionOutputClass() _AssetReaderVideoCompositionOut
 type _AssetReaderVideoCompositionOutputClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AssetReaderVideoCompositionOutput */
+
+
 // An interface definition for the [AssetReaderVideoCompositionOutput] class.
 type IAssetReaderVideoCompositionOutput interface {
 	IAssetReaderOutput
 	
-/* debug [class_interface_properties]: Properties for AssetReaderVideoCompositionOutput */
+
 	// properties:
 	CustomVideoCompositor() unsafe.Pointer
 	VideoComposition() IAVVideoComposition
 	SetVideoComposition(value IAVVideoComposition)
 	VideoSettings() foundation.IDictionary
 	VideoTracks() []AssetTrack
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AssetReaderVideoCompositionOutput */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AssetReaderVideoCompositionOutput */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssetReaderVideoCompositionOutputClass) Alloc() AssetReaderVideoCompositionOutput {
 	rv := objc.Send[AssetReaderVideoCompositionOutput](objc.ID(ac.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (a_ AssetReaderVideoCompositionOutput) Autorelease() AssetReaderVideoCompos
 func NewAssetReaderVideoCompositionOutput() AssetReaderVideoCompositionOutput {
 	return getAssetReaderVideoCompositionOutputClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AssetReaderVideoCompositionOutput */
+
+
 // An object that reads composited video frames from one or more tracks of an asset.
 
 
@@ -112,11 +112,11 @@ func AssetReaderVideoCompositionOutputFrom(ptr unsafe.Pointer) AssetReaderVideoC
 		AssetReaderOutput: AssetReaderOutputFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AssetReaderVideoCompositionOutput */
+
+
 
 // Creates an object that reads composited video frames from the specified video tracks.
 //
@@ -127,13 +127,13 @@ func NewAssetReaderVideoCompositionOutputWithVideoTracksVideoSettings(videoTrack
 	rv := objc.Send[AssetReaderVideoCompositionOutput](instance.ID, objc.Sel("initWithVideoTracks:videoSettings:"), videoTracks, videoSettings)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAssetReaderVideoCompositionOutputWithVideoTracksVideoSettings */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AssetReaderVideoCompositionOutput */
+
+
+
 
 // Returns a new object that reads composited video from the specified video tracks.
 //
@@ -142,23 +142,23 @@ func NewAssetReaderVideoCompositionOutputWithVideoTracksVideoSettings(videoTrack
 func (ac _AssetReaderVideoCompositionOutputClass) AssetReaderVideoCompositionOutputWithVideoTracksVideoSettings(videoTracks []AssetTrack, videoSettings foundation.IDictionary) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetReaderVideoCompositionOutputWithVideoTracks:videoSettings:"), videoTracks, videoSettings)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetReaderVideoCompositionOutputWithVideoTracksVideoSettings) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for AssetReaderVideoCompositionOutput */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AssetReaderVideoCompositionOutput */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AssetReaderVideoCompositionOutput */
+
+
+
+
+
+
+
 
 // A custom video compositor for the output.
 //
@@ -167,7 +167,7 @@ func (ac _AssetReaderVideoCompositionOutputClass) AssetReaderVideoCompositionOut
 func (a_ AssetReaderVideoCompositionOutput) CustomVideoCompositor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("customVideoCompositor"))
 	return rv
-}/* debug [instance_properties/getter]: customVideoCompositor */
+}
 
 
 // The video composition to use for the output.
@@ -177,7 +177,7 @@ func (a_ AssetReaderVideoCompositionOutput) CustomVideoCompositor() unsafe.Point
 func (a_ AssetReaderVideoCompositionOutput) VideoComposition() IAVVideoComposition {
 	rv := objc.Send[VideoComposition](a_.ID, objc.Sel("videoComposition"))
 	return rv
-}/* debug [instance_properties/getter]: videoComposition */
+}
 
 
 // The video composition to use for the output.
@@ -186,7 +186,7 @@ func (a_ AssetReaderVideoCompositionOutput) VideoComposition() IAVVideoCompositi
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput/videoComposition
 func (a_ AssetReaderVideoCompositionOutput) SetVideoComposition(value IAVVideoComposition) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVideoComposition:"), value)
-}/* debug [instance_properties/setter]: videoComposition */
+}
 
 
 // The video settings that the output uses.
@@ -196,7 +196,7 @@ func (a_ AssetReaderVideoCompositionOutput) SetVideoComposition(value IAVVideoCo
 func (a_ AssetReaderVideoCompositionOutput) VideoSettings() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("videoSettings"))
 	return rv
-}/* debug [instance_properties/getter]: videoSettings */
+}
 
 
 // The tracks from which the output reads the composited video.
@@ -206,11 +206,11 @@ func (a_ AssetReaderVideoCompositionOutput) VideoSettings() foundation.IDictiona
 func (a_ AssetReaderVideoCompositionOutput) VideoTracks() []AssetTrack {
 	rv := objc.Send[[]AssetTrack](a_.ID, objc.Sel("videoTracks"))
 	return rv
-}/* debug [instance_properties/getter]: videoTracks */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAssetReaderVideoCompositionOutput */
+
+
+
 
 

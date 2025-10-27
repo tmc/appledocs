@@ -22,5 +22,5 @@ import (
 // See: doc://com.apple.coreml/documentation/CoreML/MLBatchProvider
 type PBatchProvider interface {
 	// Required methods
-	FeaturesAtIndex(index int) unsafe.Pointer/* debug [protocol_interface/required_method]: FeaturesAtIndex */
+	FeaturesAtIndex(index int) unsafe.Pointer
 }

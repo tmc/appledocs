@@ -6,9 +6,11 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTableViewDelegate is the NSTableViewDelegate protocol interface.
@@ -23,7 +25,7 @@ type PTableViewDelegate interface {
 	// Optional methods
 	SelectionShouldChangeInTableView(tableView ITableView) bool
 	HasSelectionShouldChangeInTableView() bool
-	TableViewDataCellForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) Cell
+	TableViewDataCellForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) ICell
 	HasTableViewDataCellForTableColumnRow() bool
 	TableViewDidAddRowViewForRow(tableView ITableView, rowView ITableRowView, row int)
 	HasTableViewDidAddRowViewForRow() bool
@@ -39,11 +41,11 @@ type PTableViewDelegate interface {
 	HasTableViewIsGroupRow() bool
 	TableViewMouseDownInHeaderOfTableColumn(tableView ITableView, tableColumn ITableColumn)
 	HasTableViewMouseDownInHeaderOfTableColumn() bool
-	TableViewNextTypeSelectMatchFromRowToRowForString(tableView ITableView, startRow int, endRow int, searchString objc.IObject /* cross-framework: NSString */) int
+	TableViewNextTypeSelectMatchFromRowToRowForString(tableView ITableView, startRow int, endRow int, searchString foundation.foundation.INSString) int
 	HasTableViewNextTypeSelectMatchFromRowToRowForString() bool
 	TableViewRowActionsForRowEdge(tableView ITableView, row int, edge TableRowActionEdge) []TableViewRowAction
 	HasTableViewRowActionsForRowEdge() bool
-	TableViewRowViewForRow(tableView ITableView, row int) TableRowView
+	TableViewRowViewForRow(tableView ITableView, row int) ITableRowView
 	HasTableViewRowViewForRow() bool
 	TableViewSelectionIndexesForProposedSelection(tableView ITableView, proposedSelectionIndexes foundation.IndexSet) foundation.IndexSet
 	HasTableViewSelectionIndexesForProposedSelection() bool
@@ -59,11 +61,11 @@ type PTableViewDelegate interface {
 	HasTableViewShouldShowCellExpansionForTableColumnRow() bool
 	TableViewShouldTrackCellForTableColumnRow(tableView ITableView, cell ICell, tableColumn ITableColumn, row int) bool
 	HasTableViewShouldTrackCellForTableColumnRow() bool
-	TableViewShouldTypeSelectForEventWithCurrentSearchString(tableView ITableView, event IEvent, searchString objc.IObject /* cross-framework: NSString */) bool
+	TableViewShouldTypeSelectForEventWithCurrentSearchString(tableView ITableView, event IEvent, searchString foundation.foundation.INSString) bool
 	HasTableViewShouldTypeSelectForEventWithCurrentSearchString() bool
 	TableViewSizeToFitWidthOfColumn(tableView ITableView, column int) float64
 	HasTableViewSizeToFitWidthOfColumn() bool
-	TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String
+	TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation corefoundation.CGPoint) foundation.String
 	HasTableViewToolTipForCellRectTableColumnRowMouseLocation() bool
 	TableViewTypeSelectStringForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) foundation.String
 	HasTableViewTypeSelectStringForTableColumnRow() bool
@@ -71,17 +73,17 @@ type PTableViewDelegate interface {
 	HasTableViewUserCanChangeVisibilityOfTableColumn() bool
 	TableViewUserDidChangeVisibilityOfTableColumns(tableView ITableView, columns []TableColumn)
 	HasTableViewUserDidChangeVisibilityOfTableColumns() bool
-	TableViewViewForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) View
+	TableViewViewForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) IView
 	HasTableViewViewForTableColumnRow() bool
-	TableViewWillDisplayCellForTableColumnRow(tableView ITableView, cell objc.IObject, tableColumn ITableColumn, row int)
+	TableViewWillDisplayCellForTableColumnRow(tableView ITableView, cell objectivec.IObject, tableColumn ITableColumn, row int)
 	HasTableViewWillDisplayCellForTableColumnRow() bool
-	TableViewColumnDidMove(notification foundation.Notification)
+	TableViewColumnDidMove(notification foundation.foundation.INSNotification)
 	HasTableViewColumnDidMove() bool
-	TableViewColumnDidResize(notification foundation.Notification)
+	TableViewColumnDidResize(notification foundation.foundation.INSNotification)
 	HasTableViewColumnDidResize() bool
-	TableViewSelectionDidChange(notification foundation.Notification)
+	TableViewSelectionDidChange(notification foundation.foundation.INSNotification)
 	HasTableViewSelectionDidChange() bool
-	TableViewSelectionIsChanging(notification foundation.Notification)
+	TableViewSelectionIsChanging(notification foundation.foundation.INSNotification)
 	HasTableViewSelectionIsChanging() bool
 }
 
@@ -90,7 +92,7 @@ type PTableViewDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type TableViewDelegate struct {
 	_SelectionShouldChangeInTableView func(tableView ITableView) bool
-	_TableViewDataCellForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) Cell
+	_TableViewDataCellForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) ICell
 	_TableViewDidAddRowViewForRow func(tableView ITableView, rowView ITableRowView, row int)
 	_TableViewDidClickTableColumn func(tableView ITableView, tableColumn ITableColumn)
 	_TableViewDidDragTableColumn func(tableView ITableView, tableColumn ITableColumn)
@@ -98,9 +100,9 @@ type TableViewDelegate struct {
 	_TableViewHeightOfRow func(tableView ITableView, row int) float64
 	_TableViewIsGroupRow func(tableView ITableView, row int) bool
 	_TableViewMouseDownInHeaderOfTableColumn func(tableView ITableView, tableColumn ITableColumn)
-	_TableViewNextTypeSelectMatchFromRowToRowForString func(tableView ITableView, startRow int, endRow int, searchString objc.IObject /* cross-framework: NSString */) int
+	_TableViewNextTypeSelectMatchFromRowToRowForString func(tableView ITableView, startRow int, endRow int, searchString foundation.foundation.INSString) int
 	_TableViewRowActionsForRowEdge func(tableView ITableView, row int, edge TableRowActionEdge) []TableViewRowAction
-	_TableViewRowViewForRow func(tableView ITableView, row int) TableRowView
+	_TableViewRowViewForRow func(tableView ITableView, row int) ITableRowView
 	_TableViewSelectionIndexesForProposedSelection func(tableView ITableView, proposedSelectionIndexes foundation.IndexSet) foundation.IndexSet
 	_TableViewShouldEditTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) bool
 	_TableViewShouldReorderColumnToColumn func(tableView ITableView, columnIndex int, newColumnIndex int) bool
@@ -108,18 +110,18 @@ type TableViewDelegate struct {
 	_TableViewShouldSelectRow func(tableView ITableView, row int) bool
 	_TableViewShouldShowCellExpansionForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) bool
 	_TableViewShouldTrackCellForTableColumnRow func(tableView ITableView, cell ICell, tableColumn ITableColumn, row int) bool
-	_TableViewShouldTypeSelectForEventWithCurrentSearchString func(tableView ITableView, event IEvent, searchString objc.IObject /* cross-framework: NSString */) bool
+	_TableViewShouldTypeSelectForEventWithCurrentSearchString func(tableView ITableView, event IEvent, searchString foundation.foundation.INSString) bool
 	_TableViewSizeToFitWidthOfColumn func(tableView ITableView, column int) float64
-	_TableViewToolTipForCellRectTableColumnRowMouseLocation func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String
+	_TableViewToolTipForCellRectTableColumnRowMouseLocation func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation corefoundation.CGPoint) foundation.String
 	_TableViewTypeSelectStringForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) foundation.String
 	_TableViewUserCanChangeVisibilityOfTableColumn func(tableView ITableView, column ITableColumn) bool
 	_TableViewUserDidChangeVisibilityOfTableColumns func(tableView ITableView, columns []TableColumn)
-	_TableViewViewForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) View
-	_TableViewWillDisplayCellForTableColumnRow func(tableView ITableView, cell objc.IObject, tableColumn ITableColumn, row int)
-	_TableViewColumnDidMove func(notification foundation.Notification)
-	_TableViewColumnDidResize func(notification foundation.Notification)
-	_TableViewSelectionDidChange func(notification foundation.Notification)
-	_TableViewSelectionIsChanging func(notification foundation.Notification)
+	_TableViewViewForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) IView
+	_TableViewWillDisplayCellForTableColumnRow func(tableView ITableView, cell objectivec.IObject, tableColumn ITableColumn, row int)
+	_TableViewColumnDidMove func(notification foundation.foundation.INSNotification)
+	_TableViewColumnDidResize func(notification foundation.foundation.INSNotification)
+	_TableViewSelectionDidChange func(notification foundation.foundation.INSNotification)
+	_TableViewSelectionIsChanging func(notification foundation.foundation.INSNotification)
 }
 
 // SetSelectionShouldChangeInTableView sets the handler for the SelectionShouldChangeInTableView delegate method.
@@ -132,7 +134,7 @@ func (d *TableViewDelegate) SetSelectionShouldChangeInTableView(f func(tableView
 // SetTableViewDataCellForTableColumnRow sets the handler for the TableViewDataCellForTableColumnRow delegate method.
 //
 // Asks the delegate for a custom data cell for the specified row and column.
-func (d *TableViewDelegate) SetTableViewDataCellForTableColumnRow(f func(tableView ITableView, tableColumn ITableColumn, row int) Cell) {
+func (d *TableViewDelegate) SetTableViewDataCellForTableColumnRow(f func(tableView ITableView, tableColumn ITableColumn, row int) ICell) {
 	d._TableViewDataCellForTableColumnRow = f
 }
 
@@ -188,7 +190,7 @@ func (d *TableViewDelegate) SetTableViewMouseDownInHeaderOfTableColumn(f func(ta
 // SetTableViewNextTypeSelectMatchFromRowToRowForString sets the handler for the TableViewNextTypeSelectMatchFromRowToRowForString delegate method.
 //
 // Asks the delegate for the row within the specified search range that matches the specified string.
-func (d *TableViewDelegate) SetTableViewNextTypeSelectMatchFromRowToRowForString(f func(tableView ITableView, startRow int, endRow int, searchString objc.IObject /* cross-framework: NSString */) int) {
+func (d *TableViewDelegate) SetTableViewNextTypeSelectMatchFromRowToRowForString(f func(tableView ITableView, startRow int, endRow int, searchString foundation.foundation.INSString) int) {
 	d._TableViewNextTypeSelectMatchFromRowToRowForString = f
 }
 
@@ -202,7 +204,7 @@ func (d *TableViewDelegate) SetTableViewRowActionsForRowEdge(f func(tableView IT
 // SetTableViewRowViewForRow sets the handler for the TableViewRowViewForRow delegate method.
 //
 // Asks the delegate for a view to display the specified row.
-func (d *TableViewDelegate) SetTableViewRowViewForRow(f func(tableView ITableView, row int) TableRowView) {
+func (d *TableViewDelegate) SetTableViewRowViewForRow(f func(tableView ITableView, row int) ITableRowView) {
 	d._TableViewRowViewForRow = f
 }
 
@@ -258,7 +260,7 @@ func (d *TableViewDelegate) SetTableViewShouldTrackCellForTableColumnRow(f func(
 // SetTableViewShouldTypeSelectForEventWithCurrentSearchString sets the handler for the TableViewShouldTypeSelectForEventWithCurrentSearchString delegate method.
 //
 // Asks the delegate to allow or deny type select for the specified event and current search string.
-func (d *TableViewDelegate) SetTableViewShouldTypeSelectForEventWithCurrentSearchString(f func(tableView ITableView, event IEvent, searchString objc.IObject /* cross-framework: NSString */) bool) {
+func (d *TableViewDelegate) SetTableViewShouldTypeSelectForEventWithCurrentSearchString(f func(tableView ITableView, event IEvent, searchString foundation.foundation.INSString) bool) {
 	d._TableViewShouldTypeSelectForEventWithCurrentSearchString = f
 }
 
@@ -272,7 +274,7 @@ func (d *TableViewDelegate) SetTableViewSizeToFitWidthOfColumn(f func(tableView 
 // SetTableViewToolTipForCellRectTableColumnRowMouseLocation sets the handler for the TableViewToolTipForCellRectTableColumnRowMouseLocation delegate method.
 //
 // Asks the delegate for a string to display in a tooltip for the specified cell in the column and row.
-func (d *TableViewDelegate) SetTableViewToolTipForCellRectTableColumnRowMouseLocation(f func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String) {
+func (d *TableViewDelegate) SetTableViewToolTipForCellRectTableColumnRowMouseLocation(f func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation corefoundation.CGPoint) foundation.String) {
 	d._TableViewToolTipForCellRectTableColumnRowMouseLocation = f
 }
 
@@ -300,42 +302,42 @@ func (d *TableViewDelegate) SetTableViewUserDidChangeVisibilityOfTableColumns(f 
 // SetTableViewViewForTableColumnRow sets the handler for the TableViewViewForTableColumnRow delegate method.
 //
 // Asks the delegate for a view to display the specified row and column.
-func (d *TableViewDelegate) SetTableViewViewForTableColumnRow(f func(tableView ITableView, tableColumn ITableColumn, row int) View) {
+func (d *TableViewDelegate) SetTableViewViewForTableColumnRow(f func(tableView ITableView, tableColumn ITableColumn, row int) IView) {
 	d._TableViewViewForTableColumnRow = f
 }
 
 // SetTableViewWillDisplayCellForTableColumnRow sets the handler for the TableViewWillDisplayCellForTableColumnRow delegate method.
 //
 // Tells the delegate that the table view will display the specified cell at the specified row and column.
-func (d *TableViewDelegate) SetTableViewWillDisplayCellForTableColumnRow(f func(tableView ITableView, cell objc.IObject, tableColumn ITableColumn, row int)) {
+func (d *TableViewDelegate) SetTableViewWillDisplayCellForTableColumnRow(f func(tableView ITableView, cell objectivec.IObject, tableColumn ITableColumn, row int)) {
 	d._TableViewWillDisplayCellForTableColumnRow = f
 }
 
 // SetTableViewColumnDidMove sets the handler for the TableViewColumnDidMove delegate method.
 //
 // Tells the delegate that a table column was moved by user action.
-func (d *TableViewDelegate) SetTableViewColumnDidMove(f func(notification foundation.Notification)) {
+func (d *TableViewDelegate) SetTableViewColumnDidMove(f func(notification foundation.foundation.INSNotification)) {
 	d._TableViewColumnDidMove = f
 }
 
 // SetTableViewColumnDidResize sets the handler for the TableViewColumnDidResize delegate method.
 //
 // Tells the delegate that a table column was resized.
-func (d *TableViewDelegate) SetTableViewColumnDidResize(f func(notification foundation.Notification)) {
+func (d *TableViewDelegate) SetTableViewColumnDidResize(f func(notification foundation.foundation.INSNotification)) {
 	d._TableViewColumnDidResize = f
 }
 
 // SetTableViewSelectionDidChange sets the handler for the TableViewSelectionDidChange delegate method.
 //
 // Tells the delegate that the table view’s selection has changed.
-func (d *TableViewDelegate) SetTableViewSelectionDidChange(f func(notification foundation.Notification)) {
+func (d *TableViewDelegate) SetTableViewSelectionDidChange(f func(notification foundation.foundation.INSNotification)) {
 	d._TableViewSelectionDidChange = f
 }
 
 // SetTableViewSelectionIsChanging sets the handler for the TableViewSelectionIsChanging delegate method.
 //
 // Tells the delegate that the table view’s selection is in the process of changing.
-func (d *TableViewDelegate) SetTableViewSelectionIsChanging(f func(notification foundation.Notification)) {
+func (d *TableViewDelegate) SetTableViewSelectionIsChanging(f func(notification foundation.foundation.INSNotification)) {
 	d._TableViewSelectionIsChanging = f
 }
 
@@ -354,11 +356,11 @@ func (d *TableViewDelegate) HasSelectionShouldChangeInTableView() bool {
 }
 
 // TableViewDataCellForTableColumnRow implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewDataCellForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) Cell {
+func (d *TableViewDelegate) TableViewDataCellForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) ICell {
 	if d._TableViewDataCellForTableColumnRow != nil {
 		return d._TableViewDataCellForTableColumnRow(tableView, tableColumn, row)
 	}
-	var zero Cell
+	var zero ICell
 	return zero
 }
 
@@ -456,7 +458,7 @@ func (d *TableViewDelegate) HasTableViewMouseDownInHeaderOfTableColumn() bool {
 }
 
 // TableViewNextTypeSelectMatchFromRowToRowForString implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewNextTypeSelectMatchFromRowToRowForString(tableView ITableView, startRow int, endRow int, searchString objc.IObject /* cross-framework: NSString */) int {
+func (d *TableViewDelegate) TableViewNextTypeSelectMatchFromRowToRowForString(tableView ITableView, startRow int, endRow int, searchString foundation.foundation.INSString) int {
 	if d._TableViewNextTypeSelectMatchFromRowToRowForString != nil {
 		return d._TableViewNextTypeSelectMatchFromRowToRowForString(tableView, startRow, endRow, searchString)
 	}
@@ -484,11 +486,11 @@ func (d *TableViewDelegate) HasTableViewRowActionsForRowEdge() bool {
 }
 
 // TableViewRowViewForRow implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewRowViewForRow(tableView ITableView, row int) TableRowView {
+func (d *TableViewDelegate) TableViewRowViewForRow(tableView ITableView, row int) ITableRowView {
 	if d._TableViewRowViewForRow != nil {
 		return d._TableViewRowViewForRow(tableView, row)
 	}
-	var zero TableRowView
+	var zero ITableRowView
 	return zero
 }
 
@@ -596,7 +598,7 @@ func (d *TableViewDelegate) HasTableViewShouldTrackCellForTableColumnRow() bool 
 }
 
 // TableViewShouldTypeSelectForEventWithCurrentSearchString implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewShouldTypeSelectForEventWithCurrentSearchString(tableView ITableView, event IEvent, searchString objc.IObject /* cross-framework: NSString */) bool {
+func (d *TableViewDelegate) TableViewShouldTypeSelectForEventWithCurrentSearchString(tableView ITableView, event IEvent, searchString foundation.foundation.INSString) bool {
 	if d._TableViewShouldTypeSelectForEventWithCurrentSearchString != nil {
 		return d._TableViewShouldTypeSelectForEventWithCurrentSearchString(tableView, event, searchString)
 	}
@@ -624,7 +626,7 @@ func (d *TableViewDelegate) HasTableViewSizeToFitWidthOfColumn() bool {
 }
 
 // TableViewToolTipForCellRectTableColumnRowMouseLocation implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String {
+func (d *TableViewDelegate) TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation corefoundation.CGPoint) foundation.String {
 	if d._TableViewToolTipForCellRectTableColumnRowMouseLocation != nil {
 		return d._TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView, cell, rect, tableColumn, row, mouseLocation)
 	}
@@ -678,11 +680,11 @@ func (d *TableViewDelegate) HasTableViewUserDidChangeVisibilityOfTableColumns() 
 }
 
 // TableViewViewForTableColumnRow implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewViewForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) View {
+func (d *TableViewDelegate) TableViewViewForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) IView {
 	if d._TableViewViewForTableColumnRow != nil {
 		return d._TableViewViewForTableColumnRow(tableView, tableColumn, row)
 	}
-	var zero View
+	var zero IView
 	return zero
 }
 
@@ -692,7 +694,7 @@ func (d *TableViewDelegate) HasTableViewViewForTableColumnRow() bool {
 }
 
 // TableViewWillDisplayCellForTableColumnRow implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewWillDisplayCellForTableColumnRow(tableView ITableView, cell objc.IObject, tableColumn ITableColumn, row int) {
+func (d *TableViewDelegate) TableViewWillDisplayCellForTableColumnRow(tableView ITableView, cell objectivec.IObject, tableColumn ITableColumn, row int) {
 	if d._TableViewWillDisplayCellForTableColumnRow != nil {
 		d._TableViewWillDisplayCellForTableColumnRow(tableView, cell, tableColumn, row)
 	}
@@ -704,7 +706,7 @@ func (d *TableViewDelegate) HasTableViewWillDisplayCellForTableColumnRow() bool 
 }
 
 // TableViewColumnDidMove implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewColumnDidMove(notification foundation.Notification) {
+func (d *TableViewDelegate) TableViewColumnDidMove(notification foundation.foundation.INSNotification) {
 	if d._TableViewColumnDidMove != nil {
 		d._TableViewColumnDidMove(notification)
 	}
@@ -716,7 +718,7 @@ func (d *TableViewDelegate) HasTableViewColumnDidMove() bool {
 }
 
 // TableViewColumnDidResize implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewColumnDidResize(notification foundation.Notification) {
+func (d *TableViewDelegate) TableViewColumnDidResize(notification foundation.foundation.INSNotification) {
 	if d._TableViewColumnDidResize != nil {
 		d._TableViewColumnDidResize(notification)
 	}
@@ -728,7 +730,7 @@ func (d *TableViewDelegate) HasTableViewColumnDidResize() bool {
 }
 
 // TableViewSelectionDidChange implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewSelectionDidChange(notification foundation.Notification) {
+func (d *TableViewDelegate) TableViewSelectionDidChange(notification foundation.foundation.INSNotification) {
 	if d._TableViewSelectionDidChange != nil {
 		d._TableViewSelectionDidChange(notification)
 	}
@@ -740,7 +742,7 @@ func (d *TableViewDelegate) HasTableViewSelectionDidChange() bool {
 }
 
 // TableViewSelectionIsChanging implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewSelectionIsChanging(notification foundation.Notification) {
+func (d *TableViewDelegate) TableViewSelectionIsChanging(notification foundation.foundation.INSNotification) {
 	if d._TableViewSelectionIsChanging != nil {
 		d._TableViewSelectionIsChanging(notification)
 	}
@@ -749,4 +751,361 @@ func (d *TableViewDelegate) TableViewSelectionIsChanging(notification foundation
 // HasTableViewSelectionIsChanging returns true if a handler for TableViewSelectionIsChanging has been set.
 func (d *TableViewDelegate) HasTableViewSelectionIsChanging() bool {
 	return d._TableViewSelectionIsChanging != nil
+}
+
+// TableViewDelegateObject wraps an existing Objective-C object that conforms to the PTableViewDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type TableViewDelegateObject struct {
+	objectivec.Object
+}
+
+// NewTableViewDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSTableViewDelegate protocol.
+func NewTableViewDelegateObject(obj objectivec.Object) *TableViewDelegateObject {
+	return &TableViewDelegateObject{obj}
+}
+
+// Make sure TableViewDelegateObject implements PTableViewDelegate.
+var _ PTableViewDelegate = (*TableViewDelegateObject)(nil)
+
+// SelectionShouldChangeInTableView implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) SelectionShouldChangeInTableView(tableView ITableView) bool {
+	return objc.Send[bool](o.ID, objc.Sel("selectionShouldChangeInTableView:"), tableView)
+}
+
+// HasSelectionShouldChangeInTableView returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasSelectionShouldChangeInTableView() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDataCellForTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewDataCellForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) ICell {
+	return objc.Send[ICell](o.ID, objc.Sel("tableView:dataCellForTableColumn:row:"), tableView, tableColumn, row)
+}
+
+// HasTableViewDataCellForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewDataCellForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDidAddRowViewForRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewDidAddRowViewForRow(tableView ITableView, rowView ITableRowView, row int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:didAddRowView:forRow:"), tableView, rowView, row)
+}
+
+// HasTableViewDidAddRowViewForRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewDidAddRowViewForRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDidClickTableColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewDidClickTableColumn(tableView ITableView, tableColumn ITableColumn) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:didClickTableColumn:"), tableView, tableColumn)
+}
+
+// HasTableViewDidClickTableColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewDidClickTableColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDidDragTableColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewDidDragTableColumn(tableView ITableView, tableColumn ITableColumn) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:didDragTableColumn:"), tableView, tableColumn)
+}
+
+// HasTableViewDidDragTableColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewDidDragTableColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewDidRemoveRowViewForRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewDidRemoveRowViewForRow(tableView ITableView, rowView ITableRowView, row int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:didRemoveRowView:forRow:"), tableView, rowView, row)
+}
+
+// HasTableViewDidRemoveRowViewForRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewDidRemoveRowViewForRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewHeightOfRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewHeightOfRow(tableView ITableView, row int) float64 {
+	return objc.Send[float64](o.ID, objc.Sel("tableView:heightOfRow:"), tableView, row)
+}
+
+// HasTableViewHeightOfRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewHeightOfRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewIsGroupRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewIsGroupRow(tableView ITableView, row int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:isGroupRow:"), tableView, row)
+}
+
+// HasTableViewIsGroupRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewIsGroupRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewMouseDownInHeaderOfTableColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewMouseDownInHeaderOfTableColumn(tableView ITableView, tableColumn ITableColumn) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:mouseDownInHeaderOfTableColumn:"), tableView, tableColumn)
+}
+
+// HasTableViewMouseDownInHeaderOfTableColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewMouseDownInHeaderOfTableColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewNextTypeSelectMatchFromRowToRowForString implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewNextTypeSelectMatchFromRowToRowForString(tableView ITableView, startRow int, endRow int, searchString foundation.foundation.INSString) int {
+	return objc.Send[int](o.ID, objc.Sel("tableView:nextTypeSelectMatchFromRow:toRow:forString:"), tableView, startRow, endRow, searchString)
+}
+
+// HasTableViewNextTypeSelectMatchFromRowToRowForString returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewNextTypeSelectMatchFromRowToRowForString() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewRowActionsForRowEdge implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewRowActionsForRowEdge(tableView ITableView, row int, edge TableRowActionEdge) []TableViewRowAction {
+	return objc.Send[[]TableViewRowAction](o.ID, objc.Sel("tableView:rowActionsForRow:edge:"), tableView, row, edge)
+}
+
+// HasTableViewRowActionsForRowEdge returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewRowActionsForRowEdge() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewRowViewForRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewRowViewForRow(tableView ITableView, row int) ITableRowView {
+	return objc.Send[ITableRowView](o.ID, objc.Sel("tableView:rowViewForRow:"), tableView, row)
+}
+
+// HasTableViewRowViewForRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewRowViewForRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewSelectionIndexesForProposedSelection implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewSelectionIndexesForProposedSelection(tableView ITableView, proposedSelectionIndexes foundation.IndexSet) foundation.IndexSet {
+	return objc.Send[foundation.IndexSet](o.ID, objc.Sel("tableView:selectionIndexesForProposedSelection:"), tableView, proposedSelectionIndexes)
+}
+
+// HasTableViewSelectionIndexesForProposedSelection returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewSelectionIndexesForProposedSelection() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldEditTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldEditTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldEditTableColumn:row:"), tableView, tableColumn, row)
+}
+
+// HasTableViewShouldEditTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldEditTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldReorderColumnToColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldReorderColumnToColumn(tableView ITableView, columnIndex int, newColumnIndex int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldReorderColumn:toColumn:"), tableView, columnIndex, newColumnIndex)
+}
+
+// HasTableViewShouldReorderColumnToColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldReorderColumnToColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldSelectTableColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldSelectTableColumn(tableView ITableView, tableColumn ITableColumn) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldSelectTableColumn:"), tableView, tableColumn)
+}
+
+// HasTableViewShouldSelectTableColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldSelectTableColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldSelectRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldSelectRow(tableView ITableView, row int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldSelectRow:"), tableView, row)
+}
+
+// HasTableViewShouldSelectRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldSelectRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldShowCellExpansionForTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldShowCellExpansionForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldShowCellExpansionForTableColumn:row:"), tableView, tableColumn, row)
+}
+
+// HasTableViewShouldShowCellExpansionForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldShowCellExpansionForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldTrackCellForTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldTrackCellForTableColumnRow(tableView ITableView, cell ICell, tableColumn ITableColumn, row int) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldTrackCell:forTableColumn:row:"), tableView, cell, tableColumn, row)
+}
+
+// HasTableViewShouldTrackCellForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldTrackCellForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewShouldTypeSelectForEventWithCurrentSearchString implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewShouldTypeSelectForEventWithCurrentSearchString(tableView ITableView, event IEvent, searchString foundation.foundation.INSString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:shouldTypeSelectForEvent:withCurrentSearchString:"), tableView, event, searchString)
+}
+
+// HasTableViewShouldTypeSelectForEventWithCurrentSearchString returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewShouldTypeSelectForEventWithCurrentSearchString() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewSizeToFitWidthOfColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewSizeToFitWidthOfColumn(tableView ITableView, column int) float64 {
+	return objc.Send[float64](o.ID, objc.Sel("tableView:sizeToFitWidthOfColumn:"), tableView, column)
+}
+
+// HasTableViewSizeToFitWidthOfColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewSizeToFitWidthOfColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewToolTipForCellRectTableColumnRowMouseLocation implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation corefoundation.CGPoint) foundation.String {
+	return objc.Send[foundation.String](o.ID, objc.Sel("tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:"), tableView, cell, rect, tableColumn, row, mouseLocation)
+}
+
+// HasTableViewToolTipForCellRectTableColumnRowMouseLocation returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewToolTipForCellRectTableColumnRowMouseLocation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewTypeSelectStringForTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewTypeSelectStringForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) foundation.String {
+	return objc.Send[foundation.String](o.ID, objc.Sel("tableView:typeSelectStringForTableColumn:row:"), tableView, tableColumn, row)
+}
+
+// HasTableViewTypeSelectStringForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewTypeSelectStringForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewUserCanChangeVisibilityOfTableColumn implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewUserCanChangeVisibilityOfTableColumn(tableView ITableView, column ITableColumn) bool {
+	return objc.Send[bool](o.ID, objc.Sel("tableView:userCanChangeVisibilityOfTableColumn:"), tableView, column)
+}
+
+// HasTableViewUserCanChangeVisibilityOfTableColumn returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewUserCanChangeVisibilityOfTableColumn() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewUserDidChangeVisibilityOfTableColumns implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewUserDidChangeVisibilityOfTableColumns(tableView ITableView, columns []TableColumn) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:userDidChangeVisibilityOfTableColumns:"), tableView, columns)
+}
+
+// HasTableViewUserDidChangeVisibilityOfTableColumns returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewUserDidChangeVisibilityOfTableColumns() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewViewForTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewViewForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) IView {
+	return objc.Send[IView](o.ID, objc.Sel("tableView:viewForTableColumn:row:"), tableView, tableColumn, row)
+}
+
+// HasTableViewViewForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewViewForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewWillDisplayCellForTableColumnRow implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewWillDisplayCellForTableColumnRow(tableView ITableView, cell objectivec.IObject, tableColumn ITableColumn, row int) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableView:willDisplayCell:forTableColumn:row:"), tableView, cell, tableColumn, row)
+}
+
+// HasTableViewWillDisplayCellForTableColumnRow returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewWillDisplayCellForTableColumnRow() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewColumnDidMove implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewColumnDidMove(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableViewColumnDidMove:"), notification)
+}
+
+// HasTableViewColumnDidMove returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewColumnDidMove() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewColumnDidResize implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewColumnDidResize(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableViewColumnDidResize:"), notification)
+}
+
+// HasTableViewColumnDidResize returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewColumnDidResize() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewSelectionDidChange implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewSelectionDidChange(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableViewSelectionDidChange:"), notification)
+}
+
+// HasTableViewSelectionDidChange returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewSelectionDidChange() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TableViewSelectionIsChanging implements the PTableViewDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TableViewDelegateObject) TableViewSelectionIsChanging(notification foundation.foundation.INSNotification) {
+	objc.Send[objc.ID](o.ID, objc.Sel("tableViewSelectionIsChanging:"), notification)
+}
+
+// HasTableViewSelectionIsChanging returns true; this is a placeholder for optional method checks.
+func (o *TableViewDelegateObject) HasTableViewSelectionIsChanging() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

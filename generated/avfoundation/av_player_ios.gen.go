@@ -41,11 +41,11 @@ func (p_ Player) AudioOutputSuppressedDueToNonMixableAudioRoute() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/externalPlaybackVideoGravity
-func (p_ Player) ExternalPlaybackVideoGravity() LayerVideoGravity /* typedef */ {
-	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("externalPlaybackVideoGravity"))
+func (p_ Player) ExternalPlaybackVideoGravity() LayerVideoGravity {
+	rv := objc.Send[LayerVideoGravity](p_.ID, objc.Sel("externalPlaybackVideoGravity"))
 	return rv
 }
-func (p_ Player) SetExternalPlaybackVideoGravity(value LayerVideoGravity /* typedef */) {
+func (p_ Player) SetExternalPlaybackVideoGravity(value LayerVideoGravity) {
 	p_.ID.Send(objc.RegisterName("setExternalPlaybackVideoGravity:"), value)
 }
 
@@ -53,11 +53,11 @@ func (p_ Player) SetExternalPlaybackVideoGravity(value LayerVideoGravity /* type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/intendedSpatialAudioExperience-3uy8g
-func (p_ Player) IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience {
-	rv := objc.Send[audiotoolbox.SpatialAudioExperience](p_.ID, objc.Sel("intendedSpatialAudioExperience"))
+func (p_ Player) IntendedSpatialAudioExperience() SpatialAudioExperience /* not a class type */ {
+	rv := objc.Send[SpatialAudioExperience](p_.ID, objc.Sel("intendedSpatialAudioExperience"))
 	return rv
 }
-func (p_ Player) SetIntendedSpatialAudioExperience(value audiotoolbox.SpatialAudioExperience) {
+func (p_ Player) SetIntendedSpatialAudioExperience(value SpatialAudioExperience /* not a class type */) {
 	p_.ID.Send(objc.RegisterName("setIntendedSpatialAudioExperience:"), value)
 }
 

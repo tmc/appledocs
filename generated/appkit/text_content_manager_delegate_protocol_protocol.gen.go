@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTextContentManagerDelegate is the NSTextContentManagerDelegate protocol interface.
@@ -20,7 +22,7 @@ type PTextContentManagerDelegate interface {
 	// Optional methods
 	TextContentManagerShouldEnumerateTextElementOptions(textContentManager ITextContentManager, textElement ITextElement, options TextContentManagerEnumerationOptions) bool
 	HasTextContentManagerShouldEnumerateTextElementOptions() bool
-	TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) TextElement
+	TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) ITextElement
 	HasTextContentManagerTextElementAtLocation() bool
 }
 
@@ -29,7 +31,7 @@ type PTextContentManagerDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type TextContentManagerDelegate struct {
 	_TextContentManagerShouldEnumerateTextElementOptions func(textContentManager ITextContentManager, textElement ITextElement, options TextContentManagerEnumerationOptions) bool
-	_TextContentManagerTextElementAtLocation func(textContentManager ITextContentManager, location unsafe.Pointer) TextElement
+	_TextContentManagerTextElementAtLocation func(textContentManager ITextContentManager, location unsafe.Pointer) ITextElement
 }
 
 // SetTextContentManagerShouldEnumerateTextElementOptions sets the handler for the TextContentManagerShouldEnumerateTextElementOptions delegate method.
@@ -42,7 +44,7 @@ func (d *TextContentManagerDelegate) SetTextContentManagerShouldEnumerateTextEle
 // SetTextContentManagerTextElementAtLocation sets the handler for the TextContentManagerTextElementAtLocation delegate method.
 //
 // The method the framework calls to return the text element at a specific location.
-func (d *TextContentManagerDelegate) SetTextContentManagerTextElementAtLocation(f func(textContentManager ITextContentManager, location unsafe.Pointer) TextElement) {
+func (d *TextContentManagerDelegate) SetTextContentManagerTextElementAtLocation(f func(textContentManager ITextContentManager, location unsafe.Pointer) ITextElement) {
 	d._TextContentManagerTextElementAtLocation = f
 }
 
@@ -61,15 +63,53 @@ func (d *TextContentManagerDelegate) HasTextContentManagerShouldEnumerateTextEle
 }
 
 // TextContentManagerTextElementAtLocation implements the PTextContentManagerDelegate interface.
-func (d *TextContentManagerDelegate) TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) TextElement {
+func (d *TextContentManagerDelegate) TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) ITextElement {
 	if d._TextContentManagerTextElementAtLocation != nil {
 		return d._TextContentManagerTextElementAtLocation(textContentManager, location)
 	}
-	var zero TextElement
+	var zero ITextElement
 	return zero
 }
 
 // HasTextContentManagerTextElementAtLocation returns true if a handler for TextContentManagerTextElementAtLocation has been set.
 func (d *TextContentManagerDelegate) HasTextContentManagerTextElementAtLocation() bool {
 	return d._TextContentManagerTextElementAtLocation != nil
+}
+
+// TextContentManagerDelegateObject wraps an existing Objective-C object that conforms to the PTextContentManagerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type TextContentManagerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewTextContentManagerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSTextContentManagerDelegate protocol.
+func NewTextContentManagerDelegateObject(obj objectivec.Object) *TextContentManagerDelegateObject {
+	return &TextContentManagerDelegateObject{obj}
+}
+
+// Make sure TextContentManagerDelegateObject implements PTextContentManagerDelegate.
+var _ PTextContentManagerDelegate = (*TextContentManagerDelegateObject)(nil)
+
+// TextContentManagerShouldEnumerateTextElementOptions implements the PTextContentManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TextContentManagerDelegateObject) TextContentManagerShouldEnumerateTextElementOptions(textContentManager ITextContentManager, textElement ITextElement, options TextContentManagerEnumerationOptions) bool {
+	return objc.Send[bool](o.ID, objc.Sel("textContentManager:shouldEnumerateTextElement:options:"), textContentManager, textElement, options)
+}
+
+// HasTextContentManagerShouldEnumerateTextElementOptions returns true; this is a placeholder for optional method checks.
+func (o *TextContentManagerDelegateObject) HasTextContentManagerShouldEnumerateTextElementOptions() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// TextContentManagerTextElementAtLocation implements the PTextContentManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *TextContentManagerDelegateObject) TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) ITextElement {
+	return objc.Send[ITextElement](o.ID, objc.Sel("textContentManager:textElementAtLocation:"), textContentManager, location)
+}
+
+// HasTextContentManagerTextElementAtLocation returns true; this is a placeholder for optional method checks.
+func (o *TextContentManagerDelegateObject) HasTextContentManagerTextElementAtLocation() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }

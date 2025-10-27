@@ -5,7 +5,7 @@ package metal
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -25,14 +25,14 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLTexture
 type PTexture interface {
 	// Required methods
-	GetBytesBytesPerRowBytesPerImageFromRegionMipmapLevelSlice(pixelBytes objectivec.IObject, bytesPerRow uint, bytesPerImage uint, region objc.IObject /* cross-framework: MTLRegion */, level uint, slice uint)/* debug [protocol_interface/required_method]: GetBytesBytesPerRowBytesPerImageFromRegionMipmapLevelSlice */
-	GetBytesBytesPerRowFromRegionMipmapLevel(pixelBytes objectivec.IObject, bytesPerRow uint, region objc.IObject /* cross-framework: MTLRegion */, level uint)/* debug [protocol_interface/required_method]: GetBytesBytesPerRowFromRegionMipmapLevel */
-	NewRemoteTextureViewForDevice(device unsafe.Pointer) unsafe.Pointer/* debug [protocol_interface/required_method]: NewRemoteTextureViewForDevice */
-	NewSharedTextureHandle() SharedTextureHandle/* debug [protocol_interface/required_method]: NewSharedTextureHandle */
-	NewTextureViewWithPixelFormat(pixelFormat PixelFormat) unsafe.Pointer/* debug [protocol_interface/required_method]: NewTextureViewWithPixelFormat */
-	NewTextureViewWithDescriptor(descriptor IMTLTextureViewDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: NewTextureViewWithDescriptor */
-	NewTextureViewWithPixelFormatTextureTypeLevelsSlices(pixelFormat PixelFormat, textureType TextureType, levelRange corefoundation.Range, sliceRange corefoundation.Range) unsafe.Pointer/* debug [protocol_interface/required_method]: NewTextureViewWithPixelFormatTextureTypeLevelsSlices */
-	NewTextureViewWithPixelFormatTextureTypeLevelsSlicesSwizzle(pixelFormat PixelFormat, textureType TextureType, levelRange corefoundation.Range, sliceRange corefoundation.Range, swizzle objc.IObject /* cross-framework: MTLTextureSwizzleChannels */) unsafe.Pointer/* debug [protocol_interface/required_method]: NewTextureViewWithPixelFormatTextureTypeLevelsSlicesSwizzle */
-	ReplaceRegionMipmapLevelSliceWithBytesBytesPerRowBytesPerImage(region objc.IObject /* cross-framework: MTLRegion */, level uint, slice uint, pixelBytes objectivec.IObject, bytesPerRow uint, bytesPerImage uint)/* debug [protocol_interface/required_method]: ReplaceRegionMipmapLevelSliceWithBytesBytesPerRowBytesPerImage */
-	ReplaceRegionMipmapLevelWithBytesBytesPerRow(region objc.IObject /* cross-framework: MTLRegion */, level uint, pixelBytes objectivec.IObject, bytesPerRow uint)/* debug [protocol_interface/required_method]: ReplaceRegionMipmapLevelWithBytesBytesPerRow */
+	GetBytesBytesPerRowBytesPerImageFromRegionMipmapLevelSlice(pixelBytes objectivec.IObject, bytesPerRow uint, bytesPerImage uint, region Region, level uint, slice uint)
+	GetBytesBytesPerRowFromRegionMipmapLevel(pixelBytes objectivec.IObject, bytesPerRow uint, region Region, level uint)
+	NewRemoteTextureViewForDevice(device unsafe.Pointer) unsafe.Pointer
+	NewSharedTextureHandle() ISharedTextureHandle
+	NewTextureViewWithPixelFormat(pixelFormat PixelFormat) unsafe.Pointer
+	NewTextureViewWithDescriptor(descriptor IMTLTextureViewDescriptor) unsafe.Pointer
+	NewTextureViewWithPixelFormatTextureTypeLevelsSlices(pixelFormat PixelFormat, textureType TextureType, levelRange foundation.Range, sliceRange foundation.Range) unsafe.Pointer
+	NewTextureViewWithPixelFormatTextureTypeLevelsSlicesSwizzle(pixelFormat PixelFormat, textureType TextureType, levelRange foundation.Range, sliceRange foundation.Range, swizzle TextureSwizzleChannels) unsafe.Pointer
+	ReplaceRegionMipmapLevelSliceWithBytesBytesPerRowBytesPerImage(region Region, level uint, slice uint, pixelBytes objectivec.IObject, bytesPerRow uint, bytesPerImage uint)
+	ReplaceRegionMipmapLevelWithBytesBytesPerRow(region Region, level uint, pixelBytes objectivec.IObject, bytesPerRow uint)
 }

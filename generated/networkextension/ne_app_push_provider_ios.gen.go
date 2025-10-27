@@ -8,7 +8,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for NEAppPushProvider
@@ -26,7 +26,7 @@ func (n_ NEAppPushProvider) HandleTimerEvent() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)
-func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo objc.IObject /* cross-framework: NSDictionary */) {
+func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo foundation.foundation.INSDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("reportIncomingCallWithUserInfo:"), userInfo)
 }
 
@@ -34,7 +34,7 @@ func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/reportPushToTalkMessage(userInfo:)
-func (n_ NEAppPushProvider) ReportPushToTalkMessageWithUserInfo(userInfo objc.IObject /* cross-framework: NSDictionary */) {
+func (n_ NEAppPushProvider) ReportPushToTalkMessageWithUserInfo(userInfo foundation.foundation.INSDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("reportPushToTalkMessageWithUserInfo:"), userInfo)
 }
 

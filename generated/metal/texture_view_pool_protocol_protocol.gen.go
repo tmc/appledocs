@@ -21,7 +21,7 @@ import (
 // See: doc://com.apple.metal/documentation/Metal/MTLTextureViewPool
 type PTextureViewPool interface {
 	// Required methods
-	SetTextureViewFromBufferDescriptorOffsetBytesPerRowAtIndex(buffer unsafe.Pointer, descriptor IMTLTextureDescriptor, offset uint, bytesPerRow uint, index uint) MTLResourceID/* debug [protocol_interface/required_method]: SetTextureViewFromBufferDescriptorOffsetBytesPerRowAtIndex */
-	SetTextureViewDescriptorAtIndex(texture unsafe.Pointer, descriptor IMTLTextureViewDescriptor, index uint) MTLResourceID/* debug [protocol_interface/required_method]: SetTextureViewDescriptorAtIndex */
-	SetTextureViewAtIndex(texture unsafe.Pointer, index uint) MTLResourceID/* debug [protocol_interface/required_method]: SetTextureViewAtIndex */
+	SetTextureViewFromBufferDescriptorOffsetBytesPerRowAtIndex(buffer unsafe.Pointer, descriptor IMTLTextureDescriptor, offset uint, bytesPerRow uint, index uint) MTLResourceID
+	SetTextureViewDescriptorAtIndex(texture unsafe.Pointer, descriptor IMTLTextureViewDescriptor, index uint) MTLResourceID
+	SetTextureViewAtIndex(texture unsafe.Pointer, index uint) MTLResourceID
 }

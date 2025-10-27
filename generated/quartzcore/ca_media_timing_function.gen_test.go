@@ -24,7 +24,7 @@ func ExampleNewMediaTimingFunctionWithControlPoints() {
 // Creates and returns a new instance of   configured with the predefined timing function specified by  .
 func ExampleNewMediaTimingFunctionWithName() {
 	_ = quartzcore.NewMediaTimingFunctionWithName(
-		quartzcore.MediaTimingFunctionName /* typedef */{}, // name MediaTimingFunctionName /* typedef */
+		quartzcore.MediaTimingFunctionName{}, // name MediaTimingFunctionName
 	)
 	// Output:
 }

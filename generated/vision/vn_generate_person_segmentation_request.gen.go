@@ -52,7 +52,7 @@ type IGeneratePersonSegmentationRequest interface {
 	
 
 	// methods:
-	SupportedOutputPixelFormatsAndReturnError(error_ objectivec.IObject) []foundation.Number
+	SupportedOutputPixelFormatsAndReturnError(error_ foundation.foundation.INSError) []foundation.Number
 
 
 }
@@ -153,7 +153,7 @@ func NewGeneratePersonSegmentationRequestWithCompletionHandler(completionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/supportedOutputPixelFormats()
-func (g_ GeneratePersonSegmentationRequest) SupportedOutputPixelFormatsAndReturnError(error_ objectivec.IObject) []foundation.Number {
+func (g_ GeneratePersonSegmentationRequest) SupportedOutputPixelFormatsAndReturnError(error_ foundation.foundation.INSError) []foundation.Number {
 	rv := objc.Send[[]foundation.Number](g_.ID, objc.Sel("supportedOutputPixelFormatsAndReturnError:"), error_)
 	return rv
 }

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPlayerVideoOutput */
 
 
-/* debug [class_header]: Header for AVPlayerVideoOutput */
+
+
 // The class instance for the [PlayerVideoOutput] class.
 var (
 	PlayerVideoOutputClass     _PlayerVideoOutputClass
@@ -30,31 +30,31 @@ func getPlayerVideoOutputClass() _PlayerVideoOutputClass {
 type _PlayerVideoOutputClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PlayerVideoOutput */
+
+
 // An interface definition for the [PlayerVideoOutput] class.
 type IPlayerVideoOutput interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PlayerVideoOutput */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PlayerVideoOutput */
+
 	// methods:
-	CopyTaggedBufferGroupForHostTimePresentationTimeStampActiveConfiguration(hostTime objc.IObject /* cross-framework: Time */, presentationTimeStampOut objc.IObject /* cross-framework: Time */, activeConfigurationOut IAVPlayerVideoOutputConfiguration) TaggedBufferGroupRef /* not a class type */
-/* debug [class_interface_methods]: End methods */
+	CopyTaggedBufferGroupForHostTimePresentationTimeStampActiveConfiguration(hostTime objectivec.IObject, presentationTimeStampOut objectivec.IObject, activeConfigurationOut IAVPlayerVideoOutputConfiguration) TaggedBufferGroupRef /* not a class type */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PlayerVideoOutput */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerVideoOutputClass) Alloc() PlayerVideoOutput {
 	rv := objc.Send[PlayerVideoOutput](objc.ID(pc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (p_ PlayerVideoOutput) Autorelease() PlayerVideoOutput {
 func NewPlayerVideoOutput() PlayerVideoOutput {
 	return getPlayerVideoOutputClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PlayerVideoOutput */
+
+
 // An object that receives video data from a player object.
 //
 // Attach a video output to an object to access the player’s video data as objects.
@@ -108,11 +108,11 @@ type PlayerVideoOutput struct {
 func PlayerVideoOutputFrom(ptr unsafe.Pointer) PlayerVideoOutput {
 	return PlayerVideoOutput{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PlayerVideoOutput */
+
+
 
 // Creates a video output from a specification.
 //
@@ -123,39 +123,39 @@ func NewPlayerVideoOutputWithSpecification(specification IAVVideoOutputSpecifica
 	rv := objc.Send[PlayerVideoOutput](instance.ID, objc.Sel("initWithSpecification:"), specification)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPlayerVideoOutputWithSpecification */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for PlayerVideoOutput */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PlayerVideoOutput */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PlayerVideoOutput */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerVideoOutput/copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:
-func (p_ PlayerVideoOutput) CopyTaggedBufferGroupForHostTimePresentationTimeStampActiveConfiguration(hostTime objc.IObject /* cross-framework: Time */, presentationTimeStampOut objc.IObject /* cross-framework: Time */, activeConfigurationOut IAVPlayerVideoOutputConfiguration) TaggedBufferGroupRef /* not a class type */ {
+func (p_ PlayerVideoOutput) CopyTaggedBufferGroupForHostTimePresentationTimeStampActiveConfiguration(hostTime objectivec.IObject, presentationTimeStampOut objectivec.IObject, activeConfigurationOut IAVPlayerVideoOutputConfiguration) TaggedBufferGroupRef /* not a class type */ {
 	rv := objc.Send[TaggedBufferGroupRef](p_.ID, objc.Sel("copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:"), hostTime, presentationTimeStampOut, activeConfigurationOut)
 	return rv
-}/* debug [instance_methods/method]: CopyTaggedBufferGroupForHostTimePresentationTimeStampActiveConfiguration */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PlayerVideoOutput */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVPlayerVideoOutput */
+
+
+
+
+
 
 

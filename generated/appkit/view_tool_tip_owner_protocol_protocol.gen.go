@@ -4,11 +4,11 @@ package appkit
 
 import (
 
+	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
 
 	"github.com/tmc/appledocs/generated/objectivec"
-
-	"github.com/tmc/appledocs/generated/vision"
 )
 
 // PViewToolTipOwner is the NSViewToolTipOwner protocol interface.
@@ -21,5 +21,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSViewToolTipOwner
 type PViewToolTipOwner interface {
 	// Required methods
-	ViewStringForToolTipPointUserData(view IView, tag ToolTipTag /* typedef */, point vision.Point, data objectivec.IObject) foundation.String/* debug [protocol_interface/required_method]: ViewStringForToolTipPointUserData */
+	ViewStringForToolTipPointUserData(view IView, tag ToolTipTag, point corefoundation.CGPoint, data objectivec.IObject) foundation.String
 }

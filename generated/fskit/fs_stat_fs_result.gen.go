@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class FSStatFSResult */
 
 
-/* debug [class_header]: Header for FSStatFSResult */
+
+
 // The class instance for the [FSStatFSResult] class.
 var (
 	FSStatFSResultClass     _FSStatFSResultClass
@@ -31,16 +30,16 @@ func getFSStatFSResultClass() _FSStatFSResultClass {
 type _FSStatFSResultClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FSStatFSResult */
+
+
 // An interface definition for the [FSStatFSResult] class.
 type IFSStatFSResult interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for FSStatFSResult */
+
 	// properties:
 	AvailableBlocks() uint64
 	SetAvailableBlocks(value uint64)
@@ -50,7 +49,7 @@ type IFSStatFSResult interface {
 	SetBlockSize(value int)
 	FileSystemSubType() int
 	SetFileSystemSubType(value int)
-	FileSystemTypeName() objc.IObject /* cross-framework: NSString */
+	FileSystemTypeName() foundation.foundation.INSString
 	FreeBlocks() uint64
 	SetFreeBlocks(value uint64)
 	FreeBytes() uint64
@@ -73,19 +72,19 @@ type IFSStatFSResult interface {
 	SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities)
 	VolumeStatistics() IFSStatFSResult
 	SetVolumeStatistics(value IFSStatFSResult)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FSStatFSResult */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FSStatFSResult */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FSStatFSResultClass) Alloc() FSStatFSResult {
 	rv := objc.Send[FSStatFSResult](objc.ID(fc.class), objc.Sel("alloc"))
@@ -115,11 +114,11 @@ func (f_ FSStatFSResult) Autorelease() FSStatFSResult {
 func NewFSStatFSResult() FSStatFSResult {
 	return getFSStatFSResultClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FSStatFSResult */
+
+
 // A type used to report a volume’s statistics.
 //
 // The names of this type’s properties match those in the structure in , which reports these values for an FSKit file system. All numeric properties default to . Override these values, unless a given property has no meaningful value to provide. For the read-only , set this value with the designated initializer.
@@ -139,43 +138,43 @@ type FSStatFSResult struct {
 func FSStatFSResultFrom(ptr unsafe.Pointer) FSStatFSResult {
 	return FSStatFSResult{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FSStatFSResult */
+
+
 
 // Creates an statistics result instance, using the given file system type name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/init(fileSystemTypeName:)
-func NewFSStatFSResultWithFileSystemTypeName(fileSystemTypeName objc.IObject /* cross-framework: NSString */) FSStatFSResult {
+func NewFSStatFSResultWithFileSystemTypeName(fileSystemTypeName foundation.foundation.INSString) FSStatFSResult {
 	instance := getFSStatFSResultClass().Alloc()
 	rv := objc.Send[FSStatFSResult](instance.ID, objc.Sel("initWithFileSystemTypeName:"), fileSystemTypeName)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewFSStatFSResultWithFileSystemTypeName */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for FSStatFSResult */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FSStatFSResult */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FSStatFSResult */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FSStatFSResult */
+
+
+
+
+
+
+
+
+
 
 // A property for the number of free blocks available to a non-superuser on the volume.
 //
@@ -184,7 +183,7 @@ func NewFSStatFSResultWithFileSystemTypeName(fileSystemTypeName objc.IObject /* 
 func (f_ FSStatFSResult) AvailableBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("availableBlocks"))
 	return rv
-}/* debug [instance_properties/getter]: availableBlocks */
+}
 
 
 // A property for the number of free blocks available to a non-superuser on the volume.
@@ -193,7 +192,7 @@ func (f_ FSStatFSResult) AvailableBlocks() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/availableBlocks
 func (f_ FSStatFSResult) SetAvailableBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableBlocks:"), value)
-}/* debug [instance_properties/setter]: availableBlocks */
+}
 
 
 // A property for the amount of space available to users, in bytes, in the volume.
@@ -203,7 +202,7 @@ func (f_ FSStatFSResult) SetAvailableBlocks(value uint64) {
 func (f_ FSStatFSResult) AvailableBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("availableBytes"))
 	return rv
-}/* debug [instance_properties/getter]: availableBytes */
+}
 
 
 // A property for the amount of space available to users, in bytes, in the volume.
@@ -212,7 +211,7 @@ func (f_ FSStatFSResult) AvailableBytes() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/availableBytes
 func (f_ FSStatFSResult) SetAvailableBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableBytes:"), value)
-}/* debug [instance_properties/setter]: availableBytes */
+}
 
 
 // A property for the volume’s block size, in bytes.
@@ -222,7 +221,7 @@ func (f_ FSStatFSResult) SetAvailableBytes(value uint64) {
 func (f_ FSStatFSResult) BlockSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("blockSize"))
 	return rv
-}/* debug [instance_properties/getter]: blockSize */
+}
 
 
 // A property for the volume’s block size, in bytes.
@@ -231,7 +230,7 @@ func (f_ FSStatFSResult) BlockSize() int {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/blockSize
 func (f_ FSStatFSResult) SetBlockSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBlockSize:"), value)
-}/* debug [instance_properties/setter]: blockSize */
+}
 
 
 // A property for the file system’s subtype or flavor.
@@ -241,7 +240,7 @@ func (f_ FSStatFSResult) SetBlockSize(value int) {
 func (f_ FSStatFSResult) FileSystemSubType() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fileSystemSubType"))
 	return rv
-}/* debug [instance_properties/getter]: fileSystemSubType */
+}
 
 
 // A property for the file system’s subtype or flavor.
@@ -250,17 +249,17 @@ func (f_ FSStatFSResult) FileSystemSubType() int {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/fileSystemSubType
 func (f_ FSStatFSResult) SetFileSystemSubType(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemSubType:"), value)
-}/* debug [instance_properties/setter]: fileSystemSubType */
+}
 
 
 // A property for the file system type name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/fileSystemTypeName
-func (f_ FSStatFSResult) FileSystemTypeName() objc.IObject /* cross-framework: NSString */ {
+func (f_ FSStatFSResult) FileSystemTypeName() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("fileSystemTypeName"))
 	return rv
-}/* debug [instance_properties/getter]: fileSystemTypeName */
+}
 
 
 // A property for the number of free blocks in the volume.
@@ -270,7 +269,7 @@ func (f_ FSStatFSResult) FileSystemTypeName() objc.IObject /* cross-framework: N
 func (f_ FSStatFSResult) FreeBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("freeBlocks"))
 	return rv
-}/* debug [instance_properties/getter]: freeBlocks */
+}
 
 
 // A property for the number of free blocks in the volume.
@@ -279,7 +278,7 @@ func (f_ FSStatFSResult) FreeBlocks() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/freeBlocks
 func (f_ FSStatFSResult) SetFreeBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFreeBlocks:"), value)
-}/* debug [instance_properties/setter]: freeBlocks */
+}
 
 
 // A property for the amount of free space, in bytes, in the volume.
@@ -289,7 +288,7 @@ func (f_ FSStatFSResult) SetFreeBlocks(value uint64) {
 func (f_ FSStatFSResult) FreeBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("freeBytes"))
 	return rv
-}/* debug [instance_properties/getter]: freeBytes */
+}
 
 
 // A property for the amount of free space, in bytes, in the volume.
@@ -298,7 +297,7 @@ func (f_ FSStatFSResult) FreeBytes() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/freeBytes
 func (f_ FSStatFSResult) SetFreeBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFreeBytes:"), value)
-}/* debug [instance_properties/setter]: freeBytes */
+}
 
 
 // A property for the total number of free file slots in the volume.
@@ -308,7 +307,7 @@ func (f_ FSStatFSResult) SetFreeBytes(value uint64) {
 func (f_ FSStatFSResult) FreeFiles() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("freeFiles"))
 	return rv
-}/* debug [instance_properties/getter]: freeFiles */
+}
 
 
 // A property for the total number of free file slots in the volume.
@@ -317,7 +316,7 @@ func (f_ FSStatFSResult) FreeFiles() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/freeFiles
 func (f_ FSStatFSResult) SetFreeFiles(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFreeFiles:"), value)
-}/* debug [instance_properties/setter]: freeFiles */
+}
 
 
 // A property for the optimal block size with which to perform I/O.
@@ -327,7 +326,7 @@ func (f_ FSStatFSResult) SetFreeFiles(value uint64) {
 func (f_ FSStatFSResult) IoSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("ioSize"))
 	return rv
-}/* debug [instance_properties/getter]: ioSize */
+}
 
 
 // A property for the optimal block size with which to perform I/O.
@@ -336,7 +335,7 @@ func (f_ FSStatFSResult) IoSize() int {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/ioSize
 func (f_ FSStatFSResult) SetIoSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIoSize:"), value)
-}/* debug [instance_properties/setter]: ioSize */
+}
 
 
 // A property for the volume’s total data block count.
@@ -346,7 +345,7 @@ func (f_ FSStatFSResult) SetIoSize(value int) {
 func (f_ FSStatFSResult) TotalBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("totalBlocks"))
 	return rv
-}/* debug [instance_properties/getter]: totalBlocks */
+}
 
 
 // A property for the volume’s total data block count.
@@ -355,7 +354,7 @@ func (f_ FSStatFSResult) TotalBlocks() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/totalBlocks
 func (f_ FSStatFSResult) SetTotalBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTotalBlocks:"), value)
-}/* debug [instance_properties/setter]: totalBlocks */
+}
 
 
 // A property for the total size, in bytes, of the volume.
@@ -365,7 +364,7 @@ func (f_ FSStatFSResult) SetTotalBlocks(value uint64) {
 func (f_ FSStatFSResult) TotalBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("totalBytes"))
 	return rv
-}/* debug [instance_properties/getter]: totalBytes */
+}
 
 
 // A property for the total size, in bytes, of the volume.
@@ -374,7 +373,7 @@ func (f_ FSStatFSResult) TotalBytes() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/totalBytes
 func (f_ FSStatFSResult) SetTotalBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTotalBytes:"), value)
-}/* debug [instance_properties/setter]: totalBytes */
+}
 
 
 // A property for the total number of file slots in the volume,
@@ -384,7 +383,7 @@ func (f_ FSStatFSResult) SetTotalBytes(value uint64) {
 func (f_ FSStatFSResult) TotalFiles() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("totalFiles"))
 	return rv
-}/* debug [instance_properties/getter]: totalFiles */
+}
 
 
 // A property for the total number of file slots in the volume,
@@ -393,7 +392,7 @@ func (f_ FSStatFSResult) TotalFiles() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/totalFiles
 func (f_ FSStatFSResult) SetTotalFiles(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTotalFiles:"), value)
-}/* debug [instance_properties/setter]: totalFiles */
+}
 
 
 // A property for the number of used blocks in the volume.
@@ -403,7 +402,7 @@ func (f_ FSStatFSResult) SetTotalFiles(value uint64) {
 func (f_ FSStatFSResult) UsedBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("usedBlocks"))
 	return rv
-}/* debug [instance_properties/getter]: usedBlocks */
+}
 
 
 // A property for the number of used blocks in the volume.
@@ -412,7 +411,7 @@ func (f_ FSStatFSResult) UsedBlocks() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/usedBlocks
 func (f_ FSStatFSResult) SetUsedBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUsedBlocks:"), value)
-}/* debug [instance_properties/setter]: usedBlocks */
+}
 
 
 // A property for the amount of used space, in bytes, in the volume.
@@ -422,7 +421,7 @@ func (f_ FSStatFSResult) SetUsedBlocks(value uint64) {
 func (f_ FSStatFSResult) UsedBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("usedBytes"))
 	return rv
-}/* debug [instance_properties/getter]: usedBytes */
+}
 
 
 // A property for the amount of used space, in bytes, in the volume.
@@ -431,7 +430,7 @@ func (f_ FSStatFSResult) UsedBytes() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult/usedBytes
 func (f_ FSStatFSResult) SetUsedBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUsedBytes:"), value)
-}/* debug [instance_properties/setter]: usedBytes */
+}
 
 
 // A property that provides the supported capabilities of the volume.
@@ -441,7 +440,7 @@ func (f_ FSStatFSResult) SetUsedBytes(value uint64) {
 func (f_ FSStatFSResult) SupportedVolumeCapabilities() IFSVolumeSupportedCapabilities {
 	rv := objc.Send[FSVolumeSupportedCapabilities](f_.ID, objc.Sel("supportedVolumeCapabilities"))
 	return rv
-}/* debug [instance_properties/getter]: supportedVolumeCapabilities */
+}
 
 
 // A property that provides the supported capabilities of the volume.
@@ -450,7 +449,7 @@ func (f_ FSStatFSResult) SupportedVolumeCapabilities() IFSVolumeSupportedCapabil
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
 func (f_ FSStatFSResult) SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedVolumeCapabilities:"), value)
-}/* debug [instance_properties/setter]: supportedVolumeCapabilities */
+}
 
 
 // A property that provides up-to-date statistics of the volume.
@@ -460,7 +459,7 @@ func (f_ FSStatFSResult) SetSupportedVolumeCapabilities(value IFSVolumeSupported
 func (f_ FSStatFSResult) VolumeStatistics() IFSStatFSResult {
 	rv := objc.Send[FSStatFSResult](f_.ID, objc.Sel("volumeStatistics"))
 	return rv
-}/* debug [instance_properties/getter]: volumeStatistics */
+}
 
 
 // A property that provides up-to-date statistics of the volume.
@@ -469,11 +468,11 @@ func (f_ FSStatFSResult) VolumeStatistics() IFSStatFSResult {
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
 func (f_ FSStatFSResult) SetVolumeStatistics(value IFSStatFSResult) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeStatistics:"), value)
-}/* debug [instance_properties/setter]: volumeStatistics */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class FSStatFSResult */
+
+
+
 
 

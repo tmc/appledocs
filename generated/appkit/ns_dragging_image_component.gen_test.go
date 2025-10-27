@@ -13,7 +13,7 @@ var _ = appkit.NewDraggingImageComponent
 // Initializes and returns a dragging image component with the specified key.
 func ExampleNewDraggingImageComponentWithKey() {
 	_ = appkit.NewDraggingImageComponentWithKey(
-		appkit.DraggingImageComponentKey /* typedef */{}, // key DraggingImageComponentKey /* typedef */
+		appkit.DraggingImageComponentKey{}, // key DraggingImageComponentKey
 	)
 	// Output:
 }

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MTLResourceViewPoolDescriptor */
 
 
-/* debug [class_header]: Header for MTLResourceViewPoolDescriptor */
+
+
 // The class instance for the [ResourceViewPoolDescriptor] class.
 var (
 	ResourceViewPoolDescriptorClass     _ResourceViewPoolDescriptorClass
@@ -31,34 +30,34 @@ func getResourceViewPoolDescriptorClass() _ResourceViewPoolDescriptorClass {
 type _ResourceViewPoolDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ResourceViewPoolDescriptor */
+
+
 // An interface definition for the [ResourceViewPoolDescriptor] class.
 type IResourceViewPoolDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ResourceViewPoolDescriptor */
+
 	// properties:
-	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Label() foundation.foundation.INSString
+	SetLabel(value foundation.foundation.INSString)
 	ResourceViewCount() uint
 	SetResourceViewCount(value uint)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ResourceViewPoolDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ResourceViewPoolDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ResourceViewPoolDescriptorClass) Alloc() ResourceViewPoolDescriptor {
 	rv := objc.Send[ResourceViewPoolDescriptor](objc.ID(rc.class), objc.Sel("alloc"))
@@ -88,11 +87,11 @@ func (r_ ResourceViewPoolDescriptor) Autorelease() ResourceViewPoolDescriptor {
 func NewResourceViewPoolDescriptor() ResourceViewPoolDescriptor {
 	return getResourceViewPoolDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ResourceViewPoolDescriptor */
+
+
 // Provides parameters for creating a resource view pool.
 
 
@@ -110,48 +109,48 @@ type ResourceViewPoolDescriptor struct {
 func ResourceViewPoolDescriptorFrom(ptr unsafe.Pointer) ResourceViewPoolDescriptor {
 	return ResourceViewPoolDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ResourceViewPoolDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ResourceViewPoolDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ResourceViewPoolDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ResourceViewPoolDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ResourceViewPoolDescriptor */
+
+
+
+
+
+
+
+
+
 
 // Assigns an optional label you to the resource view pool for debugging purposes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
-func (r_ ResourceViewPoolDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+func (r_ ResourceViewPoolDescriptor) Label() foundation.foundation.INSString {
 	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("label"))
 	return rv
-}/* debug [instance_properties/getter]: label */
+}
 
 
 // Assigns an optional label you to the resource view pool for debugging purposes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
-func (r_ ResourceViewPoolDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+func (r_ ResourceViewPoolDescriptor) SetLabel(value foundation.foundation.INSString) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
-}/* debug [instance_properties/setter]: label */
+}
 
 
 // Configures the number of resource views with which Metal creates the resource view pool.
@@ -161,7 +160,7 @@ func (r_ ResourceViewPoolDescriptor) SetLabel(value objc.IObject /* cross-framew
 func (r_ ResourceViewPoolDescriptor) ResourceViewCount() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("resourceViewCount"))
 	return rv
-}/* debug [instance_properties/getter]: resourceViewCount */
+}
 
 
 // Configures the number of resource views with which Metal creates the resource view pool.
@@ -170,12 +169,12 @@ func (r_ ResourceViewPoolDescriptor) ResourceViewCount() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/resourceViewCount
 func (r_ ResourceViewPoolDescriptor) SetResourceViewCount(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResourceViewCount:"), value)
-}/* debug [instance_properties/setter]: resourceViewCount */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MTLResourceViewPoolDescriptor */
+
+
+
 
 
 

@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class CATransformLayer */
 
 
-/* debug [class_header]: Header for CATransformLayer */
+
+
 // The class instance for the [TransformLayer] class.
 var (
 	TransformLayerClass     _TransformLayerClass
@@ -29,32 +29,32 @@ func getTransformLayerClass() _TransformLayerClass {
 type _TransformLayerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TransformLayer */
+
+
 // An interface definition for the [TransformLayer] class.
 type ITransformLayer interface {
 	ILayer
 	
-/* debug [class_interface_properties]: Properties for TransformLayer */
+
 	// properties:
 	ZPosition() float64
 	SetZPosition(value float64)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TransformLayer */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TransformLayer */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TransformLayerClass) Alloc() TransformLayer {
 	rv := objc.Send[TransformLayer](objc.ID(tc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (t_ TransformLayer) Autorelease() TransformLayer {
 func NewTransformLayer() TransformLayer {
 	return getTransformLayerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TransformLayer */
+
+
 // Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.
 //
 // Unlike normal layers, transform layers do not flatten their sublayers into the plane at . Due to this, they do not support many of the features of the class compositing model: Only the sublayers of a transform layer are rendered. The properties that are rendered by a layer are ignored, including: , , border style properties, stroke style properties, etc. The properties that assume 2D image processing are also ignored, including: , , , , , and shadow style properties. The property is applied to each sublayer individually, the transform layer does not form a compositing group. The method should never be called on a transform layer as they do not have a 2D coordinate space into which the point can be mapped.
@@ -110,30 +110,30 @@ func TransformLayerFrom(ptr unsafe.Pointer) TransformLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TransformLayer *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for TransformLayer */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TransformLayer */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TransformLayer */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TransformLayer */
+
+
+
+
+
+
+
+
+
 
 // The layer’s position on the z axis. Animatable.
 //
@@ -142,7 +142,7 @@ func TransformLayerFrom(ptr unsafe.Pointer) TransformLayer {
 func (t_ TransformLayer) ZPosition() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("zPosition"))
 	return rv
-}/* debug [instance_properties/getter]: zPosition */
+}
 
 
 // The layer’s position on the z axis. Animatable.
@@ -151,12 +151,12 @@ func (t_ TransformLayer) ZPosition() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/zposition
 func (t_ TransformLayer) SetZPosition(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setZPosition:"), value)
-}/* debug [instance_properties/setter]: zPosition */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CATransformLayer */
+
+
+
 
 
 

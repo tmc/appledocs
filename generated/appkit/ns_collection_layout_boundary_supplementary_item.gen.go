@@ -7,15 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/vision"
 )
 
-/* debug [class.gen.go]: Generating class NSCollectionLayoutBoundarySupplementaryItem */
 
 
-/* debug [class_header]: Header for NSCollectionLayoutBoundarySupplementaryItem */
+
+
 // The class instance for the [CollectionLayoutBoundarySupplementaryItem] class.
 var (
 	CollectionLayoutBoundarySupplementaryItemClass     _CollectionLayoutBoundarySupplementaryItemClass
@@ -32,38 +31,38 @@ func getCollectionLayoutBoundarySupplementaryItemClass() _CollectionLayoutBounda
 type _CollectionLayoutBoundarySupplementaryItemClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CollectionLayoutBoundarySupplementaryItem */
+
+
 // An interface definition for the [CollectionLayoutBoundarySupplementaryItem] class.
 type ICollectionLayoutBoundarySupplementaryItem interface {
 	ICollectionLayoutSupplementaryItem
 	
-/* debug [class_interface_properties]: Properties for CollectionLayoutBoundarySupplementaryItem */
+
 	// properties:
 	Alignment() RectAlignment
 	ExtendsBoundary() bool
 	SetExtendsBoundary(value bool)
-	Offset() vision.Point
+	Offset() corefoundation.CGPoint
 	PinToVisibleBounds() bool
 	SetPinToVisibleBounds(value bool)
 	BoundarySupplementaryItems() ICollectionLayoutBoundarySupplementaryItem
 	SetBoundarySupplementaryItems(value ICollectionLayoutBoundarySupplementaryItem)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CollectionLayoutBoundarySupplementaryItem */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CollectionLayoutBoundarySupplementaryItem */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CollectionLayoutBoundarySupplementaryItemClass) Alloc() CollectionLayoutBoundarySupplementaryItem {
 	rv := objc.Send[CollectionLayoutBoundarySupplementaryItem](objc.ID(cc.class), objc.Sel("alloc"))
@@ -93,11 +92,11 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) Autorelease() CollectionLayo
 func NewCollectionLayoutBoundarySupplementaryItem() CollectionLayoutBoundarySupplementaryItem {
 	return getCollectionLayoutBoundarySupplementaryItemClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CollectionLayoutBoundarySupplementaryItem */
+
+
 // An object used to add headers or footers to a collection view.
 //
 // A boundary supplementary item is a specialized type of supplementary item ( ). You use boundary supplementary items to add headers or footers to a section of a collection view or the entire collection view. Each type of supplementary item must have a unique element kind. Consider tracking these strings together in a way that makes it straightforward to identify each element, for example: Add boundary supplementary items to a section by setting that section’s property:
@@ -119,71 +118,71 @@ func CollectionLayoutBoundarySupplementaryItemFrom(ptr unsafe.Pointer) Collectio
 		CollectionLayoutSupplementaryItem: CollectionLayoutSupplementaryItemFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CollectionLayoutBoundarySupplementaryItem */
+
+
 
 // Creates a boundary supplementary item of the specified size and element kind, with an alignment relative to a section or layout.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/init(layoutSize:elementKind:alignment:)
-func NewCollectionLayoutBoundarySupplementaryItemWithLayoutSizeElementKindAlignment(layoutSize ICollectionLayoutSize, elementKind objc.IObject /* cross-framework: NSString */, alignment RectAlignment) CollectionLayoutBoundarySupplementaryItem {
+func NewCollectionLayoutBoundarySupplementaryItemWithLayoutSizeElementKindAlignment(layoutSize ICollectionLayoutSize, elementKind foundation.foundation.INSString, alignment RectAlignment) CollectionLayoutBoundarySupplementaryItem {
 	rv := objc.Send[CollectionLayoutBoundarySupplementaryItem](objc.ID(getCollectionLayoutBoundarySupplementaryItemClass().class), objc.Sel("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:"), layoutSize, elementKind, alignment)
 	return rv
-}/* debug [class_init_methods/constructor]: NewCollectionLayoutBoundarySupplementaryItemWithLayoutSizeElementKindAlignment */
+}
 
 
 // Creates a boundary supplementary item of the specified size and element kind, with an alignment relative to a section or layout at an absolute offset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/init(layoutSize:elementKind:alignment:absoluteOffset:)
-func NewCollectionLayoutBoundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset(layoutSize ICollectionLayoutSize, elementKind objc.IObject /* cross-framework: NSString */, alignment RectAlignment, absoluteOffset vision.Point) CollectionLayoutBoundarySupplementaryItem {
+func NewCollectionLayoutBoundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset(layoutSize ICollectionLayoutSize, elementKind foundation.foundation.INSString, alignment RectAlignment, absoluteOffset corefoundation.CGPoint) CollectionLayoutBoundarySupplementaryItem {
 	rv := objc.Send[CollectionLayoutBoundarySupplementaryItem](objc.ID(getCollectionLayoutBoundarySupplementaryItemClass().class), objc.Sel("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:"), layoutSize, elementKind, alignment, absoluteOffset)
 	return rv
-}/* debug [class_init_methods/constructor]: NewCollectionLayoutBoundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CollectionLayoutBoundarySupplementaryItem */
+
+
+
 
 // Creates a boundary supplementary item of the specified size and element kind, with an alignment relative to a section or layout.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/init(layoutSize:elementKind:alignment:)
-func (cc _CollectionLayoutBoundarySupplementaryItemClass) BoundarySupplementaryItemWithLayoutSizeElementKindAlignment(layoutSize ICollectionLayoutSize, elementKind objc.IObject /* cross-framework: NSString */, alignment RectAlignment) objectivec.IObject {
+func (cc _CollectionLayoutBoundarySupplementaryItemClass) BoundarySupplementaryItemWithLayoutSizeElementKindAlignment(layoutSize ICollectionLayoutSize, elementKind foundation.foundation.INSString, alignment RectAlignment) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:"), layoutSize, elementKind, alignment)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BoundarySupplementaryItemWithLayoutSizeElementKindAlignment) */
+}
 
 
 // Creates a boundary supplementary item of the specified size and element kind, with an alignment relative to a section or layout at an absolute offset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/init(layoutSize:elementKind:alignment:absoluteOffset:)
-func (cc _CollectionLayoutBoundarySupplementaryItemClass) BoundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset(layoutSize ICollectionLayoutSize, elementKind objc.IObject /* cross-framework: NSString */, alignment RectAlignment, absoluteOffset vision.Point) objectivec.IObject {
+func (cc _CollectionLayoutBoundarySupplementaryItemClass) BoundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset(layoutSize ICollectionLayoutSize, elementKind foundation.foundation.INSString, alignment RectAlignment, absoluteOffset corefoundation.CGPoint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:"), layoutSize, elementKind, alignment, absoluteOffset)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BoundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CollectionLayoutBoundarySupplementaryItem */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CollectionLayoutBoundarySupplementaryItem */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CollectionLayoutBoundarySupplementaryItem */
+
+
+
+
+
+
+
 
 // The alignment of the boundary supplementary item relative to the section or layout it’s attached to.
 //
@@ -192,7 +191,7 @@ func (cc _CollectionLayoutBoundarySupplementaryItemClass) BoundarySupplementaryI
 func (c_ CollectionLayoutBoundarySupplementaryItem) Alignment() RectAlignment {
 	rv := objc.Send[RectAlignment](c_.ID, objc.Sel("alignment"))
 	return rv
-}/* debug [instance_properties/getter]: alignment */
+}
 
 
 // A Boolean value that indicates whether a boundary supplementary item extends the content area of the section or layout it’s attached to.
@@ -202,7 +201,7 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) Alignment() RectAlignment {
 func (c_ CollectionLayoutBoundarySupplementaryItem) ExtendsBoundary() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("extendsBoundary"))
 	return rv
-}/* debug [instance_properties/getter]: extendsBoundary */
+}
 
 
 // A Boolean value that indicates whether a boundary supplementary item extends the content area of the section or layout it’s attached to.
@@ -211,17 +210,17 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) ExtendsBoundary() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/extendsBoundary
 func (c_ CollectionLayoutBoundarySupplementaryItem) SetExtendsBoundary(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExtendsBoundary:"), value)
-}/* debug [instance_properties/setter]: extendsBoundary */
+}
 
 
 // The floating-point value of the boundary supplementary item’s offset from the section or layout it’s attached to.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/offset
-func (c_ CollectionLayoutBoundarySupplementaryItem) Offset() vision.Point {
-	rv := objc.Send[vision.Point](c_.ID, objc.Sel("offset"))
+func (c_ CollectionLayoutBoundarySupplementaryItem) Offset() corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](c_.ID, objc.Sel("offset"))
 	return rv
-}/* debug [instance_properties/getter]: offset */
+}
 
 
 // A Boolean value that indicates whether a header or footer is pinned to the top or bottom visible boundary of the section or layout it’s attached to.
@@ -231,7 +230,7 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) Offset() vision.Point {
 func (c_ CollectionLayoutBoundarySupplementaryItem) PinToVisibleBounds() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("pinToVisibleBounds"))
 	return rv
-}/* debug [instance_properties/getter]: pinToVisibleBounds */
+}
 
 
 // A Boolean value that indicates whether a header or footer is pinned to the top or bottom visible boundary of the section or layout it’s attached to.
@@ -240,7 +239,7 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) PinToVisibleBounds() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutBoundarySupplementaryItem/pinToVisibleBounds
 func (c_ CollectionLayoutBoundarySupplementaryItem) SetPinToVisibleBounds(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPinToVisibleBounds:"), value)
-}/* debug [instance_properties/setter]: pinToVisibleBounds */
+}
 
 
 // An array of the supplementary items that are associated with the boundary edges of the entire layout, such as global headers and footers.
@@ -250,7 +249,7 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) SetPinToVisibleBounds(value 
 func (c_ CollectionLayoutBoundarySupplementaryItem) BoundarySupplementaryItems() ICollectionLayoutBoundarySupplementaryItem {
 	rv := objc.Send[CollectionLayoutBoundarySupplementaryItem](c_.ID, objc.Sel("boundarySupplementaryItems"))
 	return rv
-}/* debug [instance_properties/getter]: boundarySupplementaryItems */
+}
 
 
 // An array of the supplementary items that are associated with the boundary edges of the entire layout, such as global headers and footers.
@@ -259,11 +258,11 @@ func (c_ CollectionLayoutBoundarySupplementaryItem) BoundarySupplementaryItems()
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayoutconfiguration/boundarysupplementaryitems
 func (c_ CollectionLayoutBoundarySupplementaryItem) SetBoundarySupplementaryItems(value ICollectionLayoutBoundarySupplementaryItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBoundarySupplementaryItems:"), value)
-}/* debug [instance_properties/setter]: boundarySupplementaryItems */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSCollectionLayoutBoundarySupplementaryItem */
+
+
+
 
 

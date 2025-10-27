@@ -6,7 +6,9 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 
-	"github.com/tmc/appledocs/generated/vision"
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PInputServerMouseTracker is the NSInputServerMouseTracker protocol interface.
@@ -17,7 +19,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSInputServerMouseTracker
 type PInputServerMouseTracker interface {
 	// Required methods
-	MouseDownOnCharacterIndexAtCoordinateWithModifierClient(index uint, point vision.Point, flags uint, sender objc.IObject) bool/* debug [protocol_interface/required_method]: MouseDownOnCharacterIndexAtCoordinateWithModifierClient */
-	MouseDraggedOnCharacterIndexAtCoordinateWithModifierClient(index uint, point vision.Point, flags uint, sender objc.IObject) bool/* debug [protocol_interface/required_method]: MouseDraggedOnCharacterIndexAtCoordinateWithModifierClient */
-	MouseUpOnCharacterIndexAtCoordinateWithModifierClient(index uint, point vision.Point, flags uint, sender objc.IObject)/* debug [protocol_interface/required_method]: MouseUpOnCharacterIndexAtCoordinateWithModifierClient */
+	MouseDownOnCharacterIndexAtCoordinateWithModifierClient(index uint, point corefoundation.CGPoint, flags uint, sender objectivec.IObject) bool
+	MouseDraggedOnCharacterIndexAtCoordinateWithModifierClient(index uint, point corefoundation.CGPoint, flags uint, sender objectivec.IObject) bool
+	MouseUpOnCharacterIndexAtCoordinateWithModifierClient(index uint, point corefoundation.CGPoint, flags uint, sender objectivec.IObject)
 }

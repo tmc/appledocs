@@ -13,7 +13,7 @@ var _ = avfoundation.NewOutputSettingsAssistant
 // Creates an output setting assistant with a preset configuration.
 func ExampleNewOutputSettingsAssistantWithPreset() {
 	_ = avfoundation.NewOutputSettingsAssistantWithPreset(
-		avfoundation.OutputSettingsPreset /* typedef */{}, // presetIdentifier OutputSettingsPreset /* typedef */
+		avfoundation.OutputSettingsPreset{}, // presetIdentifier OutputSettingsPreset
 	)
 	// Output:
 }

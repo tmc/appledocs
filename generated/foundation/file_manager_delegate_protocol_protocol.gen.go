@@ -5,6 +5,8 @@ package foundation
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PFileManagerDelegate is the NSFileManagerDelegate protocol interface.
@@ -413,4 +415,196 @@ func (d *FileManagerDelegate) FileManagerShouldRemoveItemAtPath(fileManager IFil
 // HasFileManagerShouldRemoveItemAtPath returns true if a handler for FileManagerShouldRemoveItemAtPath has been set.
 func (d *FileManagerDelegate) HasFileManagerShouldRemoveItemAtPath() bool {
 	return d._FileManagerShouldRemoveItemAtPath != nil
+}
+
+// FileManagerDelegateObject wraps an existing Objective-C object that conforms to the PFileManagerDelegate protocol.
+// This allows you to safely call protocol methods on any object that implements the protocol,
+// with runtime checks for optional methods using RespondsToSelector.
+type FileManagerDelegateObject struct {
+	objectivec.Object
+}
+
+// NewFileManagerDelegateObject creates a new protocol wrapper for an existing Objective-C object.
+// The object should implement the NSFileManagerDelegate protocol.
+func NewFileManagerDelegateObject(obj objectivec.Object) *FileManagerDelegateObject {
+	return &FileManagerDelegateObject{obj}
+}
+
+// Make sure FileManagerDelegateObject implements PFileManagerDelegate.
+var _ PFileManagerDelegate = (*FileManagerDelegateObject)(nil)
+
+// FileManagerShouldCopyItemAtURLToURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldCopyItemAtURLToURL(fileManager IFileManager, srcURL IURL, dstURL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldCopyItemAtURL:toURL:"), fileManager, srcURL, dstURL)
+}
+
+// HasFileManagerShouldCopyItemAtURLToURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldCopyItemAtURLToURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldCopyItemAtPathToPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldCopyItemAtPathToPath(fileManager IFileManager, srcPath IString, dstPath IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldCopyItemAtPath:toPath:"), fileManager, srcPath, dstPath)
+}
+
+// HasFileManagerShouldCopyItemAtPathToPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldCopyItemAtPathToPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldLinkItemAtURLToURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldLinkItemAtURLToURL(fileManager IFileManager, srcURL IURL, dstURL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldLinkItemAtURL:toURL:"), fileManager, srcURL, dstURL)
+}
+
+// HasFileManagerShouldLinkItemAtURLToURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldLinkItemAtURLToURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldLinkItemAtPathToPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldLinkItemAtPathToPath(fileManager IFileManager, srcPath IString, dstPath IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldLinkItemAtPath:toPath:"), fileManager, srcPath, dstPath)
+}
+
+// HasFileManagerShouldLinkItemAtPathToPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldLinkItemAtPathToPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldMoveItemAtURLToURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldMoveItemAtURLToURL(fileManager IFileManager, srcURL IURL, dstURL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldMoveItemAtURL:toURL:"), fileManager, srcURL, dstURL)
+}
+
+// HasFileManagerShouldMoveItemAtURLToURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldMoveItemAtURLToURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldMoveItemAtPathToPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldMoveItemAtPathToPath(fileManager IFileManager, srcPath IString, dstPath IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldMoveItemAtPath:toPath:"), fileManager, srcPath, dstPath)
+}
+
+// HasFileManagerShouldMoveItemAtPathToPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldMoveItemAtPathToPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorCopyingItemAtURLToURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorCopyingItemAtURLToURL(fileManager IFileManager, error_ IError, srcURL IURL, dstURL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:"), fileManager, error_, srcURL, dstURL)
+}
+
+// HasFileManagerShouldProceedAfterErrorCopyingItemAtURLToURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorCopyingItemAtURLToURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorCopyingItemAtPathToPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorCopyingItemAtPathToPath(fileManager IFileManager, error_ IError, srcPath IString, dstPath IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:"), fileManager, error_, srcPath, dstPath)
+}
+
+// HasFileManagerShouldProceedAfterErrorCopyingItemAtPathToPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorCopyingItemAtPathToPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorLinkingItemAtURLToURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorLinkingItemAtURLToURL(fileManager IFileManager, error_ IError, srcURL IURL, dstURL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:"), fileManager, error_, srcURL, dstURL)
+}
+
+// HasFileManagerShouldProceedAfterErrorLinkingItemAtURLToURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorLinkingItemAtURLToURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorLinkingItemAtPathToPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorLinkingItemAtPathToPath(fileManager IFileManager, error_ IError, srcPath IString, dstPath IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:"), fileManager, error_, srcPath, dstPath)
+}
+
+// HasFileManagerShouldProceedAfterErrorLinkingItemAtPathToPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorLinkingItemAtPathToPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorMovingItemAtURLToURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorMovingItemAtURLToURL(fileManager IFileManager, error_ IError, srcURL IURL, dstURL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:movingItemAtURL:toURL:"), fileManager, error_, srcURL, dstURL)
+}
+
+// HasFileManagerShouldProceedAfterErrorMovingItemAtURLToURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorMovingItemAtURLToURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorMovingItemAtPathToPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorMovingItemAtPathToPath(fileManager IFileManager, error_ IError, srcPath IString, dstPath IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:movingItemAtPath:toPath:"), fileManager, error_, srcPath, dstPath)
+}
+
+// HasFileManagerShouldProceedAfterErrorMovingItemAtPathToPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorMovingItemAtPathToPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorRemovingItemAtURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorRemovingItemAtURL(fileManager IFileManager, error_ IError, URL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:removingItemAtURL:"), fileManager, error_, URL)
+}
+
+// HasFileManagerShouldProceedAfterErrorRemovingItemAtURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorRemovingItemAtURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldProceedAfterErrorRemovingItemAtPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldProceedAfterErrorRemovingItemAtPath(fileManager IFileManager, error_ IError, path IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldProceedAfterError:removingItemAtPath:"), fileManager, error_, path)
+}
+
+// HasFileManagerShouldProceedAfterErrorRemovingItemAtPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldProceedAfterErrorRemovingItemAtPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldRemoveItemAtURL implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldRemoveItemAtURL(fileManager IFileManager, URL IURL) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldRemoveItemAtURL:"), fileManager, URL)
+}
+
+// HasFileManagerShouldRemoveItemAtURL returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldRemoveItemAtURL() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
+}
+
+// FileManagerShouldRemoveItemAtPath implements the PFileManagerDelegate interface.
+// This optional method is called directly; checking selector availability is the caller's responsibility.
+func (o *FileManagerDelegateObject) FileManagerShouldRemoveItemAtPath(fileManager IFileManager, path IString) bool {
+	return objc.Send[bool](o.ID, objc.Sel("fileManager:shouldRemoveItemAtPath:"), fileManager, path)
+}
+
+// HasFileManagerShouldRemoveItemAtPath returns true; this is a placeholder for optional method checks.
+func (o *FileManagerDelegateObject) HasFileManagerShouldRemoveItemAtPath() bool {
+	return true // TODO: Implement proper selector checking when RespondsToSelector is available
 }
